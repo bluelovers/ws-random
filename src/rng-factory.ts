@@ -1,4 +1,4 @@
-import RNG from './rng'
+import Rng from './rng'
 
 import RNGXOR128 from './generators/xor128'
 import RNGFunction from './generators/function'

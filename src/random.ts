@@ -1,6 +1,6 @@
 import ow from 'ow-lite'
 
-import RNG from './rng'
+import Rng from './rng'
 import RNGFactory from './rng-factory'
 
 import uniform from './distributions/uniform'
@@ -29,7 +29,7 @@ import pareto from './distributions/pareto'
  * @name Random
  * @class
  *
- * @param {RNG|function} [rng=Math.random] - Underlying pseudorandom number generator.
+ * @param {Rng|function} [rng=Math.random] - Underlying pseudorandom number generator.
  */
 class Random {
   constructor (rng) {
@@ -40,7 +40,7 @@ class Random {
   }
 
   /**
-   * @member {RNG} Underlying pseudo-random number generator
+   * @member {Rng} Underlying pseudo-random number generator
    */
   get rng () {
     return this._rng
@@ -50,7 +50,7 @@ class Random {
    * Creates a new `Random` instance, optionally specifying parameters to
    * set a new seed.
    *
-   * @see RNG.clone
+   * @see Rng.clone
    *
    * @param {string} [seed] - Optional seed for new RNG.
    * @param {object} [opts] - Optional config for new RNG options.

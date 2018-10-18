@@ -1,5 +1,5 @@
 import ow from 'ow-lite'
-import RNG from '../rng'
+import Rng from '../rng'
 
 export default class RNGFunction extends RNG {
   constructor (seed, opts) {
