@@ -1,4 +1,6 @@
 import ow from 'ow-lite'
+import { Random } from '../random';
+import RNG from '../rng'
 
 const logFactorialTable = [
 	0.0,

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports._MathRandom = Math.random;
 class RNG {
     get name() {
         throw new Error('RNG.name must be overridden');

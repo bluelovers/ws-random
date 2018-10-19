@@ -6,7 +6,7 @@ class RNGMathRandom extends rng_1.default {
         return 'default';
     }
     next() {
-        return Math.random();
+        return rng_1._MathRandom();
     }
     seed(seed, opts) {
         // intentionally empty

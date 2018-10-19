@@ -1,6 +1,8 @@
 import ow from 'ow-lite'
+import { Random } from '../random';
+import RNG from '../rng'
 
-export default (random, mu = 0, sigma = 1) =>
+export default (random: Random, mu = 0, sigma = 1) =>
 {
 	ow(mu, ow.number)
 	ow(sigma, ow.number)

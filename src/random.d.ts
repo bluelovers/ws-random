@@ -1,7 +1,14 @@
 import RNG from './rng';
-export interface IRandomDistributions<R = any> {
+export interface IRandomDistributions<R extends any> {
+    (random: Random): IRandomDistributionsReturn<R>;
+    (random: Random, ...argv: any[]): IRandomDistributionsReturn<R>;
+}
+export interface IRandomDistributionsReturn<R = any> {
     (): R;
     (...argv: any[]): R;
+    (a1: any, ...argv: any[]): R;
+    (a1: any, a2: any, ...argv: any[]): R;
+    (a1: any, a2: any, a3: any, ...argv: any[]): R;
 }
 /**
  * Seedable random number generator supporting many common distributions.
@@ -13,20 +20,35 @@ export interface IRandomDistributions<R = any> {
  *
  * @param {Rng|function} [rng=Math.random] - Underlying pseudorandom number generator.
  */
-export declare class Random<R extends RNG> {
-    protected _rng: R;
+export declare class Random<R extends RNG = RNG> {
     protected _patch: typeof Math.random;
     protected _cache: {
         [k: string]: {
             key: string;
-            distribution: IRandomDistributions;
+            distribution: IRandomDistributions<unknown>;
         };
     };
-    constructor(rng?: RNG);
+    constructor(rng?: R);
+    protected _rng: R;
     /**
      * @member {Rng} Underlying pseudo-random number generator
      */
     readonly rng: R;
+    readonly random: (min?: number, max?: number) => number;
+    readonly rand: (min?: number, max?: number) => number;
+    seed(...argv: any[]): this;
+    readonly srandom: (...argv: any[]) => number;
+    srand(...argv: any[]): number;
+    /**
+     * Creates a new `Random` instance, optionally specifying parameters to
+     * set a new seed.
+     *
+     * @see Rng.clone
+     *
+     * @param {string} [seed] - Optional seed for new RNG.
+     * @param {object} [opts] - Optional config for new RNG options.
+     * @return {Random}
+     */
     clone(seed?: any, opts?: any, ...args: any[]): Random<R>;
     clone<T extends RNG>(seed?: any, opts?: any, ...args: any[]): Random<T>;
     /**
@@ -47,7 +69,9 @@ export declare class Random<R extends RNG> {
      *
      * @param {...*} args
      */
-    use(...args: any[]): void;
+    use(...args: any[]): this;
+    newUse(...args: any[]): Random<RNG>;
+    cloneUse(...args: any[]): Random<R>;
     /**
      * Patches `Math.random` with this Random instance's PRNG.
      */
@@ -74,7 +98,7 @@ export declare class Random<R extends RNG> {
      * @param {number} [max=1] - Upper bound (float, exclusive)
      * @return {number}
      */
-    float(min: any, max: any): (random: RNG, min?: number, max?: number) => () => number;
+    float(min?: number, max?: number): number;
     /**
      * Samples a uniform random integer, optionally specifying lower and upper
      * bounds.
@@ -85,7 +109,7 @@ export declare class Random<R extends RNG> {
      * @param {number} [max=1] - Upper bound (integer, inclusive)
      * @return {number}
      */
-    int(min: any, max: any): (random: RNG, min?: number, max?: number) => () => number;
+    int(min?: number, max?: number): number;
     /**
      * Samples a uniform random integer, optionally specifying lower and upper
      * bounds.
@@ -98,7 +122,7 @@ export declare class Random<R extends RNG> {
      * @param {number} [max=1] - Upper bound (integer, inclusive)
      * @return {number}
      */
-    integer(min: any, max: any): (random: RNG, min?: number, max?: number) => () => number;
+    integer(min?: number, max?: number): number;
     /**
      * Samples a uniform random boolean value.
      *
@@ -108,7 +132,7 @@ export declare class Random<R extends RNG> {
      *
      * @return {boolean}
      */
-    bool(): (random: RNG) => () => boolean;
+    bool(): boolean;
     /**
      * Samples a uniform random boolean value.
      *
@@ -116,7 +140,7 @@ export declare class Random<R extends RNG> {
      *
      * @return {boolean}
      */
-    boolean(): (random: RNG) => () => boolean;
+    boolean(): boolean;
     /**
      * Generates a [Continuous uniform distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)).
      *
@@ -124,7 +148,7 @@ export declare class Random<R extends RNG> {
      * @param {number} [max=1] - Upper bound (float, exclusive)
      * @return {function}
      */
-    uniform(min?: number, max?: number): IRandomDistributions<(random: RNG, min?: number, max?: number) => () => number>;
+    uniform(min?: number, max?: number): () => number;
     /**
      * Generates a [Discrete uniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution).
      *
@@ -132,7 +156,7 @@ export declare class Random<R extends RNG> {
      * @param {number} [max=1] - Upper bound (integer, inclusive)
      * @return {function}
      */
-    uniformInt(min?: number, max?: number): IRandomDistributions<(random: RNG, min?: number, max?: number) => () => number>;
+    uniformInt(min?: number, max?: number): () => number;
     /**
      * Generates a [Discrete uniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution),
      * with two possible outcomes, `true` or `false.
@@ -141,7 +165,7 @@ export declare class Random<R extends RNG> {
      *
      * @return {function}
      */
-    uniformBoolean(): IRandomDistributions<(random: RNG) => () => boolean>;
+    uniformBoolean(): () => boolean;
     /**
      * Generates a [Normal distribution](https://en.wikipedia.org/wiki/Normal_distribution).
      *
@@ -149,7 +173,7 @@ export declare class Random<R extends RNG> {
      * @param {number} [sigma=1] - Standard deviation
      * @return {function}
      */
-    normal(mu: any, sigma: any): () => number;
+    normal(mu?: number, sigma?: number): () => number;
     /**
      * Generates a [Log-normal distribution](https://en.wikipedia.org/wiki/Log-normal_distribution).
      *
@@ -157,14 +181,14 @@ export declare class Random<R extends RNG> {
      * @param {number} [sigma=1] - Standard deviation of underlying normal distribution
      * @return {function}
      */
-    logNormal(mu: any, sigma: any): () => number;
+    logNormal(mu?: number, sigma?: number): () => number;
     /**
      * Generates a [Bernoulli distribution](https://en.wikipedia.org/wiki/Bernoulli_distribution).
      *
      * @param {number} [p=0.5] - Success probability of each trial.
      * @return {function}
      */
-    bernoulli(p: any): () => number;
+    bernoulli(p?: number): () => number;
     /**
      * Generates a [Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution).
      *
@@ -172,28 +196,28 @@ export declare class Random<R extends RNG> {
      * @param {number} [p=0.5] - Success probability of each trial.
      * @return {function}
      */
-    binomial(n: any, p: any): () => number;
+    binomial(n?: number, p?: number): () => number;
     /**
      * Generates a [Geometric distribution](https://en.wikipedia.org/wiki/Geometric_distribution).
      *
      * @param {number} [p=0.5] - Success probability of each trial.
      * @return {function}
      */
-    geometric(p: any): () => number;
+    geometric(p?: number): () => number;
     /**
      * Generates a [Poisson distribution](https://en.wikipedia.org/wiki/Poisson_distribution).
      *
      * @param {number} [lambda=1] - Mean (lambda > 0)
      * @return {function}
      */
-    poisson(lambda: any): () => number;
+    poisson(lambda?: number): () => number;
     /**
      * Generates an [Exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution).
      *
      * @param {number} [lambda=1] - Inverse mean (lambda > 0)
      * @return {function}
      */
-    exponential(lambda: any): () => number;
+    exponential(lambda?: number): () => number;
     /**
      * Generates an [Irwin Hall distribution](https://en.wikipedia.org/wiki/Irwin%E2%80%93Hall_distribution).
      *
@@ -229,8 +253,11 @@ export declare class Random<R extends RNG> {
      *
      * @return {function}
      */
-    _memoize<F extends IRandomDistributions>(label: string, getter: F, ...args: any[]): ReturnType<F>;
-    _memoize<F extends unknown>(label: string, getter: F, ...args: any[]): IRandomDistributions<F>;
+    protected _memoize<F extends IRandomDistributions<any>>(label: string, getter: F, ...args: any[]): ReturnType<F>;
+    /**
+     * reset Memoizes distributions
+     */
+    reset(): this;
 }
 export declare const random: Random<RNG>;
 export default random;

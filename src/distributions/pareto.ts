@@ -1,6 +1,8 @@
 import ow from 'ow-lite'
+import { Random } from '../random';
+import RNG from '../rng'
 
-export default (random, alpha) =>
+export default (random: Random, alpha) =>
 {
 	ow(alpha, ow.number.greaterThanOrEqual(0))
 	const invAlpha = 1.0 / alpha

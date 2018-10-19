@@ -42,14 +42,17 @@
     "test": "ava -v test/**/*.test.js"
   },
   "dependencies": {
-    "ow-lite": "^0.0.2"
+    "@types/seedrandom": "^2.4.27",
+    "hash-sum": "^1.0.2",
+    "ow-lite": "0.0.2",
+    "shortid": "^2.2.13"
   },
   "devDependencies": {
     "ava": "^0.25.0",
     "del-cli": "^1.1.0",
-    "esm": "^3.0.48",
-    "seedrandom": "^2.4.3",
-    "update-markdown-jsdoc": "^1.0.2"
+    "esm": "^3.0.84",
+    "seedrandom": "^2.4.4",
+    "update-markdown-jsdoc": "^1.0.6"
   },
   "engines": {
     "node": ">=6"

@@ -1,6 +1,8 @@
 import ow from 'ow-lite'
+import { Random } from '../random';
+import RNG from '../rng'
 
-export default (random, n) =>
+export default (random: Random, n) =>
 {
   ow(n, ow.number.integer.positive)
   const irwinHall = random.irwinHall(n)

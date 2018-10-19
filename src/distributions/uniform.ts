@@ -1,7 +1,8 @@
 import ow from 'ow-lite'
+import { Random } from '../random';
 import RNG from '../rng'
 
-export default (random: RNG, min?: number, max?: number) =>
+export default (random: Random, min?: number, max?: number) =>
 {
 	if (max === undefined)
 	{

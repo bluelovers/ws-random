@@ -1,8 +1,10 @@
-import ow from 'ow-lite'
+import ow = require('ow-lite')
+import { Random } from '../random';
+import RNG from '../rng'
 
-export default (random, p = 0.5) =>
+export default (random: Random, p = 0.5) =>
 {
-	ow(p, ow.number.greaterThan(0).lessThan(1))
+	ow(p, ow.number.gte(0).lte(1))
 
 	return () =>
 	{

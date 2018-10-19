@@ -39,6 +39,23 @@ class Random {
     get rng() {
         return this._rng;
     }
+    get random() {
+        return this.rand;
+    }
+    get rand() {
+        return this.integer;
+    }
+    seed(...argv) {
+        this._rng.seed(...argv);
+        return this;
+    }
+    get srandom() {
+        return this.srand;
+    }
+    srand(...argv) {
+        return this.seed(...argv)
+            .integer();
+    }
     /**
      * Creates a new `Random` instance, optionally specifying parameters to
      * set a new seed.
@@ -80,6 +97,23 @@ class Random {
      */
     use(...args) {
         this._rng = rng_factory_1.default(...args);
+        return this;
+    }
+    newUse(...args) {
+        let o;
+        if (this instanceof Random) {
+            // @ts-ignore
+            o = (this.__proto__.constructor);
+        }
+        else {
+            o = Random;
+        }
+        return new o(rng_factory_1.default(...args));
+    }
+    cloneUse(...args) {
+        let o = this.clone();
+        o.use(...args);
+        return o;
     }
     /**
      * Patches `Math.random` with this Random instance's PRNG.
@@ -316,14 +350,40 @@ class Random {
     pareto(alpha) {
         return pareto_1.default(this, alpha);
     }
+    // --------------------------------------------------------------------------
+    // Internal
+    // --------------------------------------------------------------------------
+    /**
+     * Memoizes distributions to ensure they're only created when necessary.
+     *
+     * Returns a thunk which that returns independent, identically distributed
+     * samples from the specified distribution.
+     *
+     * @private
+     *
+     * @param {string} label - Name of distribution
+     * @param {function} getter - Function which generates a new distribution
+     * @param {...*} args - Distribution-specific arguments
+     *
+     * @return {function}
+     */
     _memoize(label, getter, ...args) {
         const key = `${args.join(';')}`;
         let value = this._cache[label];
         if (value === undefined || value.key !== key) {
+            // @ts-ignore
             value = { key, distribution: getter(this, ...args) };
             this._cache[label] = value;
         }
+        // @ts-ignore
         return value.distribution;
+    }
+    /**
+     * reset Memoizes distributions
+     */
+    reset() {
+        this._cache = {};
+        return this;
     }
 }
 exports.Random = Random;

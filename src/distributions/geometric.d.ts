@@ -1,2 +1,4 @@
-declare const _default: (random: any, p?: number) => () => number;
+import { Random } from '../random';
+import RNG from '../rng';
+declare const _default: (random: Random<RNG>, p?: number) => () => number;
 export default _default;

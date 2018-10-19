@@ -1,26 +1,26 @@
-import RNG from '../rng'
+import RNG, { _MathRandom } from '../rng'
 
 export class RNGMathRandom extends RNG
 {
-  get name()
-  {
-    return 'default'
-  }
+	get name()
+	{
+		return 'default'
+	}
 
-  next()
-  {
-    return Math.random()
-  }
+	next()
+	{
+		return _MathRandom()
+	}
 
-  seed(seed?, opts?)
-  {
-    // intentionally empty
-  }
+	seed(seed?, opts?)
+	{
+		// intentionally empty
+	}
 
-  clone()
-  {
-    return new RNGMathRandom()
-  }
+	clone()
+	{
+		return new RNGMathRandom()
+	}
 }
 
 export default RNGMathRandom

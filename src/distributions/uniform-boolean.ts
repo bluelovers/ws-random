@@ -1,6 +1,7 @@
+import { Random } from '../random';
 import RNG from '../rng'
 
-export default (random: RNG) =>
+export default (random: Random) =>
 {
 	return () =>
 	{
