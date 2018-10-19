@@ -1,40 +1,24 @@
 import ow = require("ow-lite");
+import { IRandomDistributions } from './distributions';
+import {
+	bates,
+	bernoulli,
+	binomial,
+	exponential,
+	geometric,
+	irwinHall,
+	logNormal,
+	normal,
+	pareto,
+	poisson,
+	uniform,
+	uniformBoolean,
+	uniformInt,
+} from './distributions';
 
 import RNG from './rng'
-import RNGFactory from './rng-factory'
-
-import uniform from './distributions/uniform'
-import uniformInt from './distributions/uniform-int'
-import uniformBoolean from './distributions/uniform-boolean'
-
-import normal from './distributions/normal'
-import logNormal from './distributions/log-normal'
-
-import bernoulli from './distributions/bernoulli'
-import binomial from './distributions/binomial'
-import geometric from './distributions/geometric'
-
-import poisson from './distributions/poisson'
-import exponential from './distributions/exponential'
-
-import irwinHall from './distributions/irwin-hall'
-import bates from './distributions/bates'
-import pareto from './distributions/pareto'
-
-export interface IRandomDistributions<R extends any>
-{
-	(random: Random): IRandomDistributionsReturn<R>
-	(random: Random, ...argv): IRandomDistributionsReturn<R>
-}
-
-export interface IRandomDistributionsReturn<R = any>
-{
-	(): R
-	(...argv): R
-	(a1, ...argv): R
-	(a1, a2, ...argv): R
-	(a1, a2, a3, ...argv): R
-}
+import RNGFactory, { IRNGFactoryType } from './rng-factory'
+import { getClass } from './util';
 
 /**
  * Seedable random number generator supporting many common distributions.
@@ -54,13 +38,12 @@ export class Random<R extends RNG = RNG>
 			key: string,
 			distribution: IRandomDistributions<unknown>,
 		}
-	}
+	} = {}
 
 	constructor(rng?: R)
 	{
 		if (rng) ow(rng, ow.object.instanceOf(RNG))
 
-		this._cache = {}
 		this.use(rng)
 	}
 
@@ -81,7 +64,7 @@ export class Random<R extends RNG = RNG>
 
 	get rand()
 	{
-		return this.integer
+		return this.float
 	}
 
 	seed(...argv)
@@ -138,6 +121,7 @@ export class Random<R extends RNG = RNG>
 			o = Random
 		}
 
+		// @ts-ignore
 		return new o(this.rng.clone(seed, ...args))
 	}
 
@@ -159,34 +143,24 @@ export class Random<R extends RNG = RNG>
 	 *
 	 * @param {...*} args
 	 */
-	use(...args)
+	use(arg0: IRNGFactoryType, ...args)
 	{
-		this._rng = RNGFactory(...args)
+		this._rng = RNGFactory(arg0, ...args)
 
 		return this;
 	}
 
-	newUse(...args)
+	newUse(arg0: IRNGFactoryType, ...args)
 	{
-		let o: typeof Random;
+		let o: typeof Random = getClass(Random, this)
 
-		if (this instanceof Random)
-		{
-			// @ts-ignore
-			o = (this.__proto__.constructor)
-		}
-		else
-		{
-			o = Random
-		}
-
-		return new o(RNGFactory(...args));
+		return new o(RNGFactory(arg0, ...args));
 	}
 
-	cloneUse(...args)
+	cloneUse(arg0: IRNGFactoryType, ...args)
 	{
 		let o = this.clone();
-		o.use(...args);
+		o.use(arg0, ...args);
 
 		return o;
 	}
@@ -450,7 +424,7 @@ export class Random<R extends RNG = RNG>
 	 * @param {number} n - Number of uniform samples to sum (n >= 0)
 	 * @return {function}
 	 */
-	irwinHall(n)
+	irwinHall(n: number = 1)
 	{
 		return irwinHall(this, n)
 	}
@@ -461,7 +435,7 @@ export class Random<R extends RNG = RNG>
 	 * @param {number} n - Number of uniform samples to average (n >= 1)
 	 * @return {function}
 	 */
-	bates(n)
+	bates(n: number = 1)
 	{
 		return bates(this, n)
 	}
@@ -472,7 +446,7 @@ export class Random<R extends RNG = RNG>
 	 * @param {number} alpha - Alpha
 	 * @return {function}
 	 */
-	pareto(alpha)
+	pareto(alpha: number = 1)
 	{
 		return pareto(this, alpha)
 	}
@@ -519,6 +493,11 @@ export class Random<R extends RNG = RNG>
 		this._cache = {};
 
 		return this;
+	}
+
+	get [Symbol.toStringTag]()
+	{
+		return this._rng.name;
 	}
 
 }

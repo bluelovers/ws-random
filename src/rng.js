@@ -1,32 +1,35 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const util_1 = require("./util");
 exports._MathRandom = Math.random;
 class RNG {
+    constructor(seed, opts, ...argv) {
+    }
+    static create(seed, opts, ...argv) {
+        if (this === RNG || !this) {
+            throw new ReferenceError('RNG is abstract class');
+        }
+        // @ts-ignore
+        return new this(seed, opts, ...argv);
+    }
     get name() {
         throw new Error('RNG.name must be overridden');
     }
+    get options() {
+        return null;
+    }
     next() {
-        throw new Error('RNG.next must be overridden');
+        throw new ReferenceError('RNG.next must be overridden');
     }
-    seed(seed, opts) {
-        throw new Error('RNG.seed must be overridden');
+    seed(seed, opts, ...argv) {
+        throw new ReferenceError('RNG.seed must be overridden');
     }
-    clone(seed, opts) {
-        throw new Error('RNG.clone must be overridden');
+    clone(seed, opts, ...argv) {
+        throw new ReferenceError('RNG.clone must be overridden');
     }
-    _seed(seed, opts) {
+    _seed(seed, opts, ...argv) {
         // TODO: add entropy and stuff
-        if (seed === (seed | 0)) {
-            return seed;
-        }
-        else {
-            let strSeed = '' + seed;
-            let s = 0;
-            for (let k = 0; k < strSeed.length; ++k) {
-                s ^= strSeed.charCodeAt(k) | 0;
-            }
-            return s;
-        }
+        return util_1.seedToken(seed, opts, ...argv);
     }
 }
 exports.RNG = RNG;

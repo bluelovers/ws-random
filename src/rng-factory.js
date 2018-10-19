@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const seedrandom_1 = require("./generators/seedrandom");
 const rng_1 = require("./rng");
 const xor128_1 = require("./generators/xor128");
 const function_1 = require("./generators/function");
@@ -9,8 +10,9 @@ const PRNG_BUILTINS = {
     'xor128': xor128_1.default,
     'function': function_1.default,
     'default': math_random_1.default,
+    'seedrandom': seedrandom_1.default,
 };
-function factory(...args) {
+function RNGFactory(...args) {
     const [arg0 = 'default', ...rest] = args;
     switch (typeof arg0) {
         case 'object':
@@ -27,9 +29,9 @@ function factory(...args) {
             }
             break;
     }
-    throw new Error(`invalid RNG "${arg0}"`);
+    throw new TypeError(`invalid RNG "${arg0}"`);
 }
-exports.factory = factory;
-exports.default = factory;
+exports.RNGFactory = RNGFactory;
+exports.default = RNGFactory;
 // @ts-ignore
 Object.freeze(exports);

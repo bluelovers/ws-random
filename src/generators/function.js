@@ -2,10 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const ow = require("ow-lite");
 const rng_1 = require("../rng");
+const util_1 = require("../util");
 class RNGFunction extends rng_1.default {
-    constructor(seed, opts) {
+    constructor(seed, opts, ...argv) {
         super();
-        this.seed(seed, opts);
+        this.seed(seed, opts, ...argv);
     }
     get name() {
         return 'function';
@@ -13,20 +14,12 @@ class RNGFunction extends rng_1.default {
     next() {
         return this._rng();
     }
-    seed(seed, opts) {
-        ow(seed, ow.function);
-        this._rng = seed;
+    seed(seed, opts, ...argv) {
+        this._rng = seed || this._rng;
+        ow(this._rng, ow.function);
     }
-    clone(seed, opts) {
-        let o;
-        if (this instanceof RNGFunction) {
-            // @ts-ignore
-            o = (this.__proto__.constructor);
-        }
-        else {
-            o = RNGFunction;
-        }
-        return new o(seed, opts);
+    clone(seed, opts, ...argv) {
+        return util_1.cloneClass(RNGFunction, this, seed, opts, ...argv);
     }
 }
 exports.RNGFunction = RNGFunction;

@@ -1,18 +1,19 @@
 import RNG, { _MathRandom } from '../rng'
+import { hashAny, shortid, hashSum, cloneClass } from '../util';
+import RNGFunction from './function';
 import seedrandom = require('seedrandom')
-import shortid = require('shortid')
-import hashSum = require('hash-sum')
 
-export class RNGSeedRandom extends RNG
+export const defaultOptions = Object.freeze({
+	entropy: true
+})
+
+export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 {
-	protected _rng: seedrandom.prng
-	protected _opts: seedrandom.seedRandomOptions = { entropy: true }
+	protected _opts: seedrandom.seedRandomOptions = defaultOptions
 
 	constructor(seed?, opts?: seedrandom.seedRandomOptions, ...argv)
 	{
-		super()
-
-		this.seed(seed, opts, ...argv)
+		super(seed, opts, ...argv)
 	}
 
 	get name()
@@ -20,48 +21,34 @@ export class RNGSeedRandom extends RNG
 		return 'seedrandom'
 	}
 
-	next()
+	get options()
 	{
-		return this._rng()
+		return this._opts
 	}
 
 	seed(seed?, opts?: seedrandom.seedRandomOptions, ...argv)
 	{
-		this._opts = opts || this._opts;
-		this._rng = seedrandom(this._to_str(seed), this._opts, ...argv)
-	}
-
-	clone(seed?, opts?: seedrandom.seedRandomOptions)
-	{
-		let o: typeof RNGSeedRandom;
-
-		if (this instanceof RNGSeedRandom)
+		if (opts === null)
 		{
-			// @ts-ignore
-			o = (this.__proto__.constructor)
+			this._opts = undefined
 		}
 		else
 		{
-			o = RNGSeedRandom
+			this._opts = opts || this._opts;
 		}
 
-		return new o(seed, opts)
+		this._rng = seedrandom(this._hashSeed(seed), this._opts, ...argv)
 	}
 
-	protected _to_str(seed?): string
+	// @ts-ignore
+	clone(seed?, opts?: seedrandom.seedRandomOptions, ...argv): RNGSeedRandom
 	{
-		//let type = typeof seed;
+		return cloneClass(RNGSeedRandom, this, seed, opts, ...argv)
+	}
 
-		if (!seed)
-		{
-			seed = shortid()
-		}
-		else if (typeof seed !== 'string')
-		{
-			seed = hashSum(seed)
-		}
-
-		return String(seed)
+	protected _hashSeed(seed?): string
+	{
+		return hashAny(seed)
 	}
 }
 

@@ -1,15 +1,6 @@
+import { IRandomDistributions } from './distributions';
 import RNG from './rng';
-export interface IRandomDistributions<R extends any> {
-    (random: Random): IRandomDistributionsReturn<R>;
-    (random: Random, ...argv: any[]): IRandomDistributionsReturn<R>;
-}
-export interface IRandomDistributionsReturn<R = any> {
-    (): R;
-    (...argv: any[]): R;
-    (a1: any, ...argv: any[]): R;
-    (a1: any, a2: any, ...argv: any[]): R;
-    (a1: any, a2: any, a3: any, ...argv: any[]): R;
-}
+import { IRNGFactoryType } from './rng-factory';
 /**
  * Seedable random number generator supporting many common distributions.
  *
@@ -69,9 +60,9 @@ export declare class Random<R extends RNG = RNG> {
      *
      * @param {...*} args
      */
-    use(...args: any[]): this;
-    newUse(...args: any[]): Random<RNG>;
-    cloneUse(...args: any[]): Random<R>;
+    use(arg0: IRNGFactoryType, ...args: any[]): this;
+    newUse(arg0: IRNGFactoryType, ...args: any[]): Random<any>;
+    cloneUse(arg0: IRNGFactoryType, ...args: any[]): Random<R>;
     /**
      * Patches `Math.random` with this Random instance's PRNG.
      */
@@ -224,21 +215,21 @@ export declare class Random<R extends RNG = RNG> {
      * @param {number} n - Number of uniform samples to sum (n >= 0)
      * @return {function}
      */
-    irwinHall(n: any): () => number;
+    irwinHall(n?: number): () => number;
     /**
      * Generates a [Bates distribution](https://en.wikipedia.org/wiki/Bates_distribution).
      *
      * @param {number} n - Number of uniform samples to average (n >= 1)
      * @return {function}
      */
-    bates(n: any): () => number;
+    bates(n?: number): () => number;
     /**
      * Generates a [Pareto distribution](https://en.wikipedia.org/wiki/Pareto_distribution).
      *
      * @param {number} alpha - Alpha
      * @return {function}
      */
-    pareto(alpha: any): () => number;
+    pareto(alpha?: number): () => number;
     /**
      * Memoizes distributions to ensure they're only created when necessary.
      *
@@ -258,6 +249,7 @@ export declare class Random<R extends RNG = RNG> {
      * reset Memoizes distributions
      */
     reset(): this;
+    readonly [Symbol.toStringTag]: string;
 }
 export declare const random: Random<RNG>;
 export default random;

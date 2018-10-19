@@ -1,47 +1,57 @@
+import { seedToken } from './util';
+
 export const _MathRandom = Math.random;
 
 export abstract class RNG
 {
-	get name(): string
+	constructor()
+	constructor(seed?)
+	constructor(seed?, opts?, ...argv)
+	constructor(seed?, opts?, ...argv)
+	{
+
+	}
+
+	public static create(seed?, opts?, ...argv)
+	{
+		if (this === RNG || !this)
+		{
+			throw new ReferenceError('RNG is abstract class')
+		}
+
+		// @ts-ignore
+		return new this(seed, opts, ...argv)
+	}
+
+	public get name(): string
 	{
 		throw new Error('RNG.name must be overridden')
 	}
 
-	next(): number
+	public get options()
 	{
-		throw new Error('RNG.next must be overridden')
+		return null
 	}
 
-	seed(seed?, opts?)
+	public next(): number
 	{
-		throw new Error('RNG.seed must be overridden')
+		throw new ReferenceError('RNG.next must be overridden')
 	}
 
-	clone(seed?, opts?): RNG
+	public seed(seed?, opts?, ...argv)
 	{
-		throw new Error('RNG.clone must be overridden')
+		throw new ReferenceError('RNG.seed must be overridden')
 	}
 
-	protected _seed(seed, opts?): number
+	public clone(seed?, opts?, ...argv)
+	{
+		throw new ReferenceError('RNG.clone must be overridden')
+	}
+
+	protected _seed(seed, opts?, ...argv): number
 	{
 		// TODO: add entropy and stuff
-
-		if (seed === (seed | 0))
-		{
-			return seed
-		}
-		else
-		{
-			let strSeed = '' + seed
-			let s = 0
-
-			for (let k = 0; k < strSeed.length; ++k)
-			{
-				s ^= strSeed.charCodeAt(k) | 0
-			}
-
-			return s
-		}
+		return seedToken(seed, opts, ...argv)
 	}
 }
 

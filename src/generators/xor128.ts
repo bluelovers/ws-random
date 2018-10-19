@@ -1,4 +1,6 @@
 import RNG from '../rng'
+import { cloneClass, getClass } from '../util';
+import { IRNGFunctionSeed } from './function';
 
 export class RNGXOR128 extends RNG
 {
@@ -8,7 +10,7 @@ export class RNGXOR128 extends RNG
 	protected z: number
 	protected w: number
 
-	constructor(seed, opts)
+	constructor(seed, opts?, ...argv)
 	{
 		super()
 
@@ -17,7 +19,7 @@ export class RNGXOR128 extends RNG
 		this.z = 0
 		this.w = 0
 
-		this.seed(seed, opts)
+		this.seed(seed, opts, ...argv)
 	}
 
 	get name()
@@ -35,11 +37,11 @@ export class RNGXOR128 extends RNG
 		return (this.w >>> 0) / 0x100000000
 	}
 
-	seed(seed, opts)
+	seed(seed, opts?, ...argv)
 	{
 		// this._rng = seedrandom(this._seed(seed, opts))
 
-		this.x = this._seed(seed, opts)
+		this.x = this._seed(seed, opts, ...argv)
 
 		// discard an initial batch of 64 values
 		for (let i = 0; i < 64; ++i)
@@ -48,9 +50,9 @@ export class RNGXOR128 extends RNG
 		}
 	}
 
-	clone(seed, opts)
+	clone(seed?, opts?, ...argv): RNGXOR128
 	{
-		return new RNGXOR128(seed, opts)
+		return cloneClass(RNGXOR128, this, seed, opts, ...argv)
 	}
 }
 

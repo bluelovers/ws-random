@@ -2,9 +2,16 @@ import ow from 'ow-lite'
 import { Random } from '../random';
 import RNG from '../rng'
 
-export default (random: Random, n) =>
+/**
+ * Generates a [Bates distribution](https://en.wikipedia.org/wiki/Bates_distribution).
+ *
+ * @param random
+ * @param {number} n - Number of uniform samples to average (n >= 1)
+ * @return {function}
+ */
+export default (random: Random, n: number) =>
 {
-	ow(n, ow.number.integer.greaterThanOrEqual(0))
+	ow(n, ow.number.integer.gte(0))
 
 	return () =>
 	{

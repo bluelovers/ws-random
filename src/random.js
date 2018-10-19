@@ -1,21 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const ow = require("ow-lite");
+const distributions_1 = require("./distributions");
 const rng_1 = require("./rng");
 const rng_factory_1 = require("./rng-factory");
-const uniform_1 = require("./distributions/uniform");
-const uniform_int_1 = require("./distributions/uniform-int");
-const uniform_boolean_1 = require("./distributions/uniform-boolean");
-const normal_1 = require("./distributions/normal");
-const log_normal_1 = require("./distributions/log-normal");
-const bernoulli_1 = require("./distributions/bernoulli");
-const binomial_1 = require("./distributions/binomial");
-const geometric_1 = require("./distributions/geometric");
-const poisson_1 = require("./distributions/poisson");
-const exponential_1 = require("./distributions/exponential");
-const irwin_hall_1 = require("./distributions/irwin-hall");
-const bates_1 = require("./distributions/bates");
-const pareto_1 = require("./distributions/pareto");
+const util_1 = require("./util");
 /**
  * Seedable random number generator supporting many common distributions.
  *
@@ -28,9 +17,9 @@ const pareto_1 = require("./distributions/pareto");
  */
 class Random {
     constructor(rng) {
+        this._cache = {};
         if (rng)
             ow(rng, ow.object.instanceOf(rng_1.default));
-        this._cache = {};
         this.use(rng);
     }
     /**
@@ -43,7 +32,7 @@ class Random {
         return this.rand;
     }
     get rand() {
-        return this.integer;
+        return this.float;
     }
     seed(...argv) {
         this._rng.seed(...argv);
@@ -75,6 +64,7 @@ class Random {
         else {
             o = Random;
         }
+        // @ts-ignore
         return new o(this.rng.clone(seed, ...args));
     }
     /**
@@ -95,24 +85,17 @@ class Random {
      *
      * @param {...*} args
      */
-    use(...args) {
-        this._rng = rng_factory_1.default(...args);
+    use(arg0, ...args) {
+        this._rng = rng_factory_1.default(arg0, ...args);
         return this;
     }
-    newUse(...args) {
-        let o;
-        if (this instanceof Random) {
-            // @ts-ignore
-            o = (this.__proto__.constructor);
-        }
-        else {
-            o = Random;
-        }
-        return new o(rng_factory_1.default(...args));
+    newUse(arg0, ...args) {
+        let o = util_1.getClass(Random, this);
+        return new o(rng_factory_1.default(arg0, ...args));
     }
-    cloneUse(...args) {
+    cloneUse(arg0, ...args) {
         let o = this.clone();
-        o.use(...args);
+        o.use(arg0, ...args);
         return o;
     }
     /**
@@ -222,7 +205,7 @@ class Random {
      * @return {function}
      */
     uniform(min, max) {
-        return this._memoize('uniform', uniform_1.default, min, max);
+        return this._memoize('uniform', distributions_1.uniform, min, max);
     }
     /**
      * Generates a [Discrete uniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution).
@@ -232,7 +215,7 @@ class Random {
      * @return {function}
      */
     uniformInt(min, max) {
-        return this._memoize('uniformInt', uniform_int_1.default, min, max);
+        return this._memoize('uniformInt', distributions_1.uniformInt, min, max);
     }
     /**
      * Generates a [Discrete uniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution),
@@ -243,7 +226,7 @@ class Random {
      * @return {function}
      */
     uniformBoolean() {
-        return this._memoize('uniformBoolean', uniform_boolean_1.default);
+        return this._memoize('uniformBoolean', distributions_1.uniformBoolean);
     }
     // --------------------------------------------------------------------------
     // Normal distributions
@@ -256,7 +239,7 @@ class Random {
      * @return {function}
      */
     normal(mu, sigma) {
-        return normal_1.default(this, mu, sigma);
+        return distributions_1.normal(this, mu, sigma);
     }
     /**
      * Generates a [Log-normal distribution](https://en.wikipedia.org/wiki/Log-normal_distribution).
@@ -266,7 +249,7 @@ class Random {
      * @return {function}
      */
     logNormal(mu, sigma) {
-        return log_normal_1.default(this, mu, sigma);
+        return distributions_1.logNormal(this, mu, sigma);
     }
     // --------------------------------------------------------------------------
     // Bernoulli distributions
@@ -278,7 +261,7 @@ class Random {
      * @return {function}
      */
     bernoulli(p) {
-        return bernoulli_1.default(this, p);
+        return distributions_1.bernoulli(this, p);
     }
     /**
      * Generates a [Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution).
@@ -288,7 +271,7 @@ class Random {
      * @return {function}
      */
     binomial(n, p) {
-        return binomial_1.default(this, n, p);
+        return distributions_1.binomial(this, n, p);
     }
     /**
      * Generates a [Geometric distribution](https://en.wikipedia.org/wiki/Geometric_distribution).
@@ -297,7 +280,7 @@ class Random {
      * @return {function}
      */
     geometric(p) {
-        return geometric_1.default(this, p);
+        return distributions_1.geometric(this, p);
     }
     // --------------------------------------------------------------------------
     // Poisson distributions
@@ -309,7 +292,7 @@ class Random {
      * @return {function}
      */
     poisson(lambda) {
-        return poisson_1.default(this, lambda);
+        return distributions_1.poisson(this, lambda);
     }
     /**
      * Generates an [Exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution).
@@ -318,7 +301,7 @@ class Random {
      * @return {function}
      */
     exponential(lambda) {
-        return exponential_1.default(this, lambda);
+        return distributions_1.exponential(this, lambda);
     }
     // --------------------------------------------------------------------------
     // Misc distributions
@@ -329,8 +312,8 @@ class Random {
      * @param {number} n - Number of uniform samples to sum (n >= 0)
      * @return {function}
      */
-    irwinHall(n) {
-        return irwin_hall_1.default(this, n);
+    irwinHall(n = 1) {
+        return distributions_1.irwinHall(this, n);
     }
     /**
      * Generates a [Bates distribution](https://en.wikipedia.org/wiki/Bates_distribution).
@@ -338,8 +321,8 @@ class Random {
      * @param {number} n - Number of uniform samples to average (n >= 1)
      * @return {function}
      */
-    bates(n) {
-        return bates_1.default(this, n);
+    bates(n = 1) {
+        return distributions_1.bates(this, n);
     }
     /**
      * Generates a [Pareto distribution](https://en.wikipedia.org/wiki/Pareto_distribution).
@@ -347,8 +330,8 @@ class Random {
      * @param {number} alpha - Alpha
      * @return {function}
      */
-    pareto(alpha) {
-        return pareto_1.default(this, alpha);
+    pareto(alpha = 1) {
+        return distributions_1.pareto(this, alpha);
     }
     // --------------------------------------------------------------------------
     // Internal
@@ -384,6 +367,9 @@ class Random {
     reset() {
         this._cache = {};
         return this;
+    }
+    get [Symbol.toStringTag]() {
+        return this._rng.name;
     }
 }
 exports.Random = Random;

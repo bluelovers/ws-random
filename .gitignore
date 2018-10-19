@@ -68,3 +68,5 @@ tests/*.d.ts
 tests/temp*
 
 !/.gitignore
+!/test/distributions/*.test.js
+#!/test/distributions/*.test.ts

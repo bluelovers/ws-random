@@ -1,18 +1,18 @@
 import ow = require("ow-lite");
 import RNG from '../rng'
+import { cloneClass, getClass } from '../util';
 
 export type IRNGFunctionSeed = (...argv) => number
 
 export class RNGFunction<S extends IRNGFunctionSeed = IRNGFunctionSeed> extends RNG
 {
-
 	protected _rng: S
 
-	constructor(seed: S, opts?)
+	constructor(seed: S, opts?, ...argv)
 	{
 		super()
 
-		this.seed(seed, opts)
+		this.seed(seed, opts, ...argv)
 	}
 
 	get name()
@@ -25,27 +25,15 @@ export class RNGFunction<S extends IRNGFunctionSeed = IRNGFunctionSeed> extends 
 		return this._rng()
 	}
 
-	seed(seed: S, opts?)
+	seed(seed: S, opts?, ...argv)
 	{
-		ow(seed, ow.function)
-		this._rng = seed
+		this._rng = seed || this._rng
+		ow(this._rng, ow.function)
 	}
 
-	clone<S extends IRNGFunctionSeed = IRNGFunctionSeed>(seed: S, opts?)
+	clone<S extends IRNGFunctionSeed = IRNGFunctionSeed>(seed: S, opts?, ...argv): RNGFunction<S>
 	{
-		let o: typeof RNGFunction;
-
-		if (this instanceof RNGFunction)
-		{
-			// @ts-ignore
-			o = (this.__proto__.constructor)
-		}
-		else
-		{
-			o = RNGFunction
-		}
-
-		return new o(seed, opts)
+		return cloneClass(RNGFunction, this, seed, opts, ...argv)
 	}
 }
 

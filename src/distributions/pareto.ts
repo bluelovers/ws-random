@@ -4,7 +4,7 @@ import RNG from '../rng'
 
 export default (random: Random, alpha) =>
 {
-	ow(alpha, ow.number.greaterThanOrEqual(0))
+	ow(alpha, ow.number.gt(0))
 	const invAlpha = 1.0 / alpha
 
 	return () =>

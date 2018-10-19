@@ -1,4 +1,5 @@
 import RNG, { _MathRandom } from '../rng'
+import { cloneClass } from '../util';
 
 export class RNGMathRandom extends RNG
 {
@@ -12,14 +13,14 @@ export class RNGMathRandom extends RNG
 		return _MathRandom()
 	}
 
-	seed(seed?, opts?)
+	seed(seed?, opts?, ...argv)
 	{
 		// intentionally empty
 	}
 
-	clone()
+	clone(seed?, opts?, ...argv): RNGMathRandom
 	{
-		return new RNGMathRandom()
+		return cloneClass(RNGMathRandom, this, seed, opts, ...argv)
 	}
 }
 
