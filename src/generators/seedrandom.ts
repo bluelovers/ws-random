@@ -3,15 +3,17 @@ import { hashAny, shortid, hashSum, cloneClass } from '../util';
 import RNGFunction from './function';
 import seedrandom = require('seedrandom')
 
-export const defaultOptions = Object.freeze({
+export import RNGSeedRandomOptions = seedrandom.seedRandomOptions
+
+export const defaultOptions: RNGSeedRandomOptions = Object.freeze({
 	entropy: true
 })
 
 export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 {
-	protected _opts: seedrandom.seedRandomOptions = defaultOptions
+	protected _opts: RNGSeedRandomOptions = defaultOptions
 
-	constructor(seed?, opts?: seedrandom.seedRandomOptions, ...argv)
+	constructor(seed?, opts?: RNGSeedRandomOptions, ...argv)
 	{
 		super(seed, opts, ...argv)
 	}
@@ -26,7 +28,7 @@ export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 		return this._opts
 	}
 
-	seed(seed?, opts?: seedrandom.seedRandomOptions, ...argv)
+	seed(seed?, opts?: RNGSeedRandomOptions, ...argv)
 	{
 		if (opts === null)
 		{
@@ -41,7 +43,7 @@ export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 	}
 
 	// @ts-ignore
-	clone(seed?, opts?: seedrandom.seedRandomOptions, ...argv): RNGSeedRandom
+	clone(seed?, opts?: RNGSeedRandomOptions, ...argv): RNGSeedRandom
 	{
 		return cloneClass(RNGSeedRandom, this, seed, opts, ...argv)
 	}

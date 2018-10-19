@@ -15,6 +15,7 @@ import {
 	uniformBoolean,
 	uniformInt,
 } from './distributions';
+import RNGSeedRandom from './generators/seedrandom';
 
 import RNG from './rng'
 import RNGFactory, { IRNGFactoryType } from './rng-factory'
@@ -150,6 +151,9 @@ export class Random<R extends RNG = RNG>
 		return this;
 	}
 
+	newUse(arg0: 'seedrandom', ...args): Random<RNGSeedRandom>
+	newUse<T extends RNG>(arg0: T, ...args): Random<T>
+	newUse(arg0: IRNGFactoryType, ...args): Random<R | any>
 	newUse(arg0: IRNGFactoryType, ...args)
 	{
 		let o: typeof Random = getClass(Random, this)
@@ -157,6 +161,8 @@ export class Random<R extends RNG = RNG>
 		return new o(RNGFactory(arg0, ...args));
 	}
 
+	cloneUse<T extends RNG>(arg0: IRNGFactoryType, ...args): Random<T>
+	cloneUse(arg0: IRNGFactoryType, ...args): Random<R | any>
 	cloneUse(arg0: IRNGFactoryType, ...args)
 	{
 		let o = this.clone();

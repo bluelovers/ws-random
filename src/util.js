@@ -34,9 +34,9 @@ function seedToken(seed, opts, ...argv) {
 exports.seedToken = seedToken;
 function getClass(RNGClass, thisArgv, ...argv) {
     let o;
-    if (this instanceof RNGClass) {
+    if (thisArgv instanceof RNGClass) {
         // @ts-ignore
-        o = (this.__proto__.constructor);
+        o = (thisArgv.__proto__.constructor);
     }
     else {
         o = RNGClass;

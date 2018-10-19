@@ -47,24 +47,14 @@ export function seedToken(seed: number | any, opts?, ...argv): number
 	}
 }
 
-interface IConstructor<T extends RNG>
-{
-	new (): T
-	new (...argv): T
-	new (seed?): T
-	new (seed?, opts?): T
-	new (seed?, ...argv): T
-	new (seed?, opts?, ...argv): T
-}
-
 export function getClass(RNGClass, thisArgv, ...argv)
 {
 	let o;
 
-	if (this instanceof RNGClass)
+	if (thisArgv instanceof RNGClass)
 	{
 		// @ts-ignore
-		o = (this.__proto__.constructor)
+		o = (thisArgv.__proto__.constructor)
 	}
 	else
 	{

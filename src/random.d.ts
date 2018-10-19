@@ -1,4 +1,5 @@
 import { IRandomDistributions } from './distributions';
+import RNGSeedRandom from './generators/seedrandom';
 import RNG from './rng';
 import { IRNGFactoryType } from './rng-factory';
 /**
@@ -61,8 +62,11 @@ export declare class Random<R extends RNG = RNG> {
      * @param {...*} args
      */
     use(arg0: IRNGFactoryType, ...args: any[]): this;
-    newUse(arg0: IRNGFactoryType, ...args: any[]): Random<any>;
-    cloneUse(arg0: IRNGFactoryType, ...args: any[]): Random<R>;
+    newUse(arg0: 'seedrandom', ...args: any[]): Random<RNGSeedRandom>;
+    newUse<T extends RNG>(arg0: T, ...args: any[]): Random<T>;
+    newUse(arg0: IRNGFactoryType, ...args: any[]): Random<R | any>;
+    cloneUse<T extends RNG>(arg0: IRNGFactoryType, ...args: any[]): Random<T>;
+    cloneUse(arg0: IRNGFactoryType, ...args: any[]): Random<R | any>;
     /**
      * Patches `Math.random` with this Random instance's PRNG.
      */
