@@ -1,27 +1,55 @@
-import ow from 'ow-lite'
-import Rng from '../rng'
+import ow = require("ow-lite");
+import RNG from '../rng'
 
-export default class RNGFunction extends RNG {
-  constructor (seed, opts) {
+export type IRNGFunctionSeed = (...argv) => number
+
+export class RNGFunction<S extends IRNGFunctionSeed = IRNGFunctionSeed> extends RNG
+{
+
+  protected _rng: S
+
+  constructor(seed: S, opts?)
+  {
     super()
 
     this.seed(seed, opts)
   }
 
-  get name () {
+  get name()
+  {
     return 'function'
   }
 
-  next () {
+  next()
+  {
     return this._rng()
   }
 
-  seed (seed) {
+  seed(seed: S, opts?)
+  {
     ow(seed, ow.function)
     this._rng = seed
   }
 
-  clone (seed, opts) {
-    return new RNGFunction(seed, opts)
+  clone<S extends IRNGFunctionSeed = IRNGFunctionSeed>(seed: S, opts?)
+  {
+    let o: typeof RNGFunction;
+
+    if (this instanceof RNGFunction)
+    {
+      // @ts-ignore
+      o = (this.__proto__.constructor)
+    }
+    else
+    {
+      o = RNGFunction
+    }
+
+    return new o(seed, opts)
   }
 }
+
+export default RNGFunction
+
+// @ts-ignore
+Object.freeze(exports)

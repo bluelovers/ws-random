@@ -1,0 +1,13 @@
+import RNG from './rng';
+import RNGXOR128 from './generators/xor128';
+import RNGFunction, { IRNGFunctionSeed } from './generators/function';
+import RNGMathRandom from './generators/math-random';
+export declare function factory(): RNGFunction;
+export declare function factory<R extends RNG = RNG>(arg0: R, ...rest: any[]): R;
+export declare function factory(arg0: 'xor128', ...rest: any[]): RNGXOR128;
+export declare function factory(arg0: 'function', ...rest: any[]): RNGFunction;
+export declare function factory<S extends IRNGFunctionSeed = IRNGFunctionSeed>(arg0: 'function', ...rest: any[]): RNGFunction<S>;
+export declare function factory(arg0: 'default', ...rest: any[]): RNGMathRandom;
+export declare function factory<S extends IRNGFunctionSeed = IRNGFunctionSeed>(arg0: S, ...rest: any[]): RNGFunction<S>;
+export declare function factory<R extends RNG = RNG>(...argv: any[]): R;
+export default factory;

@@ -139,7 +139,7 @@ rng.unpatch()
     -   [bates](#bates)
     -   [pareto](#pareto)
 
-### [Random](https://github.com/transitive-bullshit/random/blob/fbc667aa5bec1779c9f1b853244914af7fa1bed6/src/random.js#L35-L379)
+### [Random](https://github.com/bluelovers/random/blob/e7897605893cc8aeeec4727149a6e2e57f5fd231/src/random.js#L29-L328)
 
 Seedable random number generator supporting many common distributions.
 
@@ -147,32 +147,32 @@ Defaults to Math.random as its underlying pseudorandom number generator.
 
 Type: `function (rng)`
 
--   `rng` **(RNG | [function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function))** Underlying pseudorandom number generator. (optional, default `Math.random`)
+-   `rng` **(Rng | [function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function))** Underlying pseudorandom number generator. (optional, default `Math.random`)
 
 * * *
 
-#### [rng](https://github.com/transitive-bullshit/random/blob/fbc667aa5bec1779c9f1b853244914af7fa1bed6/src/random.js#L45-L47)
+#### [rng](https://github.com/bluelovers/random/blob/e7897605893cc8aeeec4727149a6e2e57f5fd231/src/random.js#L39-L41)
 
 Type: `function ()`
 
 * * *
 
-#### [clone](https://github.com/transitive-bullshit/random/blob/fbc667aa5bec1779c9f1b853244914af7fa1bed6/src/random.js#L59-L61)
+#### [clone](https://github.com/bluelovers/random/blob/e7897605893cc8aeeec4727149a6e2e57f5fd231/src/random.js#L52-L62)
 
--   **See: RNG.clone**
+-   **See: Rng.clone**
 
 Creates a new `Random` instance, optionally specifying parameters to
 set a new seed.
 
-Type: `function (args, seed, opts): Random`
+Type: `function (seed, args, opts): Random`
 
--   `args` **...any**
 -   `seed` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** Optional seed for new RNG.
+-   `args` **...any** 
 -   `opts` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Optional config for new RNG options.
 
 * * *
 
-#### [use](https://github.com/transitive-bullshit/random/blob/fbc667aa5bec1779c9f1b853244914af7fa1bed6/src/random.js#L81-L86)
+#### [use](https://github.com/bluelovers/random/blob/e7897605893cc8aeeec4727149a6e2e57f5fd231/src/random.js#L81-L83)
 
 Sets the underlying pseudorandom number generator used via
 either an instance of `seedrandom`, a custom instance of RNG
@@ -182,7 +182,7 @@ RNG.
 
 Type: `function (args)`
 
--   `args` **...any**
+-   `args` **...any** 
 
 Example:
 
@@ -198,7 +198,7 @@ random.use(Math.random)
 
 * * *
 
-#### [patch](https://github.com/transitive-bullshit/random/blob/fbc667aa5bec1779c9f1b853244914af7fa1bed6/src/random.js#L91-L98)
+#### [patch](https://github.com/bluelovers/random/blob/e7897605893cc8aeeec4727149a6e2e57f5fd231/src/random.js#L87-L94)
 
 Patches `Math.random` with this Random instance's PRNG.
 
@@ -206,7 +206,7 @@ Type: `function ()`
 
 * * *
 
-#### [unpatch](https://github.com/transitive-bullshit/random/blob/fbc667aa5bec1779c9f1b853244914af7fa1bed6/src/random.js#L103-L108)
+#### [unpatch](https://github.com/bluelovers/random/blob/e7897605893cc8aeeec4727149a6e2e57f5fd231/src/random.js#L98-L103)
 
 Restores a previously patched `Math.random` to its original value.
 
@@ -214,7 +214,7 @@ Type: `function ()`
 
 * * *
 
-#### [next](https://github.com/transitive-bullshit/random/blob/fbc667aa5bec1779c9f1b853244914af7fa1bed6/src/random.js#L121-L123)
+#### [next](https://github.com/bluelovers/random/blob/e7897605893cc8aeeec4727149a6e2e57f5fd231/src/random.js#L114-L116)
 
 Convenience wrapper around `this.rng.next()`
 
@@ -224,7 +224,7 @@ Type: `function (): number`
 
 * * *
 
-#### [float](https://github.com/transitive-bullshit/random/blob/fbc667aa5bec1779c9f1b853244914af7fa1bed6/src/random.js#L135-L137)
+#### [float](https://github.com/bluelovers/random/blob/e7897605893cc8aeeec4727149a6e2e57f5fd231/src/random.js#L127-L129)
 
 Samples a uniform random floating point number, optionally specifying
 lower and upper bounds.
@@ -238,7 +238,7 @@ Type: `function (min, max): number`
 
 * * *
 
-#### [int](https://github.com/transitive-bullshit/random/blob/fbc667aa5bec1779c9f1b853244914af7fa1bed6/src/random.js#L149-L151)
+#### [int](https://github.com/bluelovers/random/blob/e7897605893cc8aeeec4727149a6e2e57f5fd231/src/random.js#L140-L142)
 
 Samples a uniform random integer, optionally specifying lower and upper
 bounds.
@@ -252,7 +252,7 @@ Type: `function (min, max): number`
 
 * * *
 
-#### [integer](https://github.com/transitive-bullshit/random/blob/fbc667aa5bec1779c9f1b853244914af7fa1bed6/src/random.js#L165-L167)
+#### [integer](https://github.com/bluelovers/random/blob/e7897605893cc8aeeec4727149a6e2e57f5fd231/src/random.js#L155-L157)
 
 Samples a uniform random integer, optionally specifying lower and upper
 bounds.
@@ -266,7 +266,7 @@ Type: `function (min, max): number`
 
 * * *
 
-#### [bool](https://github.com/transitive-bullshit/random/blob/fbc667aa5bec1779c9f1b853244914af7fa1bed6/src/random.js#L178-L180)
+#### [bool](https://github.com/bluelovers/random/blob/e7897605893cc8aeeec4727149a6e2e57f5fd231/src/random.js#L167-L169)
 
 Samples a uniform random boolean value.
 
@@ -276,7 +276,7 @@ Type: `function (): boolean`
 
 * * *
 
-#### [boolean](https://github.com/transitive-bullshit/random/blob/fbc667aa5bec1779c9f1b853244914af7fa1bed6/src/random.js#L189-L191)
+#### [boolean](https://github.com/bluelovers/random/blob/e7897605893cc8aeeec4727149a6e2e57f5fd231/src/random.js#L177-L179)
 
 Samples a uniform random boolean value.
 
@@ -286,7 +286,7 @@ Type: `function (): boolean`
 
 * * *
 
-#### [uniform](https://github.com/transitive-bullshit/random/blob/fbc667aa5bec1779c9f1b853244914af7fa1bed6/src/random.js#L204-L206)
+#### [uniform](https://github.com/bluelovers/random/blob/e7897605893cc8aeeec4727149a6e2e57f5fd231/src/random.js#L190-L192)
 
 Generates a [Continuous uniform distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)).
 
@@ -297,7 +297,7 @@ Type: `function (min, max): function`
 
 * * *
 
-#### [uniformInt](https://github.com/transitive-bullshit/random/blob/fbc667aa5bec1779c9f1b853244914af7fa1bed6/src/random.js#L215-L217)
+#### [uniformInt](https://github.com/bluelovers/random/blob/e7897605893cc8aeeec4727149a6e2e57f5fd231/src/random.js#L200-L202)
 
 Generates a [Discrete uniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution).
 
@@ -308,7 +308,7 @@ Type: `function (min, max): function`
 
 * * *
 
-#### [uniformBoolean](https://github.com/transitive-bullshit/random/blob/fbc667aa5bec1779c9f1b853244914af7fa1bed6/src/random.js#L227-L229)
+#### [uniformBoolean](https://github.com/bluelovers/random/blob/e7897605893cc8aeeec4727149a6e2e57f5fd231/src/random.js#L211-L213)
 
 Generates a [Discrete uniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution),
 with two possible outcomes, `true` or \`false.
@@ -319,7 +319,7 @@ Type: `function (): function`
 
 * * *
 
-#### [normal](https://github.com/transitive-bullshit/random/blob/fbc667aa5bec1779c9f1b853244914af7fa1bed6/src/random.js#L242-L244)
+#### [normal](https://github.com/bluelovers/random/blob/e7897605893cc8aeeec4727149a6e2e57f5fd231/src/random.js#L224-L226)
 
 Generates a [Normal distribution](https://en.wikipedia.org/wiki/Normal_distribution).
 
@@ -330,7 +330,7 @@ Type: `function (mu, sigma): function`
 
 * * *
 
-#### [logNormal](https://github.com/transitive-bullshit/random/blob/fbc667aa5bec1779c9f1b853244914af7fa1bed6/src/random.js#L253-L255)
+#### [logNormal](https://github.com/bluelovers/random/blob/e7897605893cc8aeeec4727149a6e2e57f5fd231/src/random.js#L234-L236)
 
 Generates a [Log-normal distribution](https://en.wikipedia.org/wiki/Log-normal_distribution).
 
@@ -341,7 +341,7 @@ Type: `function (mu, sigma): function`
 
 * * *
 
-#### [bernoulli](https://github.com/transitive-bullshit/random/blob/fbc667aa5bec1779c9f1b853244914af7fa1bed6/src/random.js#L267-L269)
+#### [bernoulli](https://github.com/bluelovers/random/blob/e7897605893cc8aeeec4727149a6e2e57f5fd231/src/random.js#L246-L248)
 
 Generates a [Bernoulli distribution](https://en.wikipedia.org/wiki/Bernoulli_distribution).
 
@@ -351,7 +351,7 @@ Type: `function (p): function`
 
 * * *
 
-#### [binomial](https://github.com/transitive-bullshit/random/blob/fbc667aa5bec1779c9f1b853244914af7fa1bed6/src/random.js#L278-L280)
+#### [binomial](https://github.com/bluelovers/random/blob/e7897605893cc8aeeec4727149a6e2e57f5fd231/src/random.js#L256-L258)
 
 Generates a [Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution).
 
@@ -362,7 +362,7 @@ Type: `function (n, p): function`
 
 * * *
 
-#### [geometric](https://github.com/transitive-bullshit/random/blob/fbc667aa5bec1779c9f1b853244914af7fa1bed6/src/random.js#L288-L290)
+#### [geometric](https://github.com/bluelovers/random/blob/e7897605893cc8aeeec4727149a6e2e57f5fd231/src/random.js#L265-L267)
 
 Generates a [Geometric distribution](https://en.wikipedia.org/wiki/Geometric_distribution).
 
@@ -372,7 +372,7 @@ Type: `function (p): function`
 
 * * *
 
-#### [poisson](https://github.com/transitive-bullshit/random/blob/fbc667aa5bec1779c9f1b853244914af7fa1bed6/src/random.js#L302-L304)
+#### [poisson](https://github.com/bluelovers/random/blob/e7897605893cc8aeeec4727149a6e2e57f5fd231/src/random.js#L277-L279)
 
 Generates a [Poisson distribution](https://en.wikipedia.org/wiki/Poisson_distribution).
 
@@ -382,7 +382,7 @@ Type: `function (lambda): function`
 
 * * *
 
-#### [exponential](https://github.com/transitive-bullshit/random/blob/fbc667aa5bec1779c9f1b853244914af7fa1bed6/src/random.js#L312-L314)
+#### [exponential](https://github.com/bluelovers/random/blob/e7897605893cc8aeeec4727149a6e2e57f5fd231/src/random.js#L286-L288)
 
 Generates an [Exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution).
 
@@ -392,7 +392,7 @@ Type: `function (lambda): function`
 
 * * *
 
-#### [irwinHall](https://github.com/transitive-bullshit/random/blob/fbc667aa5bec1779c9f1b853244914af7fa1bed6/src/random.js#L326-L328)
+#### [irwinHall](https://github.com/bluelovers/random/blob/e7897605893cc8aeeec4727149a6e2e57f5fd231/src/random.js#L298-L300)
 
 Generates an [Irwin Hall distribution](https://en.wikipedia.org/wiki/Irwin%E2%80%93Hall_distribution).
 
@@ -402,7 +402,7 @@ Type: `function (n): function`
 
 * * *
 
-#### [bates](https://github.com/transitive-bullshit/random/blob/fbc667aa5bec1779c9f1b853244914af7fa1bed6/src/random.js#L336-L338)
+#### [bates](https://github.com/bluelovers/random/blob/e7897605893cc8aeeec4727149a6e2e57f5fd231/src/random.js#L307-L309)
 
 Generates a [Bates distribution](https://en.wikipedia.org/wiki/Bates_distribution).
 
@@ -412,7 +412,7 @@ Type: `function (n): function`
 
 * * *
 
-#### [pareto](https://github.com/transitive-bullshit/random/blob/fbc667aa5bec1779c9f1b853244914af7fa1bed6/src/random.js#L346-L348)
+#### [pareto](https://github.com/bluelovers/random/blob/e7897605893cc8aeeec4727149a6e2e57f5fd231/src/random.js#L316-L318)
 
 Generates a [Pareto distribution](https://en.wikipedia.org/wiki/Pareto_distribution).
 

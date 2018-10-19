@@ -1,19 +1,29 @@
-import Rng from '../rng'
+import RNG from '../rng'
 
-export default class RNGMathRandom extends RNG {
-  get name () {
+export class RNGMathRandom extends RNG
+{
+  get name()
+  {
     return 'default'
   }
 
-  next () {
+  next()
+  {
     return Math.random()
   }
 
-  seed (seed, opts) {
+  seed(seed?, opts?)
+  {
     // intentionally empty
   }
 
-  clone () {
+  clone()
+  {
     return new RNGMathRandom()
   }
 }
+
+export default RNGMathRandom
+
+// @ts-ignore
+Object.freeze(exports)

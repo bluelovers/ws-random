@@ -1,6 +1,6 @@
-import ow from 'ow-lite'
+import ow = require("ow-lite");
 
-import Rng from './rng'
+import RNG from './rng'
 import RNGFactory from './rng-factory'
 
 import uniform from './distributions/uniform'
@@ -21,6 +21,13 @@ import irwinHall from './distributions/irwin-hall'
 import bates from './distributions/bates'
 import pareto from './distributions/pareto'
 
+export interface IRandomDistributions<R = any>
+{
+  (): R
+
+  (...argv): R
+}
+
 /**
  * Seedable random number generator supporting many common distributions.
  *
@@ -31,21 +38,35 @@ import pareto from './distributions/pareto'
  *
  * @param {Rng|function} [rng=Math.random] - Underlying pseudorandom number generator.
  */
-class Random {
-  constructor (rng) {
+export class Random<R extends RNG>
+{
+  protected _rng: R
+  protected _patch: typeof Math.random
+  protected _cache: {
+    [k: string]: {
+      key: string,
+      distribution: IRandomDistributions,
+    }
+  }
+
+  constructor(rng?: RNG)
+  {
     if (rng) ow(rng, ow.object.instanceOf(RNG))
 
-    this._cache = { }
+    this._cache = {}
     this.use(rng)
   }
 
   /**
    * @member {Rng} Underlying pseudo-random number generator
    */
-  get rng () {
+  get rng()
+  {
     return this._rng
   }
 
+  clone(seed?, opts?, ...args): Random<R>
+  clone<T extends RNG>(seed?, opts?, ...args): Random<T>
   /**
    * Creates a new `Random` instance, optionally specifying parameters to
    * set a new seed.
@@ -56,8 +77,22 @@ class Random {
    * @param {object} [opts] - Optional config for new RNG options.
    * @return {Random}
    */
-  clone (...args) {
-    return new Random(this.rng.clone(...args))
+  clone<T>(seed?: T, ...args)
+  {
+
+    let o: typeof Random;
+
+    if (this instanceof Random)
+    {
+      // @ts-ignore
+      o = (this.__proto__.constructor)
+    }
+    else
+    {
+      o = Random
+    }
+
+    return new o(this.rng.clone(seed, ...args))
   }
 
   /**
@@ -78,27 +113,33 @@ class Random {
    *
    * @param {...*} args
    */
-  use (...args) {
+  use(...args)
+  {
     this._rng = RNGFactory(...args)
   }
 
   /**
    * Patches `Math.random` with this Random instance's PRNG.
    */
-  patch () {
-    if (this._patch) {
+  patch()
+  {
+    if (this._patch)
+    {
       throw new Error('Math.random already patched')
     }
 
     this._patch = Math.random
+    // @ts-ignore
     Math.random = this.uniform()
   }
 
   /**
    * Restores a previously patched `Math.random` to its original value.
    */
-  unpatch () {
-    if (this._patch) {
+  unpatch()
+  {
+    if (this._patch)
+    {
       Math.random = this._patch
       delete this._patch
     }
@@ -115,7 +156,8 @@ class Random {
    *
    * @return {number}
    */
-  next () {
+  next()
+  {
     return this._rng.next()
   }
 
@@ -129,7 +171,8 @@ class Random {
    * @param {number} [max=1] - Upper bound (float, exclusive)
    * @return {number}
    */
-  float (min, max) {
+  float(min, max)
+  {
     return this.uniform(min, max)()
   }
 
@@ -143,7 +186,8 @@ class Random {
    * @param {number} [max=1] - Upper bound (integer, inclusive)
    * @return {number}
    */
-  int (min, max) {
+  int(min, max)
+  {
     return this.uniformInt(min, max)()
   }
 
@@ -159,7 +203,8 @@ class Random {
    * @param {number} [max=1] - Upper bound (integer, inclusive)
    * @return {number}
    */
-  integer (min, max) {
+  integer(min, max)
+  {
     return this.uniformInt(min, max)()
   }
 
@@ -172,7 +217,8 @@ class Random {
    *
    * @return {boolean}
    */
-  bool () {
+  bool()
+  {
     return this.uniformBoolean()()
   }
 
@@ -183,7 +229,8 @@ class Random {
    *
    * @return {boolean}
    */
-  boolean () {
+  boolean()
+  {
     return this.uniformBoolean()()
   }
 
@@ -198,7 +245,8 @@ class Random {
    * @param {number} [max=1] - Upper bound (float, exclusive)
    * @return {function}
    */
-  uniform (min, max) {
+  uniform(min?: number, max?: number)
+  {
     return this._memoize('uniform', uniform, min, max)
   }
 
@@ -209,7 +257,8 @@ class Random {
    * @param {number} [max=1] - Upper bound (integer, inclusive)
    * @return {function}
    */
-  uniformInt (min, max) {
+  uniformInt(min?: number, max?: number)
+  {
     return this._memoize('uniformInt', uniformInt, min, max)
   }
 
@@ -221,7 +270,8 @@ class Random {
    *
    * @return {function}
    */
-  uniformBoolean () {
+  uniformBoolean()
+  {
     return this._memoize('uniformBoolean', uniformBoolean)
   }
 
@@ -236,7 +286,8 @@ class Random {
    * @param {number} [sigma=1] - Standard deviation
    * @return {function}
    */
-  normal (mu, sigma) {
+  normal(mu, sigma)
+  {
     return normal(this, mu, sigma)
   }
 
@@ -247,7 +298,8 @@ class Random {
    * @param {number} [sigma=1] - Standard deviation of underlying normal distribution
    * @return {function}
    */
-  logNormal (mu, sigma) {
+  logNormal(mu, sigma)
+  {
     return logNormal(this, mu, sigma)
   }
 
@@ -261,7 +313,8 @@ class Random {
    * @param {number} [p=0.5] - Success probability of each trial.
    * @return {function}
    */
-  bernoulli (p) {
+  bernoulli(p)
+  {
     return bernoulli(this, p)
   }
 
@@ -272,7 +325,8 @@ class Random {
    * @param {number} [p=0.5] - Success probability of each trial.
    * @return {function}
    */
-  binomial (n, p) {
+  binomial(n, p)
+  {
     return binomial(this, n, p)
   }
 
@@ -282,7 +336,8 @@ class Random {
    * @param {number} [p=0.5] - Success probability of each trial.
    * @return {function}
    */
-  geometric (p) {
+  geometric(p)
+  {
     return geometric(this, p)
   }
 
@@ -296,7 +351,8 @@ class Random {
    * @param {number} [lambda=1] - Mean (lambda > 0)
    * @return {function}
    */
-  poisson (lambda) {
+  poisson(lambda)
+  {
     return poisson(this, lambda)
   }
 
@@ -306,7 +362,8 @@ class Random {
    * @param {number} [lambda=1] - Inverse mean (lambda > 0)
    * @return {function}
    */
-  exponential (lambda) {
+  exponential(lambda)
+  {
     return exponential(this, lambda)
   }
 
@@ -320,7 +377,8 @@ class Random {
    * @param {number} n - Number of uniform samples to sum (n >= 0)
    * @return {function}
    */
-  irwinHall (n) {
+  irwinHall(n)
+  {
     return irwinHall(this, n)
   }
 
@@ -330,7 +388,8 @@ class Random {
    * @param {number} n - Number of uniform samples to average (n >= 1)
    * @return {function}
    */
-  bates (n) {
+  bates(n)
+  {
     return bates(this, n)
   }
 
@@ -340,7 +399,8 @@ class Random {
    * @param {number} alpha - Alpha
    * @return {function}
    */
-  pareto (alpha) {
+  pareto(alpha)
+  {
     return pareto(this, alpha)
   }
 
@@ -362,11 +422,16 @@ class Random {
    *
    * @return {function}
    */
-  _memoize (label, getter, ...args) {
+
+  _memoize<F extends IRandomDistributions>(label: string, getter: F, ...args): ReturnType<F>
+  _memoize<F extends unknown>(label: string, getter: F, ...args): IRandomDistributions<F>
+  _memoize<F extends IRandomDistributions>(label: string, getter: F, ...args)
+  {
     const key = `${args.join(';')}`
     let value = this._cache[label]
 
-    if (value === undefined || value.key !== key) {
+    if (value === undefined || value.key !== key)
+    {
       value = { key, distribution: getter(this, ...args) }
       this._cache[label] = value
     }
@@ -375,5 +440,11 @@ class Random {
   }
 }
 
+export const random = new Random()
+// @ts-ignore
+random.default = random
+
 // defaults to Math.random as its RNG
-export default new Random()
+export default random
+// @ts-ignore
+Object.freeze(exports)
