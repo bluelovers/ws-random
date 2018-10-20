@@ -1,3 +1,5 @@
+// @allowJs: true
+// @checkJs: true
 import test from 'ava'
 import seedrandom from 'seedrandom'
 

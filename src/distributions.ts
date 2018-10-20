@@ -61,3 +61,4 @@ export {
 import * as Distributions from './distributions';
 export { Distributions }
 export default Distributions
+Object.freeze(exports)

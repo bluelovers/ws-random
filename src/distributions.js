@@ -29,3 +29,4 @@ exports.uniformInt = uniform_int_1.default;
 const Distributions = require("./distributions");
 exports.Distributions = Distributions;
 exports.default = Distributions;
+Object.freeze(exports);
