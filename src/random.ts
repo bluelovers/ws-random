@@ -1,5 +1,5 @@
 import ow = require("ow-lite");
-import { IRandomDistributions } from './distributions';
+import { Distributions, IRandomDistributions } from './distributions';
 import {
 	bates,
 	bernoulli,
@@ -97,7 +97,7 @@ export class Random<R extends RNG = RNG>
 	srand(...argv)
 	{
 		return this.seed(...argv)
-			.integer()
+			.rand()
 	}
 
 	/**
@@ -309,6 +309,26 @@ export class Random<R extends RNG = RNG>
 	boolean()
 	{
 		return this.uniformBoolean()()
+	}
+
+	/**
+	 * random byte
+	 */
+	byte()
+	{
+		return this._memoize('byte', Distributions.uniformByte)()
+	}
+
+	/**
+	 * random bytes, with size
+	 *
+	 * @example Buffer.from(random.bytes(10)) // => <Buffer 5d 4b 06 94 08 e2 85 5b 79 4f>
+	 *
+	 * @param {number} [min=1] - size
+	 */
+	bytes(size: number = 1)
+	{
+		return this._memoize('bytes', Distributions.bytes, size)()
 	}
 
 	// --------------------------------------------------------------------------

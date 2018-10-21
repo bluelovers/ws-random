@@ -42,6 +42,9 @@ import uniform from './distributions/uniform'
 import uniformBoolean from './distributions/uniform-boolean'
 import uniformInt from './distributions/uniform-int'
 
+import uniformByte from './distributions/uniform-byte'
+import bytes from './distributions/bytes'
+
 export {
 	bates,
 	bernoulli,
@@ -56,6 +59,9 @@ export {
 	uniform,
 	uniformBoolean,
 	uniformInt,
+
+	uniformByte,
+	bytes,
 }
 
 import * as Distributions from './distributions';

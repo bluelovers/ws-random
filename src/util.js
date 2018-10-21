@@ -2,10 +2,6 @@
  * Created by user on 2018/10/20/020.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-const hashSum = require("hash-sum");
-exports.hashSum = hashSum;
-const shortid = require("shortid");
-exports.shortid = shortid;
 // @ts-ignore
 exports._MathRandom = _MathRandom = Math.random;
 /**

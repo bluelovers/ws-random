@@ -10,4 +10,5 @@ export { shortid }
 
 export default shortid
 // @ts-ignore
-Object.freeze(exports)
+
+console.log(shortid());

@@ -6,4 +6,4 @@ const shortid = require("shortid");
 exports.shortid = shortid;
 exports.default = shortid;
 // @ts-ignore
-Object.freeze(exports);
+console.log(shortid());

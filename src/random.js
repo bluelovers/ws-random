@@ -1,6 +1,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const ow = require("ow-lite");
 const distributions_1 = require("./distributions");
+const distributions_2 = require("./distributions");
 const rng_1 = require("./rng");
 const rng_factory_1 = require("./rng-factory");
 const util_1 = require("./util");
@@ -57,7 +58,7 @@ class Random {
      */
     srand(...argv) {
         return this.seed(...argv)
-            .integer();
+            .rand();
     }
     /**
      * Creates a new `Random` instance, optionally specifying parameters to
@@ -214,6 +215,22 @@ class Random {
     boolean() {
         return this.uniformBoolean()();
     }
+    /**
+     * random byte
+     */
+    byte() {
+        return this._memoize('byte', distributions_1.Distributions.uniformByte)();
+    }
+    /**
+     * random bytes, with size
+     *
+     * @example Buffer.from(random.bytes(10)) // => <Buffer 5d 4b 06 94 08 e2 85 5b 79 4f>
+     *
+     * @param {number} [min=1] - size
+     */
+    bytes(size = 1) {
+        return this._memoize('bytes', distributions_1.Distributions.bytes, size)();
+    }
     // --------------------------------------------------------------------------
     // Uniform distributions
     // --------------------------------------------------------------------------
@@ -225,7 +242,7 @@ class Random {
      * @return {function}
      */
     uniform(min, max) {
-        return this._memoize('uniform', distributions_1.uniform, min, max);
+        return this._memoize('uniform', distributions_2.uniform, min, max);
     }
     /**
      * Generates a [Discrete uniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution).
@@ -235,7 +252,7 @@ class Random {
      * @return {function}
      */
     uniformInt(min, max) {
-        return this._memoize('uniformInt', distributions_1.uniformInt, min, max);
+        return this._memoize('uniformInt', distributions_2.uniformInt, min, max);
     }
     /**
      * Generates a [Discrete uniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution),
@@ -246,7 +263,7 @@ class Random {
      * @return {function}
      */
     uniformBoolean() {
-        return this._memoize('uniformBoolean', distributions_1.uniformBoolean);
+        return this._memoize('uniformBoolean', distributions_2.uniformBoolean);
     }
     // --------------------------------------------------------------------------
     // Normal distributions
@@ -259,7 +276,7 @@ class Random {
      * @return {function}
      */
     normal(mu, sigma) {
-        return distributions_1.normal(this, mu, sigma);
+        return distributions_2.normal(this, mu, sigma);
     }
     /**
      * Generates a [Log-normal distribution](https://en.wikipedia.org/wiki/Log-normal_distribution).
@@ -269,7 +286,7 @@ class Random {
      * @return {function}
      */
     logNormal(mu, sigma) {
-        return distributions_1.logNormal(this, mu, sigma);
+        return distributions_2.logNormal(this, mu, sigma);
     }
     // --------------------------------------------------------------------------
     // Bernoulli distributions
@@ -281,7 +298,7 @@ class Random {
      * @return {function}
      */
     bernoulli(p) {
-        return distributions_1.bernoulli(this, p);
+        return distributions_2.bernoulli(this, p);
     }
     /**
      * Generates a [Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution).
@@ -291,7 +308,7 @@ class Random {
      * @return {function}
      */
     binomial(n, p) {
-        return distributions_1.binomial(this, n, p);
+        return distributions_2.binomial(this, n, p);
     }
     /**
      * Generates a [Geometric distribution](https://en.wikipedia.org/wiki/Geometric_distribution).
@@ -300,7 +317,7 @@ class Random {
      * @return {function}
      */
     geometric(p) {
-        return distributions_1.geometric(this, p);
+        return distributions_2.geometric(this, p);
     }
     // --------------------------------------------------------------------------
     // Poisson distributions
@@ -312,7 +329,7 @@ class Random {
      * @return {function}
      */
     poisson(lambda) {
-        return distributions_1.poisson(this, lambda);
+        return distributions_2.poisson(this, lambda);
     }
     /**
      * Generates an [Exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution).
@@ -321,7 +338,7 @@ class Random {
      * @return {function}
      */
     exponential(lambda) {
-        return distributions_1.exponential(this, lambda);
+        return distributions_2.exponential(this, lambda);
     }
     // --------------------------------------------------------------------------
     // Misc distributions
@@ -333,7 +350,7 @@ class Random {
      * @return {function}
      */
     irwinHall(n = 1) {
-        return distributions_1.irwinHall(this, n);
+        return distributions_2.irwinHall(this, n);
     }
     /**
      * Generates a [Bates distribution](https://en.wikipedia.org/wiki/Bates_distribution).
@@ -342,7 +359,7 @@ class Random {
      * @return {function}
      */
     bates(n = 1) {
-        return distributions_1.bates(this, n);
+        return distributions_2.bates(this, n);
     }
     /**
      * Generates a [Pareto distribution](https://en.wikipedia.org/wiki/Pareto_distribution).
@@ -351,7 +368,7 @@ class Random {
      * @return {function}
      */
     pareto(alpha = 1) {
-        return distributions_1.pareto(this, alpha);
+        return distributions_2.pareto(this, alpha);
     }
     // --------------------------------------------------------------------------
     // Internal
