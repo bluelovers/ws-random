@@ -18,6 +18,9 @@ class RNG {
     get options() {
         return null;
     }
+    /**
+     * should return a float between 0 ~ 1
+     */
     next() {
         throw new ReferenceError('RNG.next must be overridden');
     }
@@ -32,13 +35,13 @@ class RNG {
      */
     _seedNum(seed, opts, ...argv) {
         // TODO: add entropy and stuff
-        if (typeof seed === 'undefined') {
+        if (typeof seed === 'undefined' || seed === null) {
             /**
              * breaking change
              * this make always get a new token
              * when seed is undefined
              */
-            seed = util_1._MathRandom();
+            seed = util_1.randomSeedStr();
         }
         return default_1.seedToken(seed, opts, ...argv);
     }

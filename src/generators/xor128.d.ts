@@ -4,10 +4,13 @@ export declare class RNGXOR128 extends RNG {
     protected y: number;
     protected z: number;
     protected w: number;
-    constructor(seed: any, opts?: any, ...argv: any[]);
+    constructor(seed: any, ...argv: any[]);
+    constructor(x?: number, y?: number, z?: number, w?: number, ...argv: any[]);
     readonly name: string;
     next(): number;
-    seed(seed: any, opts?: any, ...argv: any[]): void;
+    seed(seed?: any, opts?: any, ...argv: any[]): void;
     clone(seed?: any, opts?: any, ...argv: any[]): RNGXOR128;
+    protected _init(...argv: any[]): void;
+    protected _seed(...argv: any[]): void;
 }
 export default RNGXOR128;

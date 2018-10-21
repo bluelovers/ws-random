@@ -74,3 +74,4 @@ __tests__
 bin/*.ts
 bin/*.d.ts
 /dist/
+/benchmark.md

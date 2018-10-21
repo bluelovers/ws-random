@@ -29,16 +29,18 @@ class Random {
         return this._rng;
     }
     /**
-     * @alias rand
+     * @alias random.next
      */
     get random() {
-        return this.rand;
+        return this.next;
     }
     /**
      * create random numbers like Math.random()
+     *
+     * @alias random.next
      */
     get rand() {
-        return this.float;
+        return this.next;
     }
     /**
      * initialize new seeds
@@ -48,7 +50,7 @@ class Random {
         return this;
     }
     /**
-     * @alias srand
+     * @alias random.srand
      */
     get srandom() {
         return this.srand;
@@ -58,7 +60,7 @@ class Random {
      */
     srand(...argv) {
         return this.seed(...argv)
-            .rand();
+            .next();
     }
     /**
      * Creates a new `Random` instance, optionally specifying parameters to
@@ -175,35 +177,20 @@ class Random {
      * @param {number} [max=1] - Upper bound (integer, inclusive)
      * @return {number}
      */
-    int(min, max) {
+    int(min = 100, max) {
         return this.uniformInt(min, max)();
     }
     /**
-     * Samples a uniform random integer, optionally specifying lower and upper
-     * bounds.
-     *
-     * Convence wrapper around `random.uniformInt()`
-     *
      * @alias `random.int`
-     *
-     * @param {number} [min=0] - Lower bound (integer, inclusive)
-     * @param {number} [max=1] - Upper bound (integer, inclusive)
-     * @return {number}
      */
     integer(min, max) {
-        return this.uniformInt(min, max)();
+        return this.int(min, max);
     }
     /**
-     * Samples a uniform random boolean value.
-     *
-     * Convence wrapper around `random.uniformBoolean()`
-     *
      * @alias `random.boolean`
-     *
-     * @return {boolean}
      */
-    bool() {
-        return this.uniformBoolean()();
+    bool(likelihood) {
+        return this.boolean(likelihood);
     }
     /**
      * Samples a uniform random boolean value.
@@ -212,8 +199,8 @@ class Random {
      *
      * @return {boolean}
      */
-    boolean() {
-        return this.uniformBoolean()();
+    boolean(likelihood) {
+        return this.uniformBoolean(likelihood)();
     }
     /**
      * random byte
@@ -262,8 +249,8 @@ class Random {
      *
      * @return {function}
      */
-    uniformBoolean() {
-        return this._memoize('uniformBoolean', distributions_2.uniformBoolean);
+    uniformBoolean(likelihood) {
+        return this._memoize('uniformBoolean', distributions_2.uniformBoolean, likelihood);
     }
     // --------------------------------------------------------------------------
     // Normal distributions
@@ -388,7 +375,7 @@ class Random {
      * @return {function}
      */
     _memoize(label, getter, ...args) {
-        const key = `${args.join(';')}`;
+        const key = args.join(';');
         let value = this._cache[label];
         if (value === undefined || value.key !== key) {
             // @ts-ignore

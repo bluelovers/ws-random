@@ -2,13 +2,35 @@
  * Created by user on 2018/10/20/020.
  */
 
-//import hashSum = require('hash-sum');
+import hashSum = require('hash-sum');
 //import shortid = require('shortid');
 //
 //export declare function shortid(): string
 //export declare function hashSum(input): string
 //
 //export { shortid, hashSum }
+
+import _nanoid = require('nanoid')
+
+import _pkg = require('../package.json')
+
+export function randomSeedNum(): number
+{
+	return _MathRandom() * Math.pow(2, 32)
+}
+
+/**
+ * give a random string for create seed
+ */
+export function randomSeedStr(): string
+{
+	return [
+		_nanoid(),
+		hashSum(_pkg.name),
+		hashSum(_pkg.version),
+		_MathRandom(),
+	].join('#')
+}
 
 /**
  * try save original Math.random,

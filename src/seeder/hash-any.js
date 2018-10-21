@@ -3,14 +3,14 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 const hashSum = require("hash-sum");
-const nanoid_1 = require("./nanoid");
+const util_1 = require("../util");
 //import { hashSum } from './hash-sum';
 //import { shortid } from './shortid';
 //declare function shortid(): string
 //declare function hashSum(input): string
 function hashAny(seed, ...argv) {
     if (!seed) {
-        seed = nanoid_1.default();
+        seed = util_1.randomSeedStr();
     }
     else if (typeof seed !== 'string') {
         seed = hashSum(seed);

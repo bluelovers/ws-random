@@ -59,19 +59,21 @@ export class Random<R extends RNG = RNG>
 	}
 
 	/**
-	 * @alias rand
+	 * @alias random.next
 	 */
 	get random()
 	{
-		return this.rand
+		return this.next
 	}
 
 	/**
 	 * create random numbers like Math.random()
+	 *
+	 * @alias random.next
 	 */
 	get rand()
 	{
-		return this.float
+		return this.next
 	}
 
 	/**
@@ -84,7 +86,7 @@ export class Random<R extends RNG = RNG>
 	}
 
 	/**
-	 * @alias srand
+	 * @alias random.srand
 	 */
 	get srandom()
 	{
@@ -97,7 +99,7 @@ export class Random<R extends RNG = RNG>
 	srand(...argv)
 	{
 		return this.seed(...argv)
-			.rand()
+			.next()
 	}
 
 	/**
@@ -263,40 +265,25 @@ export class Random<R extends RNG = RNG>
 	 * @param {number} [max=1] - Upper bound (integer, inclusive)
 	 * @return {number}
 	 */
-	int(min?: number, max?: number)
+	int(min: number = 100, max?: number)
 	{
 		return this.uniformInt(min, max)()
 	}
 
 	/**
-	 * Samples a uniform random integer, optionally specifying lower and upper
-	 * bounds.
-	 *
-	 * Convence wrapper around `random.uniformInt()`
-	 *
 	 * @alias `random.int`
-	 *
-	 * @param {number} [min=0] - Lower bound (integer, inclusive)
-	 * @param {number} [max=1] - Upper bound (integer, inclusive)
-	 * @return {number}
 	 */
 	integer(min?: number, max?: number)
 	{
-		return this.uniformInt(min, max)()
+		return this.int(min, max)
 	}
 
 	/**
-	 * Samples a uniform random boolean value.
-	 *
-	 * Convence wrapper around `random.uniformBoolean()`
-	 *
 	 * @alias `random.boolean`
-	 *
-	 * @return {boolean}
 	 */
-	bool()
+	bool(likelihood?: number)
 	{
-		return this.uniformBoolean()()
+		return this.boolean(likelihood)
 	}
 
 	/**
@@ -306,9 +293,9 @@ export class Random<R extends RNG = RNG>
 	 *
 	 * @return {boolean}
 	 */
-	boolean()
+	boolean(likelihood?: number)
 	{
-		return this.uniformBoolean()()
+		return this.uniformBoolean(likelihood)()
 	}
 
 	/**
@@ -367,9 +354,9 @@ export class Random<R extends RNG = RNG>
 	 *
 	 * @return {function}
 	 */
-	uniformBoolean()
+	uniformBoolean(likelihood?: number)
 	{
-		return this._memoize('uniformBoolean', uniformBoolean)
+		return this._memoize('uniformBoolean', uniformBoolean, likelihood)
 	}
 
 	// --------------------------------------------------------------------------
@@ -521,7 +508,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	protected _memoize<F extends IRandomDistributions<any>>(label: string, getter: F, ...args): ReturnType<F>
 	{
-		const key = `${args.join(';')}`
+		const key = args.join(';')
 		let value = this._cache[label]
 
 		if (value === undefined || value.key !== key)

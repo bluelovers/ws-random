@@ -27,19 +27,21 @@ export declare class Random<R extends RNG = RNG> {
      */
     readonly rng: R;
     /**
-     * @alias rand
+     * @alias random.next
      */
-    readonly random: (min?: number, max?: number) => number;
+    readonly random: () => number;
     /**
      * create random numbers like Math.random()
+     *
+     * @alias random.next
      */
-    readonly rand: (min?: number, max?: number) => number;
+    readonly rand: () => number;
     /**
      * initialize new seeds
      */
     seed(...argv: any[]): this;
     /**
-     * @alias srand
+     * @alias random.srand
      */
     readonly srandom: (...argv: any[]) => number;
     /**
@@ -127,28 +129,13 @@ export declare class Random<R extends RNG = RNG> {
      */
     int(min?: number, max?: number): number;
     /**
-     * Samples a uniform random integer, optionally specifying lower and upper
-     * bounds.
-     *
-     * Convence wrapper around `random.uniformInt()`
-     *
      * @alias `random.int`
-     *
-     * @param {number} [min=0] - Lower bound (integer, inclusive)
-     * @param {number} [max=1] - Upper bound (integer, inclusive)
-     * @return {number}
      */
     integer(min?: number, max?: number): number;
     /**
-     * Samples a uniform random boolean value.
-     *
-     * Convence wrapper around `random.uniformBoolean()`
-     *
      * @alias `random.boolean`
-     *
-     * @return {boolean}
      */
-    bool(): boolean;
+    bool(likelihood?: number): boolean;
     /**
      * Samples a uniform random boolean value.
      *
@@ -156,7 +143,7 @@ export declare class Random<R extends RNG = RNG> {
      *
      * @return {boolean}
      */
-    boolean(): boolean;
+    boolean(likelihood?: number): boolean;
     /**
      * random byte
      */
@@ -193,7 +180,7 @@ export declare class Random<R extends RNG = RNG> {
      *
      * @return {function}
      */
-    uniformBoolean(): () => boolean;
+    uniformBoolean(likelihood?: number): () => boolean;
     /**
      * Generates a [Normal distribution](https://en.wikipedia.org/wiki/Normal_distribution).
      *

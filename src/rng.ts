@@ -1,6 +1,6 @@
 import { seedToken } from './seeder/default';
 import { hashAny } from './seeder/hash-any';
-import { _MathRandom } from './util';
+import { _MathRandom, randomSeedStr } from './util';
 
 export abstract class RNG
 {
@@ -33,6 +33,9 @@ export abstract class RNG
 		return null
 	}
 
+	/**
+	 * should return a float between 0 ~ 1
+	 */
 	public next(): number
 	{
 		throw new ReferenceError('RNG.next must be overridden')
@@ -54,14 +57,14 @@ export abstract class RNG
 	protected _seedNum(seed?, opts?, ...argv): number
 	{
 		// TODO: add entropy and stuff
-		if (typeof seed === 'undefined')
+		if (typeof seed === 'undefined' || seed === null)
 		{
 			/**
 			 * breaking change
 			 * this make always get a new token
 			 * when seed is undefined
 			 */
-			seed = _MathRandom()
+			seed = randomSeedStr()
 		}
 
 		return seedToken(seed, opts, ...argv)

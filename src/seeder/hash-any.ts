@@ -4,6 +4,7 @@
 
 import hashSum = require('hash-sum');
 import shortid = require('shortid');
+import { randomSeedStr } from '../util';
 import nanoid from './nanoid';
 
 //import { hashSum } from './hash-sum';
@@ -16,7 +17,7 @@ export function hashAny(seed?, ...argv): string
 {
 	if (!seed)
 	{
-		seed = nanoid()
+		seed = randomSeedStr()
 	}
 	else if (typeof seed !== 'string')
 	{

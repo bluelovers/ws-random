@@ -1,6 +1,6 @@
 {
   "name": "random-extra",
-  "version": "2.2.1",
+  "version": "2.3.1",
   "description": "Seedable random number generator supporting many common distributions.",
   "keywords": [
     "bates",
@@ -53,9 +53,13 @@
     "shortid": "^2.2.13"
   },
   "devDependencies": {
+    "@types/benchmark": "^1.0.31",
     "@types/chai": "^4",
     "ava": "^0.25.0",
+    "benchmark": "^2.1.4",
     "chai": "^4",
+    "debug-color2": "^1.0.6",
+    "microtime": "^2.1.8",
     "update-markdown-jsdoc": "^1.0.6"
   },
   "engines": {
