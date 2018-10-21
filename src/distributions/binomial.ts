@@ -21,3 +21,5 @@ export default (random: Random, n: number = 1, p: number = 0.5) =>
 		return x
 	}
 }
+// @ts-ignore
+Object.freeze(exports)

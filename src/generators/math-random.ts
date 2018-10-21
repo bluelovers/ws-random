@@ -1,11 +1,11 @@
-import RNG, { _MathRandom } from '../rng'
-import { cloneClass } from '../util';
+import RNG from '../rng'
+import { _MathRandom, cloneClass } from '../util';
 
 export class RNGMathRandom extends RNG
 {
 	get name()
 	{
-		return 'default'
+		return 'math-random2'
 	}
 
 	next()

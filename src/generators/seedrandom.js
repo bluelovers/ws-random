@@ -1,4 +1,3 @@
-"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const util_1 = require("../util");
 const function_1 = require("./function");
@@ -9,7 +8,7 @@ exports.defaultOptions = Object.freeze({
 class RNGSeedRandom extends function_1.default {
     constructor(seed, opts, ...argv) {
         super(seed, opts, ...argv);
-        this._opts = exports.defaultOptions;
+        this._opts = Object.assign({}, exports.defaultOptions);
     }
     get name() {
         return 'seedrandom';
@@ -24,14 +23,11 @@ class RNGSeedRandom extends function_1.default {
         else {
             this._opts = opts || this._opts;
         }
-        this._rng = seedrandom(this._hashSeed(seed), this._opts, ...argv);
+        this._rng = seedrandom(this._seedStr(seed), this._opts, ...argv);
     }
     // @ts-ignore
     clone(seed, opts, ...argv) {
         return util_1.cloneClass(RNGSeedRandom, this, seed, opts, ...argv);
-    }
-    _hashSeed(seed) {
-        return util_1.hashAny(seed);
     }
 }
 exports.RNGSeedRandom = RNGSeedRandom;

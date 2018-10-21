@@ -24,3 +24,5 @@ export default (random: Random, n: number) =>
 		return sum
 	}
 }
+// @ts-ignore
+Object.freeze(exports)

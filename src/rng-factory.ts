@@ -1,3 +1,4 @@
+import RNGMathRandom2 from './generators/math-random2';
 import RNGSeedRandom from './generators/seedrandom';
 import RNG from './rng'
 
@@ -10,6 +11,9 @@ const PRNG_BUILTINS = {
 	'xor128': RNGXOR128,
 	'function': RNGFunction,
 	'default': RNGMathRandom,
+
+	'math-random': RNGMathRandom,
+	'math-random2': RNGMathRandom2,
 
 	'seedrandom': RNGSeedRandom,
 }

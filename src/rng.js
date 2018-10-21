@@ -1,7 +1,7 @@
-"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const default_1 = require("./seeder/default");
+const hash_any_1 = require("./seeder/hash-any");
 const util_1 = require("./util");
-exports._MathRandom = Math.random;
 class RNG {
     constructor(seed, opts, ...argv) {
     }
@@ -27,9 +27,26 @@ class RNG {
     clone(seed, opts, ...argv) {
         throw new ReferenceError('RNG.clone must be overridden');
     }
-    _seed(seed, opts, ...argv) {
+    /**
+     * return number for make new seed
+     */
+    _seedNum(seed, opts, ...argv) {
         // TODO: add entropy and stuff
-        return util_1.seedToken(seed, opts, ...argv);
+        if (typeof seed === 'undefined') {
+            /**
+             * breaking change
+             * this make always get a new token
+             * when seed is undefined
+             */
+            seed = util_1._MathRandom();
+        }
+        return default_1.seedToken(seed, opts, ...argv);
+    }
+    /**
+     * return string for make new seed
+     */
+    _seedStr(seed, opts, ...argv) {
+        return hash_any_1.hashAny(seed, opts, ...argv);
     }
 }
 exports.RNG = RNG;

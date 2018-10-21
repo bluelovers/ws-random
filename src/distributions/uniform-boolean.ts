@@ -8,3 +8,5 @@ export default (random: Random) =>
 		return (random.next() >= 0.5)
 	}
 }
+// @ts-ignore
+Object.freeze(exports)

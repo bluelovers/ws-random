@@ -1,4 +1,3 @@
-"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const bates_1 = require("./distributions/bates");
 exports.bates = bates_1.default;

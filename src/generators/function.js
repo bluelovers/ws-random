@@ -1,4 +1,3 @@
-"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const ow = require("ow-lite");
 const rng_1 = require("../rng");

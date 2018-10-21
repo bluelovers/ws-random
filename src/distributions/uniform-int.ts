@@ -18,3 +18,5 @@ export default (random: Random, min?: number, max?: number) =>
 		return (random.next() * (max - min + 1) + min) | 0
 	}
 }
+// @ts-ignore
+Object.freeze(exports)

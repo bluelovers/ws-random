@@ -1,4 +1,3 @@
-"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const ow = require("ow-lite");
 const distributions_1 = require("./distributions");
@@ -28,19 +27,34 @@ class Random {
     get rng() {
         return this._rng;
     }
+    /**
+     * @alias rand
+     */
     get random() {
         return this.rand;
     }
+    /**
+     * create random numbers like Math.random()
+     */
     get rand() {
         return this.float;
     }
+    /**
+     * initialize new seeds
+     */
     seed(...argv) {
         this._rng.seed(...argv);
         return this;
     }
+    /**
+     * @alias srand
+     */
     get srandom() {
         return this.srand;
     }
+    /**
+     * initialize seeds for rand() to create random numbers
+     */
     srand(...argv) {
         return this.seed(...argv)
             .integer();
@@ -89,6 +103,9 @@ class Random {
         this._rng = rng_factory_1.default(arg0, ...args);
         return this;
     }
+    /**
+     * create new Random and use
+     */
     newUse(arg0, ...args) {
         let o = util_1.getClass(Random, this);
         return new o(rng_factory_1.default(arg0, ...args));
@@ -100,6 +117,7 @@ class Random {
     }
     /**
      * Patches `Math.random` with this Random instance's PRNG.
+     * @deprecated unsafe method
      */
     patch() {
         if (this._patch) {
@@ -111,6 +129,8 @@ class Random {
     }
     /**
      * Restores a previously patched `Math.random` to its original value.
+     *
+     * @deprecated unsafe method
      */
     unpatch() {
         if (this._patch) {

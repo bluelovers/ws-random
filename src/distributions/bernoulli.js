@@ -1,4 +1,3 @@
-"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const ow = require("ow-lite");
 exports.default = (random, p = 0.5) => {
@@ -7,3 +6,5 @@ exports.default = (random, p = 0.5) => {
         return (random.next() + p) | 0;
     };
 };
+// @ts-ignore
+Object.freeze(exports);

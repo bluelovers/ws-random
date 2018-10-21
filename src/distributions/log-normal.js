@@ -1,4 +1,3 @@
-"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = (random, ...args) => {
     const normal = random.normal(...args);
@@ -6,3 +5,5 @@ exports.default = (random, ...args) => {
         return Math.exp(normal());
     };
 };
+// @ts-ignore
+Object.freeze(exports);

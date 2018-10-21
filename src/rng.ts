@@ -1,6 +1,6 @@
-import { seedToken } from './util';
-
-export const _MathRandom = Math.random;
+import { seedToken } from './seeder/default';
+import { hashAny } from './seeder/hash-any';
+import { _MathRandom } from './util';
 
 export abstract class RNG
 {
@@ -48,11 +48,33 @@ export abstract class RNG
 		throw new ReferenceError('RNG.clone must be overridden')
 	}
 
-	protected _seed(seed, opts?, ...argv): number
+	/**
+	 * return number for make new seed
+	 */
+	protected _seedNum(seed?, opts?, ...argv): number
 	{
 		// TODO: add entropy and stuff
+		if (typeof seed === 'undefined')
+		{
+			/**
+			 * breaking change
+			 * this make always get a new token
+			 * when seed is undefined
+			 */
+			seed = _MathRandom()
+		}
+
 		return seedToken(seed, opts, ...argv)
 	}
+
+	/**
+	 * return string for make new seed
+	 */
+	protected _seedStr(seed?, opts?, ...argv): string
+	{
+		return hashAny(seed, opts, ...argv)
+	}
+
 }
 
 export default RNG

@@ -12,3 +12,5 @@ export default (random: Random, p = 0.5) =>
 		return 1 + (Math.log(random.next()) * invLogP) | 0
 	}
 }
+// @ts-ignore
+Object.freeze(exports)

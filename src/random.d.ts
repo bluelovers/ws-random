@@ -26,10 +26,25 @@ export declare class Random<R extends RNG = RNG> {
      * @member {Rng} Underlying pseudo-random number generator
      */
     readonly rng: R;
+    /**
+     * @alias rand
+     */
     readonly random: (min?: number, max?: number) => number;
+    /**
+     * create random numbers like Math.random()
+     */
     readonly rand: (min?: number, max?: number) => number;
+    /**
+     * initialize new seeds
+     */
     seed(...argv: any[]): this;
+    /**
+     * @alias srand
+     */
     readonly srandom: (...argv: any[]) => number;
+    /**
+     * initialize seeds for rand() to create random numbers
+     */
     srand(...argv: any[]): number;
     /**
      * Creates a new `Random` instance, optionally specifying parameters to
@@ -65,14 +80,20 @@ export declare class Random<R extends RNG = RNG> {
     newUse(arg0: 'seedrandom', ...args: any[]): Random<RNGSeedRandom>;
     newUse<T extends RNG>(arg0: T, ...args: any[]): Random<T>;
     newUse(arg0: IRNGFactoryType, ...args: any[]): Random<R | any>;
+    /**
+     * clone current Random and use
+     */
     cloneUse<T extends RNG>(arg0: IRNGFactoryType, ...args: any[]): Random<T>;
     cloneUse(arg0: IRNGFactoryType, ...args: any[]): Random<R | any>;
     /**
      * Patches `Math.random` with this Random instance's PRNG.
+     * @deprecated unsafe method
      */
     patch(): void;
     /**
      * Restores a previously patched `Math.random` to its original value.
+     *
+     * @deprecated unsafe method
      */
     unpatch(): void;
     /**

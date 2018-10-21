@@ -1,4 +1,3 @@
-"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const ow_lite_1 = require("ow-lite");
 const logFactorialTable = [
@@ -78,3 +77,5 @@ exports.default = (random, lambda = 1) => {
         };
     }
 };
+// @ts-ignore
+Object.freeze(exports);

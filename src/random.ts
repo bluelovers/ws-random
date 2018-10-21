@@ -58,27 +58,42 @@ export class Random<R extends RNG = RNG>
 		return this._rng
 	}
 
+	/**
+	 * @alias rand
+	 */
 	get random()
 	{
 		return this.rand
 	}
 
+	/**
+	 * create random numbers like Math.random()
+	 */
 	get rand()
 	{
 		return this.float
 	}
 
+	/**
+	 * initialize new seeds
+	 */
 	seed(...argv)
 	{
 		this._rng.seed(...argv)
 		return this
 	}
 
+	/**
+	 * @alias srand
+	 */
 	get srandom()
 	{
 		return this.srand
 	}
 
+	/**
+	 * initialize seeds for rand() to create random numbers
+	 */
 	srand(...argv)
 	{
 		return this.seed(...argv)
@@ -154,6 +169,9 @@ export class Random<R extends RNG = RNG>
 	newUse(arg0: 'seedrandom', ...args): Random<RNGSeedRandom>
 	newUse<T extends RNG>(arg0: T, ...args): Random<T>
 	newUse(arg0: IRNGFactoryType, ...args): Random<R | any>
+	/**
+	 * create new Random and use
+	 */
 	newUse(arg0: IRNGFactoryType, ...args)
 	{
 		let o: typeof Random = getClass(Random, this)
@@ -161,6 +179,9 @@ export class Random<R extends RNG = RNG>
 		return new o(RNGFactory(arg0, ...args));
 	}
 
+	/**
+	 * clone current Random and use
+	 */
 	cloneUse<T extends RNG>(arg0: IRNGFactoryType, ...args): Random<T>
 	cloneUse(arg0: IRNGFactoryType, ...args): Random<R | any>
 	cloneUse(arg0: IRNGFactoryType, ...args)
@@ -173,6 +194,7 @@ export class Random<R extends RNG = RNG>
 
 	/**
 	 * Patches `Math.random` with this Random instance's PRNG.
+	 * @deprecated unsafe method
 	 */
 	patch()
 	{
@@ -188,6 +210,8 @@ export class Random<R extends RNG = RNG>
 
 	/**
 	 * Restores a previously patched `Math.random` to its original value.
+	 *
+	 * @deprecated unsafe method
 	 */
 	unpatch()
 	{

@@ -2,51 +2,30 @@
  * Created by user on 2018/10/20/020.
  */
 
-import shortid = require('shortid')
-import hashSum = require('hash-sum')
-import RNG from './rng';
+import hashSum = require('hash-sum');
+import shortid = require('shortid');
 
 export declare function shortid(): string
 export declare function hashSum(input): string
 
 export { shortid, hashSum }
 
-export function hashAny(seed?, ...argv): string
-{
-	if (!seed)
-	{
-		seed = shortid()
-	}
-	else if (typeof seed !== 'string')
-	{
-		seed = hashSum(seed)
-	}
+/**
+ * try save original Math.random,
+ * if no other module overwrite Math.random
+ *
+ * @alias Math.random
+ */
+declare function _MathRandom(): number
 
-	return String(seed)
-}
+// @ts-ignore
+_MathRandom = Math.random;
 
-export function seedToken(seed: number | any, opts?, ...argv): number
-{
-	// TODO: add entropy and stuff
+export { _MathRandom };
 
-	if (seed === (seed | 0))
-	{
-		return seed
-	}
-	else
-	{
-		let strSeed = '' + seed
-		let s = 0
-
-		for (let k = 0; k < strSeed.length; ++k)
-		{
-			s ^= strSeed.charCodeAt(k) | 0
-		}
-
-		return s
-	}
-}
-
+/**
+ * @todo support typescript
+ */
 export function getClass(RNGClass, thisArgv, ...argv)
 {
 	let o;
@@ -64,6 +43,9 @@ export function getClass(RNGClass, thisArgv, ...argv)
 	return o
 }
 
+/**
+ * @todo support typescript
+ */
 export function cloneClass(RNGClass, thisArgv, ...argv)
 {
 	let o = getClass(RNGClass, thisArgv, ...argv)

@@ -1,5 +1,5 @@
-"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const math_random2_1 = require("./generators/math-random2");
 const seedrandom_1 = require("./generators/seedrandom");
 const rng_1 = require("./rng");
 const xor128_1 = require("./generators/xor128");
@@ -10,6 +10,8 @@ const PRNG_BUILTINS = {
     'xor128': xor128_1.default,
     'function': function_1.default,
     'default': math_random_1.default,
+    'math-random': math_random_1.default,
+    'math-random2': math_random2_1.default,
     'seedrandom': seedrandom_1.default,
 };
 function RNGFactory(...args) {

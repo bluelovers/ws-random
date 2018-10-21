@@ -15,14 +15,14 @@ const logFactorialTable = [
 	12.801827480081469,
 ]
 
-const logFactorial = (k) =>
+const logFactorial = (k: number) =>
 {
 	return logFactorialTable[k]
 }
 
 const logSqrt2PI = 0.91893853320467267
 
-export default (random, lambda = 1) =>
+export default (random: Random, lambda = 1) =>
 {
 	ow(lambda, ow.number.positive)
 
@@ -109,3 +109,5 @@ export default (random, lambda = 1) =>
 		}
 	}
 }
+// @ts-ignore
+Object.freeze(exports)
