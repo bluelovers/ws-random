@@ -16,6 +16,9 @@ class RNGSeedRandom extends function_1.default {
     get options() {
         return this._opts;
     }
+    /**
+     * @todo options for change seeder
+     */
     seed(seed, opts, ...argv) {
         if (opts === null) {
             this._opts = undefined;

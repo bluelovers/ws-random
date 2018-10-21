@@ -29,6 +29,9 @@ export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 		return this._opts
 	}
 
+	/**
+	 * @todo options for change seeder
+	 */
 	seed(seed?, opts?: RNGSeedRandomOptions, ...argv)
 	{
 		if (opts === null)
