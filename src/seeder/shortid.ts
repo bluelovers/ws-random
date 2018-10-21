@@ -4,11 +4,12 @@
 
 import shortid = require('shortid');
 
+/**
+ * @deprecated
+ */
 export declare function shortid(...argv): string
 
 export { shortid }
 
 export default shortid
 // @ts-ignore
-
-console.log(shortid());
