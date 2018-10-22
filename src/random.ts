@@ -59,7 +59,7 @@ export class Random<R extends RNG = RNG>
 	}
 
 	/**
-	 * @alias random.next
+	 * @see random.next
 	 */
 	get random()
 	{
@@ -69,7 +69,7 @@ export class Random<R extends RNG = RNG>
 	/**
 	 * create random numbers like Math.random()
 	 *
-	 * @alias random.next
+	 * @see random.next
 	 */
 	get rand()
 	{
@@ -86,7 +86,7 @@ export class Random<R extends RNG = RNG>
 	}
 
 	/**
-	 * @alias random.srand
+	 * @see random.srand
 	 */
 	get srandom()
 	{
@@ -271,7 +271,7 @@ export class Random<R extends RNG = RNG>
 	}
 
 	/**
-	 * @alias `random.int`
+	 * @see `random.int`
 	 */
 	integer(min?: number, max?: number)
 	{
@@ -279,7 +279,7 @@ export class Random<R extends RNG = RNG>
 	}
 
 	/**
-	 * @alias `random.boolean`
+	 * @see `random.boolean`
 	 */
 	bool(likelihood?: number)
 	{

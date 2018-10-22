@@ -1,6 +1,6 @@
 {
   "name": "random-extra",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "description": "Seedable random number generator supporting many common distributions.",
   "keywords": [
     "bates",
@@ -41,6 +41,7 @@
   },
   "scripts": {
     "prepublishOnly": "npm run docs && npm run test",
+    "benchmark": "npx ts-node ./test/benchmark/base.perf.ts",
     "docs": "update-markdown-jsdoc -f src/random.js --shallow",
     "test": "ava --serial -v test/**/*.test.js"
   },

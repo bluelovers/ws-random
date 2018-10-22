@@ -163,10 +163,10 @@ rng.unpatch()
 
 -   [Random](#random)
     -   [rng](#rng)
-    -   [random.next](#randomnext)
-    -   [random.next](#randomnext-1)
+    -   [random](#random-1)
+    -   [rand](#rand)
     -   [seed](#seed)
-    -   [random.srand](#randomsrand)
+    -   [srandom](#srandom)
     -   [srand](#srand)
     -   [clone](#clone)
     -   [use](#use)
@@ -181,6 +181,7 @@ rng.unpatch()
     -   [boolean](#boolean)
     -   [byte](#byte)
     -   [bytes](#bytes)
+    -   [randomBytes](#randombytes)
     -   [uniform](#uniform)
     -   [uniformInt](#uniformint)
     -   [uniformBoolean](#uniformboolean)
@@ -196,7 +197,7 @@ rng.unpatch()
     -   [pareto](#pareto)
     -   [reset](#reset)
 
-### [Random](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L18-L398)
+### [Random](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L18-L404)
 
 Seedable random number generator supporting many common distributions.
 
@@ -208,19 +209,23 @@ Type: `function (rng)`
 
 * * *
 
-#### [rng](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L28-L30)
+#### [rng](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L28-L30)
 
 Type: `function ()`
 
 * * *
 
-#### [random.next](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L34-L36)
+#### [random](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L34-L36)
+
+-   **See: random.next**
 
 Type: `function ()`
 
 * * *
 
-#### [random.next](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L42-L44)
+#### [rand](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L42-L44)
+
+-   **See: random.next**
 
 create random numbers like Math.random()
 
@@ -228,33 +233,35 @@ Type: `function ()`
 
 * * *
 
-#### [seed](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L48-L51)
+#### [seed](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L48-L51)
 
 initialize new seeds
 
 Type: `function (argv)`
 
--   `argv` **...any**
+-   `argv` **...any** 
 
 * * *
 
-#### [random.srand](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L55-L57)
+#### [srandom](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L55-L57)
+
+-   **See: random.srand**
 
 Type: `function ()`
 
 * * *
 
-#### [srand](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L61-L64)
+#### [srand](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L61-L64)
 
 initialize seeds for rand() to create random numbers
 
 Type: `function (argv)`
 
--   `argv` **...any**
+-   `argv` **...any** 
 
 * * *
 
-#### [clone](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L75-L86)
+#### [clone](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L75-L86)
 
 -   **See: Rng.clone**
 
@@ -264,12 +271,12 @@ set a new seed.
 Type: `function (seed, args, opts): Random`
 
 -   `seed` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** Optional seed for new RNG.
--   `args` **...any**
+-   `args` **...any** 
 -   `opts` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Optional config for new RNG options.
 
 * * *
 
-#### [use](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L105-L108)
+#### [use](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L105-L108)
 
 Sets the underlying pseudorandom number generator used via
 either an instance of `seedrandom`, a custom instance of RNG
@@ -279,8 +286,8 @@ RNG.
 
 Type: `function (arg0, args)`
 
--   `arg0`
--   `args` **...any**
+-   `arg0`  
+-   `args` **...any** 
 
 Example:
 
@@ -296,18 +303,18 @@ random.use(Math.random)
 
 * * *
 
-#### [newUse](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L112-L115)
+#### [newUse](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L112-L115)
 
 create new Random and use
 
 Type: `function (arg0, args)`
 
--   `arg0`
--   `args` **...any**
+-   `arg0`  
+-   `args` **...any** 
 
 * * *
 
-#### [patch](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L125-L132)
+#### [patch](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L125-L132)
 
 Patches `Math.random` with this Random instance's PRNG.
 
@@ -320,7 +327,7 @@ Type: `function ()`
 
 * * *
 
-#### [unpatch](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L138-L143)
+#### [unpatch](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L138-L143)
 
 Restores a previously patched `Math.random` to its original value.
 
@@ -333,7 +340,7 @@ Type: `function ()`
 
 * * *
 
-#### [next](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L154-L156)
+#### [next](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L154-L156)
 
 Convenience wrapper around `this.rng.next()`
 
@@ -343,7 +350,7 @@ Type: `function (): number`
 
 * * *
 
-#### [float](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L167-L169)
+#### [float](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L167-L169)
 
 Samples a uniform random floating point number, optionally specifying
 lower and upper bounds.
@@ -357,7 +364,7 @@ Type: `function (min, max): number`
 
 * * *
 
-#### [int](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L180-L182)
+#### [int](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L180-L182)
 
 Samples a uniform random integer, optionally specifying lower and upper
 bounds.
@@ -371,24 +378,28 @@ Type: `function (min, max): number`
 
 * * *
 
-#### [integer](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L186-L188)
+#### [integer](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L186-L188)
+
+-   **See: `random.int`**
 
 Type: `function (min, max)`
 
--   `min`
--   `max`
+-   `min`  
+-   `max`  
 
 * * *
 
-#### [bool](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L192-L194)
+#### [bool](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L192-L194)
+
+-   **See: `random.boolean`**
 
 Type: `function (likelihood)`
 
--   `likelihood`
+-   `likelihood`  
 
 * * *
 
-#### [boolean](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L202-L204)
+#### [boolean](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L202-L204)
 
 Samples a uniform random boolean value.
 
@@ -396,11 +407,11 @@ Convence wrapper around `random.uniformBoolean()`
 
 Type: `function (likelihood): boolean`
 
--   `likelihood`
+-   `likelihood`  
 
 * * *
 
-#### [byte](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L208-L210)
+#### [byte](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L208-L210)
 
 random byte
 
@@ -408,14 +419,13 @@ Type: `function ()`
 
 * * *
 
-#### [bytes](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L218-L220)
+#### [bytes](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L216-L218)
 
 random bytes, with size
 
-Type: `function (size, min)`
+Type: `function (size)`
 
 -   `size`   (optional, default `1`)
--   `min` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** size (optional, default `1`)
 
 Example:
 
@@ -425,7 +435,17 @@ Buffer.from(random.bytes(10)) // => <Buffer 5d 4b 06 94 08 e2 85 5b 79 4f>
 
 * * *
 
-#### [uniform](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L231-L233)
+#### [randomBytes](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L224-L226)
+
+same as crypto.randomBytes(size)
+
+Type: `function (size)`
+
+-   `size`  
+
+* * *
+
+#### [uniform](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L237-L239)
 
 Generates a [Continuous uniform distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)).
 
@@ -436,7 +456,7 @@ Type: `function (min, max): function`
 
 * * *
 
-#### [uniformInt](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L241-L243)
+#### [uniformInt](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L247-L249)
 
 Generates a [Discrete uniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution).
 
@@ -447,7 +467,7 @@ Type: `function (min, max): function`
 
 * * *
 
-#### [uniformBoolean](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L252-L254)
+#### [uniformBoolean](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L258-L260)
 
 Generates a [Discrete uniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution),
 with two possible outcomes, `true` or \`false.
@@ -456,11 +476,11 @@ This method is analogous to flipping a coin.
 
 Type: `function (likelihood): function`
 
--   `likelihood`
+-   `likelihood`  
 
 * * *
 
-#### [normal](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L265-L267)
+#### [normal](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L271-L273)
 
 Generates a [Normal distribution](https://en.wikipedia.org/wiki/Normal_distribution).
 
@@ -471,7 +491,7 @@ Type: `function (mu, sigma): function`
 
 * * *
 
-#### [logNormal](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L275-L277)
+#### [logNormal](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L281-L283)
 
 Generates a [Log-normal distribution](https://en.wikipedia.org/wiki/Log-normal_distribution).
 
@@ -482,7 +502,7 @@ Type: `function (mu, sigma): function`
 
 * * *
 
-#### [bernoulli](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L287-L289)
+#### [bernoulli](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L293-L295)
 
 Generates a [Bernoulli distribution](https://en.wikipedia.org/wiki/Bernoulli_distribution).
 
@@ -492,7 +512,7 @@ Type: `function (p): function`
 
 * * *
 
-#### [binomial](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L297-L299)
+#### [binomial](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L303-L305)
 
 Generates a [Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution).
 
@@ -503,7 +523,7 @@ Type: `function (n, p): function`
 
 * * *
 
-#### [geometric](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L306-L308)
+#### [geometric](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L312-L314)
 
 Generates a [Geometric distribution](https://en.wikipedia.org/wiki/Geometric_distribution).
 
@@ -513,7 +533,7 @@ Type: `function (p): function`
 
 * * *
 
-#### [poisson](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L318-L320)
+#### [poisson](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L324-L326)
 
 Generates a [Poisson distribution](https://en.wikipedia.org/wiki/Poisson_distribution).
 
@@ -523,7 +543,7 @@ Type: `function (lambda): function`
 
 * * *
 
-#### [exponential](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L327-L329)
+#### [exponential](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L333-L335)
 
 Generates an [Exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution).
 
@@ -533,7 +553,7 @@ Type: `function (lambda): function`
 
 * * *
 
-#### [irwinHall](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L339-L341)
+#### [irwinHall](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L345-L347)
 
 Generates an [Irwin Hall distribution](https://en.wikipedia.org/wiki/Irwin%E2%80%93Hall_distribution).
 
@@ -543,7 +563,7 @@ Type: `function (n): function`
 
 * * *
 
-#### [bates](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L348-L350)
+#### [bates](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L354-L356)
 
 Generates a [Bates distribution](https://en.wikipedia.org/wiki/Bates_distribution).
 
@@ -553,7 +573,7 @@ Type: `function (n): function`
 
 * * *
 
-#### [pareto](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L357-L359)
+#### [pareto](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L363-L365)
 
 Generates a [Pareto distribution](https://en.wikipedia.org/wiki/Pareto_distribution).
 
@@ -563,7 +583,7 @@ Type: `function (alpha): function`
 
 * * *
 
-#### [reset](https://github.com/bluelovers/random/blob/1f7e547c0d4cd2085e9111ce1556bb8f8cb06f1f/src/random.js#L391-L394)
+#### [reset](https://github.com/bluelovers/random/blob/2c8eda5a7c13be718220c030ecbc7bf913ea880c/src/random.js#L397-L400)
 
 reset Memoizes distributions
 

@@ -5,6 +5,7 @@
 import tests, { Benchmark, formatBenchmarkResult, sortBenchmarkResult, getMethods } from './'
 
 import console from 'debug-color2'
+import { defaultArgv } from '../../src/simple-wrap';
 
 const methods = Object.keys(tests.Math)
 
@@ -13,10 +14,12 @@ methods.unshift(methods[0])
 methods
 	.forEach(function (method)
 	{
+		const argv = defaultArgv[method] || []
+
 		const suite = (new Benchmark.Suite)
 		console.grey(`\n-----------------------`);
 
-		console.log(method);
+		console.log(method, `(${argv.join(', ')})`);
 
 		console.grey(`=======================\n`);
 
@@ -27,10 +30,10 @@ methods
 
 				suite.add(`${name}.${method}`, function ()
 				{
-					rng[method]()
+					rng[method](...argv)
 				})
 
-				console.debug(`${name}.${method} => ${rng[method]()}`, '  ');
+				console.debug(`${name}.${method} => ${rng[method](...argv)}`, '  ');
 			})
 		;
 

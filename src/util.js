@@ -15,7 +15,7 @@ const MATH_POW_2_32 = Math.pow(2, 32);
 // @ts-ignore
 exports._MathRandom = _MathRandom = Math.random;
 function randomSeedNum() {
-    return _MathRandom() * MATH_POW_2_32 + _MathRandom();
+    return (_MathRandom() * MATH_POW_2_32) + _MathRandom();
 }
 exports.randomSeedNum = randomSeedNum;
 /**
@@ -26,7 +26,7 @@ function randomSeedStr() {
         _nanoid(),
         hashSum(_pkg.name),
         hashSum(_pkg.version),
-        _MathRandom(),
+        floatToString(_MathRandom()),
     ].join('_');
 }
 exports.randomSeedStr = randomSeedStr;
@@ -53,5 +53,11 @@ function cloneClass(RNGClass, thisArgv, ...argv) {
     return new o(...argv);
 }
 exports.cloneClass = cloneClass;
+function floatToString(n) {
+    let int = Math.floor(n);
+    let float = n - int;
+    return String(int) + '.' + String(float).split('.')[1];
+}
+exports.floatToString = floatToString;
 // @ts-ignore
 Object.freeze(exports);

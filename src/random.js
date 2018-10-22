@@ -29,7 +29,7 @@ class Random {
         return this._rng;
     }
     /**
-     * @alias random.next
+     * @see random.next
      */
     get random() {
         return this.next;
@@ -37,7 +37,7 @@ class Random {
     /**
      * create random numbers like Math.random()
      *
-     * @alias random.next
+     * @see random.next
      */
     get rand() {
         return this.next;
@@ -50,7 +50,7 @@ class Random {
         return this;
     }
     /**
-     * @alias random.srand
+     * @see random.srand
      */
     get srandom() {
         return this.srand;
@@ -181,13 +181,13 @@ class Random {
         return this.uniformInt(min, max)();
     }
     /**
-     * @alias `random.int`
+     * @see `random.int`
      */
     integer(min, max) {
         return this.int(min, max);
     }
     /**
-     * @alias `random.boolean`
+     * @see `random.boolean`
      */
     bool(likelihood) {
         return this.boolean(likelihood);

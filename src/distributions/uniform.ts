@@ -11,7 +11,7 @@ export default (random: Random, min?: number, max?: number) =>
 	}
 
 	ow(min, ow.number)
-	ow(max, ow.number)
+	ow(max, ow.number.gte(min))
 
 	return (): number =>
 	{

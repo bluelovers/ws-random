@@ -31,7 +31,7 @@ export { _MathRandom };
 
 export function randomSeedNum(): number
 {
-	return _MathRandom() * MATH_POW_2_32 + _MathRandom()
+	return (_MathRandom() * MATH_POW_2_32) + _MathRandom()
 }
 
 /**
@@ -43,7 +43,7 @@ export function randomSeedStr(): string
 		_nanoid(),
 		hashSum(_pkg.name),
 		hashSum(_pkg.version),
-		_MathRandom(),
+		floatToString(_MathRandom()),
 	].join('_')
 }
 
@@ -75,6 +75,14 @@ export function cloneClass(RNGClass, thisArgv, ...argv)
 	let o = getClass(RNGClass, thisArgv, ...argv)
 
 	return new o(...argv)
+}
+
+export function floatToString(n: number)
+{
+	let int = Math.floor(n)
+	let float = n - int
+
+	return String(int) + '.' + String(float).split('.')[1]
 }
 
 // @ts-ignore

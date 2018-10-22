@@ -22,3 +22,4 @@ export declare function getClass(RNGClass: any, thisArgv: any, ...argv: any[]): 
  * @todo support typescript
  */
 export declare function cloneClass(RNGClass: any, thisArgv: any, ...argv: any[]): any;
+export declare function floatToString(n: number): string;

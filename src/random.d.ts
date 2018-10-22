@@ -28,13 +28,13 @@ export declare class Random<R extends RNG = RNG> {
      */
     readonly rng: R;
     /**
-     * @alias random.next
+     * @see random.next
      */
     readonly random: () => number;
     /**
      * create random numbers like Math.random()
      *
-     * @alias random.next
+     * @see random.next
      */
     readonly rand: () => number;
     /**
@@ -42,7 +42,7 @@ export declare class Random<R extends RNG = RNG> {
      */
     seed(...argv: any[]): this;
     /**
-     * @alias random.srand
+     * @see random.srand
      */
     readonly srandom: (...argv: any[]) => number;
     /**
@@ -130,11 +130,11 @@ export declare class Random<R extends RNG = RNG> {
      */
     int(min?: number, max?: number): number;
     /**
-     * @alias `random.int`
+     * @see `random.int`
      */
     integer(min?: number, max?: number): number;
     /**
-     * @alias `random.boolean`
+     * @see `random.boolean`
      */
     bool(likelihood?: number): boolean;
     /**
