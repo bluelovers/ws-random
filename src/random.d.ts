@@ -174,6 +174,15 @@ export declare class Random<R extends RNG = RNG> {
      */
     arrayItem<T extends unknown>(arr: T[], size?: number, start?: number, end?: number): T[];
     /**
+     * Shuffle an array
+     *
+     * @param arr
+     * @param {boolean} overwrite - if true, will change current array
+     *
+     * @example random.arrayShuffle([11, 22, 33])
+     */
+    arrayShuffle<T extends unknown>(arr: T[], overwrite?: boolean): T[];
+    /**
      * Generates a [Continuous uniform distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)).
      *
      * @param {number} [min=0] - Lower bound (float, inclusive)

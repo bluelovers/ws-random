@@ -32,7 +32,7 @@ let ks = Object
 	{
 
 		let argv = []
-		if (method === 'arrayIndex' || method === 'arrayItem')
+		if (method === 'arrayIndex' || method === 'arrayItem' || method === 'arrayShuffle')
 		{
 			argv = [[11, 22, 33, 44, 55]]
 		}
@@ -99,7 +99,7 @@ Object.keys(ks).forEach(function (cat)
 		test(`[${cat}] .${method}()`, (t) =>
 		{
 			let argv = []
-			if (method === 'arrayIndex' || method === 'arrayItem')
+			if (method === 'arrayIndex' || method === 'arrayItem' || method === 'arrayShuffle')
 			{
 				argv = [[11, 22, 33, 44, 55]]
 			}

@@ -354,6 +354,25 @@ export class Random<R extends RNG = RNG>
 		}, [])
 	}
 
+	/**
+	 * Shuffle an array
+	 *
+	 * @param arr
+	 * @param {boolean} overwrite - if true, will change current array
+	 *
+	 * @example random.arrayShuffle([11, 22, 33])
+	 */
+	arrayShuffle<T extends unknown>(arr: T[], overwrite?: boolean)
+	{
+		let fn = this.uniformInt(-1, 1)
+
+		return (overwrite ? arr : arr.slice())
+			.sort(function ()
+			{
+				return fn()
+			})
+	}
+
 	// --------------------------------------------------------------------------
 	// Uniform distributions
 	// --------------------------------------------------------------------------

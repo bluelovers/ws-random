@@ -245,6 +245,21 @@ class Random {
             return a;
         }, []);
     }
+    /**
+     * Shuffle an array
+     *
+     * @param arr
+     * @param {boolean} overwrite - if true, will change current array
+     *
+     * @example random.arrayShuffle([11, 22, 33])
+     */
+    arrayShuffle(arr, overwrite) {
+        let fn = this.uniformInt(-1, 1);
+        return (overwrite ? arr : arr.slice())
+            .sort(function () {
+            return fn();
+        });
+    }
     // --------------------------------------------------------------------------
     // Uniform distributions
     // --------------------------------------------------------------------------

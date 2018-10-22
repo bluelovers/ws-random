@@ -5,6 +5,7 @@ import seedrandom from 'seedrandom'
 
 import inDelta from '../_in-delta'
 import random from '../..'
+import { expect } from 'chai'
 
 test('random.uniform() is in [0, 1)', (t) =>
 {
@@ -88,4 +89,29 @@ test('random.uniform(min, max) has mean (min + max) / 2', (t) =>
 
 	const mean = sum / 10000
 	t.true(inDelta(mean, 26, 0.5))
+})
+
+test('random.uniformInt(-1, 1) is in [-1, 0, 1]', (t) =>
+{
+	const r = random.clone(seedrandom('ZDJjM2IyNmFlNmVjNWQwMGZkMmY1Y2Nk'))
+	const d = r.uniformInt(-1, 1)
+
+	let cache = {}
+
+	for (let i = 0; i < 10000; ++i)
+	{
+		const v = d()
+
+		cache[v] = v
+	}
+
+	let arr = Object.values(cache)
+	arr.sort(function (a, b)
+	{
+		return a - b
+	})
+
+	expect(arr).to.deep.equal([-1, 0, 1])
+
+	t.true(arr.length === 3)
 })
