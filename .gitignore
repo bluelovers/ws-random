@@ -70,3 +70,5 @@ tests/temp*
 !/.gitignore
 !/test/distributions/*.test.js
 #!/test/distributions/*.test.ts
+!/test/benchmark/*.js
+
