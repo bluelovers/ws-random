@@ -14,23 +14,7 @@ import _nanoid = require('nanoid')
 
 import _pkg = require('../package.json')
 
-export function randomSeedNum(): number
-{
-	return _MathRandom() * Math.pow(2, 32)
-}
-
-/**
- * give a random string for create seed
- */
-export function randomSeedStr(): string
-{
-	return [
-		_nanoid(),
-		hashSum(_pkg.name),
-		hashSum(_pkg.version),
-		_MathRandom(),
-	].join('#')
-}
+const MATH_POW_2_32 = Math.pow(2, 32)
 
 /**
  * try save original Math.random,
@@ -44,6 +28,24 @@ declare function _MathRandom(): number
 _MathRandom = Math.random;
 
 export { _MathRandom };
+
+export function randomSeedNum(): number
+{
+	return _MathRandom() * MATH_POW_2_32 + _MathRandom()
+}
+
+/**
+ * give a random string for create seed
+ */
+export function randomSeedStr(): string
+{
+	return [
+		_nanoid(),
+		hashSum(_pkg.name),
+		hashSum(_pkg.version),
+		_MathRandom(),
+	].join('_')
+}
 
 /**
  * @todo support typescript

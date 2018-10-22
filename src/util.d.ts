@@ -1,11 +1,6 @@
 /**
  * Created by user on 2018/10/20/020.
  */
-export declare function randomSeedNum(): number;
-/**
- * give a random string for create seed
- */
-export declare function randomSeedStr(): string;
 /**
  * try save original Math.random,
  * if no other module overwrite Math.random
@@ -14,6 +9,11 @@ export declare function randomSeedStr(): string;
  */
 declare function _MathRandom(): number;
 export { _MathRandom };
+export declare function randomSeedNum(): number;
+/**
+ * give a random string for create seed
+ */
+export declare function randomSeedStr(): string;
 /**
  * @todo support typescript
  */

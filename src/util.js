@@ -11,8 +11,11 @@ const hashSum = require("hash-sum");
 //export { shortid, hashSum }
 const _nanoid = require("nanoid");
 const _pkg = require("../package.json");
+const MATH_POW_2_32 = Math.pow(2, 32);
+// @ts-ignore
+exports._MathRandom = _MathRandom = Math.random;
 function randomSeedNum() {
-    return _MathRandom() * Math.pow(2, 32);
+    return _MathRandom() * MATH_POW_2_32 + _MathRandom();
 }
 exports.randomSeedNum = randomSeedNum;
 /**
@@ -24,11 +27,9 @@ function randomSeedStr() {
         hashSum(_pkg.name),
         hashSum(_pkg.version),
         _MathRandom(),
-    ].join('#');
+    ].join('_');
 }
 exports.randomSeedStr = randomSeedStr;
-// @ts-ignore
-exports._MathRandom = _MathRandom = Math.random;
 /**
  * @todo support typescript
  */

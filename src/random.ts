@@ -310,12 +310,20 @@ export class Random<R extends RNG = RNG>
 	 * random bytes, with size
 	 *
 	 * @example Buffer.from(random.bytes(10)) // => <Buffer 5d 4b 06 94 08 e2 85 5b 79 4f>
-	 *
-	 * @param {number} [min=1] - size
 	 */
 	bytes(size: number = 1)
 	{
 		return this._memoize('bytes', Distributions.bytes, size)()
+	}
+
+	/**
+	 * same as crypto.randomBytes(size)
+	 *
+	 * @param size
+	 */
+	randomBytes(size?: number)
+	{
+		return Buffer.from(this.bytes(size))
 	}
 
 	// --------------------------------------------------------------------------

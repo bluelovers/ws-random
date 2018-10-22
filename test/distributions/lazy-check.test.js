@@ -35,35 +35,38 @@ let ks = Object
 		{
 			let ret = random[method]()
 
-			if (typeof ret === 'function')
+			let t2 = typeof ret
+
+			switch (t2)
 			{
-				a.distributions.push(method)
-			}
-			else
-			{
-				switch (typeof ret)
-				{
-					case 'number':
-						a.number.push(method)
-						break;
-					case 'boolean':
-						a.boolean.push(method)
-						break;
-					default:
+				case 'function':
+					a.distributions.push(method)
+					break;
+				case 'number':
+					a.number.push(method)
+					break;
+				case 'boolean':
+					a.boolean.push(method)
+					break;
+				case 'undefined':
+					a.crash.push(method)
+					break;
+				default:
 
-						if (Array.isArray(ret))
-						{
-							a.array.push(method)
-						}
-						else
-						{
-							a.value.push(method)
-						}
+					if (Buffer.isBuffer(ret))
+					{
+						a.buffer.push(method)
+					}
+					else if (Array.isArray(ret))
+					{
+						a.array.push(method)
+					}
+					else
+					{
+						a.value.push(method)
+					}
 
-						break;
-				}
-
-
+					break;
 			}
 		}
 		catch (e)
@@ -76,6 +79,7 @@ let ks = Object
 		number: [],
 		boolean: [],
 		array: [],
+		buffer: [],
 		value: [],
 		distributions: [],
 		crash: []
@@ -91,6 +95,8 @@ Object.keys(ks).forEach(function (cat)
 			let ret = random[method]()
 			let val;
 
+			t.true(cat !== 'crash')
+
 			if (typeof ret === 'function')
 			{
 				val = ret()
@@ -104,6 +110,7 @@ Object.keys(ks).forEach(function (cat)
 
 			t.true(type !== 'function')
 			t.true(type !== 'undefined')
+			t.true(val !== null)
 		})
 	})
 })
