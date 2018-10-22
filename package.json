@@ -1,6 +1,6 @@
 {
   "name": "random-extra",
-  "version": "2.5.0",
+  "version": "2.5.1",
   "description": "Seedable random number generator supporting many common distributions.",
   "keywords": [
     "bates",
@@ -22,6 +22,17 @@
     "stats",
     "srand",
     "seed",
+    "rand",
+    "random",
+    "randomize",
+    "math",
+    "array",
+    "arr",
+    "item",
+    "el",
+    "element",
+    "pick",
+    "select",
     "uniform"
   ],
   "homepage": "https://github.com/bluelovers/random#readme",
