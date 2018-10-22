@@ -5,8 +5,8 @@ import ow from 'ow-lite'
 export default (random: Random, size: number = 1, start: number = 0, end?: number) =>
 {
 	ow(size, ow.number.integer.gt(0))
-	start = Math.max(start, 0)
-	end = Math.max(0, end || 0)
+	start = Math.max(start | 0, 0)
+	end = Math.max(0, end | 0)
 
 	ow(start, ow.number.integer.gte(0))
 	ow(end, ow.number.integer.gte(0))

@@ -326,6 +326,34 @@ export class Random<R extends RNG = RNG>
 		return Buffer.from(this.bytes(size))
 	}
 
+	/**
+	 * get random index in array
+	 *
+	 * @example console.log(random.arrayIndex([11, 22, 33], 1, 0));
+	 */
+	arrayIndex<T extends Array<unknown>>(arr: T, size: number = 1, start: number = 0, end?: number): number[]
+	{
+		// @ts-ignore
+		return this._memoize('arrayIndex', Distributions.arrayIndex, size, start, end)(arr)
+	}
+
+	/**
+	 * get random item in array
+	 *
+	 * @example console.log(random.arrayItem([11, 22, 33], 2));
+	 */
+	arrayItem<T extends unknown>(arr: T[], size: number = 1, start: number = 0, end?: number): T[]
+	{
+		let ids = this.arrayIndex(arr, size, start, end)
+
+		return ids.reduce(function (a, idx)
+		{
+			a.push(arr[idx])
+
+			return a;
+		}, [])
+	}
+
 	// --------------------------------------------------------------------------
 	// Uniform distributions
 	// --------------------------------------------------------------------------

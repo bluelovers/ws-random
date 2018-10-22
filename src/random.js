@@ -224,6 +224,27 @@ class Random {
     randomBytes(size) {
         return Buffer.from(this.bytes(size));
     }
+    /**
+     * get random index in array
+     *
+     * @example console.log(random.arrayIndex([11, 22, 33], 1, 0));
+     */
+    arrayIndex(arr, size = 1, start = 0, end) {
+        // @ts-ignore
+        return this._memoize('arrayIndex', distributions_1.Distributions.arrayIndex, size, start, end)(arr);
+    }
+    /**
+     * get random item in array
+     *
+     * @example console.log(random.arrayItem([11, 22, 33], 2));
+     */
+    arrayItem(arr, size = 1, start = 0, end) {
+        let ids = this.arrayIndex(arr, size, start, end);
+        return ids.reduce(function (a, idx) {
+            a.push(arr[idx]);
+            return a;
+        }, []);
+    }
     // --------------------------------------------------------------------------
     // Uniform distributions
     // --------------------------------------------------------------------------

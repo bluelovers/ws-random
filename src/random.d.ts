@@ -162,6 +162,18 @@ export declare class Random<R extends RNG = RNG> {
      */
     randomBytes(size?: number): Buffer;
     /**
+     * get random index in array
+     *
+     * @example console.log(random.arrayIndex([11, 22, 33], 1, 0));
+     */
+    arrayIndex<T extends Array<unknown>>(arr: T, size?: number, start?: number, end?: number): number[];
+    /**
+     * get random item in array
+     *
+     * @example console.log(random.arrayItem([11, 22, 33], 2));
+     */
+    arrayItem<T extends unknown>(arr: T[], size?: number, start?: number, end?: number): T[];
+    /**
      * Generates a [Continuous uniform distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)).
      *
      * @param {number} [min=0] - Lower bound (float, inclusive)

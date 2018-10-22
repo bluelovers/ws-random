@@ -45,6 +45,8 @@ import uniformInt from './distributions/uniform-int'
 import uniformByte from './distributions/uniform-byte'
 import bytes from './distributions/bytes'
 
+import arrayIndex from './distributions/array-index'
+
 export {
 	bates,
 	bernoulli,
@@ -62,6 +64,8 @@ export {
 
 	uniformByte,
 	bytes,
+
+	arrayIndex,
 }
 
 import * as Distributions from './distributions';

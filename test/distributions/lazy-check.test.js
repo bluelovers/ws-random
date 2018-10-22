@@ -31,9 +31,15 @@ let ks = Object
 	.reduce(function (a, method)
 	{
 
+		let argv = []
+		if (method === 'arrayIndex' || method === 'arrayItem')
+		{
+			argv = [[11, 22, 33, 44, 55]]
+		}
+
 		try
 		{
-			let ret = random[method]()
+			let ret = random[method](...argv)
 
 			let t2 = typeof ret
 
@@ -92,7 +98,13 @@ Object.keys(ks).forEach(function (cat)
 
 		test(`[${cat}] .${method}()`, (t) =>
 		{
-			let ret = random[method]()
+			let argv = []
+			if (method === 'arrayIndex' || method === 'arrayItem')
+			{
+				argv = [[11, 22, 33, 44, 55]]
+			}
+
+			let ret = random[method](...argv)
 			let val;
 
 			t.true(cat !== 'crash')
