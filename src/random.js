@@ -441,7 +441,15 @@ class Random {
 exports.Random = Random;
 exports.random = new Random();
 // @ts-ignore
-exports.random.default = exports.random;
+//random.default = random
+Object.defineProperty(exports.random, 'default', {
+    //	writable: false,
+    configurable: false,
+    enumerable: true,
+    get() {
+        return exports.random;
+    }
+});
 // defaults to Math.random as its RNG
 exports.default = exports.random;
 // @ts-ignore

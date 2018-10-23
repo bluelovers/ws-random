@@ -596,7 +596,17 @@ export class Random<R extends RNG = RNG>
 
 export const random = new Random()
 // @ts-ignore
-random.default = random
+//random.default = random
+
+Object.defineProperty(random, 'default', {
+//	writable: false,
+	configurable: false,
+	enumerable: true,
+	get()
+	{
+		return random
+	}
+});
 
 // defaults to Math.random as its RNG
 export default random

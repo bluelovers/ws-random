@@ -5,4 +5,4 @@ export default random
 // @ts-ignore
 export = random
 // @ts-ignore
-random.default = random
+//random.default = random
