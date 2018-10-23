@@ -105,7 +105,10 @@ test('random.uniformInt(-1, 1) is in [-1, 0, 1]', (t) =>
 		cache[v] = v
 	}
 
-	let arr = Object.values(cache)
+	let arr = Object.keys(cache).map(function (k)
+	{
+		return cache[k]
+	})
 	arr.sort(function (a, b)
 	{
 		return a - b
