@@ -359,18 +359,14 @@ export class Random<R extends RNG = RNG>
 	 *
 	 * @param arr
 	 * @param {boolean} overwrite - if true, will change current array
+	 * @param {function} randIndex - return index by give length
 	 *
 	 * @example random.arrayShuffle([11, 22, 33])
 	 */
-	arrayShuffle<T extends unknown>(arr: T[], overwrite?: boolean)
+	arrayShuffle<T extends unknown>(arr: T[], overwrite?: boolean, randIndex?: (len: number) => number)
 	{
-		let fn = this.uniformInt(-1, 1)
-
-		return (overwrite ? arr : arr.slice())
-			.sort(function ()
-			{
-				return fn()
-			})
+		// @ts-ignore
+		return this._memoize('arrayShuffle', Distributions.arrayShuffle)(arr, overwrite, randIndex)
 	}
 
 	// --------------------------------------------------------------------------
@@ -563,7 +559,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	protected _memoize<F extends IRandomDistributions<any>>(label: string, getter: F, ...args): ReturnType<F>
 	{
-		const key = args.join(';')
+		const key = String(args.join(';'))
 		let value = this._cache[label]
 
 		if (value === undefined || value.key !== key)
@@ -575,6 +571,18 @@ export class Random<R extends RNG = RNG>
 
 		// @ts-ignore
 		return value.distribution
+	}
+
+	// @ts-ignore
+	protected _memoizeFake<T extends Function>(label: string, getter: T, ...args): ReturnType<T>
+	{
+		return getter(this, ...args)
+	}
+
+	// @ts-ignore
+	protected _callDistributions<T extends Function>(getter: T, ...args): ReturnType<T>
+	{
+		return getter(this, ...args)
 	}
 
 	/**

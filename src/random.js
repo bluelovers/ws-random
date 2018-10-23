@@ -250,15 +250,13 @@ class Random {
      *
      * @param arr
      * @param {boolean} overwrite - if true, will change current array
+     * @param {function} randIndex - return index by give length
      *
      * @example random.arrayShuffle([11, 22, 33])
      */
-    arrayShuffle(arr, overwrite) {
-        let fn = this.uniformInt(-1, 1);
-        return (overwrite ? arr : arr.slice())
-            .sort(function () {
-            return fn();
-        });
+    arrayShuffle(arr, overwrite, randIndex) {
+        // @ts-ignore
+        return this._memoize('arrayShuffle', distributions_1.Distributions.arrayShuffle)(arr, overwrite, randIndex);
     }
     // --------------------------------------------------------------------------
     // Uniform distributions
@@ -417,7 +415,7 @@ class Random {
      * @return {function}
      */
     _memoize(label, getter, ...args) {
-        const key = args.join(';');
+        const key = String(args.join(';'));
         let value = this._cache[label];
         if (value === undefined || value.key !== key) {
             // @ts-ignore
@@ -426,6 +424,14 @@ class Random {
         }
         // @ts-ignore
         return value.distribution;
+    }
+    // @ts-ignore
+    _memoizeFake(label, getter, ...args) {
+        return getter(this, ...args);
+    }
+    // @ts-ignore
+    _callDistributions(getter, ...args) {
+        return getter(this, ...args);
     }
     /**
      * reset Memoizes distributions

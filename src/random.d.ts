@@ -178,10 +178,11 @@ export declare class Random<R extends RNG = RNG> {
      *
      * @param arr
      * @param {boolean} overwrite - if true, will change current array
+     * @param {function} randIndex - return index by give length
      *
      * @example random.arrayShuffle([11, 22, 33])
      */
-    arrayShuffle<T extends unknown>(arr: T[], overwrite?: boolean): T[];
+    arrayShuffle<T extends unknown>(arr: T[], overwrite?: boolean, randIndex?: (len: number) => number): any;
     /**
      * Generates a [Continuous uniform distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)).
      *
@@ -295,6 +296,8 @@ export declare class Random<R extends RNG = RNG> {
      * @return {function}
      */
     protected _memoize<F extends IRandomDistributions<any>>(label: string, getter: F, ...args: any[]): ReturnType<F>;
+    protected _memoizeFake<T extends Function>(label: string, getter: T, ...args: any[]): ReturnType<T>;
+    protected _callDistributions<T extends Function>(getter: T, ...args: any[]): ReturnType<T>;
     /**
      * reset Memoizes distributions
      */

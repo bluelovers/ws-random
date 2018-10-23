@@ -20,7 +20,7 @@ function simpleWrap(fn) {
             return (fn() * (max - min + 1) + min);
         },
         int(min = 0, max = 100) {
-            return (fn() * (max - min + 1) + min) | 0;
+            return Math.floor(fn() * (max - min + 1) + min);
         },
         get integer() {
             return self.int;

@@ -26,7 +26,7 @@ export function simpleWrap<T extends (() => number)>(fn: T)
 		},
 		int(min = 0, max = 100): number
 		{
-			return (fn() * (max - min + 1) + min) | 0
+			return Math.floor(fn() * (max - min + 1) + min)
 		},
 		get integer()
 		{

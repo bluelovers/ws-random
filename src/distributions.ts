@@ -46,6 +46,8 @@ import uniformByte from './distributions/uniform-byte'
 import bytes from './distributions/bytes'
 
 import arrayIndex from './distributions/array-index'
+import arrayShuffle from './distributions/array-shuffle'
+
 
 export {
 	bates,
@@ -66,6 +68,7 @@ export {
 	bytes,
 
 	arrayIndex,
+	arrayShuffle,
 }
 
 import * as Distributions from './distributions';
