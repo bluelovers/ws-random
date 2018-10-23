@@ -594,7 +594,9 @@ export class Random<R extends RNG = RNG>
 
 }
 
-export const random = new Random()
+export const random = new Random() as Random & {
+	default: Random
+}
 // @ts-ignore
 //random.default = random
 

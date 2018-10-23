@@ -301,5 +301,7 @@ export declare class Random<R extends RNG = RNG> {
     reset(): this;
     readonly [Symbol.toStringTag]: string;
 }
-export declare const random: Random<RNG>;
+export declare const random: Random<RNG> & {
+    default: Random<RNG>;
+};
 export default random;
