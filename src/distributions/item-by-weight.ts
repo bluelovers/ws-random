@@ -29,6 +29,9 @@ export interface IWeight<T extends unknown>
 //	}
 }
 
+/**
+ * [key, value, percentage]
+ */
 export type IWeightEntrie<T extends unknown> = [string, T, number]
 
 export interface IObjectInput<T extends unknown>

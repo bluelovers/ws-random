@@ -8,6 +8,9 @@ export interface IWeight<T extends unknown> {
     plist?: number[];
     vlist: IWeightEntrie<T>[][];
 }
+/**
+ * [key, value, percentage]
+ */
 export declare type IWeightEntrie<T extends unknown> = [string, T, number];
 export interface IObjectInput<T extends unknown> {
     [k: string]: T;
