@@ -65,7 +65,7 @@ function itemByWeight<T extends unknown>(random: Random,
 		{
 			let n = a[0][2] - b[0][2]
 
-			return n > 0 ? 1 : (n < 0) ? -1 : 0
+			return n
 		})
 	}
 

@@ -7,7 +7,7 @@ function itemByWeight(random, arr, getWeight, shuffle, disableSort) {
     if (!disableSort) {
         ws.vlist = ws.vlist.sort(function (a, b) {
             let n = a[0][2] - b[0][2];
-            return n > 0 ? 1 : (n < 0) ? -1 : 0;
+            return n;
         });
     }
     if (shuffle) {
