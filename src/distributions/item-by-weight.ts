@@ -4,6 +4,7 @@ import { randIndex as _randIndex } from '../util/distributions';
 import uniformInt from './uniform-int';
 import ow from 'ow-lite'
 import { swapAlgorithm } from '../util/array';
+import arrayShuffle from './array-shuffle'
 
 export interface IGetWeight<T extends unknown>
 {
@@ -18,7 +19,8 @@ export interface IWeight<T extends unknown>
 	//psum: number,
 	//psum2: number,
 
-	plist: number[],
+	klist?: number[],
+	plist?: number[],
 	vlist: IWeightEntrie<T>[][]
 
 //	list: {
@@ -27,7 +29,7 @@ export interface IWeight<T extends unknown>
 //	}
 }
 
-export type IWeightEntrie<T extends unknown> = [string, T]
+export type IWeightEntrie<T extends unknown> = [string, T, number]
 
 export interface IObjectInput<T extends unknown>
 {
@@ -35,17 +37,65 @@ export interface IObjectInput<T extends unknown>
 	[k: string]: T
 }
 
-function itemByWeight<T extends unknown>(random: Random, arr: T[], getWeight: IGetWeight<T>): () => [string, T]
+function itemByWeight<T extends unknown>(random: Random, arr: T[],
+	getWeight?: IGetWeight<T>,
+	shuffle?: boolean,
+	disableSort?: boolean,
+): () => IWeightEntrie<T>
 function itemByWeight<T extends unknown>(random: Random,
 	arr: IObjectInput<T>,
-	getWeight: IGetWeight<T>,
-): () => [string, T]
+	getWeight?: IGetWeight<T>,
+	shuffle?: boolean,
+	disableSort?: boolean,
+): () => IWeightEntrie<T>
 function itemByWeight<T extends unknown>(random: Random,
 	arr: T[] | IObjectInput<T>,
-	getWeight: IGetWeight<T> = _getWeight,
+	getWeight?: IGetWeight<T>,
+	shuffle?: boolean,
+	disableSort?: boolean,
 )
 {
-	let ws = _createWeight(arr, getWeight || _getWeight)
+	getWeight = getWeight || _getWeight
+
+	let ws = _createWeight(arr, getWeight)
+
+	if (!disableSort)
+	{
+		ws.vlist = ws.vlist.sort(function (a, b)
+		{
+			let n = a[0][2] - b[0][2]
+
+			return n > 0 ? 1 : (n < 0) ? -1 : 0
+		})
+	}
+
+	if (shuffle)
+	{
+		ws.vlist = random.arrayShuffle(ws.vlist, true)
+	}
+
+	let psum: number = 0
+
+	ws.plist = []
+	ws.klist = ws.vlist
+		.reduce(function (a, list)
+		{
+			let percentage = list[0][2]
+
+			if (psum === 0)
+			{
+				psum = percentage
+			}
+			else
+			{
+				psum += percentage
+			}
+
+			a.push(psum)
+			ws.plist.push(percentage)
+
+			return a
+		}, [] as number[])
 
 	if (0)
 	{
@@ -60,9 +110,9 @@ function itemByWeight<T extends unknown>(random: Random,
 		let r = random.next()
 		let rs = ws.vlist[ws.vlist.length - 1]
 
-		for (let k in ws.plist)
+		for (let k in ws.klist)
 		{
-			if (r <= ws.plist[k])
+			if (r <= ws.klist[k])
 			{
 				rs = ws.vlist[k]
 
@@ -83,20 +133,16 @@ export function _getWeight(value, key): number
 	return value
 }
 
-/**
- * @todo need a better code
- *
- * @private
- */
 export function _createWeight<T extends unknown>(arr: T[] | IObjectInput<T>,
 	getWeight: IGetWeight<T> = _getWeight,
 ): IWeight<T>
 {
 	let sum: number = 0
+	let psum = 0
 
 	let c = []
 
-	let ls = Object.entries(arr)
+	let ls2 = Object.entries(arr)
 		.map(function (entrie)
 		{
 			let [key, value] = entrie
@@ -118,52 +164,37 @@ export function _createWeight<T extends unknown>(arr: T[] | IObjectInput<T>,
 				percentage: 0,
 			}
 		})
-		.map(function (entrie)
+	;
+
+	let ls = ls2
+		.reduce(function (a, entrie)
 		{
 			entrie.percentage = entrie.weight / sum
 
-			return entrie
-		})
-		.sort(function (a, b)
-		{
-			return a.percentage - b.percentage
-		})
-		.reduce(function (a, entrie)
-		{
 			let k = entrie.percentage
 
-			a[k] = a[k] || []
+			let item = [entrie.key, entrie.value, entrie.percentage]
 
-			let item = [entrie.key, entrie.value]
-
-			a[k].push(item)
-
-			return a
-		}, {})
-	;
-
-	let psum = 0
-
-	let a1 = []
-	let a2 = []
-
-	Object.keys(ls)
-		.reduce(function (a, p)
-		{
-			if (psum === 0)
+			if (a.last === 0)
 			{
-				psum = +p
+				a.last = entrie.percentage
 			}
 			else
 			{
-				psum += +p
+				a.last += entrie.percentage
 			}
 
-			a1.push(psum)
-			a2.push(ls[p])
+			//a.klist.push(a.last)
+			//a.plist.push(entrie.percentage)
+			a.vlist.push([item])
 
 			return a
-		}, {})
+		}, {
+			//klist: [],
+			//plist: [],
+			vlist: [],
+			last: 0,
+		})
 	;
 
 	return {
@@ -174,8 +205,9 @@ export function _createWeight<T extends unknown>(arr: T[] | IObjectInput<T>,
 		//psum2,
 //		list: ls,
 
-		plist: a1,
-		vlist: a2,
+		//klist: ls.klist,
+		//plist: ls.plist,
+		vlist: ls.vlist,
 	}
 }
 

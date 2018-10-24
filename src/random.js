@@ -431,8 +431,8 @@ class Random {
      * console.log(fn())
      *
      */
-    itemByWeight(arr, getWeight) {
-        return this._callDistributions(distributions_1.Distributions.itemByWeight, arr, getWeight);
+    itemByWeight(arr, getWeight, shuffle, disableSort, ...argv) {
+        return this._callDistributions(distributions_1.Distributions.itemByWeight, arr, getWeight, shuffle, disableSort, ...argv);
     }
     // --------------------------------------------------------------------------
     // Internal

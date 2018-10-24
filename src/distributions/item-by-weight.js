@@ -1,8 +1,33 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const distributions_1 = require("../util/distributions");
 const ow_lite_1 = require("ow-lite");
-function itemByWeight(random, arr, getWeight = _getWeight) {
-    let ws = _createWeight(arr, getWeight || _getWeight);
+function itemByWeight(random, arr, getWeight, shuffle, disableSort) {
+    getWeight = getWeight || _getWeight;
+    let ws = _createWeight(arr, getWeight);
+    if (!disableSort) {
+        ws.vlist = ws.vlist.sort(function (a, b) {
+            let n = a[0][2] - b[0][2];
+            return n > 0 ? 1 : (n < 0) ? -1 : 0;
+        });
+    }
+    if (shuffle) {
+        ws.vlist = random.arrayShuffle(ws.vlist, true);
+    }
+    let psum = 0;
+    ws.plist = [];
+    ws.klist = ws.vlist
+        .reduce(function (a, list) {
+        let percentage = list[0][2];
+        if (psum === 0) {
+            psum = percentage;
+        }
+        else {
+            psum += percentage;
+        }
+        a.push(psum);
+        ws.plist.push(percentage);
+        return a;
+    }, []);
     if (0) {
         console.dir(ws, {
             depth: 5,
@@ -12,8 +37,8 @@ function itemByWeight(random, arr, getWeight = _getWeight) {
     return () => {
         let r = random.next();
         let rs = ws.vlist[ws.vlist.length - 1];
-        for (let k in ws.plist) {
-            if (r <= ws.plist[k]) {
+        for (let k in ws.klist) {
+            if (r <= ws.klist[k]) {
                 rs = ws.vlist[k];
                 break;
             }
@@ -27,15 +52,11 @@ function _getWeight(value, key) {
     return value;
 }
 exports._getWeight = _getWeight;
-/**
- * @todo need a better code
- *
- * @private
- */
 function _createWeight(arr, getWeight = _getWeight) {
     let sum = 0;
+    let psum = 0;
     let c = [];
-    let ls = Object.entries(arr)
+    let ls2 = Object.entries(arr)
         .map(function (entrie) {
         let [key, value] = entrie;
         let weight = getWeight(value, key);
@@ -49,36 +70,28 @@ function _createWeight(arr, getWeight = _getWeight) {
             weight,
             percentage: 0,
         };
-    })
-        .map(function (entrie) {
-        entrie.percentage = entrie.weight / sum;
-        return entrie;
-    })
-        .sort(function (a, b) {
-        return a.percentage - b.percentage;
-    })
+    });
+    let ls = ls2
         .reduce(function (a, entrie) {
+        entrie.percentage = entrie.weight / sum;
         let k = entrie.percentage;
-        a[k] = a[k] || [];
-        let item = [entrie.key, entrie.value];
-        a[k].push(item);
-        return a;
-    }, {});
-    let psum = 0;
-    let a1 = [];
-    let a2 = [];
-    Object.keys(ls)
-        .reduce(function (a, p) {
-        if (psum === 0) {
-            psum = +p;
+        let item = [entrie.key, entrie.value, entrie.percentage];
+        if (a.last === 0) {
+            a.last = entrie.percentage;
         }
         else {
-            psum += +p;
+            a.last += entrie.percentage;
         }
-        a1.push(psum);
-        a2.push(ls[p]);
+        //a.klist.push(a.last)
+        //a.plist.push(entrie.percentage)
+        a.vlist.push([item]);
         return a;
-    }, {});
+    }, {
+        //klist: [],
+        //plist: [],
+        vlist: [],
+        last: 0,
+    });
     return {
         //source: arr,
         sum,
@@ -86,8 +99,9 @@ function _createWeight(arr, getWeight = _getWeight) {
         //psum,
         //psum2,
         //		list: ls,
-        plist: a1,
-        vlist: a2,
+        //klist: ls.klist,
+        //plist: ls.plist,
+        vlist: ls.vlist,
     };
 }
 exports._createWeight = _createWeight;

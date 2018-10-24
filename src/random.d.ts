@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import { IRandomDistributions } from './distributions';
-import { IGetWeight, IObjectInput } from './distributions/item-by-weight';
+import { IGetWeight, IObjectInput, IWeightEntrie } from './distributions/item-by-weight';
 import RNGSeedRandom from './generators/seedrandom';
 import RNG from './rng';
 import { IRNGFactoryType } from './rng-factory';
@@ -285,8 +285,8 @@ export declare class Random<R extends RNG = RNG> {
     /**
      * returns random weighted item by give array/object
      */
-    itemByWeight<T extends unknown>(arr: T[], getWeight?: IGetWeight<T>): () => [string, T];
-    itemByWeight<T extends unknown>(arr: IObjectInput<T>, getWeight?: IGetWeight<T>): () => [string, T];
+    itemByWeight<T extends unknown>(arr: T[], getWeight?: IGetWeight<T>, shuffle?: boolean, disableSort?: boolean): () => IWeightEntrie<T>;
+    itemByWeight<T extends unknown>(arr: IObjectInput<T>, getWeight?: IGetWeight<T>, shuffle?: boolean, disableSort?: boolean): () => IWeightEntrie<T>;
     /**
      * Memoizes distributions to ensure they're only created when necessary.
      *

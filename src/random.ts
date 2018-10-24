@@ -15,7 +15,7 @@ import {
 	uniformBoolean,
 	uniformInt,
 } from './distributions';
-import { _getWeight, IGetWeight, IObjectInput } from './distributions/item-by-weight';
+import { IGetWeight, IObjectInput, IWeightEntrie } from './distributions/item-by-weight';
 import RNGSeedRandom from './generators/seedrandom';
 
 import RNG from './rng'
@@ -543,8 +543,16 @@ export class Random<R extends RNG = RNG>
 	/**
 	 * returns random weighted item by give array/object
 	 */
-	itemByWeight<T extends unknown>(arr: T[], getWeight?: IGetWeight<T>): () => [string, T]
-	itemByWeight<T extends unknown>(arr: IObjectInput<T>, getWeight?: IGetWeight<T>): () => [string, T]
+	itemByWeight<T extends unknown>(arr: T[],
+		getWeight?: IGetWeight<T>,
+		shuffle?: boolean,
+		disableSort?: boolean,
+	): () => IWeightEntrie<T>
+	itemByWeight<T extends unknown>(arr: IObjectInput<T>,
+		getWeight?: IGetWeight<T>,
+		shuffle?: boolean,
+		disableSort?: boolean,
+	): () => IWeightEntrie<T>
 	/**
 	 * returns random weighted item by give array/object
 	 *
@@ -579,9 +587,14 @@ export class Random<R extends RNG = RNG>
 	 * console.log(fn())
 	 *
 	 */
-	itemByWeight<T extends unknown>(arr, getWeight?: IGetWeight<T>)
+	itemByWeight<T extends unknown>(arr,
+		getWeight?: IGetWeight<T>,
+		shuffle?: boolean,
+		disableSort?: boolean,
+		...argv
+	)
 	{
-		return this._callDistributions(Distributions.itemByWeight, arr, getWeight)
+		return this._callDistributions(Distributions.itemByWeight, arr, getWeight, shuffle, disableSort, ...argv)
 	}
 
 	// --------------------------------------------------------------------------
