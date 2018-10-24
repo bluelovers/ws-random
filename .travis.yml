@@ -5,7 +5,7 @@ node_js:
   - 9
   - 8
   - 7
-  - 6
+#  - 6
 before_script:
   - yarn add ts-node typescript
 
