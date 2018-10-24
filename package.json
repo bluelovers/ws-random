@@ -1,6 +1,6 @@
 {
   "name": "random-extra",
-  "version": "2.5.5",
+  "version": "2.6.0",
   "description": "Seedable random number generator supporting many common distributions.",
   "keywords": [
     "arr",
@@ -13,6 +13,7 @@
     "exponential",
     "fisher",
     "gaussian",
+    "generate",
     "generator",
     "irwinhall",
     "item",
@@ -24,6 +25,7 @@
     "pick",
     "poisson",
     "prng",
+    "probability",
     "pseudorandom",
     "rand",
     "random",
@@ -37,6 +39,8 @@
     "srand",
     "stats",
     "uniform",
+    "weight",
+    "weighted",
     "yates"
   ],
   "homepage": "https://github.com/bluelovers/random#readme",

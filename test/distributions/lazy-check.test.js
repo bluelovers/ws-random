@@ -7,11 +7,30 @@ import RNGSeedRandom from '../../src/generators/seedrandom';
 import inDelta from '../_in-delta';
 import { expect } from 'chai'
 
+export function getDefaultArgv(method)
+{
+	let argv = []
+
+	switch (method)
+	{
+		case 'arrayIndex':
+		case 'arrayItem':
+		case 'arrayShuffle':
+			argv = [[11, 22, 33, 44, 55]]
+			break
+		case 'itemByWeight':
+			argv = [[1, 2, 1, 3, 3, 4, 1.5]]
+			break
+	}
+
+	return argv
+}
+
 let ks = Object
 	.getOwnPropertyNames(Object.getPrototypeOf(random))
 	.filter(function (v)
 	{
-		return ![
+		return !([
 			'constructor',
 			'rng',
 			'clone',
@@ -26,16 +45,12 @@ let ks = Object
 			'_rng',
 			'_cache',
 			'seed',
-		].includes(v)
+		].includes(v) || v.indexOf('_') === 0)
 	})
 	.reduce(function (a, method)
 	{
 
-		let argv = []
-		if (method === 'arrayIndex' || method === 'arrayItem' || method === 'arrayShuffle')
-		{
-			argv = [[11, 22, 33, 44, 55]]
-		}
+		let argv = getDefaultArgv(method)
 
 		try
 		{
@@ -98,11 +113,7 @@ Object.keys(ks).forEach(function (cat)
 
 		test(`[${cat}] .${method}()`, (t) =>
 		{
-			let argv = []
-			if (method === 'arrayIndex' || method === 'arrayItem' || method === 'arrayShuffle')
-			{
-				argv = [[11, 22, 33, 44, 55]]
-			}
+			let argv = getDefaultArgv(method)
 
 			let ret = random[method](...argv)
 			let val;

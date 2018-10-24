@@ -397,6 +397,43 @@ class Random {
     pareto(alpha = 1) {
         return distributions_2.pareto(this, alpha);
     }
+    /**
+     * returns random weighted item by give array/object
+     *
+     * @example
+     * const obj = {
+        a: {
+            w: 5,
+        },
+        b: {
+            w: 5,
+        },
+        c: {
+            w: 1,
+        },
+    }
+     * const getWeight = (value, index) => value.w
+     * const fn = random.itemByWeight(obj, getWeight)
+     *
+     * console.log(fn())
+     *
+     * @example
+     * const array = [3, 7, 1, 4, 2]
+     * const fn = random.itemByWeight(array)
+     *
+     * console.log(fn())
+     *
+     * @example
+     * const array = [3, 7, 1, 4, 2]
+     * const getWeight = (value, index) => +index + 1
+     * const fn = random.itemByWeight(array, getWeight)
+     *
+     * console.log(fn())
+     *
+     */
+    itemByWeight(arr, getWeight) {
+        return this._callDistributions(distributions_1.Distributions.itemByWeight, arr, getWeight);
+    }
     // --------------------------------------------------------------------------
     // Internal
     // --------------------------------------------------------------------------

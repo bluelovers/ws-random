@@ -48,6 +48,7 @@ import bytes from './distributions/bytes'
 import arrayIndex from './distributions/array-index'
 import arrayShuffle from './distributions/array-shuffle'
 
+import itemByWeight from './distributions/item-by-weight'
 
 export {
 	bates,
@@ -69,6 +70,8 @@ export {
 
 	arrayIndex,
 	arrayShuffle,
+
+	itemByWeight,
 }
 
 import * as Distributions from './distributions';

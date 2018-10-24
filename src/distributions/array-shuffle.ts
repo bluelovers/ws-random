@@ -3,12 +3,13 @@ import { Random } from '../random';
 import uniformInt from './uniform-int';
 import ow from 'ow-lite'
 import { swapAlgorithm } from '../util/array';
+import { randIndex as _randIndex } from '../util/distributions';
 
 export default (random: Random) =>
 {
 	const randIndex = (len: number) =>
 	{
-		return Math.floor(random.next() * len)
+		return _randIndex(random, len)
 	}
 
 	return <T extends Array<unknown>>(arr: T, overwrite?: boolean, fn = randIndex) =>

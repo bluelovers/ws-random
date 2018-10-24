@@ -15,6 +15,7 @@ import {
 	uniformBoolean,
 	uniformInt,
 } from './distributions';
+import { _getWeight, IGetWeight, IObjectInput } from './distributions/item-by-weight';
 import RNGSeedRandom from './generators/seedrandom';
 
 import RNG from './rng'
@@ -537,6 +538,50 @@ export class Random<R extends RNG = RNG>
 	pareto(alpha: number = 1)
 	{
 		return pareto(this, alpha)
+	}
+
+	/**
+	 * returns random weighted item by give array/object
+	 */
+	itemByWeight<T extends unknown>(arr: T[], getWeight?: IGetWeight<T>): () => [string, T]
+	itemByWeight<T extends unknown>(arr: IObjectInput<T>, getWeight?: IGetWeight<T>): () => [string, T]
+	/**
+	 * returns random weighted item by give array/object
+	 *
+	 * @example
+	 * const obj = {
+		a: {
+			w: 5,
+		},
+		b: {
+			w: 5,
+		},
+		c: {
+			w: 1,
+		},
+	}
+	 * const getWeight = (value, index) => value.w
+	 * const fn = random.itemByWeight(obj, getWeight)
+	 *
+	 * console.log(fn())
+	 *
+	 * @example
+	 * const array = [3, 7, 1, 4, 2]
+	 * const fn = random.itemByWeight(array)
+	 *
+	 * console.log(fn())
+	 *
+	 * @example
+	 * const array = [3, 7, 1, 4, 2]
+	 * const getWeight = (value, index) => +index + 1
+	 * const fn = random.itemByWeight(array, getWeight)
+	 *
+	 * console.log(fn())
+	 *
+	 */
+	itemByWeight<T extends unknown>(arr, getWeight?: IGetWeight<T>)
+	{
+		return this._callDistributions(Distributions.itemByWeight, arr, getWeight)
 	}
 
 	// --------------------------------------------------------------------------
