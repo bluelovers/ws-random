@@ -45,6 +45,7 @@ let ks = Object
 			'_rng',
 			'_cache',
 			'seed',
+			'seedable',
 		].includes(v) || v.indexOf('_') === 0)
 	})
 	.reduce(function (a, method)
