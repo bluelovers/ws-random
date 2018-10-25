@@ -8,6 +8,11 @@ export class RNGMathRandom extends RNG
 		return 'math-random2'
 	}
 
+	public get seedable()
+	{
+		return false
+	}
+
 	next()
 	{
 		return _MathRandom()

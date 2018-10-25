@@ -7,6 +7,7 @@ export type IRNGFunctionSeed = (...argv) => number
 export class RNGFunction<S extends IRNGFunctionSeed = IRNGFunctionSeed> extends RNG
 {
 	protected _rng: S
+	protected _seedable: boolean = null
 
 	constructor(seed: S, opts?, ...argv)
 	{
@@ -18,6 +19,11 @@ export class RNGFunction<S extends IRNGFunctionSeed = IRNGFunctionSeed> extends 
 	get name()
 	{
 		return 'function'
+	}
+
+	public get seedable()
+	{
+		return this._seedable
 	}
 
 	next()

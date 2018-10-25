@@ -28,6 +28,7 @@ export declare class Random<R extends RNG = RNG> {
      * @member {Rng} Underlying pseudo-random number generator
      */
     readonly rng: R;
+    readonly seedable: boolean;
     /**
      * @see random.next
      */

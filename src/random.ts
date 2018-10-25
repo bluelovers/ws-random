@@ -59,6 +59,11 @@ export class Random<R extends RNG = RNG>
 		return this._rng
 	}
 
+	public get seedable(): boolean
+	{
+		return this._rng.seedable
+	}
+
 	/**
 	 * @see random.next
 	 */

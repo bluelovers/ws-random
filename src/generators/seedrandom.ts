@@ -29,6 +29,11 @@ export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 		return this._opts
 	}
 
+	public get seedable()
+	{
+		return true
+	}
+
 	/**
 	 * @todo options for change seeder
 	 */

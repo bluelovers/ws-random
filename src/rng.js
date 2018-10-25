@@ -18,6 +18,9 @@ class RNG {
     get options() {
         return null;
     }
+    get seedable() {
+        return null;
+    }
     /**
      * should return a float between 0 ~ 1
      */

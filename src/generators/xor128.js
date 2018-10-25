@@ -10,6 +10,9 @@ class RNGXOR128 extends rng_1.default {
     get name() {
         return 'xor128';
     }
+    get seedable() {
+        return true;
+    }
     next() {
         const t = this.x ^ (this.x << 1);
         this.x = this.y;

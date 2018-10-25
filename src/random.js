@@ -28,6 +28,9 @@ class Random {
     get rng() {
         return this._rng;
     }
+    get seedable() {
+        return this._rng.seedable;
+    }
     /**
      * @see random.next
      */

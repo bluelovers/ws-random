@@ -5,6 +5,9 @@ class RNGMathRandom extends rng_1.default {
     get name() {
         return 'math-random2';
     }
+    get seedable() {
+        return false;
+    }
     next() {
         return util_1._MathRandom();
     }

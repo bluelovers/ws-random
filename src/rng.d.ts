@@ -5,6 +5,7 @@ export declare abstract class RNG {
     static create(seed?: any, opts?: any, ...argv: any[]): any;
     readonly name: string;
     readonly options: any;
+    readonly seedable: boolean;
     /**
      * should return a float between 0 ~ 1
      */

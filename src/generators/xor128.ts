@@ -25,6 +25,11 @@ export class RNGXOR128 extends RNG
 		return 'xor128'
 	}
 
+	public get seedable()
+	{
+		return true
+	}
+
 	next()
 	{
 		const t = this.x ^ (this.x << 1)

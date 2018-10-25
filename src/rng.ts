@@ -33,6 +33,11 @@ export abstract class RNG
 		return null
 	}
 
+	public get seedable(): boolean
+	{
+		return null
+	}
+
 	/**
 	 * should return a float between 0 ~ 1
 	 */

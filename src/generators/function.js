@@ -5,10 +5,14 @@ const util_1 = require("../util");
 class RNGFunction extends rng_1.default {
     constructor(seed, opts, ...argv) {
         super();
+        this._seedable = null;
         this.seed(seed, opts, ...argv);
     }
     get name() {
         return 'function';
+    }
+    get seedable() {
+        return this._seedable;
     }
     next() {
         return this._rng();

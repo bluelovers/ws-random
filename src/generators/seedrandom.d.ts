@@ -7,6 +7,7 @@ export declare class RNGSeedRandom extends RNGFunction<seedrandom.prng> {
     constructor(seed?: any, opts?: RNGSeedRandomOptions, ...argv: any[]);
     readonly name: string;
     readonly options: seedrandom.seedRandomOptions;
+    readonly seedable: boolean;
     /**
      * @todo options for change seeder
      */
