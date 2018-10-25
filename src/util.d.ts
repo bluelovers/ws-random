@@ -23,3 +23,11 @@ export declare function getClass(RNGClass: any, thisArgv: any, ...argv: any[]): 
  */
 export declare function cloneClass(RNGClass: any, thisArgv: any, ...argv: any[]): any;
 export declare function floatToString(n: number): string;
+/**
+ * expect {actual} to be near {expected} +/- {delta}
+ *
+ * @example
+ * const mean = sum / 10000
+ * inDelta(mean, 0.5, 0.05)
+ */
+export declare function expectInDelta(actual: number, expected: number, delta?: number): boolean;

@@ -85,5 +85,17 @@ export function floatToString(n: number)
 	return String(int) + '.' + String(float).split('.')[1]
 }
 
+/**
+ * expect {actual} to be near {expected} +/- {delta}
+ *
+ * @example
+ * const mean = sum / 10000
+ * inDelta(mean, 0.5, 0.05)
+ */
+export function expectInDelta(actual: number, expected: number, delta = 0.05)
+{
+	return expected - delta <= actual && actual <= expected + delta
+}
+
 // @ts-ignore
 Object.freeze(exports)

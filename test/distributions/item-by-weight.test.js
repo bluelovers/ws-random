@@ -5,6 +5,7 @@ import seedrandom from 'seedrandom'
 //import random from '../..'
 import { Random, random } from '../../src/random'
 import RNGSeedRandom from '../../src/generators/seedrandom';
+import { expectInDelta } from '../../src/util';
 import inDelta from '../_in-delta';
 import { expect } from 'chai'
 
@@ -215,13 +216,14 @@ test('allow has same weight', (t) =>
 
 	const fn = rnd.itemByWeight(obj, getWeight)
 
-	rnd.next = () => {
+	rnd.next = () =>
+	{
 		return random.float(0.1, 1)
 	}
 
 	let cache = {}
 
-	for (let i = 0; i<10000; i++)
+	for (let i = 0; i < 10000; i++)
 	{
 		let ret = fn()
 
@@ -235,6 +237,51 @@ test('allow has same weight', (t) =>
 	expect(ks).to.include('b')
 
 	//console.log(cache);
+
+	t.true(true)
+
+})
+
+test('random weighted item in expect percentage +/- 0.05', (t) =>
+{
+	let rnd = random.clone()
+	const arr = [1, 3, 2, 4, 1, 1, 4, 3, 2]
+
+	const fn = rnd.itemByWeight(arr, null, true, true)
+
+	let cache = {}
+	let cache2 = {}
+
+	const total = 10000
+
+	for (let i = 0; i < total; i++)
+	{
+		let ret = fn()
+
+		cache[ret[0]] = (cache[ret[0]] || 0) + 1
+		cache2[ret[0]] = {
+			key: ret[0],
+			count: cache[ret[0]],
+			percentage: cache[ret[0]] / total,
+			data: ret,
+		}
+	}
+
+	/*
+	console.dir(cache2, {
+		depth: 5,
+		colors: true,
+	});
+	*/
+
+	Object.values(cache2)
+		.forEach(function (data)
+		{
+			expect(data.key).to.eq(data.data[0])
+			expect(arr[data.key]).to.eq(data.data[1])
+			expectInDelta(data.percentage, data.data[2], 0.05)
+		})
+	;
 
 	t.true(true)
 
