@@ -8,7 +8,41 @@ exports.defaultOptions = Object.freeze({
 class RNGSeedRandom extends function_1.default {
     constructor(seed, opts, ...argv) {
         super(seed, opts, ...argv);
-        this._opts = Object.assign({}, exports.defaultOptions);
+    }
+    static create(...argv) {
+        return new this(...argv);
+    }
+    _init(seed, opts, ...argv) {
+        this._opts = this._opts || Object.assign({}, exports.defaultOptions);
+        this._seedrandom = this.__generator(...argv);
+        super._init(seed, opts, ...argv);
+    }
+    __generator(fn = seedrandom) {
+        if (fn && typeof fn === 'string') {
+            switch (fn) {
+                case 'alea':
+                case 'tychei':
+                case 'xor128':
+                case 'xor4096':
+                case 'xorshift7':
+                case 'xorwow':
+                    fn = require(`seedrandom/lib/${fn}`);
+                    break;
+                default:
+                    if (fn.indexOf('..') === -1 && /^[a-z\-\.]+$/i.test(fn)) {
+                        fn = require(`seedrandom/lib/${fn}`);
+                        break;
+                    }
+                    else {
+                        throw new RangeError(`unknow seedrandom lib name: ${fn}`);
+                    }
+            }
+        }
+        fn = fn || seedrandom;
+        return (seed, opts, ...argv) => {
+            // @ts-ignore
+            return fn(seed, opts, ...argv);
+        };
     }
     get name() {
         return 'seedrandom';
@@ -20,6 +54,16 @@ class RNGSeedRandom extends function_1.default {
         return true;
     }
     /**
+     * only when option.state = true
+     */
+    get state() {
+        let fn = this._rng.state;
+        if (typeof fn === 'function') {
+            // @ts-ignore
+            return fn();
+        }
+    }
+    /**
      * @todo options for change seeder
      */
     seed(seed, opts, ...argv) {
@@ -29,7 +73,7 @@ class RNGSeedRandom extends function_1.default {
         else {
             this._opts = opts || this._opts;
         }
-        this._rng = seedrandom(this._seedStr(seed), this._opts, ...argv);
+        this._rng = this._seedrandom(this._seedStr(seed), this._opts, ...argv);
     }
     // @ts-ignore
     clone(seed, opts, ...argv) {

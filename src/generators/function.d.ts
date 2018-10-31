@@ -4,6 +4,7 @@ export declare class RNGFunction<S extends IRNGFunctionSeed = IRNGFunctionSeed> 
     protected _rng: S;
     protected _seedable: boolean;
     constructor(seed: S, opts?: any, ...argv: any[]);
+    protected _init(seed?: any, opts?: any, ...argv: any[]): void;
     readonly name: string;
     readonly seedable: boolean;
     next(): number;

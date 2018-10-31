@@ -16,6 +16,8 @@ import _pkg = require('../package.json')
 
 const MATH_POW_2_32 = Math.pow(2, 32)
 
+const _GLOBAL = (0, eval)('this')
+
 /**
  * try save original Math.random,
  * if no other module overwrite Math.random
@@ -43,6 +45,7 @@ export function randomSeedStr(): string
 		_nanoid(),
 		hashSum(_pkg.name),
 		hashSum(_pkg.version),
+		Date.now(),
 		floatToString(_MathRandom()),
 	].join('_')
 }

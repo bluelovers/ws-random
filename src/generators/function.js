@@ -6,6 +6,9 @@ class RNGFunction extends rng_1.default {
     constructor(seed, opts, ...argv) {
         super();
         this._seedable = null;
+        this._init(seed, opts, ...argv);
+    }
+    _init(seed, opts, ...argv) {
         this.seed(seed, opts, ...argv);
     }
     get name() {

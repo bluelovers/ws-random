@@ -1,8 +1,9 @@
 {
   "name": "random-extra",
-  "version": "2.7.0",
+  "version": "2.8.0",
   "description": "Seedable random number generator supporting many common distributions.",
   "keywords": [
+    "alea",
     "arr",
     "array",
     "bates",
@@ -38,9 +39,14 @@
     "sort",
     "srand",
     "stats",
+    "tychei",
     "uniform",
     "weight",
     "weighted",
+    "xor128",
+    "xor4096",
+    "xorshift7",
+    "xorwow",
     "yates"
   ],
   "homepage": "https://github.com/bluelovers/random#readme",

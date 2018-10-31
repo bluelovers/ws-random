@@ -2,6 +2,7 @@ export declare abstract class RNG {
     constructor();
     constructor(seed?: any);
     constructor(seed?: any, opts?: any, ...argv: any[]);
+    protected _init(seed?: any, opts?: any, ...argv: any[]): void;
     static create(seed?: any, opts?: any, ...argv: any[]): any;
     readonly name: string;
     readonly options: any;

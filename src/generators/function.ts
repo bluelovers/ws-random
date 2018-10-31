@@ -13,6 +13,11 @@ export class RNGFunction<S extends IRNGFunctionSeed = IRNGFunctionSeed> extends 
 	{
 		super()
 
+		this._init(seed, opts, ...argv)
+	}
+
+	protected _init(seed?, opts?, ...argv)
+	{
 		this.seed(seed, opts, ...argv)
 	}
 

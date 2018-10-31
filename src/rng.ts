@@ -12,6 +12,11 @@ export abstract class RNG
 
 	}
 
+	protected _init(seed?, opts?, ...argv)
+	{
+
+	}
+
 	public static create(seed?, opts?, ...argv)
 	{
 		if (this === RNG || !this)

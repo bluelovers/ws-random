@@ -12,6 +12,7 @@ const hashSum = require("hash-sum");
 const _nanoid = require("nanoid");
 const _pkg = require("../package.json");
 const MATH_POW_2_32 = Math.pow(2, 32);
+const _GLOBAL = (0, eval)('this');
 // @ts-ignore
 exports._MathRandom = _MathRandom = Math.random;
 function randomSeedNum() {
@@ -26,6 +27,7 @@ function randomSeedStr() {
         _nanoid(),
         hashSum(_pkg.name),
         hashSum(_pkg.version),
+        Date.now(),
         floatToString(_MathRandom()),
     ].join('_');
 }

@@ -5,6 +5,8 @@ const util_1 = require("./util");
 class RNG {
     constructor(seed, opts, ...argv) {
     }
+    _init(seed, opts, ...argv) {
+    }
     static create(seed, opts, ...argv) {
         if (this === RNG || !this) {
             throw new ReferenceError('RNG is abstract class');
