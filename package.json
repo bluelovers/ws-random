@@ -65,9 +65,9 @@
     "test": "test"
   },
   "scripts": {
-    "postpublish": "echo postpublish && node ./test/script/publish-after",
     "benchmark": "npx ts-node ./test/benchmark/base.perf.ts && npx ts-node ./test/benchmark/random-id.perf.ts",
     "docs": "update-markdown-jsdoc -f src/random.js --shallow",
+    "postpublish": "echo postpublish && node ./test/script/publish-after",
     "prepublishOnly": "npm run docs && npm run test && npx sort-package-json",
     "test": "ava --serial -v test/**/*.test.js"
   },
