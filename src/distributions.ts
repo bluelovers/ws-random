@@ -50,6 +50,8 @@ import arrayShuffle from './distributions/array-shuffle'
 
 import arrayUnique from './distributions/array-unique'
 
+import charID from './distributions/char-id'
+
 import itemByWeight from './distributions/item-by-weight'
 
 export {
@@ -75,6 +77,8 @@ export {
 	arrayUnique,
 
 	itemByWeight,
+
+	charID,
 }
 
 import * as Distributions from './distributions';

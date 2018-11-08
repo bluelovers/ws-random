@@ -1,6 +1,6 @@
 # benchmark
 
-[index.ts](test/benchmark/index.ts)
+[index.ts](../../test/benchmark/index.ts)
 
 -----------------------
 next

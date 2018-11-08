@@ -228,6 +228,14 @@ class Random {
         return Buffer.from(this.bytes(size));
     }
     /**
+     * generate random by input string, support unicode
+     *
+     * @example random.charID() // => QcVH6FAi
+     */
+    charID(char, size) {
+        return distributions_1.Distributions.charID(this, char, size);
+    }
+    /**
      * get random index in array
      *
      * @example console.log(random.arrayIndex([11, 22, 33], 1, 0));
