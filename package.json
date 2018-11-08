@@ -65,6 +65,7 @@
     "test": "test"
   },
   "scripts": {
+    "postpublish": "echo postpublish && node ./test/script/publish-after",
     "benchmark": "npx ts-node ./test/benchmark/base.perf.ts && npx ts-node ./test/benchmark/random-id.perf.ts",
     "docs": "update-markdown-jsdoc -f src/random.js --shallow",
     "prepublishOnly": "npm run docs && npm run test && npx sort-package-json",
@@ -85,7 +86,9 @@
     "ava": "^0.25.0",
     "benchmark": "^2.1.4",
     "chai": "^4",
+    "cross-spawn-extra": "^1.0.3",
     "debug-color2": "^1.0.6",
+    "git-root2": "^1.0.4",
     "math-random": "^1.0.1",
     "microtime": "^2.1.8",
     "ts-enum-util": "^3.1.0",
