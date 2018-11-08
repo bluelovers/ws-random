@@ -25,7 +25,9 @@ Welcome to the most **random** module on npm! 😜
 npm install --save random-extra
 ```
 
-[benchmark](benchmark.md)
+[benchmark](docs/benchmark)
+
+[random.d.ts](src/random.d.ts)
 
 ## Usage (new)
 
@@ -243,7 +245,7 @@ initialize new seeds
 
 Type: `function (argv)`
 
--   `argv` **...any** 
+-   `argv` **...any**
 
 * * *
 
@@ -261,7 +263,7 @@ initialize seeds for rand() to create random numbers
 
 Type: `function (argv)`
 
--   `argv` **...any** 
+-   `argv` **...any**
 
 * * *
 
@@ -275,7 +277,7 @@ set a new seed.
 Type: `function (seed, args, opts): Random`
 
 -   `seed` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** Optional seed for new RNG.
--   `args` **...any** 
+-   `args` **...any**
 -   `opts` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Optional config for new RNG options.
 
 * * *
@@ -290,8 +292,8 @@ RNG.
 
 Type: `function (arg0, args)`
 
--   `arg0`  
--   `args` **...any** 
+-   `arg0`
+-   `args` **...any**
 
 Example:
 
@@ -313,8 +315,8 @@ create new Random and use
 
 Type: `function (arg0, args)`
 
--   `arg0`  
--   `args` **...any** 
+-   `arg0`
+-   `args` **...any**
 
 * * *
 
@@ -388,8 +390,8 @@ Type: `function (min, max): number`
 
 Type: `function (min, max)`
 
--   `min`  
--   `max`  
+-   `min`
+-   `max`
 
 * * *
 
@@ -399,7 +401,7 @@ Type: `function (min, max)`
 
 Type: `function (likelihood)`
 
--   `likelihood`  
+-   `likelihood`
 
 * * *
 
@@ -411,7 +413,7 @@ Convence wrapper around `random.uniformBoolean()`
 
 Type: `function (likelihood): boolean`
 
--   `likelihood`  
+-   `likelihood`
 
 * * *
 
@@ -445,7 +447,7 @@ same as crypto.randomBytes(size)
 
 Type: `function (size)`
 
--   `size`  
+-   `size`
 
 * * *
 
@@ -455,10 +457,10 @@ get random index in array
 
 Type: `function (arr, size, start, end)`
 
--   `arr`  
+-   `arr`
 -   `size`   (optional, default `1`)
 -   `start`   (optional, default `0`)
--   `end`  
+-   `end`
 
 Example:
 
@@ -474,10 +476,10 @@ get random item in array
 
 Type: `function (arr, size, start, end)`
 
--   `arr`  
+-   `arr`
 -   `size`   (optional, default `1`)
 -   `start`   (optional, default `0`)
--   `end`  
+-   `end`
 
 Example:
 
@@ -493,7 +495,7 @@ Shuffle an array
 
 Type: `function (arr, overwrite, randIndex)`
 
--   `arr`  
+-   `arr`
 -   `overwrite` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** if true, will change current array
 -   `randIndex` **[function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** return index by give length
 
@@ -536,7 +538,7 @@ This method is analogous to flipping a coin.
 
 Type: `function (likelihood): function`
 
--   `likelihood`  
+-   `likelihood`
 
 * * *
 
@@ -649,11 +651,11 @@ returns random weighted item by give array/object
 
 Type: `function (arr, getWeight, shuffle, disableSort, argv)`
 
--   `arr`  
--   `getWeight`  
--   `shuffle`  
--   `disableSort`  
--   `argv` **...any** 
+-   `arr`
+-   `getWeight`
+-   `shuffle`
+-   `disableSort`
+-   `argv` **...any**
 
 Examples:
 
