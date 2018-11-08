@@ -1,5 +1,6 @@
 /// <reference types="node" />
 import { IRandomDistributions } from './distributions';
+import { IArrayUniqueOutOfLimitCallback, IRandIndex } from './distributions/array-unique';
 import { IGetWeight, IObjectInput, IWeightEntrie } from './distributions/item-by-weight';
 import RNGSeedRandom from './generators/seedrandom';
 import RNG from './rng';
@@ -184,7 +185,18 @@ export declare class Random<R extends RNG = RNG> {
      *
      * @example random.arrayShuffle([11, 22, 33])
      */
-    arrayShuffle<T extends unknown>(arr: T[], overwrite?: boolean, randIndex?: (len: number) => number): any;
+    arrayShuffle<T extends unknown>(arr: T[], overwrite?: boolean, randIndex?: (len: number) => number): T[];
+    /**
+     * Get consecutively unique elements from an array
+     *
+     * @example
+     * let fn = random.arrayUnique([1, 2, 3, 4], 3);
+     * console.log(fn(), fn(), fn());
+     *
+     * // will throw error
+     * console.log(fn());
+     */
+    arrayUnique<T extends unknown>(arr: T[], limit?: number, loop?: boolean, fnRandIndex?: IRandIndex, fnOutOfLimit?: IArrayUniqueOutOfLimitCallback<T>): () => T;
     /**
      * Generates a [Continuous uniform distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)).
      *
@@ -310,8 +322,7 @@ export declare class Random<R extends RNG = RNG> {
      */
     reset(): this;
     readonly [Symbol.toStringTag]: string;
+    protected static default: typeof Random;
 }
-export declare const random: Random<RNG> & {
-    default: Random<RNG>;
-};
+export declare const random: Random<RNG>;
 export default random;

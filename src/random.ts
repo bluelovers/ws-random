@@ -15,6 +15,7 @@ import {
 	uniformBoolean,
 	uniformInt,
 } from './distributions';
+import { IArrayUniqueOutOfLimitCallback, IRandIndex } from './distributions/array-unique';
 import { IGetWeight, IObjectInput, IWeightEntrie } from './distributions/item-by-weight';
 import RNGSeedRandom from './generators/seedrandom';
 
@@ -369,10 +370,25 @@ export class Random<R extends RNG = RNG>
 	 *
 	 * @example random.arrayShuffle([11, 22, 33])
 	 */
-	arrayShuffle<T extends unknown>(arr: T[], overwrite?: boolean, randIndex?: (len: number) => number)
+	arrayShuffle<T extends unknown>(arr: T[], overwrite?: boolean, randIndex?: (len: number) => number): T[]
 	{
 		// @ts-ignore
 		return this._memoize('arrayShuffle', Distributions.arrayShuffle)(arr, overwrite, randIndex)
+	}
+
+	/**
+	 * Get consecutively unique elements from an array
+	 *
+	 * @example
+	 * let fn = random.arrayUnique([1, 2, 3, 4], 3);
+	 * console.log(fn(), fn(), fn());
+	 *
+	 * // will throw error
+	 * console.log(fn());
+	 */
+	arrayUnique<T extends unknown>(arr: T[], limit?: number, loop?: boolean, fnRandIndex?: IRandIndex, fnOutOfLimit?: IArrayUniqueOutOfLimitCallback<T>)
+	{
+		return Distributions.arrayUnique(this, arr, limit, loop, fnRandIndex, fnOutOfLimit)
 	}
 
 	// --------------------------------------------------------------------------
@@ -663,25 +679,33 @@ export class Random<R extends RNG = RNG>
 		return this._rng.name;
 	}
 
+	protected static default: typeof Random
+
 }
 
-export const random = new Random() as Random & {
-	default: Random
-}
+export const random = new Random()
 // @ts-ignore
 //random.default = random
 
 Object.defineProperty(random, 'default', {
-//	writable: false,
 	configurable: false,
-	enumerable: true,
+	enumerable: false,
 	get()
 	{
 		return random
-	}
+	},
+});
+
+Object.defineProperty(Random, 'default', {
+	configurable: false,
+	enumerable: false,
+	get()
+	{
+		return random
+	},
 });
 
 // defaults to Math.random as its RNG
 export default random
 // @ts-ignore
-Object.freeze(exports)
+Object.freeze(exports);

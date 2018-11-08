@@ -261,6 +261,19 @@ class Random {
         // @ts-ignore
         return this._memoize('arrayShuffle', distributions_1.Distributions.arrayShuffle)(arr, overwrite, randIndex);
     }
+    /**
+     * Get consecutively unique elements from an array
+     *
+     * @example
+     * let fn = random.arrayUnique([1, 2, 3, 4], 3);
+     * console.log(fn(), fn(), fn());
+     *
+     * // will throw error
+     * console.log(fn());
+     */
+    arrayUnique(arr, limit, loop, fnRandIndex, fnOutOfLimit) {
+        return distributions_1.Distributions.arrayUnique(this, arr, limit, loop, fnRandIndex, fnOutOfLimit);
+    }
     // --------------------------------------------------------------------------
     // Uniform distributions
     // --------------------------------------------------------------------------
@@ -489,12 +502,18 @@ exports.random = new Random();
 // @ts-ignore
 //random.default = random
 Object.defineProperty(exports.random, 'default', {
-    //	writable: false,
     configurable: false,
-    enumerable: true,
+    enumerable: false,
     get() {
         return exports.random;
-    }
+    },
+});
+Object.defineProperty(Random, 'default', {
+    configurable: false,
+    enumerable: false,
+    get() {
+        return exports.random;
+    },
 });
 // defaults to Math.random as its RNG
 exports.default = exports.random;

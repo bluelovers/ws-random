@@ -16,6 +16,7 @@ export function getDefaultArgv(method)
 		case 'arrayIndex':
 		case 'arrayItem':
 		case 'arrayShuffle':
+		case 'arrayUnique':
 			argv = [[11, 22, 33, 44, 55]]
 			break
 		case 'itemByWeight':

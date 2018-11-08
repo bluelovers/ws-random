@@ -48,6 +48,8 @@ import bytes from './distributions/bytes'
 import arrayIndex from './distributions/array-index'
 import arrayShuffle from './distributions/array-shuffle'
 
+import arrayUnique from './distributions/array-unique'
+
 import itemByWeight from './distributions/item-by-weight'
 
 export {
@@ -70,6 +72,7 @@ export {
 
 	arrayIndex,
 	arrayShuffle,
+	arrayUnique,
 
 	itemByWeight,
 }
