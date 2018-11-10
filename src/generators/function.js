@@ -1,5 +1,5 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-const ow = require("ow-lite");
+const ow_1 = require("../util/ow");
 const rng_1 = require("../rng");
 const util_1 = require("../util");
 class RNGFunction extends rng_1.default {
@@ -22,7 +22,7 @@ class RNGFunction extends rng_1.default {
     }
     seed(seed, opts, ...argv) {
         this._rng = seed || this._rng;
-        ow(this._rng, ow.function);
+        ow_1.default(this._rng, ow_1.default.function);
     }
     clone(seed, opts, ...argv) {
         return util_1.cloneClass(RNGFunction, this, seed, opts, ...argv);

@@ -1,5 +1,5 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-const ow_lite_1 = require("ow-lite");
+const ow_1 = require("../util/ow");
 /**
  * Generates a [Bates distribution](https://en.wikipedia.org/wiki/Bates_distribution).
  *
@@ -8,7 +8,7 @@ const ow_lite_1 = require("ow-lite");
  * @return {function}
  */
 exports.default = (random, n) => {
-    ow_lite_1.default(n, ow_lite_1.default.number.integer.gte(0));
+    ow_1.default(n, ow_1.default.number.integer.gte(0));
     return () => {
         let sum = 0;
         for (let i = 0; i < n; ++i) {

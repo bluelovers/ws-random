@@ -1,7 +1,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-const ow_lite_1 = require("ow-lite");
+const ow_1 = require("../util/ow");
 exports.default = (random, alpha) => {
-    ow_lite_1.default(alpha, ow_lite_1.default.number.gt(0));
+    ow_1.default(alpha, ow_1.default.number.gt(0));
     const invAlpha = 1.0 / alpha;
     return () => {
         return 1.0 / Math.pow(1.0 - random.next(), invAlpha);

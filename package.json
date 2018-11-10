@@ -1,6 +1,6 @@
 {
   "name": "random-extra",
-  "version": "2.9.2",
+  "version": "2.10.0",
   "description": "Seedable random number generator supporting many common distributions.",
   "keywords": [
     "alea",
@@ -75,7 +75,7 @@
     "@types/seedrandom": "^2",
     "hash-sum": "^1.0.2",
     "nanoid": "^1.3.1",
-    "ow-lite": "0.0.2",
+    "ow-lite-ts": "^1.0.0",
     "seedrandom": "^2.4.4",
     "shortid": "^2.2.13",
     "uni-string": "^1.1.0"

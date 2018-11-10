@@ -1,5 +1,5 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-const ow_lite_1 = require("ow-lite");
+const ow_1 = require("../util/ow");
 const logFactorialTable = [
     0.0,
     0.0,
@@ -17,7 +17,7 @@ const logFactorial = (k) => {
 };
 const logSqrt2PI = 0.91893853320467267;
 exports.default = (random, lambda = 1) => {
-    ow_lite_1.default(lambda, ow_lite_1.default.number.positive);
+    ow_1.default(lambda, ow_1.default.number.positive);
     if (lambda < 10) {
         // inversion method
         const expMean = Math.exp(-lambda);

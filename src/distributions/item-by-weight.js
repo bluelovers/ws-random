@@ -1,6 +1,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const distributions_1 = require("../util/distributions");
-const ow_lite_1 = require("ow-lite");
+const ow_1 = require("../util/ow");
 function itemByWeight(random, arr, getWeight, shuffle, disableSort) {
     getWeight = getWeight || _getWeight;
     let ws = _createWeight(arr, getWeight);
@@ -62,7 +62,7 @@ function _createWeight(arr, getWeight = _getWeight) {
         let weight = getWeight(value, key);
         //weight = Math.exp(weight)
         weight = +weight;
-        ow_lite_1.default(weight, ow_lite_1.default.number.gt(0));
+        ow_1.default(weight, ow_1.default.number.gt(0));
         sum += weight;
         return {
             key,

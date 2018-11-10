@@ -1,4 +1,4 @@
-import ow = require("ow-lite");
+import ow from '../util/ow'
 import RNG from '../rng'
 import { cloneClass, getClass } from '../util';
 

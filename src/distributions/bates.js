@@ -1,7 +1,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-const ow_lite_1 = require("ow-lite");
+const ow_1 = require("../util/ow");
 exports.default = (random, n) => {
-    ow_lite_1.default(n, ow_lite_1.default.number.integer.positive);
+    ow_1.default(n, ow_1.default.number.integer.positive);
     const irwinHall = random.irwinHall(n);
     return () => {
         return irwinHall() / n;

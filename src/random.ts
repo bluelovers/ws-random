@@ -1,4 +1,4 @@
-import ow = require("ow-lite");
+import ow from './util/ow'
 import { Distributions, IRandomDistributions } from './distributions';
 import {
 	bates,

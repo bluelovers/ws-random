@@ -3,7 +3,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 const UString = require("uni-string");
-const ow_lite_1 = require("ow-lite");
+const ow_1 = require("../util/ow");
 const distributions_1 = require("../util/distributions");
 var ENUM_ALPHABET;
 (function (ENUM_ALPHABET) {
@@ -14,7 +14,7 @@ var ENUM_ALPHABET;
     ENUM_ALPHABET["DEFAULT"] = "ModuleSymbhasOwnPr0123456789ABCDEFGHIJKLNQRTUVWXYZcfgijkpqtvxz0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 })(ENUM_ALPHABET = exports.ENUM_ALPHABET || (exports.ENUM_ALPHABET = {}));
 exports.default = (random, char, size = 8) => {
-    ow_lite_1.default(size, ow_lite_1.default.number.integer.gt(0));
+    ow_1.default(size, ow_1.default.number.integer.gt(0));
     if (!char) {
         char = ENUM_ALPHABET.DEFAULT;
     }

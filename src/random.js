@@ -1,5 +1,5 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-const ow = require("ow-lite");
+const ow_1 = require("./util/ow");
 const distributions_1 = require("./distributions");
 const distributions_2 = require("./distributions");
 const rng_1 = require("./rng");
@@ -19,7 +19,7 @@ class Random {
     constructor(rng) {
         this._cache = {};
         if (rng)
-            ow(rng, ow.object.instanceOf(rng_1.default));
+            ow_1.default(rng, ow_1.default.object.instanceOf(rng_1.default));
         this.use(rng);
     }
     /**

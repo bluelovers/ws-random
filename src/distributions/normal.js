@@ -1,8 +1,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-const ow_lite_1 = require("ow-lite");
+const ow_1 = require("../util/ow");
 exports.default = (random, mu = 0, sigma = 1) => {
-    ow_lite_1.default(mu, ow_lite_1.default.number);
-    ow_lite_1.default(sigma, ow_lite_1.default.number);
+    ow_1.default(mu, ow_1.default.number);
+    ow_1.default(sigma, ow_1.default.number);
     return () => {
         let x, y, r;
         do {

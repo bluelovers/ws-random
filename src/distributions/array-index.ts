@@ -1,6 +1,6 @@
 import { Random } from '../random';
 import uniformInt from './uniform-int';
-import ow from 'ow-lite'
+import ow from '../util/ow'
 
 export default (random: Random, size: number = 1, start: number = 0, end?: number) =>
 {

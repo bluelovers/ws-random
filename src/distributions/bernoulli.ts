@@ -1,4 +1,4 @@
-import ow = require('ow-lite')
+import ow from '../util/ow'
 import { Random } from '../random';
 import RNG from '../rng'
 

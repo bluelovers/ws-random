@@ -1,5 +1,5 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-const ow_lite_1 = require("ow-lite");
+const ow_1 = require("../util/ow");
 const distributions_1 = require("../util/distributions");
 exports.default = (random, arr, limit, loop, fnRandIndex, fnOutOfLimit) => {
     const randIndex = (len) => {
@@ -9,8 +9,8 @@ exports.default = (random, arr, limit, loop, fnRandIndex, fnOutOfLimit) => {
     limit = Math.min(limit || clone.length, clone.length);
     fnRandIndex = fnRandIndex || randIndex;
     loop = !!loop;
-    ow_lite_1.default(limit, ow_lite_1.default.number.integer.gt(0));
-    ow_lite_1.default(fnRandIndex, ow_lite_1.default.function);
+    ow_1.default(limit, ow_1.default.number.integer.gt(0));
+    ow_1.default(fnRandIndex, ow_1.default.function);
     let count = limit;
     let len;
     function _fnClone(arr) {

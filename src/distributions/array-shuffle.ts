@@ -1,7 +1,7 @@
 import random from '../random';
 import { Random } from '../random';
 import uniformInt from './uniform-int';
-import ow from 'ow-lite'
+import ow from '../util/ow'
 import { swapAlgorithm } from '../util/array';
 import { randIndex as _randIndex } from '../util/distributions';
 
