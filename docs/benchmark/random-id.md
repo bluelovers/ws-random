@@ -6,9 +6,9 @@ Fastest is xor128.charID
 Slowest is shortid
 
 -----------------------
-xor128.charID x 2,389,450 ops/sec ±1.81% (86 runs sampled)  
-random.charID x 2,300,164 ops/sec ±1.44% (86 runs sampled)  
-math-random2.charID x 2,105,753 ops/sec ±0.72% (91 runs sampled)  
-seedrandom.charID x 1,419,763 ops/sec ±1.09% (90 runs sampled)  
-nanoid x 440,305 ops/sec ±0.36% (90 runs sampled)  
-shortid x 47,389 ops/sec ±1.08% (89 runs sampled)
+xor128.charID x 2,247,425 ops/sec ±4.01% (84 runs sampled)  
+random.charID x 2,044,920 ops/sec ±5.13% (77 runs sampled)  
+math-random2.charID x 1,941,745 ops/sec ±4.46% (88 runs sampled)  
+seedrandom.charID x 1,306,799 ops/sec ±4.26% (87 runs sampled)  
+nanoid x 413,117 ops/sec ±1.33% (87 runs sampled)  
+shortid x 45,968 ops/sec ±2.31% (82 runs sampled)

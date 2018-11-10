@@ -7,6 +7,7 @@ const Benchmark = require("benchmark");
 exports.Benchmark = Benchmark;
 const crypto = require("crypto");
 const cryptorandom = require("math-random");
+const randomOrigin = require("random");
 exports.tests = {
     Math: simple_wrap_1.simpleWrap(util_1._MathRandom),
     random: __1.default,
@@ -15,6 +16,7 @@ exports.tests = {
     'xor128': __1.default.newUse('xor128'),
     cryptorandom: simple_wrap_1.simpleWrap(cryptorandom),
     cryptorandom2: simple_wrap_1.simpleWrap(cryptorandom2),
+    randomOrigin,
 };
 function getMethods(random) {
     return Object

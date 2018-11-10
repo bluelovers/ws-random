@@ -5,6 +5,7 @@ import { _MathRandom } from '../../src/util'
 import Benchmark = require('benchmark');
 import crypto = require('crypto');
 import cryptorandom = require('math-random');
+import randomOrigin = require('random');
 
 export { Benchmark }
 
@@ -19,6 +20,8 @@ export const tests = {
 
 	cryptorandom: simpleWrap(cryptorandom),
 	cryptorandom2: simpleWrap(cryptorandom2),
+
+	randomOrigin,
 };
 
 export function getMethods(random)

@@ -8,6 +8,25 @@ import console from 'debug-color2'
 import { defaultArgv } from '../../src/simple-wrap';
 
 const methods = Object.keys(tests.Math)
+	.filter(function (v)
+	{
+		return ![
+			'constructor',
+			'rng',
+			'clone',
+			'use',
+			'newUse',
+			'cloneUse',
+			'patch',
+			'unpatch',
+			'_memoize',
+			'reset',
+			'_rng',
+			'_cache',
+			'seed',
+		].includes(v)
+	})
+;
 
 methods.unshift(methods[0])
 
@@ -28,12 +47,19 @@ methods
 			{
 				const rng = tests[name];
 
-				suite.add(`${name}.${method}`, function ()
+				if (typeof rng[method] !== 'undefined')
 				{
-					rng[method](...argv)
-				})
+					suite.add(`${name}.${method}`, function ()
+					{
+						rng[method](...argv)
+					})
 
-				console.debug(`${name}.${method} => ${rng[method](...argv)}`, '  ');
+					console.debug(`${name}.${method} => ${rng[method](...argv)}`, '  ');
+				}
+				else
+				{
+					console.debug(`${name}.${method} => is undefined`, '  ');
+				}
 			})
 		;
 

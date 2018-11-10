@@ -91,6 +91,7 @@
     "git-root2": "^1.0.4",
     "math-random": "^1.0.1",
     "microtime": "^2.1.8",
+    "random": "^2.0.12",
     "ts-enum-util": "^3.1.0",
     "update-markdown-jsdoc": "^1.0.6"
   },

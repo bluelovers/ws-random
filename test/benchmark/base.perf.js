@@ -5,7 +5,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const _1 = require("./");
 const debug_color2_1 = require("debug-color2");
 const simple_wrap_1 = require("../../src/simple-wrap");
-const methods = Object.keys(_1.default.Math);
+const methods = Object.keys(_1.default.Math)
+    .filter(function (v) {
+    return ![
+        'constructor',
+        'rng',
+        'clone',
+        'use',
+        'newUse',
+        'cloneUse',
+        'patch',
+        'unpatch',
+        '_memoize',
+        'reset',
+        '_rng',
+        '_cache',
+        'seed',
+    ].includes(v);
+});
 methods.unshift(methods[0]);
 methods
     .forEach(function (method) {
@@ -17,10 +34,15 @@ methods
     Object.keys(_1.default)
         .forEach(function (name) {
         const rng = _1.default[name];
-        suite.add(`${name}.${method}`, function () {
-            rng[method](...argv);
-        });
-        debug_color2_1.default.debug(`${name}.${method} => ${rng[method](...argv)}`, '  ');
+        if (typeof rng[method] !== 'undefined') {
+            suite.add(`${name}.${method}`, function () {
+                rng[method](...argv);
+            });
+            debug_color2_1.default.debug(`${name}.${method} => ${rng[method](...argv)}`, '  ');
+        }
+        else {
+            debug_color2_1.default.debug(`${name}.${method} => is undefined`, '  ');
+        }
     });
     debug_color2_1.default.grey(`\n-----------------------`);
     suite
