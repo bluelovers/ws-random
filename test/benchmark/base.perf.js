@@ -41,7 +41,7 @@ methods
             debug_color2_1.default.debug(`${name}.${method} => ${rng[method](...argv)}`, '  ');
         }
         else {
-            debug_color2_1.default.debug(`${name}.${method} => is undefined`, '  ');
+            debug_color2_1.default.debug(`skip: ${name}.${method} => is undefined`, '  ');
         }
     });
     debug_color2_1.default.grey(`\n-----------------------`);
