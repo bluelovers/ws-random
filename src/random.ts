@@ -1,5 +1,6 @@
 import ow from './util/ow'
 import { Distributions, IRandomDistributions } from './distributions';
+/*
 import {
 	bates,
 	bernoulli,
@@ -15,6 +16,7 @@ import {
 	uniformBoolean,
 	uniformInt,
 } from './distributions';
+*/
 import { IArrayUniqueOutOfLimitCallback, IRandIndex } from './distributions/array-unique';
 import { ENUM_ALPHABET } from './distributions/char-id';
 import { IGetWeight, IObjectInput, IWeightEntrie } from './distributions/item-by-weight';
@@ -23,6 +25,7 @@ import RNGSeedRandom from './generators/seedrandom';
 import RNG from './rng'
 import RNGFactory, { IRNGFactoryType } from './rng-factory'
 import { getClass } from './util';
+import { autobind } from 'core-decorators';
 
 /**
  * Seedable random number generator supporting many common distributions.
@@ -36,13 +39,13 @@ import { getClass } from './util';
  */
 export class Random<R extends RNG = RNG>
 {
-	protected _patch: typeof Math.random
+	protected _patch: typeof Math.random;
 	protected _cache: {
 		[k: string]: {
 			key: string,
 			distribution: IRandomDistributions<unknown>,
 		}
-	} = {}
+	} = {};
 
 	constructor(rng?: R)
 	{
@@ -415,7 +418,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	uniform(min?: number, max?: number)
 	{
-		return this._memoize('uniform', uniform, min, max)
+		return this._memoize('uniform', Distributions.uniform, min, max)
 	}
 
 	/**
@@ -427,7 +430,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	uniformInt(min?: number, max?: number)
 	{
-		return this._memoize('uniformInt', uniformInt, min, max)
+		return this._memoize('uniformInt', Distributions.uniformInt, min, max)
 	}
 
 	/**
@@ -440,7 +443,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	uniformBoolean(likelihood?: number)
 	{
-		return this._memoize('uniformBoolean', uniformBoolean, likelihood)
+		return this._memoize('uniformBoolean', Distributions.uniformBoolean, likelihood)
 	}
 
 	// --------------------------------------------------------------------------
@@ -456,7 +459,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	normal(mu?: number, sigma?: number)
 	{
-		return normal(this, mu, sigma)
+		return Distributions.normal(this, mu, sigma)
 	}
 
 	/**
@@ -468,7 +471,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	logNormal(mu?: number, sigma?: number)
 	{
-		return logNormal(this, mu, sigma)
+		return Distributions.logNormal(this, mu, sigma)
 	}
 
 	// --------------------------------------------------------------------------
@@ -483,7 +486,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	bernoulli(p?: number)
 	{
-		return bernoulli(this, p)
+		return Distributions.bernoulli(this, p)
 	}
 
 	/**
@@ -495,7 +498,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	binomial(n?: number, p?: number)
 	{
-		return binomial(this, n, p)
+		return Distributions.binomial(this, n, p)
 	}
 
 	/**
@@ -506,7 +509,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	geometric(p?: number)
 	{
-		return geometric(this, p)
+		return Distributions.geometric(this, p)
 	}
 
 	// --------------------------------------------------------------------------
@@ -521,7 +524,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	poisson(lambda?: number)
 	{
-		return poisson(this, lambda)
+		return Distributions.poisson(this, lambda)
 	}
 
 	/**
@@ -532,7 +535,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	exponential(lambda?: number)
 	{
-		return exponential(this, lambda)
+		return Distributions.exponential(this, lambda)
 	}
 
 	// --------------------------------------------------------------------------
@@ -547,7 +550,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	irwinHall(n: number = 1)
 	{
-		return irwinHall(this, n)
+		return Distributions.irwinHall(this, n)
 	}
 
 	/**
@@ -558,7 +561,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	bates(n: number = 1)
 	{
-		return bates(this, n)
+		return Distributions.bates(this, n)
 	}
 
 	/**
@@ -569,7 +572,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	pareto(alpha: number = 1)
 	{
-		return pareto(this, alpha)
+		return Distributions.pareto(this, alpha)
 	}
 
 	/**

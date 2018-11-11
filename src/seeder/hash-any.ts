@@ -3,7 +3,7 @@
  */
 
 import hashSum = require('hash-sum');
-import shortid = require('shortid');
+//import shortid = require('shortid');
 import { randomSeedStr } from '../util';
 import nanoid from './nanoid';
 

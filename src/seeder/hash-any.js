@@ -3,6 +3,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 const hashSum = require("hash-sum");
+//import shortid = require('shortid');
 const util_1 = require("../util");
 //import { hashSum } from './hash-sum';
 //import { shortid } from './shortid';
