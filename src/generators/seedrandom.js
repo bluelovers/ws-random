@@ -1,13 +1,16 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const util_1 = require("../util");
+const req_1 = require("../util/req");
 const function_1 = require("./function");
-const seedrandom = require("seedrandom");
 exports.defaultOptions = Object.freeze({
     entropy: true
 });
 class RNGSeedRandom extends function_1.default {
     constructor(seed, opts, ...argv) {
         super(seed, opts, ...argv);
+    }
+    static createLib(...argv) {
+        return new this(argv[1], argv[2], argv[0], ...argv.slice(3));
     }
     static create(...argv) {
         return new this(...argv);
@@ -17,7 +20,7 @@ class RNGSeedRandom extends function_1.default {
         this._seedrandom = this.__generator(...argv);
         super._init(seed, opts, ...argv);
     }
-    __generator(fn = seedrandom) {
+    __generator(fn) {
         if (fn && typeof fn === 'string') {
             switch (fn) {
                 case 'alea':
@@ -26,7 +29,8 @@ class RNGSeedRandom extends function_1.default {
                 case 'xor4096':
                 case 'xorshift7':
                 case 'xorwow':
-                    fn = require(`seedrandom/lib/${fn}`);
+                    fn = req_1.tryRequire('seedrandom')[fn];
+                    //fn = require(`seedrandom/lib/${fn}`)
                     break;
                 default:
                     if (fn.indexOf('..') === -1 && /^[a-z\-\.]+$/i.test(fn)) {
@@ -38,11 +42,14 @@ class RNGSeedRandom extends function_1.default {
                     }
             }
         }
-        fn = fn || seedrandom;
-        return (seed, opts, ...argv) => {
+        fn = fn || req_1.tryRequire('seedrandom');
+        return fn;
+        /*
+        return (seed?, opts?: RNGSeedRandomOptions, ...argv) => {
             // @ts-ignore
-            return fn(seed, opts, ...argv);
-        };
+            return fn(seed, opts, ...argv)
+        }
+        */
     }
     get name() {
         return 'seedrandom';
@@ -73,7 +80,7 @@ class RNGSeedRandom extends function_1.default {
         else {
             this._opts = opts || this._opts;
         }
-        this._rng = this._seedrandom(this._seedStr(seed), this._opts, ...argv);
+        this._rng = this._seedrandom(this._seedAuto(seed), this._opts, ...argv);
     }
     // @ts-ignore
     clone(seed, opts, ...argv) {

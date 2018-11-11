@@ -61,13 +61,27 @@ export abstract class RNG
 		throw new ReferenceError('RNG.clone must be overridden')
 	}
 
+
+	protected _seedAuto(seed: number, opts?, ...argv): number
+	protected _seedAuto(seed: unknown, opts?, ...argv): string
+	protected _seedAuto(seed?, opts?, ...argv): number | string
+	protected _seedAuto(seed?, opts?, ...argv): number | string
+	{
+		if (seed && typeof seed === 'number')
+		{
+			return this._seedNum(seed, opts, ...argv);
+		}
+
+		return this._seedStr(seed, opts, ...argv);
+	}
+
 	/**
 	 * return number for make new seed
 	 */
 	protected _seedNum(seed?, opts?, ...argv): number
 	{
 		// TODO: add entropy and stuff
-		if (typeof seed === 'undefined' || seed === null)
+		if (typeof seed === 'undefined' || seed === null || seed === 0)
 		{
 			/**
 			 * breaking change

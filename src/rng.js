@@ -35,12 +35,18 @@ class RNG {
     clone(seed, opts, ...argv) {
         throw new ReferenceError('RNG.clone must be overridden');
     }
+    _seedAuto(seed, opts, ...argv) {
+        if (seed && typeof seed === 'number') {
+            return this._seedNum(seed, opts, ...argv);
+        }
+        return this._seedStr(seed, opts, ...argv);
+    }
     /**
      * return number for make new seed
      */
     _seedNum(seed, opts, ...argv) {
         // TODO: add entropy and stuff
-        if (typeof seed === 'undefined' || seed === null) {
+        if (typeof seed === 'undefined' || seed === null || seed === 0) {
             /**
              * breaking change
              * this make always get a new token

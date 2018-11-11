@@ -13,6 +13,9 @@ export declare abstract class RNG {
     next(): number;
     seed(seed?: any, opts?: any, ...argv: any[]): void;
     clone(seed?: any, opts?: any, ...argv: any[]): void;
+    protected _seedAuto(seed: number, opts?: any, ...argv: any[]): number;
+    protected _seedAuto(seed: unknown, opts?: any, ...argv: any[]): string;
+    protected _seedAuto(seed?: any, opts?: any, ...argv: any[]): number | string;
     /**
      * return number for make new seed
      */

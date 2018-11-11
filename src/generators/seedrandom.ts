@@ -1,16 +1,19 @@
-
 import { hashAny } from '../seeder/hash-any';
+import { ValueOf, PickValueOf } from '../type';
 import { cloneClass } from '../util';
+import { tryRequire } from '../util/req';
 import RNGFunction from './function';
-import seedrandom = require('seedrandom')
+import seedrandom = require('seedrandom');
 
-export import RNGSeedRandomOptions = seedrandom.seedRandomOptions
+export import RNGSeedRandomOptions = seedrandom.seedRandomOptions;
 
 export const defaultOptions: RNGSeedRandomOptions = Object.freeze({
 	entropy: true
-})
+});
 
-export type IRNGSeedRandomLib = 'alea' | 'tychei' | 'xor128' | 'xor4096' | 'xorshift7' | 'xorwow' | string
+export type IRNGSeedRandomLibName = 'alea' | 'tychei' | 'xor128' | 'xor4096' | 'xorshift7' | 'xorwow'
+export type IRNGSeedRandomLib = IRNGSeedRandomLibName | string
+export type IRNGSeedRandomLibValueOf = PickValueOf<typeof seedrandom, IRNGSeedRandomLibName>
 
 export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 {
@@ -21,6 +24,12 @@ export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 	constructor(seed?, opts?: RNGSeedRandomOptions, ...argv)
 	{
 		super(seed, opts, ...argv)
+	}
+
+	public static createLib(lib?: IRNGSeedRandomLib, seed?, opts?: RNGSeedRandomOptions, ...argv): RNGSeedRandom
+	public static createLib(...argv)
+	{
+		return new this(argv[1], argv[2], argv[0], ...argv.slice(3))
 	}
 
 	public static create(seed?, opts?: RNGSeedRandomOptions, lib?: IRNGSeedRandomLib, ...argv): RNGSeedRandom
@@ -37,7 +46,7 @@ export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 		super._init(seed, opts, ...argv)
 	}
 
-	protected __generator(fn: typeof seedrandom | IRNGSeedRandomLib = seedrandom): IRNGSeedRandomGenerator
+	protected __generator(fn?: typeof seedrandom | IRNGSeedRandomLib | IRNGSeedRandomLibValueOf): IRNGSeedRandomGenerator
 	{
 		if (fn && typeof fn === 'string')
 		{
@@ -49,8 +58,9 @@ export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 				case 'xor4096':
 				case 'xorshift7':
 				case 'xorwow':
-					fn = require(`seedrandom/lib/${fn}`)
-					break
+					fn = tryRequire('seedrandom')[fn];
+					//fn = require(`seedrandom/lib/${fn}`)
+					break;
 				default:
 					if (fn.indexOf('..') === -1 && /^[a-z\-\.]+$/i.test(fn))
 					{
@@ -64,12 +74,16 @@ export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 			}
 		}
 
-		fn = fn || seedrandom
+		fn = fn || tryRequire('seedrandom');
 
+		return fn as IRNGSeedRandomGenerator
+
+		/*
 		return (seed?, opts?: RNGSeedRandomOptions, ...argv) => {
 			// @ts-ignore
 			return fn(seed, opts, ...argv)
 		}
+		*/
 	}
 
 	get name()
@@ -115,7 +129,7 @@ export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 			this._opts = opts || this._opts;
 		}
 
-		this._rng = this._seedrandom(this._seedStr(seed), this._opts, ...argv)
+		this._rng = this._seedrandom(this._seedAuto(seed), this._opts, ...argv)
 	}
 
 	// @ts-ignore
