@@ -37,7 +37,7 @@ const obj = {
 	},
 }
 
-const f1 = random.itemByWeight(obj, function (value, key)
+const f1 = random.dfItemByWeight(obj, function (value, key)
 {
 	return value.w
 })
@@ -54,7 +54,7 @@ const arr = [
 	1,
 ]
 
-const f2 = random.itemByWeight(arr)
+const f2 = random.dfItemByWeight(arr)
 
 for (let i = 0; i<10; i++)
 {

@@ -3,7 +3,7 @@ import RNG from '../rng'
 
 export default (random: Random, ...args: number[]) =>
 {
-	const normal = random.normal(...args)
+	const normal = random.dfNormal(...args)
 
 	return () =>
 	{

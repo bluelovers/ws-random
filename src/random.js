@@ -6,6 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var Random_1;
+/// <reference types="node" />
 const ow_1 = require("./util/ow");
 const distributions_1 = require("./distributions");
 const rng_1 = require("./rng");
@@ -26,7 +27,7 @@ let Random = Random_1 = class Random {
     constructor(rng) {
         this._cache = {};
         if (rng)
-            ow_1.default(rng, ow_1.default.object.instanceOf(rng_1.default));
+            ow_1.ow(rng, ow_1.ow.object.instanceOf(rng_1.default));
         this.use(rng);
     }
     /**
@@ -138,7 +139,7 @@ let Random = Random_1 = class Random {
         }
         this._patch = Math.random;
         // @ts-ignore
-        Math.random = this.uniform();
+        Math.random = this.dfUniform();
     }
     /**
      * Restores a previously patched `Math.random` to its original value.
@@ -165,30 +166,30 @@ let Random = Random_1 = class Random {
         return this._rng.next();
     }
     /**
-     * Samples a uniform random floating point number, optionally specifying
+     * Samples a dfUniform random floating point number, optionally specifying
      * lower and upper bounds.
      *
-     * Convence wrapper around `random.uniform()`
+     * Convence wrapper around `random.dfUniform()`
      *
      * @param {number} [min=0] - Lower bound (float, inclusive)
      * @param {number} [max=1] - Upper bound (float, exclusive)
      * @return {number}
      */
     float(min, max) {
-        return this.uniform(min, max)();
+        return this.dfUniform(min, max)();
     }
     /**
-     * Samples a uniform random integer, optionally specifying lower and upper
+     * Samples a dfUniform random integer, optionally specifying lower and upper
      * bounds.
      *
-     * Convence wrapper around `random.uniformInt()`
+     * Convence wrapper around `random.dfUniformInt()`
      *
      * @param {number} [min=0] - Lower bound (integer, inclusive)
      * @param {number} [max=1] - Upper bound (integer, inclusive)
      * @return {number}
      */
     int(min = 100, max) {
-        return this.uniformInt(min, max)();
+        return this.dfUniformInt(min, max)();
     }
     /**
      * @see `random.int`
@@ -203,20 +204,23 @@ let Random = Random_1 = class Random {
         return this.boolean(likelihood);
     }
     /**
-     * Samples a uniform random boolean value.
+     * Samples a dfUniform random boolean value.
      *
-     * Convence wrapper around `random.uniformBoolean()`
+     * Convence wrapper around `random.dfUniformBoolean()`
      *
      * @return {boolean}
      */
     boolean(likelihood) {
-        return this.uniformBoolean(likelihood)();
+        return this.dfUniformBoolean(likelihood)();
     }
     /**
      * random byte
      */
     byte() {
-        return this._memoize('byte', distributions_1.Distributions.uniformByte)();
+        return this.dfByte()();
+    }
+    dfByte() {
+        return this._memoize('byte', distributions_1.Distributions.uniformByte);
     }
     /**
      * random bytes, with size
@@ -224,7 +228,10 @@ let Random = Random_1 = class Random {
      * @example Buffer.from(random.bytes(10)) // => <Buffer 5d 4b 06 94 08 e2 85 5b 79 4f>
      */
     bytes(size = 1) {
-        return this._memoize('bytes', distributions_1.Distributions.bytes, size)();
+        return this.dfBytes(size)();
+    }
+    dfBytes(size = 1) {
+        return this._memoize('bytes', distributions_1.Distributions.bytes, size);
     }
     /**
      * same as crypto.randomBytes(size)
@@ -234,27 +241,38 @@ let Random = Random_1 = class Random {
     randomBytes(size) {
         return Buffer.from(this.bytes(size));
     }
+    dfRandomBytes(size) {
+        let fn = this.dfBytes(size);
+        let warp = () => () => Buffer.from(fn());
+        return this._memoize('dfRandomBytes', warp, size);
+    }
+    charID(char, size) {
+        return distributions_1.Distributions.charID(this, char, size)();
+    }
     /**
      * generate random by input string, support unicode
      *
-     * @example random.charID() // => QcVH6FAi
+     * @example random.dfCharID() // => QcVH6FAi
      */
-    charID(char, size) {
-        return distributions_1.Distributions.charID(this, char, size);
+    dfCharID(char, size) {
+        return this._memoize('dfCharID', distributions_1.Distributions.charID, char, size);
+    }
+    arrayIndex(arr, size = 1, start = 0, end) {
+        return this.dfArrayIndex(arr, size, start, end)(arr);
     }
     /**
      * get random index in array
      *
-     * @example console.log(random.arrayIndex([11, 22, 33], 1, 0));
+     * @example console.log(random.dfArrayIndex([11, 22, 33], 1, 0));
      */
-    arrayIndex(arr, size = 1, start = 0, end) {
+    dfArrayIndex(arr, size = 1, start = 0, end) {
         // @ts-ignore
-        return this._memoize('arrayIndex', distributions_1.Distributions.arrayIndex, size, start, end)(arr);
+        return this._memoize('dfArrayIndex', distributions_1.Distributions.arrayIndex, size, start, end);
     }
     /**
      * get random item in array
      *
-     * @example console.log(random.arrayItem([11, 22, 33], 2));
+     * @example console.log(random.dfArrayItem([11, 22, 33], 2));
      */
     arrayItem(arr, size = 1, start = 0, end) {
         let ids = this.arrayIndex(arr, size, start, end);
@@ -270,58 +288,61 @@ let Random = Random_1 = class Random {
      * @param {boolean} overwrite - if true, will change current array
      * @param {function} randIndex - return index by give length
      *
-     * @example random.arrayShuffle([11, 22, 33])
+     * @example random.dfArrayShuffle([11, 22, 33])
      */
     arrayShuffle(arr, overwrite, randIndex) {
         // @ts-ignore
-        return this._memoize('arrayShuffle', distributions_1.Distributions.arrayShuffle)(arr, overwrite, randIndex);
+        return this._memoizeFake('dfArrayShuffle', distributions_1.Distributions.arrayShuffle)(arr, overwrite, randIndex);
+    }
+    arrayUnique(arr, limit, loop, fnRandIndex, fnOutOfLimit) {
+        return this.dfArrayUnique(arr, limit, loop, fnRandIndex, fnOutOfLimit)();
     }
     /**
      * Get consecutively unique elements from an array
      *
      * @example
-     * let fn = random.arrayUnique([1, 2, 3, 4], 3);
+     * let fn = random.dfArrayUnique([1, 2, 3, 4], 3);
      * console.log(fn(), fn(), fn());
      *
      * // will throw error
      * console.log(fn());
      */
-    arrayUnique(arr, limit, loop, fnRandIndex, fnOutOfLimit) {
+    dfArrayUnique(arr, limit, loop, fnRandIndex, fnOutOfLimit) {
         return distributions_1.Distributions.arrayUnique(this, arr, limit, loop, fnRandIndex, fnOutOfLimit);
     }
     // --------------------------------------------------------------------------
     // Uniform distributions
     // --------------------------------------------------------------------------
     /**
-     * Generates a [Continuous uniform distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)).
+     * Generates a [Continuous dfUniform distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)).
      *
      * @param {number} [min=0] - Lower bound (float, inclusive)
      * @param {number} [max=1] - Upper bound (float, exclusive)
      * @return {function}
      */
-    uniform(min, max) {
-        return this._memoize('uniform', distributions_1.Distributions.uniform, min, max);
+    dfUniform(min, max) {
+        return this._memoize('dfUniform', distributions_1.Distributions.uniform, min, max);
     }
     /**
-     * Generates a [Discrete uniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution).
+     * Generates a [Discrete dfUniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution).
      *
      * @param {number} [min=0] - Lower bound (integer, inclusive)
      * @param {number} [max=1] - Upper bound (integer, inclusive)
      * @return {function}
      */
-    uniformInt(min, max) {
-        return this._memoize('uniformInt', distributions_1.Distributions.uniformInt, min, max);
+    dfUniformInt(min, max) {
+        return this._memoize('dfUniformInt', distributions_1.Distributions.uniformInt, min, max);
     }
     /**
-     * Generates a [Discrete uniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution),
+     * Generates a [Discrete dfUniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution),
      * with two possible outcomes, `true` or `false.
      *
      * This method is analogous to flipping a coin.
      *
      * @return {function}
      */
-    uniformBoolean(likelihood) {
-        return this._memoize('uniformBoolean', distributions_1.Distributions.uniformBoolean, likelihood);
+    dfUniformBoolean(likelihood) {
+        return this._memoize('dfUniformBoolean', distributions_1.Distributions.uniformBoolean, likelihood);
     }
     // --------------------------------------------------------------------------
     // Normal distributions
@@ -333,17 +354,17 @@ let Random = Random_1 = class Random {
      * @param {number} [sigma=1] - Standard deviation
      * @return {function}
      */
-    normal(mu, sigma) {
+    dfNormal(mu, sigma) {
         return distributions_1.Distributions.normal(this, mu, sigma);
     }
     /**
-     * Generates a [Log-normal distribution](https://en.wikipedia.org/wiki/Log-normal_distribution).
+     * Generates a [Log-dfNormal distribution](https://en.wikipedia.org/wiki/Log-normal_distribution).
      *
-     * @param {number} [mu=0] - Mean of underlying normal distribution
-     * @param {number} [sigma=1] - Standard deviation of underlying normal distribution
+     * @param {number} [mu=0] - Mean of underlying dfNormal distribution
+     * @param {number} [sigma=1] - Standard deviation of underlying dfNormal distribution
      * @return {function}
      */
-    logNormal(mu, sigma) {
+    dfLogNormal(mu, sigma) {
         return distributions_1.Distributions.logNormal(this, mu, sigma);
     }
     // --------------------------------------------------------------------------
@@ -355,7 +376,7 @@ let Random = Random_1 = class Random {
      * @param {number} [p=0.5] - Success probability of each trial.
      * @return {function}
      */
-    bernoulli(p) {
+    dfBernoulli(p) {
         return distributions_1.Distributions.bernoulli(this, p);
     }
     /**
@@ -365,7 +386,7 @@ let Random = Random_1 = class Random {
      * @param {number} [p=0.5] - Success probability of each trial.
      * @return {function}
      */
-    binomial(n, p) {
+    dfBinomial(n, p) {
         return distributions_1.Distributions.binomial(this, n, p);
     }
     /**
@@ -374,7 +395,7 @@ let Random = Random_1 = class Random {
      * @param {number} [p=0.5] - Success probability of each trial.
      * @return {function}
      */
-    geometric(p) {
+    dfGeometric(p) {
         return distributions_1.Distributions.geometric(this, p);
     }
     // --------------------------------------------------------------------------
@@ -386,7 +407,7 @@ let Random = Random_1 = class Random {
      * @param {number} [lambda=1] - Mean (lambda > 0)
      * @return {function}
      */
-    poisson(lambda) {
+    dfPoisson(lambda) {
         return distributions_1.Distributions.poisson(this, lambda);
     }
     /**
@@ -395,7 +416,7 @@ let Random = Random_1 = class Random {
      * @param {number} [lambda=1] - Inverse mean (lambda > 0)
      * @return {function}
      */
-    exponential(lambda) {
+    dfExponential(lambda) {
         return distributions_1.Distributions.exponential(this, lambda);
     }
     // --------------------------------------------------------------------------
@@ -404,19 +425,19 @@ let Random = Random_1 = class Random {
     /**
      * Generates an [Irwin Hall distribution](https://en.wikipedia.org/wiki/Irwin%E2%80%93Hall_distribution).
      *
-     * @param {number} n - Number of uniform samples to sum (n >= 0)
+     * @param {number} n - Number of dfUniform samples to sum (n >= 0)
      * @return {function}
      */
-    irwinHall(n = 1) {
+    dfIrwinHall(n = 1) {
         return distributions_1.Distributions.irwinHall(this, n);
     }
     /**
      * Generates a [Bates distribution](https://en.wikipedia.org/wiki/Bates_distribution).
      *
-     * @param {number} n - Number of uniform samples to average (n >= 1)
+     * @param {number} n - Number of dfUniform samples to average (n >= 1)
      * @return {function}
      */
-    bates(n = 1) {
+    dfBates(n = 1) {
         return distributions_1.Distributions.bates(this, n);
     }
     /**
@@ -425,8 +446,11 @@ let Random = Random_1 = class Random {
      * @param {number} alpha - Alpha
      * @return {function}
      */
-    pareto(alpha = 1) {
+    dfPareto(alpha = 1) {
         return distributions_1.Distributions.pareto(this, alpha);
+    }
+    itemByWeight(arr, getWeight, shuffle, disableSort, ...argv) {
+        return this.dfItemByWeight(arr, getWeight, shuffle, disableSort, ...argv)();
     }
     /**
      * returns random weighted item by give array/object
@@ -444,26 +468,49 @@ let Random = Random_1 = class Random {
         },
     }
      * const getWeight = (value, index) => value.w
-     * const fn = random.itemByWeight(obj, getWeight)
+     * const fn = random.dfItemByWeight(obj, getWeight)
      *
      * console.log(fn())
      *
      * @example
      * const array = [3, 7, 1, 4, 2]
-     * const fn = random.itemByWeight(array)
+     * const fn = random.dfItemByWeight(array)
      *
      * console.log(fn())
      *
      * @example
      * const array = [3, 7, 1, 4, 2]
      * const getWeight = (value, index) => +index + 1
-     * const fn = random.itemByWeight(array, getWeight)
+     * const fn = random.dfItemByWeight(array, getWeight)
      *
      * console.log(fn())
      *
      */
-    itemByWeight(arr, getWeight, shuffle, disableSort, ...argv) {
+    dfItemByWeight(arr, getWeight, shuffle, disableSort, ...argv) {
         return this._callDistributions(distributions_1.Distributions.itemByWeight, arr, getWeight, shuffle, disableSort, ...argv);
+    }
+    /**
+     * returns n random numbers to get a sum k
+     *
+     * @see https://www.npmjs.com/package/random-sum
+     *
+     * @example
+     * random.sumInt(3, -5, 52)
+     * random.sumInt(3, 52)
+     * random.sumInt(3, 0, 52)
+     * random.sumInt(3, 15, 52)
+     */
+    sumInt(size, min, max) {
+        return this.dfSumInt(size, min, max)();
+    }
+    dfSumInt(size, min, max) {
+        return this._memoize('sumInt', distributions_1.Distributions.sumInt, size, min, max);
+    }
+    sumFloat(size, min, max) {
+        return this.dfSumFloat(size, min, max)();
+    }
+    dfSumFloat(size, min, max) {
+        return this._memoize('sumFloat', distributions_1.Distributions.sumFloat, size, min, max);
     }
     // --------------------------------------------------------------------------
     // Internal
@@ -483,21 +530,21 @@ let Random = Random_1 = class Random {
      * @return {function}
      */
     _memoize(label, getter, ...args) {
-        const key = String(args.join(';'));
+        const key = util_1.hashArgv(args);
         let value = this._cache[label];
         if (value === undefined || value.key !== key) {
-            // @ts-ignore
-            value = { key, distribution: getter(this, ...args) };
+            value = {
+                key,
+                distribution: getter(this, ...args)
+            };
             this._cache[label] = value;
         }
         // @ts-ignore
         return value.distribution;
     }
-    // @ts-ignore
     _memoizeFake(label, getter, ...args) {
         return getter(this, ...args);
     }
-    // @ts-ignore
     _callDistributions(getter, ...args) {
         return getter(this, ...args);
     }
@@ -512,6 +559,12 @@ let Random = Random_1 = class Random {
         return this._rng.name;
     }
 };
+__decorate([
+    core_decorators_1.deprecate('not recommended use')
+], Random.prototype, "patch", null);
+__decorate([
+    core_decorators_1.deprecate('not recommended use')
+], Random.prototype, "unpatch", null);
 Random = Random_1 = __decorate([
     core_decorators_1.autobind
 ], Random);

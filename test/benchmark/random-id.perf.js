@@ -9,10 +9,10 @@ const debug_color2_1 = require("debug-color2");
 const suite = (new _1.Benchmark.Suite);
 shortid();
 nanoid();
-const random_charID = _1.default.random.charID();
-const seedrandom_charID = _1.default.seedrandom.charID();
-const math_random2_charID = _1.default['math-random2'].charID();
-const xor128_charID = _1.default.xor128.charID();
+const random_charID = _1.default.random.dfCharID();
+const seedrandom_charID = _1.default.seedrandom.dfCharID();
+const math_random2_charID = _1.default['math-random2'].dfCharID();
+const xor128_charID = _1.default.xor128.dfCharID();
 suite
     .add(`shortid`, shortid)
     .add(`nanoid`, nanoid)

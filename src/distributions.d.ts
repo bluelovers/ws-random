@@ -2,16 +2,17 @@
  * Created by user on 2018/10/20/020.
  */
 import { Random } from './random';
-export interface IRandomDistributions<R extends any> {
-    (random: Random): IRandomDistributionsReturn<R>;
-    (random: Random, ...argv: any[]): IRandomDistributionsReturn<R>;
+export interface IRandomDistributionsFn<R = any> extends Function {
+    (random: Random): R;
+    (random: Random, ...argv: any[]): R;
 }
-export interface IRandomDistributionsReturn<R = any> {
-    (): R;
-    (...argv: any[]): R;
-    (a1: any, ...argv: any[]): R;
-    (a1: any, a2: any, ...argv: any[]): R;
-    (a1: any, a2: any, a3: any, ...argv: any[]): R;
+export interface IRandomDistributionsCacheRow<F extends IRandomDistributionsFn = IRandomDistributionsFn> {
+    key: string;
+    distribution: IRandomDistributions<F>;
+}
+export interface IRandomDistributions<F extends IRandomDistributionsFn = IRandomDistributionsFn> {
+    (...argv: Parameters<F>): ReturnType<F>;
+    (random: Random, ...argv: any[]): ReturnType<F>;
 }
 import bates from './distributions/bates';
 import bernoulli from './distributions/bernoulli';
@@ -33,7 +34,9 @@ import arrayShuffle from './distributions/array-shuffle';
 import arrayUnique from './distributions/array-unique';
 import charID from './distributions/char-id';
 import itemByWeight from './distributions/item-by-weight';
-export { bates, bernoulli, binomial, exponential, geometric, irwinHall, logNormal, normal, pareto, poisson, uniform, uniformBoolean, uniformInt, uniformByte, bytes, arrayIndex, arrayShuffle, arrayUnique, itemByWeight, charID, };
+import sumFloat from './distributions/sum-float';
+import sumInt from './distributions/sum-int';
+export { bates, bernoulli, binomial, exponential, geometric, irwinHall, logNormal, normal, pareto, poisson, uniform, uniformBoolean, uniformInt, uniformByte, bytes, arrayIndex, arrayShuffle, arrayUnique, itemByWeight, charID, sumFloat, sumInt, };
 import * as Distributions from './distributions';
 export { Distributions };
 export default Distributions;

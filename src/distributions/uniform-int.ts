@@ -1,5 +1,6 @@
 import ow from '../util/ow'
 import { Random } from '../random';
+import uniformFloat from './uniform';
 
 export default (random: Random, min?: number, max?: number) =>
 {
@@ -10,11 +11,13 @@ export default (random: Random, min?: number, max?: number) =>
 	}
 
 	ow(min, ow.number.integer)
-	ow(max, ow.number.integer.gte(min))
+	ow(max, ow.number.integer.gt(min))
+
+	let fn = uniformFloat(random, min, max + 1);
 
 	return () =>
 	{
-		return Math.floor(random.next() * (max - min + 1) + min)
+		return Math.floor(fn())
 	}
 }
 // @ts-ignore

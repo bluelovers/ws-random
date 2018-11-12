@@ -10,14 +10,24 @@ Welcome to the most **random** module on npm! 😜
 
 ## Highlights
 
+> **Wellcome send PR for more API support or performance up**
+
 -   Simple API (_make easy things easy and hard things possible_)
 -   Seedable based on entropy or user input
 -   Plugin support for different pseudo random number generators (PRNGs)
 -   Sample from many common distributions
-    -   uniform, normal, poisson, bernoulli, etc
--   Validates all user input via [ow](https://github.com/sindresorhus/ow)
+    -   dfUniform, dfNormal, dfPoisson, dfBernoulli, etc see [distributions](src/distributions)
+-   Validates all user input via [ow-lite](https://github.com/transitive-bullshit/ow-lite)
 -   Integrates with [seedrandom](https://github.com/davidbau/seedrandom)
--   Supports node >= 7 and browser
+-   Supports **node.js** >= **7** and browser _(if here has no break)_
+
+### breaking change: v2.x to v3.x
+
+- for more easy know what api do by method name
+- all (**distribution function**) method rename and add prefix `df`  
+  (ex: `itemByWeight` => `dfItemByWeight`)  
+  when run in loop, or wanna performance, pls use (**distribution function**) version
+- remove `shortid`
 
 ## Install
 
@@ -84,30 +94,30 @@ random.int(min = 0, max = 1) // uniform integer in [ min, max ]
 random.boolean() // true or false
 
 // uniform
-random.uniform(min = 0, max = 1) // () => [ min, max )
-random.uniformInt(min = 0, max = 1) // () => [ min, max ]
-random.uniformBoolean() // () => [ false, true ]
+random.dfUniform(min = 0, max = 1) // () => [ min, max )
+random.dfUniformInt(min = 0, max = 1) // () => [ min, max ]
+random.dfUniformBoolean() // () => [ false, true ]
 
 // normal
-random.normal(mu = 0, sigma = 1)
-random.logNormal(mu = 0, sigma = 1)
+random.dfNormal(mu = 0, sigma = 1)
+random.dfLogNormal(mu = 0, sigma = 1)
 
 // bernoulli
-random.bernoulli(p = 0.5)
-random.binomial(n = 1, p = 0.5)
-random.geometric(p = 0.5)
+random.dfBernoulli(p = 0.5)
+random.dfBinomial(n = 1, p = 0.5)
+random.dfGeometric(p = 0.5)
 
 // poisson
-random.poisson(lambda = 1)
-random.exponential(lambda = 1)
+random.dfPoisson(lambda = 1)
+random.dfExponential(lambda = 1)
 
 // misc
-random.irwinHall(n)
-random.bates(n)
-random.pareto(alpha)
+random.dfIrwinHall(n)
+random.dfBates(n)
+random.dfPareto(alpha)
 ```
 
-For convenience, several common uniform samplers are exposed directly:
+For convenience, several common dfUniform samplers are exposed directly:
 
 ```js
 random.float()     // 0.2149383367670885
@@ -120,13 +130,13 @@ a series of independent, identically distributed random variables from the speci
 
 ```js
 // create a normal distribution with default params (mu=1 and sigma=0)
-const normal = random.normal()
+const normal = random.dfNormal()
 normal() // 0.4855465422678824
 normal() // -0.06696771815439678
 normal() // 0.7350852689834705
 
 // create a poisson distribution with default params (lambda=1)
-const poisson = random.poisson()
+const poisson = random.dfPoisson()
 poisson() // 0
 poisson() // 4
 poisson() // 1
@@ -164,48 +174,8 @@ rng.unpatch()
 #### Table of Contents
 
 -   [Random](#random)
-    -   [rng](#rng)
-    -   [random](#random-1)
-    -   [rand](#rand)
-    -   [seed](#seed)
-    -   [srandom](#srandom)
-    -   [srand](#srand)
-    -   [clone](#clone)
-    -   [use](#use)
-    -   [newUse](#newuse)
-    -   [patch](#patch)
-    -   [unpatch](#unpatch)
-    -   [next](#next)
-    -   [float](#float)
-    -   [int](#int)
-    -   [integer](#integer)
-    -   [bool](#bool)
-    -   [boolean](#boolean)
-    -   [byte](#byte)
-    -   [bytes](#bytes)
-    -   [randomBytes](#randombytes)
-    -   [charID](#charid)
-    -   [arrayIndex](#arrayindex)
-    -   [arrayItem](#arrayitem)
-    -   [arrayShuffle](#arrayshuffle)
-    -   [arrayUnique](#arrayunique)
-    -   [uniform](#uniform)
-    -   [uniformInt](#uniformint)
-    -   [uniformBoolean](#uniformboolean)
-    -   [normal](#normal)
-    -   [logNormal](#lognormal)
-    -   [bernoulli](#bernoulli)
-    -   [binomial](#binomial)
-    -   [geometric](#geometric)
-    -   [poisson](#poisson)
-    -   [exponential](#exponential)
-    -   [irwinHall](#irwinhall)
-    -   [bates](#bates)
-    -   [pareto](#pareto)
-    -   [itemByWeight](#itembyweight)
-    -   [reset](#reset)
 
-### [Random](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L18-L507)
+### [Random](https://github.com/bluelovers/random/blob/8337b5ed606e6bb9f67152f8903f898e3b0b5d35/src/random.js#L25-L556)
 
 Seedable random number generator supporting many common distributions.
 
@@ -217,561 +187,33 @@ Type: `function (rng)`
 
 * * *
 
-#### [rng](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L28-L30)
-
-Type: `function ()`
-
-* * *
-
-#### [random](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L37-L39)
-
--   **See: random.next**
-
-Type: `function ()`
-
-* * *
-
-#### [rand](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L45-L47)
-
--   **See: random.next**
-
-create random numbers like Math.random()
-
-Type: `function ()`
-
-* * *
-
-#### [seed](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L51-L54)
-
-initialize new seeds
-
-Type: `function (argv)`
-
--   `argv` **...any** 
-
-* * *
-
-#### [srandom](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L58-L60)
-
--   **See: random.srand**
-
-Type: `function ()`
-
-* * *
-
-#### [srand](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L64-L67)
-
-initialize seeds for rand() to create random numbers
-
-Type: `function (argv)`
-
--   `argv` **...any** 
-
-* * *
-
-#### [clone](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L78-L89)
-
--   **See: Rng.clone**
-
-Creates a new `Random` instance, optionally specifying parameters to
-set a new seed.
-
-Type: `function (seed, args, opts): Random`
-
--   `seed` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** Optional seed for new RNG.
--   `args` **...any** 
--   `opts` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Optional config for new RNG options.
-
-* * *
-
-#### [use](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L108-L111)
-
-Sets the underlying pseudorandom number generator used via
-either an instance of `seedrandom`, a custom instance of RNG
-(for PRNG plugins), or a string specifying the PRNG to use
-along with an optional `seed` and `opts` to initialize the
-RNG.
-
-Type: `function (arg0, args)`
-
--   `arg0`  
--   `args` **...any** 
-
-Example:
-
-```javascript
-const random = require('random')
-
-random.use('xor128', 'foobar')
-// or
-random.use(seedrandom('kittens'))
-// or
-random.use(Math.random)
-```
-
-* * *
-
-#### [newUse](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L115-L118)
-
-create new Random and use
-
-Type: `function (arg0, args)`
-
--   `arg0`  
--   `args` **...any** 
-
-* * *
-
-#### [patch](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L128-L135)
-
-Patches `Math.random` with this Random instance's PRNG.
-
-Type: `function ()`
-
-**Meta**
-
--   **deprecated**: unsafe method
-
-
-* * *
-
-#### [unpatch](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L141-L146)
-
-Restores a previously patched `Math.random` to its original value.
-
-Type: `function ()`
-
-**Meta**
-
--   **deprecated**: unsafe method
-
-
-* * *
-
-#### [next](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L157-L159)
-
-Convenience wrapper around `this.rng.next()`
-
-Returns a floating point number in \[0, 1).
-
-Type: `function (): number`
-
-* * *
-
-#### [float](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L170-L172)
-
-Samples a uniform random floating point number, optionally specifying
-lower and upper bounds.
-
-Convence wrapper around `random.uniform()`
-
-Type: `function (min, max): number`
-
--   `min` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Lower bound (float, inclusive) (optional, default `0`)
--   `max` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Upper bound (float, exclusive) (optional, default `1`)
-
-* * *
-
-#### [int](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L183-L185)
-
-Samples a uniform random integer, optionally specifying lower and upper
-bounds.
-
-Convence wrapper around `random.uniformInt()`
-
-Type: `function (min, max): number`
-
--   `min` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Lower bound (integer, inclusive) (optional, default `0`)
--   `max` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Upper bound (integer, inclusive) (optional, default `1`)
-
-* * *
-
-#### [integer](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L189-L191)
-
--   **See: `random.int`**
-
-Type: `function (min, max)`
-
--   `min`  
--   `max`  
-
-* * *
-
-#### [bool](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L195-L197)
-
--   **See: `random.boolean`**
-
-Type: `function (likelihood)`
-
--   `likelihood`  
-
-* * *
-
-#### [boolean](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L205-L207)
-
-Samples a uniform random boolean value.
-
-Convence wrapper around `random.uniformBoolean()`
-
-Type: `function (likelihood): boolean`
-
--   `likelihood`  
-
-* * *
-
-#### [byte](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L211-L213)
-
-random byte
-
-Type: `function ()`
-
-* * *
-
-#### [bytes](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L219-L221)
-
-random bytes, with size
-
-Type: `function (size)`
-
--   `size`   (optional, default `1`)
-
-Example:
-
-```javascript
-Buffer.from(random.bytes(10)) // => <Buffer 5d 4b 06 94 08 e2 85 5b 79 4f>
-```
-
-* * *
-
-#### [randomBytes](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L227-L229)
-
-same as crypto.randomBytes(size)
-
-Type: `function (size)`
-
--   `size`  
-
-* * *
-
-#### [charID](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L235-L237)
-
-generate random by input string, support unicode
-
-Type: `function (char, size)`
-
--   `char`  
--   `size`  
-
-Example:
-
-```javascript
-random.charID() // => QcVH6FAi
-```
-
-* * *
-
-#### [arrayIndex](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L243-L246)
-
-get random index in array
-
-Type: `function (arr, size, start, end)`
-
--   `arr`  
--   `size`   (optional, default `1`)
--   `start`   (optional, default `0`)
--   `end`  
-
-Example:
-
-```javascript
-console.log(random.arrayIndex([11, 22, 33], 1, 0));
-```
-
-* * *
-
-#### [arrayItem](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L252-L258)
-
-get random item in array
-
-Type: `function (arr, size, start, end)`
-
--   `arr`  
--   `size`   (optional, default `1`)
--   `start`   (optional, default `0`)
--   `end`  
-
-Example:
-
-```javascript
-console.log(random.arrayItem([11, 22, 33], 2));
-```
-
-* * *
-
-#### [arrayShuffle](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L268-L271)
-
-Shuffle an array
-
-Type: `function (arr, overwrite, randIndex)`
-
--   `arr`  
--   `overwrite` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** if true, will change current array
--   `randIndex` **[function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** return index by give length
-
-Example:
-
-```javascript
-random.arrayShuffle([11, 22, 33])
-```
-
-* * *
-
-#### [arrayUnique](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L282-L284)
-
-Get consecutively unique elements from an array
-
-Type: `function (arr, limit, loop, fnRandIndex, fnOutOfLimit)`
-
--   `arr`  
--   `limit`  
--   `loop`  
--   `fnRandIndex`  
--   `fnOutOfLimit`  
-
-Example:
-
-```javascript
-let fn = random.arrayUnique([1, 2, 3, 4], 3);
-console.log(fn(), fn(), fn());
-
-// will throw error
-console.log(fn());
-```
-
-* * *
-
-#### [uniform](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L295-L297)
-
-Generates a [Continuous uniform distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)).
-
-Type: `function (min, max): function`
-
--   `min` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Lower bound (float, inclusive) (optional, default `0`)
--   `max` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Upper bound (float, exclusive) (optional, default `1`)
-
-* * *
-
-#### [uniformInt](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L305-L307)
-
-Generates a [Discrete uniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution).
-
-Type: `function (min, max): function`
-
--   `min` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Lower bound (integer, inclusive) (optional, default `0`)
--   `max` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Upper bound (integer, inclusive) (optional, default `1`)
-
-* * *
-
-#### [uniformBoolean](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L316-L318)
-
-Generates a [Discrete uniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution),
-with two possible outcomes, `true` or \`false.
-
-This method is analogous to flipping a coin.
-
-Type: `function (likelihood): function`
-
--   `likelihood`  
-
-* * *
-
-#### [normal](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L329-L331)
-
-Generates a [Normal distribution](https://en.wikipedia.org/wiki/Normal_distribution).
-
-Type: `function (mu, sigma): function`
-
--   `mu` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Mean (optional, default `0`)
--   `sigma` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Standard deviation (optional, default `1`)
-
-* * *
-
-#### [logNormal](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L339-L341)
-
-Generates a [Log-normal distribution](https://en.wikipedia.org/wiki/Log-normal_distribution).
-
-Type: `function (mu, sigma): function`
-
--   `mu` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Mean of underlying normal distribution (optional, default `0`)
--   `sigma` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Standard deviation of underlying normal distribution (optional, default `1`)
-
-* * *
-
-#### [bernoulli](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L351-L353)
-
-Generates a [Bernoulli distribution](https://en.wikipedia.org/wiki/Bernoulli_distribution).
-
-Type: `function (p): function`
-
--   `p` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Success probability of each trial. (optional, default `0.5`)
-
-* * *
-
-#### [binomial](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L361-L363)
-
-Generates a [Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution).
-
-Type: `function (n, p): function`
-
--   `n` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Number of trials. (optional, default `1`)
--   `p` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Success probability of each trial. (optional, default `0.5`)
-
-* * *
-
-#### [geometric](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L370-L372)
-
-Generates a [Geometric distribution](https://en.wikipedia.org/wiki/Geometric_distribution).
-
-Type: `function (p): function`
-
--   `p` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Success probability of each trial. (optional, default `0.5`)
-
-* * *
-
-#### [poisson](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L382-L384)
-
-Generates a [Poisson distribution](https://en.wikipedia.org/wiki/Poisson_distribution).
-
-Type: `function (lambda): function`
-
--   `lambda` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Mean (lambda > 0) (optional, default `1`)
-
-* * *
-
-#### [exponential](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L391-L393)
-
-Generates an [Exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution).
-
-Type: `function (lambda): function`
-
--   `lambda` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Inverse mean (lambda > 0) (optional, default `1`)
-
-* * *
-
-#### [irwinHall](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L403-L405)
-
-Generates an [Irwin Hall distribution](https://en.wikipedia.org/wiki/Irwin%E2%80%93Hall_distribution).
-
-Type: `function (n): function`
-
--   `n` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Number of uniform samples to sum (n >= 0) (optional, default `1`)
-
-* * *
-
-#### [bates](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L412-L414)
-
-Generates a [Bates distribution](https://en.wikipedia.org/wiki/Bates_distribution).
-
-Type: `function (n): function`
-
--   `n` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Number of uniform samples to average (n >= 1) (optional, default `1`)
-
-* * *
-
-#### [pareto](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L421-L423)
-
-Generates a [Pareto distribution](https://en.wikipedia.org/wiki/Pareto_distribution).
-
-Type: `function (alpha): function`
-
--   `alpha` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Alpha (optional, default `1`)
-
-* * *
-
-#### [itemByWeight](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L458-L460)
-
-returns random weighted item by give array/object
-
-Type: `function (arr, getWeight, shuffle, disableSort, argv)`
-
--   `arr`  
--   `getWeight`  
--   `shuffle`  
--   `disableSort`  
--   `argv` **...any** 
-
-Examples:
-
-```javascript
-const obj = {
-a: {
-w: 5,
-},
-b: {
-w: 5,
-},
-c: {
-w: 1,
-},
-}
-const getWeight = (value, index) => value.w
-const fn = random.itemByWeight(obj, getWeight)
-
-console.log(fn())
-```
-
-```javascript
-const array = [3, 7, 1, 4, 2]
-const fn = random.itemByWeight(array)
-
-console.log(fn())
-```
-
-```javascript
-const array = [3, 7, 1, 4, 2]
-const getWeight = (value, index) => +index + 1
-const fn = random.itemByWeight(array, getWeight)
-
-console.log(fn())
-```
-
-* * *
-
-#### [reset](https://github.com/bluelovers/random/blob/eeda9aad0631b03f4c13677daa420e7bde4cd3da/src/random.js#L500-L503)
-
-reset Memoizes distributions
-
-Type: `function ()`
-
-* * *
-
 ## Todo
 
 -   Distributions
 
-    -   [x] uniform
-    -   [x] uniformInt
-    -   [x] uniformBoolean
-    -   [x] normal
-    -   [x] logNormal
+    -   [x] dfUniform
+    -   [x] dfUniformInt
+    -   [x] dfUniformBoolean
+    -   [x] dfNormal
+    -   [x] dfLogNormal
     -   [ ] chiSquared
     -   [ ] cauchy
     -   [ ] fischerF
     -   [ ] studentT
-    -   [x] bernoulli
-    -   [x] binomial
+    -   [x] dfBernoulli
+    -   [x] dfBinomial
     -   [ ] negativeBinomial
-    -   [x] geometric
-    -   [x] poisson
-    -   [x] exponential
+    -   [x] dfGeometric
+    -   [x] dfPoisson
+    -   [x] dfExponential
     -   [ ] gamma
     -   [ ] hyperExponential
     -   [ ] weibull
     -   [ ] beta
     -   [ ] laplace
-    -   [x] irwinHall
-    -   [x] bates
-    -   [x] pareto
+    -   [x] dfIrwinHall
+    -   [x] dfBates
+    -   [x] dfPareto
 
 -   Generators
 
@@ -790,8 +232,8 @@ Type: `function ()`
 
 -   [d3-random](https://github.com/d3/d3-random) - D3's excellent random number generation library.
 -   [seedrandom](https://github.com/davidbau/seedrandom) - Seedable pseudo random number generator.
--   [random-int](https://github.com/sindresorhus/random-int) - For the common use case of generating uniform random ints.
--   [random-float](https://github.com/sindresorhus/random-float) - For the common use case of generating uniform random floats.
+-   [random-int](https://github.com/sindresorhus/random-int) - For the common use case of generating dfUniform random ints.
+-   [random-float](https://github.com/sindresorhus/random-float) - For the common use case of generating dfUniform random floats.
 -   [randombytes](https://github.com/crypto-browserify/randombytes) - Random crypto bytes for Node.js and the browser.
 
 ## Credit

@@ -10,6 +10,7 @@ import { expect } from 'chai'
 export function getDefaultArgv(method)
 {
 	let argv = []
+	let dfArgv = []
 
 	switch (method)
 	{
@@ -17,14 +18,29 @@ export function getDefaultArgv(method)
 		case 'arrayItem':
 		case 'arrayShuffle':
 		case 'arrayUnique':
-			argv = [[11, 22, 33, 44, 55]]
-			break
+		case 'dfArrayIndex':
+		case 'dfArrayItem':
+		case 'dfArrayShuffle':
+		case 'dfArrayUnique':
+			argv = [[11, 22, 33, 44, 55]];
+			dfArgv = argv.slice();
+			break;
 		case 'itemByWeight':
-			argv = [[1, 2, 1, 3, 3, 4, 1.5]]
+		case 'dfItemByWeight':
+			argv = [[1, 2, 1, 3, 3, 4, 1.5]];
+			break;
+		case 'sumInt':
+		case 'sumFloat':
+		case 'dfSumInt':
+		case 'dfSumFloat':
+			argv = [3, -5, 52];
 			break
 	}
 
-	return argv
+	return {
+		argv,
+		dfArgv,
+	}
 }
 
 let ks = Object
@@ -52,11 +68,11 @@ let ks = Object
 	.reduce(function (a, method)
 	{
 
-		let argv = getDefaultArgv(method)
+		let Argv = getDefaultArgv(method)
 
 		try
 		{
-			let ret = random[method](...argv)
+			let ret = random[method](...Argv.argv)
 
 			let t2 = typeof ret
 
@@ -115,16 +131,28 @@ Object.keys(ks).forEach(function (cat)
 
 		test(`[${cat}] .${method}()`, (t) =>
 		{
-			let argv = getDefaultArgv(method)
+			let Argv = getDefaultArgv(method)
 
-			let ret = random[method](...argv)
+			let ret = random[method](...Argv.argv)
+			let type1 = typeof ret;
+			let is_df = method.indexOf('df') === 0;
 			let val;
 
-			t.true(cat !== 'crash')
+			t.true(cat !== 'crash');
 
-			if (typeof ret === 'function')
+			if (is_df)
 			{
-				val = ret()
+				expect(type1).to.be.eq('function')
+			}
+
+			if (type1 === 'function')
+			{
+				expect(is_df, `${method} ${type1}`).to.be.eq(true)
+			}
+
+			if (type1 === 'function')
+			{
+				val = ret(...Argv.dfArgv)
 			}
 			else
 			{

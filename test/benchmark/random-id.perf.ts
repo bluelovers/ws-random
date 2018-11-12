@@ -15,10 +15,10 @@ const suite = (new Benchmark.Suite);
 
 shortid();
 nanoid();
-const random_charID = tests.random.charID();
-const seedrandom_charID = tests.seedrandom.charID();
-const math_random2_charID = tests['math-random2'].charID();
-const xor128_charID = tests.xor128.charID();
+const random_charID = tests.random.dfCharID();
+const seedrandom_charID = tests.seedrandom.dfCharID();
+const math_random2_charID = tests['math-random2'].dfCharID();
+const xor128_charID = tests.xor128.dfCharID();
 
 suite
 	.add(`shortid`, shortid)

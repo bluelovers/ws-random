@@ -19,7 +19,7 @@ test('returns random weighted item by index', (t) =>
 	const array = ['a', 'b', 'c', 'd']
 	const getWeight = (value, index) => +index + 1
 
-	const fn = rnd.itemByWeight(array, getWeight)
+	const fn = rnd.dfItemByWeight(array, getWeight)
 
 	/*
 { sum: 10,
@@ -70,7 +70,7 @@ test('returns random weighted item by value', (t) =>
 	let rnd = random.clone()
 	const array = [3, 7, 1, 4, 2]
 
-	const fn = rnd.itemByWeight(array)
+	const fn = rnd.dfItemByWeight(array)
 
 	/*
 { sum: 17,
@@ -141,7 +141,7 @@ test('returns random weighted item by prop.w', (t) =>
 	}
 	const getWeight = (value, index) => value.w
 
-	const fn = rnd.itemByWeight(obj, getWeight)
+	const fn = rnd.dfItemByWeight(obj, getWeight)
 
 	/*
 { sum: 10,
@@ -213,7 +213,7 @@ test('allow has same weight', (t) =>
 	}
 	const getWeight = (value, index) => value.w
 
-	const fn = rnd.itemByWeight(obj, getWeight)
+	const fn = rnd.dfItemByWeight(obj, getWeight)
 
 	rnd.next = () =>
 	{
@@ -246,7 +246,7 @@ test('random weighted item in expect percentage +/- 0.05', (t) =>
 	let rnd = random.clone()
 	const arr = [1, 3, 2, 4, 1, 1, 4, 3, 2]
 
-	const fn = rnd.itemByWeight(arr, null, true, true)
+	const fn = rnd.dfItemByWeight(arr, null, true, true)
 
 	let cache = {}
 	let cache2 = {}
@@ -291,7 +291,7 @@ test('[seedrandom] random weighted item in expect percentage +/- 0.05', (t) =>
 	let rnd = random.newUse('seedrandom')
 	const arr = [1, 3, 2, 4, 1, 1, 4, 3, 2]
 
-	const fn = rnd.itemByWeight(arr, null, true, true)
+	const fn = rnd.dfItemByWeight(arr, null, true, true)
 
 	let cache = {}
 	let cache2 = {}

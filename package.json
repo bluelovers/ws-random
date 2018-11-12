@@ -15,14 +15,17 @@
     "fisher",
     "gaussian",
     "generate",
+    "generate-random-numbers",
     "generator",
     "irwinhall",
     "item",
     "list",
     "lognormal",
     "math",
+    "n-random-numbers",
     "normal",
     "number",
+    "numbers",
     "pick",
     "poisson",
     "prng",
@@ -30,7 +33,10 @@
     "pseudorandom",
     "rand",
     "random",
+    "random-sum",
+    "randomSum",
     "randomize",
+    "randomnumbers",
     "rng",
     "seed",
     "seedrandom",
@@ -39,6 +45,7 @@
     "sort",
     "srand",
     "stats",
+    "sum",
     "tychei",
     "uniform",
     "weight",
@@ -80,9 +87,6 @@
     "ow-lite-ts": "^1.0.0",
     "uni-string": "^1.1.0"
   },
-  "peerDependencies": {
-    "seedrandom": "^2.4.4"
-  },
   "devDependencies": {
     "@types/benchmark": "^1.0.31",
     "@types/chai": "^4",
@@ -99,6 +103,9 @@
     "shortid": "^2.2.13",
     "ts-enum-util": "^3.1.0",
     "update-markdown-jsdoc": "^1.0.6"
+  },
+  "peerDependencies": {
+    "seedrandom": "^2.4.4"
   },
   "engines": {
     "node": ">=7"

@@ -3,24 +3,22 @@
  */
 import { Random } from './random';
 
-export interface IRandomDistributions<R extends any>
+export interface IRandomDistributionsFn<R = any> extends Function
 {
-	(random: Random): IRandomDistributionsReturn<R>
-
-	(random: Random, ...argv): IRandomDistributionsReturn<R>
+	(random: Random): R
+	(random: Random, ...argv): R
 }
 
-export interface IRandomDistributionsReturn<R = any>
+export interface IRandomDistributionsCacheRow<F extends IRandomDistributionsFn = IRandomDistributionsFn>
 {
-	(): R
+	key: string,
+	distribution: IRandomDistributions<F>,
+}
 
-	(...argv): R
-
-	(a1, ...argv): R
-
-	(a1, a2, ...argv): R
-
-	(a1, a2, a3, ...argv): R
+export interface IRandomDistributions<F extends IRandomDistributionsFn = IRandomDistributionsFn>
+{
+	(...argv: Parameters<F>): ReturnType<F>
+	(random: Random, ...argv): ReturnType<F>
 }
 
 import bates from './distributions/bates'
@@ -54,6 +52,9 @@ import charID from './distributions/char-id'
 
 import itemByWeight from './distributions/item-by-weight'
 
+import sumFloat from './distributions/sum-float'
+import sumInt from './distributions/sum-int'
+
 export {
 	bates,
 	bernoulli,
@@ -79,6 +80,9 @@ export {
 	itemByWeight,
 
 	charID,
+
+	sumFloat,
+	sumInt,
 }
 
 import * as Distributions from './distributions';

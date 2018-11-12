@@ -74,5 +74,9 @@ function expectInDelta(actual, expected, delta = 0.05) {
     return expected - delta <= actual && actual <= expected + delta;
 }
 exports.expectInDelta = expectInDelta;
+function hashArgv(args) {
+    return String(args.join(';'));
+}
+exports.hashArgv = hashArgv;
 // @ts-ignore
 Object.freeze(exports);

@@ -7,11 +7,11 @@ import inDelta from '../_in-delta'
 import random from '../..'
 import { expect } from 'chai'
 
-test('arrayUnique', (t) =>
+test('dfArrayUnique', (t) =>
 {
 	let arr = [1, 2, 3, 4];
 
-	const d = random.arrayUnique(arr, 3, true);
+	const d = random.dfArrayUnique(arr, 3, true);
 
 	let cache = {}
 
@@ -32,14 +32,14 @@ test('arrayUnique', (t) =>
 	t.true(true)
 });
 
-test('[arrayUnique] return another when out of limit', (t) =>
+test('[dfArrayUnique] return another when out of limit', (t) =>
 {
 	let arr = [1, 2, 3, 4];
 	let limit = 3;
 
 	let arr2 = [7, 8, 9]
 
-	const d = random.arrayUnique(arr, limit, true, null, function ()
+	const d = random.dfArrayUnique(arr, limit, true, null, function ()
 	{
 		return arr2
 	});

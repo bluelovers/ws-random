@@ -6,7 +6,7 @@ exports.default = (random, min, max) => {
         min = 0;
     }
     ow_1.default(min, ow_1.default.number);
-    ow_1.default(max, ow_1.default.number.gte(min));
+    ow_1.default(max, ow_1.default.number.gt(min));
     return () => {
         return random.next() * (max - min) + min;
     };

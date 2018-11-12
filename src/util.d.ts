@@ -31,3 +31,4 @@ export declare function floatToString(n: number): string;
  * inDelta(mean, 0.5, 0.05)
  */
 export declare function expectInDelta(actual: number, expected: number, delta?: number): boolean;
+export declare function hashArgv(args: any[]): string;

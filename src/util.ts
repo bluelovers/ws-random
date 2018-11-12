@@ -104,5 +104,10 @@ export function expectInDelta(actual: number, expected: number, delta = 0.05)
 	return expected - delta <= actual && actual <= expected + delta
 }
 
+export function hashArgv(args: any[]): string
+{
+	return String(args.join(';'));
+}
+
 // @ts-ignore
 Object.freeze(exports)

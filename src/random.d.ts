@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import { Distributions, IRandomDistributions } from './distributions';
+import { Distributions, IRandomDistributions, IRandomDistributionsCacheRow } from './distributions';
 import { IArrayUniqueOutOfLimitCallback, IRandIndex } from './distributions/array-unique';
 import { ENUM_ALPHABET } from './distributions/char-id';
 import { IGetWeight, IObjectInput, IWeightEntrie } from './distributions/item-by-weight';
@@ -19,10 +19,7 @@ import { IRNGFactoryType } from './rng-factory';
 export declare class Random<R extends RNG = RNG> {
     protected _patch: typeof Math.random;
     protected _cache: {
-        [k: string]: {
-            key: string;
-            distribution: IRandomDistributions<unknown>;
-        };
+        [k: string]: IRandomDistributionsCacheRow;
     };
     constructor(rng?: R);
     protected _rng: R;
@@ -112,10 +109,10 @@ export declare class Random<R extends RNG = RNG> {
      */
     next(): number;
     /**
-     * Samples a uniform random floating point number, optionally specifying
+     * Samples a dfUniform random floating point number, optionally specifying
      * lower and upper bounds.
      *
-     * Convence wrapper around `random.uniform()`
+     * Convence wrapper around `random.dfUniform()`
      *
      * @param {number} [min=0] - Lower bound (float, inclusive)
      * @param {number} [max=1] - Upper bound (float, exclusive)
@@ -123,10 +120,10 @@ export declare class Random<R extends RNG = RNG> {
      */
     float(min?: number, max?: number): number;
     /**
-     * Samples a uniform random integer, optionally specifying lower and upper
+     * Samples a dfUniform random integer, optionally specifying lower and upper
      * bounds.
      *
-     * Convence wrapper around `random.uniformInt()`
+     * Convence wrapper around `random.dfUniformInt()`
      *
      * @param {number} [min=0] - Lower bound (integer, inclusive)
      * @param {number} [max=1] - Upper bound (integer, inclusive)
@@ -142,9 +139,9 @@ export declare class Random<R extends RNG = RNG> {
      */
     bool(likelihood?: number): boolean;
     /**
-     * Samples a uniform random boolean value.
+     * Samples a dfUniform random boolean value.
      *
-     * Convence wrapper around `random.uniformBoolean()`
+     * Convence wrapper around `random.dfUniformBoolean()`
      *
      * @return {boolean}
      */
@@ -153,40 +150,46 @@ export declare class Random<R extends RNG = RNG> {
      * random byte
      */
     byte(): number;
+    dfByte(): () => number;
     /**
      * random bytes, with size
      *
      * @example Buffer.from(random.bytes(10)) // => <Buffer 5d 4b 06 94 08 e2 85 5b 79 4f>
      */
     bytes(size?: number): number[];
+    dfBytes(size?: number): () => number[];
     /**
      * same as crypto.randomBytes(size)
      *
      * @param size
      */
     randomBytes(size?: number): Buffer;
+    dfRandomBytes(size?: number): () => Buffer;
+    charID(size: number): string;
+    charID(char?: ENUM_ALPHABET | string | Buffer | number, size?: number): string;
     /**
      * generate random by input string, support unicode
      *
-     * @example random.charID() // => QcVH6FAi
+     * @example random.dfCharID() // => QcVH6FAi
      */
-    charID(size: number): ReturnType<typeof Distributions.charID>;
+    dfCharID(size: number): ReturnType<typeof Distributions.charID>;
     /**
      * generate random by input string, support unicode
      *
-     * @example random.charID() // => QcVH6FAi
+     * @example random.dfCharID() // => QcVH6FAi
      */
-    charID(char?: ENUM_ALPHABET | string | Buffer | number, size?: number): ReturnType<typeof Distributions.charID>;
+    dfCharID(char?: ENUM_ALPHABET | string | Buffer | number, size?: number): ReturnType<typeof Distributions.charID>;
+    arrayIndex<T extends Array<unknown>>(arr: T, size?: number, start?: number, end?: number): number[];
     /**
      * get random index in array
      *
-     * @example console.log(random.arrayIndex([11, 22, 33], 1, 0));
+     * @example console.log(random.dfArrayIndex([11, 22, 33], 1, 0));
      */
-    arrayIndex<T extends Array<unknown>>(arr: T, size?: number, start?: number, end?: number): number[];
+    dfArrayIndex<T extends Array<unknown>>(arr: T, size?: number, start?: number, end?: number): <T_1 extends unknown[]>(arr: T_1) => number[];
     /**
      * get random item in array
      *
-     * @example console.log(random.arrayItem([11, 22, 33], 2));
+     * @example console.log(random.dfArrayItem([11, 22, 33], 2));
      */
     arrayItem<T extends unknown>(arr: T[], size?: number, start?: number, end?: number): T[];
     /**
@@ -196,45 +199,46 @@ export declare class Random<R extends RNG = RNG> {
      * @param {boolean} overwrite - if true, will change current array
      * @param {function} randIndex - return index by give length
      *
-     * @example random.arrayShuffle([11, 22, 33])
+     * @example random.dfArrayShuffle([11, 22, 33])
      */
     arrayShuffle<T extends unknown>(arr: T[], overwrite?: boolean, randIndex?: (len: number) => number): T[];
+    arrayUnique<T extends unknown>(arr: T[], limit?: number, loop?: boolean, fnRandIndex?: IRandIndex, fnOutOfLimit?: IArrayUniqueOutOfLimitCallback<T>): T;
     /**
      * Get consecutively unique elements from an array
      *
      * @example
-     * let fn = random.arrayUnique([1, 2, 3, 4], 3);
+     * let fn = random.dfArrayUnique([1, 2, 3, 4], 3);
      * console.log(fn(), fn(), fn());
      *
      * // will throw error
      * console.log(fn());
      */
-    arrayUnique<T extends unknown>(arr: T[], limit?: number, loop?: boolean, fnRandIndex?: IRandIndex, fnOutOfLimit?: IArrayUniqueOutOfLimitCallback<T>): () => T;
+    dfArrayUnique<T extends unknown>(arr: T[], limit?: number, loop?: boolean, fnRandIndex?: IRandIndex, fnOutOfLimit?: IArrayUniqueOutOfLimitCallback<T>): () => T;
     /**
-     * Generates a [Continuous uniform distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)).
+     * Generates a [Continuous dfUniform distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)).
      *
      * @param {number} [min=0] - Lower bound (float, inclusive)
      * @param {number} [max=1] - Upper bound (float, exclusive)
      * @return {function}
      */
-    uniform(min?: number, max?: number): () => number;
+    dfUniform(min?: number, max?: number): () => number;
     /**
-     * Generates a [Discrete uniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution).
+     * Generates a [Discrete dfUniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution).
      *
      * @param {number} [min=0] - Lower bound (integer, inclusive)
      * @param {number} [max=1] - Upper bound (integer, inclusive)
      * @return {function}
      */
-    uniformInt(min?: number, max?: number): () => number;
+    dfUniformInt(min?: number, max?: number): () => number;
     /**
-     * Generates a [Discrete uniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution),
+     * Generates a [Discrete dfUniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution),
      * with two possible outcomes, `true` or `false.
      *
      * This method is analogous to flipping a coin.
      *
      * @return {function}
      */
-    uniformBoolean(likelihood?: number): () => boolean;
+    dfUniformBoolean(likelihood?: number): () => boolean;
     /**
      * Generates a [Normal distribution](https://en.wikipedia.org/wiki/Normal_distribution).
      *
@@ -242,22 +246,22 @@ export declare class Random<R extends RNG = RNG> {
      * @param {number} [sigma=1] - Standard deviation
      * @return {function}
      */
-    normal(mu?: number, sigma?: number): () => number;
+    dfNormal(mu?: number, sigma?: number): () => number;
     /**
-     * Generates a [Log-normal distribution](https://en.wikipedia.org/wiki/Log-normal_distribution).
+     * Generates a [Log-dfNormal distribution](https://en.wikipedia.org/wiki/Log-normal_distribution).
      *
-     * @param {number} [mu=0] - Mean of underlying normal distribution
-     * @param {number} [sigma=1] - Standard deviation of underlying normal distribution
+     * @param {number} [mu=0] - Mean of underlying dfNormal distribution
+     * @param {number} [sigma=1] - Standard deviation of underlying dfNormal distribution
      * @return {function}
      */
-    logNormal(mu?: number, sigma?: number): () => number;
+    dfLogNormal(mu?: number, sigma?: number): () => number;
     /**
      * Generates a [Bernoulli distribution](https://en.wikipedia.org/wiki/Bernoulli_distribution).
      *
      * @param {number} [p=0.5] - Success probability of each trial.
      * @return {function}
      */
-    bernoulli(p?: number): () => number;
+    dfBernoulli(p?: number): () => number;
     /**
      * Generates a [Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution).
      *
@@ -265,54 +269,70 @@ export declare class Random<R extends RNG = RNG> {
      * @param {number} [p=0.5] - Success probability of each trial.
      * @return {function}
      */
-    binomial(n?: number, p?: number): () => number;
+    dfBinomial(n?: number, p?: number): () => number;
     /**
      * Generates a [Geometric distribution](https://en.wikipedia.org/wiki/Geometric_distribution).
      *
      * @param {number} [p=0.5] - Success probability of each trial.
      * @return {function}
      */
-    geometric(p?: number): () => number;
+    dfGeometric(p?: number): () => number;
     /**
      * Generates a [Poisson distribution](https://en.wikipedia.org/wiki/Poisson_distribution).
      *
      * @param {number} [lambda=1] - Mean (lambda > 0)
      * @return {function}
      */
-    poisson(lambda?: number): () => number;
+    dfPoisson(lambda?: number): () => number;
     /**
      * Generates an [Exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution).
      *
      * @param {number} [lambda=1] - Inverse mean (lambda > 0)
      * @return {function}
      */
-    exponential(lambda?: number): () => number;
+    dfExponential(lambda?: number): () => number;
     /**
      * Generates an [Irwin Hall distribution](https://en.wikipedia.org/wiki/Irwin%E2%80%93Hall_distribution).
      *
-     * @param {number} n - Number of uniform samples to sum (n >= 0)
+     * @param {number} n - Number of dfUniform samples to sum (n >= 0)
      * @return {function}
      */
-    irwinHall(n?: number): () => number;
+    dfIrwinHall(n?: number): () => number;
     /**
      * Generates a [Bates distribution](https://en.wikipedia.org/wiki/Bates_distribution).
      *
-     * @param {number} n - Number of uniform samples to average (n >= 1)
+     * @param {number} n - Number of dfUniform samples to average (n >= 1)
      * @return {function}
      */
-    bates(n?: number): () => number;
+    dfBates(n?: number): () => number;
     /**
      * Generates a [Pareto distribution](https://en.wikipedia.org/wiki/Pareto_distribution).
      *
      * @param {number} alpha - Alpha
      * @return {function}
      */
-    pareto(alpha?: number): () => number;
+    dfPareto(alpha?: number): () => number;
+    itemByWeight<T extends unknown>(arr: T[], getWeight?: IGetWeight<T>, shuffle?: boolean, disableSort?: boolean, ...argv: any[]): [string, T, number];
     /**
      * returns random weighted item by give array/object
      */
-    itemByWeight<T extends unknown>(arr: T[], getWeight?: IGetWeight<T>, shuffle?: boolean, disableSort?: boolean): () => IWeightEntrie<T>;
-    itemByWeight<T extends unknown>(arr: IObjectInput<T>, getWeight?: IGetWeight<T>, shuffle?: boolean, disableSort?: boolean): () => IWeightEntrie<T>;
+    dfItemByWeight<T extends unknown>(arr: T[], getWeight?: IGetWeight<T>, shuffle?: boolean, disableSort?: boolean, ...argv: any[]): () => IWeightEntrie<T>;
+    dfItemByWeight<T extends unknown>(arr: IObjectInput<T>, getWeight?: IGetWeight<T>, shuffle?: boolean, disableSort?: boolean, ...argv: any[]): () => IWeightEntrie<T>;
+    /**
+     * returns n random numbers to get a sum k
+     *
+     * @see https://www.npmjs.com/package/random-sum
+     *
+     * @example
+     * random.sumInt(3, -5, 52)
+     * random.sumInt(3, 52)
+     * random.sumInt(3, 0, 52)
+     * random.sumInt(3, 15, 52)
+     */
+    sumInt(size: number, min: number, max?: number): number[];
+    dfSumInt(size: number, min: number, max?: number): () => number[];
+    sumFloat(size: number, min: number, max?: number): number[];
+    dfSumFloat(size: number, min: number, max?: number): () => number[];
     /**
      * Memoizes distributions to ensure they're only created when necessary.
      *
@@ -327,9 +347,9 @@ export declare class Random<R extends RNG = RNG> {
      *
      * @return {function}
      */
-    protected _memoize<F extends IRandomDistributions<any>>(label: string, getter: F, ...args: any[]): ReturnType<F>;
-    protected _memoizeFake<T extends Function>(label: string, getter: T, ...args: any[]): ReturnType<T>;
-    protected _callDistributions<T extends Function>(getter: T, ...args: any[]): ReturnType<T>;
+    protected _memoize<F extends IRandomDistributions<F>>(label: string, getter: F, ...args: any[]): ReturnType<F>;
+    protected _memoizeFake<F extends IRandomDistributions<F>>(label: string, getter: F, ...args: any[]): ReturnType<F>;
+    protected _callDistributions<F extends IRandomDistributions<F>>(getter: F, ...args: any[]): ReturnType<F>;
     /**
      * reset Memoizes distributions
      */

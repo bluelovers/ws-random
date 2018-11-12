@@ -10,3 +10,6 @@ import ow = require('ow-lite-ts');
 
 export { ow }
 export default ow
+
+// @ts-ignore
+Object.freeze(exports)

@@ -9,3 +9,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const ow = require("ow-lite-ts");
 exports.ow = ow;
 exports.default = ow;
+// @ts-ignore
+Object.freeze(exports);

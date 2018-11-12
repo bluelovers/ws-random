@@ -5,7 +5,7 @@ import RNG from '../rng'
 export default (random: Random, n: number) =>
 {
 	ow(n, ow.number.integer.positive)
-	const irwinHall = random.irwinHall(n)
+	const irwinHall = random.dfIrwinHall(n)
 
 	return () =>
 	{
