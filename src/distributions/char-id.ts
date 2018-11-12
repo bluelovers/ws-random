@@ -3,6 +3,7 @@
  */
 
 import UString = require("uni-string");
+import { floatToString } from '../util';
 import ow from '../util/ow'
 import { Random } from '../random';
 import RNG from '../rng'
@@ -19,8 +20,21 @@ export enum ENUM_ALPHABET
 	DEFAULT = 'ModuleSymbhasOwnPr0123456789ABCDEFGHIJKLNQRTUVWXYZcfgijkpqtvxz0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
 }
 
-export default (random: Random, char?: ENUM_ALPHABET | string | Buffer, size: number = 8) =>
+export default (random: Random, char?: ENUM_ALPHABET | string | Buffer | number, size?: number) =>
 {
+	if (typeof char === 'number')
+	{
+		if (typeof size === 'number')
+		{
+			char = floatToString(char)
+		}
+		else
+		{
+			[size, char] = [char, null];
+		}
+	}
+
+	size = size || 8;
 	ow(size, ow.number.integer.gt(0));
 
 	if (!char)
@@ -31,6 +45,8 @@ export default (random: Random, char?: ENUM_ALPHABET | string | Buffer, size: nu
 	let ls = UString.create(char).split('');
 	let len = ls.length;
 
+	ow(len, ow.number.integer.gt(1), `char.length`);
+
 	const randIndex = () =>
 	{
 		return _randIndex(random, len)
@@ -38,7 +54,7 @@ export default (random: Random, char?: ENUM_ALPHABET | string | Buffer, size: nu
 
 	return () =>
 	{
-		let list = []
+		let list: string[] = [];
 		for (let i = 0; i < size; i++)
 		{
 			list.push(ls[randIndex()])
@@ -48,4 +64,4 @@ export default (random: Random, char?: ENUM_ALPHABET | string | Buffer, size: nu
 }
 
 // @ts-ignore
-Object.freeze(exports)
+Object.freeze(exports);

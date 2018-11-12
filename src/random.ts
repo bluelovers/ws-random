@@ -343,7 +343,19 @@ export class Random<R extends RNG = RNG>
 	 *
 	 * @example random.charID() // => QcVH6FAi
 	 */
-	charID(char?: ENUM_ALPHABET | string | Buffer, size?: number)
+	charID(size: number): ReturnType<typeof Distributions.charID>
+	/**
+	 * generate random by input string, support unicode
+	 *
+	 * @example random.charID() // => QcVH6FAi
+	 */
+	charID(char?: ENUM_ALPHABET | string | Buffer | number, size?: number): ReturnType<typeof Distributions.charID>
+	/**
+	 * generate random by input string, support unicode
+	 *
+	 * @example random.charID() // => QcVH6FAi
+	 */
+	charID(char?: ENUM_ALPHABET | string | Buffer | number, size?: number)
 	{
 		return Distributions.charID(this, char, size)
 	}

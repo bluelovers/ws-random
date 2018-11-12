@@ -83,9 +83,13 @@ export function cloneClass(RNGClass, thisArgv, ...argv)
 export function floatToString(n: number)
 {
 	let int = Math.floor(n)
-	let float = n - int
+	let float = n - int;
 
-	return String(int) + '.' + String(float).split('.')[1]
+	let s = String(float)
+		.split('.')[1]
+	;
+
+	return String(int) + (s ? '.' + s : '');
 }
 
 /**

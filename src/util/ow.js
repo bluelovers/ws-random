@@ -5,6 +5,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * make easy replace to other ow like lib
  */
-const ow_lite_ts_1 = require("ow-lite-ts");
-exports.ow = ow_lite_ts_1.default;
-exports.default = ow_lite_ts_1.default;
+//import ow from 'ow-lite-ts'
+const ow = require("ow-lite-ts");
+exports.ow = ow;
+exports.default = ow;

@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import { IRandomDistributions } from './distributions';
+import { Distributions, IRandomDistributions } from './distributions';
 import { IArrayUniqueOutOfLimitCallback, IRandIndex } from './distributions/array-unique';
 import { ENUM_ALPHABET } from './distributions/char-id';
 import { IGetWeight, IObjectInput, IWeightEntrie } from './distributions/item-by-weight';
@@ -170,7 +170,13 @@ export declare class Random<R extends RNG = RNG> {
      *
      * @example random.charID() // => QcVH6FAi
      */
-    charID(char?: ENUM_ALPHABET | string | Buffer, size?: number): () => string;
+    charID(size: number): ReturnType<typeof Distributions.charID>;
+    /**
+     * generate random by input string, support unicode
+     *
+     * @example random.charID() // => QcVH6FAi
+     */
+    charID(char?: ENUM_ALPHABET | string | Buffer | number, size?: number): ReturnType<typeof Distributions.charID>;
     /**
      * get random index in array
      *

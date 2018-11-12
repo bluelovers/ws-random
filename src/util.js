@@ -58,7 +58,9 @@ exports.cloneClass = cloneClass;
 function floatToString(n) {
     let int = Math.floor(n);
     let float = n - int;
-    return String(int) + '.' + String(float).split('.')[1];
+    let s = String(float)
+        .split('.')[1];
+    return String(int) + (s ? '.' + s : '');
 }
 exports.floatToString = floatToString;
 /**
