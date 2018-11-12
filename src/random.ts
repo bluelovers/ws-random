@@ -37,6 +37,7 @@ import { autobind } from 'core-decorators';
  *
  * @param {Rng|function} [rng=Math.random] - Underlying pseudorandom number generator.
  */
+@autobind
 export class Random<R extends RNG = RNG>
 {
 	protected _patch: typeof Math.random;

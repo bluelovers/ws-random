@@ -1,9 +1,17 @@
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+var Random_1;
 const ow_1 = require("./util/ow");
 const distributions_1 = require("./distributions");
 const rng_1 = require("./rng");
 const rng_factory_1 = require("./rng-factory");
 const util_1 = require("./util");
+const core_decorators_1 = require("core-decorators");
 /**
  * Seedable random number generator supporting many common distributions.
  *
@@ -14,7 +22,7 @@ const util_1 = require("./util");
  *
  * @param {Rng|function} [rng=Math.random] - Underlying pseudorandom number generator.
  */
-class Random {
+let Random = Random_1 = class Random {
     constructor(rng) {
         this._cache = {};
         if (rng)
@@ -76,12 +84,12 @@ class Random {
      */
     clone(seed, ...args) {
         let o;
-        if (this instanceof Random) {
+        if (this instanceof Random_1) {
             // @ts-ignore
             o = (this.__proto__.constructor);
         }
         else {
-            o = Random;
+            o = Random_1;
         }
         // @ts-ignore
         return new o(this.rng.clone(seed, ...args));
@@ -112,7 +120,7 @@ class Random {
      * create new Random and use
      */
     newUse(arg0, ...args) {
-        let o = util_1.getClass(Random, this);
+        let o = util_1.getClass(Random_1, this);
         return new o(rng_factory_1.default(arg0, ...args));
     }
     cloneUse(arg0, ...args) {
@@ -503,7 +511,10 @@ class Random {
     get [Symbol.toStringTag]() {
         return this._rng.name;
     }
-}
+};
+Random = Random_1 = __decorate([
+    core_decorators_1.autobind
+], Random);
 exports.Random = Random;
 exports.random = new Random();
 // @ts-ignore

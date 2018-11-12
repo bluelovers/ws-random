@@ -1,6 +1,6 @@
 {
   "name": "random-extra",
-  "version": "2.10.1",
+  "version": "3.0.0",
   "description": "Seedable random number generator supporting many common distributions.",
   "keywords": [
     "alea",
@@ -72,6 +72,7 @@
     "test": "ava --serial -v test/**/*.test.js"
   },
   "dependencies": {
+    "@types/nanoid": "^1.2.0",
     "@types/seedrandom": "^2",
     "core-decorators": "^0.20.0",
     "hash-sum": "^1.0.2",
@@ -80,13 +81,12 @@
     "uni-string": "^1.1.0"
   },
   "peerDependencies": {
-    "seedrandom": "^2.4.4",
-    "shortid": "^2.2.13"
+    "seedrandom": "^2.4.4"
   },
   "devDependencies": {
-    "@types/core-decorators": "^0.20.0",
     "@types/benchmark": "^1.0.31",
     "@types/chai": "^4",
+    "@types/core-decorators": "^0.20.0",
     "ava": "^0.25.0",
     "benchmark": "^2.1.4",
     "chai": "^4",
@@ -96,6 +96,7 @@
     "math-random": "^1.0.1",
     "microtime": "^2.1.8",
     "random": "^2.0.12",
+    "shortid": "^2.2.13",
     "ts-enum-util": "^3.1.0",
     "update-markdown-jsdoc": "^1.0.6"
   },
