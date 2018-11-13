@@ -8,6 +8,10 @@ import * as UtilMath from '../util/math';
 
 import _sumNumCore from './internal/sum-num';
 
+/**
+ * @todo support max < 1
+ * @fixme bug when min < 0
+ */
 export default (random: Random, size: number, min: number, max?: number) =>
 {
 	if (max === undefined)
@@ -23,11 +27,11 @@ export default (random: Random, size: number, min: number, max?: number) =>
 	// @ts-ignore
 	expect(min).to.be.an.integer();
 	// @ts-ignore
-	expect(max).to.be.an.integer.gt(min);
+	expect(max, 'current only support max > 1').to.be.an.integer.gt(min).gt(1);
 	// @ts-ignore
 	expect(size).to.be.an.integer.gt(1);
 
-	expect(max - min, 'max - min').gte(Math.max(size, UtilMath.sum_1_to_n(size)));
+	expect(Math.abs(max - min), 'max - min').gte(Math.max(size, UtilMath.sum_1_to_n(size) - Math.abs(min)));
 	expect(max / size, 'max / size').gte(min);
 
 	return _sumNumCore(
