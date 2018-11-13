@@ -101,6 +101,7 @@
     "math-random": "^1.0.1",
     "microtime": "^2.1.8",
     "random": "^2.0.12",
+    "seedrandom": "^2.4.4",
     "shortid": "^2.2.13",
     "ts-enum-util": "^3.1.0",
     "update-markdown-jsdoc": "^1.0.6"

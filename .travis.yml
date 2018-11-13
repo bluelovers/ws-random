@@ -1,7 +1,7 @@
 language: node_js
 cache: yarn
 node_js:
-  - lts
+  - lts/*
   - node
   - 10
   - 9
@@ -9,5 +9,4 @@ node_js:
   - 7
 #  - 6
 before_script:
-  - yarn add ts-node typescript seedrandom
-
+  - yarn add ts-node typescript
