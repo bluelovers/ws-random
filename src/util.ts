@@ -109,5 +109,20 @@ export function hashArgv(args: any[]): string
 	return String(args.join(';'));
 }
 
+export function isNum(n: number)
+{
+	return n === +n
+}
+
+export function isInt(n: number)
+{
+	return n === (n | 0)
+}
+
+export function isFloat(n: number)
+{
+	return n === +n && n !== (n | 0);
+}
+
 // @ts-ignore
 Object.freeze(exports)

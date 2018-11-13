@@ -78,5 +78,17 @@ function hashArgv(args) {
     return String(args.join(';'));
 }
 exports.hashArgv = hashArgv;
+function isNum(n) {
+    return n === +n;
+}
+exports.isNum = isNum;
+function isInt(n) {
+    return n === (n | 0);
+}
+exports.isInt = isInt;
+function isFloat(n) {
+    return n === +n && n !== (n | 0);
+}
+exports.isFloat = isFloat;
 // @ts-ignore
 Object.freeze(exports);

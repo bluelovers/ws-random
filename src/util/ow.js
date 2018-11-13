@@ -1,6 +1,3 @@
-/**
- * Created by user on 2018/11/10/010.
- */
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * make easy replace to other ow like lib
@@ -8,6 +5,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //import ow from 'ow-lite-ts'
 const ow = require("ow-lite-ts");
 exports.ow = ow;
-exports.default = ow;
+const _chai = require("chai");
+//import { Assertion } from 'chai'
+//import { expect, assert } from 'chai'
+const chai_asserttype_extra_1 = require("chai-asserttype-extra");
+const chai = chai_asserttype_extra_1.ChaiPlugin.install(_chai);
+exports.chai = chai;
+const expect = chai.expect;
+exports.expect = expect;
+const assert = chai.assert;
+exports.assert = assert;
+exports.default = expect;
 // @ts-ignore
 Object.freeze(exports);

@@ -17,7 +17,7 @@ const logFactorial = (k) => {
 };
 const logSqrt2PI = 0.91893853320467267;
 exports.default = (random, lambda = 1) => {
-    ow_1.default(lambda, ow_1.default.number.positive);
+    ow_1.ow(lambda, ow_1.ow.number.positive);
     if (lambda < 10) {
         // inversion method
         const expMean = Math.exp(-lambda);

@@ -22,7 +22,7 @@ class RNGFunction extends rng_1.default {
     }
     seed(seed, opts, ...argv) {
         this._rng = seed || this._rng;
-        ow_1.default(this._rng, ow_1.default.function);
+        ow_1.ow(this._rng, ow_1.ow.function);
     }
     clone(seed, opts, ...argv) {
         return util_1.cloneClass(RNGFunction, this, seed, opts, ...argv);

@@ -62,7 +62,7 @@ function _createWeight(arr, getWeight = _getWeight) {
         let weight = getWeight(value, key);
         //weight = Math.exp(weight)
         weight = +weight;
-        ow_1.default(weight, ow_1.default.number.gt(0));
+        ow_1.ow(weight, ow_1.ow.number.gt(0));
         sum += weight;
         return {
             key,

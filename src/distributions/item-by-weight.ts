@@ -2,7 +2,7 @@ import random from '../random';
 import { Random } from '../random';
 import { randIndex as _randIndex } from '../util/distributions';
 import uniformInt from './uniform-int';
-import ow from '../util/ow'
+import { ow } from '../util/ow'
 import { swapAlgorithm } from '../util/array';
 import arrayShuffle from './array-shuffle'
 

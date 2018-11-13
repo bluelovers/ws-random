@@ -1,4 +1,4 @@
-import ow from '../util/ow'
+import { ow } from '../util/ow'
 import { Random } from '../random';
 import RNG from '../rng'
 

@@ -1,0 +1,69 @@
+import { Random } from '../../random';
+import { UtilDistributions } from '../../util/distributions';
+import * as UtilMath from '../../util/math';
+
+export default function (
+	random: Random,
+	size: number,
+	min: number,
+	max: number,
+	fn: () => number,
+	fn2: (...args: Parameters<typeof UtilDistributions.int>) => number,
+	chk_sum?: boolean,
+)
+{
+	return () =>
+	{
+		let ret: number[] = [];
+		let bool: boolean;
+
+		LABEL_TOP: do
+		{
+			let sum = max;
+			let i = size - 1;
+			let n: number;
+
+			ret[i] = fn();
+
+			LABEL_SUB: while (i > 1)
+			{
+				n = sum - ret[i];
+
+				if (n < min || chk_sum && n < (UtilMath.sum_1_to_n(i) + min))
+				{
+					bool = true;
+					continue LABEL_TOP;
+				}
+
+				sum -= ret[i--];
+
+				ret[i] = fn2(random, min, n);
+			}
+
+			ret[0] = sum - ret[i];
+
+			bool = chk(ret, size, min, max)
+		}
+		while(bool);
+
+		return ret
+	}
+}
+
+function chk(
+	ret: number[],
+	size: number,
+	min: number,
+	max: number,
+)
+{
+	return ret
+		.filter(function (n, idx)
+		{
+			return n >= min
+				&& n <= max
+				&& idx === ret.indexOf(n)
+		})
+		.length !== size
+		;
+}

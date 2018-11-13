@@ -32,7 +32,7 @@ Welcome to the most **random** module on npm! 😜
 ## Install
 
 ```bash
-npm install --save random-extra
+npm install random-extra seedrandom
 ```
 
 [benchmark](docs/benchmark)

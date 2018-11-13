@@ -4,7 +4,7 @@
 
 import UString = require("uni-string");
 import { floatToString } from '../util';
-import ow from '../util/ow'
+import { ow } from '../util/ow'
 import { Random } from '../random';
 import RNG from '../rng'
 import { randIndex as _randIndex } from '../util/distributions';

@@ -1,4 +1,4 @@
-import ow from '../util/ow'
+import { ow } from '../util/ow'
 import RNG from '../rng'
 import { cloneClass, getClass } from '../util';
 
