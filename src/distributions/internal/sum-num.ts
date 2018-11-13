@@ -10,8 +10,12 @@ export default function (
 	fn: () => number,
 	fn2: (...args: Parameters<typeof UtilDistributions.int>) => number,
 	chk_sum?: boolean,
+	noUnique?: boolean,
 )
 {
+	chk_sum = !!chk_sum;
+	noUnique = !!noUnique;
+
 	return () =>
 	{
 		let ret: number[] = [];
@@ -42,7 +46,7 @@ export default function (
 
 			ret[0] = sum - ret[i];
 
-			bool = chk(ret, size, min, max)
+			bool = chk(ret, size, min, max, noUnique)
 		}
 		while(bool);
 
@@ -55,6 +59,7 @@ function chk(
 	size: number,
 	min: number,
 	max: number,
+	noUnique: boolean,
 )
 {
 	return ret
@@ -62,7 +67,7 @@ function chk(
 		{
 			return n >= min
 				&& n <= max
-				&& idx === ret.indexOf(n)
+				&& (noUnique || idx === ret.indexOf(n))
 		})
 		.length !== size
 		;

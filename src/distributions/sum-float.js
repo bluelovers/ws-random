@@ -7,7 +7,7 @@ const ow_1 = require("../util/ow");
  * @todo support max <= 0
  * @fixme bug when min < 0
  */
-exports.default = (random, size, min, max) => {
+exports.default = (random, size, min, max, noUnique) => {
     if (max === undefined) {
         max = min;
         min = 0;
@@ -18,7 +18,7 @@ exports.default = (random, size, min, max) => {
     // @ts-ignore
     ow_1.expect(size).integer.gt(1);
     ow_1.expect(max / size, 'max / size').gt(min);
-    return sum_num_1.default(random, size, min, max, uniform_1.default(random, min, max / (max / size)), distributions_1.UtilDistributions.float);
+    return sum_num_1.default(random, size, min, max, uniform_1.default(random, min, max / (max / size)), distributions_1.UtilDistributions.float, null, noUnique);
 };
 // @ts-ignore
 Object.freeze(exports);

@@ -1,6 +1,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const UtilMath = require("../../util/math");
-function default_1(random, size, min, max, fn, fn2, chk_sum) {
+function default_1(random, size, min, max, fn, fn2, chk_sum, noUnique) {
+    chk_sum = !!chk_sum;
+    noUnique = !!noUnique;
     return () => {
         let ret = [];
         let bool;
@@ -19,18 +21,18 @@ function default_1(random, size, min, max, fn, fn2, chk_sum) {
                 ret[i] = fn2(random, min, n);
             }
             ret[0] = sum - ret[i];
-            bool = chk(ret, size, min, max);
+            bool = chk(ret, size, min, max, noUnique);
         } while (bool);
         return ret;
     };
 }
 exports.default = default_1;
-function chk(ret, size, min, max) {
+function chk(ret, size, min, max, noUnique) {
     return ret
         .filter(function (n, idx) {
         return n >= min
             && n <= max
-            && idx === ret.indexOf(n);
+            && (noUnique || idx === ret.indexOf(n));
     })
         .length !== size;
 }

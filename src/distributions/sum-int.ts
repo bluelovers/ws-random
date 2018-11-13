@@ -12,7 +12,7 @@ import _sumNumCore from './internal/sum-num';
  * @todo support max < 1
  * @fixme bug when min < 0
  */
-export default (random: Random, size: number, min: number, max?: number) =>
+export default (random: Random, size: number, min: number, max?: number, noUnique?: boolean) =>
 {
 	if (max === undefined)
 	{
@@ -42,6 +42,7 @@ export default (random: Random, size: number, min: number, max?: number) =>
 		uniformInt(random, min, max),
 		UtilDistributions.int,
 		true,
+		noUnique,
 	)
 }
 

@@ -500,17 +500,17 @@ let Random = Random_1 = class Random {
      * random.sumInt(3, 0, 52)
      * random.sumInt(3, 15, 52)
      */
-    sumInt(size, min, max) {
-        return this.dfSumInt(size, min, max)();
+    sumInt(size, min, max, noUnique) {
+        return this.dfSumInt(size, min, max, noUnique)();
     }
-    dfSumInt(size, min, max) {
-        return this._memoize('sumInt', distributions_1.Distributions.sumInt, size, min, max);
+    dfSumInt(size, min, max, noUnique) {
+        return this._memoize('sumInt', distributions_1.Distributions.sumInt, size, min, max, noUnique);
     }
-    sumFloat(size, min, max) {
-        return this.dfSumFloat(size, min, max)();
+    sumFloat(size, min, max, noUnique) {
+        return this.dfSumFloat(size, min, max, noUnique)();
     }
-    dfSumFloat(size, min, max) {
-        return this._memoize('sumFloat', distributions_1.Distributions.sumFloat, size, min, max);
+    dfSumFloat(size, min, max, noUnique) {
+        return this._memoize('sumFloat', distributions_1.Distributions.sumFloat, size, min, max, noUnique);
     }
     // --------------------------------------------------------------------------
     // Internal

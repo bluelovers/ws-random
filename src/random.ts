@@ -706,24 +706,24 @@ export class Random<R extends RNG = RNG>
 	 * random.sumInt(3, 0, 52)
 	 * random.sumInt(3, 15, 52)
 	 */
-	sumInt(size: number, min: number, max?: number)
+	sumInt(size: number, min: number, max?: number, noUnique?: boolean)
 	{
-		return this.dfSumInt(size, min, max)()
+		return this.dfSumInt(size, min, max, noUnique)()
 	}
 
-	dfSumInt(size: number, min: number, max?: number)
+	dfSumInt(size: number, min: number, max?: number, noUnique?: boolean)
 	{
-		return this._memoize('sumInt', Distributions.sumInt, size, min, max)
+		return this._memoize('sumInt', Distributions.sumInt, size, min, max, noUnique)
 	}
 
-	sumFloat(size: number, min: number, max?: number)
+	sumFloat(size: number, min: number, max?: number, noUnique?: boolean)
 	{
-		return this.dfSumFloat(size, min, max)()
+		return this.dfSumFloat(size, min, max, noUnique)()
 	}
 
-	dfSumFloat(size: number, min: number, max?: number)
+	dfSumFloat(size: number, min: number, max?: number, noUnique?: boolean)
 	{
-		return this._memoize('sumFloat', Distributions.sumFloat, size, min, max)
+		return this._memoize('sumFloat', Distributions.sumFloat, size, min, max, noUnique)
 	}
 
 	// --------------------------------------------------------------------------

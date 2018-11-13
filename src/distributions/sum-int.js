@@ -8,7 +8,7 @@ const sum_num_1 = require("./internal/sum-num");
  * @todo support max < 1
  * @fixme bug when min < 0
  */
-exports.default = (random, size, min, max) => {
+exports.default = (random, size, min, max, noUnique) => {
     if (max === undefined) {
         max = min;
         min = 0;
@@ -24,7 +24,7 @@ exports.default = (random, size, min, max) => {
     ow_1.expect(size).to.be.an.integer.gt(1);
     ow_1.expect(Math.abs(max - min), 'max - min').gte(Math.max(size, UtilMath.sum_1_to_n(size) - Math.abs(min)));
     ow_1.expect(max / size, 'max / size').gte(min);
-    return sum_num_1.default(random, size, min, max, uniform_int_1.default(random, min, max), distributions_1.UtilDistributions.int, true);
+    return sum_num_1.default(random, size, min, max, uniform_int_1.default(random, min, max), distributions_1.UtilDistributions.int, true, noUnique);
 };
 // @ts-ignore
 Object.freeze(exports);

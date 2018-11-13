@@ -13,7 +13,7 @@ import { ow, expect, assert } from '../util/ow'
  * @todo support max <= 0
  * @fixme bug when min < 0
  */
-export default (random: Random, size: number, min: number, max?: number) =>
+export default (random: Random, size: number, min: number, max?: number, noUnique?: boolean) =>
 {
 	if (max === undefined)
 	{
@@ -35,6 +35,8 @@ export default (random: Random, size: number, min: number, max?: number) =>
 		max,
 		uniformFloat(random, min, max / (max / size)),
 		UtilDistributions.float,
+		null,
+		noUnique,
 	)
 }
 
