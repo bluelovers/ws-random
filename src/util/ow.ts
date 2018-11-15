@@ -17,6 +17,7 @@ const assert = chai.assert;
 
 export { ow }
 export { expect, assert, chai }
+
 export default expect
 
 // @ts-ignore
