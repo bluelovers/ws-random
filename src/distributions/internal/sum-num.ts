@@ -1,8 +1,31 @@
+
 import { Random } from '../../random';
 import { UtilDistributions } from '../../util/distributions';
 import * as UtilMath from '../../util/math';
 
-export default function ({
+export default coreFn1
+
+export interface ISumNumParameterBase
+{
+	random: Random,
+
+	size: number,
+
+	fn: () => number,
+	fn2: (...args: Parameters<typeof UtilDistributions.int>) => number,
+
+	chk_sum?: boolean,
+	noUnique?: boolean,
+}
+
+export interface ISumNumParameter extends ISumNumParameterBase
+{
+	min?: number,
+	max?: number,
+	sum?: number,
+}
+
+export function coreFn2({
 	random,
 	size,
 	min,
@@ -11,16 +34,21 @@ export default function ({
 	fn2,
 	chk_sum,
 	noUnique,
-} : {
-	random: Random,
-	size: number,
-	min: number,
-	max: number,
-	fn: () => number,
-	fn2: (...args: Parameters<typeof UtilDistributions.int>) => number,
-	chk_sum?: boolean,
-	noUnique?: boolean,
-})
+} : ISumNumParameter)
+{
+
+}
+
+export function coreFn1({
+	random,
+	size,
+	min,
+	max,
+	fn,
+	fn2,
+	chk_sum,
+	noUnique,
+} : ISumNumParameter)
 {
 	chk_sum = !!chk_sum;
 	noUnique = !!noUnique;
@@ -63,7 +91,7 @@ export default function ({
 	}
 }
 
-function chk(
+export function chk(
 	ret: number[],
 	size: number,
 	min: number,

@@ -72,3 +72,4 @@ tests/temp*
 #!/test/distributions/*.test.ts
 !/test/benchmark/*.js
 
+!/test/mocha/**/*.test.ts

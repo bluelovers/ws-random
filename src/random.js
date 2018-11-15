@@ -26,8 +26,10 @@ const core_decorators_1 = require("core-decorators");
 let Random = Random_1 = class Random {
     constructor(rng) {
         this._cache = {};
-        if (rng)
-            ow_1.ow(rng, ow_1.ow.object.instanceOf(rng_1.default));
+        if (rng) {
+            //ow(rng, ow.object.instanceOf(RNG))
+            ow_1.expect(rng).instanceof(rng_1.default);
+        }
         this.use(rng);
     }
     /**

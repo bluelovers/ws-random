@@ -1,6 +1,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const UtilMath = require("../../util/math");
-function default_1({ random, size, min, max, fn, fn2, chk_sum, noUnique, }) {
+exports.default = coreFn1;
+function coreFn2({ random, size, min, max, fn, fn2, chk_sum, noUnique, }) {
+}
+exports.coreFn2 = coreFn2;
+function coreFn1({ random, size, min, max, fn, fn2, chk_sum, noUnique, }) {
     chk_sum = !!chk_sum;
     noUnique = !!noUnique;
     return () => {
@@ -26,7 +30,7 @@ function default_1({ random, size, min, max, fn, fn2, chk_sum, noUnique, }) {
         return ret;
     };
 }
-exports.default = default_1;
+exports.coreFn1 = coreFn1;
 function chk(ret, size, min, max, noUnique) {
     return ret
         .filter(function (n, idx) {
@@ -36,3 +40,4 @@ function chk(ret, size, min, max, noUnique) {
     })
         .length !== size;
 }
+exports.chk = chk;

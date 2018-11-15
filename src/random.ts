@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import { ow } from './util/ow'
+import { expect, ow } from './util/ow'
 import {
 	Distributions,
 	IRandomDistributions,
@@ -52,7 +52,11 @@ export class Random<R extends RNG = RNG>
 
 	constructor(rng?: R)
 	{
-		if (rng) ow(rng, ow.object.instanceOf(RNG))
+		if (rng)
+		{
+			//ow(rng, ow.object.instanceOf(RNG))
+			expect(rng).instanceof(RNG)
+		}
 
 		this.use(rng)
 	}
