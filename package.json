@@ -76,9 +76,9 @@
     "docs": "update-markdown-jsdoc -f src/random.js --shallow",
     "postpublish": "echo postpublish && node ./test/script/publish-after",
     "prepublishOnly": "npm run docs && npm run test && npx sort-package-json",
-    "test-mocha": "npx mocha --require ts-node/register !(node_modules)/**/mocha/**/*.{test,spec}.{ts,tsx}",
+    "test-mocha": "npx mocha --require ts-node/register !(node_modules)/**/*.{test,spec}.{ts,tsx}",
     "test-ava": "npx ava --serial -v test/**/distributions/**/*.test.js",
-    "test": "npm run test-ava && npm run test-mocha"
+    "test": "npm run test-mocha"
   },
   "dependencies": {
     "@types/nanoid": "^1.2.0",
