@@ -24,7 +24,16 @@ exports.default = (random, size, min, max, noUnique) => {
     ow_1.expect(size).to.be.an.integer.gt(1);
     ow_1.expect(Math.abs(max - min), 'max - min').gte(Math.max(size, UtilMath.sum_1_to_n(size) - Math.abs(min)));
     ow_1.expect(max / size, 'max / size').gte(min);
-    return sum_num_1.default(random, size, min, max, uniform_int_1.default(random, min, max), distributions_1.UtilDistributions.int, true, noUnique);
+    return sum_num_1.default({
+        random,
+        size,
+        min,
+        max,
+        fn: uniform_int_1.default(random, min, max),
+        fn2: distributions_1.UtilDistributions.int,
+        chk_sum: true,
+        noUnique,
+    });
 };
 // @ts-ignore
 Object.freeze(exports);

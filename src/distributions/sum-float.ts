@@ -28,16 +28,16 @@ export default (random: Random, size: number, min: number, max?: number, noUniqu
 	expect(size).integer.gt(1);
 	expect(max / size, 'max / size').gt(min);
 
-	return _sumNumCore(
+	return _sumNumCore({
 		random,
 		size,
 		min,
 		max,
-		uniformFloat(random, min, max / (max / size)),
-		UtilDistributions.float,
-		null,
+		fn: uniformFloat(random, min, max / (max / size)),
+		fn2: UtilDistributions.float,
+		chk_sum: null,
 		noUnique,
-	)
+	})
 }
 
 // @ts-ignore

@@ -2,7 +2,16 @@ import { Random } from '../../random';
 import { UtilDistributions } from '../../util/distributions';
 import * as UtilMath from '../../util/math';
 
-export default function (
+export default function ({
+	random,
+	size,
+	min,
+	max,
+	fn,
+	fn2,
+	chk_sum,
+	noUnique,
+} : {
 	random: Random,
 	size: number,
 	min: number,
@@ -11,7 +20,7 @@ export default function (
 	fn2: (...args: Parameters<typeof UtilDistributions.int>) => number,
 	chk_sum?: boolean,
 	noUnique?: boolean,
-)
+})
 {
 	chk_sum = !!chk_sum;
 	noUnique = !!noUnique;

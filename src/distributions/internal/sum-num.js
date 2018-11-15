@@ -1,6 +1,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const UtilMath = require("../../util/math");
-function default_1(random, size, min, max, fn, fn2, chk_sum, noUnique) {
+function default_1({ random, size, min, max, fn, fn2, chk_sum, noUnique, }) {
     chk_sum = !!chk_sum;
     noUnique = !!noUnique;
     return () => {

@@ -18,7 +18,16 @@ exports.default = (random, size, min, max, noUnique) => {
     // @ts-ignore
     ow_1.expect(size).integer.gt(1);
     ow_1.expect(max / size, 'max / size').gt(min);
-    return sum_num_1.default(random, size, min, max, uniform_1.default(random, min, max / (max / size)), distributions_1.UtilDistributions.float, null, noUnique);
+    return sum_num_1.default({
+        random,
+        size,
+        min,
+        max,
+        fn: uniform_1.default(random, min, max / (max / size)),
+        fn2: distributions_1.UtilDistributions.float,
+        chk_sum: null,
+        noUnique,
+    });
 };
 // @ts-ignore
 Object.freeze(exports);

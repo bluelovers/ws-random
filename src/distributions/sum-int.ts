@@ -34,16 +34,16 @@ export default (random: Random, size: number, min: number, max?: number, noUniqu
 	expect(Math.abs(max - min), 'max - min').gte(Math.max(size, UtilMath.sum_1_to_n(size) - Math.abs(min)));
 	expect(max / size, 'max / size').gte(min);
 
-	return _sumNumCore(
+	return _sumNumCore({
 		random,
 		size,
 		min,
 		max,
-		uniformInt(random, min, max),
-		UtilDistributions.int,
-		true,
+		fn: uniformInt(random, min, max),
+		fn2: UtilDistributions.int,
+		chk_sum: true,
 		noUnique,
-	)
+	})
 }
 
 // @ts-ignore
