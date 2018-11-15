@@ -7,6 +7,7 @@ import seedrandom from '../../preset/seedrandom';
 import nanoid = require('nanoid')
 import shortid = require('shortid');
 import tests, { Benchmark, formatBenchmarkResult, sortBenchmarkResult, getMethods } from './'
+import hashSum = require('hash-sum');
 
 import console from 'debug-color2'
 import { defaultArgv } from '../../src/simple-wrap';
@@ -27,6 +28,12 @@ suite
 	.add(`seedrandom.charID`, seedrandom_charID)
 	.add(`math-random2.charID`, math_random2_charID)
 	.add(`xor128.charID`, xor128_charID)
+	.add(`hash-sum(number)`, () => {
+		hashSum(Math.random())
+	})
+	.add(`hash-sum(string)`, () => {
+		hashSum(String(Math.random()))
+	})
 	.on('cycle', function (event)
 	{
 		//console.info(String(event.target));

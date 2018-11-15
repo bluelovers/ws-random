@@ -5,6 +5,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const nanoid = require("nanoid");
 const shortid = require("shortid");
 const _1 = require("./");
+const hashSum = require("hash-sum");
 const debug_color2_1 = require("debug-color2");
 const suite = (new _1.Benchmark.Suite);
 shortid();
@@ -20,6 +21,12 @@ suite
     .add(`seedrandom.charID`, seedrandom_charID)
     .add(`math-random2.charID`, math_random2_charID)
     .add(`xor128.charID`, xor128_charID)
+    .add(`hash-sum(number)`, () => {
+    hashSum(Math.random());
+})
+    .add(`hash-sum(string)`, () => {
+    hashSum(String(Math.random()));
+})
     .on('cycle', function (event) {
     //console.info(String(event.target));
 })
