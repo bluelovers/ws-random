@@ -89,7 +89,6 @@
     "core-decorators": "^0.20.0",
     "hash-sum": "^1.0.2",
     "nanoid": "^2.0.0",
-    "ow-lite-ts": "^1.0.2",
     "uni-string": "^1.1.0"
   },
   "devDependencies": {

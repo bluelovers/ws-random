@@ -3,11 +3,11 @@ import { Random } from '../random';
 import * as UtilMath from '../util/math';
 import _sumNumCore from './internal/sum-num';
 import uniformFloat from './uniform';
-//import { ow } from '../util/ow'
+
 import { swapAlgorithm } from '../util/array';
 import { UtilDistributions } from '../util/distributions';
 import uniformInt from './uniform-int';
-import { ow, expect, assert } from '../util/ow'
+import { expect, assert } from '../util/ow'
 
 /**
  * @todo support max <= 0

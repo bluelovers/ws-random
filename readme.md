@@ -17,7 +17,7 @@ Welcome to the most **random** module on npm! 😜
 -   Plugin support for different pseudo random number generators (PRNGs)
 -   Sample from many common distributions
     -   dfUniform, dfNormal, dfPoisson, dfBernoulli, etc see [distributions](src/distributions)
--   Validates all user input via [ow-lite](https://github.com/transitive-bullshit/ow-lite)
+-   Validates all user input via [chai](https://www.chaijs.com)
 -   Integrates with [seedrandom](https://github.com/davidbau/seedrandom)
 -   Supports **node.js** >= **7** and browser _(if here has no break)_
 

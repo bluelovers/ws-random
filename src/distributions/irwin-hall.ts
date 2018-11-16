@@ -1,4 +1,4 @@
-import { ow } from '../util/ow'
+import expect from '../util/ow'
 import { Random } from '../random';
 import RNG from '../rng'
 
@@ -11,7 +11,8 @@ import RNG from '../rng'
  */
 export default (random: Random, n: number) =>
 {
-	ow(n, ow.number.integer.gte(0))
+	//ow(n, ow.number.integer.gte(0))
+	expect(n).integer.gte(0)
 
 	return () =>
 	{

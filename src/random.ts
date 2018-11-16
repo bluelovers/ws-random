@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import { expect, ow } from './util/ow'
+import { expect } from './util/ow'
 import {
 	Distributions,
 	IRandomDistributions,

@@ -1,10 +1,12 @@
 import { Random } from '../random';
+import expect from '../util/ow';
 import uniformInt from './uniform-int';
-import { ow } from '../util/ow'
+
 
 export default (random: Random, size?: number) =>
 {
-	ow(size, ow.number.integer.gt(0))
+	//ow(size, ow.number.integer.gt(0))
+	expect(size).integer.gt(0)
 
 	const fn = uniformInt(random, 0, 255)
 

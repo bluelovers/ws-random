@@ -9,8 +9,10 @@ exports.default = (random, arr, limit, loop, fnRandIndex, fnOutOfLimit) => {
     limit = Math.min(limit || clone.length, clone.length);
     fnRandIndex = fnRandIndex || randIndex;
     loop = !!loop;
-    ow_1.ow(limit, ow_1.ow.number.integer.gt(0));
-    ow_1.ow(fnRandIndex, ow_1.ow.function);
+    //ow(limit, ow.number.integer.gt(0));
+    //ow(fnRandIndex, ow.function);
+    ow_1.default(limit).integer.gt(0);
+    ow_1.default(fnRandIndex).is.function();
     let count = limit;
     let len;
     function _fnClone(arr) {

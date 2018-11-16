@@ -1,4 +1,4 @@
-import { ow } from '../util/ow'
+import expect from '../util/ow'
 import { Random } from '../random';
 import RNG from '../rng'
 
@@ -24,7 +24,8 @@ const logSqrt2PI = 0.91893853320467267
 
 export default (random: Random, lambda = 1) =>
 {
-	ow(lambda, ow.number.positive)
+	//ow(lambda, ow.number.positive)
+	expect(lambda).gt(0);
 
 	if (lambda < 10)
 	{

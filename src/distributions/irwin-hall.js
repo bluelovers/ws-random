@@ -8,7 +8,8 @@ const ow_1 = require("../util/ow");
  * @return {function}
  */
 exports.default = (random, n) => {
-    ow_1.ow(n, ow_1.ow.number.integer.gte(0));
+    //ow(n, ow.number.integer.gte(0))
+    ow_1.default(n).integer.gte(0);
     return () => {
         let sum = 0;
         for (let i = 0; i < n; ++i) {

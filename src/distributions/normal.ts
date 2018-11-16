@@ -1,11 +1,15 @@
-import { ow } from '../util/ow'
+import expect from '../util/ow';
+
 import { Random } from '../random';
 import RNG from '../rng'
 
 export default (random: Random, mu = 0, sigma = 1) =>
 {
-	ow(mu, ow.number)
-	ow(sigma, ow.number)
+	//ow(mu, ow.number)
+	//ow(sigma, ow.number)
+
+	expect(mu).number();
+	expect(sigma).number();
 
 	return () =>
 	{

@@ -1,7 +1,7 @@
 import random from '../random';
 import { Random } from '../random';
 import uniformInt from './uniform-int';
-import { ow, expect, assert } from '../util/ow'
+import { expect, assert } from '../util/ow'
 import { swapAlgorithm } from '../util/array';
 import { UtilDistributions } from '../util/distributions';
 import * as UtilMath from '../util/math';

@@ -1,4 +1,5 @@
-import { ow } from '../util/ow'
+import expect from '../util/ow';
+
 import { Random } from '../random';
 import RNG from '../rng'
 
@@ -10,8 +11,11 @@ export default (random: Random, min?: number, max?: number) =>
 		min = 0
 	}
 
-	ow(min, ow.number)
-	ow(max, ow.number.gt(min))
+	expect(min).number();
+	expect(max).number.gt(min);
+
+	//ow(min, ow.number)
+	//ow(max, ow.number.gt(min))
 
 	return (): number =>
 	{

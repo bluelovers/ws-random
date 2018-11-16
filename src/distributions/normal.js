@@ -1,8 +1,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const ow_1 = require("../util/ow");
 exports.default = (random, mu = 0, sigma = 1) => {
-    ow_1.ow(mu, ow_1.ow.number);
-    ow_1.ow(sigma, ow_1.ow.number);
+    //ow(mu, ow.number)
+    //ow(sigma, ow.number)
+    ow_1.default(mu).number();
+    ow_1.default(sigma).number();
     return () => {
         let x, y, r;
         do {

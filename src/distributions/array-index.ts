@@ -1,15 +1,22 @@
 import { Random } from '../random';
+import expect from '../util/ow';
 import uniformInt from './uniform-int';
-import { ow } from '../util/ow'
+
 
 export default (random: Random, size: number = 1, start: number = 0, end?: number) =>
 {
-	ow(size, ow.number.integer.gt(0))
+	//ow(size, ow.number.integer.gt(0))
+
+	expect(size).integer.gt(0)
+
 	start = Math.max(start | 0, 0)
 	end = Math.max(0, end | 0)
 
-	ow(start, ow.number.integer.gte(0))
-	ow(end, ow.number.integer.gte(0))
+	//ow(start, ow.number.integer.gte(0))
+	//ow(end, ow.number.integer.gte(0))
+
+	expect(start).integer.gte(0)
+	expect(end).integer.gte(0)
 
 	return <T extends Array<unknown>>(arr: T) =>
 	{
@@ -18,8 +25,11 @@ export default (random: Random, size: number = 1, start: number = 0, end?: numbe
 
 		let end_runtime = end || len
 
-		ow(start, ow.number.integer.lt(end_runtime))
-		ow(end_runtime, ow.number.integer.lte(len))
+		//ow(start, ow.number.integer.lt(end_runtime))
+		//ow(end_runtime, ow.number.integer.lte(len))
+
+		expect(start).integer.lt(end_runtime)
+		expect(end_runtime).integer.lte(len)
 
 		let size_runtime = Math.max(Math.min(end_runtime - start, len, size), 0)
 

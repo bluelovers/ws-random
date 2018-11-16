@@ -1,8 +1,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-const uniform_int_1 = require("./uniform-int");
 const ow_1 = require("../util/ow");
+const uniform_int_1 = require("./uniform-int");
 exports.default = (random, size) => {
-    ow_1.ow(size, ow_1.ow.number.integer.gt(0));
+    //ow(size, ow.number.integer.gt(0))
+    ow_1.default(size).integer.gt(0);
     const fn = uniform_int_1.default(random, 0, 255);
     return () => {
         let arr = [];

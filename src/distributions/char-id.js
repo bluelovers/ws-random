@@ -24,13 +24,15 @@ exports.default = (random, char, size) => {
         }
     }
     size = size || 8;
-    ow_1.ow(size, ow_1.ow.number.integer.gt(0));
+    //ow(size, ow.number.integer.gt(0));
+    ow_1.default(size).integer.gt(0);
     if (!char) {
         char = ENUM_ALPHABET.DEFAULT;
     }
     let ls = UString.create(char).split('');
     let len = ls.length;
-    ow_1.ow(len, ow_1.ow.number.integer.gt(1), `char.length`);
+    //ow(len, ow.number.integer.gt(1), `char.length`);
+    ow_1.default(ls).to.have.length.gt(1);
     const randIndex = () => {
         return distributions_1.randIndex(random, len);
     };

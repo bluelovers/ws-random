@@ -1,10 +1,12 @@
-import { ow } from '../util/ow'
+import expect from '../util/ow';
+
 import { Random } from '../random';
 import RNG from '../rng'
 
 export default (random: Random, alpha: number) =>
 {
-	ow(alpha, ow.number.gt(0))
+	//ow(alpha, ow.number.gt(0))
+	expect(alpha).gt(0);
 	const invAlpha = 1.0 / alpha
 
 	return () =>

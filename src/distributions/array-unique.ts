@@ -1,7 +1,8 @@
 import random from '../random';
 import { Random } from '../random';
+import expect from '../util/ow';
 import uniformInt from './uniform-int';
-import { ow } from '../util/ow'
+
 import { swapAlgorithm } from '../util/array';
 import { randIndex as _randIndex } from '../util/distributions';
 
@@ -31,8 +32,11 @@ export default <T extends unknown>(random: Random, arr: T[], limit?: number, loo
 	fnRandIndex = fnRandIndex || randIndex;
 	loop = !!loop;
 
-	ow(limit, ow.number.integer.gt(0));
-	ow(fnRandIndex, ow.function);
+	//ow(limit, ow.number.integer.gt(0));
+	//ow(fnRandIndex, ow.function);
+
+	expect(limit).integer.gt(0)
+	expect(fnRandIndex).is.function()
 
 	let count = limit;
 	let len: number;

@@ -2,7 +2,7 @@
  * make easy replace to other ow like lib
  */
 //import ow from 'ow-lite-ts'
-import ow = require('ow-lite-ts');
+//import ow = require('ow-lite-ts');
 import _chai = require('chai');
 //import { Assertion } from 'chai'
 //import { expect, assert } from 'chai'
@@ -15,7 +15,7 @@ const chai = ChaiPlugin.install(_chai);
 const expect = chai.expect;
 const assert = chai.assert;
 
-export { ow }
+//export { ow }
 export { expect, assert, chai }
 
 export default expect

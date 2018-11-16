@@ -2,7 +2,7 @@ import random from '../random';
 import { Random } from '../random';
 import { randIndex as _randIndex } from '../util/distributions';
 import uniformInt from './uniform-int';
-import { ow } from '../util/ow'
+import expect from '../util/ow'
 import { swapAlgorithm } from '../util/array';
 import arrayShuffle from './array-shuffle'
 
@@ -156,7 +156,8 @@ export function _createWeight<T extends unknown>(arr: T[] | IObjectInput<T>,
 
 			weight = +weight
 
-			ow(weight, ow.number.gt(0))
+			//ow(weight, ow.number.gt(0))
+			expect(weight).gt(0)
 
 			sum += weight
 

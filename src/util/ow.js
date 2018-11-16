@@ -3,8 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * make easy replace to other ow like lib
  */
 //import ow from 'ow-lite-ts'
-const ow = require("ow-lite-ts");
-exports.ow = ow;
+//import ow = require('ow-lite-ts');
 const _chai = require("chai");
 //import { Assertion } from 'chai'
 //import { expect, assert } from 'chai'

@@ -4,7 +4,8 @@
 
 import UString = require("uni-string");
 import { floatToString } from '../util';
-import { ow } from '../util/ow'
+import expect from '../util/ow';
+
 import { Random } from '../random';
 import RNG from '../rng'
 import { randIndex as _randIndex } from '../util/distributions';
@@ -35,7 +36,8 @@ export default (random: Random, char?: ENUM_ALPHABET | string | Buffer | number,
 	}
 
 	size = size || 8;
-	ow(size, ow.number.integer.gt(0));
+	//ow(size, ow.number.integer.gt(0));
+	expect(size).integer.gt(0)
 
 	if (!char)
 	{
@@ -45,7 +47,8 @@ export default (random: Random, char?: ENUM_ALPHABET | string | Buffer | number,
 	let ls = UString.create(char).split('');
 	let len = ls.length;
 
-	ow(len, ow.number.integer.gt(1), `char.length`);
+	//ow(len, ow.number.integer.gt(1), `char.length`);
+	expect(ls).to.have.length.gt(1)
 
 	const randIndex = () =>
 	{
