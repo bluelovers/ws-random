@@ -11,3 +11,4 @@ export function sum_1_to_n(n: number)
 {
 	return n * (n + 1) / 2;
 }
+

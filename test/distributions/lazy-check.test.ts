@@ -41,7 +41,7 @@ function getDefaultArgv(method)
 		case 'sumFloat':
 		case 'dfSumInt':
 		case 'dfSumFloat':
-			argv = [3, -5, 52];
+			argv = [3];
 			break
 	}
 

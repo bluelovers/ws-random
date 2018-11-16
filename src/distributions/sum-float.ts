@@ -13,27 +13,22 @@ import { ow, expect, assert } from '../util/ow'
  * @todo support max <= 0
  * @fixme bug when min < 0
  */
-export default (random: Random, size: number, min: number, max?: number, noUnique?: boolean) =>
+export default (random: Random, size: number, sum?: number, min?: number, max?: number, noUnique?: boolean) =>
 {
-	if (max === undefined)
-	{
-		max = min;
-		min = 0
-	}
-
 	// @ts-ignore
-	expect(min).number();
-	expect(max, 'current only support max > 0').gt(min).gt(0);
+	//expect(min).number();
+	//expect(max, 'current only support max > 0').gt(min).gt(0);
 	// @ts-ignore
-	expect(size).integer.gt(1);
-	expect(max / size, 'max / size').gt(min);
+	//expect(size).integer.gt(1);
+	//expect(max / size, 'max / size').gt(min);
 
 	return _sumNumCore({
 		random,
 		size,
+		sum,
 		min,
 		max,
-		fn: uniformFloat(random, min, max / (max / size)),
+		//fn: uniformFloat(random, min, max / (max / size)),
 		fn2: UtilDistributions.float,
 		chk_sum: null,
 		noUnique,
