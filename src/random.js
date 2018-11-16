@@ -497,10 +497,8 @@ let Random = Random_1 = class Random {
      * @see https://www.npmjs.com/package/random-sum
      *
      * @example
-     * random.sumInt(3, -5, 52)
+     * random.sumInt(3, -5)
      * random.sumInt(3, 52)
-     * random.sumInt(3, 0, 52)
-     * random.sumInt(3, 15, 52)
      */
     sumInt(size, sum, min, max, noUnique) {
         return this.dfSumInt(size, sum, min, max, noUnique)();

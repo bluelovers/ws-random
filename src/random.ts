@@ -705,10 +705,8 @@ export class Random<R extends RNG = RNG>
 	 * @see https://www.npmjs.com/package/random-sum
 	 *
 	 * @example
-	 * random.sumInt(3, -5, 52)
+	 * random.sumInt(3, -5)
 	 * random.sumInt(3, 52)
-	 * random.sumInt(3, 0, 52)
-	 * random.sumInt(3, 15, 52)
 	 */
 	sumInt(size: number, sum?: number, min?: number, max?: number, noUnique?: boolean)
 	{
