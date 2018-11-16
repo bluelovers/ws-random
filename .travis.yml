@@ -9,4 +9,4 @@ node_js:
   - 7
 #  - 6
 before_script:
-  - yarn add ts-node typescript@next mocha
+  - yarn add -g ts-node typescript@next mocha

@@ -79,7 +79,7 @@
     "test": "npm run test-mocha",
     "test-ava": "npx ava --serial -v test/**/distributions/**/*.test.js",
     "test-mocha-npx": "npx mocha --require ts-node/register \"!(node_modules)/**/*.{test,spec}.{ts,tsx}\"",
-    "test-mocha": "mocha --require ts-node/register \"!(node_modules)/**/*.{test,spec}.{ts,tsx}\""
+    "test-mocha": "mocha \"!(node_modules)/**/*.{test,spec}.js\""
   },
   "dependencies": {
     "@types/nanoid": "^1.2.0",
