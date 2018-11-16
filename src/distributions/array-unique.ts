@@ -41,7 +41,7 @@ export default <T extends unknown>(random: Random, arr: T[], limit?: number, loo
 	let count = limit;
 	let len: number;
 
-	function _fnClone(arr: T[])
+	const _fnClone = function _fnClone(arr: T[])
 	{
 		clone = arr.slice();
 		count = limit;

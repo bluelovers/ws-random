@@ -12,10 +12,11 @@ export function float(random: Random, min: number, max: number)
 
 export function int(random: Random, min: number, max: number)
 {
-	return Math.floor(float(random, min, max+1));
+	return Math.floor(float(random, min, max + 1));
 }
 
 import * as UtilDistributions from './distributions'
+
 export { UtilDistributions }
 export default UtilDistributions;
 

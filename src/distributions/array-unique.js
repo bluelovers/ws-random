@@ -15,11 +15,11 @@ exports.default = (random, arr, limit, loop, fnRandIndex, fnOutOfLimit) => {
     ow_1.default(fnRandIndex).is.function();
     let count = limit;
     let len;
-    function _fnClone(arr) {
+    const _fnClone = function _fnClone(arr) {
         clone = arr.slice();
         count = limit;
         len = clone.length;
-    }
+    };
     return () => {
         len = clone.length;
         if (len === 0 || count-- === 0) {

@@ -1,4 +1,5 @@
 import { Random } from '../random';
+import * as UtilDistributions from '../util/distributions';
 import expect from '../util/ow';
 import uniformInt from './uniform-int';
 
@@ -18,6 +19,8 @@ export default (random: Random, size: number = 1, start: number = 0, end?: numbe
 	expect(start).integer.gte(0)
 	expect(end).integer.gte(0)
 
+	const fn = UtilDistributions.int;
+
 	return <T extends Array<unknown>>(arr: T) =>
 	{
 		let ids: number[] = [];
@@ -28,14 +31,20 @@ export default (random: Random, size: number = 1, start: number = 0, end?: numbe
 		//ow(start, ow.number.integer.lt(end_runtime))
 		//ow(end_runtime, ow.number.integer.lte(len))
 
-		expect(start).integer.lt(end_runtime)
-		expect(end_runtime).integer.lte(len)
+		if (start)
+		{
+			expect(start).integer.lt(end_runtime)
+		}
+		if (end)
+		{
+			expect(end_runtime).integer.lte(len)
+		}
 
-		let size_runtime = Math.max(Math.min(end_runtime - start, len, size), 0)
+		let size_runtime = Math.max(Math.min(end_runtime - start, len, size), 0);
 
 		do
 		{
-			let i = random.int(start, end_runtime)
+			let i = fn(random, start, end_runtime)
 
 			while (ids.includes(i))
 			{
