@@ -72,3 +72,4 @@ tests/temp*
 !/test/benchmark/*.js
 !/test/mocha/**/*.test.ts
 !/test/distributions/**/*.test.js
+!/test/_local-dev.js
