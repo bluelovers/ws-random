@@ -7,7 +7,7 @@
 /// <reference types="chai" />
 /// <reference types="node" />
 
-import { stringifyHex } from '../../src/util';
+import { stringifyByte } from '../../src/util/byte';
 import { chai, relative, expect, path, assert, util, mochaAsync } from '../_local-dev';
 
 // @ts-ignore

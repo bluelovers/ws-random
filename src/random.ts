@@ -404,6 +404,16 @@ export class Random<R extends RNG = RNG>
 		return this._memoize('dfCharID', Distributions.charID, char, size)
 	}
 
+	uuid4(toUpperCase?: boolean)
+	{
+		return this.dfUuid4(toUpperCase)()
+	}
+
+	dfUuid4(toUpperCase?: boolean)
+	{
+		return this._memoize('uuid4', Distributions.uuid4, toUpperCase)
+	}
+
 	arrayIndex<T extends Array<unknown>>(arr: T, size: number = 1, start: number = 0, end?: number)
 	{
 		return this.dfArrayIndex(arr, size, start, end)()

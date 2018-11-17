@@ -1,7 +1,7 @@
 import { Random } from '../random';
 import expect from '../util/ow';
 import uniformInt from './uniform-int';
-import { stringifyHex } from '../util';
+import { stringifyByte } from '../util/byte';
 
 export default function uniformByte(random: Random, toStr: true): () => string
 export default function uniformByte(random: Random, toStr?: false): () => number
@@ -17,7 +17,7 @@ export default function uniformByte(random: Random, toStr?: boolean)
 
 	if (toStr)
 	{
-		return () => stringifyHex(fn())
+		return () => stringifyByte(fn())
 	}
 
 	return fn

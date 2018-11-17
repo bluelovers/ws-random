@@ -25,6 +25,7 @@ suite
 	.add(`shortid`, shortid)
 	.add(`nanoid`, nanoid)
 	.add(`random.charID`, random_charID)
+	.add(`random.uuid4`, random.dfUuid4())
 	.add(`seedrandom.charID`, seedrandom_charID)
 	.add(`math-random2.charID`, math_random2_charID)
 	.add(`xor128.charID`, xor128_charID)

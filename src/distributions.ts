@@ -55,6 +55,8 @@ import itemByWeight from './distributions/item-by-weight'
 import sumFloat from './distributions/sum-float'
 import sumInt from './distributions/sum-int'
 
+import uuid4 from './distributions/uuid4'
+
 export {
 	bates,
 	bernoulli,
@@ -83,6 +85,8 @@ export {
 
 	sumFloat,
 	sumInt,
+
+	uuid4,
 }
 
 import * as Distributions from './distributions';

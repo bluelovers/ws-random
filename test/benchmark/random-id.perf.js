@@ -2,6 +2,7 @@
  * Created by user on 2018/11/9/009.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+const random_1 = require("../../src/random");
 const nanoid = require("nanoid");
 const shortid = require("shortid");
 const _1 = require("./");
@@ -18,6 +19,7 @@ suite
     .add(`shortid`, shortid)
     .add(`nanoid`, nanoid)
     .add(`random.charID`, random_charID)
+    .add(`random.uuid4`, random_1.default.dfUuid4())
     .add(`seedrandom.charID`, seedrandom_charID)
     .add(`math-random2.charID`, math_random2_charID)
     .add(`xor128.charID`, xor128_charID)

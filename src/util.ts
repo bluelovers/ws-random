@@ -3,17 +3,15 @@
  */
 
 import hashSum = require('hash-sum');
+import _nanoid = require('nanoid');
+
+import _pkg = require('../package.json');
 //import shortid = require('shortid');
 //
 //export declare function shortid(): string
 //export declare function hashSum(input): string
 //
 //export { shortid, hashSum }
-
-import _nanoid = require('nanoid')
-import * as HexLib from 'hex-lib';
-
-import _pkg = require('../package.json')
 
 const MATH_POW_2_32 = Math.pow(2, 32)
 
@@ -123,16 +121,6 @@ export function isInt(n: number)
 export function isFloat(n: number)
 {
 	return n === +n && n !== (n | 0);
-}
-
-export function stringifyHex(n: number)
-{
-	return HexLib.toHex(n, 2, '')
-}
-
-export function toHexArray(arr: number[])
-{
-	return arr.map(stringifyHex)
 }
 
 // @ts-ignore
