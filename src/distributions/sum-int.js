@@ -8,10 +8,10 @@ const sum_num_1 = require("./internal/sum-num");
  * @fixme bug when min < 0
  */
 exports.default = (random, size, sum, min, max, noUnique) => {
-    if (typeof min !== 'undefined') {
+    if (typeof min !== 'undefined' && min !== null) {
         ow_1.expect(min).to.be.an.integer();
     }
-    if (typeof max !== 'undefined') {
+    if (typeof max !== 'undefined' && max !== null) {
         ow_1.expect(max).to.be.an.integer();
     }
     //expect(Math.abs(max - min), 'max - min').gte(Math.max(size, UtilMath.sum_1_to_n(size) - Math.abs(min)));

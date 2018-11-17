@@ -14,12 +14,12 @@ import _sumNumCore, { ISumNumParameter } from './internal/sum-num';
  */
 export default (random: Random, size: number, sum?: number, min?: number, max?: number, noUnique?: boolean) =>
 {
-	if (typeof min !== 'undefined')
+	if (typeof min !== 'undefined' && min !== null)
 	{
 		expect(min).to.be.an.integer();
 	}
 
-	if (typeof max !== 'undefined')
+	if (typeof max !== 'undefined' && max !== null)
 	{
 		expect(max).to.be.an.integer();
 	}
@@ -61,9 +61,7 @@ export default (random: Random, size: number, sum?: number, min?: number, max?: 
 				});
 				*/
 
-				expect(n1, 'max - min').gte(n3)
-				;
-
+				expect(n1, 'max - min').gte(n3);
 				expect(n4, 'max / size').gte(data.min);
 			}
 		},
