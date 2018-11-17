@@ -5,7 +5,7 @@ export class RNGMathRandom extends RNG
 {
 	get name()
 	{
-		return 'math-random2'
+		return 'math-random'
 	}
 
 	public get seedable()

@@ -1,13 +1,22 @@
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const util_1 = require("../util");
 const req_1 = require("../util/req");
 const function_1 = require("./function");
+const core_decorators_1 = require("core-decorators");
 exports.defaultOptions = Object.freeze({
     entropy: true
 });
 class RNGSeedRandom extends function_1.default {
     constructor(seed, opts, ...argv) {
         super(seed, opts, ...argv);
+        this._NAME = 'seedrandom';
+        this._TYPE = null;
     }
     static createLib(...argv) {
         return new this(argv[1], argv[2], argv[0], ...argv.slice(3));
@@ -20,8 +29,12 @@ class RNGSeedRandom extends function_1.default {
         this._seedrandom = this.__generator(...argv);
         super._init(seed, opts, ...argv);
     }
+    get name() {
+        return `${this._NAME}${this._TYPE ? ':' + this._TYPE : ''}`;
+    }
     __generator(fn) {
         if (fn && typeof fn === 'string') {
+            this._TYPE = null;
             switch (fn) {
                 case 'alea':
                 case 'tychei':
@@ -31,9 +44,11 @@ class RNGSeedRandom extends function_1.default {
                 case 'xorwow':
                     fn = req_1.tryRequire('seedrandom')[fn];
                     //fn = require(`seedrandom/lib/${fn}`)
+                    this._TYPE = fn;
                     break;
                 default:
                     if (fn.indexOf('..') === -1 && /^[a-z\-\.]+$/i.test(fn)) {
+                        this._TYPE = fn;
                         fn = require(`seedrandom/lib/${fn}`);
                         break;
                     }
@@ -41,6 +56,13 @@ class RNGSeedRandom extends function_1.default {
                         throw new RangeError(`unknow seedrandom lib name: ${fn}`);
                     }
             }
+        }
+        else if (fn) {
+            // @ts-ignore
+            this._TYPE = fn.name;
+        }
+        else {
+            this._TYPE = null;
         }
         fn = fn || req_1.tryRequire('seedrandom');
         return fn;
@@ -50,9 +72,6 @@ class RNGSeedRandom extends function_1.default {
             return fn(seed, opts, ...argv)
         }
         */
-    }
-    get name() {
-        return 'seedrandom';
     }
     get options() {
         return this._opts;
@@ -87,6 +106,12 @@ class RNGSeedRandom extends function_1.default {
         return util_1.cloneClass(RNGSeedRandom, this, seed, opts, ...argv);
     }
 }
+__decorate([
+    core_decorators_1.nonenumerable
+], RNGSeedRandom.prototype, "_NAME", void 0);
+__decorate([
+    core_decorators_1.nonenumerable
+], RNGSeedRandom.prototype, "_TYPE", void 0);
 exports.RNGSeedRandom = RNGSeedRandom;
 exports.default = RNGSeedRandom;
 // @ts-ignore

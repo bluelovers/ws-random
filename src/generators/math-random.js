@@ -3,7 +3,7 @@ const rng_1 = require("../rng");
 const util_1 = require("../util");
 class RNGMathRandom extends rng_1.default {
     get name() {
-        return 'math-random2';
+        return 'math-random';
     }
     get seedable() {
         return false;

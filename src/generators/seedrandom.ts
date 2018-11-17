@@ -4,6 +4,7 @@ import { cloneClass } from '../util';
 import { tryRequire } from '../util/req';
 import RNGFunction from './function';
 import seedrandom = require('seedrandom');
+import { nonenumerable, readonly } from 'core-decorators';
 
 export import RNGSeedRandomOptions = seedrandom.seedRandomOptions;
 
@@ -46,10 +47,22 @@ export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 		super._init(seed, opts, ...argv)
 	}
 
+	@nonenumerable
+	protected readonly _NAME = 'seedrandom';
+	@nonenumerable
+	protected _TYPE = null;
+
+	get name()
+	{
+		return `${this._NAME}${this._TYPE ? ':' + this._TYPE : ''}`
+	}
+
 	protected __generator(fn?: typeof seedrandom | IRNGSeedRandomLib | IRNGSeedRandomLibValueOf): IRNGSeedRandomGenerator
 	{
 		if (fn && typeof fn === 'string')
 		{
+			this._TYPE = null;
+
 			switch (fn)
 			{
 				case 'alea':
@@ -60,10 +73,15 @@ export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 				case 'xorwow':
 					fn = tryRequire('seedrandom')[fn];
 					//fn = require(`seedrandom/lib/${fn}`)
+
+					this._TYPE = fn
+
 					break;
 				default:
 					if (fn.indexOf('..') === -1 && /^[a-z\-\.]+$/i.test(fn))
 					{
+						this._TYPE = fn
+
 						fn = require(`seedrandom/lib/${fn}`)
 						break
 					}
@@ -72,6 +90,15 @@ export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 						throw new RangeError(`unknow seedrandom lib name: ${fn}`)
 					}
 			}
+		}
+		else if (fn)
+		{
+			// @ts-ignore
+			this._TYPE = fn.name
+		}
+		else
+		{
+			this._TYPE = null
 		}
 
 		fn = fn || tryRequire('seedrandom');
@@ -84,11 +111,6 @@ export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 			return fn(seed, opts, ...argv)
 		}
 		*/
-	}
-
-	get name()
-	{
-		return 'seedrandom'
 	}
 
 	get options()
