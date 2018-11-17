@@ -53,6 +53,24 @@ describe(_local_dev_1.relative(__filename), () => {
                 _local_dev_1.expect(v).length(size);
             });
         });
+        it(`dfSumInt(3, sum = -21)`, function () {
+            const size = 3;
+            const expected_sum = -21;
+            const d = random_1.random.dfSumInt(size, expected_sum);
+            let cache = {};
+            for (let i = 0; i < 10000; ++i) {
+                const v = d();
+                cache[String(v)] = v;
+            }
+            const vs = Object.values(cache);
+            console.log(vs);
+            vs
+                .forEach(function (v) {
+                const sum = v.reduce((a, b) => a + b);
+                _local_dev_1.expect(sum).closeTo(expected_sum, 0.01);
+                _local_dev_1.expect(v).length(size);
+            });
+        });
         it(`dfSumInt(3, null, 1, 6)`, function () {
             const size = 3;
             const expected_sum = 6;

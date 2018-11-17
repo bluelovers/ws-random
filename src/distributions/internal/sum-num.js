@@ -16,7 +16,7 @@ function coreFn2({ random, size, min, max, fn, fn2, chk_sum, noUnique, sum, chkS
             min = 0;
         }
         else {
-            min = sum - Math.floor(abs2 / 2);
+            min = Math.min(sum - Math.floor(abs2 / 2), 0);
         }
     }
     if (typeof max === 'undefined' || max === null) {
@@ -24,7 +24,7 @@ function coreFn2({ random, size, min, max, fn, fn2, chk_sum, noUnique, sum, chkS
             max = sum;
         }
         else {
-            max = sum + Math.floor(abs2 / 2);
+            max = Math.max(sum + Math.floor(abs2 / 2), 0);
         }
     }
     ow_1.expect(min).number();

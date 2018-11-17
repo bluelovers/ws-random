@@ -65,7 +65,7 @@ export function coreFn2({
 		}
 		else
 		{
-			min = sum - Math.floor(abs2 / 2)
+			min = Math.min(sum - Math.floor(abs2 / 2), 0)
 		}
 	}
 
@@ -77,7 +77,7 @@ export function coreFn2({
 		}
 		else
 		{
-			max = sum + Math.floor(abs2 / 2)
+			max = Math.max(sum + Math.floor(abs2 / 2), 0)
 		}
 	}
 

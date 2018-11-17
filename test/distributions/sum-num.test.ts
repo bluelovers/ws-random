@@ -94,6 +94,38 @@ describe(relative(__filename), () =>
 			;
 		});
 
+		it(`dfSumInt(3, sum = -21)`, function ()
+		{
+			const size = 3;
+			const expected_sum = -21;
+
+			const d = random.dfSumInt(size, expected_sum);
+
+			let cache = {} as {
+				[k: string]: number[],
+			};
+
+			for (let i = 0; i < 10000; ++i)
+			{
+				const v = d();
+
+				cache[String(v)] = v;
+			}
+
+			const vs = Object.values(cache);
+
+			console.log(vs);
+
+			vs
+				.forEach(function (v)
+				{
+					const sum = v.reduce((a, b) => a + b);
+					expect(sum).closeTo(expected_sum, 0.01);
+					expect(v).length(size);
+				})
+			;
+		});
+
 		it(`dfSumInt(3, null, 1, 6)`, function ()
 		{
 			const size = 3;
