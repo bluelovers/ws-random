@@ -187,8 +187,8 @@ export declare class Random<R extends RNG = RNG> {
      * @example random.dfCharID() // => QcVH6FAi
      */
     dfCharID(char?: ENUM_ALPHABET | string | Buffer | number, size?: number): ReturnType<typeof Distributions.charID>;
-    uuid4(toUpperCase?: boolean): string;
-    dfUuid4(toUpperCase?: boolean): () => string;
+    uuidv4(toUpperCase?: boolean): string;
+    dfUuidv4(toUpperCase?: boolean): () => string;
     arrayIndex<T extends Array<unknown>>(arr: T, size?: number, start?: number, end?: number): number[];
     /**
      * get random index in array

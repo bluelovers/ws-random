@@ -19,7 +19,7 @@ suite
     .add(`shortid`, shortid)
     .add(`nanoid`, nanoid)
     .add(`random.charID`, random_charID)
-    .add(`random.uuid4`, random_1.default.dfUuid4())
+    .add(`random.uuidv4`, random_1.default.dfUuidv4())
     .add(`seedrandom.charID`, seedrandom_charID)
     .add(`math-random2.charID`, math_random2_charID)
     .add(`xor128.charID`, xor128_charID)

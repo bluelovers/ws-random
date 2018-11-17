@@ -251,11 +251,11 @@ let Random = Random_1 = class Random {
     dfCharID(char, size) {
         return this._memoize('dfCharID', distributions_1.Distributions.charID, char, size);
     }
-    uuid4(toUpperCase) {
-        return this.dfUuid4(toUpperCase)();
+    uuidv4(toUpperCase) {
+        return this.dfUuidv4(toUpperCase)();
     }
-    dfUuid4(toUpperCase) {
-        return this._memoize('uuid4', distributions_1.Distributions.uuid4, toUpperCase);
+    dfUuidv4(toUpperCase) {
+        return this._memoize('uuidv4', distributions_1.Distributions.uuidv4, toUpperCase);
     }
     arrayIndex(arr, size = 1, start = 0, end) {
         return this.dfArrayIndex(arr, size, start, end)();

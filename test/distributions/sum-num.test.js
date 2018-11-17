@@ -63,7 +63,7 @@ describe(_local_dev_1.relative(__filename), () => {
                 cache[String(v)] = v;
             }
             const vs = Object.values(cache);
-            console.log(vs);
+            //console.log(vs);
             vs
                 .forEach(function (v) {
                 const sum = v.reduce((a, b) => a + b);

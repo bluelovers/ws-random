@@ -404,14 +404,14 @@ export class Random<R extends RNG = RNG>
 		return this._memoize('dfCharID', Distributions.charID, char, size)
 	}
 
-	uuid4(toUpperCase?: boolean)
+	uuidv4(toUpperCase?: boolean)
 	{
-		return this.dfUuid4(toUpperCase)()
+		return this.dfUuidv4(toUpperCase)()
 	}
 
-	dfUuid4(toUpperCase?: boolean)
+	dfUuidv4(toUpperCase?: boolean)
 	{
-		return this._memoize('uuid4', Distributions.uuid4, toUpperCase)
+		return this._memoize('uuidv4', Distributions.uuidv4, toUpperCase)
 	}
 
 	arrayIndex<T extends Array<unknown>>(arr: T, size: number = 1, start: number = 0, end?: number)
