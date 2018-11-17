@@ -114,7 +114,7 @@ describe(relative(__filename), () =>
 
 			const vs = Object.values(cache);
 
-			console.log(vs);
+			//console.log(vs);
 
 			vs
 				.forEach(function (v)
