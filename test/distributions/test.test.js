@@ -31,6 +31,20 @@ describe(_local_dev_1.relative(__filename), () => {
             _local_dev_1.expect(0.9).to.integer;
         }).throw();
     });
+    it(`make sure test lib is support length check`, function () {
+        let a = [1, 2, 3];
+        _local_dev_1.expect(a).length(3);
+        _local_dev_1.expect(a).length.gte(3);
+        _local_dev_1.expect(() => {
+            _local_dev_1.expect(a).length.gt(3);
+        }).throw();
+        _local_dev_1.expect('abc').length(3);
+        _local_dev_1.expect('abc').string.lengthOf(3);
+        _local_dev_1.expect('abc').string('abc').lengthOf(3);
+        _local_dev_1.expect(() => {
+            _local_dev_1.expect(a).length.not.gte(3);
+        }).throw();
+    });
     // @ts-ignore
     describe(`dfArrayUnique`, () => {
         const count = 10000;

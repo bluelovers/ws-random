@@ -35,3 +35,5 @@ export declare function hashArgv(args: any[]): string;
 export declare function isNum(n: number): boolean;
 export declare function isInt(n: number): boolean;
 export declare function isFloat(n: number): boolean;
+export declare function stringifyHex(n: number): string;
+export declare function toHexArray(arr: number[]): string[];

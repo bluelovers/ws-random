@@ -149,15 +149,23 @@ export declare class Random<R extends RNG = RNG> {
     /**
      * random byte
      */
-    byte(): number;
-    dfByte(): () => number;
+    byte(toStr: true): string;
+    byte(toStr?: false): number;
+    byte(toStr?: boolean): string | number;
+    dfByte(toStr: true): () => string;
+    dfByte(toStr?: false): () => number;
+    dfByte(toStr?: boolean): (() => string) | (() => number);
     /**
      * random bytes, with size
      *
      * @example Buffer.from(random.bytes(10)) // => <Buffer 5d 4b 06 94 08 e2 85 5b 79 4f>
      */
-    bytes(size?: number): number[];
-    dfBytes(size?: number): () => number[];
+    bytes(size: number, toStr: true): string[];
+    bytes(size?: number, toStr?: false): number[];
+    bytes(size?: number, toStr?: boolean): string[] | number[];
+    dfBytes(size: number, toStr: true): () => string[];
+    dfBytes(size?: number, toStr?: false): () => number[];
+    dfBytes(size?: number, toStr?: boolean): (() => string[]) | (() => number[]);
     /**
      * same as crypto.randomBytes(size)
      *
@@ -185,7 +193,7 @@ export declare class Random<R extends RNG = RNG> {
      *
      * @example console.log(random.dfArrayIndex([11, 22, 33], 1, 0));
      */
-    dfArrayIndex<T extends Array<unknown>>(arr: T, size?: number, start?: number, end?: number): <T_1 extends unknown[]>(arr: T_1) => number[];
+    dfArrayIndex<T extends Array<unknown>>(arr: T, size?: number, start?: number, end?: number): () => number[];
     /**
      * get random item in array
      *

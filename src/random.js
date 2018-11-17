@@ -215,25 +215,17 @@ let Random = Random_1 = class Random {
     boolean(likelihood) {
         return this.dfUniformBoolean(likelihood)();
     }
-    /**
-     * random byte
-     */
-    byte() {
-        return this.dfByte()();
+    byte(toStr) {
+        return this.dfByte(toStr)();
     }
-    dfByte() {
-        return this._memoize('byte', distributions_1.Distributions.uniformByte);
+    dfByte(toStr) {
+        return this._memoize('byte', distributions_1.Distributions.uniformByte, toStr);
     }
-    /**
-     * random bytes, with size
-     *
-     * @example Buffer.from(random.bytes(10)) // => <Buffer 5d 4b 06 94 08 e2 85 5b 79 4f>
-     */
-    bytes(size = 1) {
-        return this.dfBytes(size)();
+    bytes(size = 1, toStr) {
+        return this.dfBytes(size, toStr)();
     }
-    dfBytes(size = 1) {
-        return this._memoize('bytes', distributions_1.Distributions.bytes, size);
+    dfBytes(size = 1, toStr) {
+        return this._memoize('bytes', distributions_1.Distributions.bytes, size, toStr);
     }
     /**
      * same as crypto.randomBytes(size)
@@ -260,7 +252,7 @@ let Random = Random_1 = class Random {
         return this._memoize('dfCharID', distributions_1.Distributions.charID, char, size);
     }
     arrayIndex(arr, size = 1, start = 0, end) {
-        return this.dfArrayIndex(arr, size, start, end)(arr);
+        return this.dfArrayIndex(arr, size, start, end)();
     }
     /**
      * get random index in array
@@ -269,7 +261,7 @@ let Random = Random_1 = class Random {
      */
     dfArrayIndex(arr, size = 1, start = 0, end) {
         // @ts-ignore
-        return this._memoize('dfArrayIndex', distributions_1.Distributions.arrayIndex, size, start, end);
+        return this._memoizeFake('dfArrayIndex', distributions_1.Distributions.arrayIndex, arr, size, start, end);
     }
     /**
      * get random item in array

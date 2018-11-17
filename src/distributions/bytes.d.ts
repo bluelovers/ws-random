@@ -1,3 +1,4 @@
 import { Random } from '../random';
-declare const _default: (random: Random<import("../rng").RNG>, size?: number) => () => number[];
-export default _default;
+export default function uniformBytes(random: Random, size: number, toStr: true): () => string[];
+export default function uniformBytes(random: Random, size: number, toStr?: false): () => number[];
+export default function uniformBytes(random: Random, size: number, toStr?: boolean): (() => string[]) | (() => number[]);

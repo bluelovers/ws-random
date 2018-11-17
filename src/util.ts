@@ -11,6 +11,7 @@ import hashSum = require('hash-sum');
 //export { shortid, hashSum }
 
 import _nanoid = require('nanoid')
+import * as HexLib from 'hex-lib';
 
 import _pkg = require('../package.json')
 
@@ -122,6 +123,16 @@ export function isInt(n: number)
 export function isFloat(n: number)
 {
 	return n === +n && n !== (n | 0);
+}
+
+export function stringifyHex(n: number)
+{
+	return HexLib.toHex(n, 2, '')
+}
+
+export function toHexArray(arr: number[])
+{
+	return arr.map(stringifyHex)
 }
 
 // @ts-ignore

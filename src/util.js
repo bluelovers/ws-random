@@ -10,6 +10,7 @@ const hashSum = require("hash-sum");
 //
 //export { shortid, hashSum }
 const _nanoid = require("nanoid");
+const HexLib = require("hex-lib");
 const _pkg = require("../package.json");
 const MATH_POW_2_32 = Math.pow(2, 32);
 const _GLOBAL = (0, eval)('this');
@@ -90,5 +91,13 @@ function isFloat(n) {
     return n === +n && n !== (n | 0);
 }
 exports.isFloat = isFloat;
+function stringifyHex(n) {
+    return HexLib.toHex(n, 2, '');
+}
+exports.stringifyHex = stringifyHex;
+function toHexArray(arr) {
+    return arr.map(stringifyHex);
+}
+exports.toHexArray = toHexArray;
 // @ts-ignore
 Object.freeze(exports);

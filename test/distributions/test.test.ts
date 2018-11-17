@@ -50,6 +50,27 @@ describe(relative(__filename), () =>
 		}).throw()
 	});
 
+	it(`make sure test lib is support length check`, function ()
+	{
+		let a = [1, 2, 3];
+
+		expect(a).length(3)
+		expect(a).length.gte(3)
+
+		expect(() => {
+			expect(a).length.gt(3)
+		}).throw()
+
+		expect('abc').length(3)
+		expect('abc').string.lengthOf(3)
+
+		expect('abc').string('abc').lengthOf(3)
+
+		expect(() => {
+			expect(a).length.not.gte(3)
+		}).throw()
+	});
+
 	// @ts-ignore
 	describe(`dfArrayUnique`, () =>
 	{

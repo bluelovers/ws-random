@@ -1,18 +1,19 @@
 import { Random } from '../random';
 import expect from '../util/ow';
-import uniformInt from './uniform-int';
+import uniformByte from './uniform-byte';
 
-
-export default (random: Random, size?: number) =>
+export default function uniformBytes(random: Random, size: number, toStr: true): () => string[]
+export default function uniformBytes(random: Random, size: number, toStr?: false): () => number[]
+export default function uniformBytes(random: Random, size: number, toStr?: boolean): (() => string[]) | (() => number[])
+export default function uniformBytes(random: Random, size: number, toStr?: boolean)
 {
-	//ow(size, ow.number.integer.gt(0))
 	expect(size).integer.gt(0)
 
-	const fn = uniformInt(random, 0, 255)
+	const fn = uniformByte(random, toStr)
 
 	return () =>
 	{
-		let arr: number[] = []
+		let arr = []
 		for (let i = 0; i < size; i++)
 		{
 			arr.push(fn())

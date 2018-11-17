@@ -1,6 +1,6 @@
 {
   "name": "random-extra",
-  "version": "3.1.1",
+  "version": "3.2.0",
   "description": "Seedable random number generator supporting many common distributions.",
   "keywords": [
     "alea",
@@ -73,21 +73,21 @@
   },
   "scripts": {
     "benchmark": "npx ts-node ./test/benchmark/base.perf.ts && npx ts-node ./test/benchmark/random-id.perf.ts",
-    "docs": "update-markdown-jsdoc -f src/random.js --shallow",
     "postpublish": "echo postpublish && node ./test/script/publish-after",
     "prepublishOnly": "npm run test && npx sort-package-json",
-    "test": "npm run test-mocha",
-    "test-ava": "npx ava --serial -v test/**/distributions/**/*.test.js",
-    "test-mocha": "mocha \"!(node_modules)/**/*.{test,spec}.js\"",
+    "test-ci": "npm run test-mocha-js",
+    "test": "npm run test-mocha-npx",
+    "test-mocha-js": "mocha \"!(node_modules)/**/*.{test,spec}.js\"",
     "test-mocha-npx": "npx mocha --require ts-node/register \"!(node_modules)/**/*.{test,spec}.{ts,tsx}\""
   },
   "dependencies": {
     "@types/nanoid": "^1.2.0",
     "@types/seedrandom": "^2",
     "chai": "^4",
-    "chai-asserttype-extra": "^1.1.2",
+    "chai-asserttype-extra": "^1.2.0",
     "core-decorators": "^0.20.0",
     "hash-sum": "^1.0.2",
+    "hex-lib": "^1.0.2",
     "nanoid": "^2.0.0",
     "uni-string": "^1.1.0"
   },
@@ -101,27 +101,15 @@
     "debug-color2": "^1.0.6",
     "git-root2": "^1.0.4",
     "math-random": "^1.0.1",
-    "microtime": "^2.1.8",
     "random": "^2.0.12",
     "seedrandom": "^2.4.4",
     "shortid": "^2.2.14",
-    "ts-enum-util": "^3.1.0",
-    "update-markdown-jsdoc": "^1.0.6"
+    "ts-enum-util": "^3.1.0"
   },
   "peerDependencies": {
     "seedrandom": "^2.4.4"
   },
   "engines": {
     "node": ">=7"
-  },
-  "ava": {
-    "compileEnhancements": false,
-    "extensions": [
-      "ts"
-    ],
-    "require": [
-      "ts-node/register"
-    ]
-  },
-  "reveal": true
+  }
 }

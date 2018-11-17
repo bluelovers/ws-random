@@ -10,3 +10,5 @@ node_js:
 #  - 6
 before_script:
   - yarn add -g ts-node typescript@next mocha
+script:
+  - npm run test-ci

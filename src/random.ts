@@ -321,14 +321,20 @@ export class Random<R extends RNG = RNG>
 	/**
 	 * random byte
 	 */
-	byte()
+	byte(toStr: true): string
+	byte(toStr?: false): number
+	byte(toStr?: boolean): string | number
+	byte(toStr?: boolean)
 	{
-		return this.dfByte()()
+		return this.dfByte(toStr)()
 	}
 
-	dfByte()
+	dfByte(toStr: true): () => string
+	dfByte(toStr?: false): () => number
+	dfByte(toStr?: boolean): (() => string) | (() => number)
+	dfByte(toStr?: boolean)
 	{
-		return this._memoize('byte', Distributions.uniformByte)
+		return this._memoize('byte', Distributions.uniformByte, toStr)
 	}
 
 	/**
@@ -336,14 +342,20 @@ export class Random<R extends RNG = RNG>
 	 *
 	 * @example Buffer.from(random.bytes(10)) // => <Buffer 5d 4b 06 94 08 e2 85 5b 79 4f>
 	 */
-	bytes(size: number = 1)
+	bytes(size: number, toStr: true): string[]
+	bytes(size?: number, toStr?: false): number[]
+	bytes(size?: number, toStr?: boolean): string[] | number[]
+	bytes(size: number = 1, toStr?: boolean)
 	{
-		return this.dfBytes(size)()
+		return this.dfBytes(size, toStr)()
 	}
 
-	dfBytes(size: number = 1)
+	dfBytes(size: number, toStr: true): () => string[]
+	dfBytes(size?: number, toStr?: false): () => number[]
+	dfBytes(size?: number, toStr?: boolean): (() => string[]) | (() => number[])
+	dfBytes(size: number = 1, toStr?: boolean)
 	{
-		return this._memoize('bytes', Distributions.bytes, size)
+		return this._memoize('bytes', Distributions.bytes, size, toStr)
 	}
 
 	/**
@@ -394,7 +406,7 @@ export class Random<R extends RNG = RNG>
 
 	arrayIndex<T extends Array<unknown>>(arr: T, size: number = 1, start: number = 0, end?: number)
 	{
-		return this.dfArrayIndex(arr, size, start, end)(arr)
+		return this.dfArrayIndex(arr, size, start, end)()
 	}
 
 	/**
@@ -405,7 +417,7 @@ export class Random<R extends RNG = RNG>
 	dfArrayIndex<T extends Array<unknown>>(arr: T, size: number = 1, start: number = 0, end?: number)
 	{
 		// @ts-ignore
-		return this._memoize('dfArrayIndex', Distributions.arrayIndex, size, start, end)
+		return this._memoizeFake('dfArrayIndex', Distributions.arrayIndex, arr, size, start, end)
 	}
 
 	/**
