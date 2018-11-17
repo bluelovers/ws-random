@@ -1,6 +1,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const byte_1 = require("../util/byte");
 const bytes_1 = require("./bytes");
+/**
+ * @see https://github.com/tracker1/node-uuid4/blob/master/index.js
+ */
 function default_1(random, toUpperCase) {
     let fn = bytes_1.default(random, 16);
     let fn2 = toUpperCase ? byte_1._bytesToUuid(byte_1.BYTE_TO_HEX_TO_UPPER_CASE) : byte_1._bytesToUuid(byte_1.BYTE_TO_HEX_TO_LOWER_CASE);

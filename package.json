@@ -45,6 +45,7 @@
     "sort",
     "srand",
     "stats",
+    "uuid",
     "sum",
     "tychei",
     "uniform",
