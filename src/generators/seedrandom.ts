@@ -47,9 +47,7 @@ export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 		super._init(seed, opts, ...argv)
 	}
 
-	@nonenumerable
 	protected readonly _NAME = 'seedrandom';
-	@nonenumerable
 	protected _TYPE = null;
 
 	get name()

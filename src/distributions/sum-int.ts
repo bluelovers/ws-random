@@ -1,5 +1,6 @@
 import random from '../random';
 import { Random } from '../random';
+import coreFn2 from './internal/sum-num';
 import uniformInt from './uniform-int';
 import { expect, assert } from '../util/ow'
 import { swapAlgorithm } from '../util/array';
@@ -27,17 +28,17 @@ export default (random: Random, size: number, sum?: number, min?: number, max?: 
 	//expect(Math.abs(max - min), 'max - min').gte(Math.max(size, UtilMath.sum_1_to_n(size) - Math.abs(min)));
 	//expect(max / size, 'max / size').gte(min);
 
-	return _sumNumCore({
+	return coreFn2({
 		random,
 		size,
 		sum,
 		min,
 		max,
-		//fn: uniformInt(random, min, max),
-		fn2: UtilDistributions.int,
+		//fnFirst: uniformInt(random, min, max),
+		fnNext: UtilDistributions.int,
 		chk_sum: true,
 		noUnique,
-		chkSize(data: ISumNumParameter)
+		verifyFn(data: ISumNumParameter)
 		{
 			if (!data.noUnique)
 			{

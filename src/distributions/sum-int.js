@@ -1,8 +1,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
+const sum_num_1 = require("./internal/sum-num");
 const ow_1 = require("../util/ow");
 const distributions_1 = require("../util/distributions");
 const UtilMath = require("../util/math");
-const sum_num_1 = require("./internal/sum-num");
 /**
  * @todo support max < 1
  * @fixme bug when min < 0
@@ -22,11 +22,11 @@ exports.default = (random, size, sum, min, max, noUnique) => {
         sum,
         min,
         max,
-        //fn: uniformInt(random, min, max),
-        fn2: distributions_1.UtilDistributions.int,
+        //fnFirst: uniformInt(random, min, max),
+        fnNext: distributions_1.UtilDistributions.int,
         chk_sum: true,
         noUnique,
-        chkSize(data) {
+        verifyFn(data) {
             if (!data.noUnique) {
                 let n1 = Math.abs(data.max - data.min);
                 let n2 = UtilMath.sum_1_to_n(data.size);

@@ -263,6 +263,38 @@ describe(relative(__filename), () =>
 			;
 		});
 
+		0 && it(`dfSumFloat(3, sum = -21)`, function ()
+		{
+			const size = 3;
+
+			const expected_sum = -21;
+
+			const d = random.dfSumFloat(size, expected_sum);
+
+			let cache = {} as {
+				[k: string]: number[],
+			};
+
+			for (let i = 0; i < 10000; ++i)
+			{
+				const v = d();
+
+				cache[String(v)] = v;
+			}
+
+			const vs = Object.values(cache);
+
+			vs
+				.forEach(function (v)
+				{
+					const sum = v.reduce((a, b) => a + b);
+					expect(sum).closeTo(expected_sum, 0.01);
+
+					expect(v).length(size);
+				})
+			;
+		});
+
 		it(`dfSumFloat(3, null, 1, 6)`, function ()
 		{
 			const size = 3;

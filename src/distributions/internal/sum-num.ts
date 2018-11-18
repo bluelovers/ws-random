@@ -13,8 +13,8 @@ export interface ISumNumParameterBase
 
 	size: number,
 
-	fn?: (min?: number, max?: number) => number,
-	fn2: (...args: Parameters<typeof UtilDistributions.int>) => number,
+	fnFirst?: (min?: number, max?: number) => number,
+	fnNext: (...args: Parameters<typeof UtilDistributions.int>) => number,
 
 	chk_sum?: boolean,
 	noUnique?: boolean,
@@ -22,6 +22,8 @@ export interface ISumNumParameterBase
 	chkSize?(data: ISumNumParameter): boolean | void,
 
 	intMode?: boolean,
+
+	verifyFn?(data: ISumNumParameter)
 }
 
 export interface ISumNumParameter extends ISumNumParameterBase
@@ -31,13 +33,18 @@ export interface ISumNumParameter extends ISumNumParameterBase
 	sum?: number,
 }
 
+export interface ISumNumParameterWuthCache extends ISumNumParameter
+{
+	
+}
+
 export function coreFn2({
 	random,
 	size,
 	min,
 	max,
-	fn,
-	fn2,
+	fnFirst,
+	fnNext,
 	chk_sum,
 	noUnique,
 	sum,
@@ -98,9 +105,9 @@ export function coreFn2({
 	noUnique = !!noUnique;
 	const doUnique = !noUnique;
 
-	if (!fn)
+	if (!fnFirst)
 	{
-		fn = (min, max) => fn2(random, min, max)
+		fnFirst = (min, max) => fnNext(random, min, max)
 	}
 
 	if (chkSize)
@@ -110,8 +117,8 @@ export function coreFn2({
 			size,
 			min,
 			max,
-			fn,
-			fn2,
+			fnFirst,
+			fnNext,
 			chk_sum,
 			noUnique,
 			sum,
@@ -132,7 +139,7 @@ export function coreFn2({
 
 			let prev: number;
 
-			prev = ret[i] = fn(min, max);
+			prev = ret[i] = fnFirst(min, max);
 
 			LABEL_SUB: while (i > 1)
 			{
@@ -151,7 +158,7 @@ export function coreFn2({
 					n = max;
 				}
 
-				let cur = fn2(random, min, n);
+				let cur = fnNext(random, min, n);
 
 				if (doUnique && prev === cur)
 				{
@@ -197,8 +204,8 @@ export function coreFn1({
 	size,
 	min,
 	max,
-	fn,
-	fn2,
+	fnFirst,
+	fnNext,
 	chk_sum,
 	noUnique,
 }: ISumNumParameter)
@@ -217,7 +224,7 @@ export function coreFn1({
 			let i = size - 1;
 			let n: number;
 
-			ret[i] = fn();
+			ret[i] = fnFirst();
 
 			LABEL_SUB: while (i > 1)
 			{
@@ -231,7 +238,7 @@ export function coreFn1({
 
 				sum -= ret[i--];
 
-				ret[i] = fn2(random, min, n);
+				ret[i] = fnNext(random, min, n);
 			}
 
 			ret[0] = sum - ret[i];

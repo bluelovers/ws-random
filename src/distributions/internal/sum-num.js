@@ -3,7 +3,7 @@ const math_1 = require("../../util/math");
 const UtilMath = require("../../util/math");
 const ow_1 = require("../../util/ow");
 exports.default = coreFn2;
-function coreFn2({ random, size, min, max, fn, fn2, chk_sum, noUnique, sum, chkSize, intMode, }) {
+function coreFn2({ random, size, min, max, fnFirst, fnNext, chk_sum, noUnique, sum, chkSize, intMode, }) {
     ow_1.expect(size).integer.gt(1);
     let abs2 = math_1.sum_1_to_n(size);
     if (typeof sum === 'undefined' || sum === null) {
@@ -38,8 +38,8 @@ function coreFn2({ random, size, min, max, fn, fn2, chk_sum, noUnique, sum, chkS
     chk_sum = !!chk_sum;
     noUnique = !!noUnique;
     const doUnique = !noUnique;
-    if (!fn) {
-        fn = (min, max) => fn2(random, min, max);
+    if (!fnFirst) {
+        fnFirst = (min, max) => fnNext(random, min, max);
     }
     if (chkSize) {
         chkSize({
@@ -47,8 +47,8 @@ function coreFn2({ random, size, min, max, fn, fn2, chk_sum, noUnique, sum, chkS
             size,
             min,
             max,
-            fn,
-            fn2,
+            fnFirst,
+            fnNext,
             chk_sum,
             noUnique,
             sum,
@@ -63,7 +63,7 @@ function coreFn2({ random, size, min, max, fn, fn2, chk_sum, noUnique, sum, chkS
             let i = size - 1;
             let n;
             let prev;
-            prev = ret[i] = fn(min, max);
+            prev = ret[i] = fnFirst(min, max);
             LABEL_SUB: while (i > 1) {
                 let j = i;
                 n = total - ret[j];
@@ -75,7 +75,7 @@ function coreFn2({ random, size, min, max, fn, fn2, chk_sum, noUnique, sum, chkS
                 else if (n > max) {
                     n = max;
                 }
-                let cur = fn2(random, min, n);
+                let cur = fnNext(random, min, n);
                 if (doUnique && prev === cur) {
                     bool = true;
                     //console.log(ret);
@@ -104,7 +104,7 @@ exports.coreFn2 = coreFn2;
 /**
  * @deprecated
  */
-function coreFn1({ random, size, min, max, fn, fn2, chk_sum, noUnique, }) {
+function coreFn1({ random, size, min, max, fnFirst, fnNext, chk_sum, noUnique, }) {
     chk_sum = !!chk_sum;
     noUnique = !!noUnique;
     return () => {
@@ -114,7 +114,7 @@ function coreFn1({ random, size, min, max, fn, fn2, chk_sum, noUnique, }) {
             let sum = max;
             let i = size - 1;
             let n;
-            ret[i] = fn();
+            ret[i] = fnFirst();
             LABEL_SUB: while (i > 1) {
                 n = sum - ret[i];
                 if (n < min || chk_sum && n < (UtilMath.sum_1_to_n(i) + min)) {
@@ -122,7 +122,7 @@ function coreFn1({ random, size, min, max, fn, fn2, chk_sum, noUnique, }) {
                     continue LABEL_TOP;
                 }
                 sum -= ret[i--];
-                ret[i] = fn2(random, min, n);
+                ret[i] = fnNext(random, min, n);
             }
             ret[0] = sum - ret[i];
             bool = chk(ret, size, sum, min, max, noUnique);
