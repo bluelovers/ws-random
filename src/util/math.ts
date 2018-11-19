@@ -9,6 +9,31 @@ export function sum_1_to_n(n: number)
 	return n * (n + 1) / 2;
 }
 
+/**
+ * simple probabilities
+ */
+export function get_prob(size: number, sum: number)
+{
+	let score = sum;
+	let resultArray: number[] = [];
+	let randomTotal = 0;
+	let i: number;
+
+	for (i = 0; i < size - 1; i++)
+	{
+		let res = Math.round(score / size);
+		let random = res;
+		resultArray[i] = random;
+		randomTotal += resultArray[i];
+		score = score - random;
+	}
+
+	let result = sum - randomTotal;
+	resultArray[i] = result;
+
+	return resultArray;
+}
+
 export function get_range_by_size_sum(size: number, sum?: number)
 {
 	sum = sum || sum_1_to_n(size);
@@ -60,4 +85,9 @@ export function get_range_by_size_sum(size: number, sum?: number)
 		max,
 		sum,
 	}
+}
+
+export function array_sum(na: number[])
+{
+	return na.reduce((a, b) => a + b)
 }

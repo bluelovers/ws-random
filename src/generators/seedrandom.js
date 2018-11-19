@@ -8,6 +8,7 @@ exports.defaultOptions = Object.freeze({
 class RNGSeedRandom extends function_1.default {
     constructor(seed, opts, ...argv) {
         super(seed, opts, ...argv);
+        this._seedable = true;
         this._NAME = 'seedrandom';
         this._TYPE = null;
     }
@@ -68,9 +69,6 @@ class RNGSeedRandom extends function_1.default {
     }
     get options() {
         return this._opts;
-    }
-    get seedable() {
-        return true;
     }
     /**
      * only when option.state = true

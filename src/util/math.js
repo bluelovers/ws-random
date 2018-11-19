@@ -8,6 +8,26 @@ function sum_1_to_n(n) {
     return n * (n + 1) / 2;
 }
 exports.sum_1_to_n = sum_1_to_n;
+/**
+ * simple probabilities
+ */
+function get_prob(size, sum) {
+    let score = sum;
+    let resultArray = [];
+    let randomTotal = 0;
+    let i;
+    for (i = 0; i < size - 1; i++) {
+        let res = Math.round(score / size);
+        let random = res;
+        resultArray[i] = random;
+        randomTotal += resultArray[i];
+        score = score - random;
+    }
+    let result = sum - randomTotal;
+    resultArray[i] = result;
+    return resultArray;
+}
+exports.get_prob = get_prob;
 function get_range_by_size_sum(size, sum) {
     sum = sum || sum_1_to_n(size);
     let score = sum;
@@ -44,3 +64,7 @@ function get_range_by_size_sum(size, sum) {
     };
 }
 exports.get_range_by_size_sum = get_range_by_size_sum;
+function array_sum(na) {
+    return na.reduce((a, b) => a + b);
+}
+exports.array_sum = array_sum;

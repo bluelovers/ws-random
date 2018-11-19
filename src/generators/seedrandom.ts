@@ -21,6 +21,8 @@ export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 	protected _opts: RNGSeedRandomOptions
 	protected _seedrandom: IRNGSeedRandomGenerator
 
+	protected _seedable: boolean = true
+
 	constructor(seed?, opts?: RNGSeedRandomOptions, lib?: IRNGSeedRandomLib, ...argv)
 	constructor(seed?, opts?: RNGSeedRandomOptions, ...argv)
 	{
@@ -114,11 +116,6 @@ export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 	get options()
 	{
 		return this._opts
-	}
-
-	public get seedable()
-	{
-		return true
 	}
 
 	/**

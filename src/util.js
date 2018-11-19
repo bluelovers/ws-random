@@ -90,5 +90,16 @@ function isFloat(n) {
     return n === +n && n !== (n | 0);
 }
 exports.isFloat = isFloat;
+function isUnset(n) {
+    return typeof n === 'undefined' || n === null;
+}
+exports.isUnset = isUnset;
+/**
+ * for non-strict check, try get a little
+ */
+function array_unique_unsafe(arr) {
+    return arr.filter((v, i, arr) => arr.indexOf(v) === i);
+}
+exports.array_unique_unsafe = array_unique_unsafe;
 // @ts-ignore
 Object.freeze(exports);

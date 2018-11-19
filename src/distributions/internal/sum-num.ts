@@ -1,9 +1,10 @@
+import { libRmath, fakeLibRmathRng } from '../../for3rd/lib-r-math/util';
 import { Random } from '../../random';
+import { isUnset, array_unique_unsafe } from '../../util';
 import { UtilDistributions } from '../../util/distributions';
-import { sum_1_to_n } from '../../util/math';
 import * as UtilMath from '../../util/math';
+import { get_prob, sum_1_to_n } from '../../util/math';
 import { expect } from '../../util/ow';
-import uniformInt from '../uniform-int';
 
 export default coreFn2
 
@@ -14,7 +15,7 @@ export interface ISumNumParameterBase
 	size: number,
 
 	fnFirst?: (min?: number, max?: number) => number,
-	fnNext: (...args: Parameters<typeof UtilDistributions.int>) => number,
+	fnNext?: (...args: Parameters<typeof UtilDistributions.int>) => number,
 
 	chk_sum?: boolean,
 	noUnique?: boolean,
@@ -24,6 +25,8 @@ export interface ISumNumParameterBase
 	intMode?: boolean,
 
 	verifyFn?(data: ISumNumParameter)
+
+	limit?: number,
 }
 
 export interface ISumNumParameter extends ISumNumParameterBase
@@ -35,7 +38,7 @@ export interface ISumNumParameter extends ISumNumParameterBase
 
 export interface ISumNumParameterWuthCache extends ISumNumParameter
 {
-	
+
 }
 
 export function coreFn2({
@@ -273,4 +276,165 @@ export function chk(
 		})
 		.length !== size && total === sum
 		;
+}
+
+/**
+ * not support unique, but will try make unique if can
+ * thx @SeverinPappadeux for int version
+ *
+ * @see https://stackoverflow.com/questions/53279807/how-to-get-random-number-list-with-fixed-sum-and-size
+ */
+export function coreFnRandSumInt(argv: ISumNumParameterWuthCache)
+{
+	let {
+		random,
+		size,
+		sum,
+		min,
+		max,
+	} = argv;
+
+	let sum_1_to_size = sum_1_to_n(size);
+
+	sum = isUnset(sum) ? sum_1_to_size : sum;
+
+	expect(sum).integer();
+
+	min = isUnset(min) ? (sum > 0 ? 0 : sum) : min;
+	max = isUnset(max) ? Math.abs(sum) : max;
+
+	expect(min).integer();
+	expect(max).integer();
+
+	let n_sum = Math.min(Math.abs(sum - size * min));
+	let maxv = max - min;
+
+	/*
+	console.log({
+		sum_1_to_size,
+		size,
+		sum,
+		min,
+		max,
+	});
+	*/
+
+	if (sum > 0)
+	{
+		expect(sum).gt(min)
+	}
+
+	/**
+	 * pre-check
+	 */
+	//expect(maxv, `(max - min) should > sum_1_to_size`).gte(sum_1_to_size);
+
+	/**
+	 * probabilities
+	 */
+	let prob = get_prob(size, maxv);
+
+	expect(prob).is.array.lengthOf(size);
+
+	/**
+	 * make rmultinom use with random.next
+	 */
+	let rmultinomFn = libRmath.Multinomial(fakeLibRmathRng(random.next)).rmultinom;
+
+	/**
+	 * low value for speed up, but more chance fail
+	 */
+	let n_len = argv.limit || 5 || n_sum;
+	/**
+	 * rebase number
+	 */
+	let n_diff: number = min;
+
+	/**
+	 * try reset memory
+	 */
+	argv = undefined;
+
+	return () =>
+	{
+		let arr = (rmultinomFn(n_len, n_sum, prob) as number[][])
+			.map(value =>
+			{
+				return {
+					value,
+					unique_len: array_unique_unsafe(value).length,
+				}
+			})
+			.sort((a, b) => b.unique_len - a.unique_len)
+		;
+
+		let ret_b: number[];
+
+		let bool_toplevel = arr.some(function (a, index)
+		{
+			ret_b = a.value;
+
+			let bool: boolean;
+			let b_sum: number;
+
+			/*
+			if (!bool && a.unique_len != size)
+			{
+				({ bool, b_sum } = _array_rebase(ret_b, n_diff, min, max, true));
+			}
+			*/
+
+			if (!bool)
+			{
+				({ bool, b_sum } = _array_rebase(ret_b, n_diff, min, max));
+			}
+
+			//console.log(bool, index, b_sum, ret_b, n_diff, ret_a);
+
+			return bool && b_sum === sum;
+		});
+
+		if (!bool_toplevel || !ret_b)
+		{
+			throw new Error(`can't generator value by current input argv, or try set limit for high number`)
+		}
+
+		return ret_b;
+	}
+}
+
+/**
+ * back to original interval
+ */
+export function _array_rebase(ret_b: number[], n_diff: number, min: number, max: number)
+{
+	let b_sum = 0;
+
+	let bool: boolean;
+
+	let i = ret_b.length;
+
+	while (i--)
+	{
+		let v = ret_b[i];
+		let n = v + n_diff;
+
+		if (n >= min && n <= max)
+		{
+			bool = true;
+			ret_b[i] = n;
+
+			b_sum += n
+		}
+		else
+		{
+			bool = false;
+			break;
+		}
+	}
+
+	return {
+		bool,
+		b_sum,
+	};
 }

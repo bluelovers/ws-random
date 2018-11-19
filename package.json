@@ -1,6 +1,6 @@
 {
   "name": "random-extra",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "description": "Seedable random number generator supporting many common distributions.",
   "keywords": [
     "alea",
@@ -75,7 +75,7 @@
   "scripts": {
     "benchmark": "npx ts-node ./test/benchmark/base.perf.ts && npx ts-node ./test/benchmark/random-id.perf.ts",
     "postpublish": "echo postpublish && node ./test/script/publish-after",
-    "prepublishOnly": "npm run test && npx sort-package-json",
+    "prepublishOnly": "npx sort-package-json && npm run test",
     "test": "npm run test-mocha-npx",
     "test-ci": "npm run test-mocha-js",
     "test-mocha-js": "mocha \"!(node_modules)/**/*.{test,spec}.js\"",
@@ -84,11 +84,13 @@
   "dependencies": {
     "@types/nanoid": "^1.2.0",
     "@types/seedrandom": "^2",
+    "array-hyper-unique": "^1.0.7",
     "chai": "^4",
     "chai-asserttype-extra": "^1.2.0",
     "core-decorators": "^0.20.0",
     "hash-sum": "^1.0.2",
     "hex-lib": "^1.0.2",
+    "lib-r-math.js": "^1.0.83",
     "nanoid": "^2.0.0",
     "uni-string": "^1.1.0"
   },

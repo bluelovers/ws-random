@@ -337,10 +337,10 @@ export declare class Random<R extends RNG = RNG> {
      * random.sumInt(3, -5)
      * random.sumInt(3, 52)
      */
-    sumInt(size: number, sum?: number, min?: number, max?: number, noUnique?: boolean): number[];
-    dfSumInt(size: number, sum?: number, min?: number, max?: number, noUnique?: boolean): () => number[];
-    sumFloat(size: number, sum?: number, min?: number, max?: number, noUnique?: boolean): number[];
-    dfSumFloat(size: number, sum?: number, min?: number, max?: number, noUnique?: boolean): () => number[];
+    sumInt(size: number, sum?: number, min?: number, max?: number, noUnique?: boolean, limit?: number): number[];
+    dfSumInt(size: number, sum?: number, min?: number, max?: number, noUnique?: boolean, limit?: number): () => number[];
+    sumFloat(size: number, sum?: number, min?: number, max?: number, noUnique?: boolean, limit?: number): number[];
+    dfSumFloat(size: number, sum?: number, min?: number, max?: number, noUnique?: boolean, limit?: number): () => number[];
     /**
      * Memoizes distributions to ensure they're only created when necessary.
      *

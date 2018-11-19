@@ -123,5 +123,18 @@ export function isFloat(n: number)
 	return n === +n && n !== (n | 0);
 }
 
+export function isUnset(n)
+{
+	return typeof n === 'undefined' || n === null
+}
+
+/**
+ * for non-strict check, try get a little
+ */
+export function array_unique_unsafe<T extends any>(arr: T[])
+{
+	return arr.filter((v, i, arr) => arr.indexOf(v) === i)
+}
+
 // @ts-ignore
 Object.freeze(exports)

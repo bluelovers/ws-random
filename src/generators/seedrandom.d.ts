@@ -9,6 +9,7 @@ export declare type IRNGSeedRandomLibValueOf = PickValueOf<typeof seedrandom, IR
 export declare class RNGSeedRandom extends RNGFunction<seedrandom.prng> {
     protected _opts: RNGSeedRandomOptions;
     protected _seedrandom: IRNGSeedRandomGenerator;
+    protected _seedable: boolean;
     constructor(seed?: any, opts?: RNGSeedRandomOptions, lib?: IRNGSeedRandomLib, ...argv: any[]);
     static createLib(lib?: IRNGSeedRandomLib, seed?: any, opts?: RNGSeedRandomOptions, ...argv: any[]): RNGSeedRandom;
     static create(seed?: any, opts?: RNGSeedRandomOptions, lib?: IRNGSeedRandomLib, ...argv: any[]): RNGSeedRandom;
@@ -18,7 +19,6 @@ export declare class RNGSeedRandom extends RNGFunction<seedrandom.prng> {
     readonly name: string;
     protected __generator(fn?: typeof seedrandom | IRNGSeedRandomLib | IRNGSeedRandomLibValueOf): IRNGSeedRandomGenerator;
     readonly options: seedrandom.seedRandomOptions;
-    readonly seedable: boolean;
     /**
      * only when option.state = true
      */

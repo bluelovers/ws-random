@@ -730,24 +730,24 @@ export class Random<R extends RNG = RNG>
 	 * random.sumInt(3, -5)
 	 * random.sumInt(3, 52)
 	 */
-	sumInt(size: number, sum?: number, min?: number, max?: number, noUnique?: boolean)
+	sumInt(size: number, sum?: number, min?: number, max?: number, noUnique?: boolean, limit?: number)
 	{
-		return this.dfSumInt(size, sum, min, max, noUnique)()
+		return this.dfSumInt(size, sum, min, max, noUnique, limit)()
 	}
 
-	dfSumInt(size: number, sum?: number, min?: number, max?: number, noUnique?: boolean)
+	dfSumInt(size: number, sum?: number, min?: number, max?: number, noUnique?: boolean, limit?: number)
 	{
-		return this._memoize('sumInt', Distributions.sumInt, size, sum, min, max, noUnique)
+		return this._memoize('sumInt', Distributions.sumInt, size, sum, min, max, noUnique, limit)
 	}
 
-	sumFloat(size: number, sum?: number, min?: number, max?: number, noUnique?: boolean)
+	sumFloat(size: number, sum?: number, min?: number, max?: number, noUnique?: boolean, limit?: number)
 	{
-		return this.dfSumFloat(size, sum, min, max, noUnique)()
+		return this.dfSumFloat(size, sum, min, max, noUnique, limit)()
 	}
 
-	dfSumFloat(size: number, sum?: number, min?: number, max?: number, noUnique?: boolean)
+	dfSumFloat(size: number, sum?: number, min?: number, max?: number, noUnique?: boolean, limit?: number)
 	{
-		return this._memoize('sumFloat', Distributions.sumFloat, size, sum, min, max, noUnique)
+		return this._memoize('sumFloat', Distributions.sumFloat, size, sum, min, max, noUnique, limit)
 	}
 
 	// --------------------------------------------------------------------------

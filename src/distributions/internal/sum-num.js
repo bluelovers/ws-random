@@ -1,6 +1,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-const math_1 = require("../../util/math");
+const util_1 = require("../../for3rd/lib-r-math/util");
+const util_2 = require("../../util");
 const UtilMath = require("../../util/math");
+const math_1 = require("../../util/math");
 const ow_1 = require("../../util/ow");
 exports.default = coreFn2;
 function coreFn2({ random, size, min, max, fnFirst, fnNext, chk_sum, noUnique, sum, chkSize, intMode, }) {
@@ -143,3 +145,116 @@ function chk(ret, size, sum, min, max, noUnique) {
         .length !== size && total === sum;
 }
 exports.chk = chk;
+/**
+ * not support unique, but will try make unique if can
+ * thx @SeverinPappadeux for int version
+ *
+ * @see https://stackoverflow.com/questions/53279807/how-to-get-random-number-list-with-fixed-sum-and-size
+ */
+function coreFnRandSumInt(argv) {
+    let { random, size, sum, min, max, } = argv;
+    let sum_1_to_size = math_1.sum_1_to_n(size);
+    sum = util_2.isUnset(sum) ? sum_1_to_size : sum;
+    ow_1.expect(sum).integer();
+    min = util_2.isUnset(min) ? (sum > 0 ? 0 : sum) : min;
+    max = util_2.isUnset(max) ? Math.abs(sum) : max;
+    ow_1.expect(min).integer();
+    ow_1.expect(max).integer();
+    let n_sum = Math.min(Math.abs(sum - size * min));
+    let maxv = max - min;
+    /*
+    console.log({
+        sum_1_to_size,
+        size,
+        sum,
+        min,
+        max,
+    });
+    */
+    if (sum > 0) {
+        ow_1.expect(sum).gt(min);
+    }
+    /**
+     * pre-check
+     */
+    //expect(maxv, `(max - min) should > sum_1_to_size`).gte(sum_1_to_size);
+    /**
+     * probabilities
+     */
+    let prob = math_1.get_prob(size, maxv);
+    ow_1.expect(prob).is.array.lengthOf(size);
+    /**
+     * make rmultinom use with random.next
+     */
+    let rmultinomFn = util_1.libRmath.Multinomial(util_1.fakeLibRmathRng(random.next)).rmultinom;
+    /**
+     * low value for speed up, but more chance fail
+     */
+    let n_len = argv.limit || 5 || n_sum;
+    /**
+     * rebase number
+     */
+    let n_diff = min;
+    /**
+     * try reset memory
+     */
+    argv = undefined;
+    return () => {
+        let arr = rmultinomFn(n_len, n_sum, prob)
+            .map(value => {
+            return {
+                value,
+                unique_len: util_2.array_unique_unsafe(value).length,
+            };
+        })
+            .sort((a, b) => b.unique_len - a.unique_len);
+        let ret_b;
+        let bool_toplevel = arr.some(function (a, index) {
+            ret_b = a.value;
+            let bool;
+            let b_sum;
+            /*
+            if (!bool && a.unique_len != size)
+            {
+                ({ bool, b_sum } = _array_rebase(ret_b, n_diff, min, max, true));
+            }
+            */
+            if (!bool) {
+                ({ bool, b_sum } = _array_rebase(ret_b, n_diff, min, max));
+            }
+            //console.log(bool, index, b_sum, ret_b, n_diff, ret_a);
+            return bool && b_sum === sum;
+        });
+        if (!bool_toplevel || !ret_b) {
+            throw new Error(`can't generator value by current input argv, or try set limit for high number`);
+        }
+        return ret_b;
+    };
+}
+exports.coreFnRandSumInt = coreFnRandSumInt;
+/**
+ * back to original interval
+ */
+function _array_rebase(ret_b, n_diff, min, max) {
+    let b_sum = 0;
+    let bool;
+    let i = ret_b.length;
+    while (i--) {
+        let v = ret_b[i];
+        let n = v + n_diff;
+        if (n >= min && n <= max) {
+            bool = true;
+            ret_b[i] = n;
+            b_sum += n;
+        }
+        else {
+            bool = false;
+            break;
+        }
+    }
+    return {
+        bool,
+        b_sum,
+    };
+}
+exports._array_rebase = _array_rebase;

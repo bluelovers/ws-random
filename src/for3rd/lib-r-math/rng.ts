@@ -1,9 +1,6 @@
 import libRmath = require('lib-r-math.js');
 import { Random, random } from '../../random';
 import RNG from '../../rng';
-import { array_sum, get_prob, sum_1_to_n } from '../../util/math';
-
-import { array_unique } from 'array-hyper-unique'
 
 export class LibRmathRngWithRandom extends libRmath.IRNG
 {
@@ -67,152 +64,7 @@ export class LibRmathRngWithRandom extends libRmath.IRNG
 	}
 }
 
-let rng = new LibRmathRngWithRandom()
-
-export function fakeLibRmathRng(fn: (...argv) => number)
-{
-	return {
-		unif_rand(n?: number)
-		{
-			if (n > 1)
-			{
-				let a = [];
-				while (n--)
-				{
-					a[n] = fn()
-				}
-				return a;
-			}
-
-			return fn()
-		},
-	} as libRmath.IRNG
-}
-
-let ret = libRmath.Multinomial(fakeLibRmathRng(random.next));
-
-console.log(fakeLibRmathRng(random.next).unif_rand(2));
-
-function randsum(size: number, sum: number, min?: number, max?: number)
-{
-	min = min || (sum > 0 ? 0 : sum);
-	max = typeof max != 'number' ? Math.abs(sum) : max;
-
-	let n = Math.min(Math.abs(sum - size * min));
-	let maxv = max - min;
-
-	1 && console.log({
-		size,
-		sum,
-		min,
-		max,
-		n,
-		maxv,
-	});
-
-	let arr = (ret.rmultinom(n, n, get_prob(size, maxv)) as number[][])
-		.map(value =>
-		{
-			return {
-				value,
-				unique_len: array_unique(value).length,
-			}
-		})
-		.sort((a, b) => b.unique_len - a.unique_len)
-	;
-
-	//console.log(arr);
-
-	let ret_a: number[]
-	let ret_b: number[]
-
-	let bool = arr.some(function (a, index)
-	{
-		ret_a = a.value;
-		ret_b = a.value.slice();
-
-		let bool: boolean;
-		let n_diff: number;
-
-		/*
-
-		let n_diff = sum > 0 ? sum - maxv : sum + maxv;
-
-		if (!bool && a.unique_len != size)
-		{
-			bool = _array_rebase(ret_b, n_diff, min, max, true);
-		}
-
-		if (!bool)
-		{
-			bool = _array_rebase(ret_b, n_diff, min, max, false);
-		}
-
-		*/
-
-		n_diff = min;
-
-		if (!bool && a.unique_len != size)
-		{
-			bool = _array_rebase(ret_b, n_diff, min, max, true);
-		}
-
-		if (!bool)
-		{
-			bool = _array_rebase(ret_b, n_diff, min, max, false);
-		}
-
-		let b_sum = array_sum(ret_b)
-
-		if (0 && b_sum !== sum && Math.abs(b_sum) === Math.abs(sum))
-		{
-			let a_sum = 0;
-			let a = [];
-
-			for (let i = 0; i < ret_b.length; i++)
-			{
-				let n = 0 - ret_b[i]
-				if (n < min || n > max)
-				{
-					break;
-				}
-				a[i] = n;
-				a_sum += n;
-			}
-
-			if (a.length === size)
-			{
-				ret_b = a;
-				b_sum = a_sum
-			}
-		}
-
-		//ret_b = ret_b.map(v => v + min)
-		//let b_sum = array_sum(ret_b)
-
-		//bool = true
-
-		console.log(bool, index, b_sum, ret_b, n_diff, ret_a);
-
-		return bool && b_sum === sum;
-	});
-
-	1 && console.log({
-		//n_diff,
-		bool,
-		ret_a,
-		a_sum: array_sum(ret_a),
-		ret_b,
-		b_sum: array_sum(ret_b),
-	});
-
-	if (!bool)
-	{
-		throw new Error()
-	}
-
-	return ret_b;
-}
+/*
 
 let b;
 
@@ -233,6 +85,18 @@ b = randsum(6, -13, -8, 15)
 console.log(b, array_sum(b));
 
 b = randsum(6, 0, -8, 15)
+
+console.log(b, array_sum(b));
+
+b = randsum(6, -14, -13, 15)
+
+console.log(b, array_sum(b));
+
+//b = randsum(6, 13, 14, 15)
+//
+//console.log(b, array_sum(b));
+
+b = randsum(6, -12, -13, -1)
 
 console.log(b, array_sum(b));
 
@@ -261,3 +125,5 @@ export function _array_rebase(ret_b: number[], n_diff: number, min: number, max:
 	}
 	return bool;
 }
+
+*/

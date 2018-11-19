@@ -35,3 +35,8 @@ export declare function hashArgv(args: any[]): string;
 export declare function isNum(n: number): boolean;
 export declare function isInt(n: number): boolean;
 export declare function isFloat(n: number): boolean;
+export declare function isUnset(n: any): boolean;
+/**
+ * for non-strict check, try get a little
+ */
+export declare function array_unique_unsafe<T extends any>(arr: T[]): T[];

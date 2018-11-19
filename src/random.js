@@ -498,17 +498,17 @@ let Random = Random_1 = class Random {
      * random.sumInt(3, -5)
      * random.sumInt(3, 52)
      */
-    sumInt(size, sum, min, max, noUnique) {
-        return this.dfSumInt(size, sum, min, max, noUnique)();
+    sumInt(size, sum, min, max, noUnique, limit) {
+        return this.dfSumInt(size, sum, min, max, noUnique, limit)();
     }
-    dfSumInt(size, sum, min, max, noUnique) {
-        return this._memoize('sumInt', distributions_1.Distributions.sumInt, size, sum, min, max, noUnique);
+    dfSumInt(size, sum, min, max, noUnique, limit) {
+        return this._memoize('sumInt', distributions_1.Distributions.sumInt, size, sum, min, max, noUnique, limit);
     }
-    sumFloat(size, sum, min, max, noUnique) {
-        return this.dfSumFloat(size, sum, min, max, noUnique)();
+    sumFloat(size, sum, min, max, noUnique, limit) {
+        return this.dfSumFloat(size, sum, min, max, noUnique, limit)();
     }
-    dfSumFloat(size, sum, min, max, noUnique) {
-        return this._memoize('sumFloat', distributions_1.Distributions.sumFloat, size, sum, min, max, noUnique);
+    dfSumFloat(size, sum, min, max, noUnique, limit) {
+        return this._memoize('sumFloat', distributions_1.Distributions.sumFloat, size, sum, min, max, noUnique, limit);
     }
     // --------------------------------------------------------------------------
     // Internal
