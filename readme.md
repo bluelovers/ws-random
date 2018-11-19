@@ -79,6 +79,7 @@ const seedrandom = random.newUse('seedrandom')
 import _seedrandom = require('seedrandom')
 
 random.newUse(_seedrandom('hello.', { entropy: true }))
+random.newUse(_seedrandom('hello.', { entropy: false }))
 
 random.newUse(_seedrandom('hello.'))
 ```
