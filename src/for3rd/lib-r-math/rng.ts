@@ -98,7 +98,7 @@ function randsum(size: number, sum: number, min?: number, max?: number)
 	min = min || (sum > 0 ? 0 : sum);
 	max = typeof max != 'number' ? Math.abs(sum) : max;
 
-	let n = Math.min(Math.abs(sum - size * min), 15);
+	let n = Math.min(Math.abs(sum - size * min));
 	let maxv = max - min;
 
 	1 && console.log({
@@ -110,7 +110,7 @@ function randsum(size: number, sum: number, min?: number, max?: number)
 		maxv,
 	});
 
-	let arr = (ret.rmultinom(n, size, get_prob(size, maxv)) as number[][])
+	let arr = (ret.rmultinom(n, n, get_prob(size, maxv)) as number[][])
 		.map(value =>
 		{
 			return {
@@ -121,6 +121,8 @@ function randsum(size: number, sum: number, min?: number, max?: number)
 		.sort((a, b) => b.unique_len - a.unique_len)
 	;
 
+	//console.log(arr);
+
 	let ret_a: number[]
 	let ret_b: number[]
 
@@ -130,6 +132,9 @@ function randsum(size: number, sum: number, min?: number, max?: number)
 		ret_b = a.value.slice();
 
 		let bool: boolean;
+		let n_diff: number;
+
+		/*
 
 		let n_diff = sum > 0 ? sum - maxv : sum + maxv;
 
@@ -142,6 +147,8 @@ function randsum(size: number, sum: number, min?: number, max?: number)
 		{
 			bool = _array_rebase(ret_b, n_diff, min, max, false);
 		}
+
+		*/
 
 		n_diff = min;
 
@@ -157,7 +164,7 @@ function randsum(size: number, sum: number, min?: number, max?: number)
 
 		let b_sum = array_sum(ret_b)
 
-		if (b_sum !== sum && Math.abs(b_sum) === Math.abs(sum))
+		if (0 && b_sum !== sum && Math.abs(b_sum) === Math.abs(sum))
 		{
 			let a_sum = 0;
 			let a = [];
@@ -180,7 +187,12 @@ function randsum(size: number, sum: number, min?: number, max?: number)
 			}
 		}
 
-		//console.log(bool, index, b_sum, ret_b, n_diff, ret_a);
+		//ret_b = ret_b.map(v => v + min)
+		//let b_sum = array_sum(ret_b)
+
+		//bool = true
+
+		console.log(bool, index, b_sum, ret_b, n_diff, ret_a);
 
 		return bool && b_sum === sum;
 	});
@@ -202,11 +214,25 @@ function randsum(size: number, sum: number, min?: number, max?: number)
 	return ret_b;
 }
 
-let b = randsum(2, 5)
+let b;
+
+b = randsum(2, 5)
 
 console.log(b, array_sum(b));
 
+console.log('----------');
+
 b = randsum(6, 13, -8, 15)
+
+console.log(b, array_sum(b));
+
+console.log('----------');
+
+b = randsum(6, -13, -8, 15)
+
+console.log(b, array_sum(b));
+
+b = randsum(6, 0, -8, 15)
 
 console.log(b, array_sum(b));
 
@@ -223,8 +249,12 @@ export function _array_rebase(ret_b: number[], n_diff: number, min: number, max:
 
 			if (n >= min && n <= max)
 			{
-				ret_b[i] = n;
 				bool = true;
+				ret_b[i] = n;
+			}
+			else
+			{
+				bool = false;
 				break;
 			}
 		}
