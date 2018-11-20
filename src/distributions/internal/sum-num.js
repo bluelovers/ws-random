@@ -250,6 +250,9 @@ function coreFnRandSumInt(argv) {
             }
             cache = array_hyper_unique_1.array_unique(cache.map(v => v.sort()));
         }
+        ow_1.expect(cache, `invalid argv (size=${size}, sum=${sum}, min=${min}, max=${max})`)
+            .is.array
+            .have.lengthOf.gt(0);
         arr = undefined;
         //		console.log(cache);
     }
