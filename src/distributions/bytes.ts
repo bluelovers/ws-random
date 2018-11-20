@@ -1,6 +1,6 @@
 import { Random } from '../random';
 import expect from '../util/ow';
-import uniformByte from './uniform-byte';
+import uniformByte from './byte';
 
 export default function uniformBytes(random: Random, size: number, toStr: true): () => string[]
 export default function uniformBytes(random: Random, size: number, toStr?: false): () => number[]

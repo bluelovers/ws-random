@@ -5,23 +5,6 @@ import {
 	IRandomDistributions,
 	IRandomDistributionsCacheRow,
 } from './distributions';
-/*
-import {
-	dfBates,
-	dfBernoulli,
-	dfBinomial,
-	dfExponential,
-	dfGeometric,
-	dfIrwinHall,
-	dfLogNormal,
-	dfNormal,
-	dfPareto,
-	dfPoisson,
-	dfUniform,
-	dfUniformBoolean,
-	dfUniformInt,
-} from './distributions';
-*/
 import { IArrayUniqueOutOfLimitCallback, IRandIndex } from './distributions/array-unique';
 import { ENUM_ALPHABET } from './distributions/char-id';
 import { IGetWeight, IObjectInput, IWeightEntrie } from './distributions/item-by-weight';
@@ -334,7 +317,7 @@ export class Random<R extends RNG = RNG>
 	dfByte(toStr?: boolean): (() => string) | (() => number)
 	dfByte(toStr?: boolean)
 	{
-		return this._memoize('byte', Distributions.uniformByte, toStr)
+		return this._memoize('byte', Distributions.byte, toStr)
 	}
 
 	/**

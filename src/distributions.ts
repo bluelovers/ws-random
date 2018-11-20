@@ -40,7 +40,7 @@ import uniform from './distributions/uniform'
 import uniformBoolean from './distributions/uniform-boolean'
 import uniformInt from './distributions/uniform-int'
 
-import uniformByte from './distributions/uniform-byte'
+import byte from './distributions/byte'
 import bytes from './distributions/bytes'
 
 import arrayIndex from './distributions/array-index'
@@ -72,7 +72,7 @@ export {
 	uniformBoolean,
 	uniformInt,
 
-	uniformByte,
+	byte,
 	bytes,
 
 	arrayIndex,

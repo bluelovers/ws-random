@@ -219,7 +219,7 @@ let Random = Random_1 = class Random {
         return this.dfByte(toStr)();
     }
     dfByte(toStr) {
-        return this._memoize('byte', distributions_1.Distributions.uniformByte, toStr);
+        return this._memoize('byte', distributions_1.Distributions.byte, toStr);
     }
     bytes(size = 1, toStr) {
         return this.dfBytes(size, toStr)();
