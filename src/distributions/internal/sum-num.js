@@ -1,6 +1,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
+const array_hyper_unique_1 = require("array-hyper-unique");
 const util_1 = require("../../for3rd/lib-r-math/util");
 const util_2 = require("../../util");
+const distributions_1 = require("../../util/distributions");
 const UtilMath = require("../../util/math");
 const math_1 = require("../../util/math");
 const ow_1 = require("../../util/ow");
@@ -160,7 +162,7 @@ function coreFnRandSumInt(argv) {
     max = util_2.isUnset(max) ? Math.abs(sum) : max;
     ow_1.expect(min).integer();
     ow_1.expect(max).integer();
-    let n_sum = Math.min(Math.abs(sum - size * min));
+    let n_sum = Math.abs(sum - size * min);
     let maxv = max - min;
     /*
     console.log({
@@ -169,6 +171,8 @@ function coreFnRandSumInt(argv) {
         sum,
         min,
         max,
+        n_sum,
+        maxv,
     });
     */
     if (sum > 0) {
@@ -195,36 +199,81 @@ function coreFnRandSumInt(argv) {
      * rebase number
      */
     let n_diff = min;
+    const rmultinomCreateFn = (n_len) => {
+        return rmultinomFn(n_len, n_sum, prob)
+            .reduce((a, value) => {
+            let i = value.length;
+            let b_sum = 0;
+            let bool = false;
+            let unique_len = 0;
+            while (i--) {
+                let v = value[i];
+                let n = v + n_diff;
+                if (value.indexOf(v) === i) {
+                    unique_len++;
+                }
+                if (n >= min && n <= max) {
+                    bool = true;
+                    value[i] = n;
+                    b_sum += n;
+                }
+                else {
+                    bool = false;
+                    break;
+                }
+            }
+            if (bool && b_sum === sum) {
+                let item = {
+                    value,
+                    unique_len,
+                    b_sum,
+                    bool,
+                };
+                a.push(item);
+            }
+            return a;
+        }, [])
+            .sort((a, b) => b.unique_len - a.unique_len);
+    };
+    /**
+     * pre-make fail-back value
+     */
+    const cache_max = 10;
+    let cache = [];
+    {
+        let len = 200;
+        let arr = array_hyper_unique_1.array_unique(rmultinomCreateFn(len));
+        if (arr.length) {
+            let i = Math.min(cache_max, arr.length);
+            while (i--) {
+                cache.push(arr[i].value);
+            }
+            cache = array_hyper_unique_1.array_unique(cache.map(v => v.sort()));
+        }
+        arr = undefined;
+        //		console.log(cache);
+    }
     /**
      * try reset memory
      */
     argv = undefined;
     return () => {
-        let arr = rmultinomFn(n_len, n_sum, prob)
-            .map(value => {
-            return {
-                value,
-                unique_len: util_2.array_unique_unsafe(value).length,
-            };
-        })
-            .sort((a, b) => b.unique_len - a.unique_len);
+        let arr = rmultinomCreateFn(n_len);
         let ret_b;
-        let bool_toplevel = arr.some(function (a, index) {
-            ret_b = a.value;
-            let bool;
-            let b_sum;
-            /*
-            if (!bool && a.unique_len != size)
-            {
-                ({ bool, b_sum } = _array_rebase(ret_b, n_diff, min, max, true));
+        let bool_toplevel;
+        let c_len = cache.length;
+        if (arr.length) {
+            ret_b = arr[0].value;
+            bool_toplevel = arr[0].bool;
+            if (bool_toplevel && c_len < cache_max) {
+                cache.push(ret_b);
             }
-            */
-            if (!bool) {
-                ({ bool, b_sum } = _array_rebase(ret_b, n_diff, min, max));
-            }
-            //console.log(bool, index, b_sum, ret_b, n_diff, ret_a);
-            return bool && b_sum === sum;
-        });
+        }
+        else if (c_len) {
+            let i = distributions_1.UtilDistributions.randIndex(random, c_len);
+            ret_b = cache[i];
+            bool_toplevel = true;
+        }
         if (!bool_toplevel || !ret_b) {
             throw new Error(`can't generator value by current input argv, or try set limit for high number`);
         }

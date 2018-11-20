@@ -1,3 +1,4 @@
+import { array_unique } from 'array-hyper-unique';
 import { libRmath, fakeLibRmathRng } from '../../for3rd/lib-r-math/util';
 import { Random } from '../../random';
 import { isUnset, array_unique_unsafe } from '../../util';
@@ -306,7 +307,7 @@ export function coreFnRandSumInt(argv: ISumNumParameterWuthCache)
 	expect(min).integer();
 	expect(max).integer();
 
-	let n_sum = Math.min(Math.abs(sum - size * min));
+	let n_sum = Math.abs(sum - size * min);
 	let maxv = max - min;
 
 	/*
@@ -316,6 +317,8 @@ export function coreFnRandSumInt(argv: ISumNumParameterWuthCache)
 		sum,
 		min,
 		max,
+		n_sum,
+		maxv,
 	});
 	*/
 
@@ -350,6 +353,90 @@ export function coreFnRandSumInt(argv: ISumNumParameterWuthCache)
 	 */
 	let n_diff: number = min;
 
+	const rmultinomCreateFn = (n_len: number) => {
+		return (rmultinomFn(n_len, n_sum, prob) as number[][])
+			.reduce((a, value) =>
+			{
+				let i = value.length;
+				let b_sum = 0;
+				let bool = false;
+				let unique_len = 0;
+
+				while(i--)
+				{
+					let v = value[i];
+					let n = v + n_diff;
+
+					if (value.indexOf(v) === i)
+					{
+						unique_len++;
+					}
+
+					if (n >= min && n <= max)
+					{
+						bool = true;
+						value[i] = n;
+
+						b_sum += n
+					}
+					else
+					{
+						bool = false;
+						break;
+					}
+				}
+
+				if (bool && b_sum === sum)
+				{
+					let item = {
+						value,
+						unique_len,
+						b_sum,
+						bool,
+					};
+
+					a.push(item)
+				}
+
+				return a
+			}, [] as {
+				value: number[],
+				unique_len: number,
+				b_sum: number,
+				bool: boolean,
+			}[])
+			.sort((a, b) => b.unique_len - a.unique_len)
+			;
+	};
+
+	/**
+	 * pre-make fail-back value
+	 */
+	const cache_max = 10;
+	let cache: number[][] = [];
+
+	{
+		let len = 200;
+
+		let arr = array_unique(rmultinomCreateFn(len));
+
+		if (arr.length)
+		{
+			let i = Math.min(cache_max, arr.length);
+
+			while(i--)
+			{
+				cache.push(arr[i].value)
+			}
+
+			cache = array_unique(cache.map(v => v.sort()))
+		}
+
+		arr = undefined;
+
+//		console.log(cache);
+	}
+
 	/**
 	 * try reset memory
 	 */
@@ -357,42 +444,30 @@ export function coreFnRandSumInt(argv: ISumNumParameterWuthCache)
 
 	return () =>
 	{
-		let arr = (rmultinomFn(n_len, n_sum, prob) as number[][])
-			.map(value =>
-			{
-				return {
-					value,
-					unique_len: array_unique_unsafe(value).length,
-				}
-			})
-			.sort((a, b) => b.unique_len - a.unique_len)
-		;
+		let arr = rmultinomCreateFn(n_len);
 
 		let ret_b: number[];
+		let bool_toplevel: boolean;
 
-		let bool_toplevel = arr.some(function (a, index)
+		let c_len = cache.length;
+
+		if (arr.length)
 		{
-			ret_b = a.value;
+			ret_b = arr[0].value;
+			bool_toplevel = arr[0].bool;
 
-			let bool: boolean;
-			let b_sum: number;
-
-			/*
-			if (!bool && a.unique_len != size)
+			if (bool_toplevel && c_len < cache_max)
 			{
-				({ bool, b_sum } = _array_rebase(ret_b, n_diff, min, max, true));
+				cache.push(ret_b);
 			}
-			*/
+		}
+		else if (c_len)
+		{
+			let i = UtilDistributions.randIndex(random, c_len);
 
-			if (!bool)
-			{
-				({ bool, b_sum } = _array_rebase(ret_b, n_diff, min, max));
-			}
-
-			//console.log(bool, index, b_sum, ret_b, n_diff, ret_a);
-
-			return bool && b_sum === sum;
-		});
+			ret_b = cache[i];
+			bool_toplevel = true;
+		}
 
 		if (!bool_toplevel || !ret_b)
 		{
