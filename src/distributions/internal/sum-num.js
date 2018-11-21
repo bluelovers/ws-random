@@ -14,14 +14,18 @@ const uniform_1 = require("../uniform");
  */
 function coreFnRandSumInt(argv) {
     let { random, size, sum, min, max, } = argv;
-    ow_1.expect(size).integer.gt(1);
+    // @ts-ignore
+    ow_1.expect(size).is.finite.integer.gt(1);
     let sum_1_to_size = math_1.sum_1_to_n(size);
     sum = util_2.isUnset(sum) ? sum_1_to_size : sum;
-    ow_1.expect(sum).integer();
+    // @ts-ignore
+    ow_1.expect(sum).is.finite.integer();
     min = util_2.isUnset(min) ? (sum > 0 ? 0 : sum) : min;
     max = util_2.isUnset(max) ? Math.abs(sum) : max;
-    ow_1.expect(min).integer();
-    ow_1.expect(max).integer();
+    // @ts-ignore
+    ow_1.expect(min).is.finite.integer();
+    // @ts-ignore
+    ow_1.expect(max).is.finite.integer();
     //let n_sum = Math.abs(sum - size * min);
     let n_sum = sum - size * min;
     let maxv = max - min;
@@ -148,16 +152,21 @@ function coreFnRandSumInt(argv) {
 exports.coreFnRandSumInt = coreFnRandSumInt;
 function coreFnRandSumFloat(argv) {
     let { random, size, sum, min, max, } = argv;
-    ow_1.expect(size).integer.gt(1);
+    // @ts-ignore
+    ow_1.expect(size).is.finite.integer.gt(1);
     if (util_2.isUnset(sum) && typeof min === 'number' && typeof max === 'number') {
         sum = (size - 1) * min + max;
-        //console.log(sum, min, max);
+        console.log(sum, min, max);
     }
     sum = util_2.isUnset(sum) ? 1 : sum;
     min = util_2.isUnset(min) ? (sum > 0 ? 0 : sum) : min;
     max = util_2.isUnset(max) ? Math.abs(sum) : max;
-    ow_1.expect(min).number();
-    ow_1.expect(max).number();
+    // @ts-ignore
+    ow_1.expect(min).is.finite.number();
+    // @ts-ignore
+    ow_1.expect(max).is.finite.number();
+    // @ts-ignore
+    ow_1.expect(sum).is.finite.number();
     let n_sum = sum - size * min;
     let maxv = max - min;
     if (sum > 0) {

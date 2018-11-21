@@ -55,19 +55,23 @@ export function coreFnRandSumInt(argv: ISumNumParameterWuthCache)
 		max,
 	} = argv;
 
-	expect(size).integer.gt(1);
+	// @ts-ignore
+	expect(size).is.finite.integer.gt(1);
 
 	let sum_1_to_size = sum_1_to_n(size);
 
 	sum = isUnset(sum) ? sum_1_to_size : sum;
 
-	expect(sum).integer();
+	// @ts-ignore
+	expect(sum).is.finite.integer();
 
 	min = isUnset(min) ? (sum > 0 ? 0 : sum) : min;
 	max = isUnset(max) ? Math.abs(sum) : max;
 
-	expect(min).integer();
-	expect(max).integer();
+	// @ts-ignore
+	expect(min).is.finite.integer();
+	// @ts-ignore
+	expect(max).is.finite.integer();
 
 	//let n_sum = Math.abs(sum - size * min);
 	let n_sum = sum - size * min;
@@ -259,13 +263,14 @@ export function coreFnRandSumFloat(argv: ISumNumParameterWuthCache): () => numbe
 		max,
 	} = argv;
 
-	expect(size).integer.gt(1);
+	// @ts-ignore
+	expect(size).is.finite.integer.gt(1);
 
 	if (isUnset(sum) && typeof min === 'number' && typeof max === 'number')
 	{
 		sum = (size - 1) * min + max;
 
-		//console.log(sum, min, max);
+		console.log(sum, min, max);
 	}
 
 	sum = isUnset(sum) ? 1 : sum;
@@ -273,8 +278,12 @@ export function coreFnRandSumFloat(argv: ISumNumParameterWuthCache): () => numbe
 	min = isUnset(min) ? (sum > 0 ? 0 : sum) : min;
 	max = isUnset(max) ? Math.abs(sum) : max;
 
-	expect(min).number();
-	expect(max).number();
+	// @ts-ignore
+	expect(min).is.finite.number();
+	// @ts-ignore
+	expect(max).is.finite.number();
+	// @ts-ignore
+	expect(sum).is.finite.number();
 
 	let n_sum = sum - size * min;
 	let maxv = max - min;
