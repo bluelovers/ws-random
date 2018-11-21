@@ -79,6 +79,10 @@ function get_range_by_size_sum(size, sum) {
     };
 }
 exports.get_range_by_size_sum = get_range_by_size_sum;
+function toFixedNumber(n, fractionDigits) {
+    return parseFloat(n.toFixed(fractionDigits));
+}
+exports.toFixedNumber = toFixedNumber;
 function array_sum(na) {
     return na.reduce((a, b) => a + b);
 }

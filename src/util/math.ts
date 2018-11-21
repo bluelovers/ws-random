@@ -112,6 +112,11 @@ export function get_range_by_size_sum(size: number, sum?: number)
 	}
 }
 
+export function toFixedNumber(n: number, fractionDigits: number)
+{
+	return parseFloat(n.toFixed(fractionDigits))
+}
+
 export function array_sum(na: number[])
 {
 	return na.reduce((a, b) => a + b)

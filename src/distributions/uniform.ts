@@ -1,4 +1,5 @@
 import { isUnset } from '../util';
+import { toFixedNumber } from '../util/math';
 import expect from '../util/ow';
 import { Random } from '../random';
 
@@ -24,7 +25,7 @@ export default (random: Random, min?: number, max?: number, fractionDigits?: num
 
 		return (): number =>
 		{
-			return parseFloat(fn().toFixed(fractionDigits))
+			return toFixedNumber(fn(), fractionDigits)
 		}
 	}
 

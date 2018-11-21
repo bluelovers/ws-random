@@ -263,8 +263,6 @@ export function coreFnRandSumFloat(argv: ISumNumParameterWuthCache): () => numbe
 
 	if (isUnset(sum) && typeof min === 'number' && typeof max === 'number')
 	{
-		let maxv = max - min;
-
 		sum = (size - 1) * min + max;
 
 		//console.log(sum, min, max);
@@ -287,8 +285,6 @@ export function coreFnRandSumFloat(argv: ISumNumParameterWuthCache): () => numbe
 	}
 
 	expect(n_sum).gte(0);
-
-	//const min_abs = Math.abs(min);
 
 	let fnFirst: () => number;
 

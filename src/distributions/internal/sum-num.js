@@ -150,7 +150,6 @@ function coreFnRandSumFloat(argv) {
     let { random, size, sum, min, max, } = argv;
     ow_1.expect(size).integer.gt(1);
     if (util_2.isUnset(sum) && typeof min === 'number' && typeof max === 'number') {
-        let maxv = max - min;
         sum = (size - 1) * min + max;
         //console.log(sum, min, max);
     }
@@ -165,7 +164,6 @@ function coreFnRandSumFloat(argv) {
         ow_1.expect(sum).gt(min);
     }
     ow_1.expect(n_sum).gte(0);
-    //const min_abs = Math.abs(min);
     let fnFirst;
     {
         /**

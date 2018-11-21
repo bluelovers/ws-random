@@ -14,4 +14,5 @@ export declare function get_range_by_size_sum(size: number, sum?: number): {
     max: any;
     sum: number;
 };
+export declare function toFixedNumber(n: number, fractionDigits: number): number;
 export declare function array_sum(na: number[]): number;

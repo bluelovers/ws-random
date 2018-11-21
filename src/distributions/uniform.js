@@ -1,4 +1,5 @@
 Object.defineProperty(exports, "__esModule", { value: true });
+const math_1 = require("../util/math");
 const ow_1 = require("../util/ow");
 exports.default = (random, min, max, fractionDigits) => {
     if (max === undefined) {
@@ -13,7 +14,7 @@ exports.default = (random, min, max, fractionDigits) => {
     if (fractionDigits !== undefined) {
         ow_1.default(fractionDigits).integer.gte(0);
         return () => {
-            return parseFloat(fn().toFixed(fractionDigits));
+            return math_1.toFixedNumber(fn(), fractionDigits);
         };
     }
     return fn;
