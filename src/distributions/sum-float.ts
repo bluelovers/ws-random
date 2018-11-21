@@ -1,7 +1,7 @@
 import random from '../random';
 import { Random } from '../random';
 import * as UtilMath from '../util/math';
-import _sumNumCore, { coreFnRandSumFloat, ISumNumParameterWuthCache } from './internal/sum-num';
+import { coreFnRandSumFloat, ISumNumParameterWuthCache } from './internal/sum-num';
 import uniformFloat from './uniform';
 
 import { swapAlgorithm } from '../util/array';
