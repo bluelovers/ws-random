@@ -34,180 +34,24 @@ describe(relative(__filename), () =>
 	describe(`random integer number list by expected sum`, () =>
 	{
 
-		it(`dfSumInt(3)`, function ()
-		{
-			const size = 3;
-			const expected_sum = 6;
-
-			const d = random.dfSumInt(size);
-
-			let cache = {} as {
-				[k: string]: number[],
-			};
-
-			for (let i = 0; i < 10000; ++i)
-			{
-				const v = d();
-
-				cache[String(v)] = v;
-			}
-
-			const vs = Object.values(cache);
-
-			vs
-				.forEach(function (v)
-				{
-					const sum = v.reduce((a, b) => a + b);
-					expect(sum).closeTo(expected_sum, 0.01);
-					expect(v).length(size);
-				})
-			;
-		});
-
-		it(`dfSumInt(3, sum = 21)`, function ()
-		{
-			const size = 3;
-			const expected_sum = 21;
-
-			const d = random.dfSumInt(size, expected_sum);
-
-			let cache = {} as {
-				[k: string]: number[],
-			};
-
-			for (let i = 0; i < 10000; ++i)
-			{
-				const v = d();
-
-				cache[String(v)] = v;
-			}
-
-			const vs = Object.values(cache);
-
-			vs
-				.forEach(function (v)
-				{
-					const sum = v.reduce((a, b) => a + b);
-					expect(sum).closeTo(expected_sum, 0.01);
-					expect(v).length(size);
-				})
-			;
-		});
-
-		it(`dfSumInt(3, sum = -21)`, function ()
-		{
-			const size = 3;
-			const expected_sum = -21;
-
-			const d = random.dfSumInt(size, expected_sum);
-
-			let cache = {} as {
-				[k: string]: number[],
-			};
-
-			for (let i = 0; i < 10000; ++i)
-			{
-				const v = d();
-
-				cache[String(v)] = v;
-			}
-
-			const vs = Object.values(cache);
-
-			//console.log(vs);
-
-			vs
-				.forEach(function (v)
-				{
-					const sum = v.reduce((a, b) => a + b);
-					expect(sum).closeTo(expected_sum, 0.01);
-					expect(v).length(size);
-				})
-			;
-		});
-
-		it(`dfSumInt(3, null, 1, 6)`, function ()
-		{
-			const size = 3;
-			const expected_sum = 6;
-
-			const min = 1;
-			const max = 6;
-			const evs = [1, 2, 3];
-
-			const d = random.dfSumInt(size, null, min, max);
-
-			let cache = {} as {
-				[k: string]: number[],
-			};
-
-			for (let i = 0; i < 10000; ++i)
-			{
-				const v = d();
-
-				cache[String(v)] = v;
-			}
-
-			const vs = Object.values(cache);
-
-			vs
-				.forEach(function (v)
-				{
-					const sum = v.reduce((a, b) => a + b);
-					expect(sum).closeTo(expected_sum, 0.01);
-
-					//expect(v).to.have.members(evs);
-					expect(v).length(size);
-				})
-			;
-		});
-
-		it(`dfSumInt(3, null, 0, 6)`, function ()
-		{
-			const size = 3;
-			const expected_sum = 6;
-
-			const min = 0;
-			const max = 6;
-
-			const d = random.dfSumInt(size, null, min, max);
-
-			let cache = {} as {
-				[k: string]: number[],
-			};
-
-			for (let i = 0; i < 10000; ++i)
-			{
-				const v = d();
-
-				cache[String(v)] = v;
-			}
-
-			const vs = Object.values(cache);
-
-			vs
-				.forEach(function (v)
-				{
-					const sum = v.reduce((a, b) => a + b);
-					expect(sum).closeTo(expected_sum, 0.01);
-					expect(v).length(size);
-				})
-			;
-		});
-
+		_createTest(3, 6);
+		_createTest(3, 21);
+		_createTest(3, -21);
+		_createTest(3, null, 1, 6, 6);
+		_createTest(3, null, 0, 6, 6);
 		_createTest(2, 5)
 		_createTest(6, 13, -8, 15)
 		_createTest(6, -13, -8, 15)
 		_createTest(6, 0, -8, 15)
 		_createTest(6, -14, -13, 15)
 
-		function _createTest(size: number, sum: number, min?: number, max?: number)
+		function _createTest(size: number, sum: number, min?: number, max?: number, expected_sum?: number)
 		{
-			it(`dfSumInt(${size}, ${sum}, ${min}, ${max})`, function ()
-			{
-				const expected_sum = sum;
+			expected_sum = typeof expected_sum === 'number' ? expected_sum : sum;
 
-				const d = random.dfSumInt(size, expected_sum, min, max);
+			it(`dfSumInt(${size}, ${sum}, ${min}, ${max}) => ${typeof expected_sum === 'number' ? expected_sum : 'unknow'}`, function ()
+			{
+				const d = random.dfSumInt(size, sum, min, max);
 
 				let cache = {} as {
 					[k: string]: number[],
@@ -226,12 +70,21 @@ describe(relative(__filename), () =>
 				vs
 					.forEach(function (v)
 					{
-						const sum = v.reduce((a, b) => a + b);
-
 						//console.log(v, sum);
-						expect(sum).closeTo(expected_sum, 0.01);
-						expect(v).length(size);
+
+						if (typeof expected_sum === 'number')
+						{
+							const sum = v.reduce((a, b) => a + b);
+
+							expect(sum).closeTo(expected_sum, 0.01);
+						}
+
+						expect(v).array.lengthOf(size);
 					})
+				;
+
+				expect(vs).array
+					.lengthOf.gt(0)
 				;
 			});
 		}
@@ -241,171 +94,59 @@ describe(relative(__filename), () =>
 	describe(`random float number list by expected sum`, () =>
 	{
 
-		it(`dfSumFloat(3)`, function ()
+		_createTest(3, undefined,undefined,undefined,1);
+		_createTest(3, 21);
+		_createTest(3, -21);
+		_createTest(3, null, 1, 6, 8);
+		_createTest(3, null, -6, -1, -13);
+		_createTest(3, 10, 1, 10);
+		_createTest(3, null, 1, 10, 12);
+		_createTest(3, 0, -5, 10);
+		_createTest(3, -10, -5, 10);
+
+		function _createTest(size: number, sum: number, min?: number, max?: number, expected_sum?: number)
 		{
-			const size = 3;
-			const min = 1;
-			const max = 6;
+			expected_sum = typeof expected_sum === 'number' ? expected_sum : sum;
 
-			const expected_sum = 1;
-
-			const d = random.dfSumFloat(size);
-
-			let cache = {} as {
-				[k: string]: number[],
-			};
-
-			for (let i = 0; i < 10000; ++i)
+			it(`dfSumFloat(${size}, ${sum}, ${min}, ${max}) => ${typeof expected_sum === 'number' ? expected_sum : 'unknow'}`, function ()
 			{
-				const v = d();
+				const d = random.dfSumFloat(size, sum, min, max);
 
-				cache[String(v)] = v;
-			}
+				let cache = {} as {
+					[k: string]: number[],
+				};
 
-			const vs = Object.values(cache);
-
-			vs
-				.forEach(function (v)
+				for (let i = 0; i < 10000; ++i)
 				{
-					const sum = v.reduce((a, b) => a + b);
-					expect(sum).closeTo(expected_sum, 0.01);
+					const v = d();
 
-					expect(v).length(size);
-				})
-			;
-		});
+					cache[String(v)] = v;
+					break;
+				}
 
-		it(`dfSumFloat(3, sum = 21)`, function ()
-		{
-			const size = 3;
-			const min = 1;
-			const max = 6;
+				const vs = Object.values(cache);
 
-			const expected_sum = 21;
+				vs
+					.forEach(function (v)
+					{
+						//console.log(v, sum);
 
-			const d = random.dfSumFloat(size, expected_sum);
+						if (typeof expected_sum === 'number')
+						{
+							const sum = v.reduce((a, b) => a + b);
 
-			let cache = {} as {
-				[k: string]: number[],
-			};
+							expect(sum).closeTo(expected_sum, 0.01);
+						}
 
-			for (let i = 0; i < 10000; ++i)
-			{
-				const v = d();
+						expect(v).array.lengthOf(size);
+					})
+				;
 
-				cache[String(v)] = v;
-			}
-
-			const vs = Object.values(cache);
-
-			vs
-				.forEach(function (v)
-				{
-					const sum = v.reduce((a, b) => a + b);
-					expect(sum).closeTo(expected_sum, 0.01);
-
-					expect(v).length(size);
-				})
-			;
-		});
-
-		it(`dfSumFloat(3, sum = -21)`, function ()
-		{
-			const size = 3;
-
-			const expected_sum = -21;
-
-			const d = random.dfSumFloat(size, expected_sum);
-
-			let cache = {} as {
-				[k: string]: number[],
-			};
-
-			for (let i = 0; i < 10000; ++i)
-			{
-				const v = d();
-
-				cache[String(v)] = v;
-			}
-
-			const vs = Object.values(cache);
-
-			vs
-				.forEach(function (v)
-				{
-					const sum = v.reduce((a, b) => a + b);
-					expect(sum).closeTo(expected_sum, 0.01);
-
-					expect(v).length(size);
-				})
-			;
-		});
-
-		it(`dfSumFloat(3, null, 1, 6)`, function ()
-		{
-			const size = 3;
-			const min = 1;
-			const max = 6;
-
-			const expected_sum = 8;
-
-			const d = random.dfSumFloat(size, null, min, max);
-
-			let cache = {} as {
-				[k: string]: number[],
-			};
-
-			for (let i = 0; i < 10000; ++i)
-			{
-				const v = d();
-
-				cache[String(v)] = v;
-			}
-
-			const vs = Object.values(cache);
-
-			vs
-				.forEach(function (v)
-				{
-					const sum = v.reduce((a, b) => a + b);
-					expect(sum).closeTo(expected_sum, 0.01);
-					expect(v).length(size);
-				})
-			;
-		});
-
-		it(`dfSumFloat(3, null, -6, -1)`, function ()
-		{
-			const size = 3;
-			const min = -6;
-			const max = -1;
-
-			const expected_sum = -13;
-
-			const d = random.dfSumFloat(size, null, min, max);
-
-			let cache = {} as {
-				[k: string]: number[],
-			};
-
-			for (let i = 0; i < 10000; ++i)
-			{
-				const v = d();
-
-				cache[String(v)] = v;
-			}
-
-			const vs = Object.values(cache);
-
-			vs
-				.forEach(function (v)
-				{
-					const sum = v.reduce((a, b) => a + b);
-					expect(sum).closeTo(expected_sum, 0.01);
-					expect(v).length(size);
-				})
-			;
-		});
+				expect(vs).array
+					.lengthOf.gt(0)
+				;
+			});
+		}
 
 	});
 
