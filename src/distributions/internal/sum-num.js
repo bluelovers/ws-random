@@ -156,7 +156,7 @@ function coreFnRandSumFloat(argv) {
     ow_1.expect(size).is.finite.integer.gt(1);
     if (util_2.isUnset(sum) && typeof min === 'number' && typeof max === 'number') {
         sum = (size - 1) * min + max;
-        console.log(sum, min, max);
+        //console.log(sum, min, max);
     }
     sum = util_2.isUnset(sum) ? 1 : sum;
     min = util_2.isUnset(min) ? (sum > 0 ? 0 : sum) : min;

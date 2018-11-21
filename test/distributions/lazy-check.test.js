@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /// <reference types="benchmark" />
 /// <reference types="chai" />
 /// <reference types="node" />
+const util_1 = require("../../src/util");
 const _local_dev_1 = require("../_local-dev");
 const random_1 = require("../../src/random");
 function getDefaultArgv(method) {
@@ -79,13 +80,21 @@ describe(_local_dev_1.relative(__filename), () => {
                     a.distributions.push(method);
                     break;
                 case 'number':
-                    a.number.push(method);
+                    if (util_1.isFloat(ret)) {
+                        a.float.push(method);
+                    }
+                    else {
+                        a.number.push(method);
+                    }
                     break;
                 case 'boolean':
                     a.boolean.push(method);
                     break;
                 case 'undefined':
                     a.crash.push(method);
+                    break;
+                case 'string':
+                    a.string.push(method);
                     break;
                 default:
                     if (Buffer.isBuffer(ret)) {
@@ -106,9 +115,11 @@ describe(_local_dev_1.relative(__filename), () => {
         return a;
     }, {
         number: [],
+        float: [],
         boolean: [],
         array: [],
         buffer: [],
+        string: [],
         value: [],
         distributions: [],
         crash: [],

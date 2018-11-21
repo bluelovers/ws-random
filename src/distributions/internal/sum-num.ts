@@ -270,7 +270,7 @@ export function coreFnRandSumFloat(argv: ISumNumParameterWuthCache): () => numbe
 	{
 		sum = (size - 1) * min + max;
 
-		console.log(sum, min, max);
+		//console.log(sum, min, max);
 	}
 
 	sum = isUnset(sum) ? 1 : sum;

@@ -7,6 +7,7 @@
 /// <reference types="chai" />
 /// <reference types="node" />
 
+import { isFloat } from '../../src/util';
 import { chai, relative, expect, path, assert, util, mochaAsync } from '../_local-dev';
 
 // @ts-ignore
@@ -105,13 +106,25 @@ describe(relative(__filename), () =>
 						a.distributions.push(method)
 						break;
 					case 'number':
-						a.number.push(method)
+
+						if (isFloat(ret))
+						{
+							a.float.push(method)
+						}
+						else
+						{
+							a.number.push(method)
+						}
+
 						break;
 					case 'boolean':
 						a.boolean.push(method)
 						break;
 					case 'undefined':
 						a.crash.push(method)
+						break;
+					case 'string':
+						a.string.push(method)
 						break;
 					default:
 
@@ -139,9 +152,11 @@ describe(relative(__filename), () =>
 			return a
 		}, {
 			number: [],
+			float: [],
 			boolean: [],
 			array: [],
 			buffer: [],
+			string: [],
 			value: [],
 			distributions: [],
 			crash: [],
