@@ -1,4 +1,3 @@
 import { Random } from '../random';
-import RNG from '../rng';
-declare const _default: (random: Random<RNG>, min?: number, max?: number) => () => number;
+declare const _default: (random: Random<import("../rng").RNG>, min?: number, max?: number, fractionDigits?: number) => () => number;
 export default _default;

@@ -253,9 +253,9 @@ export class Random<R extends RNG = RNG>
 	 * @param {number} [max=1] - Upper bound (float, exclusive)
 	 * @return {number}
 	 */
-	float(min?: number, max?: number)
+	float(min?: number, max?: number, fractionDigits?: number)
 	{
-		return this.dfUniform(min, max)()
+		return this.dfUniform(min, max, fractionDigits)()
 	}
 
 	/**
@@ -476,9 +476,9 @@ export class Random<R extends RNG = RNG>
 	 * @param {number} [max=1] - Upper bound (float, exclusive)
 	 * @return {function}
 	 */
-	dfUniform(min?: number, max?: number)
+	dfUniform(min?: number, max?: number, fractionDigits?: number)
 	{
-		return this._memoize('dfUniform', Distributions.uniform, min, max)
+		return this._memoize('dfUniform', Distributions.uniform, min, max, fractionDigits)
 	}
 
 	/**

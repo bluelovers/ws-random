@@ -177,8 +177,8 @@ let Random = Random_1 = class Random {
      * @param {number} [max=1] - Upper bound (float, exclusive)
      * @return {number}
      */
-    float(min, max) {
-        return this.dfUniform(min, max)();
+    float(min, max, fractionDigits) {
+        return this.dfUniform(min, max, fractionDigits)();
     }
     /**
      * Samples a dfUniform random integer, optionally specifying lower and upper
@@ -320,8 +320,8 @@ let Random = Random_1 = class Random {
      * @param {number} [max=1] - Upper bound (float, exclusive)
      * @return {function}
      */
-    dfUniform(min, max) {
-        return this._memoize('dfUniform', distributions_1.Distributions.uniform, min, max);
+    dfUniform(min, max, fractionDigits) {
+        return this._memoize('dfUniform', distributions_1.Distributions.uniform, min, max, fractionDigits);
     }
     /**
      * Generates a [Discrete dfUniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution).

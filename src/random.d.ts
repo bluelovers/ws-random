@@ -118,7 +118,7 @@ export declare class Random<R extends RNG = RNG> {
      * @param {number} [max=1] - Upper bound (float, exclusive)
      * @return {number}
      */
-    float(min?: number, max?: number): number;
+    float(min?: number, max?: number, fractionDigits?: number): number;
     /**
      * Samples a dfUniform random integer, optionally specifying lower and upper
      * bounds.
@@ -231,7 +231,7 @@ export declare class Random<R extends RNG = RNG> {
      * @param {number} [max=1] - Upper bound (float, exclusive)
      * @return {function}
      */
-    dfUniform(min?: number, max?: number): () => number;
+    dfUniform(min?: number, max?: number, fractionDigits?: number): () => number;
     /**
      * Generates a [Discrete dfUniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution).
      *
