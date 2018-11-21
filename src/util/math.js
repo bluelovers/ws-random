@@ -83,3 +83,5 @@ function array_sum(na) {
     return na.reduce((a, b) => a + b);
 }
 exports.array_sum = array_sum;
+// @ts-ignore
+Object.freeze(exports);

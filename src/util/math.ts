@@ -1,3 +1,5 @@
+
+
 /**
  * (1 + 2 + 3 +...+N)
  *
@@ -114,3 +116,6 @@ export function array_sum(na: number[])
 {
 	return na.reduce((a, b) => a + b)
 }
+
+// @ts-ignore
+Object.freeze(exports)
