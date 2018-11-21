@@ -228,7 +228,7 @@ describe(relative(__filename), () =>
 					{
 						const sum = v.reduce((a, b) => a + b);
 
-						console.log(v, sum);
+						//console.log(v, sum);
 						expect(sum).closeTo(expected_sum, 0.01);
 						expect(v).length(size);
 					})
@@ -247,7 +247,7 @@ describe(relative(__filename), () =>
 			const min = 1;
 			const max = 6;
 
-			const expected_sum = 6;
+			const expected_sum = 1;
 
 			const d = random.dfSumFloat(size);
 
@@ -275,7 +275,7 @@ describe(relative(__filename), () =>
 			;
 		});
 
-		0 && it(`dfSumFloat(3, sum = 21)`, function ()
+		it(`dfSumFloat(3, sum = 21)`, function ()
 		{
 			const size = 3;
 			const min = 1;
@@ -309,7 +309,7 @@ describe(relative(__filename), () =>
 			;
 		});
 
-		0 && it(`dfSumFloat(3, sum = -21)`, function ()
+		it(`dfSumFloat(3, sum = -21)`, function ()
 		{
 			const size = 3;
 
@@ -347,7 +347,40 @@ describe(relative(__filename), () =>
 			const min = 1;
 			const max = 6;
 
-			const expected_sum = 6;
+			const expected_sum = 8;
+
+			const d = random.dfSumFloat(size, null, min, max);
+
+			let cache = {} as {
+				[k: string]: number[],
+			};
+
+			for (let i = 0; i < 10000; ++i)
+			{
+				const v = d();
+
+				cache[String(v)] = v;
+			}
+
+			const vs = Object.values(cache);
+
+			vs
+				.forEach(function (v)
+				{
+					const sum = v.reduce((a, b) => a + b);
+					expect(sum).closeTo(expected_sum, 0.01);
+					expect(v).length(size);
+				})
+			;
+		});
+
+		it(`dfSumFloat(3, null, -6, -1)`, function ()
+		{
+			const size = 3;
+			const min = -6;
+			const max = -1;
+
+			const expected_sum = -13;
 
 			const d = random.dfSumFloat(size, null, min, max);
 

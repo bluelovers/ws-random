@@ -40,3 +40,4 @@ export declare function _array_rebase(ret_b: number[], n_diff: number, min: numb
     bool: boolean;
     b_sum: number;
 };
+export declare function coreFnRandSumFloat(argv: ISumNumParameterWuthCache): () => number[];

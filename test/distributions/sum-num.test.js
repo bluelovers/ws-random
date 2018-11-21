@@ -130,7 +130,7 @@ describe(_local_dev_1.relative(__filename), () => {
                 vs
                     .forEach(function (v) {
                     const sum = v.reduce((a, b) => a + b);
-                    console.log(v, sum);
+                    //console.log(v, sum);
                     _local_dev_1.expect(sum).closeTo(expected_sum, 0.01);
                     _local_dev_1.expect(v).length(size);
                 });
@@ -142,7 +142,7 @@ describe(_local_dev_1.relative(__filename), () => {
             const size = 3;
             const min = 1;
             const max = 6;
-            const expected_sum = 6;
+            const expected_sum = 1;
             const d = random_1.random.dfSumFloat(size);
             let cache = {};
             for (let i = 0; i < 10000; ++i) {
@@ -157,7 +157,7 @@ describe(_local_dev_1.relative(__filename), () => {
                 _local_dev_1.expect(v).length(size);
             });
         });
-        0 && it(`dfSumFloat(3, sum = 21)`, function () {
+        it(`dfSumFloat(3, sum = 21)`, function () {
             const size = 3;
             const min = 1;
             const max = 6;
@@ -176,7 +176,7 @@ describe(_local_dev_1.relative(__filename), () => {
                 _local_dev_1.expect(v).length(size);
             });
         });
-        0 && it(`dfSumFloat(3, sum = -21)`, function () {
+        it(`dfSumFloat(3, sum = -21)`, function () {
             const size = 3;
             const expected_sum = -21;
             const d = random_1.random.dfSumFloat(size, expected_sum);
@@ -197,7 +197,26 @@ describe(_local_dev_1.relative(__filename), () => {
             const size = 3;
             const min = 1;
             const max = 6;
-            const expected_sum = 6;
+            const expected_sum = 8;
+            const d = random_1.random.dfSumFloat(size, null, min, max);
+            let cache = {};
+            for (let i = 0; i < 10000; ++i) {
+                const v = d();
+                cache[String(v)] = v;
+            }
+            const vs = Object.values(cache);
+            vs
+                .forEach(function (v) {
+                const sum = v.reduce((a, b) => a + b);
+                _local_dev_1.expect(sum).closeTo(expected_sum, 0.01);
+                _local_dev_1.expect(v).length(size);
+            });
+        });
+        it(`dfSumFloat(3, null, -6, -1)`, function () {
+            const size = 3;
+            const min = -6;
+            const max = -1;
+            const expected_sum = -13;
             const d = random_1.random.dfSumFloat(size, null, min, max);
             let cache = {};
             for (let i = 0; i < 10000; ++i) {

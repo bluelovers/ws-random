@@ -8,6 +8,7 @@ export declare function sum_1_to_n(n: number): number;
  * simple probabilities
  */
 export declare function get_prob(size: number, sum: number): number[];
+export declare function get_prob_float(size: number, sum: number): number[];
 export declare function get_range_by_size_sum(size: number, sum?: number): {
     min: any;
     max: any;

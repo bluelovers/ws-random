@@ -4,8 +4,9 @@ import { Random } from '../../random';
 import { isUnset, array_unique_unsafe } from '../../util';
 import { UtilDistributions } from '../../util/distributions';
 import * as UtilMath from '../../util/math';
-import { get_prob, sum_1_to_n } from '../../util/math';
+import { array_sum, get_prob, get_prob_float, sum_1_to_n } from '../../util/math';
 import { expect } from '../../util/ow';
+import uniform from '../uniform';
 
 export default coreFn2
 
@@ -295,6 +296,8 @@ export function coreFnRandSumInt(argv: ISumNumParameterWuthCache)
 		max,
 	} = argv;
 
+	expect(size).integer.gt(1);
+
 	let sum_1_to_size = sum_1_to_n(size);
 
 	sum = isUnset(sum) ? sum_1_to_size : sum;
@@ -307,8 +310,11 @@ export function coreFnRandSumInt(argv: ISumNumParameterWuthCache)
 	expect(min).integer();
 	expect(max).integer();
 
-	let n_sum = Math.abs(sum - size * min);
+	//let n_sum = Math.abs(sum - size * min);
+	let n_sum = sum - size * min;
 	let maxv = max - min;
+
+	expect(n_sum).gte(0);
 
 	/*
 	console.log({
@@ -353,7 +359,8 @@ export function coreFnRandSumInt(argv: ISumNumParameterWuthCache)
 	 */
 	let n_diff: number = min;
 
-	const rmultinomCreateFn = (n_len: number) => {
+	const rmultinomCreateFn = (n_len: number) =>
+	{
 		return (rmultinomFn(n_len, n_sum, prob) as number[][])
 			.reduce((a, value) =>
 			{
@@ -362,7 +369,7 @@ export function coreFnRandSumInt(argv: ISumNumParameterWuthCache)
 				let bool = false;
 				let unique_len = 0;
 
-				while(i--)
+				while (i--)
 				{
 					let v = value[i];
 					let n = v + n_diff;
@@ -424,7 +431,7 @@ export function coreFnRandSumInt(argv: ISumNumParameterWuthCache)
 		{
 			let i = Math.min(cache_max, arr.length);
 
-			while(i--)
+			while (i--)
 			{
 				cache.push(arr[i].value)
 			}
@@ -517,4 +524,152 @@ export function _array_rebase(ret_b: number[], n_diff: number, min: number, max:
 		bool,
 		b_sum,
 	};
+}
+
+export function coreFnRandSumFloat(argv: ISumNumParameterWuthCache): () => number[]
+{
+	let {
+		random,
+		size,
+		sum,
+		min,
+		max,
+	} = argv;
+
+	expect(size).integer.gt(1);
+
+	if (isUnset(sum) && typeof min === 'number' && typeof max === 'number')
+	{
+		let maxv = max - min;
+
+		sum = (size - 1) * min + max;
+
+		//console.log(sum, min, max);
+	}
+
+	sum = isUnset(sum) ? 1 : sum;
+
+	min = isUnset(min) ? (sum > 0 ? 0 : sum) : min;
+	max = isUnset(max) ? Math.abs(sum) : max;
+
+	expect(min).number();
+	expect(max).number();
+
+	let n_sum = sum - size * min;
+	let maxv = max - min;
+
+	if (sum > 0)
+	{
+		expect(sum).gt(min)
+	}
+
+	expect(n_sum).gte(0);
+
+	//const min_abs = Math.abs(min);
+
+	let fnFirst: () => number;
+
+	{
+		/**
+		 * get_prob_float(3, 10)
+		 * // => [ 4.444444444444445, 3.3333333333333335, 2.222222222222222 ]
+		 */
+		let prob = get_prob_float(size, maxv);
+
+		/**
+		 * array_sum(prob.slice(0, -1))
+		 * // => 7.777777777777779
+		 */
+		let prob_slice_sum = array_sum(prob.slice(0, -1));
+
+		fnFirst = uniform(random, 0, prob_slice_sum);
+	}
+
+	let fnNext = UtilDistributions.float;
+
+	return () =>
+	{
+		let ret_b: number[];
+		let bool_toplevel: boolean;
+
+		LABEL_TOP: do
+		{
+			let ret_a: number[] = [];
+
+			let total = n_sum;
+			let total2 = 0;
+			let i = size - 1;
+			let n10: number;
+			let n11: number;
+
+			let n00 = fnFirst();
+			let n01 = n00 + min;
+
+			if (n01 < min || n01 > max)
+			{
+				continue LABEL_TOP
+			}
+
+			let t0 = total - n00;
+			let t1 = (t0 + min);
+
+			if (t1 < min)
+			{
+				continue LABEL_TOP
+			}
+
+			total2 += n01;
+
+			ret_a.push(n01);
+			total = t0;
+
+			LABEL_SUB: while (i > 1)
+			{
+				n10 = fnNext(random, 0, total);
+
+				let t0 = total - n10;
+				let t1 = (t0 + min);
+
+				if (t1 < min)
+				{
+					continue LABEL_TOP
+				}
+
+				n11 = n10 + min;
+
+				if (n11 < min || n11 === n01)
+				{
+					continue LABEL_SUB
+				}
+
+				total2 += n11;
+
+				ret_a.push(n11);
+				total = t0;
+				i--;
+			}
+
+			t1 = sum - total2;
+
+			if (t1 === n11 || t1 === n01 || t1 < min || t1 > max)
+			{
+				continue LABEL_TOP
+			}
+
+			ret_a.push(t1);
+			bool_toplevel = true;
+
+			ret_b = ret_a;
+		}
+		while (!bool_toplevel);
+
+		/*
+		if (!bool_toplevel)
+		{
+			throw new Error(`invalid argv (size=${size}, sum=${sum}, min=${min}, max=${max})`)
+		}
+		*/
+
+		return ret_b;
+	}
 }

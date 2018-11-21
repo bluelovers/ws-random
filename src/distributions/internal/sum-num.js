@@ -6,6 +6,7 @@ const distributions_1 = require("../../util/distributions");
 const UtilMath = require("../../util/math");
 const math_1 = require("../../util/math");
 const ow_1 = require("../../util/ow");
+const uniform_1 = require("../uniform");
 exports.default = coreFn2;
 function coreFn2({ random, size, min, max, fnFirst, fnNext, chk_sum, noUnique, sum, chkSize, intMode, }) {
     ow_1.expect(size).integer.gt(1);
@@ -155,6 +156,7 @@ exports.chk = chk;
  */
 function coreFnRandSumInt(argv) {
     let { random, size, sum, min, max, } = argv;
+    ow_1.expect(size).integer.gt(1);
     let sum_1_to_size = math_1.sum_1_to_n(size);
     sum = util_2.isUnset(sum) ? sum_1_to_size : sum;
     ow_1.expect(sum).integer();
@@ -162,8 +164,10 @@ function coreFnRandSumInt(argv) {
     max = util_2.isUnset(max) ? Math.abs(sum) : max;
     ow_1.expect(min).integer();
     ow_1.expect(max).integer();
-    let n_sum = Math.abs(sum - size * min);
+    //let n_sum = Math.abs(sum - size * min);
+    let n_sum = sum - size * min;
     let maxv = max - min;
+    ow_1.expect(n_sum).gte(0);
     /*
     console.log({
         sum_1_to_size,
@@ -310,3 +314,95 @@ function _array_rebase(ret_b, n_diff, min, max) {
     };
 }
 exports._array_rebase = _array_rebase;
+function coreFnRandSumFloat(argv) {
+    let { random, size, sum, min, max, } = argv;
+    ow_1.expect(size).integer.gt(1);
+    if (util_2.isUnset(sum) && typeof min === 'number' && typeof max === 'number') {
+        let maxv = max - min;
+        sum = (size - 1) * min + max;
+        //console.log(sum, min, max);
+    }
+    sum = util_2.isUnset(sum) ? 1 : sum;
+    min = util_2.isUnset(min) ? (sum > 0 ? 0 : sum) : min;
+    max = util_2.isUnset(max) ? Math.abs(sum) : max;
+    ow_1.expect(min).number();
+    ow_1.expect(max).number();
+    let n_sum = sum - size * min;
+    let maxv = max - min;
+    if (sum > 0) {
+        ow_1.expect(sum).gt(min);
+    }
+    ow_1.expect(n_sum).gte(0);
+    //const min_abs = Math.abs(min);
+    let fnFirst;
+    {
+        /**
+         * get_prob_float(3, 10)
+         * // => [ 4.444444444444445, 3.3333333333333335, 2.222222222222222 ]
+         */
+        let prob = math_1.get_prob_float(size, maxv);
+        /**
+         * array_sum(prob.slice(0, -1))
+         * // => 7.777777777777779
+         */
+        let prob_slice_sum = math_1.array_sum(prob.slice(0, -1));
+        fnFirst = uniform_1.default(random, 0, prob_slice_sum);
+    }
+    let fnNext = distributions_1.UtilDistributions.float;
+    return () => {
+        let ret_b;
+        let bool_toplevel;
+        LABEL_TOP: do {
+            let ret_a = [];
+            let total = n_sum;
+            let total2 = 0;
+            let i = size - 1;
+            let n10;
+            let n11;
+            let n00 = fnFirst();
+            let n01 = n00 + min;
+            if (n01 < min || n01 > max) {
+                continue LABEL_TOP;
+            }
+            let t0 = total - n00;
+            let t1 = (t0 + min);
+            if (t1 < min) {
+                continue LABEL_TOP;
+            }
+            total2 += n01;
+            ret_a.push(n01);
+            total = t0;
+            LABEL_SUB: while (i > 1) {
+                n10 = fnNext(random, 0, total);
+                let t0 = total - n10;
+                let t1 = (t0 + min);
+                if (t1 < min) {
+                    continue LABEL_TOP;
+                }
+                n11 = n10 + min;
+                if (n11 < min || n11 === n01) {
+                    continue LABEL_SUB;
+                }
+                total2 += n11;
+                ret_a.push(n11);
+                total = t0;
+                i--;
+            }
+            t1 = sum - total2;
+            if (t1 === n11 || t1 === n01 || t1 < min || t1 > max) {
+                continue LABEL_TOP;
+            }
+            ret_a.push(t1);
+            bool_toplevel = true;
+            ret_b = ret_a;
+        } while (!bool_toplevel);
+        /*
+        if (!bool_toplevel)
+        {
+            throw new Error(`invalid argv (size=${size}, sum=${sum}, min=${min}, max=${max})`)
+        }
+        */
+        return ret_b;
+    };
+}
+exports.coreFnRandSumFloat = coreFnRandSumFloat;

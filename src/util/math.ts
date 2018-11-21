@@ -1,4 +1,3 @@
-
 /**
  * (1 + 2 + 3 +...+N)
  *
@@ -17,19 +16,43 @@ export function get_prob(size: number, sum: number)
 	let score = sum;
 	let resultArray: number[] = [];
 	let randomTotal = 0;
-	let i: number;
+	let i: number = size - 1;
 
-	for (i = 0; i < size - 1; i++)
+	while (i--)
 	{
-		let res = Math.round(score / size);
-		let random = res;
-		resultArray[i] = random;
-		randomTotal += resultArray[i];
+		let random = Math.round(score / size);
+
+		resultArray.push(random);
+		randomTotal += random;
+
 		score = score - random;
 	}
 
 	let result = sum - randomTotal;
-	resultArray[i] = result;
+	resultArray.unshift(result);
+
+	return resultArray;
+}
+
+export function get_prob_float(size: number, sum: number)
+{
+	let score = sum;
+	let resultArray: number[] = [];
+	let randomTotal = 0;
+	let i: number = size - 1;
+
+	while (i--)
+	{
+		let random = score / size;
+
+		resultArray.push(random);
+		randomTotal += random;
+
+		score = score - random;
+	}
+
+	let result = sum - randomTotal;
+	resultArray.unshift(result);
 
 	return resultArray;
 }
