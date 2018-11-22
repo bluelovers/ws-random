@@ -1,6 +1,6 @@
 {
   "name": "random-extra",
-  "version": "3.3.4",
+  "version": "3.3.5",
   "description": "Seedable random number generator supporting many common distributions.",
   "keywords": [
     "alea",
@@ -27,13 +27,13 @@
     "number",
     "numbers",
     "pick",
-    "random-extra",
     "poisson",
     "prng",
     "probability",
     "pseudorandom",
     "rand",
     "random",
+    "random-extra",
     "random-sum",
     "randomSum",
     "randomize",
