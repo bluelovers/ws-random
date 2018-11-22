@@ -7,6 +7,8 @@
 /// <reference types="chai" />
 /// <reference types="node" />
 
+import { SUM_DELTA } from '../../src/util/math';
+import { array_sum, toFixedNumber } from '../../src/util/math';
 import { chai, relative, expect, path, assert, util, mochaAsync } from '../_local-dev';
 
 // @ts-ignore
@@ -29,6 +31,8 @@ describe(relative(__filename), () =>
 		//console.log('it:before', currentTest.title);
 		//console.log('it:before', currentTest.fullTitle());
 	});
+
+	const delta = SUM_DELTA;
 
 	// @ts-ignore
 	describe(`random integer number list by expected sum`, () =>
@@ -61,11 +65,12 @@ describe(relative(__filename), () =>
 				{
 					const v = d();
 
-					cache[String(v)] = v;
-					break;
+					cache[toKey(v)] = v;
 				}
 
 				const vs = Object.values(cache);
+
+				console.log(vs.length, vs[0], array_sum(vs[0]));
 
 				vs
 					.forEach(function (v)
@@ -74,9 +79,9 @@ describe(relative(__filename), () =>
 
 						if (typeof expected_sum === 'number')
 						{
-							const sum = v.reduce((a, b) => a + b);
+							const sum = array_sum(v);
 
-							expect(sum).closeTo(expected_sum, 0.01);
+							expect(sum).closeTo(expected_sum, delta);
 						}
 
 						expect(v).array.lengthOf(size);
@@ -120,11 +125,12 @@ describe(relative(__filename), () =>
 				{
 					const v = d();
 
-					cache[String(v)] = v;
-					break;
+					cache[toKey(v)] = v;
 				}
 
 				const vs = Object.values(cache);
+
+				console.log(vs.length, vs[0], array_sum(vs[0]));
 
 				vs
 					.forEach(function (v)
@@ -133,9 +139,9 @@ describe(relative(__filename), () =>
 
 						if (typeof expected_sum === 'number')
 						{
-							const sum = v.reduce((a, b) => a + b);
+							const sum = array_sum(v);
 
-							expect(sum).closeTo(expected_sum, 0.01);
+							expect(sum).closeTo(expected_sum, delta);
 						}
 
 						expect(v).array.lengthOf(size);
@@ -150,4 +156,75 @@ describe(relative(__filename), () =>
 
 	});
 
+	describe(`fractionDigits`, () =>
+	{
+		const fractionDigits = 5;
+
+		_createTest(3, undefined,undefined,undefined,1);
+		_createTest(3, 21);
+		_createTest(3, -21);
+		_createTest(3, null, 1, 6, 8);
+		_createTest(3, null, -6, -1, -13);
+		_createTest(3, 10, 1, 10);
+		_createTest(3, null, 1, 10, 12);
+		_createTest(3, 0, -5, 10);
+		_createTest(3, -10, -5, 10);
+
+		function _createTest(size: number, sum: number, min?: number, max?: number, expected_sum?: number)
+		{
+			expected_sum = typeof expected_sum === 'number' ? expected_sum : sum;
+
+			it(`dfSumFloat(${size}, ${sum}, ${min}, ${max}, fractionDigits = ${fractionDigits}) => ${typeof expected_sum === 'number' ? expected_sum : 'unknow'}`, function ()
+			{
+				const d = random.dfSumFloat(size, sum, min, max, fractionDigits);
+
+				let cache = {} as {
+					[k: string]: number[],
+				};
+
+				for (let i = 0; i < 10000; ++i)
+				{
+					const v = d();
+
+					cache[toKey(v)] = v;
+				}
+
+				const vs = Object.values(cache);
+
+				console.log(vs.length, vs[0], array_sum(vs[0]));
+
+				vs
+					.forEach(function (v)
+					{
+						const sum = array_sum(v);
+
+						if (typeof expected_sum === 'number')
+						{
+							expect(sum).closeTo(expected_sum, delta);
+						}
+
+						//console.log(v, sum);
+
+						v.forEach(n => {
+							expect(n).deep.equal(toFixedNumber(n, fractionDigits));
+						});
+
+						expect(v).array.lengthOf(size);
+					})
+				;
+
+				expect(vs).array
+					.lengthOf.gt(0)
+				;
+			});
+		}
+
+	});
+
+
 });
+
+function toKey(v: number[])
+{
+	return v.join(',')
+}

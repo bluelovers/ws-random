@@ -87,5 +87,6 @@ function array_sum(na) {
     return na.reduce((a, b) => a + b);
 }
 exports.array_sum = array_sum;
+exports.SUM_DELTA = 0.00000000000005;
 // @ts-ignore
 Object.freeze(exports);

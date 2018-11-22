@@ -151,7 +151,7 @@ function coreFnRandSumInt(argv) {
 }
 exports.coreFnRandSumInt = coreFnRandSumInt;
 function coreFnRandSumFloat(argv) {
-    let { random, size, sum, min, max, } = argv;
+    let { random, size, sum, min, max, fractionDigits, } = argv;
     // @ts-ignore
     ow_1.expect(size).is.finite.integer.gt(1);
     if (util_2.isUnset(sum) && typeof min === 'number' && typeof max === 'number') {
@@ -174,6 +174,12 @@ function coreFnRandSumFloat(argv) {
     }
     ow_1.expect(n_sum).gte(0);
     let fnFirst;
+    if (!util_2.isUnset(fractionDigits)) {
+        ow_1.expect(fractionDigits)
+            // @ts-ignore
+            .is.finite
+            .integer.gt(0);
+    }
     {
         /**
          * get_prob_float(3, 10)
@@ -200,6 +206,9 @@ function coreFnRandSumFloat(argv) {
             let n11;
             let n00 = fnFirst();
             let n01 = n00 + min;
+            if (fractionDigits) {
+                n01 = math_1.toFixedNumber(n01, fractionDigits);
+            }
             if (n01 < min || n01 > max) {
                 continue LABEL_TOP;
             }
@@ -219,6 +228,9 @@ function coreFnRandSumFloat(argv) {
                     continue LABEL_TOP;
                 }
                 n11 = n10 + min;
+                if (fractionDigits) {
+                    n11 = math_1.toFixedNumber(n11, fractionDigits);
+                }
                 if (n11 < min || n11 === n01) {
                     continue LABEL_SUB;
                 }
@@ -228,6 +240,9 @@ function coreFnRandSumFloat(argv) {
                 i--;
             }
             t1 = sum - total2;
+            if (fractionDigits) {
+                t1 = math_1.toFixedNumber(t1, fractionDigits);
+            }
             if (t1 === n11 || t1 === n01 || t1 < min || t1 > max) {
                 continue LABEL_TOP;
             }

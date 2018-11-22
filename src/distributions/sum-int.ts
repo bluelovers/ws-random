@@ -8,7 +8,7 @@ import { UtilDistributions } from '../util/distributions';
 import * as UtilMath from '../util/math';
 import { ISumNumParameter } from './internal/sum-num';
 
-export default (random: Random, size: number, sum?: number, min?: number, max?: number, noUnique?: boolean, limit?: number) =>
+export default (random: Random, size: number, sum?: number, min?: number, max?: number, limit?: number) =>
 {
 	return coreFnRandSumInt({
 		random,

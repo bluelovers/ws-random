@@ -1,10 +1,9 @@
 import { array_unique } from 'array-hyper-unique';
-import { libRmath, fakeLibRmathRng } from '../../for3rd/lib-r-math/util';
+import { fakeLibRmathRng, libRmath } from '../../for3rd/lib-r-math/util';
 import { Random } from '../../random';
-import { isUnset, array_unique_unsafe } from '../../util';
+import { isUnset } from '../../util';
 import { UtilDistributions } from '../../util/distributions';
-import * as UtilMath from '../../util/math';
-import { array_sum, get_prob, get_prob_float, sum_1_to_n } from '../../util/math';
+import { array_sum, get_prob, get_prob_float, sum_1_to_n, toFixedNumber } from '../../util/math';
 import { expect } from '../../util/ow';
 import uniform from '../uniform';
 
@@ -23,6 +22,7 @@ export interface ISumNumParameterBase
 	//verifyFn?(data: ISumNumParameter)
 
 	limit?: number,
+	fractionDigits?: number,
 }
 
 export interface ISumNumParameter extends ISumNumParameterBase
@@ -261,6 +261,7 @@ export function coreFnRandSumFloat(argv: ISumNumParameterWuthCache): () => numbe
 		sum,
 		min,
 		max,
+		fractionDigits,
 	} = argv;
 
 	// @ts-ignore
@@ -296,6 +297,15 @@ export function coreFnRandSumFloat(argv: ISumNumParameterWuthCache): () => numbe
 	expect(n_sum).gte(0);
 
 	let fnFirst: () => number;
+
+	if (!isUnset(fractionDigits))
+	{
+		expect(fractionDigits)
+			// @ts-ignore
+			.is.finite
+			.integer.gt(0)
+		;
+	}
 
 	{
 		/**
@@ -333,6 +343,11 @@ export function coreFnRandSumFloat(argv: ISumNumParameterWuthCache): () => numbe
 			let n00 = fnFirst();
 			let n01 = n00 + min;
 
+			if (fractionDigits)
+			{
+				n01 = toFixedNumber(n01, fractionDigits)
+			}
+
 			if (n01 < min || n01 > max)
 			{
 				continue LABEL_TOP
@@ -365,6 +380,11 @@ export function coreFnRandSumFloat(argv: ISumNumParameterWuthCache): () => numbe
 
 				n11 = n10 + min;
 
+				if (fractionDigits)
+				{
+					n11 = toFixedNumber(n11, fractionDigits)
+				}
+
 				if (n11 < min || n11 === n01)
 				{
 					continue LABEL_SUB
@@ -378,6 +398,11 @@ export function coreFnRandSumFloat(argv: ISumNumParameterWuthCache): () => numbe
 			}
 
 			t1 = sum - total2;
+
+			if (fractionDigits)
+			{
+				t1 = toFixedNumber(t1, fractionDigits)
+			}
 
 			if (t1 === n11 || t1 === n01 || t1 < min || t1 > max)
 			{

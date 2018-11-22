@@ -1,5 +1,3 @@
-
-
 /**
  * (1 + 2 + 3 +...+N)
  *
@@ -121,6 +119,8 @@ export function array_sum(na: number[])
 {
 	return na.reduce((a, b) => a + b)
 }
+
+export const SUM_DELTA = 0.00000000000005;
 
 // @ts-ignore
 Object.freeze(exports)

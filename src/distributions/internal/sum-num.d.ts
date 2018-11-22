@@ -1,6 +1,7 @@
 import { Random } from '../../random';
 export interface ISumNumParameterBase {
     limit?: number;
+    fractionDigits?: number;
 }
 export interface ISumNumParameter extends ISumNumParameterBase {
     random: Random;
