@@ -82,6 +82,9 @@ function isNum(n) {
     return n === +n;
 }
 exports.isNum = isNum;
+/**
+ * @todo support 1e+23
+ */
 function isInt(n) {
     return n === (n | 0);
 }

@@ -113,6 +113,9 @@ export function isNum(n: number)
 	return n === +n
 }
 
+/**
+ * @todo support 1e+23
+ */
 export function isInt(n: number)
 {
 	return n === (n | 0)
