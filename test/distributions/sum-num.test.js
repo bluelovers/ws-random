@@ -11,7 +11,7 @@ const math_2 = require("../../src/util/math");
 const _local_dev_1 = require("../_local-dev");
 const random_1 = require("../../src/random");
 // @ts-ignore
-describe(_local_dev_1.relative(__filename), () => {
+describe(_local_dev_1.relative(__filename), function () {
     let currentTest;
     const r = random_1.random;
     beforeEach(function () {
@@ -20,6 +20,7 @@ describe(_local_dev_1.relative(__filename), () => {
         //console.log('it:before', currentTest.fullTitle());
     });
     const delta = math_1.SUM_DELTA;
+    this.timeout(10000);
     // @ts-ignore
     describe(`random integer number list by expected sum`, () => {
         _createTest(3, 6);

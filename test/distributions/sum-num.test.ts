@@ -18,7 +18,7 @@ import seedrandom = require('seedrandom');
 import { Random, random } from '../../src/random'
 
 // @ts-ignore
-describe(relative(__filename), () =>
+describe(relative(__filename), function ()
 {
 	let currentTest: ITest;
 
@@ -33,6 +33,8 @@ describe(relative(__filename), () =>
 	});
 
 	const delta = SUM_DELTA;
+
+	this.timeout(10000);
 
 	// @ts-ignore
 	describe(`random integer number list by expected sum`, () =>
