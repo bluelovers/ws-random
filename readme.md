@@ -3,6 +3,7 @@
 > Seedable random number generator supporting many common distributions.
 
 [![NPM](https://img.shields.io/npm/v/random-extra.svg)](https://www.npmjs.com/package/random-extra)
+[![Build Status](https://travis-ci.org/bluelovers/random.svg?branch=master)](https://travis-ci.org/bluelovers/random)
 
 > this module fork from [transitive-bullshit/random](https://github.com/transitive-bullshit/random), with typescript support and some other change (include breaking change)
 
