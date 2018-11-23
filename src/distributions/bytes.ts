@@ -7,14 +7,14 @@ export default function uniformBytes(random: Random, size: number, toStr?: false
 export default function uniformBytes(random: Random, size: number, toStr?: boolean): (() => string[]) | (() => number[])
 export default function uniformBytes(random: Random, size: number, toStr?: boolean)
 {
-	expect(size).integer.gt(0)
-
-	const fn = uniformByte(random, toStr)
+	expect(size).integer.gt(0);
+	const fn = uniformByte(random, toStr);
 
 	return () =>
 	{
-		let arr = []
-		for (let i = 0; i < size; i++)
+		let i = size;
+		let arr = [];
+		while (i--)
 		{
 			arr.push(fn())
 		}

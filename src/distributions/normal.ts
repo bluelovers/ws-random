@@ -13,7 +13,7 @@ export default (random: Random, mu = 0, sigma = 1) =>
 
 	return () =>
 	{
-		let x, y, r
+		let x: number, y: number, r: number
 
 		do
 		{

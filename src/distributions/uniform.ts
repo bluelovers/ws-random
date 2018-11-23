@@ -14,10 +14,22 @@ export default (random: Random, min?: number, max?: number, fractionDigits?: num
 	expect(min).number();
 	expect(max).number.gt(min);
 
-	let fn = (): number =>
+	let fn: () => number;
+
+	if (min === 0)
 	{
-		return random.next() * (max - min) + min
-	};
+		fn = () =>
+		{
+			return random.next() * max
+		}
+	}
+	else
+	{
+		fn = () =>
+		{
+			return random.next() * (max - min) + min
+		}
+	}
 
 	if (fractionDigits !== undefined)
 	{

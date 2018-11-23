@@ -162,7 +162,7 @@ function coreFnRandSumFloat(argv) {
         sum = (size - 1) * min + max;
         //console.log(sum, min, max);
     }
-    sum = util_2.isUnset(sum) ? 1 : sum;
+    sum = util_2.isUnset(sum) ? 1.0 : sum;
     min = util_2.isUnset(min) ? (sum > 0 ? 0 : sum) : min;
     max = util_2.isUnset(max) ? Math.abs(sum) : max;
     // @ts-ignore
@@ -171,6 +171,7 @@ function coreFnRandSumFloat(argv) {
     ow_1.expect(max).is.finite.number();
     // @ts-ignore
     ow_1.expect(sum).is.finite.number();
+    sum += 0.0;
     let n_sum = sum - size * min;
     let maxv = max - min;
     if (sum > 0) {
@@ -204,8 +205,8 @@ function coreFnRandSumFloat(argv) {
         LABEL_TOP: do {
             let ret_a = [];
             let total = n_sum;
-            let total2 = 0;
-            let i = size - 1;
+            let total2 = 0.0;
+            let i = size - 1.0;
             let n10;
             let n11;
             let n00 = fnFirst();

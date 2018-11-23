@@ -31,14 +31,14 @@ exports.default = (random, char, size) => {
     }
     let ls = UString.create(char).split('');
     let len = ls.length;
-    //ow(len, ow.number.integer.gt(1), `char.length`);
-    ow_1.default(ls).to.have.length.gt(1);
+    ow_1.default(ls).to.have.lengthOf.gt(1);
     const randIndex = () => {
         return distributions_1.randIndex(random, len);
     };
     return () => {
+        let i = size;
         let list = [];
-        for (let i = 0; i < size; i++) {
+        while (i--) {
             list.push(ls[randIndex()]);
         }
         return list.join('');

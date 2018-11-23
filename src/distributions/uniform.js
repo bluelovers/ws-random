@@ -8,9 +8,17 @@ exports.default = (random, min, max, fractionDigits) => {
     }
     ow_1.default(min).number();
     ow_1.default(max).number.gt(min);
-    let fn = () => {
-        return random.next() * (max - min) + min;
-    };
+    let fn;
+    if (min === 0) {
+        fn = () => {
+            return random.next() * max;
+        };
+    }
+    else {
+        fn = () => {
+            return random.next() * (max - min) + min;
+        };
+    }
     if (fractionDigits !== undefined) {
         ow_1.default(fractionDigits).integer.gte(0);
         return () => {

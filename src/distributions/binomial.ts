@@ -5,9 +5,6 @@ import RNG from '../rng'
 
 export default (random: Random, n: number = 1, p: number = 0.5) =>
 {
-	//ow(n, ow.number.positive.integer)
-	//ow(p, ow.number.gte(0).lte(1))
-
 	expect(n).integer.gt(0)
 	expect(p).number.gte(0).lte(1)
 

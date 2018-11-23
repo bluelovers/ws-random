@@ -7,7 +7,7 @@
 /// <reference types="chai" />
 /// <reference types="node" />
 
-import { SUM_DELTA } from '../../src/util/math';
+import { fixZero, SUM_DELTA } from '../../src/util/math';
 import { array_sum, toFixedNumber } from '../../src/util/math';
 import { chai, relative, expect, path, assert, util, mochaAsync, MY_DEBUG } from '../_local-dev';
 
@@ -228,7 +228,7 @@ describe(relative(__filename), function ()
 						//console.log(v, sum);
 
 						v.forEach(n => {
-							expect(n).deep.equal(toFixedNumber(n, fractionDigits));
+							expect(n).deep.equal(fixZero(toFixedNumber(n, fractionDigits)));
 						});
 
 						expect(v).array.lengthOf(size);

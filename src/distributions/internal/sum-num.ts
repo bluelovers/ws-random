@@ -188,7 +188,8 @@ export function coreFnRandSumInt(argv: ISumNumParameterWuthCache)
 	{
 		let len = 200;
 
-		let arr = array_unique(rmultinomCreateFn(len).map(v => {
+		let arr = array_unique(rmultinomCreateFn(len).map(v =>
+		{
 
 			v.value = v.value.map(fixZero);
 
@@ -281,7 +282,7 @@ export function coreFnRandSumFloat(argv: ISumNumParameterWuthCache): () => numbe
 		//console.log(sum, min, max);
 	}
 
-	sum = isUnset(sum) ? 1 : sum;
+	sum = isUnset(sum) ? 1.0 : sum;
 
 	min = isUnset(min) ? (sum > 0 ? 0 : sum) : min;
 	max = isUnset(max) ? Math.abs(sum) : max;
@@ -292,6 +293,8 @@ export function coreFnRandSumFloat(argv: ISumNumParameterWuthCache): () => numbe
 	expect(max).is.finite.number();
 	// @ts-ignore
 	expect(sum).is.finite.number();
+
+	sum += 0.0;
 
 	let n_sum = sum - size * min;
 	let maxv = max - min;
@@ -308,7 +311,7 @@ export function coreFnRandSumFloat(argv: ISumNumParameterWuthCache): () => numbe
 	if (!isUnset(fractionDigits))
 	{
 		expect(fractionDigits)
-			// @ts-ignore
+		// @ts-ignore
 			.is.finite
 			.integer.gt(0)
 		;
@@ -342,8 +345,9 @@ export function coreFnRandSumFloat(argv: ISumNumParameterWuthCache): () => numbe
 			let ret_a: number[] = [];
 
 			let total = n_sum;
-			let total2 = 0;
-			let i = size - 1;
+			let total2 = 0.0;
+
+			let i = size - 1.0;
 			let n10: number;
 			let n11: number;
 
@@ -394,7 +398,7 @@ export function coreFnRandSumFloat(argv: ISumNumParameterWuthCache): () => numbe
 					n11 = toFixedNumber(n11, fractionDigits)
 				}
 
-				if (n11 < min || n11 > max || n11 === n_prev )
+				if (n11 < min || n11 > max || n11 === n_prev)
 				{
 					continue LABEL_SUB
 				}

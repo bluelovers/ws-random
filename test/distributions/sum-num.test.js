@@ -134,7 +134,7 @@ describe(_local_dev_1.relative(__filename), function () {
                     }
                     //console.log(v, sum);
                     v.forEach(n => {
-                        _local_dev_1.expect(n).deep.equal(math_2.toFixedNumber(n, fractionDigits));
+                        _local_dev_1.expect(n).deep.equal(math_1.fixZero(math_2.toFixedNumber(n, fractionDigits)));
                     });
                     _local_dev_1.expect(v).array.lengthOf(size);
                     if (check_range) {

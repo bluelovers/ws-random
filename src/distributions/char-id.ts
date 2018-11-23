@@ -47,8 +47,7 @@ export default (random: Random, char?: ENUM_ALPHABET | string | Buffer | number,
 	let ls = UString.create(char).split('');
 	let len = ls.length;
 
-	//ow(len, ow.number.integer.gt(1), `char.length`);
-	expect(ls).to.have.length.gt(1)
+	expect(ls).to.have.lengthOf.gt(1);
 
 	const randIndex = () =>
 	{
@@ -57,8 +56,9 @@ export default (random: Random, char?: ENUM_ALPHABET | string | Buffer | number,
 
 	return () =>
 	{
+		let i = size;
 		let list: string[] = [];
-		for (let i = 0; i < size; i++)
+		while (i--)
 		{
 			list.push(ls[randIndex()])
 		}
