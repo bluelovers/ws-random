@@ -26,6 +26,7 @@ class RNG {
     /**
      * should return a float between 0 ~ 1
      */
+    // @ts-ignore
     next() {
         throw new ReferenceError('RNG.next must be overridden');
     }

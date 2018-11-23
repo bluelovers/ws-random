@@ -1,8 +1,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-const libRmath = require("lib-r-math.js");
+const libRMath = require("lib-r-math.js");
 const random_1 = require("../../random");
 const rng_1 = require("../../rng");
-class LibRmathRngWithRandom extends libRmath.IRNG {
+const isExtendsOf = require("is-extends-of");
+class LibRMathRngWithRandom extends libRMath.IRNG {
     constructor(_seed, rng) {
         super(_seed);
         this.use(rng, _seed);
@@ -14,12 +15,12 @@ class LibRmathRngWithRandom extends libRmath.IRNG {
         return this.__seed;
     }
     set seed(_seed) {
-        this.__random.seed(this.__seed = _seed);
+        this.__random.seed && this.__random.seed(this.__seed = _seed);
     }
     use(rng, _seed) {
         if (rng) {
-            if (rng instanceof rng_1.default) {
-                rng = new random_1.Random(rng);
+            if (rng instanceof rng_1.default || typeof rng.next === 'function') {
+                //
             }
             else if (rng === 'seedrandom') {
                 rng = random_1.random.newUse('seedrandom', _seed, {
@@ -40,67 +41,62 @@ class LibRmathRngWithRandom extends libRmath.IRNG {
         return this.__random.next();
     }
 }
-exports.LibRmathRngWithRandom = LibRmathRngWithRandom;
-/*
-
-let b;
-
-b = randsum(2, 5)
-
-console.log(b, array_sum(b));
-
-console.log('----------');
-
-b = randsum(6, 13, -8, 15)
-
-console.log(b, array_sum(b));
-
-console.log('----------');
-
-b = randsum(6, -13, -8, 15)
-
-console.log(b, array_sum(b));
-
-b = randsum(6, 0, -8, 15)
-
-console.log(b, array_sum(b));
-
-b = randsum(6, -14, -13, 15)
-
-console.log(b, array_sum(b));
-
-//b = randsum(6, 13, 14, 15)
-//
-//console.log(b, array_sum(b));
-
-b = randsum(6, -12, -13, -1)
-
-console.log(b, array_sum(b));
-
-export function _array_rebase(ret_b: number[], n_diff: number, min: number, max: number, indexOf?: boolean)
-{
-    let bool: boolean;
-    for (let i = ret_b.length - 1; i >= 0; i--)
-    {
-        let v = ret_b[i];
-
-        if (!indexOf || ret_b.indexOf(v) !== i)
-        {
-            let n = v + n_diff;
-
-            if (n >= min && n <= max)
-            {
-                bool = true;
-                ret_b[i] = n;
-            }
-            else
-            {
-                bool = false;
-                break;
-            }
-        }
+exports.LibRMathRngWithRandom = LibRMathRngWithRandom;
+class RandomRngWithLibRMath extends rng_1.default {
+    constructor(seed, opts, ...argv) {
+        super();
+        this._seedable = true;
+        this._init(seed, opts, ...argv);
     }
-    return bool;
+    _init(seed, opts, ...argv) {
+        if (seed instanceof libRMath.IRNG) {
+            // @ts-ignore
+            this._rng = seed;
+        }
+        else if (opts instanceof libRMath.IRNG) {
+            // @ts-ignore
+            this._rng = opts;
+        }
+        else if (seed && isExtendsOf(seed, libRMath.IRNG)) {
+            // @ts-ignore
+            this._rng = new seed(this._seedNum(opts));
+        }
+        else if (opts && isExtendsOf(opts, libRMath.IRNG)) {
+            // @ts-ignore
+            this._rng = new opts(this._seedNum(seed));
+        }
+        // @ts-ignore
+        else if (seed && typeof seed.unif_rand === 'function') {
+            this._rng = seed;
+        }
+        // @ts-ignore
+        else if (opts && typeof opts.unif_rand === 'function') {
+            this._rng = opts;
+        }
+        else if (opts && libRMath[opts]) {
+            let r = libRMath[opts];
+            // @ts-ignore
+            this._rng = new r(this._seedNum(seed));
+        }
+        else {
+            // @ts-ignore
+            this._rng = new libRMath.rng.MersenneTwister(this._seedNum(seed));
+        }
+        // @ts-ignore
+        this._fn = (this._rng.internal_unif_rand || this._rng.unif_rand).bind(this._rng);
+    }
+    get name() {
+        return 'libRMath'
+            + (this._rng.name ? `<${this._rng.name}>` : '');
+    }
+    get options() {
+        return this._rng.seed;
+    }
+    next() {
+        return this._fn();
+    }
+    seed(seed, opts, ...argv) {
+        this._rng.seed = [this._seedNum(seed)];
+    }
 }
-
-*/
+exports.RandomRngWithLibRMath = RandomRngWithLibRMath;

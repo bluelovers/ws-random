@@ -4,7 +4,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const libRmath = require("lib-r-math.js");
 exports.libRmath = libRmath;
-function fakeLibRmathRng(fn) {
+function fakeLibRMathRng(fn) {
     return {
         unif_rand(n) {
             if (n > 1) {
@@ -18,4 +18,4 @@ function fakeLibRmathRng(fn) {
         },
     };
 }
-exports.fakeLibRmathRng = fakeLibRmathRng;
+exports.fakeLibRMathRng = fakeLibRMathRng;

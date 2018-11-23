@@ -2,7 +2,13 @@ import { seedToken } from './seeder/default';
 import { hashAny } from './seeder/hash-any';
 import { _MathRandom, randomSeedStr } from './util';
 
-export abstract class RNG
+export interface IRNGLike
+{
+	next(): number
+	seed?(seed?, opts?, ...argv)
+}
+
+export abstract class RNG implements IRNGLike
 {
 	constructor()
 	constructor(seed?)
@@ -46,7 +52,8 @@ export abstract class RNG
 	/**
 	 * should return a float between 0 ~ 1
 	 */
-	public next(): number
+	// @ts-ignore
+	public abstract next(): number
 	{
 		throw new ReferenceError('RNG.next must be overridden')
 	}

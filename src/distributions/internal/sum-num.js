@@ -56,7 +56,7 @@ function coreFnRandSumInt(argv) {
     /**
      * make rmultinom use with random.next
      */
-    let rmultinomFn = util_1.libRmath.Multinomial(util_1.fakeLibRmathRng(random.next)).rmultinom;
+    let rmultinomFn = util_1.libRmath.Multinomial(util_1.fakeLibRMathRng(random.next)).rmultinom;
     /**
      * low value for speed up, but more chance fail
      */

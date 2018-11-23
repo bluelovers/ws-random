@@ -5,7 +5,7 @@
 import libRmath = require('lib-r-math.js');
 export { libRmath }
 
-export function fakeLibRmathRng(fn: () => number)
+export function fakeLibRMathRng(fn: () => number)
 {
 	return {
 		unif_rand(n?: number)

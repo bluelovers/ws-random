@@ -91,6 +91,7 @@
     "core-decorators": "^0.20.0",
     "hash-sum": "^1.0.2",
     "hex-lib": "^1.0.2",
+    "is-extends-of": "^1.0.0",
     "lib-r-math.js": "^1.0.85",
     "nanoid": "^2.0.0",
     "uni-string": "^1.1.0"

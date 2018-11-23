@@ -1,4 +1,8 @@
-export declare abstract class RNG {
+export interface IRNGLike {
+    next(): number;
+    seed?(seed?: any, opts?: any, ...argv: any[]): any;
+}
+export declare abstract class RNG implements IRNGLike {
     constructor();
     constructor(seed?: any);
     constructor(seed?: any, opts?: any, ...argv: any[]);
@@ -10,7 +14,7 @@ export declare abstract class RNG {
     /**
      * should return a float between 0 ~ 1
      */
-    next(): number;
+    abstract next(): number;
     seed(seed?: any, opts?: any, ...argv: any[]): void;
     clone(seed?: any, opts?: any, ...argv: any[]): void;
     protected _seedAuto(seed: number, opts?: any, ...argv: any[]): number;

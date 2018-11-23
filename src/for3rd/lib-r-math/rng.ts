@@ -1,13 +1,14 @@
-import libRmath = require('lib-r-math.js');
+import libRMath = require('lib-r-math.js');
 import { Random, random } from '../../random';
-import RNG from '../../rng';
+import RNG, { IRNGLike } from '../../rng';
+import isExtendsOf = require('is-extends-of');
 
-export class LibRmathRngWithRandom extends libRmath.IRNG
+export class LibRMathRngWithRandom extends libRMath.IRNG
 {
 	protected __random: Random;
 	protected __seed;
 
-	constructor(_seed?: number, rng?: Random | RNG | any)
+	constructor(_seed?: number, rng?: Random | RNG | any | IRNGLike)
 	{
 		super(_seed);
 		this.use(rng, _seed)
@@ -25,16 +26,16 @@ export class LibRmathRngWithRandom extends libRmath.IRNG
 
 	set seed(_seed)
 	{
-		this.__random.seed(this.__seed = _seed)
+		this.__random.seed && this.__random.seed(this.__seed = _seed)
 	}
 
-	use(rng?: Random | RNG | any, _seed?)
+	use(rng?: Random | RNG | IRNGLike | any, _seed?)
 	{
 		if (rng)
 		{
-			if (rng instanceof RNG)
+			if (rng instanceof RNG || typeof <IRNGLike>rng.next === 'function')
 			{
-				rng = new Random(rng)
+				//
 			}
 			else if (rng === 'seedrandom')
 			{
@@ -64,66 +65,86 @@ export class LibRmathRngWithRandom extends libRmath.IRNG
 	}
 }
 
-/*
-
-let b;
-
-b = randsum(2, 5)
-
-console.log(b, array_sum(b));
-
-console.log('----------');
-
-b = randsum(6, 13, -8, 15)
-
-console.log(b, array_sum(b));
-
-console.log('----------');
-
-b = randsum(6, -13, -8, 15)
-
-console.log(b, array_sum(b));
-
-b = randsum(6, 0, -8, 15)
-
-console.log(b, array_sum(b));
-
-b = randsum(6, -14, -13, 15)
-
-console.log(b, array_sum(b));
-
-//b = randsum(6, 13, 14, 15)
-//
-//console.log(b, array_sum(b));
-
-b = randsum(6, -12, -13, -1)
-
-console.log(b, array_sum(b));
-
-export function _array_rebase(ret_b: number[], n_diff: number, min: number, max: number, indexOf?: boolean)
+export class RandomRngWithLibRMath<R extends libRMath.IRNG> extends RNG
 {
-	let bool: boolean;
-	for (let i = ret_b.length - 1; i >= 0; i--)
+	protected _rng: R;
+	protected _seedable: boolean = true;
+	protected _fn: () => number;
+
+	constructor(seed?, opts?, ...argv)
 	{
-		let v = ret_b[i];
-
-		if (!indexOf || ret_b.indexOf(v) !== i)
-		{
-			let n = v + n_diff;
-
-			if (n >= min && n <= max)
-			{
-				bool = true;
-				ret_b[i] = n;
-			}
-			else
-			{
-				bool = false;
-				break;
-			}
-		}
+		super();
+		this._init(seed, opts, ...argv)
 	}
-	return bool;
-}
 
-*/
+	protected _init(seed?, opts?, ...argv)
+	{
+		if (seed instanceof libRMath.IRNG)
+		{
+			// @ts-ignore
+			this._rng = seed
+		}
+		else if (opts instanceof libRMath.IRNG)
+		{
+			// @ts-ignore
+			this._rng = opts
+		}
+		else if (seed && isExtendsOf(seed, libRMath.IRNG))
+		{
+			// @ts-ignore
+			this._rng = new seed(this._seedNum(opts))
+		}
+		else if (opts && isExtendsOf(opts, libRMath.IRNG))
+		{
+			// @ts-ignore
+			this._rng = new opts(this._seedNum(seed))
+		}
+		// @ts-ignore
+		else if (seed && typeof seed.unif_rand === 'function')
+		{
+			this._rng = seed
+		}
+		// @ts-ignore
+		else if (opts && typeof opts.unif_rand === 'function')
+		{
+			this._rng = opts
+		}
+		else if (opts && libRMath[opts])
+		{
+			let r: typeof libRMath.IRNG = libRMath[opts];
+
+			// @ts-ignore
+			this._rng = new r(this._seedNum(seed))
+		}
+		else
+		{
+			// @ts-ignore
+			this._rng = new libRMath.rng.MersenneTwister(this._seedNum(seed))
+		}
+
+		// @ts-ignore
+		this._fn = (this._rng.internal_unif_rand || this._rng.unif_rand).bind(this._rng);
+	}
+
+	get name()
+	{
+		return 'libRMath'
+			+ (this._rng.name ? `<${this._rng.name}>` : '')
+		;
+	}
+
+	public get options()
+	{
+		return this._rng.seed
+	}
+
+	public next(): number
+	{
+		return this._fn()
+	}
+
+	public seed(seed?: any | number[], opts?, ...argv)
+	{
+		this._rng.seed = [this._seedNum(seed)]
+	}
+}

@@ -3,4 +3,4 @@
  */
 import libRmath = require('lib-r-math.js');
 export { libRmath };
-export declare function fakeLibRmathRng(fn: () => number): libRmath.IRNG;
+export declare function fakeLibRMathRng(fn: () => number): libRmath.IRNG;
