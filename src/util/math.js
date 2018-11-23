@@ -1,4 +1,5 @@
 Object.defineProperty(exports, "__esModule", { value: true });
+const const_1 = require("./const");
 /**
  * (1 + 2 + 3 +...+N)
  *
@@ -76,6 +77,7 @@ function get_range_by_size_sum(size, sum) {
         min,
         max,
         sum,
+        resultArray,
     };
 }
 exports.get_range_by_size_sum = get_range_by_size_sum;
@@ -94,5 +96,34 @@ function fixZero(n) {
     return (n === -0) ? 0 : n;
 }
 exports.fixZero = fixZero;
+/**
+ * Given a buffer containing bytes of entropy, generate a double-precision
+ * 64-bit float.
+ *
+ * @param {Buffer} buf a buffer of bytes
+ * @returns {Number} a float
+ *
+ * @see https://github.com/fardog/node-random-lib/blob/master/index.js
+ * @see http://stackoverflow.com/questions/15753019/floating-point-number-from-crypto-randombytes-in-javascript
+ */
+function floatFromBuffer(buf, offset = 0) {
+    offset = offset | 0;
+    if (buf.length < (const_1.FLOAT_ENTROPY_BYTES + offset) || offset < 0) {
+        throw new RangeError(`buffer must contain at least ${const_1.FLOAT_ENTROPY_BYTES}${offset > 0 ? ' +' + offset : ''} bytes of entropy`);
+    }
+    return _floatFromBuffer(buf, offset);
+}
+exports.floatFromBuffer = floatFromBuffer;
+function _floatFromBuffer(buf, offset = 0) {
+    let position = 0 + (offset | 0);
+    return (((((((buf[position++] % 32) / 32 +
+        buf[position++]) / 256 +
+        buf[position++]) / 256 +
+        buf[position++]) / 256 +
+        buf[position++]) / 256 +
+        buf[position++]) / 256 +
+        buf[position]) / 256;
+}
+exports._floatFromBuffer = _floatFromBuffer;
 // @ts-ignore
 Object.freeze(exports);

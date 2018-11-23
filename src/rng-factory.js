@@ -1,4 +1,5 @@
 Object.defineProperty(exports, "__esModule", { value: true });
+const crypto_1 = require("./generators/crypto");
 const math_random2_1 = require("./generators/math-random2");
 const seedrandom_1 = require("./generators/seedrandom");
 const rng_1 = require("./rng");
@@ -13,6 +14,7 @@ const PRNG_BUILTINS = {
     'math-random': math_random_1.default,
     'math-random2': math_random2_1.default,
     'seedrandom': seedrandom_1.default,
+    'crypto': crypto_1.default,
 };
 function RNGFactory(...args) {
     const [arg0 = 'default', ...rest] = args;

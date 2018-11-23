@@ -12,5 +12,6 @@ export declare enum ENUM_ALPHABET {
     BASE71 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!'()*-._~"
 }
 export declare const SUM_DELTA = 5e-14;
+export declare const FLOAT_ENTROPY_BYTES = 7;
 export declare let BYTE_TO_HEX_TO_LOWER_CASE: ReadonlyArray<string>;
 export declare let BYTE_TO_HEX_TO_UPPER_CASE: ReadonlyArray<string>;

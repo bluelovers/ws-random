@@ -1,3 +1,4 @@
+import RNGCrypto from './generators/crypto';
 import RNGMathRandom2 from './generators/math-random2';
 import RNGSeedRandom from './generators/seedrandom';
 import RNG from './rng'
@@ -5,6 +6,8 @@ import RNG from './rng'
 import RNGXOR128 from './generators/xor128'
 import RNGFunction, { IRNGFunctionSeed } from './generators/function'
 import RNGMathRandom from './generators/math-random'
+
+
 
 const PRNG_BUILTINS = {
 	// TODO: add more prng from C++11 lib
@@ -16,6 +19,8 @@ const PRNG_BUILTINS = {
 	'math-random2': RNGMathRandom2,
 
 	'seedrandom': RNGSeedRandom,
+
+	'crypto': RNGCrypto,
 }
 
 export type IRNGFactoryType = 'xor128' | 'function' | 'function' | 'default' | 'seedrandom' | RNG | IRNGFunctionSeed | any

@@ -14,6 +14,7 @@ var ENUM_ALPHABET;
     ENUM_ALPHABET["BASE71"] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!'()*-._~";
 })(ENUM_ALPHABET = exports.ENUM_ALPHABET || (exports.ENUM_ALPHABET = {}));
 exports.SUM_DELTA = 0.00000000000005;
+exports.FLOAT_ENTROPY_BYTES = 7;
 exports.BYTE_TO_HEX_TO_LOWER_CASE = [];
 exports.BYTE_TO_HEX_TO_UPPER_CASE = [];
 for (let i = 0; i < 256; ++i) {
