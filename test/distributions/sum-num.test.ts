@@ -109,6 +109,8 @@ describe(relative(__filename), () =>
 		_createTest(3, 0, -5, 10);
 		_createTest(3, -10, -5, 10);
 
+		_createTest(5, 1, -2, 3);
+
 		function _createTest(size: number, sum: number, min?: number, max?: number, expected_sum?: number)
 		{
 			expected_sum = typeof expected_sum === 'number' ? expected_sum : sum;
@@ -169,6 +171,8 @@ describe(relative(__filename), () =>
 		_createTest(3, null, 1, 10, 12);
 		_createTest(3, 0, -5, 10);
 		_createTest(3, -10, -5, 10);
+
+		_createTest(5, 1, -2, 3);
 
 		function _createTest(size: number, sum: number, min?: number, max?: number, expected_sum?: number)
 		{

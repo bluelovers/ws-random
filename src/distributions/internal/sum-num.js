@@ -220,6 +220,7 @@ function coreFnRandSumFloat(argv) {
             total2 += n01;
             ret_a.push(n01);
             total = t0;
+            let n_prev = n01;
             LABEL_SUB: while (i > 1) {
                 n10 = fnNext(random, 0, total);
                 let t0 = total - n10;
@@ -231,19 +232,20 @@ function coreFnRandSumFloat(argv) {
                 if (fractionDigits) {
                     n11 = math_1.toFixedNumber(n11, fractionDigits);
                 }
-                if (n11 < min || n11 === n01) {
+                if (n11 < min || n11 > max || n11 === n_prev) {
                     continue LABEL_SUB;
                 }
                 total2 += n11;
                 ret_a.push(n11);
                 total = t0;
                 i--;
+                n_prev = n11;
             }
             t1 = sum - total2;
             if (fractionDigits) {
                 t1 = math_1.toFixedNumber(t1, fractionDigits);
             }
-            if (t1 === n11 || t1 === n01 || t1 < min || t1 > max) {
+            if (t1 < min || t1 > max || t1 === n01 || t1 === n_prev) {
                 continue LABEL_TOP;
             }
             ret_a.push(t1);

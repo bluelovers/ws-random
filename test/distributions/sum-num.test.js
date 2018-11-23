@@ -67,6 +67,7 @@ describe(_local_dev_1.relative(__filename), () => {
         _createTest(3, null, 1, 10, 12);
         _createTest(3, 0, -5, 10);
         _createTest(3, -10, -5, 10);
+        _createTest(5, 1, -2, 3);
         function _createTest(size, sum, min, max, expected_sum) {
             expected_sum = typeof expected_sum === 'number' ? expected_sum : sum;
             it(`dfSumFloat(${size}, ${sum}, ${min}, ${max}) => ${typeof expected_sum === 'number' ? expected_sum : 'unknow'}`, function () {
@@ -103,6 +104,7 @@ describe(_local_dev_1.relative(__filename), () => {
         _createTest(3, null, 1, 10, 12);
         _createTest(3, 0, -5, 10);
         _createTest(3, -10, -5, 10);
+        _createTest(5, 1, -2, 3);
         function _createTest(size, sum, min, max, expected_sum) {
             expected_sum = typeof expected_sum === 'number' ? expected_sum : sum;
             it(`dfSumFloat(${size}, ${sum}, ${min}, ${max}, fractionDigits = ${fractionDigits}) => ${typeof expected_sum === 'number' ? expected_sum : 'unknow'}`, function () {
