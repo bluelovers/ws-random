@@ -3,7 +3,7 @@ import { fakeLibRMathRng, libRmath } from '../../for3rd/lib-r-math/util';
 import { Random } from '../../random';
 import { isUnset } from '../../util';
 import { UtilDistributions } from '../../util/distributions';
-import { array_sum, get_prob, get_prob_float, sum_1_to_n, toFixedNumber } from '../../util/math';
+import { array_sum, fixZero, get_prob, get_prob_float, sum_1_to_n, toFixedNumber } from '../../util/math';
 import { expect } from '../../util/ow';
 import uniform from '../uniform';
 
@@ -188,7 +188,12 @@ export function coreFnRandSumInt(argv: ISumNumParameterWuthCache)
 	{
 		let len = 200;
 
-		let arr = array_unique(rmultinomCreateFn(len));
+		let arr = array_unique(rmultinomCreateFn(len).map(v => {
+
+			v.value = v.value.map(fixZero);
+
+			return v;
+		}));
 
 		if (arr.length)
 		{
@@ -230,6 +235,8 @@ export function coreFnRandSumInt(argv: ISumNumParameterWuthCache)
 		{
 			ret_b = arr[0].value;
 			bool_toplevel = arr[0].bool;
+
+			ret_b = ret_b.map(fixZero);
 
 			if (bool_toplevel && c_len < cache_max)
 			{
@@ -341,7 +348,7 @@ export function coreFnRandSumFloat(argv: ISumNumParameterWuthCache): () => numbe
 			let n11: number;
 
 			let n00 = fnFirst();
-			let n01 = n00 + min;
+			let n01 = fixZero(n00 + min);
 
 			if (fractionDigits)
 			{
@@ -380,7 +387,7 @@ export function coreFnRandSumFloat(argv: ISumNumParameterWuthCache): () => numbe
 					continue LABEL_TOP
 				}
 
-				n11 = n10 + min;
+				n11 = fixZero(n10 + min);
 
 				if (fractionDigits)
 				{
@@ -401,7 +408,7 @@ export function coreFnRandSumFloat(argv: ISumNumParameterWuthCache): () => numbe
 				n_prev = n11
 			}
 
-			t1 = sum - total2;
+			t1 = fixZero(sum - total2);
 
 			if (fractionDigits)
 			{

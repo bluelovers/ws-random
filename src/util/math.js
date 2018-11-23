@@ -84,9 +84,16 @@ function toFixedNumber(n, fractionDigits) {
 }
 exports.toFixedNumber = toFixedNumber;
 function array_sum(na) {
-    return na.reduce((a, b) => a + b);
+    return fixZero(na.reduce((a, b) => a + b));
 }
 exports.array_sum = array_sum;
 exports.SUM_DELTA = 0.00000000000005;
+/**
+ * fix: expected -0 to deeply equal 0
+ */
+function fixZero(n) {
+    return (n === -0) ? 0 : n;
+}
+exports.fixZero = fixZero;
 // @ts-ignore
 Object.freeze(exports);

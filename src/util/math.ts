@@ -117,10 +117,18 @@ export function toFixedNumber(n: number, fractionDigits: number)
 
 export function array_sum(na: number[])
 {
-	return na.reduce((a, b) => a + b)
+	return fixZero(na.reduce((a, b) => a + b))
 }
 
 export const SUM_DELTA = 0.00000000000005;
+
+/**
+ * fix: expected -0 to deeply equal 0
+ */
+export function fixZero(n: number)
+{
+	return (n === -0) ? 0 : n
+}
 
 // @ts-ignore
 Object.freeze(exports)
