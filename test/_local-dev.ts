@@ -42,5 +42,7 @@ export function mochaAsync(fn: Function)
 	};
 }
 
+export const MY_DEBUG = process.argv.includes('--debug');
+
 import * as self from './_local-dev';
 export default self;

@@ -42,7 +42,8 @@ describe(_local_dev_1.relative(__filename), () => {
                     cache[toKey(v)] = v;
                 }
                 const vs = Object.values(cache);
-                console.log(vs.length, vs[0], math_2.array_sum(vs[0]));
+                _local_dev_1.MY_DEBUG && console.log(vs.length, vs[0], math_2.array_sum(vs[0]));
+                let check_range = typeof min === 'number' && typeof max === 'number';
                 vs
                     .forEach(function (v) {
                     //console.log(v, sum);
@@ -51,6 +52,9 @@ describe(_local_dev_1.relative(__filename), () => {
                         _local_dev_1.expect(sum).closeTo(expected_sum, delta);
                     }
                     _local_dev_1.expect(v).array.lengthOf(size);
+                    if (check_range) {
+                        v.forEach(n => _local_dev_1.expect(n).gte(min).lte(max));
+                    }
                 });
                 _local_dev_1.expect(vs).array
                     .lengthOf.gt(0);
@@ -78,7 +82,8 @@ describe(_local_dev_1.relative(__filename), () => {
                     cache[toKey(v)] = v;
                 }
                 const vs = Object.values(cache);
-                console.log(vs.length, vs[0], math_2.array_sum(vs[0]));
+                _local_dev_1.MY_DEBUG && console.log(vs.length, vs[0], math_2.array_sum(vs[0]));
+                let check_range = typeof min === 'number' && typeof max === 'number';
                 vs
                     .forEach(function (v) {
                     //console.log(v, sum);
@@ -87,6 +92,9 @@ describe(_local_dev_1.relative(__filename), () => {
                         _local_dev_1.expect(sum).closeTo(expected_sum, delta);
                     }
                     _local_dev_1.expect(v).array.lengthOf(size);
+                    if (check_range) {
+                        v.forEach(n => _local_dev_1.expect(n).gte(min).lte(max));
+                    }
                 });
                 _local_dev_1.expect(vs).array
                     .lengthOf.gt(0);
@@ -115,7 +123,8 @@ describe(_local_dev_1.relative(__filename), () => {
                     cache[toKey(v)] = v;
                 }
                 const vs = Object.values(cache);
-                console.log(vs.length, vs[0], math_2.array_sum(vs[0]));
+                _local_dev_1.MY_DEBUG && console.log(vs.length, vs[0], math_2.array_sum(vs[0]));
+                let check_range = typeof min === 'number' && typeof max === 'number';
                 vs
                     .forEach(function (v) {
                     const sum = math_2.array_sum(v);
@@ -127,6 +136,9 @@ describe(_local_dev_1.relative(__filename), () => {
                         _local_dev_1.expect(n).deep.equal(math_2.toFixedNumber(n, fractionDigits));
                     });
                     _local_dev_1.expect(v).array.lengthOf(size);
+                    if (check_range) {
+                        v.forEach(n => _local_dev_1.expect(n).gte(min).lte(max));
+                    }
                 });
                 _local_dev_1.expect(vs).array
                     .lengthOf.gt(0);

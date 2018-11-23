@@ -34,5 +34,6 @@ function mochaAsync(fn) {
     };
 }
 exports.mochaAsync = mochaAsync;
+exports.MY_DEBUG = process.argv.includes('--debug');
 const self = require("./_local-dev");
 exports.default = self;

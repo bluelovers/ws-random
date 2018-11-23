@@ -9,7 +9,7 @@
 
 import { SUM_DELTA } from '../../src/util/math';
 import { array_sum, toFixedNumber } from '../../src/util/math';
-import { chai, relative, expect, path, assert, util, mochaAsync } from '../_local-dev';
+import { chai, relative, expect, path, assert, util, mochaAsync, MY_DEBUG } from '../_local-dev';
 
 // @ts-ignore
 import { ITest } from 'mocha';
@@ -70,7 +70,9 @@ describe(relative(__filename), () =>
 
 				const vs = Object.values(cache);
 
-				console.log(vs.length, vs[0], array_sum(vs[0]));
+				MY_DEBUG && console.log(vs.length, vs[0], array_sum(vs[0]));
+
+				let check_range = typeof min === 'number' && typeof max === 'number';
 
 				vs
 					.forEach(function (v)
@@ -85,6 +87,11 @@ describe(relative(__filename), () =>
 						}
 
 						expect(v).array.lengthOf(size);
+
+						if (check_range)
+						{
+							v.forEach(n => expect(n).gte(min).lte(max))
+						}
 					})
 				;
 
@@ -132,7 +139,9 @@ describe(relative(__filename), () =>
 
 				const vs = Object.values(cache);
 
-				console.log(vs.length, vs[0], array_sum(vs[0]));
+				MY_DEBUG && console.log(vs.length, vs[0], array_sum(vs[0]));
+
+				let check_range = typeof min === 'number' && typeof max === 'number';
 
 				vs
 					.forEach(function (v)
@@ -147,6 +156,11 @@ describe(relative(__filename), () =>
 						}
 
 						expect(v).array.lengthOf(size);
+
+						if (check_range)
+						{
+							v.forEach(n => expect(n).gte(min).lte(max))
+						}
 					})
 				;
 
@@ -195,7 +209,9 @@ describe(relative(__filename), () =>
 
 				const vs = Object.values(cache);
 
-				console.log(vs.length, vs[0], array_sum(vs[0]));
+				MY_DEBUG && console.log(vs.length, vs[0], array_sum(vs[0]));
+
+				let check_range = typeof min === 'number' && typeof max === 'number';
 
 				vs
 					.forEach(function (v)
@@ -214,6 +230,11 @@ describe(relative(__filename), () =>
 						});
 
 						expect(v).array.lengthOf(size);
+
+						if (check_range)
+						{
+							v.forEach(n => expect(n).gte(min).lte(max))
+						}
 					})
 				;
 
