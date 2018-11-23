@@ -1,5 +1,6 @@
 import { Random } from '../random';
-import { _bytesToUuid, BYTE_TO_HEX_TO_LOWER_CASE, BYTE_TO_HEX_TO_UPPER_CASE } from '../util/byte';
+import { _bytesToUuid} from '../util/byte';
+import { BYTE_TO_HEX_TO_LOWER_CASE, BYTE_TO_HEX_TO_UPPER_CASE } from '../util/const';
 import uniformBytes from './bytes';
 
 /**

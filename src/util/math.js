@@ -87,7 +87,6 @@ function array_sum(na) {
     return fixZero(na.reduce((a, b) => a + b));
 }
 exports.array_sum = array_sum;
-exports.SUM_DELTA = 0.00000000000005;
 /**
  * fix: expected -0 to deeply equal 0
  */

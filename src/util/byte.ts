@@ -2,23 +2,9 @@
  * Created by user on 2018/11/17/017.
  */
 
-import * as HexLib from 'hex-lib';
+import { BYTE_TO_HEX_TO_LOWER_CASE, BYTE_TO_HEX_TO_UPPER_CASE } from './const';
 
-export let BYTE_TO_HEX_TO_LOWER_CASE: ReadonlyArray<string> = [];
-export let BYTE_TO_HEX_TO_UPPER_CASE: ReadonlyArray<string> = [];
-
-for (let i = 0; i < 256; ++i)
-{
-	// @ts-ignore
-	BYTE_TO_HEX_TO_LOWER_CASE[i] = (i + 0x100).toString(16).substr(1);
-	// @ts-ignore
-	BYTE_TO_HEX_TO_UPPER_CASE[i] = BYTE_TO_HEX_TO_LOWER_CASE[i].toUpperCase()
-}
-
-// @ts-ignore
-BYTE_TO_HEX_TO_LOWER_CASE = Object.freeze(BYTE_TO_HEX_TO_LOWER_CASE);
-// @ts-ignore
-BYTE_TO_HEX_TO_UPPER_CASE = Object.freeze(BYTE_TO_HEX_TO_UPPER_CASE);
+//export { BYTE_TO_HEX_TO_LOWER_CASE, BYTE_TO_HEX_TO_UPPER_CASE }
 
 export function _bytesToUuid(bth = BYTE_TO_HEX_TO_LOWER_CASE)
 {

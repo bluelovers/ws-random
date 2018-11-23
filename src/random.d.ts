@@ -1,7 +1,7 @@
 /// <reference types="node" />
 import { Distributions, IRandomDistributions, IRandomDistributionsCacheRow } from './distributions';
 import { IArrayUniqueOutOfLimitCallback, IRandIndex } from './distributions/array-unique';
-import { ENUM_ALPHABET } from './distributions/char-id';
+import { ENUM_ALPHABET } from './util/const';
 import { IGetWeight, IObjectInput, IWeightEntrie } from './distributions/item-by-weight';
 import RNGSeedRandom from './generators/seedrandom';
 import RNG from './rng';

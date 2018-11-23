@@ -7,7 +7,8 @@
 /// <reference types="chai" />
 /// <reference types="node" />
 
-import { fixZero, SUM_DELTA } from '../../src/util/math';
+import { SUM_DELTA } from '../../src/util/const';
+import { fixZero} from '../../src/util/math';
 import { array_sum, toFixedNumber } from '../../src/util/math';
 import { chai, relative, expect, path, assert, util, mochaAsync, MY_DEBUG } from '../_local-dev';
 

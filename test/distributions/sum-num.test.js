@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /// <reference types="benchmark" />
 /// <reference types="chai" />
 /// <reference types="node" />
+const const_1 = require("../../src/util/const");
 const math_1 = require("../../src/util/math");
 const math_2 = require("../../src/util/math");
 const _local_dev_1 = require("../_local-dev");
@@ -19,7 +20,7 @@ describe(_local_dev_1.relative(__filename), function () {
         //console.log('it:before', currentTest.title);
         //console.log('it:before', currentTest.fullTitle());
     });
-    const delta = math_1.SUM_DELTA;
+    const delta = const_1.SUM_DELTA;
     this.timeout(10000);
     // @ts-ignore
     describe(`random integer number list by expected sum`, () => {

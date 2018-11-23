@@ -3,23 +3,11 @@
  */
 
 import UString = require("uni-string");
-import { floatToString } from '../util';
-import expect from '../util/ow';
-
 import { Random } from '../random';
-import RNG from '../rng'
+import { floatToString } from '../util';
+import { ENUM_ALPHABET } from '../util/const';
 import { randIndex as _randIndex } from '../util/distributions';
-import { $enum } from "ts-enum-util";
-
-export enum ENUM_ALPHABET
-{
-	NANOID_URL = 'ModuleSymbhasOwnPr-0123456789ABCDEFGHIJKLNQRTUVWXYZ_cfgijkpqtvxz',
-	SHORTID = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-',
-	SHORTID2 = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@',
-	UNI_CHAR1 = 'ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ①②③④⑤⑥⑦⑧⑨⑩⑪⑫',
-
-	DEFAULT = 'ModuleSymbhasOwnPr0123456789ABCDEFGHIJKLNQRTUVWXYZcfgijkpqtvxz0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
-}
+import expect from '../util/ow';
 
 export default (random: Random, char?: ENUM_ALPHABET | string | Buffer | number, size?: number) =>
 {
