@@ -4,7 +4,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const util_1 = require("../../src/util");
 const _1 = require("./");
-const lib_1 = require("../../lib");
 const debug_color2_1 = require("debug-color2");
 const simple_wrap_1 = require("../../src/simple-wrap");
 const methods = [
@@ -16,8 +15,6 @@ const tests = Object.assign({}, _1.default);
 tests.Math2 = {
     next: util_1._MathRandom,
 };
-// @ts-ignore
-tests.randomUglifyJS = lib_1.default;
 methods
     .forEach(function (method, index) {
     const argv = simple_wrap_1.defaultArgv[method] || [];
@@ -32,7 +29,8 @@ methods
             suite.add(`${name}.${method} ${index}`, function () {
                 rng[method](...argv);
             });
-            debug_color2_1.default.debug(`${name}.${method} => ${rng[method](...argv)}`, '  ');
+            rng[method](...argv);
+            //console.debug(`${name}.${method} => ${rng[method](...argv)}`, '  ');
         }
         else {
             debug_color2_1.default.debug(`skip: ${name}.${method} => is undefined`, '  ');
@@ -41,7 +39,7 @@ methods
     debug_color2_1.default.grey(`\n-----------------------`);
     suite
         .on('cycle', function (event) {
-        debug_color2_1.default.info(String(event.target));
+        //				console.info(String(event.target));
     })
         .on('complete', function () {
         let ls = _1.sortBenchmarkResult(this);

@@ -13,7 +13,8 @@ const root_out = path.join(root, 'lib');
 const root_src = path.join(root, 'src');
 
 Bluebird
-	.resolve(fg
+	.resolve(fs.remove(root_out))
+	.thenReturn(fg
 		.async<string>([
 			'**/*.js',
 		], {
@@ -57,14 +58,7 @@ Bluebird
 
 		console.log(index, name);
 	})
-	.tap(function ()
-	{
-		console.log(`done.`);
-	})
-;
-
-Bluebird
-	.resolve(fg
+	.thenReturn(fg
 		.async<string>([
 			'**/*.d.ts',
 		], {
@@ -77,6 +71,10 @@ Bluebird
 				preserveTimestamps: true,
 				overwrite: true,
 			})
-		;
+			;
+	})
+	.tap(function ()
+	{
+		console.log(`done.`);
 	})
 ;

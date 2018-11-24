@@ -1,4 +1,4 @@
-import random from '../../'
+import randomSrc from '../../src'
 import seedrandom from '../../preset/seedrandom'
 import { simpleWrap } from '../../src/simple-wrap';
 import { _MathRandom } from '../../src/util'
@@ -6,24 +6,30 @@ import Benchmark = require('benchmark');
 import crypto = require('crypto');
 import cryptorandom = require('math-random');
 import randomOrigin = require('random');
+import randomUglifyJS from '../../lib'
 
 export { Benchmark }
 
 export const tests = {
 	Math: simpleWrap(_MathRandom),
-	random,
+
+	randomUglifyJS,
+
+	randomSrc,
+
+	randomOrigin,
+
 	seedrandom,
 
-	'math-random2': random.newUse('math-random2'),
+	'math-random2': randomUglifyJS.newUse('math-random2'),
 
-	'xor128': random.newUse('xor128'),
+	'xor128': randomUglifyJS.newUse('xor128'),
 
-	'crypto': random.newUse('crypto'),
+	'crypto': randomUglifyJS.newUse('crypto'),
 
 	cryptorandom: simpleWrap(cryptorandom),
 	cryptorandom2: simpleWrap(cryptorandom2),
 
-	randomOrigin,
 };
 
 export function getMethods(random)

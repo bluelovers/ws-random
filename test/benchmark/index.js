@@ -1,5 +1,5 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-const __1 = require("../../");
+const src_1 = require("../../src");
 const seedrandom_1 = require("../../preset/seedrandom");
 const simple_wrap_1 = require("../../src/simple-wrap");
 const util_1 = require("../../src/util");
@@ -8,16 +8,18 @@ exports.Benchmark = Benchmark;
 const crypto = require("crypto");
 const cryptorandom = require("math-random");
 const randomOrigin = require("random");
+const lib_1 = require("../../lib");
 exports.tests = {
     Math: simple_wrap_1.simpleWrap(util_1._MathRandom),
-    random: __1.default,
+    randomUglifyJS: lib_1.default,
+    randomSrc: src_1.default,
+    randomOrigin,
     seedrandom: seedrandom_1.default,
-    'math-random2': __1.default.newUse('math-random2'),
-    'xor128': __1.default.newUse('xor128'),
-    'crypto': __1.default.newUse('crypto'),
+    'math-random2': lib_1.default.newUse('math-random2'),
+    'xor128': lib_1.default.newUse('xor128'),
+    'crypto': lib_1.default.newUse('crypto'),
     cryptorandom: simple_wrap_1.simpleWrap(cryptorandom),
     cryptorandom2: simple_wrap_1.simpleWrap(cryptorandom2),
-    randomOrigin,
 };
 function getMethods(random) {
     return Object

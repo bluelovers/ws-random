@@ -28,8 +28,6 @@
 *.iml
 out
 gen
-### git_ts_bin template
-bin/*.d.ts
 ### tsonly_test template
 test/*.js
 test/*.d.ts
@@ -76,3 +74,4 @@ bin/*.d.ts
 /dist/
 /benchmark.md
 /docs/
+/src/

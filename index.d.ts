@@ -1,3 +1,3 @@
-import random from './src/random';
+import random = require('./lib');
 export default random;
 export = random;

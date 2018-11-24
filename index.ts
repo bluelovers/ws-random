@@ -1,8 +1,7 @@
 'use strict'
 
-import random from './src/random'
+import random = require('./lib')
+// @ts-ignore
 export default random
 // @ts-ignore
 export = random
-// @ts-ignore
-//random.default = random

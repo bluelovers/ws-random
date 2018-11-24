@@ -38,9 +38,12 @@ export class RNGFunction<S extends IRNGFunctionSeed = IRNGFunctionSeed> extends 
 
 	seed(seed: S, opts?, ...argv)
 	{
-		this._rng = seed || this._rng
+		if (typeof seed === 'function')
+		{
+			this._rng = seed || this._rng
+		}
 		//ow(this._rng, ow.function)
-		expect(this._rng).function();
+		//expect(this._rng).function();
 	}
 
 	clone<S extends IRNGFunctionSeed = IRNGFunctionSeed>(seed: S, opts?, ...argv): RNGFunction<S>

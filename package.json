@@ -69,15 +69,15 @@
   "license": "MIT",
   "author": "Travis Fischer <travis@automagical.ai>",
   "main": "index.js",
-  "module": "src/random.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "benchmark": "npx ts-node ./test/benchmark/base.perf.ts && npx ts-node ./test/benchmark/random-id.perf.ts",
+    "benchmark": "npx ts-node ./test/benchmark/simple.perf.ts && npx ts-node ./test/benchmark/base.perf.ts && npx ts-node ./test/benchmark/random-id.perf.ts",
     "build": "ts-node ./test/script/minify",
     "postpublish": "echo postpublish && node ./test/script/publish-after",
     "prepublishOnly": "npm run build && npx sort-package-json && npm run test",
+    "sort-package-json": "npx sort-package-json",
     "test": "npm run test-mocha-npx",
     "test-ci": "npm run test-mocha-js",
     "test-mocha-js": "mocha \"!(node_modules)/**/*.{test,spec}.js\"",
@@ -92,7 +92,7 @@
     "core-decorators": "^0.20.0",
     "hash-sum": "^1.0.2",
     "hex-lib": "^1.0.2",
-    "is-extends-of": "^1.0.0",
+    "is-extends-of": "^1.0.3",
     "lib-r-math.js": "^1.0.85",
     "nanoid": "^2.0.0",
     "uni-string": "^1.1.0"

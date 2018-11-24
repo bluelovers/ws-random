@@ -23,8 +23,6 @@ const tests = Object.assign({}, _tests);
 tests.Math2 = {
 	next: _MathRandom,
 };
-// @ts-ignore
-tests.randomUglifyJS = randomUglifyJS;
 
 methods
 	.forEach(function (method, index)
@@ -45,12 +43,16 @@ methods
 
 				if (typeof rng[method] !== 'undefined')
 				{
+
+
 					suite.add(`${name}.${method} ${index}`, function ()
 					{
 						rng[method](...argv)
 					});
 
-					console.debug(`${name}.${method} => ${rng[method](...argv)}`, '  ');
+					rng[method](...argv)
+					//console.debug(`${name}.${method} => ${rng[method](...argv)}`, '  ');
+
 				}
 				else
 				{
@@ -64,7 +66,7 @@ methods
 		suite
 			.on('cycle', function (event)
 			{
-				console.info(String(event.target));
+//				console.info(String(event.target));
 			})
 			.on('complete', function (this)
 			{
