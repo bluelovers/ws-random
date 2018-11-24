@@ -4,6 +4,7 @@
 
 import { _MathRandom } from '../../src/util';
 import _tests, { Benchmark, formatBenchmarkResult, sortBenchmarkResult, getMethods } from './'
+import randomUglifyJS from '../../lib';
 
 import console from 'debug-color2'
 
@@ -22,6 +23,8 @@ const tests = Object.assign({}, _tests);
 tests.Math2 = {
 	next: _MathRandom,
 };
+// @ts-ignore
+tests.randomUglifyJS = randomUglifyJS;
 
 methods
 	.forEach(function (method, index)

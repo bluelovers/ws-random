@@ -13,10 +13,11 @@ import { isFloat, isInt } from '../util';
 const chai = ChaiPlugin.install(_chai);
 
 const expect = chai.expect;
-const assert = chai.assert;
+//const assert = chai.assert;
 
 //export { ow }
-export { expect, assert, chai }
+//export { assert, chai }
+export { expect }
 
 export default expect
 

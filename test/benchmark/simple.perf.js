@@ -4,6 +4,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const util_1 = require("../../src/util");
 const _1 = require("./");
+const lib_1 = require("../../lib");
 const debug_color2_1 = require("debug-color2");
 const simple_wrap_1 = require("../../src/simple-wrap");
 const methods = [
@@ -15,6 +16,8 @@ const tests = Object.assign({}, _1.default);
 tests.Math2 = {
     next: util_1._MathRandom,
 };
+// @ts-ignore
+tests.randomUglifyJS = lib_1.default;
 methods
     .forEach(function (method, index) {
     const argv = simple_wrap_1.defaultArgv[method] || [];

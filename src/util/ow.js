@@ -9,11 +9,8 @@ const _chai = require("chai");
 //import { expect, assert } from 'chai'
 const chai_asserttype_extra_1 = require("chai-asserttype-extra");
 const chai = chai_asserttype_extra_1.ChaiPlugin.install(_chai);
-exports.chai = chai;
 const expect = chai.expect;
 exports.expect = expect;
-const assert = chai.assert;
-exports.assert = assert;
 exports.default = expect;
 // @ts-ignore
 Object.freeze(exports);

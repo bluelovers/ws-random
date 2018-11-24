@@ -1,6 +1,6 @@
 {
   "name": "random-extra",
-  "version": "3.3.6",
+  "version": "3.4.0",
   "description": "Seedable random number generator supporting many common distributions.",
   "keywords": [
     "alea",
@@ -75,8 +75,9 @@
   },
   "scripts": {
     "benchmark": "npx ts-node ./test/benchmark/base.perf.ts && npx ts-node ./test/benchmark/random-id.perf.ts",
+    "build": "ts-node ./test/script/minify",
     "postpublish": "echo postpublish && node ./test/script/publish-after",
-    "prepublishOnly": "npx sort-package-json && npm run test",
+    "prepublishOnly": "npm run build && npx sort-package-json && npm run test",
     "test": "npm run test-mocha-npx",
     "test-ci": "npm run test-mocha-js",
     "test-mocha-js": "mocha \"!(node_modules)/**/*.{test,spec}.js\"",
@@ -102,14 +103,19 @@
     "@types/core-decorators": "^0.20.0",
     "@types/mocha": "^5.2.5",
     "benchmark": "^2.1.4",
+    "bluebird": "^3.5.3",
+    "closure-webpack-plugin": "^1.1.1",
     "cross-spawn-extra": "^1.0.3",
     "debug-color2": "^1.0.6",
+    "fast-glob": "^2.2.4",
+    "fs-extra": "^7.0.1",
     "git-root2": "^1.0.4",
     "math-random": "^1.0.1",
     "random": "^2.0.12",
     "seedrandom": "^2.4.4",
     "shortid": "^2.2.14",
-    "ts-enum-util": "^3.1.0"
+    "ts-enum-util": "^3.1.0",
+    "uglify-es": "^3.3.9"
   },
   "peerDependencies": {
     "seedrandom": "^2.4.4"
