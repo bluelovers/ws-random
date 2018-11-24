@@ -35,6 +35,7 @@ methods
         .forEach(function (name) {
         const rng = _1.default[name];
         if (typeof rng[method] !== 'undefined') {
+            rng[method](...argv);
             suite.add(`${name}.${method}`, function () {
                 rng[method](...argv);
             });

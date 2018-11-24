@@ -49,6 +49,8 @@ methods
 
 				if (typeof rng[method] !== 'undefined')
 				{
+					rng[method](...argv);
+
 					suite.add(`${name}.${method}`, function ()
 					{
 						rng[method](...argv)
