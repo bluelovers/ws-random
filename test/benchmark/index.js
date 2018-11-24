@@ -14,6 +14,7 @@ exports.tests = {
     seedrandom: seedrandom_1.default,
     'math-random2': __1.default.newUse('math-random2'),
     'xor128': __1.default.newUse('xor128'),
+    'crypto': __1.default.newUse('crypto'),
     cryptorandom: simple_wrap_1.simpleWrap(cryptorandom),
     cryptorandom2: simple_wrap_1.simpleWrap(cryptorandom2),
     randomOrigin,

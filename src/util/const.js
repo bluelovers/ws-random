@@ -15,6 +15,9 @@ var ENUM_ALPHABET;
 })(ENUM_ALPHABET = exports.ENUM_ALPHABET || (exports.ENUM_ALPHABET = {}));
 exports.SUM_DELTA = 0.00000000000005;
 exports.FLOAT_ENTROPY_BYTES = 7;
+exports.UINT32_BYTES = 4;
+exports.UINT32_VALUE = 0xffffffff;
+exports.MATH_POW_2_32 = Math.pow(2, 32);
 exports.BYTE_TO_HEX_TO_LOWER_CASE = [];
 exports.BYTE_TO_HEX_TO_UPPER_CASE = [];
 for (let i = 0; i < 256; ++i) {

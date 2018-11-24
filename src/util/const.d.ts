@@ -13,5 +13,8 @@ export declare enum ENUM_ALPHABET {
 }
 export declare const SUM_DELTA = 5e-14;
 export declare const FLOAT_ENTROPY_BYTES = 7;
+export declare const UINT32_BYTES = 4;
+export declare const UINT32_VALUE = 4294967295;
+export declare const MATH_POW_2_32: number;
 export declare let BYTE_TO_HEX_TO_LOWER_CASE: ReadonlyArray<string>;
 export declare let BYTE_TO_HEX_TO_UPPER_CASE: ReadonlyArray<string>;

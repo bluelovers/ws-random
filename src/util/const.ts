@@ -18,6 +18,9 @@ export enum ENUM_ALPHABET
 
 export const SUM_DELTA = 0.00000000000005;
 export const FLOAT_ENTROPY_BYTES = 7;
+export const UINT32_BYTES = 4;
+export const UINT32_VALUE = 0xffffffff;
+export const MATH_POW_2_32 = Math.pow(2, 32);
 
 export let BYTE_TO_HEX_TO_LOWER_CASE: ReadonlyArray<string> = [];
 export let BYTE_TO_HEX_TO_UPPER_CASE: ReadonlyArray<string> = [];

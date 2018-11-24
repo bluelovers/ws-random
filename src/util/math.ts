@@ -1,4 +1,4 @@
-import { FLOAT_ENTROPY_BYTES } from './const';
+import { FLOAT_ENTROPY_BYTES, MATH_POW_2_32 } from './const';
 
 /**
  * (1 + 2 + 3 +...+N)
@@ -167,6 +167,31 @@ export function _floatFromBuffer(buf: ArrayLike<number>, offset: number = 0)
 		buf[position++]) / 256 +
 		buf[position++]) / 256 +
 		buf[position]) / 256
+}
+
+export function _floatFromBuffer2(buf: ArrayLike<number>, offset: number = 0)
+{
+	return readUInt32BE(buf, offset) / MATH_POW_2_32
+}
+
+export function readUInt32LE(buf: ArrayLike<number>, offset: number = 0)
+{
+	offset = offset >>> 0;
+
+	return ((buf[offset]) |
+		(buf[offset + 1] << 8) |
+		(buf[offset + 2] << 16)) +
+		(buf[offset + 3] * 0x1000000)
+}
+
+export function readUInt32BE(buf: ArrayLike<number>, offset: number = 0)
+{
+	offset = offset >>> 0;
+
+	return (buf[offset] * 0x1000000) +
+		((buf[offset + 1] << 16) |
+			(buf[offset + 2] << 8) |
+			buf[offset + 3])
 }
 
 // @ts-ignore

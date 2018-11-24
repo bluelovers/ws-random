@@ -31,7 +31,7 @@ class RNG {
         throw new ReferenceError('RNG.next must be overridden');
     }
     seed(seed, opts, ...argv) {
-        throw new ReferenceError('RNG.seed must be overridden');
+        //throw new ReferenceError('RNG.seed must be overridden')
     }
     clone(seed, opts, ...argv) {
         throw new ReferenceError('RNG.clone must be overridden');

@@ -18,6 +18,8 @@ export const tests = {
 
 	'xor128': random.newUse('xor128'),
 
+	'crypto': random.newUse('crypto'),
+
 	cryptorandom: simpleWrap(cryptorandom),
 	cryptorandom2: simpleWrap(cryptorandom2),
 

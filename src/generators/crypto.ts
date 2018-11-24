@@ -1,6 +1,6 @@
 import { randIndex } from '../util/array';
-import { FLOAT_ENTROPY_BYTES } from '../util/const';
-import { _floatFromBuffer, floatFromBuffer } from '../util/math';
+import { FLOAT_ENTROPY_BYTES, UINT32_BYTES } from '../util/const';
+import { _floatFromBuffer, _floatFromBuffer2, floatFromBuffer } from '../util/math';
 import expect from '../util/ow'
 import RNG from '../rng';
 import { tryRequire } from '../util/req';
@@ -16,7 +16,9 @@ export class RNGCrypto extends RNG
 	protected _crypto: ICryptoLike;
 	protected _seedable: boolean = false;
 	protected _randIndex: (len: number) => number = randIndex;
-	protected _seed_size = FLOAT_ENTROPY_BYTES;
+	protected _seed_size = UINT32_BYTES;
+	protected _seed_size_min = UINT32_BYTES;
+	protected _fn: (buf: ArrayLike<number>) => number;
 
 	constructor(seed?, opts?, ...argv)
 	{
@@ -31,29 +33,42 @@ export class RNGCrypto extends RNG
 		this._randIndex = this._randIndex || randIndex;
 
 		expect(crypto.randomBytes).is.function();
+
+		if (1)
+		{
+			this._seed_size = Math.min(Math.max(this._seed_size, UINT32_BYTES), 255);
+			this._seed_size_min = Math.min(Math.max(this._seed_size_min, UINT32_BYTES), 255);
+			this._fn = _floatFromBuffer2;
+		}
+		else
+		{
+			this._seed_size = Math.min(Math.max(this._seed_size, FLOAT_ENTROPY_BYTES), 255);
+			this._seed_size_min = Math.min(Math.max(this._seed_size_min, FLOAT_ENTROPY_BYTES), 255);
+			this._fn = _floatFromBuffer;
+		}
 	}
 
-	_buffer(n?: number)
+	_buffer(size?: number, size_min = this._seed_size_min)
 	{
-		n = (n || this._seed_size) | 0;
+		size = (size || this._seed_size) | 0;
 
-		if (n < FLOAT_ENTROPY_BYTES)
+		if (size < size_min)
 		{
-			n = FLOAT_ENTROPY_BYTES
+			size = size_min
 		}
-		else if (n > 255)
+		else if (size > 255)
 		{
-			n = 255;
+			size = 255;
 		}
 
-		let buf = this._crypto.randomBytes(n);
+		let buf = this._crypto.randomBytes(size);
 
-		if (n > FLOAT_ENTROPY_BYTES)
+		if (size > size_min)
 		{
-			let i = this._randIndex(n - FLOAT_ENTROPY_BYTES);
+			let i = this._randIndex(size - size_min);
 
 			// @ts-ignore
-			buf = buf.slice(i, i + FLOAT_ENTROPY_BYTES);
+			buf = buf.slice(i, i + size_min);
 		}
 
 		return buf;
@@ -66,7 +81,7 @@ export class RNGCrypto extends RNG
 
 	public next(): number
 	{
-		return _floatFromBuffer(this._buffer())
+		return this._fn(this._buffer())
 	}
 
 	public seed(seed?, opts?, ...argv)
@@ -77,3 +92,4 @@ export class RNGCrypto extends RNG
 }
 
 export default RNGCrypto
+

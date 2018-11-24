@@ -125,5 +125,25 @@ function _floatFromBuffer(buf, offset = 0) {
         buf[position]) / 256;
 }
 exports._floatFromBuffer = _floatFromBuffer;
+function _floatFromBuffer2(buf, offset = 0) {
+    return readUInt32BE(buf, offset) / const_1.MATH_POW_2_32;
+}
+exports._floatFromBuffer2 = _floatFromBuffer2;
+function readUInt32LE(buf, offset = 0) {
+    offset = offset >>> 0;
+    return ((buf[offset]) |
+        (buf[offset + 1] << 8) |
+        (buf[offset + 2] << 16)) +
+        (buf[offset + 3] * 0x1000000);
+}
+exports.readUInt32LE = readUInt32LE;
+function readUInt32BE(buf, offset = 0) {
+    offset = offset >>> 0;
+    return (buf[offset] * 0x1000000) +
+        ((buf[offset + 1] << 16) |
+            (buf[offset + 2] << 8) |
+            buf[offset + 3]);
+}
+exports.readUInt32BE = readUInt32BE;
 // @ts-ignore
 Object.freeze(exports);

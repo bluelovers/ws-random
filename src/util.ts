@@ -6,14 +6,13 @@ import hashSum = require('hash-sum');
 import _nanoid = require('nanoid');
 
 import _pkg = require('../package.json');
+import { MATH_POW_2_32 } from './util/const';
 //import shortid = require('shortid');
 //
 //export declare function shortid(): string
 //export declare function hashSum(input): string
 //
 //export { shortid, hashSum }
-
-const MATH_POW_2_32 = Math.pow(2, 32)
 
 const _GLOBAL = (0, eval)('this')
 

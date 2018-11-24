@@ -60,7 +60,7 @@ export abstract class RNG implements IRNGLike
 
 	public seed(seed?, opts?, ...argv)
 	{
-		throw new ReferenceError('RNG.seed must be overridden')
+		//throw new ReferenceError('RNG.seed must be overridden')
 	}
 
 	public clone(seed?, opts?, ...argv)

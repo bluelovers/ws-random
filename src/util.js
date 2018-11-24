@@ -5,18 +5,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const hashSum = require("hash-sum");
 const _nanoid = require("nanoid");
 const _pkg = require("../package.json");
+const const_1 = require("./util/const");
 //import shortid = require('shortid');
 //
 //export declare function shortid(): string
 //export declare function hashSum(input): string
 //
 //export { shortid, hashSum }
-const MATH_POW_2_32 = Math.pow(2, 32);
 const _GLOBAL = (0, eval)('this');
 // @ts-ignore
 exports._MathRandom = _MathRandom = Math.random;
 function randomSeedNum() {
-    return (_MathRandom() * MATH_POW_2_32) + _MathRandom();
+    return (_MathRandom() * const_1.MATH_POW_2_32) + _MathRandom();
 }
 exports.randomSeedNum = randomSeedNum;
 /**
