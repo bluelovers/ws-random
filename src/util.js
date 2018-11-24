@@ -3,7 +3,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 const hashSum = require("hash-sum");
-const _nanoid = require("nanoid");
+const _nanoid = require("nanoid/non-secure");
 const _pkg = require("../package.json");
 const const_1 = require("./util/const");
 //import shortid = require('shortid');

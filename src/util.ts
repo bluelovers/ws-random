@@ -3,7 +3,7 @@
  */
 
 import hashSum = require('hash-sum');
-import _nanoid = require('nanoid');
+import _nanoid = require('nanoid/non-secure');
 
 import _pkg = require('../package.json');
 import { MATH_POW_2_32 } from './util/const';
