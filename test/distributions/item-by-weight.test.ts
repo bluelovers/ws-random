@@ -13,8 +13,8 @@ import { chai, relative, expect, path, assert, util, mochaAsync } from '../_loca
 import { ITest } from 'mocha';
 //import random from '../..'
 import seedrandom = require('seedrandom');
-import { Random, random } from '../../src/random'
-import { expectInDelta } from '../../src/util';
+import random from '../../'
+import { expectInDelta } from '../../lib/util';
 
 // @ts-ignore
 describe(relative(__filename), () =>

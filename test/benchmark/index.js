@@ -11,6 +11,7 @@ const randomOrigin = require("random");
 const lib_1 = require("../../lib");
 exports.tests = {
     Math: simple_wrap_1.simpleWrap(util_1._MathRandom),
+    random: src_1.default,
     randomUglifyJS: lib_1.default,
     randomSrc: src_1.default,
     randomOrigin,

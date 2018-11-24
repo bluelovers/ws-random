@@ -16,7 +16,7 @@ import { chai, relative, expect, path, assert, util, mochaAsync, MY_DEBUG } from
 import { ITest } from 'mocha';
 //import random from '../..'
 import seedrandom = require('seedrandom');
-import { Random, random } from '../../src/random'
+import random from '../../'
 
 // @ts-ignore
 describe(relative(__filename), function ()

@@ -13,7 +13,7 @@ import { chai, relative, expect, path, assert, util, mochaAsync } from '../_loca
 import { ITest } from 'mocha';
 import random from '../..'
 import seedrandomOrigin = require('seedrandom');
-import RNGSeedRandom from '../../src/generators/seedrandom';
+import RNGSeedRandom from '../../lib/generators/seedrandom';
 import { tryRequire } from '../../src/util/req';
 
 // @ts-ignore

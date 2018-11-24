@@ -7,12 +7,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /// <reference types="chai" />
 /// <reference types="node" />
 const _local_dev_1 = require("../_local-dev");
-const random_1 = require("../../src/random");
+const __1 = require("../..");
 const benchmark_1 = require("../benchmark");
 // @ts-ignore
 describe(_local_dev_1.relative(__filename), () => {
     let currentTest;
-    const r = random_1.random;
+    const r = __1.default;
     beforeEach(function () {
         currentTest = this.currentTest;
         //console.log('it:before', currentTest.title);

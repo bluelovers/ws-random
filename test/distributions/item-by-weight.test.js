@@ -7,12 +7,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /// <reference types="chai" />
 /// <reference types="node" />
 const _local_dev_1 = require("../_local-dev");
-const random_1 = require("../../src/random");
-const util_1 = require("../../src/util");
+const __1 = require("../../");
+const util_1 = require("../../lib/util");
 // @ts-ignore
 describe(_local_dev_1.relative(__filename), () => {
     let currentTest;
-    const r = random_1.random;
+    const r = __1.default;
     beforeEach(function () {
         currentTest = this.currentTest;
         //console.log('it:before', currentTest.title);
@@ -26,7 +26,7 @@ describe(_local_dev_1.relative(__filename), () => {
          * @see https://github.com/oprogramador/random-weighted-item/blob/master/src/tests/getRandomItem.js
          */
         it('returns random weighted item by index', () => {
-            let rnd = random_1.random.clone();
+            let rnd = __1.default.clone();
             const array = ['a', 'b', 'c', 'd'];
             const getWeight = (value, index) => +index + 1;
             const fn = rnd.dfItemByWeight(array, getWeight);
@@ -61,7 +61,7 @@ describe(_local_dev_1.relative(__filename), () => {
             _local_dev_1.expect(fn()[1]).to.equal('d');
         });
         it('returns random weighted item by value', () => {
-            let rnd = random_1.random.clone();
+            let rnd = __1.default.clone();
             const array = [3, 7, 1, 4, 2];
             const fn = rnd.dfItemByWeight(array);
             /*
@@ -101,7 +101,7 @@ describe(_local_dev_1.relative(__filename), () => {
             _local_dev_1.expect(fn()[1]).to.equal(7);
         });
         it('returns random weighted item by prop.w', () => {
-            let rnd = random_1.random.clone();
+            let rnd = __1.default.clone();
             const obj = {
                 a: {
                     w: 1,
@@ -159,7 +159,7 @@ describe(_local_dev_1.relative(__filename), () => {
             _local_dev_1.expect(fn()[1]).to.deep.equal(obj['d']);
         });
         it('allow has same weight', () => {
-            let rnd = random_1.random.clone();
+            let rnd = __1.default.clone();
             const obj = {
                 a: {
                     w: 5,
@@ -174,7 +174,7 @@ describe(_local_dev_1.relative(__filename), () => {
             const getWeight = (value, index) => value.w;
             const fn = rnd.dfItemByWeight(obj, getWeight);
             rnd.next = () => {
-                return random_1.random.float(0.1, 1);
+                return __1.default.float(0.1, 1);
             };
             let cache = {};
             for (let i = 0; i < 10000; i++) {
@@ -188,7 +188,7 @@ describe(_local_dev_1.relative(__filename), () => {
             //console.log(cache);
         });
         it('random weighted item in expect percentage +/- 0.05', () => {
-            let rnd = random_1.random.clone();
+            let rnd = __1.default.clone();
             const arr = [1, 3, 2, 4, 1, 1, 4, 3, 2];
             const fn = rnd.dfItemByWeight(arr, null, true, true);
             let cache = {};
@@ -218,7 +218,7 @@ describe(_local_dev_1.relative(__filename), () => {
             });
         });
         it('[seedrandom] random weighted item in expect percentage +/- 0.05', () => {
-            let rnd = random_1.random.newUse('seedrandom');
+            let rnd = __1.default.newUse('seedrandom');
             const arr = [1, 3, 2, 4, 1, 1, 4, 3, 2];
             const fn = rnd.dfItemByWeight(arr, null, true, true);
             let cache = {};

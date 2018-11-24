@@ -9,7 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const _local_dev_1 = require("../_local-dev");
 const __1 = require("../..");
 const seedrandomOrigin = require("seedrandom");
-const seedrandom_1 = require("../../src/generators/seedrandom");
+const seedrandom_1 = require("../../lib/generators/seedrandom");
 const req_1 = require("../../src/util/req");
 // @ts-ignore
 describe(_local_dev_1.relative(__filename), () => {

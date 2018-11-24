@@ -10,11 +10,11 @@ const const_1 = require("../../src/util/const");
 const math_1 = require("../../src/util/math");
 const math_2 = require("../../src/util/math");
 const _local_dev_1 = require("../_local-dev");
-const random_1 = require("../../src/random");
+const __1 = require("../../");
 // @ts-ignore
 describe(_local_dev_1.relative(__filename), function () {
     let currentTest;
-    const r = random_1.random;
+    const r = __1.default;
     beforeEach(function () {
         currentTest = this.currentTest;
         //console.log('it:before', currentTest.title);
@@ -37,7 +37,7 @@ describe(_local_dev_1.relative(__filename), function () {
         function _createTest(size, sum, min, max, expected_sum) {
             expected_sum = typeof expected_sum === 'number' ? expected_sum : sum;
             it(`dfSumInt(${size}, ${sum}, ${min}, ${max}) => ${typeof expected_sum === 'number' ? expected_sum : 'unknow'}`, function () {
-                const d = random_1.random.dfSumInt(size, sum, min, max);
+                const d = __1.default.dfSumInt(size, sum, min, max);
                 let cache = {};
                 for (let i = 0; i < 10000; ++i) {
                     const v = d();
@@ -77,7 +77,7 @@ describe(_local_dev_1.relative(__filename), function () {
         function _createTest(size, sum, min, max, expected_sum) {
             expected_sum = typeof expected_sum === 'number' ? expected_sum : sum;
             it(`dfSumFloat(${size}, ${sum}, ${min}, ${max}) => ${typeof expected_sum === 'number' ? expected_sum : 'unknow'}`, function () {
-                const d = random_1.random.dfSumFloat(size, sum, min, max);
+                const d = __1.default.dfSumFloat(size, sum, min, max);
                 let cache = {};
                 for (let i = 0; i < 10000; ++i) {
                     const v = d();
@@ -118,7 +118,7 @@ describe(_local_dev_1.relative(__filename), function () {
         function _createTest(size, sum, min, max, expected_sum) {
             expected_sum = typeof expected_sum === 'number' ? expected_sum : sum;
             it(`dfSumFloat(${size}, ${sum}, ${min}, ${max}, fractionDigits = ${fractionDigits}) => ${typeof expected_sum === 'number' ? expected_sum : 'unknow'}`, function () {
-                const d = random_1.random.dfSumFloat(size, sum, min, max, fractionDigits);
+                const d = __1.default.dfSumFloat(size, sum, min, max, fractionDigits);
                 let cache = {};
                 for (let i = 0; i < 10000; ++i) {
                     const v = d();

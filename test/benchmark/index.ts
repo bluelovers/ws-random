@@ -7,11 +7,14 @@ import crypto = require('crypto');
 import cryptorandom = require('math-random');
 import randomOrigin = require('random');
 import randomUglifyJS from '../../lib'
+import random from '../..'
 
 export { Benchmark }
 
 export const tests = {
 	Math: simpleWrap(_MathRandom),
+
+	random: randomSrc,
 
 	randomUglifyJS,
 

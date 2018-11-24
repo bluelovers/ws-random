@@ -8,7 +8,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /// <reference types="node" />
 const util_1 = require("../../src/util");
 const _local_dev_1 = require("../_local-dev");
-const random_1 = require("../../src/random");
+const __1 = require("../../");
 function getDefaultArgv(method) {
     let argv = [];
     let dfArgv = [];
@@ -43,14 +43,14 @@ function getDefaultArgv(method) {
 // @ts-ignore
 describe(_local_dev_1.relative(__filename), () => {
     let currentTest;
-    const r = random_1.random;
+    const r = __1.default;
     beforeEach(function () {
         currentTest = this.currentTest;
         //console.log('it:before', currentTest.title);
         //console.log('it:before', currentTest.fullTitle());
     });
     let ks = Object
-        .getOwnPropertyNames(Object.getPrototypeOf(random_1.random))
+        .getOwnPropertyNames(Object.getPrototypeOf(__1.default))
         .filter(function (v) {
         return !([
             'constructor',
@@ -73,7 +73,7 @@ describe(_local_dev_1.relative(__filename), () => {
         .reduce(function (a, method) {
         let Argv = getDefaultArgv(method);
         try {
-            let ret = random_1.random[method](...Argv.argv);
+            let ret = __1.default[method](...Argv.argv);
             let t2 = typeof ret;
             switch (t2) {
                 case 'function':
@@ -129,7 +129,7 @@ describe(_local_dev_1.relative(__filename), () => {
             ks[cat].forEach(function (method) {
                 it(`[${cat}] .${method}()`, () => {
                     let Argv = getDefaultArgv(method);
-                    let ret = random_1.random[method](...Argv.argv);
+                    let ret = __1.default[method](...Argv.argv);
                     let type1 = typeof ret;
                     let is_df = method.indexOf('df') === 0;
                     let val;
