@@ -74,3 +74,4 @@ bin/*.d.ts
 /dist/
 /benchmark.md
 /docs/
+/lib/

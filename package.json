@@ -104,17 +104,18 @@
     "@types/mocha": "^5.2.5",
     "benchmark": "^2.1.4",
     "bluebird": "^3.5.3",
-    "closure-webpack-plugin": "^1.1.1",
     "cross-spawn-extra": "^1.0.3",
     "debug-color2": "^1.0.6",
-    "fast-glob": "^2.2.4",
-    "fs-extra": "^7.0.1",
     "git-root2": "^1.0.4",
     "math-random": "^1.0.1",
     "random": "^2.0.12",
     "seedrandom": "^2.4.4",
     "shortid": "^2.2.14",
     "ts-enum-util": "^3.1.0",
+  },
+  "globalDependencies": {
+    "fast-glob": "^2.2.4",
+    "fs-extra": "^7.0.1",
     "uglify-es": "^3.3.9"
   },
   "peerDependencies": {
