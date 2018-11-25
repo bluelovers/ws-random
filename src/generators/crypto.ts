@@ -1,15 +1,11 @@
 import { randIndex } from '../util/array';
 import { FLOAT_ENTROPY_BYTES, UINT32_BYTES } from '../util/const';
+import { crossCrypto, ICryptoLike } from '../util/crypto';
 import { _floatFromBuffer, _floatFromBuffer2, floatFromBuffer } from '../util/math';
 import expect from '../util/ow'
 import RNG from '../rng';
 import { tryRequire } from '../util/req';
 import _crypto = require('crypto');
-
-export interface ICryptoLike
-{
-	randomBytes(size: number): ArrayLike<number>
-}
 
 export class RNGCrypto extends RNG
 {
@@ -28,11 +24,11 @@ export class RNGCrypto extends RNG
 
 	protected _init(crypto?: ICryptoLike | any, opts?, ...argv)
 	{
-		crypto = crypto || tryRequire('crypto');
+		crypto = crypto || crossCrypto();
 		this._crypto = crypto;
 		this._randIndex = this._randIndex || randIndex;
 
-		expect(crypto.randomBytes).is.function();
+		expect(crypto.randomBytes).is.a.function();
 
 		if (1)
 		{
