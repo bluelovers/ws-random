@@ -24,6 +24,27 @@ tests.Math2 = {
 	next: _MathRandom,
 };
 
+// @ts-ignore
+tests.Math3 = {
+	next()
+	{
+		return _MathRandom()
+	},
+};
+
+let tests_list = Object.keys(tests);
+
+if (0)
+{
+	tests_list = [
+		//'random',
+		'randomSrc',
+
+//		'randomUglifyJS',
+		'randomUglifyJS',
+	];
+}
+
 methods
 	.forEach(function (method, index)
 	{
@@ -36,14 +57,13 @@ methods
 
 		console.grey(`=======================\n`);
 
-		Object.keys(tests)
+		tests_list
 			.forEach(function (name)
 			{
 				const rng = tests[name];
 
 				if (typeof rng[method] !== 'undefined')
 				{
-
 
 					suite.add(`${name}.${method} ${index}`, function ()
 					{
