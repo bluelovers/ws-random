@@ -6,6 +6,7 @@ import { IGetWeight, IObjectInput, IWeightEntrie } from './distributions/item-by
 import RNGSeedRandom from './generators/seedrandom';
 import RNG from './rng';
 import { IRNGFactoryType } from './rng-factory';
+import { ITSArrayLikeWriteable, TypedArray } from 'ts-type';
 /**
  * Seedable random number generator supporting many common distributions.
  *
@@ -225,6 +226,20 @@ export declare class Random<R extends RNG = RNG> {
      */
     dfArrayUnique<T extends unknown>(arr: T[], limit?: number, loop?: boolean, fnRandIndex?: IRandIndex, fnOutOfLimit?: IArrayUniqueOutOfLimitCallback<T>): () => T;
     /**
+     * fill random value into any array-like object
+     *
+     * @example
+     * arr_bytes = random.dfArrayFill()(new Uint8Array(10))
+     * arr_bytes = random.dfArrayFill()(Buffer.alloc(10))
+     * arr_ints = random.dfArrayFill(10, 20)(new Array(10)) // => [ 13, 13, 12, 11, 12, 15, 12, 12, 13, 16 ]
+     * arr_floats = random.dfArrayFill(10, 20)(new Array(10)) // => [ 14.763857298282993, 10.858143742391624, 17.38883617551437, 15.298810484359247, 16.81798563879964, 16.274271855177005, 18.13149197984974, 13.43840784370765, 14.129283708144884, 11.243691805289316 ]
+     */
+    arrayFill<T extends ITSArrayLikeWriteable<number> | TypedArray | Buffer>(arr: T, min?: number, max?: number, float?: boolean): T;
+    /**
+     * @see arrayFill
+     */
+    dfArrayFill(min?: number, max?: number, float?: boolean): <T extends ITSArrayLikeWriteable<number> | Float32Array | Float64Array | Int8Array | Int16Array | Int32Array | Uint8ClampedArray | Uint8Array | Uint16Array | Uint32Array | Buffer>(arr: T) => T;
+    /**
      * Generates a [Continuous dfUniform distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)).
      *
      * @param {number} [min=0] - Lower bound (float, inclusive)
@@ -364,6 +379,7 @@ export declare class Random<R extends RNG = RNG> {
     reset(): this;
     readonly [Symbol.toStringTag]: string;
     protected static default: typeof Random;
+    readonly Random: typeof Random;
 }
 export declare const random: Random<RNG>;
 export default random;
