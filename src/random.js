@@ -297,9 +297,11 @@ let Random = Random_1 = class Random {
      *
      * @example random.dfArrayShuffle([11, 22, 33])
      */
-    arrayShuffle(arr, overwrite, randIndex) {
-        // @ts-ignore
-        return this._memoizeFake('dfArrayShuffle', distributions_1.Distributions.arrayShuffle)(arr, overwrite, randIndex);
+    arrayShuffle(arr, overwrite) {
+        return this._memoizeFake('dfArrayShuffle', distributions_1.Distributions.arrayShuffle, arr, overwrite)(arr);
+    }
+    dfArrayShuffle(arr, overwrite) {
+        return this._callDistributions(distributions_1.Distributions.arrayShuffle, arr, overwrite);
     }
     arrayUnique(arr, limit, loop, fnRandIndex, fnOutOfLimit) {
         return this.dfArrayUnique(arr, limit, loop, fnRandIndex, fnOutOfLimit)();

@@ -1,4 +1,5 @@
 import { array_unique } from 'array-hyper-unique';
+import { ITSArrayLikeWriteable } from 'ts-type/generic';
 
 /**
  * Created by user on 2018/10/24/024.
@@ -10,15 +11,60 @@ export function swapAlgorithm<T extends unknown>(arr: T[],
 	fn: (n: number, ...argv) => number = randIndex,
 )
 {
-	let len: number = arr.length;
+	let i: number = arr.length;
 	let ret = (overwrite ? arr : arr.slice());
 
-	while (len > 0)
+	while (i)
 	{
-		let idx: number = fn(len--)
-		let cache = ret[len]
-		ret[len] = ret[idx]
-		ret[idx] = cache
+		let idx: number = fn(i--);
+
+		if (i === idx) continue;
+
+		let cache = ret[i];
+		ret[i] = ret[idx];
+		ret[idx] = cache;
+
+		//console.log(i, idx, ret);
+	}
+
+	return ret
+}
+
+export function swapAlgorithm2<T extends ITSArrayLikeWriteable<any>>(arr: T,
+	overwrite?: boolean,
+	fn: (n: number, ...argv) => number = randIndex,
+): T
+{
+	let i: number = arr.length;
+	// @ts-ignore
+	let ret = (overwrite ? arr : arr.slice());
+	let len = i;
+	let j = Math.ceil(len / 2);
+
+	while (i)
+	{
+		let idx: number = fn(len);
+		i--;
+
+		if (idx === i)
+		{
+			if (i < j)
+			{
+				idx = fn(len)
+			}
+			else
+			{
+				idx = fn(i)
+			}
+		}
+
+		if (i === idx) continue;
+
+		let cache = ret[i];
+		ret[i] = ret[idx];
+		ret[idx] = cache;
+
+		//console.log(i, idx, ret);
 	}
 
 	return ret

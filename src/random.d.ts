@@ -212,7 +212,8 @@ export declare class Random<R extends RNG = RNG> {
      *
      * @example random.dfArrayShuffle([11, 22, 33])
      */
-    arrayShuffle<T extends unknown>(arr: T[], overwrite?: boolean, randIndex?: (len: number) => number): T[];
+    arrayShuffle<T extends ITSArrayLikeWriteable<any>>(arr: T, overwrite?: boolean): T;
+    dfArrayShuffle<T extends ITSArrayLikeWriteable<any>>(arr: T, overwrite?: boolean): <T_1 extends ITSArrayLikeWriteable<any>>(arr: T_1) => T_1;
     arrayUnique<T extends unknown>(arr: T[], limit?: number, loop?: boolean, fnRandIndex?: IRandIndex, fnOutOfLimit?: IArrayUniqueOutOfLimitCallback<T>): T;
     /**
      * Get consecutively unique elements from an array
@@ -238,7 +239,7 @@ export declare class Random<R extends RNG = RNG> {
     /**
      * @see arrayFill
      */
-    dfArrayFill(min?: number, max?: number, float?: boolean): <T extends ITSArrayLikeWriteable<number> | Float32Array | Float64Array | Int8Array | Int16Array | Int32Array | Uint8ClampedArray | Uint8Array | Uint16Array | Uint32Array | Buffer>(arr: T) => T;
+    dfArrayFill(min?: number, max?: number, float?: boolean): <T extends Buffer | ITSArrayLikeWriteable<number> | Float32Array | Float64Array | Int8Array | Int16Array | Int32Array | Uint8ClampedArray | Uint8Array | Uint16Array | Uint32Array>(arr: T) => T;
     /**
      * Generates a [Continuous dfUniform distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)).
      *

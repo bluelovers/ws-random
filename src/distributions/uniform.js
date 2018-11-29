@@ -9,7 +9,10 @@ exports.default = (random, min, max, fractionDigits) => {
     ow_1.default(min).number();
     ow_1.default(max).number.gt(min);
     let fn;
-    if (min === 0) {
+    if (min === 0 && max === 1) {
+        fn = random.next;
+    }
+    else if (min === 0) {
         fn = () => {
             return random.next() * max;
         };

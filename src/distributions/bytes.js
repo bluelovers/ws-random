@@ -8,7 +8,7 @@ function uniformBytes(random, size, toStr) {
         let i = size;
         let arr = [];
         while (i--) {
-            arr.push(fn());
+            arr[i] = fn();
         }
         return arr;
     };

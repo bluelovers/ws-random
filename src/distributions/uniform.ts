@@ -16,7 +16,11 @@ export default (random: Random, min?: number, max?: number, fractionDigits?: num
 
 	let fn: () => number;
 
-	if (min === 0)
+	if (min === 0 && max === 1)
+	{
+		fn = random.next
+	}
+	else if (min === 0)
 	{
 		fn = () =>
 		{

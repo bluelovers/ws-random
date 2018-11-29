@@ -449,10 +449,14 @@ export class Random<R extends RNG = RNG>
 	 *
 	 * @example random.dfArrayShuffle([11, 22, 33])
 	 */
-	arrayShuffle<T extends unknown>(arr: T[], overwrite?: boolean, randIndex?: (len: number) => number): T[]
+	arrayShuffle<T extends ITSArrayLikeWriteable<any>>(arr: T, overwrite?: boolean)
 	{
-		// @ts-ignore
-		return this._memoizeFake('dfArrayShuffle', Distributions.arrayShuffle)(arr, overwrite, randIndex)
+		return this._memoizeFake('dfArrayShuffle', Distributions.arrayShuffle, arr, overwrite)(arr)
+	}
+
+	dfArrayShuffle<T extends ITSArrayLikeWriteable<any>>(arr: T, overwrite?: boolean)
+	{
+		return this._callDistributions(Distributions.arrayShuffle, arr, overwrite)
 	}
 
 	arrayUnique<T extends unknown>(arr: T[], limit?: number, loop?: boolean, fnRandIndex?: IRandIndex, fnOutOfLimit?: IArrayUniqueOutOfLimitCallback<T>)

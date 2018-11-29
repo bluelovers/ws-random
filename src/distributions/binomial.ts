@@ -10,13 +10,15 @@ export default (random: Random, n: number = 1, p: number = 0.5) =>
 
 	return () =>
 	{
-		let i = 0
+		let i = n
 		let x = 0
 
-		while (i++ < n)
+		while (i--)
 		{
-			// @ts-ignore
-			x += (random.next() < p)
+			if (random.next() < p)
+			{
+				x++
+			}
 		}
 
 		return x

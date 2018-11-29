@@ -4,17 +4,47 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 const util_1 = require("../util");
 function swapAlgorithm(arr, overwrite, fn = randIndex) {
-    let len = arr.length;
+    let i = arr.length;
     let ret = (overwrite ? arr : arr.slice());
-    while (len > 0) {
-        let idx = fn(len--);
-        let cache = ret[len];
-        ret[len] = ret[idx];
+    while (i) {
+        let idx = fn(i--);
+        if (i === idx)
+            continue;
+        let cache = ret[i];
+        ret[i] = ret[idx];
         ret[idx] = cache;
+        //console.log(i, idx, ret);
     }
     return ret;
 }
 exports.swapAlgorithm = swapAlgorithm;
+function swapAlgorithm2(arr, overwrite, fn = randIndex) {
+    let i = arr.length;
+    // @ts-ignore
+    let ret = (overwrite ? arr : arr.slice());
+    let len = i;
+    let j = Math.ceil(len / 2);
+    while (i) {
+        let idx = fn(len);
+        i--;
+        if (idx === i) {
+            if (i < j) {
+                idx = fn(len);
+            }
+            else {
+                idx = fn(i);
+            }
+        }
+        if (i === idx)
+            continue;
+        let cache = ret[i];
+        ret[i] = ret[idx];
+        ret[idx] = cache;
+        //console.log(i, idx, ret);
+    }
+    return ret;
+}
+exports.swapAlgorithm2 = swapAlgorithm2;
 function randIndex(len, ...argv) {
     return Math.floor(util_1._MathRandom() * len);
 }

@@ -16,7 +16,7 @@ export default function uniformBytes(random: Random, size: number, toStr?: boole
 		let arr = [];
 		while (i--)
 		{
-			arr.push(fn())
+			arr[i] = fn()
 		}
 		return arr
 	}

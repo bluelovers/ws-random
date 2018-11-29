@@ -1,3 +1,4 @@
+import { ITSArrayLikeWriteable } from 'ts-type';
 import { Random } from '../random';
-declare const _default: (random: Random<import("../rng").RNG>) => <T extends unknown[]>(arr: T, overwrite?: boolean, fn?: (len: number) => number) => unknown[];
+declare const _default: <T extends ITSArrayLikeWriteable<any>>(random: Random<import("../rng").RNG>, arr: T, overwrite?: boolean) => <T extends ITSArrayLikeWriteable<any>>(arr: T) => T;
 export default _default;
