@@ -45,11 +45,15 @@ function getDefaultArgv(method)
 			argv = [3];
 			break;
 		case 'arrayFill':
-			argv = [new Uint8Array(10)];
+			argv = [Array.from({
+				length: 10
+			})];
 			break;
 		case 'dfArrayFill':
 			// @ts-ignore
-			dfArgv = new Uint8Array(10);
+			dfArgv = [Array.from({
+				length: 10
+			})];
 			break;
 	}
 

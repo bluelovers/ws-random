@@ -1,4 +1,5 @@
 import { ITSArrayLikeWriteable, TypedArray } from 'ts-type';
+import { IArrayInput02 } from '../type';
 import uniformInt from './uniform-int';
 import { Random } from '../random';
 import { isUnset } from '../util';
@@ -33,7 +34,7 @@ export default function arrayFill(random: Random, min?: number, max?: number, fl
 
 	expect(fn).is.function();
 
-	return <T extends ITSArrayLikeWriteable<number> | TypedArray | Buffer>(arr: T) =>
+	return <T extends IArrayInput02<number>>(arr: T) =>
 	{
 		let i = arr.length;
 		while (i--)

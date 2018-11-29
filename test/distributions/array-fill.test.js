@@ -17,13 +17,14 @@ describe(_local_dev_1.relative(__filename), () => {
     describe(`byte`, () => {
         const fn = __1.default.dfArrayFill();
         const tests = [
-            new Array(10),
-            new Uint8Array(10),
-            Buffer.alloc(10),
+            ['Array', new Array(10)],
+            ['Uint8Array', new Uint8Array(10)],
+            ['Buffer', Buffer.alloc(10)],
         ];
         tests.forEach(function (arr) {
-            it(`${arr}`, function () {
-                let ret = fn(arr);
+            it(`${arr[0]}`, function () {
+                // @ts-ignore
+                let ret = fn(arr[1]);
                 _local_dev_1.expect(ret).have.lengthOf(10);
             });
         });

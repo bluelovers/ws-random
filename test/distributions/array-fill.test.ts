@@ -37,16 +37,17 @@ describe(relative(__filename), () =>
 		const fn = random.dfArrayFill();
 
 		const tests = [
-			new Array(10),
-			new Uint8Array(10),
-			Buffer.alloc(10),
+			['Array', new Array(10)],
+			['Uint8Array', new Uint8Array(10)],
+			['Buffer', Buffer.alloc(10)],
 		];
 
 		tests.forEach(function (arr)
 		{
-			it(`${arr}`, function ()
+			it(`${arr[0]}`, function ()
 			{
-				let ret = fn(arr);
+				// @ts-ignore
+				let ret = fn(arr[1]);
 
 				expect(ret).have.lengthOf(10);
 			});
