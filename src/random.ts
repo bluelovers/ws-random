@@ -1,3 +1,5 @@
+import { IArrayInput02 } from './type';
+
 /// <reference types="node" />
 import { expect } from './util/ow'
 import {
@@ -443,19 +445,18 @@ export class Random<R extends RNG = RNG>
 	/**
 	 * Shuffle an array
 	 *
-	 * @param arr
-	 * @param {boolean} overwrite - if true, will change current array
-	 * @param {function} randIndex - return index by give length
-	 *
 	 * @example random.dfArrayShuffle([11, 22, 33])
 	 */
-	arrayShuffle<T extends ITSArrayLikeWriteable<any>>(arr: T, overwrite?: boolean)
+	arrayShuffle<T extends IArrayInput02<any>>(arr: T, overwrite?: boolean): T
 	{
-		return this._memoizeFake('dfArrayShuffle', Distributions.arrayShuffle, arr, overwrite)(arr)
+		// @ts-ignore
+		return this._memoizeFake('dfArrayShuffle', Distributions.arrayShuffle, arr, overwrite)()
 	}
 
-	dfArrayShuffle<T extends ITSArrayLikeWriteable<any>>(arr: T, overwrite?: boolean)
-	{
+	dfArrayShuffle<T extends IArrayInput02<any>>(arr: T, overwrite?: boolean): () => T
+		{
+//		return Distributions.arrayShuffle(this, arr, overwrite);
+		// @ts-ignore
 		return this._callDistributions(Distributions.arrayShuffle, arr, overwrite)
 	}
 
@@ -488,7 +489,7 @@ export class Random<R extends RNG = RNG>
 	 * arr_ints = random.dfArrayFill(10, 20)(new Array(10)) // => [ 13, 13, 12, 11, 12, 15, 12, 12, 13, 16 ]
 	 * arr_floats = random.dfArrayFill(10, 20)(new Array(10)) // => [ 14.763857298282993, 10.858143742391624, 17.38883617551437, 15.298810484359247, 16.81798563879964, 16.274271855177005, 18.13149197984974, 13.43840784370765, 14.129283708144884, 11.243691805289316 ]
 	 */
-	arrayFill<T extends ITSArrayLikeWriteable<number> | TypedArray | Buffer>(arr: T, min?: number, max?: number, float?: boolean)
+	arrayFill<T extends IArrayInput02<number>>(arr: T, min?: number, max?: number, float?: boolean)
 	{
 		return this.dfArrayFill(min, max, float)(arr)
 	}

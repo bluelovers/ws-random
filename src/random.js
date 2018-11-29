@@ -291,16 +291,15 @@ let Random = Random_1 = class Random {
     /**
      * Shuffle an array
      *
-     * @param arr
-     * @param {boolean} overwrite - if true, will change current array
-     * @param {function} randIndex - return index by give length
-     *
      * @example random.dfArrayShuffle([11, 22, 33])
      */
     arrayShuffle(arr, overwrite) {
-        return this._memoizeFake('dfArrayShuffle', distributions_1.Distributions.arrayShuffle, arr, overwrite)(arr);
+        // @ts-ignore
+        return this._memoizeFake('dfArrayShuffle', distributions_1.Distributions.arrayShuffle, arr, overwrite)();
     }
     dfArrayShuffle(arr, overwrite) {
+        //		return Distributions.arrayShuffle(this, arr, overwrite);
+        // @ts-ignore
         return this._callDistributions(distributions_1.Distributions.arrayShuffle, arr, overwrite);
     }
     arrayUnique(arr, limit, loop, fnRandIndex, fnOutOfLimit) {

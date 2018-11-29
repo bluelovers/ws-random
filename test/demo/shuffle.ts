@@ -19,8 +19,8 @@ let t1 = Buffer.alloc(10)
 
 t1[0] = 11;
 
-let a5 = random.arrayShuffle(t1)
+let a5 = random.arrayShuffle(t1);
 
 let c1 = Object.getPrototypeOf(a5)
 
-console.log(t1, c1);
+console.log(t1, a5);

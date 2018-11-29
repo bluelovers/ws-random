@@ -1,17 +1,19 @@
 import { array_unique } from 'array-hyper-unique';
 import { ITSArrayLikeWriteable } from 'ts-type/generic';
+import { IArrayInput02 } from '../type';
 
 /**
  * Created by user on 2018/10/24/024.
  */
 import { _MathRandom } from '../util';
 
-export function swapAlgorithm<T extends unknown>(arr: T[],
+export function swapAlgorithm<T extends IArrayInput02<any>>(arr: T,
 	overwrite?: boolean,
 	fn: (n: number, ...argv) => number = randIndex,
 )
 {
 	let i: number = arr.length;
+	// @ts-ignore
 	let ret = (overwrite ? arr : arr.slice());
 
 	while (i)
@@ -30,7 +32,7 @@ export function swapAlgorithm<T extends unknown>(arr: T[],
 	return ret
 }
 
-export function swapAlgorithm2<T extends ITSArrayLikeWriteable<any>>(arr: T,
+export function swapAlgorithm2<T extends IArrayInput02<any>>(arr: T,
 	overwrite?: boolean,
 	fn: (n: number, ...argv) => number = randIndex,
 ): T

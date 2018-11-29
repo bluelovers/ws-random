@@ -5,6 +5,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const util_1 = require("../util");
 function swapAlgorithm(arr, overwrite, fn = randIndex) {
     let i = arr.length;
+    // @ts-ignore
     let ret = (overwrite ? arr : arr.slice());
     while (i) {
         let idx = fn(i--);

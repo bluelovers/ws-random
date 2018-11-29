@@ -1,4 +1,5 @@
 /// <reference types="node" />
+import { IArrayInput02 } from './type';
 import { Distributions, IRandomDistributions, IRandomDistributionsCacheRow } from './distributions';
 import { IArrayUniqueOutOfLimitCallback, IRandIndex } from './distributions/array-unique';
 import { ENUM_ALPHABET } from './util/const';
@@ -6,7 +7,6 @@ import { IGetWeight, IObjectInput, IWeightEntrie } from './distributions/item-by
 import RNGSeedRandom from './generators/seedrandom';
 import RNG from './rng';
 import { IRNGFactoryType } from './rng-factory';
-import { ITSArrayLikeWriteable, TypedArray } from 'ts-type';
 /**
  * Seedable random number generator supporting many common distributions.
  *
@@ -206,13 +206,10 @@ export declare class Random<R extends RNG = RNG> {
     /**
      * Shuffle an array
      *
-     * @param arr
-     * @param {boolean} overwrite - if true, will change current array
-     * @param {function} randIndex - return index by give length
-     *
      * @example random.dfArrayShuffle([11, 22, 33])
      */
-    arrayShuffle<T extends unknown>(arr: T[], overwrite?: boolean, randIndex?: (len: number) => number): T[];
+    arrayShuffle<T extends IArrayInput02<any>>(arr: T, overwrite?: boolean): T;
+    dfArrayShuffle<T extends IArrayInput02<any>>(arr: T, overwrite?: boolean): () => T;
     arrayUnique<T extends unknown>(arr: T[], limit?: number, loop?: boolean, fnRandIndex?: IRandIndex, fnOutOfLimit?: IArrayUniqueOutOfLimitCallback<T>): T;
     /**
      * Get consecutively unique elements from an array
@@ -234,11 +231,11 @@ export declare class Random<R extends RNG = RNG> {
      * arr_ints = random.dfArrayFill(10, 20)(new Array(10)) // => [ 13, 13, 12, 11, 12, 15, 12, 12, 13, 16 ]
      * arr_floats = random.dfArrayFill(10, 20)(new Array(10)) // => [ 14.763857298282993, 10.858143742391624, 17.38883617551437, 15.298810484359247, 16.81798563879964, 16.274271855177005, 18.13149197984974, 13.43840784370765, 14.129283708144884, 11.243691805289316 ]
      */
-    arrayFill<T extends ITSArrayLikeWriteable<number> | TypedArray | Buffer>(arr: T, min?: number, max?: number, float?: boolean): T;
+    arrayFill<T extends IArrayInput02<number>>(arr: T, min?: number, max?: number, float?: boolean): T;
     /**
      * @see arrayFill
      */
-    dfArrayFill(min?: number, max?: number, float?: boolean): <T extends ITSArrayLikeWriteable<number> | Float32Array | Float64Array | Int8Array | Int16Array | Int32Array | Uint8ClampedArray | Uint8Array | Uint16Array | Uint32Array | Buffer>(arr: T) => T;
+    dfArrayFill(min?: number, max?: number, float?: boolean): <T extends IArrayInput02<number>>(arr: T) => T;
     /**
      * Generates a [Continuous dfUniform distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)).
      *

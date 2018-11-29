@@ -1,3 +1,9 @@
+/// <reference types="node" />
+import { ITSArrayLikeWriteable } from 'ts-type';
 import { Random } from '../random';
-declare const _default: (random: Random<import("../rng").RNG>) => <T extends unknown[]>(arr: T, overwrite?: boolean, fn?: (len: number) => number) => unknown[];
-export default _default;
+import { TypedArray } from '../type';
+declare function arrayShuffle<T extends ITSArrayLikeWriteable<any> | TypedArray | Buffer>(random: Random, arr: T, overwrite?: boolean): () => T;
+declare namespace arrayShuffle {
+    var memoizable: boolean;
+}
+export default arrayShuffle;
