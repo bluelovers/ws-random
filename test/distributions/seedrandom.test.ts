@@ -7,13 +7,14 @@
 /// <reference types="chai" />
 /// <reference types="node" />
 
+import RNG from '../../src/rng';
 import { chai, relative, expect, path, assert, util, mochaAsync } from '../_local-dev';
 
 // @ts-ignore
 import { ITest } from 'mocha';
-import random from '../..'
+import random, { Random } from '../../src/'
 import seedrandomOrigin = require('seedrandom');
-import RNGSeedRandom from '../../lib/generators/seedrandom';
+import RNGSeedRandom from '../../src/generators/seedrandom';
 import { tryRequire } from '../../src/util/req';
 
 // @ts-ignore
@@ -40,6 +41,11 @@ describe(relative(__filename), () =>
 		const count = 10000;
 		let val: number;
 
+		it(`RNGSeedRandom`, function ()
+		{
+			expect(RNGSeedRandom.create('hello.', null)).is.instanceof(RNG);
+		});
+
 		// @ts-ignore
 		it(`all seedrandom(seed) should has same value`, function ()
 		{
@@ -53,9 +59,9 @@ describe(relative(__filename), () =>
 
 				if (pre !== null)
 				{
-					expect(value).to.deep.eql(pre);
-					expect(value).to.be.closeTo(pre, 0.000001);
-					expect(value).to.be.closeTo(pre+1-1, pre+1-1);
+					expect(value, idx.toString()).to.deep.eql(pre);
+					expect(value, idx.toString()).to.be.closeTo(pre, 0.000001);
+					expect(value, idx.toString()).to.be.closeTo(pre+1-1, pre+1-1);
 				}
 
 				return value

@@ -8,7 +8,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /// <reference types="node" />
 const _local_dev_1 = require("../_local-dev");
 const __1 = require("../../");
-const util_1 = require("../../lib/util");
+const util_1 = require("../../src/util");
 // @ts-ignore
 describe(_local_dev_1.relative(__filename), () => {
     let currentTest;

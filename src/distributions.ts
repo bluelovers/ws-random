@@ -57,6 +57,8 @@ import sumInt from './distributions/sum-int'
 
 import uuidv4 from './distributions/uuidv4'
 
+import arrayFill from './distributions/array-fill'
+
 export {
 	bates,
 	bernoulli,
@@ -87,6 +89,8 @@ export {
 	sumInt,
 
 	uuidv4,
+
+	arrayFill,
 }
 
 import * as Distributions from './distributions';

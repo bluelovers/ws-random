@@ -7,13 +7,14 @@
 /// <reference types="chai" />
 /// <reference types="node" />
 
+import { stringifyByte } from '../../src/util/byte';
 import { chai, relative, expect, path, assert, util, mochaAsync } from '../_local-dev';
 
 // @ts-ignore
 import { ITest } from 'mocha';
 //import random from '../..'
 import seedrandom = require('seedrandom');
-import random, { Random } from '../..'
+import random from '../..'
 
 // @ts-ignore
 describe(relative(__filename), () =>
@@ -31,32 +32,25 @@ describe(relative(__filename), () =>
 	});
 
 	// @ts-ignore
-	describe(`import`, () =>
+	describe(`byte`, () =>
 	{
-		it(`import default`, function ()
+		const fn = random.dfArrayFill();
+
+		const tests = [
+			new Array(10),
+			new Uint8Array(10),
+			Buffer.alloc(10),
+		];
+
+		tests.forEach(function (arr)
 		{
-			let r = require('../..').default;
+			it(`${arr}`, function ()
+			{
+				let ret = fn(arr);
 
-			expect(r).is.instanceof((Random));
-			expect(r).to.deep.equal(random)
+				expect(ret).have.lengthOf(10);
+			});
 		});
-
-		it(`require`, function ()
-		{
-			let r = require('../..');
-
-			expect(r).is.instanceof((Random));
-			expect(r).to.deep.equal(random)
-		});
-
-		it(`random = random.default`, function ()
-		{
-			let r = require('../..');
-
-			expect(r.default).is.instanceof((Random));
-			expect(r.default).to.deep.equal(random)
-		});
-
 	});
 
 });

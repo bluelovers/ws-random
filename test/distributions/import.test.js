@@ -7,11 +7,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /// <reference types="chai" />
 /// <reference types="node" />
 const _local_dev_1 = require("../_local-dev");
-const random_1 = require("../../lib/random");
+const __1 = require("../..");
 // @ts-ignore
 describe(_local_dev_1.relative(__filename), () => {
     let currentTest;
-    const r = random_1.random;
+    const r = __1.default;
     beforeEach(function () {
         currentTest = this.currentTest;
         //console.log('it:before', currentTest.title);
@@ -21,18 +21,18 @@ describe(_local_dev_1.relative(__filename), () => {
     describe(`import`, () => {
         it(`import default`, function () {
             let r = require('../..').default;
-            _local_dev_1.expect(r).is.instanceof((random_1.Random));
-            _local_dev_1.expect(r).to.deep.equal(random_1.random);
+            _local_dev_1.expect(r).is.instanceof((__1.Random));
+            _local_dev_1.expect(r).to.deep.equal(__1.default);
         });
         it(`require`, function () {
             let r = require('../..');
-            _local_dev_1.expect(r).is.instanceof((random_1.Random));
-            _local_dev_1.expect(r).to.deep.equal(random_1.random);
+            _local_dev_1.expect(r).is.instanceof((__1.Random));
+            _local_dev_1.expect(r).to.deep.equal(__1.default);
         });
         it(`random = random.default`, function () {
             let r = require('../..');
-            _local_dev_1.expect(r.default).is.instanceof((random_1.Random));
-            _local_dev_1.expect(r.default).to.deep.equal(random_1.random);
+            _local_dev_1.expect(r.default).is.instanceof((__1.Random));
+            _local_dev_1.expect(r.default).to.deep.equal(__1.default);
         });
     });
 });

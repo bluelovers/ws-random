@@ -34,6 +34,13 @@ function getDefaultArgv(method) {
         case 'dfSumFloat':
             argv = [3];
             break;
+        case 'arrayFill':
+            argv = [new Uint8Array(10)];
+            break;
+        case 'dfArrayFill':
+            // @ts-ignore
+            dfArgv = new Uint8Array(10);
+            break;
     }
     return {
         argv,

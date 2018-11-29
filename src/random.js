@@ -30,6 +30,13 @@ let Random = Random_1 = class Random {
             //ow(rng, ow.object.instanceOf(RNG))
             ow_1.expect(rng).instanceof(rng_1.default);
         }
+        Object.defineProperty(this, 'Random', {
+            configurable: false,
+            enumerable: false,
+            get() {
+                return Random_1;
+            },
+        });
         this.use(rng);
     }
     /**
@@ -309,6 +316,24 @@ let Random = Random_1 = class Random {
      */
     dfArrayUnique(arr, limit, loop, fnRandIndex, fnOutOfLimit) {
         return distributions_1.Distributions.arrayUnique(this, arr, limit, loop, fnRandIndex, fnOutOfLimit);
+    }
+    /**
+     * fill random value into any array-like object
+     *
+     * @example
+     * arr_bytes = random.dfArrayFill()(new Uint8Array(10))
+     * arr_bytes = random.dfArrayFill()(Buffer.alloc(10))
+     * arr_ints = random.dfArrayFill(10, 20)(new Array(10)) // => [ 13, 13, 12, 11, 12, 15, 12, 12, 13, 16 ]
+     * arr_floats = random.dfArrayFill(10, 20)(new Array(10)) // => [ 14.763857298282993, 10.858143742391624, 17.38883617551437, 15.298810484359247, 16.81798563879964, 16.274271855177005, 18.13149197984974, 13.43840784370765, 14.129283708144884, 11.243691805289316 ]
+     */
+    arrayFill(arr, min, max, float) {
+        return this.dfArrayFill(min, max, float)(arr);
+    }
+    /**
+     * @see arrayFill
+     */
+    dfArrayFill(min, max, float) {
+        return this._memoize('dfArrayFill', distributions_1.Distributions.arrayFill, min, max, float);
     }
     // --------------------------------------------------------------------------
     // Uniform distributions

@@ -95,6 +95,7 @@
     "is-extends-of": "^1.0.3",
     "lib-r-math.js": "^1.0.85",
     "nanoid": "^2.0.0",
+    "ts-type": "^1.1.2",
     "uni-string": "^1.1.0"
   },
   "devDependencies": {
@@ -111,7 +112,7 @@
     "random": "^2.0.12",
     "seedrandom": "^2.4.4",
     "shortid": "^2.2.14",
-    "ts-enum-util": "^3.1.0",
+    "ts-enum-util": "^3.1.0"
   },
   "globalDependencies": {
     "fast-glob": "^2.2.4",
