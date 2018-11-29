@@ -114,15 +114,15 @@
     "shortid": "^2.2.14",
     "ts-enum-util": "^3.1.0"
   },
-  "globalDependencies": {
-    "fast-glob": "^2.2.4",
-    "fs-extra": "^7.0.1",
-    "uglify-es": "^3.3.9"
-  },
   "peerDependencies": {
     "seedrandom": "^2.4.4"
   },
   "engines": {
     "node": ">=7"
+  },
+  "globalDependencies": {
+    "fast-glob": "^2.2.4",
+    "fs-extra": "^7.0.1",
+    "uglify-es": "^3.3.9"
   }
 }
