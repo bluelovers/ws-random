@@ -1,4 +1,4 @@
-# random
+# random-extra
 
 > Seedable random number generator supporting many common distributions.
 
