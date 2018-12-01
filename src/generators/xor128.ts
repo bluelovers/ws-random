@@ -46,7 +46,8 @@ export class RNGXOR128 extends RNG
 		this._seed(seed, opts, ...argv)
 
 		// discard an initial batch of 64 values
-		for (let i = 0; i < 64; ++i)
+		let i = 64;
+		while (i--)
 		{
 			this.next()
 		}

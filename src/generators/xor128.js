@@ -25,7 +25,8 @@ class RNGXOR128 extends rng_1.default {
         //		this.x = this._seedNum(seed, opts, ...argv)
         this._seed(seed, opts, ...argv);
         // discard an initial batch of 64 values
-        for (let i = 0; i < 64; ++i) {
+        let i = 64;
+        while (i--) {
             this.next();
         }
     }

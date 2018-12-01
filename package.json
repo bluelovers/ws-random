@@ -74,9 +74,9 @@
   },
   "scripts": {
     "benchmark": "npx ts-node ./test/benchmark/simple.perf.ts && npx ts-node ./test/benchmark/base.perf.ts && npx ts-node ./test/benchmark/random-id.perf.ts",
-    "build": "npx -r fast-glob -r fs-extra -r uglify-es -r ts-node ts-node ./test/script/minify",
+    "build-minify": "npx -r fast-glob -r fs-extra -r uglify-es -r ts-node ts-node ./test/script/minify",
     "postpublish": "echo postpublish && node ./test/script/publish-after",
-    "prepublishOnly": "npm run build && npx sort-package-json && npm run test",
+    "prepublishOnly": "npm run build-minify && npx sort-package-json && npm run test",
     "sort-package-json": "npx sort-package-json",
     "test": "npm run test-mocha-npx",
     "test-ci": "npm run test-mocha-js",
