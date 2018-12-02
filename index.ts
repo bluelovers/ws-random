@@ -1,8 +1,8 @@
 'use strict'
 
-import random = require('./src')
+import random = require('./lib')
 // @ts-ignore
-export { Random } from './src'
+export { Random } from './lib'
 // @ts-ignore
 export default random
 // @ts-ignore
