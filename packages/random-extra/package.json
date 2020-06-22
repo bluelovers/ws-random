@@ -75,61 +75,43 @@
     "test": "test"
   },
   "scripts": {
-    "test": "npm run test-mocha-npx",
-    "test-ci": "npm run test-mocha-js",
+    "test": "yarn run test-mocha-npx",
+    "test-ci": "yarn run test-mocha-js",
     "test-mocha-js": "mocha \"!(node_modules)/**/*.{test,spec}.js\"",
     "test-mocha-npx": "npx mocha --require ts-node/register \"!(node_modules)/**/*.{test,spec}.{ts,tsx}\"",
     "build-minify": "npx -r fast-glob -r fs-extra -r uglify-es -r ts-node ts-node ./test/script/minify",
     "prepublishOnly": "yarn run build-minify && yarn run test",
-    "prepublishOnly_": "yarn run prepublishOnly:check-bin && yarn run test",
     "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
     "prepublishOnly:update": "yarn run ncu && yarn run sort-package-json",
-    "postpublish": "echo postpublish && node ./test/script/publish-after",
     "postpublishOnly:add": "yarn-tool root run postpublishOnly:add random-extra",
     "benchmark": "npx ts-node ./test/benchmark/simple.perf.ts && npx ts-node ./test/benchmark/base.perf.ts && npx ts-node ./test/benchmark/random-id.perf.ts",
     "ncu": "ynpx --quiet yarn-tool -- ncu -u",
     "sort-package-json": "ynpx --quiet yarn-tool -- sort"
   },
   "dependencies": {
-    "@types/nanoid": "^1.2.0",
+    "@types/nanoid": "^2.1.0",
     "@types/seedrandom": "^2",
-    "array-hyper-unique": "^1.0.7",
+    "array-hyper-unique": "^1.1.8",
     "chai": "^4",
     "chai-asserttype-extra": "^1.2.0",
     "core-decorators": "^0.20.0",
-    "hash-sum": "^1.0.2",
+    "hash-sum": "^2.0.0",
     "hex-lib": "^1.0.2",
     "is-extends-of": "^1.0.3",
-    "lib-r-math.js": "^1.0.85",
-    "nanoid": "^2.0.0",
-    "ts-type": "^1.1.2",
-    "uni-string": "^1.1.0"
+    "lib-r-math.js": "^1.0.86",
+    "nanoid": "^3.1.10",
+    "ts-type": "^1.2.23",
+    "uni-string": "^1.1.10"
   },
   "devDependencies": {
-    "@types/benchmark": "^1.0.31",
-    "@types/chai": "^4",
-    "@types/core-decorators": "^0.20.0",
-    "@types/mocha": "^5.2.5",
     "benchmark": "^2.1.4",
-    "bluebird": "^3.5.3",
-    "cross-spawn-extra": "^1.0.3",
-    "debug-color2": "^1.0.6",
-    "git-root2": "^1.0.4",
-    "math-random": "^1.0.1",
-    "random": "^2.0.12",
-    "seedrandom": "^2.4.4",
-    "shortid": "^2.2.14",
-    "ts-enum-util": "^3.1.0"
+    "bluebird": "^3.7.2",
+    "math-random": "^1.0.4",
+    "random": "^2.2.0",
+    "seedrandom": "^3.0",
+    "shortid": "^2.2.15"
   },
   "peerDependencies": {
-    "seedrandom": "^2.4.4"
-  },
-  "engines": {
-    "node": ">=7"
-  },
-  "globalDependencies": {
-    "fast-glob": "^2.2.4",
-    "fs-extra": "^7.0.1",
-    "uglify-es": "^3.3.9"
+    "seedrandom": "^3.0"
   }
 }
