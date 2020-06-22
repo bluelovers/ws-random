@@ -70,18 +70,25 @@
   "author": "Travis Fischer <travis@automagical.ai>",
   "main": "index.js",
   "directories": {
+    "lib": "lib",
+    "doc": "docs",
     "test": "test"
   },
   "scripts": {
-    "benchmark": "npx ts-node ./test/benchmark/simple.perf.ts && npx ts-node ./test/benchmark/base.perf.ts && npx ts-node ./test/benchmark/random-id.perf.ts",
-    "build-minify": "npx -r fast-glob -r fs-extra -r uglify-es -r ts-node ts-node ./test/script/minify",
-    "postpublish": "echo postpublish && node ./test/script/publish-after",
-    "prepublishOnly": "npm run build-minify && npx sort-package-json && npm run test",
-    "sort-package-json": "npx sort-package-json",
     "test": "npm run test-mocha-npx",
     "test-ci": "npm run test-mocha-js",
     "test-mocha-js": "mocha \"!(node_modules)/**/*.{test,spec}.js\"",
-    "test-mocha-npx": "npx mocha --require ts-node/register \"!(node_modules)/**/*.{test,spec}.{ts,tsx}\""
+    "test-mocha-npx": "npx mocha --require ts-node/register \"!(node_modules)/**/*.{test,spec}.{ts,tsx}\"",
+    "build-minify": "npx -r fast-glob -r fs-extra -r uglify-es -r ts-node ts-node ./test/script/minify",
+    "prepublishOnly": "yarn run build-minify && yarn run test",
+    "prepublishOnly_": "yarn run prepublishOnly:check-bin && yarn run test",
+    "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
+    "prepublishOnly:update": "yarn run ncu && yarn run sort-package-json",
+    "postpublish": "echo postpublish && node ./test/script/publish-after",
+    "postpublishOnly:add": "yarn-tool root run postpublishOnly:add random-extra",
+    "benchmark": "npx ts-node ./test/benchmark/simple.perf.ts && npx ts-node ./test/benchmark/base.perf.ts && npx ts-node ./test/benchmark/random-id.perf.ts",
+    "ncu": "ynpx --quiet yarn-tool -- ncu -u",
+    "sort-package-json": "ynpx --quiet yarn-tool -- sort"
   },
   "dependencies": {
     "@types/nanoid": "^1.2.0",
