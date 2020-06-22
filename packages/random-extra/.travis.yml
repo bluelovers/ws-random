@@ -1,0 +1,14 @@
+language: node_js
+cache: yarn
+node_js:
+  - lts/*
+  - node
+  - 10
+  - 9
+  - 8
+  - 7
+#  - 6
+before_script:
+  - yarn add -g ts-node typescript@next mocha
+script:
+  - npm run test-ci

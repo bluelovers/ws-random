@@ -1,0 +1,76 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
+node_modules
+
+# builds
+build
+dist
+
+# misc
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.cache
+
+lerna-debug.log*
+lerna-error.log*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+### temp template
+/~*
+~ci.list.txt
+~ci.log.txt
+~ci.errors.txt
+
+*.stackdump
+*.bak
+*.old
+
+/*.log
+/*.lock
+
+*.tmp
+### test template
+*.spec.ts
+*.spec.js
+*.spec.js.map
+*.test.ts
+*.test.js
+*.test.js.map
+### git2 template
+.idea
+
+~ci.list.txt
+~ci.log.txt
+~ci.errors.txt
+
+*.stackdump
+*.bak
+*.old
+
+package-lock.json
+
+test/**/*.js
+test/**/*.d.ts
+test/*.js
+test/*.d.ts
+test/temp*
+
+tests/**/*.js
+tests/**/*.d.ts
+tests/*.js
+tests/*.d.ts
+tests/temp*
+
+!/.gitignore
+!/test/**/*.test.ts
+!/test/benchmark/*.js
+!/test/mocha/**/*.test.ts
+!/test/distributions/**/*.test.js
+!/test/_local-dev.js
+!/test/*.test.js
