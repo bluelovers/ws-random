@@ -31,7 +31,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\"",
+    "test": "jest",
     "prepublishOnly": "yarn run test",
     "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
     "prepublishOnly:update": "yarn run ncu && yarn run sort-package-json",

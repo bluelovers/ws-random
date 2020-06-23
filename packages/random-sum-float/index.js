@@ -1,11 +1,11 @@
-/**
- * Created by user on 2018/11/22/022.
- */
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.randomSumFloat = exports.create = void 0;
 const random_extra_1 = require("random-extra");
+Object.defineProperty(exports, "create", { enumerable: true, get: function () { return random_extra_1.dfSumFloat; } });
 function randomSumFloat(size, sum, min, max) {
-    return random_extra_1.default.dfSumFloat(size, sum, min, max)();
+    return random_extra_1.dfSumFloat(size, sum, min, max)();
 }
-randomSumFloat.create = random_extra_1.default.dfSumFloat;
-randomSumFloat.randomSumFloat = randomSumFloat;
-randomSumFloat.default = randomSumFloat;
-module.exports = randomSumFloat;
+exports.randomSumFloat = randomSumFloat;
+exports.default = randomSumFloat;
+//# sourceMappingURL=index.js.map

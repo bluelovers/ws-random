@@ -1,13 +1,10 @@
-/**
- * Created by user on 2018/11/22/022.
- */
 
-import random, { dfSumFloat } from 'random-extra';
-export { dfSumFloat as create } from 'random-extra';
+import { dfSumFloat as create } from 'random-extra';
+export { create }
 
 export function randomSumFloat(size: number, sum?: number, min?: number, max?: number)
 {
-	return dfSumFloat(size, sum, min, max)()
+	return create(size, sum, min, max)()
 }
 
 export default randomSumFloat

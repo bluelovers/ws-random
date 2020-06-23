@@ -1,5 +1,5 @@
 
-import randomSumFloat from '..';
+import randomSumFloat, { create } from '..';
 
 let size = 3;
 let sum = 10;
@@ -9,7 +9,7 @@ let max = 10;
 /**
  * recommend way, otherwise will slow
  */
-let fn = randomSumFloat.create(size, sum, min, max);
+let fn = create(size, sum, min, max);
 let v: number[];
 
 v = fn();
