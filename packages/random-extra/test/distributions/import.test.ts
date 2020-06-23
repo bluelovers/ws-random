@@ -1,62 +1,31 @@
-/**
- * Created by user on 2018/11/16/016.
- */
-
-/// <reference types="mocha" />
-/// <reference types="benchmark" />
-/// <reference types="chai" />
-/// <reference types="node" />
-
-import { chai, relative, expect, path, assert, util, mochaAsync } from '../_local-dev';
+import random, { Random } from '../../src'
 
 // @ts-ignore
-import { ITest } from 'mocha';
-//import random from '../..'
-import seedrandom = require('seedrandom');
-import random, { Random } from '../..'
-
-// @ts-ignore
-describe(relative(__filename), () =>
+describe(`import`, () =>
 {
-	let currentTest: ITest;
-
-	const r = random;
-
-	beforeEach(function ()
+	it(`import default`, () =>
 	{
-		currentTest = this.currentTest as ITest;
+		let r = require('../../src').default;
 
-		//console.log('it:before', currentTest.title);
-		//console.log('it:before', currentTest.fullTitle());
+		expect(r).toBeInstanceOf(Random);
+		expect(r).toEqual(random)
 	});
 
-	// @ts-ignore
-	describe(`import`, () =>
+	it(`require`, () =>
 	{
-		it(`import default`, function ()
-		{
-			let r = require('../..').default;
+		let r = require('../../src');
 
-			expect(r).is.instanceof((Random));
-			expect(r).to.deep.equal(random)
-		});
+		expect(r).toBeInstanceOf(Random);
+		expect(r).toEqual(random)
+	});
 
-		it(`require`, function ()
-		{
-			let r = require('../..');
+	it(`random = random.default`, () =>
+	{
+		let r = require('../../src');
 
-			expect(r).is.instanceof((Random));
-			expect(r).to.deep.equal(random)
-		});
-
-		it(`random = random.default`, function ()
-		{
-			let r = require('../..');
-
-			expect(r.default).is.instanceof((Random));
-			expect(r.default).to.deep.equal(random)
-		});
-
+		expect(r.default).toBeInstanceOf(Random);
+		expect(r.default).toEqual(random)
 	});
 
 });
+

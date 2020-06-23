@@ -1,155 +1,165 @@
-/**
- * Created by user on 2018/11/16/016.
- */
+//import { toBeDeepCloseTo, toMatchCloseTo } from 'jest-matcher-deep-close-to';
+//
+//expect.extend({ toBeDeepCloseTo, toMatchCloseTo });
 
-/// <reference types="mocha" />
-/// <reference types="benchmark" />
-/// <reference types="chai" />
-/// <reference types="node" />
+//declare global {
+//	namespace jest {
+//		type Iterable = number | number[] | { [k: string]: Iterable };
+//		interface Matchers<R> {
+//			toBeDeepCloseTo: (
+//				received: Iterable,
+//				expected: Iterable,
+//				decimals?: number,
+//			) => R;
+//			toMatchCloseTo: (
+//				received: Iterable,
+//				expected: Iterable,
+//				decimals?: number,
+//			) => R;
+//		}
+//	}
+//}
 
-import { chai, relative, expect, path, assert, util, mochaAsync } from '../_local-dev';
-
-// @ts-ignore
-import { ITest } from 'mocha';
 import random from '../..'
-import seedrandom = require('seedrandom');
+import seedrandom from 'seedrandom';
+import checkTypesMatchers from '../jest/type';
+
+expect.extend({
+	toBeCloseToWithDelta: checkTypesMatchers.toBeCloseToWithDelta,
+})
+
+const r = random.clone(seedrandom('ZDJjM2IyNmFlNmVjNWQwMGZkMmY1Y2Nk'));
 
 // @ts-ignore
-describe(relative(__filename), () =>
+describe(`random.uniform()`, () =>
 {
-	let currentTest: ITest;
+	const d = r.dfUniform();
 
-	const r = random.clone(seedrandom('ZDJjM2IyNmFlNmVjNWQwMGZkMmY1Y2Nk'));
+	const delta = 0.05;
 
-	beforeEach(function ()
+	let min = 1;
+	let max = 0;
+	let sum = 0;
+
+	const count = 10000;
+
+	for (let i = 0; i < count; ++i)
 	{
-		currentTest = this.currentTest as ITest;
+		const v = d();
 
-		//console.log('it:before', currentTest.title);
-		//console.log('it:before', currentTest.fullTitle());
-	});
+		min = Math.min(min, v);
+		max = Math.max(max, v);
+
+		sum += v;
+	}
 
 	// @ts-ignore
-	describe(`random.uniform()`, () =>
+	it(`random.uniform() is in [0, 1)`, () =>
 	{
-		const d = r.dfUniform();
-
-		const delta = 0.05;
-
-		let min = 1;
-		let max = 0;
-		let sum = 0;
-
-		const count = 10000;
-
-		for (let i = 0; i < count; ++i)
-		{
-			const v = d();
-
-			min = Math.min(min, v);
-			max = Math.max(max, v);
-
-			sum += v;
-		}
-
-		// @ts-ignore
-		it(`random.uniform() is in [0, 1)`, function ()
-		{
-			expect(min).is.float.gt(0);
-			expect(max).is.float.lt(1);
-		});
-
-		it(`random.uniform() has mean 0.5 \u00B1 ${delta}`, function ()
-		{
-			const mean = sum / count;
-			const expected = 0.5;
-
-			expect(mean).is.float.closeTo(expected, delta);
-		});
-
+		expect(min).toBeGreaterThan(0);
+		expect(max).toBeLessThan(1);
 	});
 
-	describe(`random.uniform(max)`, () =>
+	it(`random.uniform() has mean 0.5 \u00B1 ${delta}`, () =>
 	{
-		const input_max = 42;
-		const d = r.dfUniform(input_max);
+		const mean = sum / count;
+		const expected = 0.5;
 
-		const delta = 0.5;
-
-		let min = input_max;
-		let max = 0;
-		let sum = 0;
-
-		const count = 10000;
-
-		for (let i = 0; i < count; ++i)
-		{
-			const v = d();
-
-			min = Math.min(min, v);
-			max = Math.max(max, v);
-
-			sum += v;
-		}
-
-		// @ts-ignore
-		it(`random.uniform(max) returns numbers in [0, max)`, function ()
-		{
-			expect(min).is.float.gt(0);
-			expect(max).is.float.lt(input_max);
-		});
-
-		it(`random.uniform(max) has mean max / 2 \u00B1 ${delta}`, function ()
-		{
-			const mean = sum / count;
-			const expected = input_max / 2;
-
-
-			expect(mean).is.float.closeTo(expected, delta);
-		});
-
-	});
-
-	describe(`random.uniform(min, max)`, () =>
-	{
-		const input_min = 10;
-		const input_max = 42;
-		const d = r.dfUniform(input_min, input_max);
-
-		const delta = 0.5;
-
-		let min = input_max;
-		let max = 0;
-		let sum = 0;
-
-		const count = 10000;
-
-		for (let i = 0; i < count; ++i)
-		{
-			const v = d();
-
-			min = Math.min(min, v);
-			max = Math.max(max, v);
-
-			sum += v;
-		}
-
-		// @ts-ignore
-		it(`random.uniform(min, max) returns numbers in [min, max]`, function ()
-		{
-			expect(min).is.float.gt(input_min);
-			expect(max).is.float.lt(input_max);
-		});
-
-		it(`random.uniform(min, max) has mean max / 2 \u00B1 ${delta}`, function ()
-		{
-			const mean = sum / count;
-			const expected = (input_min + input_max) / 2;
-
-
-			expect(mean).is.float.closeTo(expected, delta);
-		});
-
+		expect(mean).toBeCloseToWithDelta(expected, delta);
 	});
 
 });
+
+describe(`random.uniform(max)`, () =>
+{
+	const input_max = 42;
+	const d = r.dfUniform(input_max);
+
+	const delta = 0.5;
+
+	let min = input_max;
+	let max = 0;
+	let sum = 0;
+
+	const count = 10000;
+
+	for (let i = 0; i < count; ++i)
+	{
+		const v = d();
+
+		min = Math.min(min, v);
+		max = Math.max(max, v);
+
+		sum += v;
+	}
+
+	// @ts-ignore
+	it(`random.uniform(max) returns numbers in [0, max)`, () =>
+	{
+		expect(min).toBeGreaterThan(0);
+		expect(max).toBeLessThan(input_max);
+	});
+
+	it(`random.uniform(max) has mean max / 2 \u00B1 ${delta}`, () =>
+	{
+		const mean = sum / count;
+		const expected = input_max / 2;
+
+		console.dir({
+			mean,
+			expected,
+			delta,
+		})
+
+		expect(mean).toBeCloseToWithDelta(expected, delta)
+	});
+
+});
+
+describe(`random.uniform(min, max)`, () =>
+{
+	const input_min = 10;
+	const input_max = 42;
+	const d = r.dfUniform(input_min, input_max);
+
+	const delta = 0.5;
+
+	let min = input_max;
+	let max = 0;
+	let sum = 0;
+
+	const count = 10000;
+
+	for (let i = 0; i < count; ++i)
+	{
+		const v = d();
+
+		min = Math.min(min, v);
+		max = Math.max(max, v);
+
+		sum += v;
+	}
+
+	// @ts-ignore
+	it(`random.uniform(min, max) returns numbers in [min, max]`, () =>
+	{
+		expect(min).toBeGreaterThan(input_min);
+		expect(max).toBeLessThan(input_max);
+	});
+
+	it(`random.uniform(min, max) has mean max / 2 \u00B1 ${delta}`, () =>
+	{
+		const mean = sum / count;
+		const expected = (input_min + input_max) / 2;
+
+		console.dir({
+			mean,
+			expected,
+			delta,
+		})
+
+		expect(mean).toBeCloseToWithDelta(expected, delta);
+	});
+
+});
+

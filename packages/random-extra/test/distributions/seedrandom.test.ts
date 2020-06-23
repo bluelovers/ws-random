@@ -8,133 +8,125 @@
 /// <reference types="node" />
 
 import RNG from '../../src/rng';
-import { chai, relative, expect, path, assert, util, mochaAsync } from '../_local-dev';
-
-// @ts-ignore
-import { ITest } from 'mocha';
 import random, { Random } from '../../src/'
-import seedrandomOrigin = require('seedrandom');
+import seedrandomOrigin from 'seedrandom';
 import RNGSeedRandom from '../../src/generators/seedrandom';
 import { tryRequire } from '../../src/util/req';
+import checkTypesMatchers from '../jest/type';
+
+expect.extend(checkTypesMatchers);
 
 // @ts-ignore
-describe(relative(__filename), () =>
+describe(`'hello.' 0.9282578795792454`, () =>
 {
-	let currentTest: ITest;
+	let seed = 'hello.';
+	const expected = 0.9282578795792454;
 
-	const r = random;
+	const count = 10000;
+	let val: number;
 
-	beforeEach(function ()
+	it(`RNGSeedRandom`, () =>
 	{
-		currentTest = this.currentTest as ITest;
-
-		//console.log('it:before', currentTest.title);
-		//console.log('it:before', currentTest.fullTitle());
+		expect(RNGSeedRandom.create('hello.', null)).toBeInstanceOf(RNG);
 	});
 
 	// @ts-ignore
-	describe(`'hello.' 0.9282578795792454`, () =>
+	it(`all seedrandom(seed) should has same value`, () =>
 	{
-		let seed = 'hello.';
-		const expected = 0.9282578795792454;
-
-		const count = 10000;
-		let val: number;
-
-		it(`RNGSeedRandom`, function ()
+		val = [
+			random.newUse(seedrandomOrigin('hello.')),
+			random.newUse('seedrandom', 'hello.', null),
+			random.newUse(RNGSeedRandom.create('hello.', null)),
+		].reduce(function (pre, rnd, idx)
 		{
-			expect(RNGSeedRandom.create('hello.', null)).is.instanceof(RNG);
-		});
+			let value = rnd.float()
 
-		// @ts-ignore
-		it(`all seedrandom(seed) should has same value`, function ()
-		{
-			val = [
-				random.newUse(seedrandomOrigin('hello.')),
-				random.newUse('seedrandom', 'hello.', null),
-				random.newUse(RNGSeedRandom.create('hello.', null))
-			].reduce(function (pre, rnd, idx)
+			if (pre !== null)
 			{
-				let value = rnd.float()
+				// idx.toString()
+				expect(value).toEqual(pre);
+				expect(value).toBeCloseToWithDelta(pre, 0.000001);
+				expect(value).toBeCloseToWithDelta(pre + 1 - 1, pre + 1 - 1);
+			}
 
-				if (pre !== null)
-				{
-					expect(value, idx.toString()).to.deep.eql(pre);
-					expect(value, idx.toString()).to.be.closeTo(pre, 0.000001);
-					expect(value, idx.toString()).to.be.closeTo(pre+1-1, pre+1-1);
-				}
-
-				return value
-			}, expected)
-		});
-
-		it(`rnd.float() = ${expected}`, function ()
-		{
-			expect(val).to.deep.eql(expected);
-		});
-
+			return value
+		}, expected)
 	});
 
-	describe(`test sub seedrandom`, () =>
+	it(`rnd.float() = ${expected}`, () =>
 	{
-		const subs = [
-			'alea', 'tychei', 'xor128', 'xor4096', 'xorshift7', 'xorwow'
-		];
-
-		const methods = ['quick', 'int32', 'double'];
-
-		subs.forEach(function (libName)
-		{
-			it(`RNGSeedRandom.createLib('${libName}', seed, opts)`, () =>
-			{
-				let seed = 'hello.';
-				let opts = null;
-				const r = RNGSeedRandom.createLib(libName, seed, opts);
-
-				// @ts-ignore
-				const _seedrandom = r._seedrandom;
-
-				let s = _seedrandom(seed, opts);
-
-				//console.log(libName, s.quick(), r.next());
-
-				expect(s).to.have.all.keys(methods);
-				expect(r.next()).to.not.be.NaN;
-
-				expect(r.next()).to.float.gt(0).lt(1)
-
-				expect(_seedrandom).to.deep.equal(tryRequire('seedrandom')[libName])
-
-				expect(_seedrandom).is.function();
-			})
-		});
-
-		subs.forEach(function (libName)
-		{
-			it(`random.newUse('seedrandom', seed, opts, '${libName}')`, () =>
-			{
-				let seed = 'hello.';
-				let opts = null;
-				const r = random.newUse('seedrandom', seed, opts, libName);
-
-				// @ts-ignore
-				const _seedrandom = r.rng._seedrandom;
-
-				let s = _seedrandom(seed, opts);
-
-				//console.log(libName, s.quick(), r.next());
-
-				expect(s).to.have.all.keys(methods);
-				expect(r.next()).to.not.be.NaN;
-
-				expect(r.next()).to.float.gt(0).lt(1)
-
-				expect(_seedrandom).to.deep.equal(tryRequire('seedrandom')[libName])
-
-				expect(_seedrandom).is.function();
-			})
-		});
-
-	})
+		expect(val).toEqual(expected);
+	});
 
 });
+
+describe(`test sub seedrandom`, () =>
+{
+	const subs = [
+		'alea', 'tychei', 'xor128', 'xor4096', 'xorshift7', 'xorwow',
+	];
+
+	const methods = ['quick', 'int32', 'double'];
+
+	subs.forEach(function (libName)
+	{
+		it(`RNGSeedRandom.createLib('${libName}', seed, opts)`, () =>
+		{
+			let seed = 'hello.';
+			let opts = null;
+			const r = RNGSeedRandom.createLib(libName, seed, opts);
+
+			// @ts-ignore
+			const _seedrandom = r._seedrandom;
+
+			let s = _seedrandom(seed, opts);
+
+			//console.log(libName, s.quick(), r.next());
+
+			expect(s).toContainAllKeys(methods);
+			expect(r.next()).not.toBeNaN();
+
+			let v = r.next();
+
+			expect(v).toBeFloat();
+			expect(v).toBeGreaterThan(0)
+			expect(v).toBeLessThan(1)
+
+			expect(_seedrandom).toEqual(tryRequire('seedrandom')[libName])
+
+			expect(_seedrandom).toBeInstanceOf(Function);
+		})
+	});
+
+	subs.forEach(function (libName)
+	{
+		it(`random.newUse('seedrandom', seed, opts, '${libName}')`, () =>
+		{
+			let seed = 'hello.';
+			let opts = null;
+			const r = random.newUse('seedrandom', seed, opts, libName);
+
+			// @ts-ignore
+			const _seedrandom = r.rng._seedrandom;
+
+			let s = _seedrandom(seed, opts);
+
+			//console.log(libName, s.quick(), r.next());
+
+			expect(s).toContainAllKeys(methods);
+			expect(r.next()).not.toBeNaN();
+
+			let v = r.next();
+
+			expect(v).toBeFloat();
+			expect(v).toBeGreaterThan(0)
+			expect(v).toBeLessThan(1)
+
+			expect(_seedrandom).toEqual(tryRequire('seedrandom')[libName])
+
+			expect(_seedrandom).toBeInstanceOf(Function);
+		})
+	});
+
+})
+
