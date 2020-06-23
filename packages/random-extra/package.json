@@ -1,6 +1,6 @@
 {
   "name": "random-extra",
-  "version": "3.6.0",
+  "version": "3.6.1",
   "description": "Seedable random number generator supporting many common distributions.",
   "keywords": [
     "alea",
@@ -100,7 +100,7 @@
     "is-extends-of": "^1.0.3",
     "lib-r-math.js": "^1.0.86",
     "nanoid": "^3.1.10",
-    "num-in-delta": "^1.0.0",
+    "num-in-delta": "^1.0.1",
     "ts-type": "^1.2.23",
     "uni-string": "^1.1.10"
   },
