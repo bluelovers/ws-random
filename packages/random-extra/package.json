@@ -83,6 +83,7 @@
     "prepublishOnly": "yarn run test",
     "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
     "prepublishOnly:update": "yarn run ncu && yarn run sort-package-json",
+    "prepublish": "yarn run postpublishOnly:add",
     "postpublishOnly:add": "yarn-tool root run postpublishOnly:add random-extra",
     "benchmark": "npx ts-node ./test/benchmark/simple.perf.ts && npx ts-node ./test/benchmark/base.perf.ts && npx ts-node ./test/benchmark/random-id.perf.ts",
     "ncu": "ynpx --quiet yarn-tool -- ncu -u",
