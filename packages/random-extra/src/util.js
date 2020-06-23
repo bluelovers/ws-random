@@ -1,10 +1,15 @@
+"use strict";
 /**
  * Created by user on 2018/10/20/020.
  */
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const hashSum = require("hash-sum");
-const _nanoid = require("nanoid/non-secure");
-const _pkg = require("../package.json");
+exports.array_unique_unsafe = exports.isUnset = exports.isFloat = exports.isInt = exports.isNum = exports.hashArgv = exports.expectInDelta = exports.floatToString = exports.cloneClass = exports.getClass = exports.randomSeedStr = exports.randomSeedNum = exports._MathRandom = void 0;
+const hash_sum_1 = __importDefault(require("hash-sum"));
+const non_secure_1 = require("nanoid/non-secure");
+const package_json_1 = __importDefault(require("../package.json"));
 const const_1 = require("./util/const");
 //import shortid = require('shortid');
 //
@@ -12,7 +17,14 @@ const const_1 = require("./util/const");
 //export declare function hashSum(input): string
 //
 //export { shortid, hashSum }
-const _GLOBAL = (0, eval)('this');
+/**
+ * try save original Math.random,
+ * if no other module overwrite Math.random
+ *
+ * @alias Math.random
+ */
+let _MathRandom;
+exports._MathRandom = _MathRandom;
 // @ts-ignore
 exports._MathRandom = _MathRandom = Math.random;
 function randomSeedNum() {
@@ -24,9 +36,9 @@ exports.randomSeedNum = randomSeedNum;
  */
 function randomSeedStr() {
     return [
-        _nanoid(),
-        hashSum(_pkg.name),
-        hashSum(_pkg.version),
+        non_secure_1.nanoid(),
+        hash_sum_1.default(package_json_1.default.name),
+        hash_sum_1.default(package_json_1.default.version),
         Date.now(),
         floatToString(_MathRandom()),
     ].join('_');
@@ -104,5 +116,4 @@ function array_unique_unsafe(arr) {
     return arr.filter((v, i, arr) => arr.indexOf(v) === i);
 }
 exports.array_unique_unsafe = array_unique_unsafe;
-// @ts-ignore
-Object.freeze(exports);
+//# sourceMappingURL=util.js.map

@@ -22,5 +22,4 @@ export default function uniformBytes(random: Random, size: number, toStr?: boole
 	}
 }
 
-// @ts-ignore
-Object.freeze(exports)
+

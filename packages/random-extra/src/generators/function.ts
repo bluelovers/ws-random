@@ -54,5 +54,4 @@ export class RNGFunction<S extends IRNGFunctionSeed = IRNGFunctionSeed> extends 
 
 export default RNGFunction
 
-// @ts-ignore
-Object.freeze(exports)
+

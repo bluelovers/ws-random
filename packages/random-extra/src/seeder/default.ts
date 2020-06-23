@@ -26,5 +26,4 @@ export function seedToken(seed?: number | any, opts?, ...argv): number
 }
 
 export default seedToken
-// @ts-ignore
-Object.freeze(exports)
+

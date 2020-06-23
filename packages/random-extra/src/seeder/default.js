@@ -1,7 +1,9 @@
+"use strict";
 /**
  * Created by user on 2018/10/20/020.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.seedToken = void 0;
 function seedToken(seed, opts, ...argv) {
     // TODO: add entropy and stuff
     if (seed === (seed | 0)) {
@@ -19,5 +21,4 @@ function seedToken(seed, opts, ...argv) {
 }
 exports.seedToken = seedToken;
 exports.default = seedToken;
-// @ts-ignore
-Object.freeze(exports);
+//# sourceMappingURL=default.js.map

@@ -1,4 +1,6 @@
+"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.BYTE_TO_HEX_TO_UPPER_CASE = exports.BYTE_TO_HEX_TO_LOWER_CASE = exports.MATH_POW_2_32 = exports.UINT32_VALUE = exports.UINT32_BYTES = exports.FLOAT_ENTROPY_BYTES = exports.SUM_DELTA = exports.ENUM_ALPHABET = void 0;
 var ENUM_ALPHABET;
 (function (ENUM_ALPHABET) {
     ENUM_ALPHABET["NANOID_URL"] = "ModuleSymbhasOwnPr-0123456789ABCDEFGHIJKLNQRTUVWXYZ_cfgijkpqtvxz";
@@ -30,5 +32,5 @@ for (let i = 0; i < 256; ++i) {
 exports.BYTE_TO_HEX_TO_LOWER_CASE = Object.freeze(exports.BYTE_TO_HEX_TO_LOWER_CASE);
 // @ts-ignore
 exports.BYTE_TO_HEX_TO_UPPER_CASE = Object.freeze(exports.BYTE_TO_HEX_TO_UPPER_CASE);
-// @ts-ignore
-Object.freeze(exports);
+;
+//# sourceMappingURL=const.js.map

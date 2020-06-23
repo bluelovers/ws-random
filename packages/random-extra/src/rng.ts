@@ -112,5 +112,4 @@ export abstract class RNG implements IRNGLike
 }
 
 export default RNG
-// @ts-ignore
-Object.freeze(exports)
+

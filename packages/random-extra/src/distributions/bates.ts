@@ -15,5 +15,4 @@ export default (random: Random, n: number) =>
 		return irwinHall() / n
 	}
 }
-// @ts-ignore
-Object.freeze(exports)
+

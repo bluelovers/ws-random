@@ -67,5 +67,4 @@ export function RNGFactory(...args)
 }
 
 export default RNGFactory
-// @ts-ignore
-Object.freeze(exports)
+

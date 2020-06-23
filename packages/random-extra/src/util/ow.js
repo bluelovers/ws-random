@@ -1,16 +1,16 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.assert = exports.expect = void 0;
 /**
  * make easy replace to other ow like lib
  */
-//import ow from 'ow-lite-ts'
-//import ow = require('ow-lite-ts');
-const _chai = require("chai");
-//import { Assertion } from 'chai'
-//import { expect, assert } from 'chai'
+const chai_1 = __importDefault(require("chai"));
 const chai_asserttype_extra_1 = require("chai-asserttype-extra");
-const chai = chai_asserttype_extra_1.ChaiPlugin.install(_chai);
-const expect = chai.expect;
-exports.expect = expect;
-exports.default = expect;
-// @ts-ignore
-Object.freeze(exports);
+const chai = chai_asserttype_extra_1.ChaiPlugin.install(chai_1.default);
+exports.expect = chai.expect;
+exports.assert = chai.assert;
+exports.default = exports.expect;
+//# sourceMappingURL=ow.js.map

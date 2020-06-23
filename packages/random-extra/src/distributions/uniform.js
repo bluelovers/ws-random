@@ -1,6 +1,10 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const math_1 = require("../util/math");
-const ow_1 = require("../util/ow");
+const ow_1 = __importDefault(require("../util/ow"));
 exports.default = (random, min, max, fractionDigits) => {
     if (max === undefined) {
         max = (min === undefined ? 1 : min);
@@ -30,5 +34,4 @@ exports.default = (random, min, max, fractionDigits) => {
     }
     return fn;
 };
-// @ts-ignore
-Object.freeze(exports);
+//# sourceMappingURL=uniform.js.map

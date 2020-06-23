@@ -5,8 +5,8 @@ export declare class RNGFunction<S extends IRNGFunctionSeed = IRNGFunctionSeed> 
     protected _seedable: boolean;
     constructor(seed: S, opts?: any, ...argv: any[]);
     protected _init(seed?: any, opts?: any, ...argv: any[]): void;
-    readonly name: string;
-    readonly seedable: boolean;
+    get name(): string;
+    get seedable(): boolean;
     next(): number;
     seed(seed: S, opts?: any, ...argv: any[]): void;
     clone<S extends IRNGFunctionSeed = IRNGFunctionSeed>(seed: S, opts?: any, ...argv: any[]): RNGFunction<S>;

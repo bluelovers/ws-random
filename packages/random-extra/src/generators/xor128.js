@@ -1,5 +1,10 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const rng_1 = require("../rng");
+exports.RNGXOR128 = void 0;
+const rng_1 = __importDefault(require("../rng"));
 const util_1 = require("../util");
 class RNGXOR128 extends rng_1.default {
     constructor(...argv) {
@@ -59,5 +64,4 @@ class RNGXOR128 extends rng_1.default {
 }
 exports.RNGXOR128 = RNGXOR128;
 exports.default = RNGXOR128;
-// @ts-ignore
-Object.freeze(exports);
+//# sourceMappingURL=xor128.js.map

@@ -1,5 +1,9 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const ow_1 = require("../util/ow");
+const ow_1 = __importDefault(require("../util/ow"));
 exports.default = (random, n) => {
     //ow(n, ow.number.integer.positive)
     ow_1.default(n).integer.gt(0);
@@ -8,5 +12,4 @@ exports.default = (random, n) => {
         return irwinHall() / n;
     };
 };
-// @ts-ignore
-Object.freeze(exports);
+//# sourceMappingURL=bates.js.map

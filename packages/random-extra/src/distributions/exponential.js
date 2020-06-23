@@ -1,5 +1,9 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const ow_1 = require("../util/ow");
+const ow_1 = __importDefault(require("../util/ow"));
 exports.default = (random, lambda = 1) => {
     //ow(lambda, ow.number.positive)
     ow_1.default(lambda).number.gt(0);
@@ -7,5 +11,4 @@ exports.default = (random, lambda = 1) => {
         return -Math.log(1 - random.next()) / lambda;
     };
 };
-// @ts-ignore
-Object.freeze(exports);
+//# sourceMappingURL=exponential.js.map

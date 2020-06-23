@@ -17,5 +17,4 @@ export class RNGMathRandom2 extends RNGFunction<typeof _MathRandom>
 
 export default RNGMathRandom2
 
-// @ts-ignore
-Object.freeze(exports)
+

@@ -1,5 +1,5 @@
 import { array_unique } from 'array-hyper-unique';
-import { fakeLibRMathRng, libRmath } from '../../for3rd/lib-r-math/util';
+import { fakeLibRMathRng, libRMath } from '../../for3rd/lib-r-math/util';
 import { Random } from '../../random';
 import { isUnset } from '../../util';
 import { UtilDistributions } from '../../util/distributions';
@@ -111,7 +111,7 @@ export function coreFnRandSumInt(argv: ISumNumParameterWuthCache)
 	/**
 	 * make rmultinom use with random.next
 	 */
-	let rmultinomFn = libRmath.Multinomial(fakeLibRMathRng(random.next)).rmultinom;
+	let rmultinomFn = libRMath.Multinomial(fakeLibRMathRng(random.next)).rmultinom;
 
 	/**
 	 * low value for speed up, but more chance fail

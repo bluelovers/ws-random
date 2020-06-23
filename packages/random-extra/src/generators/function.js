@@ -1,5 +1,10 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const rng_1 = require("../rng");
+exports.RNGFunction = void 0;
+const rng_1 = __importDefault(require("../rng"));
 const util_1 = require("../util");
 class RNGFunction extends rng_1.default {
     constructor(seed, opts, ...argv) {
@@ -32,5 +37,4 @@ class RNGFunction extends rng_1.default {
 }
 exports.RNGFunction = RNGFunction;
 exports.default = RNGFunction;
-// @ts-ignore
-Object.freeze(exports);
+//# sourceMappingURL=function.js.map

@@ -1,4 +1,6 @@
+"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.array_rebase = exports.randIndex = exports.swapAlgorithm2 = exports.swapAlgorithm = void 0;
 /**
  * Created by user on 2018/10/24/024.
  */
@@ -87,5 +89,4 @@ function array_rebase(ret_b, n_diff, min, max) {
     };
 }
 exports.array_rebase = array_rebase;
-// @ts-ignore
-Object.freeze(exports);
+//# sourceMappingURL=array.js.map

@@ -3,7 +3,7 @@ import { ValueOf, PickValueOf } from '../type';
 import { cloneClass } from '../util';
 import { tryRequire } from '../util/req';
 import RNGFunction from './function';
-import seedrandom = require('seedrandom');
+import seedrandom from 'seedrandom';
 import { nonenumerable, readonly } from 'core-decorators';
 
 export import RNGSeedRandomOptions = seedrandom.seedRandomOptions;
@@ -171,5 +171,4 @@ export interface IRNGSeedRandomGenerator
 
 export default RNGSeedRandom
 
-// @ts-ignore
-Object.freeze(exports)
+

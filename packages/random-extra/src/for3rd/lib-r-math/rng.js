@@ -1,13 +1,38 @@
+"use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const libRMath = require("lib-r-math.js");
+exports.RandomRngWithLibRMath = exports.LibRMathRngWithRandom = void 0;
+const libRMath = __importStar(require("lib-r-math.js"));
 const random_1 = require("../../random");
-const rng_1 = require("../../rng");
-const isExtendsOf = require("is-extends-of");
+const rng_1 = __importDefault(require("../../rng"));
+const is_extends_of_1 = __importDefault(require("is-extends-of"));
 class LibRMathRngWithRandom extends libRMath.IRNG {
     constructor(_seed, rng) {
         super(_seed);
         this.use(rng, _seed);
     }
+    // @ts-ignore
     get _name() {
         return 'Random<' + this.__random.rng.name + '>';
     }
@@ -57,11 +82,11 @@ class RandomRngWithLibRMath extends rng_1.default {
             // @ts-ignore
             this._rng = opts;
         }
-        else if (seed && isExtendsOf(seed, libRMath.IRNG)) {
+        else if (seed && is_extends_of_1.default(seed, libRMath.IRNG)) {
             // @ts-ignore
             this._rng = new seed(this._seedNum(opts));
         }
-        else if (opts && isExtendsOf(opts, libRMath.IRNG)) {
+        else if (opts && is_extends_of_1.default(opts, libRMath.IRNG)) {
             // @ts-ignore
             this._rng = new opts(this._seedNum(seed));
         }
@@ -100,3 +125,4 @@ class RandomRngWithLibRMath extends rng_1.default {
     }
 }
 exports.RandomRngWithLibRMath = RandomRngWithLibRMath;
+//# sourceMappingURL=rng.js.map

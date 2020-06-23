@@ -9,6 +9,10 @@ module.exports = {
 		'^.+\\.ts$': 'ts-jest',
 	},
 	verbose: true,
+	"setupFilesAfterEnv": [
+		"jest-chain",
+		"jest-extended",
+	],
 	/**
 	 * if didn't set `coverageProvider` to `v8`
 	 * with `collectCoverage` `true`, nodejs debug point maybe will fail

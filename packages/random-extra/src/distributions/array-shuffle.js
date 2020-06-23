@@ -1,3 +1,4 @@
+"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const array_1 = require("../util/array");
 const distributions_1 = require("../util/distributions");
@@ -8,6 +9,7 @@ function arrayShuffle(random, arr, overwrite) {
     if (!overwrite) {
         let cloneArrayLike;
         if (Buffer.isBuffer(arr)) {
+            // @ts-ignore
             cloneArrayLike = (arr) => {
                 // @ts-ignore
                 return Buffer.from(arr);
@@ -29,5 +31,4 @@ function arrayShuffle(random, arr, overwrite) {
 }
 arrayShuffle.memoizable = false;
 exports.default = arrayShuffle;
-// @ts-ignore
-Object.freeze(exports);
+//# sourceMappingURL=array-shuffle.js.map

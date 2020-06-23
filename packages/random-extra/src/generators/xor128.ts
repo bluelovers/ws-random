@@ -105,5 +105,4 @@ export class RNGXOR128 extends RNG
 
 export default RNGXOR128
 
-// @ts-ignore
-Object.freeze(exports)
+

@@ -38,5 +38,4 @@ BYTE_TO_HEX_TO_LOWER_CASE = Object.freeze(BYTE_TO_HEX_TO_LOWER_CASE);
 // @ts-ignore
 BYTE_TO_HEX_TO_UPPER_CASE = Object.freeze(BYTE_TO_HEX_TO_UPPER_CASE);
 
-// @ts-ignore
-Object.freeze(exports);
+;

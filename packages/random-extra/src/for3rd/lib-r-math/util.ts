@@ -2,8 +2,8 @@
  * Created by user on 2018/11/19/019.
  */
 
-import libRmath = require('lib-r-math.js');
-export { libRmath }
+import * as libRMath from 'lib-r-math.js';
+export { libRMath }
 
 export function fakeLibRMathRng(fn: () => number)
 {
@@ -22,5 +22,5 @@ export function fakeLibRMathRng(fn: () => number)
 
 			return fn()
 		},
-	} as libRmath.IRNG
+	} as libRMath.IRNG
 }

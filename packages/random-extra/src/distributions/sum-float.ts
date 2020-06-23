@@ -21,5 +21,4 @@ export default (random: Random, size: number, sum?: number, min?: number, max?: 
 	})
 }
 
-// @ts-ignore
-Object.freeze(exports)
+

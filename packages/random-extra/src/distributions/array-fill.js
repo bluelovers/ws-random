@@ -1,9 +1,13 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const uniform_int_1 = require("./uniform-int");
+const uniform_int_1 = __importDefault(require("./uniform-int"));
 const util_1 = require("../util");
-const ow_1 = require("../util/ow");
-const byte_1 = require("./byte");
-const uniform_1 = require("./uniform");
+const ow_1 = __importDefault(require("../util/ow"));
+const byte_1 = __importDefault(require("./byte"));
+const uniform_1 = __importDefault(require("./uniform"));
 function arrayFill(random, min, max, float) {
     let fn;
     {
@@ -31,5 +35,5 @@ function arrayFill(random, min, max, float) {
     };
 }
 exports.default = arrayFill;
-// @ts-ignore
-Object.freeze(exports);
+;
+//# sourceMappingURL=array-fill.js.map

@@ -20,6 +20,7 @@ function arrayShuffle<T extends ITSArrayLikeWriteable<any> | TypedArray | Buffer
 
 		if (Buffer.isBuffer(arr))
 		{
+			// @ts-ignore
 			cloneArrayLike = (arr) =>
 			{
 				// @ts-ignore
@@ -51,5 +52,4 @@ arrayShuffle.memoizable = false;
 
 export default arrayShuffle;
 
-// @ts-ignore
-Object.freeze(exports)
+

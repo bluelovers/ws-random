@@ -2,10 +2,10 @@
  * Created by user on 2018/10/20/020.
  */
 
-import hashSum = require('hash-sum');
-import _nanoid = require('nanoid/non-secure');
+import hashSum from 'hash-sum';
+import { nanoid as _nanoid } from 'nanoid/non-secure'
 
-import _pkg = require('../package.json');
+import _pkg from '../package.json';
 import { MATH_POW_2_32 } from './util/const';
 //import shortid = require('shortid');
 //
@@ -14,7 +14,6 @@ import { MATH_POW_2_32 } from './util/const';
 //
 //export { shortid, hashSum }
 
-const _GLOBAL = (0, eval)('this')
 
 /**
  * try save original Math.random,
@@ -22,7 +21,7 @@ const _GLOBAL = (0, eval)('this')
  *
  * @alias Math.random
  */
-declare function _MathRandom(): number
+let _MathRandom: () => number
 
 // @ts-ignore
 _MathRandom = Math.random;
@@ -138,5 +137,4 @@ export function array_unique_unsafe<T extends any>(arr: T[])
 	return arr.filter((v, i, arr) => arr.indexOf(v) === i)
 }
 
-// @ts-ignore
-Object.freeze(exports)
+

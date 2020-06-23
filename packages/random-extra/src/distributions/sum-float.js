@@ -1,3 +1,4 @@
+"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const sum_num_1 = require("./internal/sum-num");
 exports.default = (random, size, sum, min, max, fractionDigits) => {
@@ -10,5 +11,4 @@ exports.default = (random, size, sum, min, max, fractionDigits) => {
         fractionDigits,
     });
 };
-// @ts-ignore
-Object.freeze(exports);
+//# sourceMappingURL=sum-float.js.map

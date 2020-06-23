@@ -16,5 +16,4 @@ export default (random: Random, likelihood: number = 0.5) =>
 		return (random.next() >= likelihood)
 	}
 }
-// @ts-ignore
-Object.freeze(exports)
+

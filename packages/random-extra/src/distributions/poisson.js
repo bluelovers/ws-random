@@ -1,5 +1,9 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const ow_1 = require("../util/ow");
+const ow_1 = __importDefault(require("../util/ow"));
 const logFactorialTable = [
     0.0,
     0.0,
@@ -78,5 +82,4 @@ exports.default = (random, lambda = 1) => {
         };
     }
 };
-// @ts-ignore
-Object.freeze(exports);
+//# sourceMappingURL=poisson.js.map

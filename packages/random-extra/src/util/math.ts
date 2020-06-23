@@ -194,5 +194,4 @@ export function readUInt32BE(buf: ArrayLike<number>, offset: number = 0)
 			buf[offset + 3])
 }
 
-// @ts-ignore
-Object.freeze(exports)
+

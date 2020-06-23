@@ -44,5 +44,4 @@ export default <T extends Array<unknown>>(random: Random, arr: T, size: number =
 	}
 }
 
-// @ts-ignore
-Object.freeze(exports)
+

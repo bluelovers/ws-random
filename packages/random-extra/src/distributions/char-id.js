@@ -1,12 +1,16 @@
+"use strict";
 /**
  * Created by user on 2018/11/9/009.
  */
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const UString = require("uni-string");
+const uni_string_1 = __importDefault(require("uni-string"));
 const util_1 = require("../util");
 const const_1 = require("../util/const");
 const distributions_1 = require("../util/distributions");
-const ow_1 = require("../util/ow");
+const ow_1 = __importDefault(require("../util/ow"));
 exports.default = (random, char, size) => {
     if (typeof char === 'number') {
         if (typeof size === 'number') {
@@ -22,7 +26,7 @@ exports.default = (random, char, size) => {
     if (!char) {
         char = const_1.ENUM_ALPHABET.DEFAULT;
     }
-    let ls = UString.create(char).split('');
+    let ls = uni_string_1.default.create(char).split('');
     let len = ls.length;
     ow_1.default(ls).to.have.lengthOf.gt(1);
     const randIndex = () => {
@@ -37,5 +41,4 @@ exports.default = (random, char, size) => {
         return list.join('');
     };
 };
-// @ts-ignore
-Object.freeze(exports);
+//# sourceMappingURL=char-id.js.map

@@ -1,4 +1,25 @@
+"use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.UtilDistributions = exports.int = exports.float = exports.randIndex = void 0;
 function randIndex(random, len) {
     return Math.floor(random.next() * len);
 }
@@ -11,8 +32,7 @@ function int(random, min, max) {
     return Math.floor(float(random, min, max + 1));
 }
 exports.int = int;
-const UtilDistributions = require("./distributions");
+const UtilDistributions = __importStar(require("./distributions"));
 exports.UtilDistributions = UtilDistributions;
 exports.default = UtilDistributions;
-// @ts-ignore
-Object.freeze(exports);
+//# sourceMappingURL=distributions.js.map

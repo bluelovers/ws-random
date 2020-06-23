@@ -1,7 +1,9 @@
+"use strict";
 /**
  * Created by user on 2018/10/22/022.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.simpleWrap = exports.defaultArgv = void 0;
 exports.defaultArgv = Object.freeze({
     int: Object.freeze([0, 100]),
     integer: Object.freeze([0, 100]),
@@ -46,5 +48,4 @@ function simpleWrap(fn) {
 }
 exports.simpleWrap = simpleWrap;
 exports.default = simpleWrap;
-// @ts-ignore
-Object.freeze(exports);
+//# sourceMappingURL=simple-wrap.js.map

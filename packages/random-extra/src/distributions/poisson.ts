@@ -110,5 +110,4 @@ export default (random: Random, lambda = 1) =>
 		}
 	}
 }
-// @ts-ignore
-Object.freeze(exports)
+

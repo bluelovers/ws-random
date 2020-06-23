@@ -7,5 +7,5 @@ export interface IRandIndex {
 export interface IArrayUniqueOutOfLimitCallback<T extends unknown> {
     (arr: T[], limit: number, loop: boolean, fn: IRandIndex): T[] | boolean | void;
 }
-declare const _default: <T extends unknown>(random: Random<import("../rng").RNG>, arr: T[], limit?: number, loop?: boolean, fnRandIndex?: IRandIndex, fnOutOfLimit?: IArrayUniqueOutOfLimitCallback<T>) => () => T;
+declare const _default: <T extends unknown>(random: Random, arr: T[], limit?: number, loop?: boolean, fnRandIndex?: IRandIndex, fnOutOfLimit?: IArrayUniqueOutOfLimitCallback<T>) => () => T;
 export default _default;

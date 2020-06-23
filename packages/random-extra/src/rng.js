@@ -1,4 +1,6 @@
+"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.RNG = void 0;
 const default_1 = require("./seeder/default");
 const hash_any_1 = require("./seeder/hash-any");
 const util_1 = require("./util");
@@ -66,5 +68,4 @@ class RNG {
 }
 exports.RNG = RNG;
 exports.default = RNG;
-// @ts-ignore
-Object.freeze(exports);
+//# sourceMappingURL=rng.js.map

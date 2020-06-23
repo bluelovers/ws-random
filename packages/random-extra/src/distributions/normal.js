@@ -1,5 +1,9 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const ow_1 = require("../util/ow");
+const ow_1 = __importDefault(require("../util/ow"));
 exports.default = (random, mu = 0, sigma = 1) => {
     //ow(mu, ow.number)
     //ow(sigma, ow.number)
@@ -15,5 +19,4 @@ exports.default = (random, mu = 0, sigma = 1) => {
         return mu + sigma * y * Math.sqrt(-2 * Math.log(r) / r);
     };
 };
-// @ts-ignore
-Object.freeze(exports);
+//# sourceMappingURL=normal.js.map

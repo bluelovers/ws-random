@@ -1,6 +1,6 @@
 import { PickValueOf } from '../type';
 import RNGFunction from './function';
-import seedrandom = require('seedrandom');
+import seedrandom from 'seedrandom';
 export import RNGSeedRandomOptions = seedrandom.seedRandomOptions;
 export declare const defaultOptions: RNGSeedRandomOptions;
 export declare type IRNGSeedRandomLibName = 'alea' | 'tychei' | 'xor128' | 'xor4096' | 'xorshift7' | 'xorwow';
@@ -16,13 +16,13 @@ export declare class RNGSeedRandom extends RNGFunction<seedrandom.prng> {
     protected _init(seed?: any, opts?: any, ...argv: any[]): void;
     protected readonly _NAME = "seedrandom";
     protected _TYPE: any;
-    readonly name: string;
+    get name(): string;
     protected __generator(fn?: typeof seedrandom | IRNGSeedRandomLib | IRNGSeedRandomLibValueOf): IRNGSeedRandomGenerator;
-    readonly options: seedrandom.seedRandomOptions;
+    get options(): seedrandom.seedRandomOptions;
     /**
      * only when option.state = true
      */
-    readonly state: IRNGSeedRandomState;
+    get state(): IRNGSeedRandomState;
     /**
      * @todo options for change seeder
      */

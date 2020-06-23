@@ -23,5 +23,4 @@ export default (random: Random, min?: number, max?: number) =>
 		return Math.floor(fn())
 	}
 }
-// @ts-ignore
-Object.freeze(exports)
+

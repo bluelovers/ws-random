@@ -9,5 +9,4 @@ export function isUUID4(id: string)
 	return UUID4_PATTERN.test(id);
 }
 
-// @ts-ignore
-Object.freeze(exports)
+

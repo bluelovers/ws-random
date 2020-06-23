@@ -93,7 +93,7 @@ export {
 	arrayFill,
 }
 
-import * as Distributions from './distributions';
-export { Distributions }
+export const Distributions = exports as typeof import('./distributions')
+
 export default Distributions
-Object.freeze(exports)
+

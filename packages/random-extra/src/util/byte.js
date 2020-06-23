@@ -1,7 +1,9 @@
+"use strict";
 /**
  * Created by user on 2018/11/17/017.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.toHexArray = exports.stringifyByte = exports.bytesToUuid = exports._bytesToUuid = void 0;
 const const_1 = require("./const");
 //export { BYTE_TO_HEX_TO_LOWER_CASE, BYTE_TO_HEX_TO_UPPER_CASE }
 function _bytesToUuid(bth = const_1.BYTE_TO_HEX_TO_LOWER_CASE) {
@@ -47,5 +49,4 @@ function toHexArray(arr) {
     return arr.map(stringifyByte);
 }
 exports.toHexArray = toHexArray;
-// @ts-ignore
-Object.freeze(exports);
+//# sourceMappingURL=byte.js.map

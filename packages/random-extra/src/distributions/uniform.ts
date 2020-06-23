@@ -47,5 +47,4 @@ export default (random: Random, min?: number, max?: number, fractionDigits?: num
 
 	return fn
 }
-// @ts-ignore
-Object.freeze(exports)
+

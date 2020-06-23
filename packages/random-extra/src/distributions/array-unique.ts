@@ -94,5 +94,4 @@ export default <T extends unknown>(random: Random, arr: T[], limit?: number, loo
 	}
 }
 
-// @ts-ignore
-Object.freeze(exports)
+

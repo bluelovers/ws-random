@@ -39,6 +39,5 @@ import sumInt from './distributions/sum-int';
 import uuidv4 from './distributions/uuidv4';
 import arrayFill from './distributions/array-fill';
 export { bates, bernoulli, binomial, exponential, geometric, irwinHall, logNormal, normal, pareto, poisson, uniform, uniformBoolean, uniformInt, byte, bytes, arrayIndex, arrayShuffle, arrayUnique, itemByWeight, charID, sumFloat, sumInt, uuidv4, arrayFill, };
-import * as Distributions from './distributions';
-export { Distributions };
+export declare const Distributions: typeof import("./distributions");
 export default Distributions;

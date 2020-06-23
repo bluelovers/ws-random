@@ -25,5 +25,4 @@ export default function (random: Random, toUpperCase?: boolean)
 	}
 }
 
-// @ts-ignore
-Object.freeze(exports)
+

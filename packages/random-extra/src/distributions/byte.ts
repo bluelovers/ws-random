@@ -23,5 +23,4 @@ export default function uniformByte(random: Random, toStr?: boolean)
 	return fn
 }
 
-// @ts-ignore
-Object.freeze(exports)
+

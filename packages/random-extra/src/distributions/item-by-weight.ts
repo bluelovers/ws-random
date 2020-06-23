@@ -215,5 +215,4 @@ export function _createWeight<T extends unknown>(arr: T[] | IObjectInput<T>,
 	}
 }
 
-// @ts-ignore
-Object.freeze(exports)
+

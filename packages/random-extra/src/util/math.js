@@ -1,4 +1,6 @@
+"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.readUInt32BE = exports.readUInt32LE = exports._floatFromBuffer2 = exports._floatFromBuffer = exports.floatFromBuffer = exports.fixZero = exports.array_sum = exports.toFixedNumber = exports.get_range_by_size_sum = exports.get_prob_float = exports.get_prob = exports.sum_1_to_n = void 0;
 const const_1 = require("./const");
 /**
  * (1 + 2 + 3 +...+N)
@@ -145,5 +147,4 @@ function readUInt32BE(buf, offset = 0) {
             buf[offset + 3]);
 }
 exports.readUInt32BE = readUInt32BE;
-// @ts-ignore
-Object.freeze(exports);
+//# sourceMappingURL=math.js.map

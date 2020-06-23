@@ -12,5 +12,4 @@ export default (random: Random, alpha: number) =>
 		return 1.0 / Math.pow(1.0 - random.next(), invAlpha)
 	}
 }
-// @ts-ignore
-Object.freeze(exports)
+

@@ -54,5 +54,4 @@ export function toHexArray(arr: number[])
 	return arr.map(stringifyByte)
 }
 
-// @ts-ignore
-Object.freeze(exports)
+

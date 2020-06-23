@@ -20,5 +20,4 @@ import * as UtilDistributions from './distributions'
 export { UtilDistributions }
 export default UtilDistributions;
 
-// @ts-ignore
-Object.freeze(exports)
+

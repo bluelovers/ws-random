@@ -45,5 +45,4 @@ export default function arrayFill(random: Random, min?: number, max?: number, fl
 	}
 }
 
-// @ts-ignore
-Object.freeze(exports);
+;

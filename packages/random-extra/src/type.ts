@@ -19,5 +19,4 @@ export {
 	TypedArray,
 }
 
-// @ts-ignore
-Object.freeze(exports)
+

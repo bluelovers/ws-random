@@ -59,5 +59,4 @@ export function simpleWrap<T extends (() => number)>(fn: T)
 }
 
 export default simpleWrap;
-// @ts-ignore
-Object.freeze(exports)
+

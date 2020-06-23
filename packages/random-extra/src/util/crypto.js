@@ -1,7 +1,9 @@
+"use strict";
 /**
  * Created by user on 2018/11/25/025.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.randomBytes = exports.crossCrypto = void 0;
 exports.crossCrypto = (() => {
     let crypto;
     return () => {
@@ -45,3 +47,4 @@ function randomBytes(size, callback) {
     return exports.crossCrypto().randomBytes(size, callback);
 }
 exports.randomBytes = randomBytes;
+//# sourceMappingURL=crypto.js.map

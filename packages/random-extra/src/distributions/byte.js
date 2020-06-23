@@ -1,6 +1,10 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const ow_1 = require("../util/ow");
-const uniform_int_1 = require("./uniform-int");
+const ow_1 = __importDefault(require("../util/ow"));
+const uniform_int_1 = __importDefault(require("./uniform-int"));
 const byte_1 = require("../util/byte");
 function uniformByte(random, toStr) {
     let fn = uniform_int_1.default(random, 0, 255);
@@ -13,5 +17,4 @@ function uniformByte(random, toStr) {
     return fn;
 }
 exports.default = uniformByte;
-// @ts-ignore
-Object.freeze(exports);
+//# sourceMappingURL=byte.js.map

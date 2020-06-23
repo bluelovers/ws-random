@@ -1,5 +1,10 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const rng_1 = require("../rng");
+exports.RNGMathRandom = void 0;
+const rng_1 = __importDefault(require("../rng"));
 const util_1 = require("../util");
 class RNGMathRandom extends rng_1.default {
     get name() {
@@ -20,5 +25,4 @@ class RNGMathRandom extends rng_1.default {
 }
 exports.RNGMathRandom = RNGMathRandom;
 exports.default = RNGMathRandom;
-// @ts-ignore
-Object.freeze(exports);
+//# sourceMappingURL=math-random.js.map

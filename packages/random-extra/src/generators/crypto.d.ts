@@ -11,7 +11,7 @@ export declare class RNGCrypto extends RNG {
     constructor(seed?: any, opts?: any, ...argv: any[]);
     protected _init(crypto?: ICryptoLike | any, opts?: any, ...argv: any[]): void;
     _buffer(size?: number, size_min?: number): Buffer;
-    readonly name: string;
+    get name(): string;
     next(): number;
     seed(seed?: any, opts?: any, ...argv: any[]): void;
 }

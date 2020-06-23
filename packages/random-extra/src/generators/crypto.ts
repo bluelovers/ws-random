@@ -5,7 +5,7 @@ import { _floatFromBuffer, _floatFromBuffer2, floatFromBuffer } from '../util/ma
 import expect from '../util/ow'
 import RNG from '../rng';
 import { tryRequire } from '../util/req';
-import _crypto = require('crypto');
+import _crypto from 'crypto';
 
 export class RNGCrypto extends RNG
 {

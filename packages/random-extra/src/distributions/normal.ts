@@ -26,5 +26,4 @@ export default (random: Random, mu = 0, sigma = 1) =>
 		return mu + sigma * y * Math.sqrt(-2 * Math.log(r) / r)
 	}
 }
-// @ts-ignore
-Object.freeze(exports)
+

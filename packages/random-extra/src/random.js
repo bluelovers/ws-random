@@ -1,16 +1,24 @@
+"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 var Random_1;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.random = exports.Random = void 0;
 /// <reference types="node" />
 const ow_1 = require("./util/ow");
 const distributions_1 = require("./distributions");
-const rng_1 = require("./rng");
-const rng_factory_1 = require("./rng-factory");
+const rng_1 = __importDefault(require("./rng"));
+const rng_factory_1 = __importDefault(require("./rng-factory"));
 const util_1 = require("./util");
 const core_decorators_1 = require("core-decorators");
 /**
@@ -583,14 +591,22 @@ let Random = Random_1 = class Random {
         return this._rng.name;
     }
 };
+Random.Random = Random_1;
 __decorate([
-    core_decorators_1.deprecate('not recommended use')
+    core_decorators_1.deprecate('not recommended use'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
 ], Random.prototype, "patch", null);
 __decorate([
-    core_decorators_1.deprecate('not recommended use')
+    core_decorators_1.deprecate('not recommended use'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
 ], Random.prototype, "unpatch", null);
 Random = Random_1 = __decorate([
-    core_decorators_1.autobind
+    core_decorators_1.autobind,
+    __metadata("design:paramtypes", [Object])
 ], Random);
 exports.Random = Random;
 exports.random = new Random();
@@ -610,7 +626,7 @@ Object.defineProperty(Random, 'default', {
         return exports.random;
     },
 });
+Object.defineProperty(exports.random, "__esModule", { value: true });
 // defaults to Math.random as its RNG
 exports.default = exports.random;
-// @ts-ignore
-Object.freeze(exports);
+//# sourceMappingURL=random.js.map

@@ -1,11 +1,16 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const crypto_1 = require("./generators/crypto");
-const math_random2_1 = require("./generators/math-random2");
-const seedrandom_1 = require("./generators/seedrandom");
-const rng_1 = require("./rng");
-const xor128_1 = require("./generators/xor128");
-const function_1 = require("./generators/function");
-const math_random_1 = require("./generators/math-random");
+exports.RNGFactory = void 0;
+const crypto_1 = __importDefault(require("./generators/crypto"));
+const math_random2_1 = __importDefault(require("./generators/math-random2"));
+const seedrandom_1 = __importDefault(require("./generators/seedrandom"));
+const rng_1 = __importDefault(require("./rng"));
+const xor128_1 = __importDefault(require("./generators/xor128"));
+const function_1 = __importDefault(require("./generators/function"));
+const math_random_1 = __importDefault(require("./generators/math-random"));
 const PRNG_BUILTINS = {
     // TODO: add more prng from C++11 lib
     'xor128': xor128_1.default,
@@ -37,5 +42,4 @@ function RNGFactory(...args) {
 }
 exports.RNGFactory = RNGFactory;
 exports.default = RNGFactory;
-// @ts-ignore
-Object.freeze(exports);
+//# sourceMappingURL=rng-factory.js.map

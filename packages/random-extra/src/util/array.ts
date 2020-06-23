@@ -1,5 +1,5 @@
 import { array_unique } from 'array-hyper-unique';
-import { ITSArrayLikeWriteable } from 'ts-type/generic';
+import { ITSArrayLikeWriteable } from 'ts-type';
 import { IArrayInput02 } from '../type';
 
 /**
@@ -130,5 +130,4 @@ export function array_rebase(ret_b: number[], n_diff: number, min: number, max: 
 	};
 }
 
-// @ts-ignore
-Object.freeze(exports)
+

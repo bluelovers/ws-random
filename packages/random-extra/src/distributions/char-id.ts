@@ -2,7 +2,7 @@
  * Created by user on 2018/11/9/009.
  */
 
-import UString = require("uni-string");
+import UString from "uni-string";
 import { Random } from '../random';
 import { floatToString } from '../util';
 import { ENUM_ALPHABET } from '../util/const';
@@ -54,5 +54,4 @@ export default (random: Random, char?: ENUM_ALPHABET | string | Buffer | number,
 	}
 }
 
-// @ts-ignore
-Object.freeze(exports);
+;

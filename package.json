@@ -26,8 +26,10 @@
     "@bluelovers/tsconfig": "^1.0.19",
     "@types/benchmark": "^1.0.33",
     "@types/chai": "^4",
+    "@types/check-types": "^7.3.1",
     "@types/core-decorators": "^0.20.0",
     "@types/fs-extra": "^9.0.1",
+    "@types/jest": "^26.0.0",
     "@types/mocha": "^7.0.2",
     "@types/node": "*"
   },
@@ -40,7 +42,14 @@
     "@bluelovers/fast-glob": "^3.0.4",
     "@git-lazy/spawn": "^1.0.20",
     "@git-lazy/subtree": "^1.0.13",
+    "check-types": "^11.1.2",
     "debug-color2": "^1.2.3",
-    "fs-extra": "^9.0.1"
+    "fs-extra": "^9.0.1",
+    "jest": "^26.0.1",
+    "jest-chain": "^1.1.5",
+    "jest-extended": "^0.11.5",
+    "jest-matcher-deep-close-to": "^2.0.1",
+    "jest-matcher-utils": "^26.0.1",
+    "ts-jest": "^26.1.1"
   }
 }

@@ -1,10 +1,15 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.RNGCrypto = void 0;
 const array_1 = require("../util/array");
 const const_1 = require("../util/const");
 const crypto_1 = require("../util/crypto");
 const math_1 = require("../util/math");
-const ow_1 = require("../util/ow");
-const rng_1 = require("../rng");
+const ow_1 = __importDefault(require("../util/ow"));
+const rng_1 = __importDefault(require("../rng"));
 class RNGCrypto extends rng_1.default {
     constructor(seed, opts, ...argv) {
         super();
@@ -57,3 +62,4 @@ class RNGCrypto extends rng_1.default {
 }
 exports.RNGCrypto = RNGCrypto;
 exports.default = RNGCrypto;
+//# sourceMappingURL=crypto.js.map

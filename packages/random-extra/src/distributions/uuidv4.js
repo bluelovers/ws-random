@@ -1,7 +1,11 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const byte_1 = require("../util/byte");
 const const_1 = require("../util/const");
-const bytes_1 = require("./bytes");
+const bytes_1 = __importDefault(require("./bytes"));
 /**
  * @see https://github.com/tracker1/node-uuid4/blob/master/index.js
  */
@@ -17,5 +21,4 @@ function default_1(random, toUpperCase) {
     };
 }
 exports.default = default_1;
-// @ts-ignore
-Object.freeze(exports);
+//# sourceMappingURL=uuidv4.js.map

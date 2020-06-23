@@ -1,8 +1,7 @@
-'use strict';
-const random_1 = require("./random");
-// @ts-ignore
-var random_2 = require("./random");
-exports.Random = random_2.Random;
-// @ts-ignore
-exports.default = random_1.default;
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+const random_1 = __importDefault(require("./random"));
 module.exports = random_1.default;
+//# sourceMappingURL=index.js.map

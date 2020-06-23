@@ -7,7 +7,7 @@
  *
  * @alias Math.random
  */
-declare function _MathRandom(): number;
+declare let _MathRandom: () => number;
 export { _MathRandom };
 export declare function randomSeedNum(): number;
 /**

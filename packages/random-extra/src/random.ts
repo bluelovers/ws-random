@@ -833,6 +833,7 @@ export class Random<R extends RNG = RNG>
 
 	protected static default: typeof Random;
 	readonly Random: typeof Random;
+	static Random = Random;
 }
 
 export const random = new Random()
@@ -857,7 +858,8 @@ Object.defineProperty(Random, 'default', {
 	},
 });
 
+Object.defineProperty(random, "__esModule", { value: true });
+
 // defaults to Math.random as its RNG
 export default random
-// @ts-ignore
-Object.freeze(exports);
+;

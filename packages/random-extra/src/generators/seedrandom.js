@@ -1,7 +1,12 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.RNGSeedRandom = exports.defaultOptions = void 0;
 const util_1 = require("../util");
 const req_1 = require("../util/req");
-const function_1 = require("./function");
+const function_1 = __importDefault(require("./function"));
 exports.defaultOptions = Object.freeze({
     entropy: true
 });
@@ -99,5 +104,4 @@ class RNGSeedRandom extends function_1.default {
 }
 exports.RNGSeedRandom = RNGSeedRandom;
 exports.default = RNGSeedRandom;
-// @ts-ignore
-Object.freeze(exports);
+//# sourceMappingURL=seedrandom.js.map

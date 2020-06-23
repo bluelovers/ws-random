@@ -13,5 +13,4 @@ export default (random: Random, p = 0.5) =>
 		return (random.next() + p) | 0
 	}
 }
-// @ts-ignore
-Object.freeze(exports)
+

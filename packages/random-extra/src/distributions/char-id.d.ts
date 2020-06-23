@@ -3,5 +3,6 @@
  */
 /// <reference types="node" />
 import { Random } from '../random';
-declare const _default: (random: Random<import("../rng").RNG>, char?: string | number | Buffer, size?: number) => () => string;
+import { ENUM_ALPHABET } from '../util/const';
+declare const _default: (random: Random, char?: ENUM_ALPHABET | string | Buffer | number, size?: number) => () => string;
 export default _default;

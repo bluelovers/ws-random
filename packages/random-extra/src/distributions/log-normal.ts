@@ -1,6 +1,7 @@
 import { Random } from '../random';
 import RNG from '../rng'
 
+// @ts-ignore
 export default (random: Random, ...args: Parameters<typeof random.dfNormal>) =>
 {
 	const normal = random.dfNormal(...args)
@@ -10,5 +11,4 @@ export default (random: Random, ...args: Parameters<typeof random.dfNormal>) =>
 		return Math.exp(normal())
 	}
 }
-// @ts-ignore
-Object.freeze(exports)
+

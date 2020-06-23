@@ -1,7 +1,7 @@
-import libRMath = require('lib-r-math.js');
+import * as libRMath from 'lib-r-math.js';
 import { Random, random } from '../../random';
 import RNG, { IRNGLike } from '../../rng';
-import isExtendsOf = require('is-extends-of');
+import isExtendsOf from 'is-extends-of';
 
 export class LibRMathRngWithRandom extends libRMath.IRNG
 {
@@ -14,6 +14,7 @@ export class LibRMathRngWithRandom extends libRMath.IRNG
 		this.use(rng, _seed)
 	}
 
+	// @ts-ignore
 	protected get _name()
 	{
 		return 'Random<' + this.__random.rng.name + '>';

@@ -1,11 +1,16 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.coreFnRandSumFloat = exports.coreFnRandSumInt = void 0;
 const array_hyper_unique_1 = require("array-hyper-unique");
 const util_1 = require("../../for3rd/lib-r-math/util");
 const util_2 = require("../../util");
 const distributions_1 = require("../../util/distributions");
 const math_1 = require("../../util/math");
 const ow_1 = require("../../util/ow");
-const uniform_1 = require("../uniform");
+const uniform_1 = __importDefault(require("../uniform"));
 /**
  * not support unique, but will try make unique if can
  * thx @SeverinPappadeux for int version
@@ -56,7 +61,7 @@ function coreFnRandSumInt(argv) {
     /**
      * make rmultinom use with random.next
      */
-    let rmultinomFn = util_1.libRmath.Multinomial(util_1.fakeLibRMathRng(random.next)).rmultinom;
+    let rmultinomFn = util_1.libRMath.Multinomial(util_1.fakeLibRMathRng(random.next)).rmultinom;
     /**
      * low value for speed up, but more chance fail
      */
@@ -267,3 +272,4 @@ function coreFnRandSumFloat(argv) {
     };
 }
 exports.coreFnRandSumFloat = coreFnRandSumFloat;
+//# sourceMappingURL=sum-num.js.map

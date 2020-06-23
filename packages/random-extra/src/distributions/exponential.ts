@@ -13,5 +13,4 @@ export default (random: Random, lambda = 1) =>
 		return -Math.log(1 - random.next()) / lambda
 	}
 }
-// @ts-ignore
-Object.freeze(exports)
+

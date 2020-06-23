@@ -1,6 +1,11 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports._createWeight = exports._getWeight = void 0;
 const distributions_1 = require("../util/distributions");
-const ow_1 = require("../util/ow");
+const ow_1 = __importDefault(require("../util/ow"));
 function itemByWeight(random, arr, getWeight, shuffle, disableSort) {
     getWeight = getWeight || _getWeight;
     let ws = _createWeight(arr, getWeight);
@@ -106,5 +111,4 @@ function _createWeight(arr, getWeight = _getWeight) {
     };
 }
 exports._createWeight = _createWeight;
-// @ts-ignore
-Object.freeze(exports);
+//# sourceMappingURL=item-by-weight.js.map

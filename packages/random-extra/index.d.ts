@@ -1,4 +1,2 @@
-import random = require('./lib');
-export { Random } from './lib';
-export default random;
+import random from './src';
 export = random;

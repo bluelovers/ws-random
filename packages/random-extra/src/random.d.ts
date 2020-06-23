@@ -27,18 +27,18 @@ export declare class Random<R extends RNG = RNG> {
     /**
      * @member {Rng} Underlying pseudo-random number generator
      */
-    readonly rng: R;
-    readonly seedable: boolean;
+    get rng(): R;
+    get seedable(): boolean;
     /**
      * @see random.next
      */
-    readonly random: () => number;
+    get random(): () => number;
     /**
      * create random numbers like Math.random()
      *
      * @see random.next
      */
-    readonly rand: () => number;
+    get rand(): () => number;
     /**
      * initialize new seeds
      */
@@ -46,7 +46,7 @@ export declare class Random<R extends RNG = RNG> {
     /**
      * @see random.srand
      */
-    readonly srandom: (...argv: any[]) => number;
+    get srandom(): (...argv: any[]) => number;
     /**
      * initialize seeds for rand() to create random numbers
      */
@@ -334,7 +334,7 @@ export declare class Random<R extends RNG = RNG> {
      * @return {function}
      */
     dfPareto(alpha?: number): () => number;
-    itemByWeight<T extends unknown>(arr: T[], getWeight?: IGetWeight<T>, shuffle?: boolean, disableSort?: boolean, ...argv: any[]): [string, T, number];
+    itemByWeight<T extends unknown>(arr: T[], getWeight?: IGetWeight<T>, shuffle?: boolean, disableSort?: boolean, ...argv: any[]): IWeightEntrie<T>;
     /**
      * returns random weighted item by give array/object
      */
@@ -374,9 +374,10 @@ export declare class Random<R extends RNG = RNG> {
      * reset Memoizes distributions
      */
     reset(): this;
-    readonly [Symbol.toStringTag]: string;
+    get [Symbol.toStringTag](): string;
     protected static default: typeof Random;
     readonly Random: typeof Random;
+    static Random: typeof Random;
 }
 export declare const random: Random<RNG>;
 export default random;

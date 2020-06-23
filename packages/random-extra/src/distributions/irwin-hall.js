@@ -1,6 +1,10 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const math_1 = require("../util/math");
-const ow_1 = require("../util/ow");
+const ow_1 = __importDefault(require("../util/ow"));
 /**
  * https://zh.wikipedia.org/wiki/%E6%AD%90%E6%96%87%E2%80%93%E8%B3%80%E7%88%BE%E5%88%86%E4%BD%88
  * https://en.wikipedia.org/wiki/Irwin%E2%80%93Hall_distribution
@@ -24,5 +28,4 @@ exports.default = (random, n) => {
         return sum;
     };
 };
-// @ts-ignore
-Object.freeze(exports);
+//# sourceMappingURL=irwin-hall.js.map

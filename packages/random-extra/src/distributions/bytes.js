@@ -1,6 +1,10 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const ow_1 = require("../util/ow");
-const byte_1 = require("./byte");
+const ow_1 = __importDefault(require("../util/ow"));
+const byte_1 = __importDefault(require("./byte"));
 function uniformBytes(random, size, toStr) {
     ow_1.default(size).integer.gt(0);
     const fn = byte_1.default(random, toStr);
@@ -14,5 +18,4 @@ function uniformBytes(random, size, toStr) {
     };
 }
 exports.default = uniformBytes;
-// @ts-ignore
-Object.freeze(exports);
+//# sourceMappingURL=bytes.js.map
