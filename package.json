@@ -7,8 +7,8 @@
   ],
   "scripts": {
     "test": "yarn-tool -- ws run test",
-    "lerna:publish": "ynpx --quiet lerna -- publish",
-    "lerna:publish:yes": "ynpx --quiet lerna -- publish --yes --bump patch && yarn run postpublishOnly",
+    "lerna:publish": "lerna publish",
+    "lerna:publish:yes": "lerna publish --yes --bump patch && yarn run postpublishOnly",
     "prepare:fix-ws-links": "ynpx --quiet @yarn-tool/fix-ws-links",
     "prepublishOnly:lockfile": "ynpx --quiet sync-lockfile",
     "postpublish:subtree": "ts-node ./script/run/postpublish-subtree.ts",
