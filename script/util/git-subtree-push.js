@@ -5,26 +5,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.gitSubtreePush = void 0;
 const logger_1 = __importDefault(require("debug-color2/logger"));
-const __root_ws_1 = __importDefault(require("../../__root_ws"));
 const fs_extra_1 = require("fs-extra");
 const create_cache_name_1 = __importDefault(require("./create-cache-name"));
 const subtree_1 = require("@git-lazy/subtree");
+const data_1 = require("./data");
 async function gitSubtreePush(module_name) {
-    let _ok = true;
-    let options = {
-        name: module_name,
-        prefix: `packages/${module_name}`,
-        cwd: __root_ws_1.default,
-    };
-    switch (module_name) {
-        case 'runes2':
-            options.remote = `https://github.com/bluelovers/runes.git`;
-            options.branch = 'develop';
-            break;
-        default:
-            _ok = false;
-            break;
-    }
+    let { _ok, options } = data_1._handle(module_name);
     if (_ok) {
         await subtree_1.subtreePush(options);
     }
