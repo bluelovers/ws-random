@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.6.3](https://github.com/bluelovers/random/compare/random-extra@3.6.1...random-extra@3.6.3) (2020-06-23)
+
+
+### 🔖　Miscellaneous
+
+* . ([c2d879d](https://github.com/bluelovers/random/commit/c2d879d8ee076d2a5f2d3858387e875a4aa2e779))
+
+
+
+
+
 ## 3.6.1 (2020-06-23)
 
 
