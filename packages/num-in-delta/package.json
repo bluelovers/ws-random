@@ -1,0 +1,35 @@
+{
+  "name": "num-in-delta",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/bluelovers/ws-random/tree/master/packages/num-in-delta#readme",
+  "bugs": {
+    "url": "https://github.com/bluelovers/ws-random/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bluelovers/ws-random.git"
+  },
+  "license": "ISC",
+  "author": "bluelovers",
+  "main": "index.js",
+  "scripts": {
+    "lint": "ynpx --quiet eslint -- **/*.ts",
+    "test": "jest",
+    "test:jest": "ynpx --quiet jest -- --coverage",
+    "test:mocha": "ynpx --quiet -p ts-node -p mocha mocha -- --require ts-node/register \"!(node_modules)/**/*.{test,spec}.{ts,tsx}\"",
+    "prepublishOnly": "yarn run test",
+    "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
+    "prepublishOnly:update": "yarn run ncu && yarn run sort-package-json",
+    "ncu": "ynpx --quiet yarn-tool -- ncu -u",
+    "sort-package-json": "ynpx --quiet yarn-tool -- sort"
+  },
+  "dependencies": {
+    "big.js": "^5.2.2"
+  },
+  "devDependencies": {
+    "@types/big.js": "^4.0.5",
+    "add": "^2.0.6",
+    "float-number": "^2.0.2"
+  }
+}
