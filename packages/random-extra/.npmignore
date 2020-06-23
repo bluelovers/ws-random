@@ -80,3 +80,4 @@ npm-shrinkwrap.json
 /example/
 *.stat
 /docs/
+lib
