@@ -13,7 +13,7 @@ import ExpectExtendMap = jest.ExpectExtendMap;
 import MatcherState = jest.MatcherState;
 import { printCloseTo } from 'expect/build/print';
 import MatcherUtils = jest.MatcherUtils;
-import { expectInDelta } from '../../src/util/assers';
+import expectInDelta from 'num-in-delta';
 
 const types = ['number', 'string', 'boolean', 'object', 'array', 'date', 'function', 'float'];
 

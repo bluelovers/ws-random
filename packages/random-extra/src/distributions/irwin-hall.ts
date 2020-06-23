@@ -21,7 +21,7 @@ export default (random: Random, n: number) =>
 		return () => 0
 	}
 
-	return () =>
+	return (): number =>
 	{
 		let i = n
 		let sum = 0

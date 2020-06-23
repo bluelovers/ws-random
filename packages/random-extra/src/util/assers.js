@@ -1,17 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isUnset = exports.isFloat = exports.isInt = exports.isNum = exports.expectInDelta = void 0;
-/**
- * expect {actual} to be near {expected} +/- {delta}
- *
- * @example
- * const mean = sum / 10000
- * inDelta(mean, 0.5, 0.05)
- */
-function expectInDelta(actual, expected, delta = 0.05) {
-    return expected - delta <= actual && actual <= expected + delta;
-}
-exports.expectInDelta = expectInDelta;
+var unsafe001_1 = require("num-in-delta/lib/unsafe001");
+Object.defineProperty(exports, "expectInDelta", { enumerable: true, get: function () { return unsafe001_1.numberInDeltaUnsafe001; } });
 function isNum(n) {
     return n === +n;
 }

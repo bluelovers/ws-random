@@ -1,11 +1,4 @@
-/**
- * expect {actual} to be near {expected} +/- {delta}
- *
- * @example
- * const mean = sum / 10000
- * inDelta(mean, 0.5, 0.05)
- */
-export declare function expectInDelta(actual: number, expected: number, delta?: number): boolean;
+export { numberInDeltaUnsafe001 as expectInDelta } from 'num-in-delta/lib/unsafe001';
 export declare function isNum(n: number): boolean;
 /**
  * @todo support 1e+23
