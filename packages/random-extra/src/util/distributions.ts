@@ -15,9 +15,6 @@ export function int(random: Random, min: number, max: number)
 	return Math.floor(float(random, min, max + 1));
 }
 
-import * as UtilDistributions from './distributions'
+export const UtilDistributions = exports as typeof import('./distributions')
 
-export { UtilDistributions }
 export default UtilDistributions;
-
-

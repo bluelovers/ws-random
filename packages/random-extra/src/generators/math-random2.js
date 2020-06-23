@@ -5,10 +5,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RNGMathRandom2 = void 0;
 const function_1 = __importDefault(require("./function"));
-const util_1 = require("../util");
+const _random_1 = require("../util/_random");
 class RNGMathRandom2 extends function_1.default {
-    constructor(seed = util_1._MathRandom, opts, ...argv) {
-        super(seed || util_1._MathRandom, opts, ...argv);
+    constructor(seed = _random_1._MathRandom, opts, ...argv) {
+        super(seed || _random_1._MathRandom, opts, ...argv);
     }
     get name() {
         return 'math-random2';

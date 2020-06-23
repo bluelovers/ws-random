@@ -7,14 +7,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const uni_string_1 = __importDefault(require("uni-string"));
-const util_1 = require("../util");
 const const_1 = require("../util/const");
 const distributions_1 = require("../util/distributions");
 const ow_1 = __importDefault(require("../util/ow"));
+const to_string_1 = require("../util/to-string");
 exports.default = (random, char, size) => {
     if (typeof char === 'number') {
         if (typeof size === 'number') {
-            char = util_1.floatToString(char);
+            char = to_string_1.floatToString(char);
         }
         else {
             [size, char] = [char, null];

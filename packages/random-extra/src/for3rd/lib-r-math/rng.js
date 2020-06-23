@@ -40,7 +40,8 @@ class LibRMathRngWithRandom extends libRMath.IRNG {
         return this.__seed;
     }
     set seed(_seed) {
-        this.__random.seed && this.__random.seed(this.__seed = _seed);
+        var _a, _b;
+        (_b = (_a = this.__random).seed) === null || _b === void 0 ? void 0 : _b.call(_a, this.__seed = _seed);
     }
     use(rng, _seed) {
         if (rng) {
@@ -91,11 +92,11 @@ class RandomRngWithLibRMath extends rng_1.default {
             this._rng = new opts(this._seedNum(seed));
         }
         // @ts-ignore
-        else if (seed && typeof seed.unif_rand === 'function') {
+        else if (typeof (seed === null || seed === void 0 ? void 0 : seed.unif_rand) === 'function') {
             this._rng = seed;
         }
         // @ts-ignore
-        else if (opts && typeof opts.unif_rand === 'function') {
+        else if (typeof (opts === null || opts === void 0 ? void 0 : opts.unif_rand) === 'function') {
             this._rng = opts;
         }
         else if (opts && libRMath[opts]) {

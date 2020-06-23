@@ -1,6 +1,7 @@
 import { seedToken } from './seeder/default';
 import { hashAny } from './seeder/hash-any';
-import { _MathRandom, randomSeedStr } from './util';
+import { randomSeedStr } from './util/random-seed-str';
+import { _MathRandom } from './util/_random';
 
 export interface IRNGLike
 {

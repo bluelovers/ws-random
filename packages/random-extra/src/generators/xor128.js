@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RNGXOR128 = void 0;
 const rng_1 = __importDefault(require("../rng"));
 const util_1 = require("../util");
+const seed_1 = require("../util/seed");
 class RNGXOR128 extends rng_1.default {
     constructor(...argv) {
         super();
@@ -39,7 +40,7 @@ class RNGXOR128 extends rng_1.default {
         return util_1.cloneClass(RNGXOR128, this, seed, opts, ...argv);
     }
     _init(...argv) {
-        let [x = util_1.randomSeedNum(), y = util_1.randomSeedNum(), z = util_1.randomSeedNum(), w = util_1.randomSeedNum(),] = argv;
+        let [x = seed_1.randomSeedNum(), y = seed_1.randomSeedNum(), z = seed_1.randomSeedNum(), w = seed_1.randomSeedNum(),] = argv;
         this._seed(x, y, z, w);
     }
     _seed(...argv) {

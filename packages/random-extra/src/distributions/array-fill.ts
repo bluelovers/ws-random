@@ -2,10 +2,10 @@ import { ITSArrayLikeWriteable, TypedArray } from 'ts-type';
 import { IArrayInput02 } from '../type';
 import uniformInt from './uniform-int';
 import { Random } from '../random';
-import { isUnset } from '../util';
 import expect from '../util/ow';
 import uniformByte from './byte';
 import uniform from './uniform';
+import { isUnset } from '../util/assers';
 
 export default function arrayFill(random: Random, min?: number, max?: number, float?: boolean)
 {

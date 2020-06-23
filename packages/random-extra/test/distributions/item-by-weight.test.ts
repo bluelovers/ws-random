@@ -3,7 +3,7 @@
  */
 
 import random from '../../src'
-import { expectInDelta } from '../../src/util';
+import { expectInDelta } from '../../src/util/assers';
 
 describe(`ItemByWeight`, () =>
 {

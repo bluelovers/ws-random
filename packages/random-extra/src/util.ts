@@ -1,12 +1,6 @@
 /**
  * Created by user on 2018/10/20/020.
  */
-
-import hashSum from 'hash-sum';
-import { nanoid as _nanoid } from 'nanoid/non-secure'
-
-import _pkg from '../package.json';
-import { MATH_POW_2_32 } from './util/const';
 //import shortid = require('shortid');
 //
 //export declare function shortid(): string
@@ -16,41 +10,9 @@ import { MATH_POW_2_32 } from './util/const';
 
 
 /**
- * try save original Math.random,
- * if no other module overwrite Math.random
- *
- * @alias Math.random
- */
-let _MathRandom: () => number
-
-// @ts-ignore
-_MathRandom = Math.random;
-
-export { _MathRandom };
-
-export function randomSeedNum(): number
-{
-	return (_MathRandom() * MATH_POW_2_32) + _MathRandom()
-}
-
-/**
- * give a random string for create seed
- */
-export function randomSeedStr(): string
-{
-	return [
-		_nanoid(),
-		hashSum(_pkg.name),
-		hashSum(_pkg.version),
-		Date.now(),
-		floatToString(_MathRandom()),
-	].join('_')
-}
-
-/**
  * @todo support typescript
  */
-export function getClass(RNGClass, thisArgv, ...argv)
+export function getClass<T>(RNGClass, thisArgv, ...argv): T
 {
 	let o;
 
@@ -70,63 +32,17 @@ export function getClass(RNGClass, thisArgv, ...argv)
 /**
  * @todo support typescript
  */
-export function cloneClass(RNGClass, thisArgv, ...argv)
+export function cloneClass<T>(RNGClass, thisArgv, ...argv): T
 {
 	let o = getClass(RNGClass, thisArgv, ...argv)
 
+	// @ts-ignore
 	return new o(...argv)
-}
-
-export function floatToString(n: number)
-{
-	let int = Math.floor(n)
-	let float = n - int;
-
-	let s = String(float)
-		.split('.')[1]
-	;
-
-	return String(int) + (s ? '.' + s : '');
-}
-
-/**
- * expect {actual} to be near {expected} +/- {delta}
- *
- * @example
- * const mean = sum / 10000
- * inDelta(mean, 0.5, 0.05)
- */
-export function expectInDelta(actual: number, expected: number, delta = 0.05)
-{
-	return expected - delta <= actual && actual <= expected + delta
 }
 
 export function hashArgv(args: any[]): string
 {
 	return String(args.join(';'));
-}
-
-export function isNum(n: number)
-{
-	return n === +n
-}
-
-/**
- * @todo support 1e+23
- */
-export function isInt(n: number)
-{
-	return n === (n | 0)
-}
-
-export function isFloat(n: number)
-{
-	return n === +n && n !== (n | 0);
-}
-
-export function isUnset(n)
-{
-	return typeof n === 'undefined' || n === null
 }
 
 /**

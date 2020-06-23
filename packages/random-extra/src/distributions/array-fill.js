@@ -4,15 +4,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const uniform_int_1 = __importDefault(require("./uniform-int"));
-const util_1 = require("../util");
 const ow_1 = __importDefault(require("../util/ow"));
 const byte_1 = __importDefault(require("./byte"));
 const uniform_1 = __importDefault(require("./uniform"));
+const assers_1 = require("../util/assers");
 function arrayFill(random, min, max, float) {
     let fn;
     {
-        let min_unset = util_1.isUnset(min);
-        let max_unset = util_1.isUnset(max);
+        let min_unset = assers_1.isUnset(min);
+        let max_unset = assers_1.isUnset(max);
         if (max_unset && min_unset) {
             fn = byte_1.default(random);
         }

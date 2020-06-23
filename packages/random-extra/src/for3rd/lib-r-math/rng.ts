@@ -27,7 +27,7 @@ export class LibRMathRngWithRandom extends libRMath.IRNG
 
 	set seed(_seed)
 	{
-		this.__random.seed && this.__random.seed(this.__seed = _seed)
+		this.__random.seed?.(this.__seed = _seed)
 	}
 
 	use(rng?: Random | RNG | IRNGLike | any, _seed?)
@@ -101,12 +101,12 @@ export class RandomRngWithLibRMath<R extends libRMath.IRNG> extends RNG
 			this._rng = new opts(this._seedNum(seed))
 		}
 		// @ts-ignore
-		else if (seed && typeof seed.unif_rand === 'function')
+		else if (typeof seed?.unif_rand === 'function')
 		{
 			this._rng = seed
 		}
 		// @ts-ignore
-		else if (opts && typeof opts.unif_rand === 'function')
+		else if (typeof opts?.unif_rand === 'function')
 		{
 			this._rng = opts
 		}

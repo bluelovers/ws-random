@@ -15,11 +15,11 @@ exports.crossCrypto = (() => {
             catch (e) {
                 // @ts-ignore
                 _crypto = global.crypto || global.msCrypto;
-                if (_crypto && _crypto.getRandomValues) {
+                if (_crypto === null || _crypto === void 0 ? void 0 : _crypto.getRandomValues) {
                     crypto = _crypto;
                 }
             }
-            if (crypto && !crypto.randomBytes) {
+            if (!(crypto === null || crypto === void 0 ? void 0 : crypto.randomBytes)) {
                 crypto.randomBytes = crypto.randomBytes || function randomBytes(size, cb) {
                     if (size > 65536)
                         throw new Error('requested too many random bytes');

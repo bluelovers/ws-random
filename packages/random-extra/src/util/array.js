@@ -1,10 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.array_rebase = exports.randIndex = exports.swapAlgorithm2 = exports.swapAlgorithm = void 0;
-/**
- * Created by user on 2018/10/24/024.
- */
-const util_1 = require("../util");
+const _random_1 = require("./_random");
 function swapAlgorithm(arr, overwrite, fn = randIndex) {
     let i = arr.length;
     // @ts-ignore
@@ -49,7 +46,7 @@ function swapAlgorithm2(arr, overwrite, fn = randIndex) {
 }
 exports.swapAlgorithm2 = swapAlgorithm2;
 function randIndex(len, ...argv) {
-    return Math.floor(util_1._MathRandom() * len);
+    return Math.floor(_random_1._MathRandom() * len);
 }
 exports.randIndex = randIndex;
 /**

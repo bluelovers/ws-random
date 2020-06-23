@@ -1,6 +1,7 @@
 import RNG from '../rng'
-import { cloneClass, getClass, randomSeedNum } from '../util';
+import { cloneClass, getClass} from '../util';
 import { IRNGFunctionSeed } from './function';
+import { randomSeedNum } from '../util/seed';
 
 export class RNGXOR128 extends RNG
 {

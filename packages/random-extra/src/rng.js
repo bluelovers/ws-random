@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RNG = void 0;
 const default_1 = require("./seeder/default");
 const hash_any_1 = require("./seeder/hash-any");
-const util_1 = require("./util");
+const random_seed_str_1 = require("./util/random-seed-str");
 class RNG {
     constructor(seed, opts, ...argv) {
     }
@@ -55,7 +55,7 @@ class RNG {
              * this make always get a new token
              * when seed is undefined
              */
-            seed = util_1.randomSeedStr();
+            seed = random_seed_str_1.randomSeedStr();
         }
         return default_1.seedToken(seed, opts, ...argv);
     }

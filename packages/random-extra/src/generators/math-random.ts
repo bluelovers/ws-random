@@ -1,5 +1,6 @@
 import RNG from '../rng'
-import { _MathRandom, cloneClass } from '../util';
+import { cloneClass } from '../util';
+import { _MathRandom } from '../util/_random';
 
 export class RNGMathRandom extends RNG
 {

@@ -1,13 +1,13 @@
 import randomSrc from '../../src'
 import seedrandom from '../../preset/seedrandom'
 import { simpleWrap } from '../../src/simple-wrap';
-import { _MathRandom } from '../../src/util'
 import Benchmark = require('benchmark');
 import crypto = require('crypto');
 import cryptorandom = require('math-random');
 import randomOrigin = require('random');
 import randomUglifyJS from '../../lib'
 import random from '../..'
+import { _MathRandom } from '../../src/util/_random';
 
 export { Benchmark }
 

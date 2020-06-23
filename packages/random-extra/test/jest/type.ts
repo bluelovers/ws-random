@@ -12,8 +12,8 @@ import CustomMatcher = jest.CustomMatcher;
 import ExpectExtendMap = jest.ExpectExtendMap;
 import MatcherState = jest.MatcherState;
 import { printCloseTo } from 'expect/build/print';
-import { expectInDelta } from '../../src/util';
 import MatcherUtils = jest.MatcherUtils;
+import { expectInDelta } from '../../src/util/assers';
 
 const types = ['number', 'string', 'boolean', 'object', 'array', 'date', 'function', 'float'];
 

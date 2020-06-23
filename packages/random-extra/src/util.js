@@ -2,48 +2,14 @@
 /**
  * Created by user on 2018/10/20/020.
  */
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.array_unique_unsafe = exports.isUnset = exports.isFloat = exports.isInt = exports.isNum = exports.hashArgv = exports.expectInDelta = exports.floatToString = exports.cloneClass = exports.getClass = exports.randomSeedStr = exports.randomSeedNum = exports._MathRandom = void 0;
-const hash_sum_1 = __importDefault(require("hash-sum"));
-const non_secure_1 = require("nanoid/non-secure");
-const package_json_1 = __importDefault(require("../package.json"));
-const const_1 = require("./util/const");
 //import shortid = require('shortid');
 //
 //export declare function shortid(): string
 //export declare function hashSum(input): string
 //
 //export { shortid, hashSum }
-/**
- * try save original Math.random,
- * if no other module overwrite Math.random
- *
- * @alias Math.random
- */
-let _MathRandom;
-exports._MathRandom = _MathRandom;
-// @ts-ignore
-exports._MathRandom = _MathRandom = Math.random;
-function randomSeedNum() {
-    return (_MathRandom() * const_1.MATH_POW_2_32) + _MathRandom();
-}
-exports.randomSeedNum = randomSeedNum;
-/**
- * give a random string for create seed
- */
-function randomSeedStr() {
-    return [
-        non_secure_1.nanoid(),
-        hash_sum_1.default(package_json_1.default.name),
-        hash_sum_1.default(package_json_1.default.version),
-        Date.now(),
-        floatToString(_MathRandom()),
-    ].join('_');
-}
-exports.randomSeedStr = randomSeedStr;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.array_unique_unsafe = exports.hashArgv = exports.cloneClass = exports.getClass = void 0;
 /**
  * @todo support typescript
  */
@@ -64,51 +30,14 @@ exports.getClass = getClass;
  */
 function cloneClass(RNGClass, thisArgv, ...argv) {
     let o = getClass(RNGClass, thisArgv, ...argv);
+    // @ts-ignore
     return new o(...argv);
 }
 exports.cloneClass = cloneClass;
-function floatToString(n) {
-    let int = Math.floor(n);
-    let float = n - int;
-    let s = String(float)
-        .split('.')[1];
-    return String(int) + (s ? '.' + s : '');
-}
-exports.floatToString = floatToString;
-/**
- * expect {actual} to be near {expected} +/- {delta}
- *
- * @example
- * const mean = sum / 10000
- * inDelta(mean, 0.5, 0.05)
- */
-function expectInDelta(actual, expected, delta = 0.05) {
-    return expected - delta <= actual && actual <= expected + delta;
-}
-exports.expectInDelta = expectInDelta;
 function hashArgv(args) {
     return String(args.join(';'));
 }
 exports.hashArgv = hashArgv;
-function isNum(n) {
-    return n === +n;
-}
-exports.isNum = isNum;
-/**
- * @todo support 1e+23
- */
-function isInt(n) {
-    return n === (n | 0);
-}
-exports.isInt = isInt;
-function isFloat(n) {
-    return n === +n && n !== (n | 0);
-}
-exports.isFloat = isFloat;
-function isUnset(n) {
-    return typeof n === 'undefined' || n === null;
-}
-exports.isUnset = isUnset;
 /**
  * for non-strict check, try get a little
  */

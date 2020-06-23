@@ -4,8 +4,8 @@
 
 import hashSum from 'hash-sum';
 //import shortid = require('shortid');
-import { randomSeedStr } from '../util';
 import nanoid from './nanoid';
+import { randomSeedStr } from '../util/random-seed-str';
 
 //import { hashSum } from './hash-sum';
 //import { shortid } from './shortid';

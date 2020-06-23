@@ -27,13 +27,13 @@ export const crossCrypto = (() =>
 				// @ts-ignore
 				_crypto = global.crypto || global.msCrypto;
 
-				if (_crypto && _crypto.getRandomValues)
+				if (_crypto?.getRandomValues)
 				{
 					crypto = _crypto
 				}
 			}
 
-			if (crypto && !crypto.randomBytes)
+			if (!crypto?.randomBytes)
 			{
 				crypto.randomBytes = crypto.randomBytes || function randomBytes(size: number, cb?: (err: Error | null, buf: Buffer) => void)
 				{

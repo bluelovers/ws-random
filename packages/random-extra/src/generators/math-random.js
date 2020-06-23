@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RNGMathRandom = void 0;
 const rng_1 = __importDefault(require("../rng"));
 const util_1 = require("../util");
+const _random_1 = require("../util/_random");
 class RNGMathRandom extends rng_1.default {
     get name() {
         return 'math-random';
@@ -14,7 +15,7 @@ class RNGMathRandom extends rng_1.default {
         return false;
     }
     next() {
-        return util_1._MathRandom();
+        return _random_1._MathRandom();
     }
     seed(seed, opts, ...argv) {
         // intentionally empty

@@ -8,15 +8,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.hashAny = void 0;
 const hash_sum_1 = __importDefault(require("hash-sum"));
-//import shortid = require('shortid');
-const util_1 = require("../util");
+const random_seed_str_1 = require("../util/random-seed-str");
 //import { hashSum } from './hash-sum';
 //import { shortid } from './shortid';
 //declare function shortid(): string
 //declare function hashSum(input): string
 function hashAny(seed, ...argv) {
     if (!seed) {
-        seed = util_1.randomSeedStr();
+        seed = random_seed_str_1.randomSeedStr();
     }
     else if (typeof seed !== 'string') {
         seed = hash_sum_1.default(seed);

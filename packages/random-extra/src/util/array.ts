@@ -2,10 +2,7 @@ import { array_unique } from 'array-hyper-unique';
 import { ITSArrayLikeWriteable } from 'ts-type';
 import { IArrayInput02 } from '../type';
 
-/**
- * Created by user on 2018/10/24/024.
- */
-import { _MathRandom } from '../util';
+import { _MathRandom } from './_random';
 
 export function swapAlgorithm<T extends IArrayInput02<any>>(arr: T,
 	overwrite?: boolean,

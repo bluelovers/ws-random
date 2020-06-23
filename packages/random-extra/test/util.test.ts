@@ -7,7 +7,7 @@
 /// <reference types="chai" />
 /// <reference types="node" />
 
-import { isInt } from '../src/util';
+import { isInt } from '../src/util/assers';
 
 // @ts-ignore
 describe(`isInt`, () =>

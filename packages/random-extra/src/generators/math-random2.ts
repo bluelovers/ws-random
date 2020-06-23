@@ -1,6 +1,6 @@
 import RNG from '../rng'
 import RNGFunction from './function';
-import { _MathRandom } from '../util';
+import { _MathRandom } from '../util/_random';
 
 export class RNGMathRandom2 extends RNGFunction<typeof _MathRandom>
 {

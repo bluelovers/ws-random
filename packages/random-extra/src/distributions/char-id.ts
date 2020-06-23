@@ -4,10 +4,10 @@
 
 import UString from "uni-string";
 import { Random } from '../random';
-import { floatToString } from '../util';
 import { ENUM_ALPHABET } from '../util/const';
 import { randIndex as _randIndex } from '../util/distributions';
 import expect from '../util/ow';
+import { floatToString } from '../util/to-string';
 
 export default (random: Random, char?: ENUM_ALPHABET | string | Buffer | number, size?: number) =>
 {

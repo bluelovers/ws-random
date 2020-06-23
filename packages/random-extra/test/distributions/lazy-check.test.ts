@@ -1,5 +1,5 @@
-import { isFloat } from '../../src/util';
 import random from '../../'
+import { isFloat } from '../../src/util/assers';
 
 function getDefaultArgv(method)
 {

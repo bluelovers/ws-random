@@ -75,12 +75,12 @@
     "test": "test"
   },
   "scripts": {
-    "test": "yarn run test-mocha-npx",
-    "test-ci": "yarn run test-mocha-js",
-    "test-mocha-js": "mocha \"!(node_modules)/**/*.{test,spec}.js\"",
-    "test-mocha-npx": "npx mocha --require ts-node/register \"!(node_modules)/**/*.{test,spec}.{ts,tsx}\"",
+    "pretest": "yarn run build",
+    "test": "jest",
+    "build": "ts-node ./test/script/build-cache.ts",
+    "postbuild": "ynpx build-ts-file -- ./src/util/random-seed-str.data.ts",
     "build-minify": "npx -r fast-glob -r fs-extra -r uglify-es -r ts-node ts-node ./test/script/minify",
-    "prepublishOnly": "yarn run build-minify && yarn run test",
+    "prepublishOnly": "yarn run test",
     "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
     "prepublishOnly:update": "yarn run ncu && yarn run sort-package-json",
     "postpublishOnly:add": "yarn-tool root run postpublishOnly:add random-extra",

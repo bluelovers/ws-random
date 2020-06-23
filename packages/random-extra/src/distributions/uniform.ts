@@ -1,7 +1,7 @@
-import { isUnset } from '../util';
 import { toFixedNumber } from '../util/math';
 import expect from '../util/ow';
 import { Random } from '../random';
+import { isUnset } from '../util/assers';
 
 export default (random: Random, min?: number, max?: number, fractionDigits?: number) =>
 {

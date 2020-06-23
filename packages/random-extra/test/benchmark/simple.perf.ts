@@ -2,13 +2,13 @@
  * Created by user on 2018/10/22/022.
  */
 
-import { _MathRandom } from '../../src/util';
 import _tests, { Benchmark, formatBenchmarkResult, sortBenchmarkResult, getMethods } from './'
 import randomUglifyJS from '../../lib';
 
 import console from 'debug-color2'
 
 import { defaultArgv } from '../../src/simple-wrap';
+import { _MathRandom } from '../../src/util/_random';
 
 const methods = [
 		'next',

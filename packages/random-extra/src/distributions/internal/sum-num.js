@@ -6,11 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.coreFnRandSumFloat = exports.coreFnRandSumInt = void 0;
 const array_hyper_unique_1 = require("array-hyper-unique");
 const util_1 = require("../../for3rd/lib-r-math/util");
-const util_2 = require("../../util");
 const distributions_1 = require("../../util/distributions");
 const math_1 = require("../../util/math");
 const ow_1 = require("../../util/ow");
 const uniform_1 = __importDefault(require("../uniform"));
+const assers_1 = require("../../util/assers");
 /**
  * not support unique, but will try make unique if can
  * thx @SeverinPappadeux for int version
@@ -22,11 +22,11 @@ function coreFnRandSumInt(argv) {
     // @ts-ignore
     ow_1.expect(size).is.finite.integer.gt(1);
     let sum_1_to_size = math_1.sum_1_to_n(size);
-    sum = util_2.isUnset(sum) ? sum_1_to_size : sum;
+    sum = assers_1.isUnset(sum) ? sum_1_to_size : sum;
     // @ts-ignore
     ow_1.expect(sum).is.finite.integer();
-    min = util_2.isUnset(min) ? (sum > 0 ? 0 : sum) : min;
-    max = util_2.isUnset(max) ? Math.abs(sum) : max;
+    min = assers_1.isUnset(min) ? (sum > 0 ? 0 : sum) : min;
+    max = assers_1.isUnset(max) ? Math.abs(sum) : max;
     // @ts-ignore
     ow_1.expect(min).is.finite.integer();
     // @ts-ignore
@@ -163,13 +163,13 @@ function coreFnRandSumFloat(argv) {
     let { random, size, sum, min, max, fractionDigits, } = argv;
     // @ts-ignore
     ow_1.expect(size).is.finite.integer.gt(1);
-    if (util_2.isUnset(sum) && typeof min === 'number' && typeof max === 'number') {
+    if (assers_1.isUnset(sum) && typeof min === 'number' && typeof max === 'number') {
         sum = (size - 1) * min + max;
         //console.log(sum, min, max);
     }
-    sum = util_2.isUnset(sum) ? 1.0 : sum;
-    min = util_2.isUnset(min) ? (sum > 0 ? 0 : sum) : min;
-    max = util_2.isUnset(max) ? Math.abs(sum) : max;
+    sum = assers_1.isUnset(sum) ? 1.0 : sum;
+    min = assers_1.isUnset(min) ? (sum > 0 ? 0 : sum) : min;
+    max = assers_1.isUnset(max) ? Math.abs(sum) : max;
     // @ts-ignore
     ow_1.expect(min).is.finite.number();
     // @ts-ignore
@@ -184,7 +184,7 @@ function coreFnRandSumFloat(argv) {
     }
     ow_1.expect(n_sum).gte(0);
     let fnFirst;
-    if (!util_2.isUnset(fractionDigits)) {
+    if (!assers_1.isUnset(fractionDigits)) {
         ow_1.expect(fractionDigits)
             // @ts-ignore
             .is.finite
