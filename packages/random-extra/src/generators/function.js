@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RNGFunction = void 0;
+const ow_1 = __importDefault(require("../util/ow"));
 const rng_1 = __importDefault(require("../rng"));
 const util_1 = require("../util");
 class RNGFunction extends rng_1.default {
@@ -13,6 +14,10 @@ class RNGFunction extends rng_1.default {
         this._init(seed, opts, ...argv);
     }
     _init(seed, opts, ...argv) {
+        let type = typeof seed;
+        if (seed !== null && type !== 'undefined' && type !== 'function') {
+            ow_1.default(seed).to.be.function;
+        }
         this.seed(seed, opts, ...argv);
     }
     get name() {

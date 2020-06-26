@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RNGFunction throw error {} 1`] = `"expected {} to be a function"`;
+
+exports[`RNGMathRandom2 throw error {} 1`] = `"expected {} to be a function"`;
