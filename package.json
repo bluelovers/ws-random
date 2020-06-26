@@ -29,11 +29,11 @@
     "check-types": "^11.1.2",
     "debug-color2": "^1.2.3",
     "fs-extra": "^9.0.1",
-    "jest": "^26.0.1",
+    "jest": "^26.1.0",
     "jest-chain": "^1.1.5",
     "jest-extended": "^0.11.5",
     "jest-matcher-deep-close-to": "^2.0.1",
-    "jest-matcher-utils": "^26.0.1",
+    "jest-matcher-utils": "^26.1.0",
     "ts-jest": "^26.1.1"
   },
   "devDependencies": {
@@ -43,7 +43,7 @@
     "@types/check-types": "^7.3.1",
     "@types/core-decorators": "^0.20.0",
     "@types/fs-extra": "^9.0.1",
-    "@types/jest": "^26.0.0",
+    "@types/jest": "^26.0.3",
     "@types/mocha": "^7.0.2",
     "@types/node": "*"
   },
