@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.10](https://github.com/bluelovers/ws-random/compare/random-sum-float@1.0.9...random-sum-float@1.0.10) (2020-06-26)
+
+
+### 🔖　Miscellaneous
+
+* . ([2f298a5](https://github.com/bluelovers/ws-random/commit/2f298a5e61d843da3c9359663f5d5ed2d5673490))
+
+
+
+
+
 ## [1.0.9](https://github.com/bluelovers/ws-random/compare/random-sum-float@1.0.8...random-sum-float@1.0.9) (2020-06-26)
 
 **Note:** Version bump only for package random-sum-float
