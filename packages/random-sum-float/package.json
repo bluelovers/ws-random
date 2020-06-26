@@ -1,6 +1,6 @@
 {
   "name": "random-sum-float",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "create random float number array by size, sum, min, max",
   "keywords": [
     "float",
@@ -39,7 +39,7 @@
     "sort-package-json": "ynpx --quiet yarn-tool -- sort"
   },
   "dependencies": {
-    "random-extra": "^3.6.7"
+    "random-extra": "^3.6.8"
   },
   "gitHead": "e0c5cb37bac9fd4f55c2a41a429b761ed6ce2b10"
 }
