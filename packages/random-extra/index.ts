@@ -1,3 +1,3 @@
 
-import random from './src'
+import random from './src/random'
 export = random

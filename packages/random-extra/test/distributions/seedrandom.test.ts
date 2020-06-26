@@ -48,6 +48,10 @@ describe(`'hello.' 0.9282578795792454`, () =>
 				expect(value).toBeCloseToWithDelta(pre, 0.000001);
 				expect(value).toBeCloseToWithDelta(pre + 1 - 1, pre + 1 - 1);
 			}
+			else
+			{
+				expect(value).toMatchSnapshot()
+			}
 
 			return value
 		}, expected)
@@ -92,6 +96,8 @@ describe(`test sub seedrandom`, () =>
 			expect(v).toBeGreaterThan(0)
 			expect(v).toBeLessThan(1)
 
+			expect(v).toMatchSnapshot()
+
 			expect(_seedrandom).toEqual(tryRequire('seedrandom')[libName])
 
 			expect(_seedrandom).toBeInstanceOf(Function);
@@ -121,6 +127,8 @@ describe(`test sub seedrandom`, () =>
 			expect(v).toBeFloat();
 			expect(v).toBeGreaterThan(0)
 			expect(v).toBeLessThan(1)
+
+			expect(v).toMatchSnapshot()
 
 			expect(_seedrandom).toEqual(tryRequire('seedrandom')[libName])
 

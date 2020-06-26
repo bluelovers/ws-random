@@ -13,7 +13,7 @@ const ow_1 = __importDefault(require("../util/ow"));
  * @param {number} n - Number of uniform samples to average (n >= 1)
  * @return {function}
  */
-exports.default = (random, n) => {
+exports.default = (random, n = 1) => {
     ow_1.default(n).integer.gte(0);
     n = math_1.fixZero(n);
     if (n === 0) {

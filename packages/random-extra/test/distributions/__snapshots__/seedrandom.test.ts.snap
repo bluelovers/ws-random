@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test sub seedrandom RNGSeedRandom.createLib('alea', seed, opts) 1`] = `0.8297006865032017`;
+
+exports[`test sub seedrandom RNGSeedRandom.createLib('tychei', seed, opts) 1`] = `0.794256798690185`;
+
+exports[`test sub seedrandom RNGSeedRandom.createLib('xor128', seed, opts) 1`] = `0.6919899098575115`;
+
+exports[`test sub seedrandom RNGSeedRandom.createLib('xor4096', seed, opts) 1`] = `0.035834695445373654`;
+
+exports[`test sub seedrandom RNGSeedRandom.createLib('xorshift7', seed, opts) 1`] = `0.017942105419933796`;
+
+exports[`test sub seedrandom RNGSeedRandom.createLib('xorwow', seed, opts) 1`] = `0.5642471052706242`;
+
+exports[`test sub seedrandom random.newUse('seedrandom', seed, opts, 'alea') 1`] = `0.8297006865032017`;
+
+exports[`test sub seedrandom random.newUse('seedrandom', seed, opts, 'tychei') 1`] = `0.794256798690185`;
+
+exports[`test sub seedrandom random.newUse('seedrandom', seed, opts, 'xor128') 1`] = `0.6919899098575115`;
+
+exports[`test sub seedrandom random.newUse('seedrandom', seed, opts, 'xor4096') 1`] = `0.035834695445373654`;
+
+exports[`test sub seedrandom random.newUse('seedrandom', seed, opts, 'xorshift7') 1`] = `0.017942105419933796`;
+
+exports[`test sub seedrandom random.newUse('seedrandom', seed, opts, 'xorwow') 1`] = `0.5642471052706242`;

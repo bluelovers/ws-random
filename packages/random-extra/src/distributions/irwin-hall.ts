@@ -11,7 +11,7 @@ import RNG from '../rng'
  * @param {number} n - Number of uniform samples to average (n >= 1)
  * @return {function}
  */
-export default (random: Random, n: number) =>
+export default (random: Random, n: number = 1) =>
 {
 	expect(n).integer.gte(0)
 	n = fixZero(n)

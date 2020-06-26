@@ -15,9 +15,9 @@ let a3 = random.arrayShuffle(arr.slice())
 console.log(a2, Uint8Array[Symbol.species]);
 console.log(a3);
 
-let t1 = Buffer.alloc(10)
+let t1 = Buffer.from(arr)
 
-t1[0] = 11;
+//t1[0] = 11;
 
 let a5 = random.arrayShuffle(t1);
 
