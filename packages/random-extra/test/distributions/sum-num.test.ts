@@ -8,7 +8,7 @@
 /// <reference types="node" />
 
 import { SUM_DELTA } from '../../src/util/const';
-import { fixZero } from '../../src/util/math';
+import { fixZero } from 'num-is-zero';
 import { array_sum, toFixedNumber } from '../../src/util/math';
 import random from '../../'
 import checkTypesMatchers from '../jest/type';

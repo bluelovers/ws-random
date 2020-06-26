@@ -1,4 +1,7 @@
 import { FLOAT_ENTROPY_BYTES, MATH_POW_2_32 } from './const';
+import { fixZero } from 'num-is-zero';
+
+export { fixZero }
 
 /**
  * (1 + 2 + 3 +...+N)
@@ -121,14 +124,6 @@ export function toFixedNumber(n: number, fractionDigits: number)
 export function array_sum(na: number[])
 {
 	return fixZero(na.reduce((a, b) => a + b))
-}
-
-/**
- * fix: expected -0 to deeply equal 0
- */
-export function fixZero(n: number)
-{
-	return (n === -0) ? 0 : n
 }
 
 /**

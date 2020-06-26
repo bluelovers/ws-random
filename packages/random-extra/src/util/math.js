@@ -1,7 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.readUInt32BE = exports.readUInt32LE = exports._floatFromBuffer2 = exports._floatFromBuffer = exports.floatFromBuffer = exports.fixZero = exports.array_sum = exports.toFixedNumber = exports.get_range_by_size_sum = exports.get_prob_float = exports.get_prob = exports.sum_1_to_n = void 0;
+exports.readUInt32BE = exports.readUInt32LE = exports._floatFromBuffer2 = exports._floatFromBuffer = exports.floatFromBuffer = exports.array_sum = exports.toFixedNumber = exports.get_range_by_size_sum = exports.get_prob_float = exports.get_prob = exports.sum_1_to_n = exports.fixZero = void 0;
 const const_1 = require("./const");
+const num_is_zero_1 = require("num-is-zero");
+Object.defineProperty(exports, "fixZero", { enumerable: true, get: function () { return num_is_zero_1.fixZero; } });
 /**
  * (1 + 2 + 3 +...+N)
  *
@@ -88,16 +90,9 @@ function toFixedNumber(n, fractionDigits) {
 }
 exports.toFixedNumber = toFixedNumber;
 function array_sum(na) {
-    return fixZero(na.reduce((a, b) => a + b));
+    return num_is_zero_1.fixZero(na.reduce((a, b) => a + b));
 }
 exports.array_sum = array_sum;
-/**
- * fix: expected -0 to deeply equal 0
- */
-function fixZero(n) {
-    return (n === -0) ? 0 : n;
-}
-exports.fixZero = fixZero;
 /**
  * Given a buffer containing bytes of entropy, generate a double-precision
  * 64-bit float.

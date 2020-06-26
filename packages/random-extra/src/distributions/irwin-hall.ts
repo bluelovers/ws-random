@@ -1,4 +1,4 @@
-import { fixZero } from '../util/math';
+import { fixZero } from 'num-is-zero';
 import expect from '../util/ow'
 import { Random } from '../random';
 import RNG from '../rng'

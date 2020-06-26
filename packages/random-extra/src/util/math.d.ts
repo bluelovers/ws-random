@@ -1,3 +1,5 @@
+import { fixZero } from 'num-is-zero';
+export { fixZero };
 /**
  * (1 + 2 + 3 +...+N)
  *
@@ -17,10 +19,6 @@ export declare function get_range_by_size_sum(size: number, sum?: number): {
 };
 export declare function toFixedNumber(n: number, fractionDigits: number): number;
 export declare function array_sum(na: number[]): number;
-/**
- * fix: expected -0 to deeply equal 0
- */
-export declare function fixZero(n: number): number;
 /**
  * Given a buffer containing bytes of entropy, generate a double-precision
  * 64-bit float.

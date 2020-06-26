@@ -8,6 +8,7 @@ const array_hyper_unique_1 = require("array-hyper-unique");
 const util_1 = require("../../for3rd/lib-r-math/util");
 const distributions_1 = require("../../util/distributions");
 const math_1 = require("../../util/math");
+const num_is_zero_1 = require("num-is-zero");
 const ow_1 = require("../../util/ow");
 const uniform_1 = __importDefault(require("../uniform"));
 const assers_1 = require("../../util/assers");
@@ -114,7 +115,7 @@ function coreFnRandSumInt(argv) {
     {
         let len = 200;
         let arr = array_hyper_unique_1.array_unique(rmultinomCreateFn(len).map(v => {
-            v.value = v.value.map(math_1.fixZero);
+            v.value = v.value.map(num_is_zero_1.fixZero);
             return v;
         }));
         if (arr.length) {
@@ -142,7 +143,7 @@ function coreFnRandSumInt(argv) {
         if (arr.length) {
             ret_b = arr[0].value;
             bool_toplevel = arr[0].bool;
-            ret_b = ret_b.map(math_1.fixZero);
+            ret_b = ret_b.map(num_is_zero_1.fixZero);
             if (bool_toplevel && c_len < cache_max) {
                 cache.push(ret_b);
             }
@@ -215,7 +216,7 @@ function coreFnRandSumFloat(argv) {
             let n10;
             let n11;
             let n00 = fnFirst();
-            let n01 = math_1.fixZero(n00 + min);
+            let n01 = num_is_zero_1.fixZero(n00 + min);
             if (fractionDigits) {
                 n01 = math_1.toFixedNumber(n01, fractionDigits);
             }
@@ -238,7 +239,7 @@ function coreFnRandSumFloat(argv) {
                 if (t1 < min) {
                     continue LABEL_TOP;
                 }
-                n11 = math_1.fixZero(n10 + min);
+                n11 = num_is_zero_1.fixZero(n10 + min);
                 if (fractionDigits) {
                     n11 = math_1.toFixedNumber(n11, fractionDigits);
                 }
@@ -251,7 +252,7 @@ function coreFnRandSumFloat(argv) {
                 i--;
                 n_prev = n11;
             }
-            t1 = math_1.fixZero(sum - total2);
+            t1 = num_is_zero_1.fixZero(sum - total2);
             if (fractionDigits) {
                 t1 = math_1.toFixedNumber(t1, fractionDigits);
             }
