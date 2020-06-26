@@ -16,13 +16,18 @@ export class RNGFunction<S extends IRNGFunctionSeed = IRNGFunctionSeed> extends 
 		this._init(seed, opts, ...argv)
 	}
 
-	protected _init(seed?, opts?, ...argv)
+	protected _init_check(seed?, opts?, ...argv)
 	{
 		let type = typeof seed;
 		if (seed !== null && type !== 'undefined' && type !== 'function')
 		{
 			expect(seed).to.be.function
 		}
+	}
+
+	protected _init(seed?, opts?, ...argv)
+	{
+		this._init_check(seed, opts, ...argv);
 
 		this.seed(seed, opts, ...argv)
 	}

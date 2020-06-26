@@ -13,6 +13,7 @@ export declare class RNGSeedRandom extends RNGFunction<seedrandom.prng> {
     constructor(seed?: any, opts?: RNGSeedRandomOptions, lib?: IRNGSeedRandomLib, ...argv: any[]);
     static createLib(lib?: IRNGSeedRandomLib, seed?: any, opts?: RNGSeedRandomOptions, ...argv: any[]): RNGSeedRandom;
     static create(seed?: any, opts?: RNGSeedRandomOptions, lib?: IRNGSeedRandomLib, ...argv: any[]): RNGSeedRandom;
+    protected _init_check(seed?: any, opts?: any, ...argv: any[]): void;
     protected _init(seed?: any, opts?: any, ...argv: any[]): void;
     protected readonly _NAME = "seedrandom";
     protected _TYPE: any;

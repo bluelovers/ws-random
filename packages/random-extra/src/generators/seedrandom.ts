@@ -7,6 +7,7 @@ import seedrandom from 'seedrandom';
 import { nonenumerable, readonly } from 'core-decorators';
 
 export import RNGSeedRandomOptions = seedrandom.seedRandomOptions;
+import expect from '../util/ow';
 
 export const defaultOptions: RNGSeedRandomOptions = Object.freeze({
 	entropy: true
@@ -39,6 +40,11 @@ export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 	public static create(...argv)
 	{
 		return new this(...argv)
+	}
+
+	protected _init_check(seed?, opts?, ...argv)
+	{
+
 	}
 
 	protected _init(seed?, opts?, ...argv)

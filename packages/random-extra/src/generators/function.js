@@ -13,11 +13,14 @@ class RNGFunction extends rng_1.default {
         this._seedable = null;
         this._init(seed, opts, ...argv);
     }
-    _init(seed, opts, ...argv) {
+    _init_check(seed, opts, ...argv) {
         let type = typeof seed;
         if (seed !== null && type !== 'undefined' && type !== 'function') {
             ow_1.default(seed).to.be.function;
         }
+    }
+    _init(seed, opts, ...argv) {
+        this._init_check(seed, opts, ...argv);
         this.seed(seed, opts, ...argv);
     }
     get name() {

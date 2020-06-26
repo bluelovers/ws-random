@@ -6,6 +6,7 @@ export declare abstract class RNG implements IRNGLike {
     constructor();
     constructor(seed?: any);
     constructor(seed?: any, opts?: any, ...argv: any[]);
+    protected _init_check(seed?: any, opts?: any, ...argv: any[]): void;
     protected _init(seed?: any, opts?: any, ...argv: any[]): void;
     static create(seed?: any, opts?: any, ...argv: any[]): any;
     get name(): string;

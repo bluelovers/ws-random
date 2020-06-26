@@ -7,7 +7,10 @@ const random_seed_str_1 = require("./util/random-seed-str");
 class RNG {
     constructor(seed, opts, ...argv) {
     }
+    _init_check(seed, opts, ...argv) {
+    }
     _init(seed, opts, ...argv) {
+        this._init_check(seed, opts, ...argv);
     }
     static create(seed, opts, ...argv) {
         if (this === RNG || !this) {

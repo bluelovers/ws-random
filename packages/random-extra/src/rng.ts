@@ -19,9 +19,14 @@ export abstract class RNG implements IRNGLike
 
 	}
 
-	protected _init(seed?, opts?, ...argv)
+	protected _init_check(seed?, opts?, ...argv)
 	{
 
+	}
+
+	protected _init(seed?, opts?, ...argv)
+	{
+		this._init_check(seed, opts, ...argv);
 	}
 
 	public static create(seed?, opts?, ...argv)

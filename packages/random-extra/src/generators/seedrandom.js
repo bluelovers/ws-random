@@ -23,6 +23,8 @@ class RNGSeedRandom extends function_1.default {
     static create(...argv) {
         return new this(...argv);
     }
+    _init_check(seed, opts, ...argv) {
+    }
     _init(seed, opts, ...argv) {
         this._opts = this._opts || Object.assign({}, exports.defaultOptions);
         this._seedrandom = this.__generator(...argv);
