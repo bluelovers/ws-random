@@ -11,7 +11,7 @@ const PRNG_BUILTINS = {
 	// TODO: add more prng from C++11 lib
 	'xor128': RNGXOR128,
 	'function': RNGFunction,
-	'default': RNGMathRandom,
+	'default': RNGMathRandom2,
 
 	'math-random': RNGMathRandom,
 	'math-random2': RNGMathRandom2,
@@ -23,7 +23,6 @@ const PRNG_BUILTINS = {
 
 export type IRNGFactoryType =
 	'xor128'
-	| 'function'
 	| 'function'
 	| 'default'
 	| 'seedrandom'

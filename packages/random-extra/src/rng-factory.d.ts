@@ -3,7 +3,7 @@ import RNG from './rng';
 import RNGXOR128 from './generators/xor128';
 import RNGFunction, { IRNGFunctionSeed } from './generators/function';
 import RNGMathRandom from './generators/math-random';
-export declare type IRNGFactoryType = 'xor128' | 'function' | 'function' | 'default' | 'seedrandom' | RNG | IRNGFunctionSeed | any;
+export declare type IRNGFactoryType = 'xor128' | 'function' | 'default' | 'seedrandom' | RNG | IRNGFunctionSeed | any;
 export declare function RNGFactory(): RNGFunction;
 export declare function RNGFactory<R extends RNG>(arg0: R, ...rest: any[]): R;
 export declare function RNGFactory(arg0: 'xor128', ...rest: any[]): RNGXOR128;

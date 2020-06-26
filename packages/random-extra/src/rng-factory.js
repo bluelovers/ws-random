@@ -15,7 +15,7 @@ const PRNG_BUILTINS = {
     // TODO: add more prng from C++11 lib
     'xor128': xor128_1.default,
     'function': function_1.default,
-    'default': math_random_1.default,
+    'default': math_random2_1.default,
     'math-random': math_random_1.default,
     'math-random2': math_random2_1.default,
     'seedrandom': seedrandom_1.default,
