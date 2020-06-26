@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.6.4](https://github.com/bluelovers/random/compare/random-extra@3.6.3...random-extra@3.6.4) (2020-06-26)
+
+
+### 🐛　Bug Fixes
+
+* check input is function ([f3a1398](https://github.com/bluelovers/random/commit/f3a1398f34fa3c1b7c9a5f20625e0dd004836826))
+* change default rng ([bcb0cb0](https://github.com/bluelovers/random/commit/bcb0cb0cd1b981f14ba032e2556457217ebfae1f))
+
+
+### 🚨　Tests
+
+* copy test from https://github.com/transitive-bullshit/random ([0971d8c](https://github.com/bluelovers/random/commit/0971d8cb8d3edbaf18ffeced1e7353cb1e045561))
+
+
+### ♻️　Chores
+
+* update deps ([115855a](https://github.com/bluelovers/random/commit/115855abcfac313c206b3c737dcb8d5a2b535e4d))
+
+
+### 🔖　Miscellaneous
+
+* . ([1605139](https://github.com/bluelovers/random/commit/1605139bb0ea5c7589c91070477bc3560db39736))
+
+
+
+
+
 ## [3.6.3](https://github.com/bluelovers/random/compare/random-extra@3.6.1...random-extra@3.6.3) (2020-06-23)
 
 
