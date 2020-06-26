@@ -79,7 +79,7 @@
     "test": "jest",
     "build": "ts-node ./test/script/build-cache.ts",
     "build-minify": "npx -r fast-glob -r fs-extra -r uglify-es -r ts-node ts-node ./test/script/minify",
-    "postbuild": "ynpx build-ts-file -- ./src/util/random-seed-str.data.ts",
+    "postbuild": "ynpx build-ts-file -- ./src/util/random-seed-str.data.ts && git add ./src/util/random-seed-str.data.ts ./src/util/random-seed-str.data.js",
     "prepublishOnly": "yarn run test",
     "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
     "prepublishOnly:update": "yarn run ncu && yarn run sort-package-json",
@@ -102,6 +102,7 @@
     "lib-r-math.js": "^1.0.86",
     "nanoid": "^3.1.10",
     "num-in-delta": "^1.0.3",
+    "num-is-zero": "^1.0.0",
     "ts-type": "^1.2.23",
     "uni-string": "^1.1.10"
   },
