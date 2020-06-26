@@ -1,3 +1,3 @@
-import random from './random';
-export { random };
+export * from './random';
+import { random } from './random';
 export default random;

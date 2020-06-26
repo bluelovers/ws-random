@@ -1,5 +1,5 @@
-import random from './random'
+export * from './random'
 
-export { random }
+import { random } from './random'
 
 export default random

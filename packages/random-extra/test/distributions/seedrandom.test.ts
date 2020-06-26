@@ -8,7 +8,7 @@
 /// <reference types="node" />
 
 import RNG from '../../src/rng';
-import random, { Random } from '../../src/'
+import random from '../../src/'
 import seedrandomOrigin from 'seedrandom';
 import RNGSeedRandom from '../../src/generators/seedrandom';
 import { tryRequire } from '../../src/util/req';
