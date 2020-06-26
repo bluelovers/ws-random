@@ -5,7 +5,7 @@ describe(`import`, () =>
 {
 	it(`import default`, () =>
 	{
-		let r = require('../../src').default;
+		let r = require('../..').default;
 
 		expect(r).toBeInstanceOf(Random);
 		expect(r).toEqual(random)
@@ -13,7 +13,7 @@ describe(`import`, () =>
 
 	it(`require`, () =>
 	{
-		let r = require('../../src');
+		let r = require('../..');
 
 		expect(r).toBeInstanceOf(Random);
 		expect(r).toEqual(random)
@@ -21,7 +21,7 @@ describe(`import`, () =>
 
 	it(`random = random.default`, () =>
 	{
-		let r = require('../../src');
+		let r = require('../..');
 
 		expect(r.default).toBeInstanceOf(Random);
 		expect(r.default).toEqual(random)
