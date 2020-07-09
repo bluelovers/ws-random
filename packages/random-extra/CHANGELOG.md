@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.6.10](https://github.com/bluelovers/random/compare/random-extra@3.6.9...random-extra@3.6.10) (2020-07-09)
+
+
+### 🐛　Bug Fixes
+
+* type lost ([e5a93b8](https://github.com/bluelovers/random/commit/e5a93b8d12cb7a7261251f53b225ae4fd9760793))
+
+
+### 🛠　Build System
+
+* update seed ([8d12d3c](https://github.com/bluelovers/random/commit/8d12d3c594cc94cd08a0fa67284bc0461ad0d25a))
+
+
+### ♻️　Chores
+
+* **deps:** update deps ([5e46caa](https://github.com/bluelovers/random/commit/5e46caa5e885bc90452091170583ed31c785dfe4))
+
+
+### 🔖　Miscellaneous
+
+* . ([e2e2da1](https://github.com/bluelovers/random/commit/e2e2da1f3606612cad8df68a2d8d8085b0e976b1))
+
+
+
+
+
 ## [3.6.9](https://github.com/bluelovers/random/compare/random-extra@3.6.8...random-extra@3.6.9) (2020-06-26)
 
 
