@@ -1,7 +1,7 @@
-import * as libRMath from 'lib-r-math.js';
 import { Random } from '../../random';
 import RNG, { IRNGLike } from '../../rng';
-export declare class LibRMathRngWithRandom extends libRMath.IRNG {
+import { IRNG } from 'lib-r-math.js';
+export declare class LibRMathRngWithRandom extends IRNG {
     protected __random: Random;
     protected __seed: any;
     constructor(_seed?: number, rng?: Random | RNG | any | IRNGLike);
@@ -12,7 +12,7 @@ export declare class LibRMathRngWithRandom extends libRMath.IRNG {
     _setup(): void;
     internal_unif_rand(): number;
 }
-export declare class RandomRngWithLibRMath<R extends libRMath.IRNG> extends RNG {
+export declare class RandomRngWithLibRMath<R extends IRNG> extends RNG {
     protected _rng: R;
     protected _seedable: boolean;
     protected _fn: () => number;

@@ -2,8 +2,9 @@ import * as libRMath from 'lib-r-math.js';
 import { Random, random } from '../../random';
 import RNG, { IRNGLike } from '../../rng';
 import isExtendsOf from 'is-extends-of';
+import { IRNG } from 'lib-r-math.js';
 
-export class LibRMathRngWithRandom extends libRMath.IRNG
+export class LibRMathRngWithRandom extends IRNG
 {
 	protected __random: Random;
 	protected __seed;
@@ -66,7 +67,7 @@ export class LibRMathRngWithRandom extends libRMath.IRNG
 	}
 }
 
-export class RandomRngWithLibRMath<R extends libRMath.IRNG> extends RNG
+export class RandomRngWithLibRMath<R extends IRNG> extends RNG
 {
 	protected _rng: R;
 	protected _seedable: boolean = true;
@@ -134,7 +135,7 @@ export class RandomRngWithLibRMath<R extends libRMath.IRNG> extends RNG
 		;
 	}
 
-	public get options()
+	public get options(): number[]
 	{
 		return this._rng.seed
 	}

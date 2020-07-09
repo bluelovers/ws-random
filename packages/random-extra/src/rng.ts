@@ -45,7 +45,7 @@ export abstract class RNG implements IRNGLike
 		throw new Error('RNG.name must be overridden')
 	}
 
-	public get options()
+	public get options(): unknown
 	{
 		return null
 	}

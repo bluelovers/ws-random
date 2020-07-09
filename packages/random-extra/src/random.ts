@@ -2,8 +2,7 @@ import { IArrayInput02 } from './type';
 
 /// <reference types="node" />
 import { expect } from './util/ow'
-import {
-	Distributions,
+import Distributions, {
 	IRandomDistributions,
 	IRandomDistributionsCacheRow,
 } from './distributions';

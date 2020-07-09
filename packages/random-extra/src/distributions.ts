@@ -93,7 +93,4 @@ export {
 	arrayFill,
 }
 
-export const Distributions = exports as typeof import('./distributions')
-
-export default Distributions
-
+export default exports as typeof import('./distributions')

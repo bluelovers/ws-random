@@ -27,7 +27,8 @@ const libRMath = __importStar(require("lib-r-math.js"));
 const random_1 = require("../../random");
 const rng_1 = __importDefault(require("../../rng"));
 const is_extends_of_1 = __importDefault(require("is-extends-of"));
-class LibRMathRngWithRandom extends libRMath.IRNG {
+const lib_r_math_js_1 = require("lib-r-math.js");
+class LibRMathRngWithRandom extends lib_r_math_js_1.IRNG {
     constructor(_seed, rng) {
         super(_seed);
         this.use(rng, _seed);

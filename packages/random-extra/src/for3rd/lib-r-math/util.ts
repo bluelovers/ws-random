@@ -3,9 +3,10 @@
  */
 
 import * as libRMath from 'lib-r-math.js';
+import { IRNG } from 'lib-r-math.js';
 export { libRMath }
 
-export function fakeLibRMathRng(fn: () => number)
+export function fakeLibRMathRng(fn: () => number): IRNG
 {
 	return {
 		unif_rand(n?: number)
@@ -22,5 +23,5 @@ export function fakeLibRMathRng(fn: () => number)
 
 			return fn()
 		},
-	} as libRMath.IRNG
+	} as IRNG
 }

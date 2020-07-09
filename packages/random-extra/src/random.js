@@ -16,7 +16,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.random = exports.Random = void 0;
 /// <reference types="node" />
 const ow_1 = require("./util/ow");
-const distributions_1 = require("./distributions");
+const distributions_1 = __importDefault(require("./distributions"));
 const rng_1 = __importDefault(require("./rng"));
 const rng_factory_1 = __importDefault(require("./rng-factory"));
 const util_1 = require("./util");
@@ -234,13 +234,13 @@ let Random = Random_1 = class Random {
         return this.dfByte(toStr)();
     }
     dfByte(toStr) {
-        return this._memoize('byte', distributions_1.Distributions.byte, toStr);
+        return this._memoize('byte', distributions_1.default.byte, toStr);
     }
     bytes(size = 1, toStr) {
         return this.dfBytes(size, toStr)();
     }
     dfBytes(size = 1, toStr) {
-        return this._memoize('bytes', distributions_1.Distributions.bytes, size, toStr);
+        return this._memoize('bytes', distributions_1.default.bytes, size, toStr);
     }
     /**
      * same as crypto.randomBytes(size)
@@ -256,7 +256,7 @@ let Random = Random_1 = class Random {
         return this._memoize('dfRandomBytes', warp, size);
     }
     charID(char, size) {
-        return distributions_1.Distributions.charID(this, char, size)();
+        return distributions_1.default.charID(this, char, size)();
     }
     /**
      * generate random by input string, support unicode
@@ -264,13 +264,13 @@ let Random = Random_1 = class Random {
      * @example random.dfCharID() // => QcVH6FAi
      */
     dfCharID(char, size) {
-        return this._memoize('dfCharID', distributions_1.Distributions.charID, char, size);
+        return this._memoize('dfCharID', distributions_1.default.charID, char, size);
     }
     uuidv4(toUpperCase) {
         return this.dfUuidv4(toUpperCase)();
     }
     dfUuidv4(toUpperCase) {
-        return this._memoize('uuidv4', distributions_1.Distributions.uuidv4, toUpperCase);
+        return this._memoize('uuidv4', distributions_1.default.uuidv4, toUpperCase);
     }
     arrayIndex(arr, size = 1, start = 0, end) {
         return this.dfArrayIndex(arr, size, start, end)();
@@ -282,7 +282,7 @@ let Random = Random_1 = class Random {
      */
     dfArrayIndex(arr, size = 1, start = 0, end) {
         // @ts-ignore
-        return this._memoizeFake('dfArrayIndex', distributions_1.Distributions.arrayIndex, arr, size, start, end);
+        return this._memoizeFake('dfArrayIndex', distributions_1.default.arrayIndex, arr, size, start, end);
     }
     /**
      * get random item in array
@@ -303,12 +303,12 @@ let Random = Random_1 = class Random {
      */
     arrayShuffle(arr, overwrite) {
         // @ts-ignore
-        return this._memoizeFake('dfArrayShuffle', distributions_1.Distributions.arrayShuffle, arr, overwrite)();
+        return this._memoizeFake('dfArrayShuffle', distributions_1.default.arrayShuffle, arr, overwrite)();
     }
     dfArrayShuffle(arr, overwrite) {
         //		return Distributions.arrayShuffle(this, arr, overwrite);
         // @ts-ignore
-        return this._callDistributions(distributions_1.Distributions.arrayShuffle, arr, overwrite);
+        return this._callDistributions(distributions_1.default.arrayShuffle, arr, overwrite);
     }
     arrayUnique(arr, limit, loop, fnRandIndex, fnOutOfLimit) {
         return this.dfArrayUnique(arr, limit, loop, fnRandIndex, fnOutOfLimit)();
@@ -324,7 +324,7 @@ let Random = Random_1 = class Random {
      * console.log(fn());
      */
     dfArrayUnique(arr, limit, loop, fnRandIndex, fnOutOfLimit) {
-        return distributions_1.Distributions.arrayUnique(this, arr, limit, loop, fnRandIndex, fnOutOfLimit);
+        return distributions_1.default.arrayUnique(this, arr, limit, loop, fnRandIndex, fnOutOfLimit);
     }
     /**
      * fill random value into any array-like object
@@ -342,7 +342,7 @@ let Random = Random_1 = class Random {
      * @see arrayFill
      */
     dfArrayFill(min, max, float) {
-        return this._memoize('dfArrayFill', distributions_1.Distributions.arrayFill, min, max, float);
+        return this._memoize('dfArrayFill', distributions_1.default.arrayFill, min, max, float);
     }
     // --------------------------------------------------------------------------
     // Uniform distributions
@@ -355,7 +355,7 @@ let Random = Random_1 = class Random {
      * @return {function}
      */
     dfUniform(min, max, fractionDigits) {
-        return this._memoize('dfUniform', distributions_1.Distributions.uniform, min, max, fractionDigits);
+        return this._memoize('dfUniform', distributions_1.default.uniform, min, max, fractionDigits);
     }
     /**
      * Generates a [Discrete dfUniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution).
@@ -365,7 +365,7 @@ let Random = Random_1 = class Random {
      * @return {function}
      */
     dfUniformInt(min, max) {
-        return this._memoize('dfUniformInt', distributions_1.Distributions.uniformInt, min, max);
+        return this._memoize('dfUniformInt', distributions_1.default.uniformInt, min, max);
     }
     /**
      * Generates a [Discrete dfUniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution),
@@ -376,7 +376,7 @@ let Random = Random_1 = class Random {
      * @return {function}
      */
     dfUniformBoolean(likelihood) {
-        return this._memoize('dfUniformBoolean', distributions_1.Distributions.uniformBoolean, likelihood);
+        return this._memoize('dfUniformBoolean', distributions_1.default.uniformBoolean, likelihood);
     }
     // --------------------------------------------------------------------------
     // Normal distributions
@@ -389,7 +389,7 @@ let Random = Random_1 = class Random {
      * @return {function}
      */
     dfNormal(mu, sigma) {
-        return distributions_1.Distributions.normal(this, mu, sigma);
+        return distributions_1.default.normal(this, mu, sigma);
     }
     /**
      * Generates a [Log-dfNormal distribution](https://en.wikipedia.org/wiki/Log-normal_distribution).
@@ -399,7 +399,7 @@ let Random = Random_1 = class Random {
      * @return {function}
      */
     dfLogNormal(mu, sigma) {
-        return distributions_1.Distributions.logNormal(this, mu, sigma);
+        return distributions_1.default.logNormal(this, mu, sigma);
     }
     // --------------------------------------------------------------------------
     // Bernoulli distributions
@@ -411,7 +411,7 @@ let Random = Random_1 = class Random {
      * @return {function}
      */
     dfBernoulli(p) {
-        return distributions_1.Distributions.bernoulli(this, p);
+        return distributions_1.default.bernoulli(this, p);
     }
     /**
      * Generates a [Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution).
@@ -421,7 +421,7 @@ let Random = Random_1 = class Random {
      * @return {function}
      */
     dfBinomial(n, p) {
-        return distributions_1.Distributions.binomial(this, n, p);
+        return distributions_1.default.binomial(this, n, p);
     }
     /**
      * Generates a [Geometric distribution](https://en.wikipedia.org/wiki/Geometric_distribution).
@@ -430,7 +430,7 @@ let Random = Random_1 = class Random {
      * @return {function}
      */
     dfGeometric(p) {
-        return distributions_1.Distributions.geometric(this, p);
+        return distributions_1.default.geometric(this, p);
     }
     // --------------------------------------------------------------------------
     // Poisson distributions
@@ -442,7 +442,7 @@ let Random = Random_1 = class Random {
      * @return {function}
      */
     dfPoisson(lambda) {
-        return distributions_1.Distributions.poisson(this, lambda);
+        return distributions_1.default.poisson(this, lambda);
     }
     /**
      * Generates an [Exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution).
@@ -451,7 +451,7 @@ let Random = Random_1 = class Random {
      * @return {function}
      */
     dfExponential(lambda) {
-        return distributions_1.Distributions.exponential(this, lambda);
+        return distributions_1.default.exponential(this, lambda);
     }
     // --------------------------------------------------------------------------
     // Misc distributions
@@ -463,7 +463,7 @@ let Random = Random_1 = class Random {
      * @return {function}
      */
     dfIrwinHall(n = 1) {
-        return distributions_1.Distributions.irwinHall(this, n);
+        return distributions_1.default.irwinHall(this, n);
     }
     /**
      * Generates a [Bates distribution](https://en.wikipedia.org/wiki/Bates_distribution).
@@ -472,7 +472,7 @@ let Random = Random_1 = class Random {
      * @return {function}
      */
     dfBates(n = 1) {
-        return distributions_1.Distributions.bates(this, n);
+        return distributions_1.default.bates(this, n);
     }
     /**
      * Generates a [Pareto distribution](https://en.wikipedia.org/wiki/Pareto_distribution).
@@ -481,7 +481,7 @@ let Random = Random_1 = class Random {
      * @return {function}
      */
     dfPareto(alpha = 1) {
-        return distributions_1.Distributions.pareto(this, alpha);
+        return distributions_1.default.pareto(this, alpha);
     }
     itemByWeight(arr, getWeight, shuffle, disableSort, ...argv) {
         return this.dfItemByWeight(arr, getWeight, shuffle, disableSort, ...argv)();
@@ -521,7 +521,7 @@ let Random = Random_1 = class Random {
      *
      */
     dfItemByWeight(arr, getWeight, shuffle, disableSort, ...argv) {
-        return this._callDistributions(distributions_1.Distributions.itemByWeight, arr, getWeight, shuffle, disableSort, ...argv);
+        return this._callDistributions(distributions_1.default.itemByWeight, arr, getWeight, shuffle, disableSort, ...argv);
     }
     /**
      * returns n random numbers to get a sum k
@@ -536,13 +536,13 @@ let Random = Random_1 = class Random {
         return this.dfSumInt(size, sum, min, max, limit)();
     }
     dfSumInt(size, sum, min, max, limit) {
-        return this._memoize('sumInt', distributions_1.Distributions.sumInt, size, sum, min, max, limit);
+        return this._memoize('sumInt', distributions_1.default.sumInt, size, sum, min, max, limit);
     }
     sumFloat(size, sum, min, max, fractionDigits) {
         return this.dfSumFloat(size, sum, min, max, fractionDigits)();
     }
     dfSumFloat(size, sum, min, max, fractionDigits) {
-        return this._memoize('sumFloat', distributions_1.Distributions.sumFloat, size, sum, min, max, fractionDigits);
+        return this._memoize('sumFloat', distributions_1.default.sumFloat, size, sum, min, max, fractionDigits);
     }
     // --------------------------------------------------------------------------
     // Internal

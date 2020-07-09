@@ -2,6 +2,6 @@
 
 export = {
 	"name": "random-extra",
-	"version": "3.6.8"
+	"version": "3.6.9"
 }
 

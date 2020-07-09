@@ -10,7 +10,7 @@ export declare abstract class RNG implements IRNGLike {
     protected _init(seed?: any, opts?: any, ...argv: any[]): void;
     static create(seed?: any, opts?: any, ...argv: any[]): any;
     get name(): string;
-    get options(): any;
+    get options(): unknown;
     get seedable(): boolean;
     /**
      * should return a float between 0 ~ 1

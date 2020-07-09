@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import { IArrayInput02 } from './type';
-import { Distributions, IRandomDistributions, IRandomDistributionsCacheRow } from './distributions';
+import Distributions, { IRandomDistributions, IRandomDistributionsCacheRow } from './distributions';
 import { IArrayUniqueOutOfLimitCallback, IRandIndex } from './distributions/array-unique';
 import { ENUM_ALPHABET } from './util/const';
 import { IGetWeight, IObjectInput, IWeightEntrie } from './distributions/item-by-weight';
