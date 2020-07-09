@@ -1,0 +1,57 @@
+{
+  "name": "anybase2",
+  "version": "1.0.0",
+  "description": "convert from and to numeric bases from base 2 to base 62",
+  "keywords": [
+    "any",
+    "numeric",
+    "number",
+    "base",
+    "convert",
+    "int",
+    "integer",
+    "decimal",
+    "bin",
+    "binary",
+    "hex",
+    "hexa",
+    "hexadecimal",
+    "oct",
+    "octa",
+    "octal",
+    "int62"
+  ],
+  "homepage": "https://github.com/bluelovers/ws-random/tree/master/packages/anybase2#readme",
+  "bugs": {
+    "url": "https://github.com/bluelovers/ws-random/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bluelovers/ws-random.git"
+  },
+  "license": "ISC",
+  "author": "bluelovers",
+  "main": "index.js",
+  "bin": {
+    "anybase": "bin/anybase.js"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "lint": "ynpx --quiet eslint -- **/*.ts",
+    "test": "jest",
+    "test:jest": "ynpx --quiet jest -- --coverage",
+    "test:mocha": "ynpx --quiet -p ts-node -p mocha mocha -- --require ts-node/register \"!(node_modules)/**/*.{test,spec}.{ts,tsx}\"",
+    "preversion": "yarn run prepublishOnly",
+    "prepublishOnly": "yarn run prepublishOnly:check-bin && yarn run test",
+    "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
+    "prepublishOnly:update": "yarn run ncu && yarn run sort-package-json",
+    "ncu": "yarn-tool ncu -u",
+    "sort-package-json": "yarn-tool sort"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "peerDependencies": {}
+}
