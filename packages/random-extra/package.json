@@ -77,10 +77,11 @@
   "scripts": {
     "pretest": "yarn run build",
     "test": "jest",
+    "posttest": "git commit -m \"build: update seed\" ./src/util/random-seed-str.data.* & echo posttest",
     "build": "ts-node ./test/script/build-cache.ts",
     "build-minify": "npx -r fast-glob -r fs-extra -r uglify-es -r ts-node ts-node ./test/script/minify",
     "postbuild": "ynpx build-ts-file -- ./src/util/random-seed-str.data.ts && git add ./src/util/random-seed-str.data.ts ./src/util/random-seed-str.data.js",
-    "preversion": "yarn run prepublishOnly",
+    "version": "yarn run prepublishOnly",
     "prepublish": "yarn run postpublishOnly:add",
     "prepublishOnly": "yarn run test",
     "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
