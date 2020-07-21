@@ -34,9 +34,8 @@ export interface IWeight<T extends unknown, K extends string = string>
  */
 export type IWeightEntrie<T extends unknown, K extends string = string> = [K, T, number]
 
-export type IObjectInput<T extends unknown, K extends string = string> =
-{
-//	[i: number]: T
+export type IObjectInput<T extends unknown, K extends string = string> = {
+	//	[i: number]: T
 	[k in K]: T
 }
 
@@ -176,4 +175,24 @@ export function _percentageWeight<T extends unknown>(random: Random, ws: IWeight
 	;
 
 	return ws
+}
+
+export function _itemByWeightCore<T extends unknown, K extends string = string>(r: number,
+	vlist: IWeightEntrie<T, K>[],
+	klist: number[],
+)
+{
+	let rs: IWeightEntrie<T, K>
+
+	for (let k in klist)
+	{
+		if (r <= klist[k])
+		{
+			rs = vlist[k]
+
+			break
+		}
+	}
+
+	return rs ?? vlist[vlist.length - 1]
 }
