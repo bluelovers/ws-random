@@ -24,11 +24,11 @@ export const tests = {
 
 	seedrandom,
 
-//	'math-random2': randomUglifyJS.newUse('math-random2'),
+	'math-random2': randomSrc.newUse('math-random2'),
 
-//	'xor128': randomUglifyJS.newUse('xor128'),
+	'xor128': randomSrc.newUse('xor128'),
 
-//	'crypto': randomUglifyJS.newUse('crypto'),
+	'crypto': randomSrc.newUse('crypto'),
 
 	cryptorandom: simpleWrap(cryptorandom),
 	cryptorandom2: simpleWrap(cryptorandom2),
