@@ -1,5 +1,5 @@
 import { Random } from '../../random';
-export declare function _getWeight(value: any, key: any): number;
+export declare function _getWeight(value: any, key: string): number;
 export interface IGetWeight<T extends unknown, K extends string = string> {
     (value: T, key: K, ...argv: any[]): number;
 }

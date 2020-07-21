@@ -1,9 +1,9 @@
 import expect from '../../util/ow';
 import { Random } from '../../random';
 
-export function _getWeight(value, key): number
+export function _getWeight(value, key: string): number
 {
-	return value
+	return value + 0.001
 }
 
 export interface IGetWeight<T extends unknown, K extends string = string>
