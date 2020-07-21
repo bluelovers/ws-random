@@ -27,9 +27,5 @@
   "dependencies": {
     "big.js": "^5.2.2"
   },
-  "devDependencies": {
-    "@types/big.js": "^4.0.5",
-    "add": "^2.0.6",
-    "float-number": "^2.0.2"
-  }
+  "devDependencies": {}
 }

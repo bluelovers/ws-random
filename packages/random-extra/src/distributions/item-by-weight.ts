@@ -29,13 +29,15 @@ function itemByWeight<T extends unknown>(random: Random,
 
 	const { vlist, klist } = ws;
 
+	//console.dir(ws)
+
 	ws = void 0;
 	arr = void 0;
 	options = void 0;
 
 	return () =>
 	{
-		return vlist[_itemByWeightCore(random.next(), vlist, klist)]
+		return vlist[_itemByWeightCore(random.next(), klist)]
 	}
 }
 

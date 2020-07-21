@@ -40,9 +40,13 @@
     "random": "^2.2.0",
     "seedrandom": "^3.0",
     "shortid": "^2.2.15",
-    "ts-jest": "^26.1.3"
+    "ts-jest": "^26.1.3",
+
+    "add": "^2.0.6",
+    "float-number": "^2.0.2"
   },
   "devDependencies": {
+    "@types/big.js": "^4.0.5",
     "@bluelovers/tsconfig": "^1.0.20",
     "@types/benchmark": "^1.0.33",
     "@types/chai": "^4",

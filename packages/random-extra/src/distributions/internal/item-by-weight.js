@@ -96,7 +96,7 @@ function _percentageWeight(random, ws) {
     return ws;
 }
 exports._percentageWeight = _percentageWeight;
-function _itemByWeightCore(r, vlist, klist) {
+function _itemByWeightCore(r, klist) {
     let index;
     for (let k = 0; k < klist.length; k++) {
         if (r <= klist[k]) {
@@ -104,7 +104,7 @@ function _itemByWeightCore(r, vlist, klist) {
             break;
         }
     }
-    return index !== null && index !== void 0 ? index : vlist.length - 1;
+    return index !== null && index !== void 0 ? index : klist.length - 1;
 }
 exports._itemByWeightCore = _itemByWeightCore;
 //# sourceMappingURL=item-by-weight.js.map

@@ -182,8 +182,7 @@ export function _percentageWeight<T extends unknown, K extends string = string>(
 	return ws
 }
 
-export function _itemByWeightCore<T extends unknown, K extends string = string>(r: number,
-	vlist: IWeightEntrie<T, K>[],
+export function _itemByWeightCore(r: number,
 	klist: number[],
 ): number
 {
@@ -199,5 +198,5 @@ export function _itemByWeightCore<T extends unknown, K extends string = string>(
 		}
 	}
 
-	return index ?? vlist.length - 1
+	return index ?? klist.length - 1
 }

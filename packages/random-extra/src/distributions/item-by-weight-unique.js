@@ -22,7 +22,7 @@ function itemByWeightUnique(random, arr, size, options) {
             klist: klist.slice(),
         };
         for (let i = 0; i < size; i++) {
-            let index = item_by_weight_1._itemByWeightCore(random.next(), ws.vlist, ws.klist);
+            let index = item_by_weight_1._itemByWeightCore(random.next(), ws.klist);
             result.push(ws.vlist[index]);
             if (i < size_sub_1) {
                 ws.vlist.splice(index, 1);

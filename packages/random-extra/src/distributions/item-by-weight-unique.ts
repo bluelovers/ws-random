@@ -48,7 +48,7 @@ function itemByWeightUnique<T extends unknown, K extends string = string>(random
 
 		for (let i = 0; i < size; i++)
 		{
-			let index = _itemByWeightCore<T, K>(random.next(), ws.vlist, ws.klist)
+			let index = _itemByWeightCore(random.next(), ws.klist)
 
 			result.push(ws.vlist[index])
 
