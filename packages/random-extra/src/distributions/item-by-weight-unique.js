@@ -14,9 +14,9 @@ function itemByWeightUnique(random, arr, size, options) {
     ws = void 0;
     arr = void 0;
     options = void 0;
+    const size_sub_1 = size - 1;
     return () => {
         const result = [];
-        const size_sub_1 = size - 1;
         const ws = {
             vlist: vlist.slice(),
             klist: klist.slice(),
