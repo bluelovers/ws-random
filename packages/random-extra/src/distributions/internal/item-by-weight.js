@@ -50,6 +50,7 @@ function _createWeight(arr, options) {
         vlist: [],
         last: 0,
     });
+    ow_1.default(ls.vlist).have.length.gt(1);
     return {
         //source: arr,
         sum,
@@ -96,14 +97,14 @@ function _percentageWeight(random, ws) {
 }
 exports._percentageWeight = _percentageWeight;
 function _itemByWeightCore(r, vlist, klist) {
-    let rs;
-    for (let k in klist) {
+    let index;
+    for (let k = 0; k < klist.length - 1; k++) {
         if (r <= klist[k]) {
-            rs = vlist[k];
+            index = k;
             break;
         }
     }
-    return rs !== null && rs !== void 0 ? rs : vlist[vlist.length - 1];
+    return index !== null && index !== void 0 ? index : vlist.length - 1;
 }
 exports._itemByWeightCore = _itemByWeightCore;
 //# sourceMappingURL=item-by-weight.js.map

@@ -523,6 +523,12 @@ let Random = Random_1 = class Random {
     dfItemByWeight(arr, options, ...argv) {
         return this._callDistributions(distributions_1.default.itemByWeight, arr, options, ...argv);
     }
+    itemByWeightUnique(arr, size, options, ...argv) {
+        return this.dfItemByWeightUnique(arr, size, options, ...argv)();
+    }
+    dfItemByWeightUnique(arr, size, options, ...argv) {
+        return this._callDistributions(distributions_1.default.itemByWeightUnique, arr, size, options, ...argv);
+    }
     /**
      * returns n random numbers to get a sum k
      *

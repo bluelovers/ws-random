@@ -23,7 +23,7 @@ export interface IOptionsItemByWeightSort {
 export interface IOptionsItemByWeight<T extends unknown, K extends string = string> extends IOptionsItemByWeightSort {
     getWeight?: IGetWeight<T, K>;
 }
-export declare function _createWeight<T extends unknown, K extends string = string>(arr: T[] | IObjectInput<T, K>, options?: IOptionsItemByWeight<T, K>): IWeight<T>;
-export declare function _sortWeight<T extends unknown>(random: Random, ws: IWeight<T>, options?: IOptionsItemByWeightSort): IWeight<T, string>;
-export declare function _percentageWeight<T extends unknown>(random: Random, ws: IWeight<T>): IWeight<T, string>;
-export declare function _itemByWeightCore<T extends unknown, K extends string = string>(r: number, vlist: IWeightEntrie<T, K>[], klist: number[]): IWeightEntrie<T, K>;
+export declare function _createWeight<T extends unknown, K extends string = string>(arr: T[] | IObjectInput<T, K>, options?: IOptionsItemByWeight<T, K>): IWeight<T, K>;
+export declare function _sortWeight<T extends unknown, K extends string = string>(random: Random, ws: IWeight<T, K>, options?: IOptionsItemByWeightSort): IWeight<T, K>;
+export declare function _percentageWeight<T extends unknown, K extends string = string>(random: Random, ws: IWeight<T, K>): IWeight<T, K>;
+export declare function _itemByWeightCore<T extends unknown, K extends string = string>(r: number, vlist: IWeightEntrie<T, K>[], klist: number[]): number;

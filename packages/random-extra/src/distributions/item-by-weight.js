@@ -10,7 +10,7 @@ function itemByWeight(random, arr, options) {
     arr = void 0;
     options = void 0;
     return () => {
-        return item_by_weight_1._itemByWeightCore(random.next(), vlist, klist);
+        return vlist[item_by_weight_1._itemByWeightCore(random.next(), vlist, klist)];
     };
 }
 exports.default = itemByWeight;

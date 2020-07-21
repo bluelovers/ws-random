@@ -741,6 +741,50 @@ export class Random<R extends RNG = RNG>
 	}
 
 	/**
+	 * returns random weighted item by give array/object with size and unique
+	 */
+	itemByWeightUnique<T extends unknown>(arr: T[],
+		size: number,
+		options?: IOptionsItemByWeight<T>,
+		...argv
+	): IWeightEntrie<T>[]
+	itemByWeightUnique<T extends unknown, K extends string = string>(arr: IObjectInput<T, K>,
+		size: number,
+		options?: IOptionsItemByWeight<T, K>,
+		...argv
+	): IWeightEntrie<T, K>[]
+	itemByWeightUnique<T extends unknown>(arr: T[],
+		size: number,
+		options?: IOptionsItemByWeight<T>,
+		...argv
+	): IWeightEntrie<T>[]
+	{
+		return this.dfItemByWeightUnique(arr, size, options, ...argv)()
+	}
+
+	/**
+	 * returns random weighted item by give array/object with size and unique
+	 */
+	dfItemByWeightUnique<T extends unknown>(arr: T[],
+		size: number,
+		options?: IOptionsItemByWeight<T>,
+		...argv
+	): () => IWeightEntrie<T>[]
+	dfItemByWeightUnique<T extends unknown, K extends string = string>(arr: IObjectInput<T, K>,
+		size: number,
+		options?: IOptionsItemByWeight<T, K>,
+		...argv
+	): () => IWeightEntrie<T, K>[]
+	dfItemByWeightUnique<T extends unknown>(arr,
+		size: number,
+		options?: IOptionsItemByWeight<T>,
+		...argv
+	)
+	{
+		return this._callDistributions(Distributions.itemByWeightUnique, arr, size, options, ...argv)
+	}
+
+	/**
 	 * returns n random numbers to get a sum k
 	 *
 	 * @see https://www.npmjs.com/package/random-sum

@@ -52,7 +52,7 @@ export interface IOptionsItemByWeight<T extends unknown, K extends string = stri
 
 export function _createWeight<T extends unknown, K extends string = string>(arr: T[] | IObjectInput<T, K>,
 	options?: IOptionsItemByWeight<T, K>,
-): IWeight<T>
+): IWeight<T, K>
 {
 	let sum: number = 0
 
@@ -90,7 +90,7 @@ export function _createWeight<T extends unknown, K extends string = string>(arr:
 
 			//let k = entrie.percentage
 
-			let item = [entrie.key, entrie.value, entrie.percentage] as IWeightEntrie<T>
+			let item = [entrie.key, entrie.value, entrie.percentage] as IWeightEntrie<T, K>
 
 			if (a.last === 0)
 			{
@@ -109,10 +109,12 @@ export function _createWeight<T extends unknown, K extends string = string>(arr:
 		}, {
 			//klist: [],
 			//plist: [],
-			vlist: [] as IWeight<T>["vlist"],
+			vlist: [] as IWeight<T, K>["vlist"],
 			last: 0,
 		})
 	;
+
+	expect(ls.vlist).have.length.gt(1);
 
 	return {
 		//source: arr,
@@ -128,7 +130,7 @@ export function _createWeight<T extends unknown, K extends string = string>(arr:
 	}
 }
 
-export function _sortWeight<T extends unknown>(random: Random, ws: IWeight<T>, options: IOptionsItemByWeightSort = {})
+export function _sortWeight<T extends unknown, K extends string = string>(random: Random, ws: IWeight<T, K>, options: IOptionsItemByWeightSort = {})
 {
 	if (!options.disableSort)
 	{
@@ -148,7 +150,7 @@ export function _sortWeight<T extends unknown>(random: Random, ws: IWeight<T>, o
 	return ws
 }
 
-export function _percentageWeight<T extends unknown>(random: Random, ws: IWeight<T>)
+export function _percentageWeight<T extends unknown, K extends string = string>(random: Random, ws: IWeight<T, K>)
 {
 	let psum: number = 0
 
@@ -180,19 +182,19 @@ export function _percentageWeight<T extends unknown>(random: Random, ws: IWeight
 export function _itemByWeightCore<T extends unknown, K extends string = string>(r: number,
 	vlist: IWeightEntrie<T, K>[],
 	klist: number[],
-)
+): number
 {
-	let rs: IWeightEntrie<T, K>
+	let index: number
 
-	for (let k in klist)
+	for (let k = 0;k< klist.length-1;k++)
 	{
 		if (r <= klist[k])
 		{
-			rs = vlist[k]
+			index = k;
 
 			break
 		}
 	}
 
-	return rs ?? vlist[vlist.length - 1]
+	return index ?? vlist.length - 1
 }

@@ -342,6 +342,16 @@ export declare class Random<R extends RNG = RNG> {
     dfItemByWeight<T extends unknown>(arr: T[], options?: IOptionsItemByWeight<T>, ...argv: any[]): () => IWeightEntrie<T>;
     dfItemByWeight<T extends unknown, K extends string = string>(arr: IObjectInput<T, K>, options?: IOptionsItemByWeight<T, K>, ...argv: any[]): () => IWeightEntrie<T, K>;
     /**
+     * returns random weighted item by give array/object with size and unique
+     */
+    itemByWeightUnique<T extends unknown>(arr: T[], size: number, options?: IOptionsItemByWeight<T>, ...argv: any[]): IWeightEntrie<T>[];
+    itemByWeightUnique<T extends unknown, K extends string = string>(arr: IObjectInput<T, K>, size: number, options?: IOptionsItemByWeight<T, K>, ...argv: any[]): IWeightEntrie<T, K>[];
+    /**
+     * returns random weighted item by give array/object with size and unique
+     */
+    dfItemByWeightUnique<T extends unknown>(arr: T[], size: number, options?: IOptionsItemByWeight<T>, ...argv: any[]): () => IWeightEntrie<T>[];
+    dfItemByWeightUnique<T extends unknown, K extends string = string>(arr: IObjectInput<T, K>, size: number, options?: IOptionsItemByWeight<T, K>, ...argv: any[]): () => IWeightEntrie<T, K>[];
+    /**
      * returns n random numbers to get a sum k
      *
      * @see https://www.npmjs.com/package/random-sum

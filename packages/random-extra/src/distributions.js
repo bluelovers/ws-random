@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.arrayFill = exports.uuidv4 = exports.sumInt = exports.sumFloat = exports.charID = exports.itemByWeight = exports.arrayUnique = exports.arrayShuffle = exports.arrayIndex = exports.bytes = exports.byte = exports.uniformInt = exports.uniformBoolean = exports.uniform = exports.poisson = exports.pareto = exports.normal = exports.logNormal = exports.irwinHall = exports.geometric = exports.exponential = exports.binomial = exports.bernoulli = exports.bates = void 0;
+exports.arrayFill = exports.uuidv4 = exports.sumInt = exports.sumFloat = exports.charID = exports.itemByWeightUnique = exports.itemByWeight = exports.arrayUnique = exports.arrayShuffle = exports.arrayIndex = exports.bytes = exports.byte = exports.uniformInt = exports.uniformBoolean = exports.uniform = exports.poisson = exports.pareto = exports.normal = exports.logNormal = exports.irwinHall = exports.geometric = exports.exponential = exports.binomial = exports.bernoulli = exports.bates = void 0;
 const bates_1 = __importDefault(require("./distributions/bates"));
 exports.bates = bates_1.default;
 const bernoulli_1 = __importDefault(require("./distributions/bernoulli"));
@@ -44,6 +44,8 @@ const char_id_1 = __importDefault(require("./distributions/char-id"));
 exports.charID = char_id_1.default;
 const item_by_weight_1 = __importDefault(require("./distributions/item-by-weight"));
 exports.itemByWeight = item_by_weight_1.default;
+const item_by_weight_unique_1 = __importDefault(require("./distributions/item-by-weight-unique"));
+exports.itemByWeightUnique = item_by_weight_unique_1.default;
 const sum_float_1 = __importDefault(require("./distributions/sum-float"));
 exports.sumFloat = sum_float_1.default;
 const sum_int_1 = __importDefault(require("./distributions/sum-int"));

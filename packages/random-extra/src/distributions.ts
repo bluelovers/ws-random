@@ -51,6 +51,7 @@ import arrayUnique from './distributions/array-unique'
 import charID from './distributions/char-id'
 
 import itemByWeight from './distributions/item-by-weight'
+import itemByWeightUnique from './distributions/item-by-weight-unique'
 
 import sumFloat from './distributions/sum-float'
 import sumInt from './distributions/sum-int'
@@ -82,6 +83,7 @@ export {
 	arrayUnique,
 
 	itemByWeight,
+	itemByWeightUnique,
 
 	charID,
 

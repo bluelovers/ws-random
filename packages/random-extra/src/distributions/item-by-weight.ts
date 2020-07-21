@@ -35,7 +35,7 @@ function itemByWeight<T extends unknown>(random: Random,
 
 	return () =>
 	{
-		return _itemByWeightCore(random.next(), vlist, klist)
+		return vlist[_itemByWeightCore(random.next(), vlist, klist)]
 	}
 }
 
