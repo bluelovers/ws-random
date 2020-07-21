@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports._itemByWeightCore = exports._percentageWeight = exports._sortWeight = exports._createWeight = exports._getWeight = void 0;
 const ow_1 = __importDefault(require("../../util/ow"));
 function _getWeight(value, key) {
-    return value;
+    return value + 1;
 }
 exports._getWeight = _getWeight;
 function _createWeight(arr, options) {
