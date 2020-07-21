@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.6.13](https://github.com/bluelovers/random/compare/random-extra@3.6.12...random-extra@3.6.13) (2020-07-21)
+
+
+### 🐛　Bug Fixes
+
+* bug when value is 0 v2 ([395efc4](https://github.com/bluelovers/random/commit/395efc45264c0f3de937db7b05d67908007b8113))
+* bug of _itemByWeightCore ([1b1c7be](https://github.com/bluelovers/random/commit/1b1c7be83e49694acee063fc118cd4c7a557bcbd))
+* bug when value is 0 ([cde9755](https://github.com/bluelovers/random/commit/cde97559da41a15445585c3475a890a6eb5f573c))
+* type of itemByWeight ([92bbf51](https://github.com/bluelovers/random/commit/92bbf51b4c61358888201ba227486151a3bec270))
+
+
+### ✨　Features
+
+* itemByWeightUnique 依照權重取得指定數量的不重覆結果 ([de6a574](https://github.com/bluelovers/random/commit/de6a574bce258632e61e8f7275c0736fbd0d86de))
+* type of itemByWeight ([ea7ac56](https://github.com/bluelovers/random/commit/ea7ac561d13c50df612349f1b2c60891fbee9a60))
+
+
+### 📦　Code Refactoring
+
+* reduce parameter ([1ddf830](https://github.com/bluelovers/random/commit/1ddf83099d3b03caa4b613de7ba1cd48f6163eaa))
+* _itemByWeightCore ([912479b](https://github.com/bluelovers/random/commit/912479b2fbd1033af6a8536401d1fc131bd674c4))
+* change parameter style of itemByWeight ([44020d5](https://github.com/bluelovers/random/commit/44020d5e0678abda987c42ce6f7ba246bf695cfd))
+* reduce code ([0dc960f](https://github.com/bluelovers/random/commit/0dc960f6d9c0ef086e12e7a415be1256739866a3))
+
+
+### 🚨　Tests
+
+* fix test ([1b4320e](https://github.com/bluelovers/random/commit/1b4320eda609a169b471df0187242147d73148d0))
+
+
+### 🛠　Build System
+
+* update seed ([6b23f58](https://github.com/bluelovers/random/commit/6b23f58dfd30041e4a3595bff970075e65cf110d))
+
+
+### 🔖　Miscellaneous
+
+* Revert "fix: bug when value is 0" ([b2ae929](https://github.com/bluelovers/random/commit/b2ae929c9028f612264e6c22ff7694206a83ad83))
+* . ([4ea6d01](https://github.com/bluelovers/random/commit/4ea6d0113b6259e1cf788d2f234cd18db07c0eb3))
+* . ([a639f21](https://github.com/bluelovers/random/commit/a639f2101cfab6f69cdb94065c6dd0a30f4696a8))
+* . ([b51c763](https://github.com/bluelovers/random/commit/b51c763d69b585113f09a10311e9c41525d8ed4d))
+
+
+### BREAKING CHANGES
+
+* not support old parameter of itemByWeight
+
+
+
+
+
 ## [3.6.12](https://github.com/bluelovers/random/compare/random-extra@3.6.11...random-extra@3.6.12) (2020-07-21)
 
 
