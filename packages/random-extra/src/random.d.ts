@@ -335,12 +335,12 @@ export declare class Random<R extends RNG = RNG> {
      */
     dfPareto(alpha?: number): () => number;
     itemByWeight<T extends unknown>(arr: T[], getWeight?: IGetWeight<T>, shuffle?: boolean, disableSort?: boolean, ...argv: any[]): IWeightEntrie<T>;
-    itemByWeight<T extends unknown>(arr: IObjectInput<T>, getWeight?: IGetWeight<T>, shuffle?: boolean, disableSort?: boolean, ...argv: any[]): IWeightEntrie<T>;
+    itemByWeight<T extends unknown, K extends string = string>(arr: IObjectInput<T, K>, getWeight?: IGetWeight<T, K>, shuffle?: boolean, disableSort?: boolean, ...argv: any[]): IWeightEntrie<T, K>;
     /**
      * returns random weighted item by give array/object
      */
     dfItemByWeight<T extends unknown>(arr: T[], getWeight?: IGetWeight<T>, shuffle?: boolean, disableSort?: boolean, ...argv: any[]): () => IWeightEntrie<T>;
-    dfItemByWeight<T extends unknown>(arr: IObjectInput<T>, getWeight?: IGetWeight<T>, shuffle?: boolean, disableSort?: boolean, ...argv: any[]): () => IWeightEntrie<T>;
+    dfItemByWeight<T extends unknown, K extends string = string>(arr: IObjectInput<T, K>, getWeight?: IGetWeight<T, K>, shuffle?: boolean, disableSort?: boolean, ...argv: any[]): () => IWeightEntrie<T, K>;
     /**
      * returns n random numbers to get a sum k
      *

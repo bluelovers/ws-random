@@ -677,12 +677,12 @@ export class Random<R extends RNG = RNG>
 		disableSort?: boolean,
 		...argv
 	): IWeightEntrie<T>
-	itemByWeight<T extends unknown>(arr: IObjectInput<T>,
-		getWeight?: IGetWeight<T>,
+	itemByWeight<T extends unknown, K extends string = string>(arr: IObjectInput<T, K>,
+		getWeight?: IGetWeight<T, K>,
 		shuffle?: boolean,
 		disableSort?: boolean,
 		...argv
-	): IWeightEntrie<T>
+	): IWeightEntrie<T, K>
 	itemByWeight<T extends unknown>(arr: T[],
 		getWeight?: IGetWeight<T>,
 		shuffle?: boolean,
@@ -702,12 +702,12 @@ export class Random<R extends RNG = RNG>
 		disableSort?: boolean,
 		...argv
 	): () => IWeightEntrie<T>
-	dfItemByWeight<T extends unknown>(arr: IObjectInput<T>,
-		getWeight?: IGetWeight<T>,
+	dfItemByWeight<T extends unknown, K extends string = string>(arr: IObjectInput<T, K>,
+		getWeight?: IGetWeight<T, K>,
 		shuffle?: boolean,
 		disableSort?: boolean,
 		...argv
-	): () => IWeightEntrie<T>
+	): () => IWeightEntrie<T, K>
 	/**
 	 * returns random weighted item by give array/object
 	 *

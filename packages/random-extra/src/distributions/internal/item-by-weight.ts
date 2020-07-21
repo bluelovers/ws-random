@@ -6,12 +6,12 @@ export function _getWeight(value, key): number
 	return value
 }
 
-export interface IGetWeight<T extends unknown>
+export interface IGetWeight<T extends unknown, K extends string = string>
 {
-	(value: T, key?, ...argv): number
+	(value: T, key: K, ...argv): number
 }
 
-export interface IWeight<T extends unknown>
+export interface IWeight<T extends unknown, K extends string = string>
 {
 	sum: number,
 	//sum2: number,
@@ -21,7 +21,7 @@ export interface IWeight<T extends unknown>
 
 	klist?: number[],
 	plist?: number[],
-	vlist: IWeightEntrie<T>[]
+	vlist: IWeightEntrie<T, K>[]
 
 //	list: {
 //		[p: number]: IWeightEntrie<T>[]
@@ -32,12 +32,12 @@ export interface IWeight<T extends unknown>
 /**
  * [key, value, percentage]
  */
-export type IWeightEntrie<T extends unknown> = [string, T, number]
+export type IWeightEntrie<T extends unknown, K extends string = string> = [K, T, number]
 
-export interface IObjectInput<T extends unknown>
+export type IObjectInput<T extends unknown, K extends string = string> =
 {
 //	[i: number]: T
-	[k: string]: T
+	[k in K]: T
 }
 
 export function _createWeight<T extends unknown>(arr: T[] | IObjectInput<T>,

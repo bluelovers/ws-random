@@ -14,12 +14,12 @@ function itemByWeight<T extends unknown>(random: Random, arr: T[],
 	shuffle?: boolean,
 	disableSort?: boolean,
 ): () => IWeightEntrie<T>
-function itemByWeight<T extends unknown>(random: Random,
-	arr: IObjectInput<T>,
-	getWeight?: IGetWeight<T>,
+function itemByWeight<T extends unknown, K extends string = string>(random: Random,
+	arr: IObjectInput<T, K>,
+	getWeight?: IGetWeight<T, K>,
 	shuffle?: boolean,
 	disableSort?: boolean,
-): () => IWeightEntrie<T>
+): () => IWeightEntrie<T, K>
 function itemByWeight<T extends unknown>(random: Random,
 	arr: T[] | IObjectInput<T>,
 	getWeight?: IGetWeight<T>,
