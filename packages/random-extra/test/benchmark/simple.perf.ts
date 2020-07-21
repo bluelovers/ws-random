@@ -3,7 +3,7 @@
  */
 
 import _tests, { Benchmark, formatBenchmarkResult, sortBenchmarkResult, getMethods } from './'
-import randomUglifyJS from '../../lib';
+//import randomUglifyJS from '../../lib';
 
 import console from 'debug-color2'
 

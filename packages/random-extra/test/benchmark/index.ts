@@ -5,7 +5,7 @@ import Benchmark = require('benchmark');
 import crypto = require('crypto');
 import cryptorandom = require('math-random');
 import randomOrigin = require('random');
-import randomUglifyJS from '../../lib'
+//import randomUglifyJS from '../../lib'
 import random from '../..'
 import { _MathRandom } from '../../src/util/_random';
 
@@ -16,7 +16,7 @@ export const tests = {
 
 	random: randomSrc,
 
-	randomUglifyJS,
+//	randomUglifyJS,
 
 	randomSrc,
 
@@ -24,11 +24,11 @@ export const tests = {
 
 	seedrandom,
 
-	'math-random2': randomUglifyJS.newUse('math-random2'),
+//	'math-random2': randomUglifyJS.newUse('math-random2'),
 
-	'xor128': randomUglifyJS.newUse('xor128'),
+//	'xor128': randomUglifyJS.newUse('xor128'),
 
-	'crypto': randomUglifyJS.newUse('crypto'),
+//	'crypto': randomUglifyJS.newUse('crypto'),
 
 	cryptorandom: simpleWrap(cryptorandom),
 	cryptorandom2: simpleWrap(cryptorandom2),
