@@ -8,17 +8,24 @@ function itemByWeight(random, arr, getWeight, shuffle, disableSort) {
         disableSort,
     });
     ws = item_by_weight_1._percentageWeight(random, ws);
+    const { vlist, klist } = ws;
+    ws = void 0;
     return () => {
         let r = random.next();
-        let rs = ws.vlist[ws.vlist.length - 1];
-        //		console.dir(ws, {
-        //			depth: null,
-        //		})
-        //
-        //		console.dir(rs)
-        for (let k in ws.klist) {
-            if (r <= ws.klist[k]) {
-                rs = ws.vlist[k];
+        let rs = vlist[vlist.length - 1];
+        /*
+        console.dir({
+            vlist,
+            klist,
+        }, {
+            depth: null,
+        })
+
+        console.dir(rs)
+         */
+        for (let k in klist) {
+            if (r <= klist[k]) {
+                rs = vlist[k];
                 break;
             }
         }

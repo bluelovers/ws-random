@@ -36,22 +36,31 @@ function itemByWeight<T extends unknown>(random: Random,
 
 	ws = _percentageWeight(random, ws);
 
+	const { vlist, klist } = ws;
+
+	ws = void 0;
+
 	return () =>
 	{
 		let r = random.next()
-		let rs = ws.vlist[ws.vlist.length - 1]
+		let rs = vlist[vlist.length - 1]
 
-//		console.dir(ws, {
-//			depth: null,
-//		})
-//
-//		console.dir(rs)
+		/*
+		console.dir({
+			vlist,
+			klist,
+		}, {
+			depth: null,
+		})
 
-		for (let k in ws.klist)
+		console.dir(rs)
+		 */
+
+		for (let k in klist)
 		{
-			if (r <= ws.klist[k])
+			if (r <= klist[k])
 			{
-				rs = ws.vlist[k]
+				rs = vlist[k]
 
 				break
 			}
