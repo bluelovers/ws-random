@@ -98,7 +98,7 @@ function _percentageWeight(random, ws) {
 exports._percentageWeight = _percentageWeight;
 function _itemByWeightCore(r, vlist, klist) {
     let index;
-    for (let k = 0; k < klist.length - 1; k++) {
+    for (let k = 0; k < klist.length; k++) {
         if (r <= klist[k]) {
             index = k;
             break;

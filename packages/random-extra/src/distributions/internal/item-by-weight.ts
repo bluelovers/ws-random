@@ -130,7 +130,10 @@ export function _createWeight<T extends unknown, K extends string = string>(arr:
 	}
 }
 
-export function _sortWeight<T extends unknown, K extends string = string>(random: Random, ws: IWeight<T, K>, options: IOptionsItemByWeightSort = {})
+export function _sortWeight<T extends unknown, K extends string = string>(random: Random,
+	ws: IWeight<T, K>,
+	options: IOptionsItemByWeightSort = {},
+)
 {
 	if (!options.disableSort)
 	{
@@ -186,7 +189,7 @@ export function _itemByWeightCore<T extends unknown, K extends string = string>(
 {
 	let index: number
 
-	for (let k = 0;k< klist.length-1;k++)
+	for (let k = 0; k < klist.length; k++)
 	{
 		if (r <= klist[k])
 		{
