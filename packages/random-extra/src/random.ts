@@ -676,7 +676,19 @@ export class Random<R extends RNG = RNG>
 		shuffle?: boolean,
 		disableSort?: boolean,
 		...argv
-	)
+	): IWeightEntrie<T>
+	itemByWeight<T extends unknown>(arr: IObjectInput<T>,
+		getWeight?: IGetWeight<T>,
+		shuffle?: boolean,
+		disableSort?: boolean,
+		...argv
+	): IWeightEntrie<T>
+	itemByWeight<T extends unknown>(arr: T[],
+		getWeight?: IGetWeight<T>,
+		shuffle?: boolean,
+		disableSort?: boolean,
+		...argv
+	): IWeightEntrie<T>
 	{
 		return this.dfItemByWeight(arr, getWeight, shuffle, disableSort, ...argv)()
 	}
