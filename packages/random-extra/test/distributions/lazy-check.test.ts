@@ -1,7 +1,8 @@
 import random from '../../'
 import { isFloat } from '../../src/util/assers';
+import { Random } from '../../src';
 
-function getDefaultArgv(method)
+function getDefaultArgv(method: keyof Random | string)
 {
 	let argv = []
 	let dfArgv = []
@@ -13,6 +14,7 @@ function getDefaultArgv(method)
 		case 'arrayShuffle':
 		case 'arrayUnique':
 		case 'dfArrayIndex':
+		// @ts-ignore
 		case 'dfArrayItem':
 		case 'dfArrayShuffle':
 		case 'dfArrayUnique':
@@ -22,6 +24,10 @@ function getDefaultArgv(method)
 		case 'itemByWeight':
 		case 'dfItemByWeight':
 			argv = [[1, 2, 1, 3, 3, 4, 1.5]];
+			break;
+		case 'itemByWeightUnique':
+		case 'dfItemByWeightUnique':
+			argv = [[1, 2, 1, 3, 3, 4, 1.5], 2];
 			break;
 		case 'sumInt':
 		case 'sumFloat':

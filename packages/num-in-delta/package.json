@@ -1,6 +1,6 @@
 {
   "name": "num-in-delta",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "homepage": "https://github.com/bluelovers/ws-random/tree/master/packages/num-in-delta#readme",
   "bugs": {
@@ -26,6 +26,5 @@
   },
   "dependencies": {
     "big.js": "^5.2.2"
-  },
-  "devDependencies": {}
+  }
 }
