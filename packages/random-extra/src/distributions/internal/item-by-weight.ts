@@ -3,7 +3,7 @@ import { Random } from '../../random';
 
 export function _getWeight(value, key): number
 {
-	return value + 1
+	return value
 }
 
 export interface IGetWeight<T extends unknown, K extends string = string>
