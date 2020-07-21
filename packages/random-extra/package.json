@@ -1,6 +1,6 @@
 {
   "name": "random-extra",
-  "version": "3.6.11",
+  "version": "3.6.12",
   "description": "Seedable random number generator supporting many common distributions.",
   "keywords": [
     "alea",
@@ -109,7 +109,6 @@
     "ts-type": "^1.2.25",
     "uni-string": "^1.1.10"
   },
-  "devDependencies": {},
   "peerDependencies": {
     "seedrandom": "^3.0"
   },
