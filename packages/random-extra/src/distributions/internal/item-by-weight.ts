@@ -40,13 +40,26 @@ export type IObjectInput<T extends unknown, K extends string = string> =
 	[k in K]: T
 }
 
-export function _createWeight<T extends unknown>(arr: T[] | IObjectInput<T>,
-	getWeight: IGetWeight<T> = _getWeight,
+export interface IOptionsItemByWeightSort
+{
+	shuffle?: boolean,
+	disableSort?: boolean,
+}
+
+export interface IOptionsItemByWeight<T extends unknown, K extends string = string> extends IOptionsItemByWeightSort
+{
+	getWeight?: IGetWeight<T, K>,
+}
+
+export function _createWeight<T extends unknown, K extends string = string>(arr: T[] | IObjectInput<T, K>,
+	options?: IOptionsItemByWeight<T, K>,
 ): IWeight<T>
 {
 	let sum: number = 0
 
-	let ls2 = Object.entries(arr)
+	const getWeight = options?.getWeight ?? _getWeight;
+
+	let ls2 = (Object.entries(arr) as [K, T][])
 		.map(function (entrie)
 		{
 			let [key, value] = entrie
@@ -116,10 +129,7 @@ export function _createWeight<T extends unknown>(arr: T[] | IObjectInput<T>,
 	}
 }
 
-export function _sortWeight<T extends unknown>(random: Random, ws: IWeight<T>, options: {
-	shuffle?: boolean,
-	disableSort?: boolean,
-} = {})
+export function _sortWeight<T extends unknown>(random: Random, ws: IWeight<T>, options: IOptionsItemByWeightSort = {})
 {
 	if (!options.disableSort)
 	{

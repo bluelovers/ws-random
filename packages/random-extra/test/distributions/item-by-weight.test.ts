@@ -19,7 +19,7 @@ describe(`ItemByWeight`, () =>
 		const array = ['a', 'b', 'c', 'd']
 		const getWeight = (value, index) => +index + 1
 
-		const fn = rnd.dfItemByWeight(array, getWeight)
+		const fn = rnd.dfItemByWeight(array, { getWeight })
 
 		/*
 	{ sum: 10,
@@ -137,7 +137,7 @@ describe(`ItemByWeight`, () =>
 		}
 		const getWeight = (value, index) => value.w
 
-		const fn = rnd.dfItemByWeight(obj, getWeight)
+		const fn = rnd.dfItemByWeight(obj, { getWeight })
 
 		/*
 	{ sum: 10,
@@ -207,7 +207,7 @@ describe(`ItemByWeight`, () =>
 		}
 		const getWeight = (value, index) => value.w
 
-		const fn = rnd.dfItemByWeight(obj, getWeight)
+		const fn = rnd.dfItemByWeight(obj, { getWeight })
 
 		rnd.next = () =>
 		{
@@ -238,7 +238,11 @@ describe(`ItemByWeight`, () =>
 		let rnd = random.clone()
 		const arr = [1, 3, 2, 4, 1, 1, 4, 3, 2]
 
-		const fn = rnd.dfItemByWeight(arr, null, true, true)
+		const fn = rnd.dfItemByWeight(arr, {
+			getWeight: null,
+			shuffle: true,
+			disableSort: true,
+		})
 
 		let cache = {} as {
 			[k: string]: number,
@@ -267,12 +271,10 @@ describe(`ItemByWeight`, () =>
 			}
 		}
 
-		/*
 		console.dir(cache2, {
 			depth: 5,
 			colors: true,
 		});
-		*/
 
 		Object.values(cache2)
 			.forEach(function (data)
@@ -290,7 +292,11 @@ describe(`ItemByWeight`, () =>
 		let rnd = random.newUse('seedrandom')
 		const arr = [1, 3, 2, 4, 1, 1, 4, 3, 2]
 
-		const fn = rnd.dfItemByWeight(arr, null, true, true)
+		const fn = rnd.dfItemByWeight(arr, {
+			getWeight: null,
+			shuffle: true,
+			disableSort: true,
+		})
 
 		let cache = {} as {
 			[k: string]: number,

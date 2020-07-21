@@ -483,8 +483,8 @@ let Random = Random_1 = class Random {
     dfPareto(alpha = 1) {
         return distributions_1.default.pareto(this, alpha);
     }
-    itemByWeight(arr, getWeight, shuffle, disableSort, ...argv) {
-        return this.dfItemByWeight(arr, getWeight, shuffle, disableSort, ...argv)();
+    itemByWeight(arr, options, ...argv) {
+        return this.dfItemByWeight(arr, options, ...argv)();
     }
     /**
      * returns random weighted item by give array/object
@@ -520,8 +520,8 @@ let Random = Random_1 = class Random {
      * console.log(fn())
      *
      */
-    dfItemByWeight(arr, getWeight, shuffle, disableSort, ...argv) {
-        return this._callDistributions(distributions_1.default.itemByWeight, arr, getWeight, shuffle, disableSort, ...argv);
+    dfItemByWeight(arr, options, ...argv) {
+        return this._callDistributions(distributions_1.default.itemByWeight, arr, options, ...argv);
     }
     /**
      * returns n random numbers to get a sum k

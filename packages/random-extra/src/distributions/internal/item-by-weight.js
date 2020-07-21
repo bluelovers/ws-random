@@ -9,8 +9,10 @@ function _getWeight(value, key) {
     return value;
 }
 exports._getWeight = _getWeight;
-function _createWeight(arr, getWeight = _getWeight) {
+function _createWeight(arr, options) {
+    var _a;
     let sum = 0;
+    const getWeight = (_a = options === null || options === void 0 ? void 0 : options.getWeight) !== null && _a !== void 0 ? _a : _getWeight;
     let ls2 = Object.entries(arr)
         .map(function (entrie) {
         let [key, value] = entrie;

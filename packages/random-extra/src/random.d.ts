@@ -6,7 +6,7 @@ import { ENUM_ALPHABET } from './util/const';
 import RNGSeedRandom from './generators/seedrandom';
 import RNG from './rng';
 import { IRNGFactoryType } from './rng-factory';
-import { IObjectInput, IWeightEntrie, IGetWeight } from './distributions/internal/item-by-weight';
+import { IObjectInput, IWeightEntrie, IOptionsItemByWeight } from './distributions/internal/item-by-weight';
 /**
  * Seedable random number generator supporting many common distributions.
  *
@@ -334,13 +334,13 @@ export declare class Random<R extends RNG = RNG> {
      * @return {function}
      */
     dfPareto(alpha?: number): () => number;
-    itemByWeight<T extends unknown>(arr: T[], getWeight?: IGetWeight<T>, shuffle?: boolean, disableSort?: boolean, ...argv: any[]): IWeightEntrie<T>;
-    itemByWeight<T extends unknown, K extends string = string>(arr: IObjectInput<T, K>, getWeight?: IGetWeight<T, K>, shuffle?: boolean, disableSort?: boolean, ...argv: any[]): IWeightEntrie<T, K>;
+    itemByWeight<T extends unknown>(arr: T[], options?: IOptionsItemByWeight<T>, ...argv: any[]): IWeightEntrie<T>;
+    itemByWeight<T extends unknown, K extends string = string>(arr: IObjectInput<T, K>, options?: IOptionsItemByWeight<T, K>, ...argv: any[]): IWeightEntrie<T, K>;
     /**
      * returns random weighted item by give array/object
      */
-    dfItemByWeight<T extends unknown>(arr: T[], getWeight?: IGetWeight<T>, shuffle?: boolean, disableSort?: boolean, ...argv: any[]): () => IWeightEntrie<T>;
-    dfItemByWeight<T extends unknown, K extends string = string>(arr: IObjectInput<T, K>, getWeight?: IGetWeight<T, K>, shuffle?: boolean, disableSort?: boolean, ...argv: any[]): () => IWeightEntrie<T, K>;
+    dfItemByWeight<T extends unknown>(arr: T[], options?: IOptionsItemByWeight<T>, ...argv: any[]): () => IWeightEntrie<T>;
+    dfItemByWeight<T extends unknown, K extends string = string>(arr: IObjectInput<T, K>, options?: IOptionsItemByWeight<T, K>, ...argv: any[]): () => IWeightEntrie<T, K>;
     /**
      * returns n random numbers to get a sum k
      *

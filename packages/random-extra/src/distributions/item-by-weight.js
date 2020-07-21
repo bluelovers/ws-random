@@ -1,12 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const item_by_weight_1 = require("./internal/item-by-weight");
-function itemByWeight(random, arr, getWeight, shuffle, disableSort) {
-    let ws = item_by_weight_1._createWeight(arr, getWeight || item_by_weight_1._getWeight);
-    ws = item_by_weight_1._sortWeight(random, ws, {
-        shuffle,
-        disableSort,
-    });
+function itemByWeight(random, arr, options) {
+    let ws = item_by_weight_1._createWeight(arr, options);
+    ws = item_by_weight_1._sortWeight(random, ws, options);
     ws = item_by_weight_1._percentageWeight(random, ws);
     const { vlist, klist } = ws;
     ws = void 0;

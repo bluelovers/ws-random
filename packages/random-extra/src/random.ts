@@ -15,7 +15,7 @@ import RNGFactory, { IRNGFactoryType } from './rng-factory'
 import { getClass, hashArgv } from './util';
 import { autobind, deprecate } from 'core-decorators';
 import { ITSArrayLikeWriteable, TypedArray } from 'ts-type';
-import { IObjectInput, IWeightEntrie, IGetWeight } from './distributions/internal/item-by-weight';
+import { IObjectInput, IWeightEntrie, IGetWeight, IOptionsItemByWeight } from './distributions/internal/item-by-weight';
 
 /**
  * Seedable random number generator supporting many common distributions.
@@ -672,40 +672,30 @@ export class Random<R extends RNG = RNG>
 	}
 
 	itemByWeight<T extends unknown>(arr: T[],
-		getWeight?: IGetWeight<T>,
-		shuffle?: boolean,
-		disableSort?: boolean,
+		options?: IOptionsItemByWeight<T>,
 		...argv
 	): IWeightEntrie<T>
 	itemByWeight<T extends unknown, K extends string = string>(arr: IObjectInput<T, K>,
-		getWeight?: IGetWeight<T, K>,
-		shuffle?: boolean,
-		disableSort?: boolean,
+		options?: IOptionsItemByWeight<T, K>,
 		...argv
 	): IWeightEntrie<T, K>
 	itemByWeight<T extends unknown>(arr: T[],
-		getWeight?: IGetWeight<T>,
-		shuffle?: boolean,
-		disableSort?: boolean,
+		options?: IOptionsItemByWeight<T>,
 		...argv
 	): IWeightEntrie<T>
 	{
-		return this.dfItemByWeight(arr, getWeight, shuffle, disableSort, ...argv)()
+		return this.dfItemByWeight(arr, options, ...argv)()
 	}
 
 	/**
 	 * returns random weighted item by give array/object
 	 */
 	dfItemByWeight<T extends unknown>(arr: T[],
-		getWeight?: IGetWeight<T>,
-		shuffle?: boolean,
-		disableSort?: boolean,
+		options?: IOptionsItemByWeight<T>,
 		...argv
 	): () => IWeightEntrie<T>
 	dfItemByWeight<T extends unknown, K extends string = string>(arr: IObjectInput<T, K>,
-		getWeight?: IGetWeight<T, K>,
-		shuffle?: boolean,
-		disableSort?: boolean,
+		options?: IOptionsItemByWeight<T, K>,
 		...argv
 	): () => IWeightEntrie<T, K>
 	/**
@@ -743,13 +733,11 @@ export class Random<R extends RNG = RNG>
 	 *
 	 */
 	dfItemByWeight<T extends unknown>(arr,
-		getWeight?: IGetWeight<T>,
-		shuffle?: boolean,
-		disableSort?: boolean,
+		options?: IOptionsItemByWeight<T>,
 		...argv
 	)
 	{
-		return this._callDistributions(Distributions.itemByWeight, arr, getWeight, shuffle, disableSort, ...argv)
+		return this._callDistributions(Distributions.itemByWeight, arr, options, ...argv)
 	}
 
 	/**

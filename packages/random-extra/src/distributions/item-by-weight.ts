@@ -6,33 +6,24 @@ import {
 	IObjectInput,
 	IWeightEntrie,
 	IGetWeight,
-	_percentageWeight, _sortWeight,
+	_percentageWeight, _sortWeight, IOptionsItemByWeight,
 } from './internal/item-by-weight';
 
 function itemByWeight<T extends unknown>(random: Random, arr: T[],
-	getWeight?: IGetWeight<T>,
-	shuffle?: boolean,
-	disableSort?: boolean,
+	options?: IOptionsItemByWeight<T>
 ): () => IWeightEntrie<T>
 function itemByWeight<T extends unknown, K extends string = string>(random: Random,
 	arr: IObjectInput<T, K>,
-	getWeight?: IGetWeight<T, K>,
-	shuffle?: boolean,
-	disableSort?: boolean,
+	options?: IOptionsItemByWeight<T, K>
 ): () => IWeightEntrie<T, K>
 function itemByWeight<T extends unknown>(random: Random,
 	arr: T[] | IObjectInput<T>,
-	getWeight?: IGetWeight<T>,
-	shuffle?: boolean,
-	disableSort?: boolean,
+	options?: IOptionsItemByWeight<T>
 )
 {
-	let ws = _createWeight(arr, getWeight || _getWeight)
+	let ws = _createWeight(arr, options)
 
-	ws = _sortWeight(random, ws, {
-		shuffle,
-		disableSort,
-	});
+	ws = _sortWeight(random, ws, options);
 
 	ws = _percentageWeight(random, ws);
 

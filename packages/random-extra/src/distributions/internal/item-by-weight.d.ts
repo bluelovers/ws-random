@@ -16,9 +16,13 @@ export declare type IWeightEntrie<T extends unknown, K extends string = string> 
 export declare type IObjectInput<T extends unknown, K extends string = string> = {
     [k in K]: T;
 };
-export declare function _createWeight<T extends unknown>(arr: T[] | IObjectInput<T>, getWeight?: IGetWeight<T>): IWeight<T>;
-export declare function _sortWeight<T extends unknown>(random: Random, ws: IWeight<T>, options?: {
+export interface IOptionsItemByWeightSort {
     shuffle?: boolean;
     disableSort?: boolean;
-}): IWeight<T, string>;
+}
+export interface IOptionsItemByWeight<T extends unknown, K extends string = string> extends IOptionsItemByWeightSort {
+    getWeight?: IGetWeight<T, K>;
+}
+export declare function _createWeight<T extends unknown, K extends string = string>(arr: T[] | IObjectInput<T, K>, options?: IOptionsItemByWeight<T, K>): IWeight<T>;
+export declare function _sortWeight<T extends unknown>(random: Random, ws: IWeight<T>, options?: IOptionsItemByWeightSort): IWeight<T, string>;
 export declare function _percentageWeight<T extends unknown>(random: Random, ws: IWeight<T>): IWeight<T, string>;

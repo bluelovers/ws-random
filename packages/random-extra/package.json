@@ -107,6 +107,7 @@
     "num-in-delta": "^1.0.3",
     "num-is-zero": "^1.0.2",
     "ts-type": "^1.2.25",
+    "ts-type-object-entries": "^1.0.2",
     "uni-string": "^1.1.10"
   },
   "peerDependencies": {
