@@ -553,7 +553,7 @@ export class Random<R extends RNG = RNG>
 	 * @param {number} [sigma=1] - Standard deviation
 	 * @return {function}
 	 */
-	dfNormal(mu?: number, sigma?: number)
+	dfNormal(mu?: number, sigma?: number): () => number
 	{
 		return Distributions.normal(this, mu, sigma)
 	}
@@ -644,7 +644,7 @@ export class Random<R extends RNG = RNG>
 	 * @param {number} n - Number of dfUniform samples to sum (n >= 0)
 	 * @return {function}
 	 */
-	dfIrwinHall(n: number = 1)
+	dfIrwinHall(n: number = 1): () => number
 	{
 		return Distributions.irwinHall(this, n)
 	}

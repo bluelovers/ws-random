@@ -78,10 +78,11 @@
     "pretest": "yarn run build",
     "test": "jest",
     "posttest": "git commit -m \"build: update seed\" ./src/util/random-seed-str.data.* & echo posttest",
-    "build": "ts-node ./test/script/build-cache.ts",
+    "build": "yarn run build:index",
+    "build:index": "ts-node ./test/script/build-cache.ts",
     "build-minify": "npx -r fast-glob -r fs-extra -r uglify-es -r ts-node ts-node ./test/script/minify",
     "postbuild": "ynpx build-ts-file -- ./src/util/random-seed-str.data.ts && git add ./src/util/random-seed-str.data.ts ./src/util/random-seed-str.data.js",
-    "version": "yarn run prepublishOnly",
+    "preversion": "yarn run prepublishOnly",
     "prepublish": "yarn run postpublishOnly:add",
     "prepublishOnly": "yarn run test",
     "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
@@ -105,17 +106,10 @@
     "nanoid": "^3.1.10",
     "num-in-delta": "^1.0.3",
     "num-is-zero": "^1.0.2",
-    "ts-type": "^1.2.24",
+    "ts-type": "^1.2.25",
     "uni-string": "^1.1.10"
   },
-  "devDependencies": {
-    "benchmark": "^2.1.4",
-    "bluebird": "^3.7.2",
-    "math-random": "^1.0.4",
-    "random": "^2.2.0",
-    "seedrandom": "^3.0",
-    "shortid": "^2.2.15"
-  },
+  "devDependencies": {},
   "peerDependencies": {
     "seedrandom": "^3.0"
   },

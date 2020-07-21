@@ -319,7 +319,7 @@ export declare class Random<R extends RNG = RNG> {
      * @param {number} n - Number of dfUniform samples to sum (n >= 0)
      * @return {function}
      */
-    dfIrwinHall(n?: number): any;
+    dfIrwinHall(n?: number): () => number;
     /**
      * Generates a [Bates distribution](https://en.wikipedia.org/wiki/Bates_distribution).
      *
