@@ -3,10 +3,10 @@ import { IArrayInput02 } from './type';
 import Distributions, { IRandomDistributions, IRandomDistributionsCacheRow } from './distributions';
 import { IArrayUniqueOutOfLimitCallback, IRandIndex } from './distributions/array-unique';
 import { ENUM_ALPHABET } from './util/const';
-import { IGetWeight, IObjectInput, IWeightEntrie } from './distributions/item-by-weight';
 import RNGSeedRandom from './generators/seedrandom';
 import RNG from './rng';
 import { IRNGFactoryType } from './rng-factory';
+import { IObjectInput, IWeightEntrie, IGetWeight } from './distributions/internal/item-by-weight';
 /**
  * Seedable random number generator supporting many common distributions.
  *

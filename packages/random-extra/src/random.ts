@@ -8,7 +8,6 @@ import Distributions, {
 } from './distributions';
 import { IArrayUniqueOutOfLimitCallback, IRandIndex } from './distributions/array-unique';
 import { ENUM_ALPHABET } from './util/const';
-import { IGetWeight, IObjectInput, IWeightEntrie } from './distributions/item-by-weight';
 import RNGSeedRandom from './generators/seedrandom';
 
 import RNG from './rng'
@@ -16,6 +15,7 @@ import RNGFactory, { IRNGFactoryType } from './rng-factory'
 import { getClass, hashArgv } from './util';
 import { autobind, deprecate } from 'core-decorators';
 import { ITSArrayLikeWriteable, TypedArray } from 'ts-type';
+import { IObjectInput, IWeightEntrie, IGetWeight } from './distributions/internal/item-by-weight';
 
 /**
  * Seedable random number generator supporting many common distributions.
