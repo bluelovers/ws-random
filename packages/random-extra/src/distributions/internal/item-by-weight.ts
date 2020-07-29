@@ -182,6 +182,19 @@ export function _percentageWeight<T extends unknown, K extends string = string>(
 	return ws
 }
 
+export function _calcWeight<T extends unknown, K extends string = string>(random: Random, arr: T[] | IObjectInput<T, K>,
+	options?: IOptionsItemByWeight<T, K>,
+): IWeight<T, K>
+{
+	let ws = _createWeight(arr, options)
+
+	ws = _sortWeight(random, ws, options);
+
+	ws = _percentageWeight(random, ws);
+
+	return ws
+}
+
 export function _itemByWeightCore(r: number,
 	klist: number[],
 ): number

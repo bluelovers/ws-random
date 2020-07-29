@@ -6,7 +6,7 @@ import {
 	IObjectInput,
 	IWeightEntrie,
 	IGetWeight,
-	_percentageWeight, _sortWeight, IOptionsItemByWeight, _itemByWeightCore,
+	_percentageWeight, _sortWeight, IOptionsItemByWeight, _itemByWeightCore, _calcWeight,
 } from './internal/item-by-weight';
 
 function itemByWeight<T extends unknown>(random: Random, arr: T[],
@@ -21,11 +21,15 @@ function itemByWeight<T extends unknown>(random: Random,
 	options?: IOptionsItemByWeight<T>,
 )
 {
+	/*
 	let ws = _createWeight(arr, options)
 
 	ws = _sortWeight(random, ws, options);
 
 	ws = _percentageWeight(random, ws);
+	 */
+
+	let ws = _calcWeight(random, arr, options);
 
 	const { vlist, klist } = ws;
 

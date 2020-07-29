@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports._itemByWeightCore = exports._percentageWeight = exports._sortWeight = exports._createWeight = exports._getWeight = void 0;
+exports._itemByWeightCore = exports._calcWeight = exports._percentageWeight = exports._sortWeight = exports._createWeight = exports._getWeight = void 0;
 const ow_1 = __importDefault(require("../../util/ow"));
 function _getWeight(value, key) {
     return value + 0.001;
@@ -96,6 +96,13 @@ function _percentageWeight(random, ws) {
     return ws;
 }
 exports._percentageWeight = _percentageWeight;
+function _calcWeight(random, arr, options) {
+    let ws = _createWeight(arr, options);
+    ws = _sortWeight(random, ws, options);
+    ws = _percentageWeight(random, ws);
+    return ws;
+}
+exports._calcWeight = _calcWeight;
 function _itemByWeightCore(r, klist) {
     let index;
     for (let k = 0; k < klist.length; k++) {

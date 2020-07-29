@@ -26,4 +26,5 @@ export interface IOptionsItemByWeight<T extends unknown, K extends string = stri
 export declare function _createWeight<T extends unknown, K extends string = string>(arr: T[] | IObjectInput<T, K>, options?: IOptionsItemByWeight<T, K>): IWeight<T, K>;
 export declare function _sortWeight<T extends unknown, K extends string = string>(random: Random, ws: IWeight<T, K>, options?: IOptionsItemByWeightSort): IWeight<T, K>;
 export declare function _percentageWeight<T extends unknown, K extends string = string>(random: Random, ws: IWeight<T, K>): IWeight<T, K>;
+export declare function _calcWeight<T extends unknown, K extends string = string>(random: Random, arr: T[] | IObjectInput<T, K>, options?: IOptionsItemByWeight<T, K>): IWeight<T, K>;
 export declare function _itemByWeightCore(r: number, klist: number[]): number;
