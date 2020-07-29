@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.6.14](https://github.com/bluelovers/random/compare/random-extra@3.6.13...random-extra@3.6.14) (2020-07-29)
+
+
+### ✨　Features
+
+* export `_calcWeight` ([3ae1dce](https://github.com/bluelovers/random/commit/3ae1dce5ecfb27401e57a7771f38eb99882db28f))
+
+
+### 🛠　Build System
+
+* update seed ([d0dc023](https://github.com/bluelovers/random/commit/d0dc0232f808d7ac2c42f86b0f1a0191c47bf03f))
+
+
+
+
+
 ## [3.6.13](https://github.com/bluelovers/random/compare/random-extra@3.6.12...random-extra@3.6.13) (2020-07-21)
 
 

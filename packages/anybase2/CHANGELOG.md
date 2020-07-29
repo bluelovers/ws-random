@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/bluelovers/ws-random/compare/anybase2@1.0.2...anybase2@1.0.3) (2020-07-29)
+
+
+### ✨　Features
+
+* export `_calcWeight` ([3ae1dce](https://github.com/bluelovers/ws-random/commit/3ae1dce5ecfb27401e57a7771f38eb99882db28f))
+
+
+
+
+
 ## [1.0.2](https://github.com/bluelovers/ws-random/compare/anybase2@1.0.1...anybase2@1.0.2) (2020-07-09)
 
 
