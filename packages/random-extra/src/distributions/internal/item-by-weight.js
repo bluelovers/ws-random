@@ -43,11 +43,13 @@ function _createWeight(arr, options) {
         //a.klist.push(a.last)
         //a.plist.push(entrie.percentage)
         a.vlist.push(item);
+        a.kwlist[entrie.key] = entrie.weight;
         return a;
     }, {
         //klist: [],
         //plist: [],
         vlist: [],
+        kwlist: {},
         last: 0,
     });
     ow_1.default(ls.vlist).have.length.gt(1);
@@ -58,8 +60,10 @@ function _createWeight(arr, options) {
         //psum,
         //psum2,
         //		list: ls,
+        list: ls2,
         //klist: ls.klist,
         //plist: ls.plist,
+        kwlist: ls.kwlist,
         vlist: ls.vlist,
     };
 }

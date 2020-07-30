@@ -8,6 +8,17 @@ export interface IWeight<T extends unknown, K extends string = string> {
     klist?: number[];
     plist?: number[];
     vlist: IWeightEntrie<T, K>[];
+    /**
+     * key weight table
+     */
+    kwlist?: Record<K, number>;
+    list?: IWeightRawData<T, K>[];
+}
+export interface IWeightRawData<T extends unknown, K extends string = string> {
+    key: K;
+    value: T;
+    weight: number;
+    percentage: number;
 }
 /**
  * [key, value, percentage]

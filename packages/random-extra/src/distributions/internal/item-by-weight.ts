@@ -21,12 +21,27 @@ export interface IWeight<T extends unknown, K extends string = string>
 
 	klist?: number[],
 	plist?: number[],
-	vlist: IWeightEntrie<T, K>[]
+	vlist: IWeightEntrie<T, K>[],
+
+	/**
+	 * key weight table
+	 */
+	kwlist?: Record<K, number>,
+
+	list?: IWeightRawData<T, K>[]
 
 //	list: {
 //		[p: number]: IWeightEntrie<T>[]
 //		[p: string]: IWeightEntrie<T>[]
 //	}
+}
+
+export interface IWeightRawData<T extends unknown, K extends string = string>
+{
+	key: K,
+	value: T,
+	weight: number,
+	percentage: number,
 }
 
 /**
@@ -58,7 +73,7 @@ export function _createWeight<T extends unknown, K extends string = string>(arr:
 
 	const getWeight = options?.getWeight ?? _getWeight;
 
-	let ls2 = (Object.entries(arr) as [K, T][])
+	let ls2: IWeightRawData<T, K>[] = (Object.entries(arr) as [K, T][])
 		.map(function (entrie)
 		{
 			let [key, value] = entrie
@@ -105,11 +120,14 @@ export function _createWeight<T extends unknown, K extends string = string>(arr:
 			//a.plist.push(entrie.percentage)
 			a.vlist.push(item)
 
+			a.kwlist[entrie.key] = entrie.weight;
+
 			return a
 		}, {
 			//klist: [],
 			//plist: [],
 			vlist: [] as IWeight<T, K>["vlist"],
+			kwlist: {} as IWeight<T, K>["kwlist"],
 			last: 0,
 		})
 	;
@@ -124,8 +142,11 @@ export function _createWeight<T extends unknown, K extends string = string>(arr:
 		//psum2,
 //		list: ls,
 
+		list: ls2,
+
 		//klist: ls.klist,
 		//plist: ls.plist,
+		kwlist: ls.kwlist,
 		vlist: ls.vlist,
 	}
 }
