@@ -64,7 +64,7 @@ exports.default = (random, lambda = 1) => {
                 if (us < 0.013 && v > us) {
                     continue;
                 }
-                const k = Math.floor((2 * a / us + b) * u + lambda + 0.445) | 0;
+                const k = Math.floor((2 * a / us + b) * u + lambda + 0.445);
                 v = v * invAlpha / (a / (us * us) + b);
                 if (k >= 10) {
                     const t = (k + 0.5) * Math.log(lambda / k) - lambda - logSqrt2PI +

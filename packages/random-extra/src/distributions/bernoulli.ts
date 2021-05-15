@@ -10,7 +10,7 @@ export default (random: Random, p = 0.5) =>
 
 	return () =>
 	{
-		return (random.next() + p) | 0
+		return Math.floor(random.next() + p)
 	}
 }
 

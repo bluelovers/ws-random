@@ -12,7 +12,7 @@ export default (random: Random, p = 0.5) =>
 
 	return () =>
 	{
-		return 1 + (Math.log(random.next()) * invLogP) | 0
+		return Math.floor(1 + Math.log(random.next()) * invLogP)
 	}
 }
 
