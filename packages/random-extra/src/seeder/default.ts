@@ -1,12 +1,13 @@
 /**
  * Created by user on 2018/10/20/020.
  */
+import { isInt } from 'chai-asserttype-extra/lib/check';
 
 export function seedToken(seed?: number | any, opts?, ...argv): number
 {
 	// TODO: add entropy and stuff
 
-	if (seed === (seed | 0))
+	if (isInt(seed))
 	{
 		return seed
 	}

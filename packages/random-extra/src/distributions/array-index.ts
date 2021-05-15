@@ -2,6 +2,7 @@ import { Random } from '../random';
 import * as UtilDistributions from '../util/distributions';
 import expect from '../util/ow';
 import uniformInt from './uniform-int';
+import { int } from '../util/distributions';
 
 export default <T extends Array<unknown>>(random: Random, arr: T, size: number = 1, start: number = 0, end?: number) =>
 {
@@ -9,13 +10,13 @@ export default <T extends Array<unknown>>(random: Random, arr: T, size: number =
 
 	expect(size).integer.gt(0)
 
-	start = Math.max(start | 0, 0);
-	end = Math.max(0, end | 0) || len;
+	start = Math.max(Math.floor(start), 0);
+	end = Math.max(0, Math.floor(end)) || len;
 
 	expect(end).integer.gt(0).lte(len)
 	expect(start).integer.gte(0).lt(end)
 
-	const fn = UtilDistributions.int;
+	const fn = int;
 
 	let size_runtime = Math.max(Math.min(end - start, len, size), 0);
 

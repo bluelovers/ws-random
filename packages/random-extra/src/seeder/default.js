@@ -1,12 +1,13 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.seedToken = void 0;
 /**
  * Created by user on 2018/10/20/020.
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.seedToken = void 0;
+const check_1 = require("chai-asserttype-extra/lib/check");
 function seedToken(seed, opts, ...argv) {
     // TODO: add entropy and stuff
-    if (seed === (seed | 0)) {
+    if (check_1.isInt(seed)) {
         return seed;
     }
     else {

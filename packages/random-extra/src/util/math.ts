@@ -138,7 +138,7 @@ export function array_sum(na: number[])
  */
 export function floatFromBuffer(buf: ArrayLike<number>, offset: number = 0)
 {
-	offset = offset | 0;
+	offset = Math.floor(offset);
 
 	if (buf.length < (FLOAT_ENTROPY_BYTES + offset) || offset < 0)
 	{
@@ -152,7 +152,7 @@ export function floatFromBuffer(buf: ArrayLike<number>, offset: number = 0)
 
 export function _floatFromBuffer(buf: ArrayLike<number>, offset: number = 0)
 {
-	let position = 0 + (offset | 0);
+	let position = Math.floor(offset);
 
 	return (((((((
 		buf[position++] % 32) / 32 +

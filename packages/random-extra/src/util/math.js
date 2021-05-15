@@ -104,7 +104,7 @@ exports.array_sum = array_sum;
  * @see http://stackoverflow.com/questions/15753019/floating-point-number-from-crypto-randombytes-in-javascript
  */
 function floatFromBuffer(buf, offset = 0) {
-    offset = offset | 0;
+    offset = Math.floor(offset);
     if (buf.length < (const_1.FLOAT_ENTROPY_BYTES + offset) || offset < 0) {
         throw new RangeError(`buffer must contain at least ${const_1.FLOAT_ENTROPY_BYTES}${offset > 0 ? ' +' + offset : ''} bytes of entropy`);
     }
@@ -112,7 +112,7 @@ function floatFromBuffer(buf, offset = 0) {
 }
 exports.floatFromBuffer = floatFromBuffer;
 function _floatFromBuffer(buf, offset = 0) {
-    let position = 0 + (offset | 0);
+    let position = Math.floor(offset);
     return (((((((buf[position++] % 32) / 32 +
         buf[position++]) / 256 +
         buf[position++]) / 256 +
