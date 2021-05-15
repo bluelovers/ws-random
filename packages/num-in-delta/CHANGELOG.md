@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.7](https://github.com/bluelovers/ws-random/compare/num-in-delta@1.0.5...num-in-delta@1.0.7) (2021-05-15)
+
+
+### 🐛　Bug Fixes
+
+* use isIntFinite as isInt ([82c4e80](https://github.com/bluelovers/ws-random/commit/82c4e8099718ed543b6f0bde204fa1bec3673c96))
+* https://github.com/transitive-bullshit/random/commit/8df781af1d70ac432b986487deed6415c4c22cba ([5bec8af](https://github.com/bluelovers/ws-random/commit/5bec8afec42e308cddf0e4e859e85f769b53f83d))
+
+
+
+
+
 ## [1.0.6](https://github.com/bluelovers/ws-random/compare/num-in-delta@1.0.5...num-in-delta@1.0.6) (2021-05-15)
 
 

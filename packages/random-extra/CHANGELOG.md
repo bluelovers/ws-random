@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.6.16](https://github.com/bluelovers/random/compare/random-extra@3.6.15...random-extra@3.6.16) (2021-05-15)
+
+
+### 🐛　Bug Fixes
+
+* use isIntFinite as isInt ([82c4e80](https://github.com/bluelovers/random/commit/82c4e8099718ed543b6f0bde204fa1bec3673c96))
+* use Math.floor ([0f15f8f](https://github.com/bluelovers/random/commit/0f15f8f788e7661d39388564949388d7184def9f))
+* https://github.com/transitive-bullshit/random/commit/8df781af1d70ac432b986487deed6415c4c22cba ([5bec8af](https://github.com/bluelovers/random/commit/5bec8afec42e308cddf0e4e859e85f769b53f83d))
+
+
+### 🛠　Build System
+
+* update seed ([5baea96](https://github.com/bluelovers/random/commit/5baea96cd3d48296018c149fe1e579a58f74c905))
+
+
+
+
+
 ## [3.6.15](https://github.com/bluelovers/random/compare/random-extra@3.6.14...random-extra@3.6.15) (2020-07-30)
 
 
