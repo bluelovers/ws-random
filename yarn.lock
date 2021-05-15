@@ -1350,10 +1350,10 @@ caseless@~0.12.0:
   resolved "https://registry.npmjs.org/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
   integrity sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=
 
-chai-asserttype-extra@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.npmjs.org/chai-asserttype-extra/-/chai-asserttype-extra-1.2.2.tgz#da057cd2d19fd7c5098ea840a3fc1dda0da20879"
-  integrity sha512-Y/o03cEtZx1O7MaiCsblZPTUjOVcuaf6sjaVu6uT+pHyDZtpQeqPRUqVrzUbFNbtd+edWIo2iFuUGRaRwYmUlQ==
+chai-asserttype-extra@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.npmjs.org/chai-asserttype-extra/-/chai-asserttype-extra-1.2.3.tgz#fc452fc8fa86b3b766eb14ce1241cbe902a8adc7"
+  integrity sha512-gBJ0Ucjyjsm4nXv0Oh0WfA6MYjvt6wZE/vDHdU/+Z7mMf7xPEMYXKLvHCfChFKg5uLz+vGsArTdirfU7vRM5sA==
   dependencies:
     "@types/type-detect" "^4"
     ts-type "^1.2.34"
