@@ -9,7 +9,7 @@ const __root_ws_1 = __importDefault(require("../../__root_ws"));
 function createCacheName(prefixPath, name) {
     name = name
         .replace(/[^\-_\w\d]/g, '__');
-    return path_1.join(__root_ws_1.default, 'temp', prefixPath, `${name}`);
+    return (0, path_1.join)(__root_ws_1.default, 'temp', prefixPath, `${name}`);
 }
 exports.createCacheName = createCacheName;
 exports.default = createCacheName;

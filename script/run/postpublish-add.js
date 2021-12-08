@@ -11,6 +11,6 @@ const logger_1 = __importDefault(require("debug-color2/logger"));
 let argv = process.argv.slice(2);
 logger_1.default.dir(argv);
 if (argv.length) {
-    argv.forEach(module_name => add_to_postpublish_task_1.add(module_name));
+    argv.forEach(module_name => (0, add_to_postpublish_task_1.add)(module_name));
 }
 //# sourceMappingURL=postpublish-add.js.map

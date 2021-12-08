@@ -10,14 +10,14 @@ const create_cache_name_1 = __importDefault(require("./create-cache-name"));
 const subtree_1 = require("@git-lazy/subtree");
 const data_1 = require("./data");
 async function gitSubtreePush(module_name) {
-    let { _ok, options } = data_1._handle(module_name);
+    let { _ok, options } = (0, data_1._handle)(module_name);
     if (_ok) {
-        await subtree_1.subtreePush(options);
+        await (0, subtree_1.subtreePush)(options);
     }
-    let file = create_cache_name_1.default('subtree', module_name);
-    if (fs_extra_1.pathExistsSync(file)) {
+    let file = (0, create_cache_name_1.default)('subtree', module_name);
+    if ((0, fs_extra_1.pathExistsSync)(file)) {
         (_ok ? logger_1.default : logger_1.default.red).debug(`[subtree:script]`, `del`, module_name);
-        fs_extra_1.unlinkSync(file);
+        (0, fs_extra_1.unlinkSync)(file);
     }
 }
 exports.gitSubtreePush = gitSubtreePush;

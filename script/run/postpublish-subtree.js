@@ -15,11 +15,11 @@ bluebird_1.default
     .async([
     '**/*',
 ], {
-    cwd: path_1.join(__root_ws_1.default, 'temp', 'subtree'),
+    cwd: (0, path_1.join)(__root_ws_1.default, 'temp', 'subtree'),
     absolute: true,
 })
-    .map(file => fs_extra_1.readFile(file, 'utf8'))
+    .map(file => (0, fs_extra_1.readFile)(file, 'utf8'))
     .mapSeries(async (module_name) => {
-    return git_subtree_push_1.gitSubtreePush(module_name);
+    return (0, git_subtree_push_1.gitSubtreePush)(module_name);
 });
 //# sourceMappingURL=postpublish-subtree.js.map

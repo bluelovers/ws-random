@@ -10,33 +10,33 @@ function anybase(target_base, original_number, original_base = 10, minimum_digit
     original_base = Number(original_base);
     minimum_digits = Number(minimum_digits);
     maximum_digits = Number(maximum_digits);
-    if (!isIntBetween_1.isIntBetween(target_base, 2, 62)) {
+    if (!(0, isIntBetween_1.isIntBetween)(target_base, 2, 62)) {
         throw new Error('Invalid target numeric base specified: `' + target_base + '` (expected: 2 .. 62)');
     }
-    if (!isIntBetween_1.isIntBetween(original_base, 2, 62)) {
+    if (!(0, isIntBetween_1.isIntBetween)(original_base, 2, 62)) {
         throw new Error('Invalid original numeric base specified: `' + original_base + '` (expected: 2 .. 62)');
     }
-    if (!isIntBetween_1.isIntBetween(minimum_digits, 0, 64)) {
+    if (!(0, isIntBetween_1.isIntBetween)(minimum_digits, 0, 64)) {
         throw new Error('Invalid minimum digits requested: `' + minimum_digits + '` (expected: 1 .. 64)');
     }
-    if (!isIntBetween_1.isIntBetween(maximum_digits, 0, 64)) {
+    if (!(0, isIntBetween_1.isIntBetween)(maximum_digits, 0, 64)) {
         throw new Error('Invalid minimum digits requested: `' + maximum_digits + '` (expected: 1 .. 64)');
     }
     let returnValue = String(original_number);
     if (original_base <= 16) {
         returnValue = returnValue.toUpperCase();
     }
-    assertNumberBase_1.assertNumberBase(returnValue, original_number, original_base);
+    (0, assertNumberBase_1.assertNumberBase)(returnValue, original_number, original_base);
     if (original_base !== 10) {
-        returnValue = convert_1.baseToDec(returnValue, original_base);
+        returnValue = (0, convert_1.baseToDec)(returnValue, original_base);
     }
     else {
         returnValue = Number(returnValue);
     }
     if (target_base !== 10) {
-        returnValue = convert_1.decToBase(returnValue, target_base);
+        returnValue = (0, convert_1.decToBase)(returnValue, target_base);
     }
-    returnValue = padNumber_1.padNumber(String(returnValue), minimum_digits, maximum_digits);
+    returnValue = (0, padNumber_1.padNumber)(String(returnValue), minimum_digits, maximum_digits);
     if (original_number === '') {
         return '0';
     }
