@@ -22,7 +22,7 @@ export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 	protected _opts: RNGSeedRandomOptions
 	protected _seedrandom: IRNGSeedRandomGenerator
 
-	protected _seedable: boolean = true
+	protected override _seedable: boolean = true
 
 	constructor(seed?, opts?: RNGSeedRandomOptions, lib?: IRNGSeedRandomLib, ...argv)
 	constructor(seed?, opts?: RNGSeedRandomOptions, ...argv)
@@ -36,18 +36,18 @@ export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 		return new this(argv[1], argv[2], argv[0], ...argv.slice(3))
 	}
 
-	public static create(seed?, opts?: RNGSeedRandomOptions, lib?: IRNGSeedRandomLib, ...argv): RNGSeedRandom
-	public static create(...argv)
+	public static override create(seed?, opts?: RNGSeedRandomOptions, lib?: IRNGSeedRandomLib, ...argv): RNGSeedRandom
+	public static override create(...argv)
 	{
 		return new this(...argv)
 	}
 
-	protected _init_check(seed?, opts?, ...argv)
+	protected override _init_check(seed?, opts?, ...argv)
 	{
 
 	}
 
-	protected _init(seed?, opts?, ...argv)
+	protected override _init(seed?, opts?, ...argv)
 	{
 		this._opts = this._opts || Object.assign({}, defaultOptions)
 		this._seedrandom = this.__generator(...argv)
@@ -58,7 +58,7 @@ export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 	protected readonly _NAME = 'seedrandom';
 	protected _TYPE = null;
 
-	get name()
+	override get name()
 	{
 		return `${this._NAME}${this._TYPE ? ':' + this._TYPE : ''}`
 	}
@@ -119,7 +119,7 @@ export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 		*/
 	}
 
-	get options()
+	override get options()
 	{
 		return this._opts
 	}
@@ -141,7 +141,7 @@ export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 	/**
 	 * @todo options for change seeder
 	 */
-	seed(seed?, opts?: RNGSeedRandomOptions, ...argv)
+	override seed(seed?, opts?: RNGSeedRandomOptions, ...argv)
 	{
 		if (opts === null)
 		{

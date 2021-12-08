@@ -6,8 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const ow_1 = __importDefault(require("../util/ow"));
 const byte_1 = __importDefault(require("./byte"));
 function uniformBytes(random, size, toStr) {
-    ow_1.default(size).integer.gt(0);
-    const fn = byte_1.default(random, toStr);
+    (0, ow_1.default)(size).integer.gt(0);
+    const fn = (0, byte_1.default)(random, toStr);
     return () => {
         let i = size;
         let arr = [];

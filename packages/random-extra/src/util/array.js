@@ -46,7 +46,7 @@ function swapAlgorithm2(arr, overwrite, fn = randIndex) {
 }
 exports.swapAlgorithm2 = swapAlgorithm2;
 function randIndex(len, ...argv) {
-    return Math.floor(_random_1._MathRandom() * len);
+    return Math.floor((0, _random_1._MathRandom)() * len);
 }
 exports.randIndex = randIndex;
 /**

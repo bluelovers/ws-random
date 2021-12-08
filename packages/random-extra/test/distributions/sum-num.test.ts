@@ -9,9 +9,10 @@
 
 import { SUM_DELTA } from '../../src/util/const';
 import { fixZero } from 'num-is-zero';
-import { array_sum, toFixedNumber } from '../../src/util/math';
+import { array_sum} from '../../src/util/math';
 import random from '../../'
 import checkTypesMatchers from '../jest/type';
+import { toFixedNumber } from '@lazy-random/to-fixed-number';
 
 expect.extend({
 	toBeCloseToWithDelta: checkTypesMatchers.toBeCloseToWithDelta,

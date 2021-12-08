@@ -36,7 +36,7 @@ let Random = Random_1 = class Random {
         this._cache = {};
         if (rng) {
             //ow(rng, ow.object.instanceOf(RNG))
-            ow_1.expect(rng).instanceof(rng_1.default);
+            (0, ow_1.expect)(rng).instanceof(rng_1.default);
         }
         Object.defineProperty(this, 'Random', {
             configurable: false,
@@ -131,15 +131,15 @@ let Random = Random_1 = class Random {
      * @param {...*} args
      */
     use(arg0, ...args) {
-        this._rng = rng_factory_1.default(arg0, ...args);
+        this._rng = (0, rng_factory_1.default)(arg0, ...args);
         return this;
     }
     /**
      * create new Random and use
      */
     newUse(arg0, ...args) {
-        let o = util_1.getClass(Random_1, this);
-        return new o(rng_factory_1.default(arg0, ...args));
+        let o = (0, util_1.getClass)(Random_1, this);
+        return new o((0, rng_factory_1.default)(arg0, ...args));
     }
     cloneUse(arg0, ...args) {
         let o = this.clone();
@@ -568,7 +568,7 @@ let Random = Random_1 = class Random {
      * @return {function}
      */
     _memoize(label, getter, ...args) {
-        const key = util_1.hashArgv(args);
+        const key = (0, util_1.hashArgv)(args);
         let value = this._cache[label];
         if (value === undefined || value.key !== key) {
             value = {
@@ -599,13 +599,13 @@ let Random = Random_1 = class Random {
 };
 Random.Random = Random_1;
 __decorate([
-    core_decorators_1.deprecate('not recommended use'),
+    (0, core_decorators_1.deprecate)('not recommended use'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], Random.prototype, "patch", null);
 __decorate([
-    core_decorators_1.deprecate('not recommended use'),
+    (0, core_decorators_1.deprecate)('not recommended use'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)

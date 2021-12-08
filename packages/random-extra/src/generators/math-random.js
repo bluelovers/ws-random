@@ -15,13 +15,13 @@ class RNGMathRandom extends rng_1.default {
         return false;
     }
     next() {
-        return _random_1._MathRandom();
+        return (0, _random_1._MathRandom)();
     }
     seed(seed, opts, ...argv) {
         // intentionally empty
     }
     clone(seed, opts, ...argv) {
-        return util_1.cloneClass(RNGMathRandom, this, seed, opts, ...argv);
+        return (0, util_1.cloneClass)(RNGMathRandom, this, seed, opts, ...argv);
     }
 }
 exports.RNGMathRandom = RNGMathRandom;

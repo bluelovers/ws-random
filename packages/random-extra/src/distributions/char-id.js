@@ -14,7 +14,7 @@ const to_string_1 = require("../util/to-string");
 exports.default = (random, char, size) => {
     if (typeof char === 'number') {
         if (typeof size === 'number') {
-            char = to_string_1.floatToString(char);
+            char = (0, to_string_1.floatToString)(char);
         }
         else {
             [size, char] = [char, null];
@@ -22,15 +22,15 @@ exports.default = (random, char, size) => {
     }
     size = size || 8;
     //ow(size, ow.number.integer.gt(0));
-    ow_1.default(size).integer.gt(0);
+    (0, ow_1.default)(size).integer.gt(0);
     if (!char) {
         char = const_1.ENUM_ALPHABET.DEFAULT;
     }
     let ls = uni_string_1.default.create(char).split('');
     let len = ls.length;
-    ow_1.default(ls).to.have.lengthOf.gt(1);
+    (0, ow_1.default)(ls).to.have.lengthOf.gt(1);
     const randIndex = () => {
-        return distributions_1.randIndex(random, len);
+        return (0, distributions_1.randIndex)(random, len);
     };
     return () => {
         let i = size;

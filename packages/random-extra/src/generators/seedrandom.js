@@ -43,7 +43,7 @@ class RNGSeedRandom extends function_1.default {
                 case 'xor4096':
                 case 'xorshift7':
                 case 'xorwow':
-                    fn = req_1.tryRequire('seedrandom')[fn];
+                    fn = (0, req_1.tryRequire)('seedrandom')[fn];
                     //fn = require(`seedrandom/lib/${fn}`)
                     this._TYPE = fn;
                     break;
@@ -65,7 +65,7 @@ class RNGSeedRandom extends function_1.default {
         else {
             this._TYPE = null;
         }
-        fn = fn || req_1.tryRequire('seedrandom');
+        fn = fn || (0, req_1.tryRequire)('seedrandom');
         return fn;
         /*
         return (seed?, opts?: RNGSeedRandomOptions, ...argv) => {
@@ -101,7 +101,7 @@ class RNGSeedRandom extends function_1.default {
     }
     // @ts-ignore
     clone(seed, opts, ...argv) {
-        return util_1.cloneClass(RNGSeedRandom, this, seed, opts, ...argv);
+        return (0, util_1.cloneClass)(RNGSeedRandom, this, seed, opts, ...argv);
     }
 }
 exports.RNGSeedRandom = RNGSeedRandom;

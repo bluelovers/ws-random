@@ -10,11 +10,11 @@ exports.default = (random, min, max) => {
         max = (min === undefined ? 1 : min);
         min = 0;
     }
-    ow_1.default(min).integer();
-    ow_1.default(max).integer.gt(min);
+    (0, ow_1.default)(min).integer();
+    (0, ow_1.default)(max).integer.gt(min);
     //ow(min, ow.number.integer)
     //ow(max, ow.number.integer.gt(min))
-    let fn = uniform_1.default(random, min, max + 1);
+    let fn = (0, uniform_1.default)(random, min, max + 1);
     return () => {
         return Math.floor(fn());
     };

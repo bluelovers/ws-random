@@ -15,10 +15,10 @@ const random_seed_str_1 = require("../util/random-seed-str");
 //declare function hashSum(input): string
 function hashAny(seed, ...argv) {
     if (!seed) {
-        seed = random_seed_str_1.randomSeedStr();
+        seed = (0, random_seed_str_1.randomSeedStr)();
     }
     else if (typeof seed !== 'string') {
-        seed = hash_sum_1.default(seed);
+        seed = (0, hash_sum_1.default)(seed);
     }
     return String(seed);
 }

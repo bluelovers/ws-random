@@ -11,21 +11,21 @@ const assers_1 = require("../util/assers");
 function arrayFill(random, min, max, float) {
     let fn;
     {
-        let min_unset = assers_1.isUnset(min);
-        let max_unset = assers_1.isUnset(max);
+        let min_unset = (0, assers_1.isUnset)(min);
+        let max_unset = (0, assers_1.isUnset)(max);
         if (max_unset && min_unset) {
-            fn = byte_1.default(random);
+            fn = (0, byte_1.default)(random);
         }
         else if (float) {
-            fn = uniform_1.default(random, min, max);
+            fn = (0, uniform_1.default)(random, min, max);
         }
         else {
-            fn = uniform_int_1.default(random, min, max);
+            fn = (0, uniform_int_1.default)(random, min, max);
         }
         min = void 0;
         max = void 0;
     }
-    ow_1.default(fn).is.function();
+    (0, ow_1.default)(fn).is.function();
     return (arr) => {
         let i = arr.length;
         while (i--) {

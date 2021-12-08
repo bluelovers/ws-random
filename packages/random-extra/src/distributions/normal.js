@@ -7,8 +7,8 @@ const ow_1 = __importDefault(require("../util/ow"));
 exports.default = (random, mu = 0, sigma = 1) => {
     //ow(mu, ow.number)
     //ow(sigma, ow.number)
-    ow_1.default(mu).number();
-    ow_1.default(sigma).number();
+    (0, ow_1.default)(mu).number();
+    (0, ow_1.default)(sigma).number();
     return () => {
         let x, y, r;
         do {

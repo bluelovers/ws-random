@@ -14,8 +14,8 @@ const ow_1 = __importDefault(require("../util/ow"));
  * @return {function}
  */
 exports.default = (random, n = 1) => {
-    ow_1.default(n).integer.gte(0);
-    n = num_is_zero_1.fixZero(n);
+    (0, ow_1.default)(n).integer.gte(0);
+    n = (0, num_is_zero_1.fixZero)(n);
     if (n === 0) {
         return () => 0;
     }

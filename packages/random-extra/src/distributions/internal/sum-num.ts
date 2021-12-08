@@ -2,11 +2,12 @@ import { array_unique } from 'array-hyper-unique';
 import { fakeLibRMathRng, libRMath } from '../../for3rd/lib-r-math/util';
 import { Random } from '../../random';
 import { UtilDistributions } from '../../util/distributions';
-import { array_sum, get_prob, get_prob_float, sum_1_to_n, toFixedNumber } from '../../util/math';
+import { array_sum, get_prob, get_prob_float, sum_1_to_n} from '../../util/math';
 import { fixZero } from 'num-is-zero';
 import { expect } from '../../util/ow';
 import uniform from '../uniform';
 import { isUnset } from '../../util/assers';
+import { toFixedNumber } from '@lazy-random/to-fixed-number';
 
 export interface ISumNumParameterBase
 {

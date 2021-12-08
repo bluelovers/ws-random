@@ -4,7 +4,7 @@ const array_1 = require("../util/array");
 const distributions_1 = require("../util/distributions");
 function arrayShuffle(random, arr, overwrite) {
     const randIndex = (len) => {
-        return distributions_1.randIndex(random, len);
+        return (0, distributions_1.randIndex)(random, len);
     };
     if (!overwrite) {
         let cloneArrayLike;
@@ -22,11 +22,11 @@ function arrayShuffle(random, arr, overwrite) {
             };
         }
         return () => {
-            return array_1.swapAlgorithm2(cloneArrayLike(arr), true, randIndex);
+            return (0, array_1.swapAlgorithm2)(cloneArrayLike(arr), true, randIndex);
         };
     }
     return () => {
-        return array_1.swapAlgorithm2(arr, true, randIndex);
+        return (0, array_1.swapAlgorithm2)(arr, true, randIndex);
     };
 }
 arrayShuffle.memoizable = false;

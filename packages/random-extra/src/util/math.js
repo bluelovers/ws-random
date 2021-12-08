@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.readUInt32BE = exports.readUInt32LE = exports._floatFromBuffer2 = exports._floatFromBuffer = exports.floatFromBuffer = exports.array_sum = exports.toFixedNumber = exports.get_range_by_size_sum = exports.get_prob_float = exports.get_prob = exports.sum_1_to_n = exports.fixZero = void 0;
+exports.readUInt32BE = exports.readUInt32LE = exports._floatFromBuffer2 = exports._floatFromBuffer = exports.floatFromBuffer = exports.array_sum = exports.get_range_by_size_sum = exports.get_prob_float = exports.get_prob = exports.sum_1_to_n = exports.fixZero = void 0;
 const const_1 = require("./const");
 const num_is_zero_1 = require("num-is-zero");
 Object.defineProperty(exports, "fixZero", { enumerable: true, get: function () { return num_is_zero_1.fixZero; } });
@@ -85,12 +85,8 @@ function get_range_by_size_sum(size, sum) {
     };
 }
 exports.get_range_by_size_sum = get_range_by_size_sum;
-function toFixedNumber(n, fractionDigits) {
-    return parseFloat(n.toFixed(fractionDigits));
-}
-exports.toFixedNumber = toFixedNumber;
 function array_sum(na) {
-    return num_is_zero_1.fixZero(na.reduce((a, b) => a + b));
+    return (0, num_is_zero_1.fixZero)(na.reduce((a, b) => a + b));
 }
 exports.array_sum = array_sum;
 /**

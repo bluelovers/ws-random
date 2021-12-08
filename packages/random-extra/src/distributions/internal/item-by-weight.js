@@ -20,7 +20,7 @@ function _createWeight(arr, options) {
         //weight = Math.exp(weight)
         weight = +weight;
         //ow(weight, ow.number.gt(0))
-        ow_1.default(weight).gt(0);
+        (0, ow_1.default)(weight).gt(0);
         sum += weight;
         return {
             key,
@@ -52,7 +52,7 @@ function _createWeight(arr, options) {
         kwlist: {},
         last: 0,
     });
-    ow_1.default(ls.vlist).have.length.gt(1);
+    (0, ow_1.default)(ls.vlist).have.length.gt(1);
     return {
         //source: arr,
         sum,

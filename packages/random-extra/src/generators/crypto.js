@@ -20,10 +20,10 @@ class RNGCrypto extends rng_1.default {
         this._init(seed, opts, ...argv);
     }
     _init(crypto, opts, ...argv) {
-        crypto = crypto || crypto_1.crossCrypto();
+        crypto = crypto || (0, crypto_1.crossCrypto)();
         this._crypto = crypto;
         this._randIndex = this._randIndex || array_1.randIndex;
-        ow_1.default(crypto.randomBytes).is.a.function();
+        (0, ow_1.default)(crypto.randomBytes).is.a.function();
         if (1) {
             this._seed_size = Math.min(Math.max(this._seed_size, const_1.UINT32_BYTES), 255);
             this._seed_size_min = Math.min(Math.max(this._seed_size_min, const_1.UINT32_BYTES), 255);

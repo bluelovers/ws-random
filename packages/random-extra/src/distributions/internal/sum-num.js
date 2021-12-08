@@ -12,6 +12,7 @@ const num_is_zero_1 = require("num-is-zero");
 const ow_1 = require("../../util/ow");
 const uniform_1 = __importDefault(require("../uniform"));
 const assers_1 = require("../../util/assers");
+const to_fixed_number_1 = require("@lazy-random/to-fixed-number");
 /**
  * not support unique, but will try make unique if can
  * thx @SeverinPappadeux for int version
@@ -21,21 +22,21 @@ const assers_1 = require("../../util/assers");
 function coreFnRandSumInt(argv) {
     let { random, size, sum, min, max, } = argv;
     // @ts-ignore
-    ow_1.expect(size).is.finite.integer.gt(1);
-    let sum_1_to_size = math_1.sum_1_to_n(size);
-    sum = assers_1.isUnset(sum) ? sum_1_to_size : sum;
+    (0, ow_1.expect)(size).is.finite.integer.gt(1);
+    let sum_1_to_size = (0, math_1.sum_1_to_n)(size);
+    sum = (0, assers_1.isUnset)(sum) ? sum_1_to_size : sum;
     // @ts-ignore
-    ow_1.expect(sum).is.finite.integer();
-    min = assers_1.isUnset(min) ? (sum > 0 ? 0 : sum) : min;
-    max = assers_1.isUnset(max) ? Math.abs(sum) : max;
+    (0, ow_1.expect)(sum).is.finite.integer();
+    min = (0, assers_1.isUnset)(min) ? (sum > 0 ? 0 : sum) : min;
+    max = (0, assers_1.isUnset)(max) ? Math.abs(sum) : max;
     // @ts-ignore
-    ow_1.expect(min).is.finite.integer();
+    (0, ow_1.expect)(min).is.finite.integer();
     // @ts-ignore
-    ow_1.expect(max).is.finite.integer();
+    (0, ow_1.expect)(max).is.finite.integer();
     //let n_sum = Math.abs(sum - size * min);
     let n_sum = sum - size * min;
     let maxv = max - min;
-    ow_1.expect(n_sum).gte(0);
+    (0, ow_1.expect)(n_sum).gte(0);
     /*
     console.log({
         sum_1_to_size,
@@ -48,7 +49,7 @@ function coreFnRandSumInt(argv) {
     });
     */
     if (sum > 0) {
-        ow_1.expect(sum).gt(min);
+        (0, ow_1.expect)(sum).gt(min);
     }
     /**
      * pre-check
@@ -57,12 +58,12 @@ function coreFnRandSumInt(argv) {
     /**
      * probabilities
      */
-    let prob = math_1.get_prob(size, maxv);
-    ow_1.expect(prob).is.array.lengthOf(size);
+    let prob = (0, math_1.get_prob)(size, maxv);
+    (0, ow_1.expect)(prob).is.array.lengthOf(size);
     /**
      * make rmultinom use with random.next
      */
-    let rmultinomFn = util_1.libRMath.Multinomial(util_1.fakeLibRMathRng(random.next)).rmultinom;
+    let rmultinomFn = util_1.libRMath.Multinomial((0, util_1.fakeLibRMathRng)(random.next)).rmultinom;
     /**
      * low value for speed up, but more chance fail
      */
@@ -114,7 +115,7 @@ function coreFnRandSumInt(argv) {
     let cache = [];
     {
         let len = 200;
-        let arr = array_hyper_unique_1.array_unique(rmultinomCreateFn(len).map(v => {
+        let arr = (0, array_hyper_unique_1.array_unique)(rmultinomCreateFn(len).map(v => {
             v.value = v.value.map(num_is_zero_1.fixZero);
             return v;
         }));
@@ -123,9 +124,9 @@ function coreFnRandSumInt(argv) {
             while (i--) {
                 cache.push(arr[i].value);
             }
-            cache = array_hyper_unique_1.array_unique(cache.map(v => v.sort()));
+            cache = (0, array_hyper_unique_1.array_unique)(cache.map(v => v.sort()));
         }
-        ow_1.expect(cache, `invalid argv (size=${size}, sum=${sum}, min=${min}, max=${max})`)
+        (0, ow_1.expect)(cache, `invalid argv (size=${size}, sum=${sum}, min=${min}, max=${max})`)
             .is.array
             .have.lengthOf.gt(0);
         arr = undefined;
@@ -163,30 +164,30 @@ exports.coreFnRandSumInt = coreFnRandSumInt;
 function coreFnRandSumFloat(argv) {
     let { random, size, sum, min, max, fractionDigits, } = argv;
     // @ts-ignore
-    ow_1.expect(size).is.finite.integer.gt(1);
-    if (assers_1.isUnset(sum) && typeof min === 'number' && typeof max === 'number') {
+    (0, ow_1.expect)(size).is.finite.integer.gt(1);
+    if ((0, assers_1.isUnset)(sum) && typeof min === 'number' && typeof max === 'number') {
         sum = (size - 1) * min + max;
         //console.log(sum, min, max);
     }
-    sum = assers_1.isUnset(sum) ? 1.0 : sum;
-    min = assers_1.isUnset(min) ? (sum > 0 ? 0 : sum) : min;
-    max = assers_1.isUnset(max) ? Math.abs(sum) : max;
+    sum = (0, assers_1.isUnset)(sum) ? 1.0 : sum;
+    min = (0, assers_1.isUnset)(min) ? (sum > 0 ? 0 : sum) : min;
+    max = (0, assers_1.isUnset)(max) ? Math.abs(sum) : max;
     // @ts-ignore
-    ow_1.expect(min).is.finite.number();
+    (0, ow_1.expect)(min).is.finite.number();
     // @ts-ignore
-    ow_1.expect(max).is.finite.number();
+    (0, ow_1.expect)(max).is.finite.number();
     // @ts-ignore
-    ow_1.expect(sum).is.finite.number();
+    (0, ow_1.expect)(sum).is.finite.number();
     sum += 0.0;
     let n_sum = sum - size * min;
     let maxv = max - min;
     if (sum > 0) {
-        ow_1.expect(sum).gt(min);
+        (0, ow_1.expect)(sum).gt(min);
     }
-    ow_1.expect(n_sum).gte(0);
+    (0, ow_1.expect)(n_sum).gte(0);
     let fnFirst;
-    if (!assers_1.isUnset(fractionDigits)) {
-        ow_1.expect(fractionDigits)
+    if (!(0, assers_1.isUnset)(fractionDigits)) {
+        (0, ow_1.expect)(fractionDigits)
             // @ts-ignore
             .is.finite
             .integer.gt(0);
@@ -196,13 +197,13 @@ function coreFnRandSumFloat(argv) {
          * get_prob_float(3, 10)
          * // => [ 4.444444444444445, 3.3333333333333335, 2.222222222222222 ]
          */
-        let prob = math_1.get_prob_float(size, maxv);
+        let prob = (0, math_1.get_prob_float)(size, maxv);
         /**
          * array_sum(prob.slice(0, -1))
          * // => 7.777777777777779
          */
-        let prob_slice_sum = math_1.array_sum(prob.slice(0, -1));
-        fnFirst = uniform_1.default(random, 0, prob_slice_sum);
+        let prob_slice_sum = (0, math_1.array_sum)(prob.slice(0, -1));
+        fnFirst = (0, uniform_1.default)(random, 0, prob_slice_sum);
     }
     let fnNext = distributions_1.UtilDistributions.float;
     return () => {
@@ -216,9 +217,9 @@ function coreFnRandSumFloat(argv) {
             let n10;
             let n11;
             let n00 = fnFirst();
-            let n01 = num_is_zero_1.fixZero(n00 + min);
+            let n01 = (0, num_is_zero_1.fixZero)(n00 + min);
             if (fractionDigits) {
-                n01 = math_1.toFixedNumber(n01, fractionDigits);
+                n01 = (0, to_fixed_number_1.toFixedNumber)(n01, fractionDigits);
             }
             if (n01 < min || n01 > max) {
                 continue LABEL_TOP;
@@ -239,9 +240,9 @@ function coreFnRandSumFloat(argv) {
                 if (t1 < min) {
                     continue LABEL_TOP;
                 }
-                n11 = num_is_zero_1.fixZero(n10 + min);
+                n11 = (0, num_is_zero_1.fixZero)(n10 + min);
                 if (fractionDigits) {
-                    n11 = math_1.toFixedNumber(n11, fractionDigits);
+                    n11 = (0, to_fixed_number_1.toFixedNumber)(n11, fractionDigits);
                 }
                 if (n11 < min || n11 > max || n11 === n_prev) {
                     continue LABEL_SUB;
@@ -252,9 +253,9 @@ function coreFnRandSumFloat(argv) {
                 i--;
                 n_prev = n11;
             }
-            t1 = num_is_zero_1.fixZero(sum - total2);
+            t1 = (0, num_is_zero_1.fixZero)(sum - total2);
             if (fractionDigits) {
-                t1 = math_1.toFixedNumber(t1, fractionDigits);
+                t1 = (0, to_fixed_number_1.toFixedNumber)(t1, fractionDigits);
             }
             if (t1 < min || t1 > max || t1 === n01 || t1 === n_prev) {
                 continue LABEL_TOP;

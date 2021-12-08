@@ -7,12 +7,12 @@ const ow_1 = __importDefault(require("../util/ow"));
 const uniform_int_1 = __importDefault(require("./uniform-int"));
 const byte_1 = require("../util/byte");
 function uniformByte(random, toStr) {
-    let fn = uniform_int_1.default(random, 0, 255);
+    let fn = (0, uniform_int_1.default)(random, 0, 255);
     if (typeof toStr !== 'undefined') {
-        ow_1.default(toStr).is.boolean();
+        (0, ow_1.default)(toStr).is.boolean();
     }
     if (toStr) {
-        return () => byte_1.stringifyByte(fn());
+        return () => (0, byte_1.stringifyByte)(fn());
     }
     return fn;
 }

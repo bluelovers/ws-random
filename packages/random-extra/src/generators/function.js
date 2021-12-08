@@ -16,7 +16,7 @@ class RNGFunction extends rng_1.default {
     _init_check(seed, opts, ...argv) {
         let type = typeof seed;
         if (seed !== null && type !== 'undefined' && type !== 'function') {
-            ow_1.default(seed).to.be.function;
+            (0, ow_1.default)(seed).to.be.function;
         }
     }
     _init(seed, opts, ...argv) {
@@ -40,7 +40,7 @@ class RNGFunction extends rng_1.default {
         //expect(this._rng).function();
     }
     clone(seed, opts, ...argv) {
-        return util_1.cloneClass(RNGFunction, this, seed, opts, ...argv);
+        return (0, util_1.cloneClass)(RNGFunction, this, seed, opts, ...argv);
     }
 }
 exports.RNGFunction = RNGFunction;

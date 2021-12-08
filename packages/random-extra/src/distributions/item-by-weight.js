@@ -9,14 +9,14 @@ function itemByWeight(random, arr, options) {
 
     ws = _percentageWeight(random, ws);
      */
-    let ws = item_by_weight_1._calcWeight(random, arr, options);
+    let ws = (0, item_by_weight_1._calcWeight)(random, arr, options);
     const { vlist, klist } = ws;
     //console.dir(ws)
     ws = void 0;
     arr = void 0;
     options = void 0;
     return () => {
-        return vlist[item_by_weight_1._itemByWeightCore(random.next(), klist)];
+        return vlist[(0, item_by_weight_1._itemByWeightCore)(random.next(), klist)];
     };
 }
 exports.default = itemByWeight;

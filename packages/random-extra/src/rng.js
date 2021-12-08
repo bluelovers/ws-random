@@ -58,15 +58,15 @@ class RNG {
              * this make always get a new token
              * when seed is undefined
              */
-            seed = random_seed_str_1.randomSeedStr();
+            seed = (0, random_seed_str_1.randomSeedStr)();
         }
-        return default_1.seedToken(seed, opts, ...argv);
+        return (0, default_1.seedToken)(seed, opts, ...argv);
     }
     /**
      * return string for make new seed
      */
     _seedStr(seed, opts, ...argv) {
-        return hash_any_1.hashAny(seed, opts, ...argv);
+        return (0, hash_any_1.hashAny)(seed, opts, ...argv);
     }
 }
 exports.RNG = RNG;

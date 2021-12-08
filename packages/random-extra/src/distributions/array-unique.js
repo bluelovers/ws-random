@@ -7,7 +7,7 @@ const ow_1 = __importDefault(require("../util/ow"));
 const distributions_1 = require("../util/distributions");
 exports.default = (random, arr, limit, loop, fnRandIndex, fnOutOfLimit) => {
     const randIndex = (len) => {
-        return distributions_1.randIndex(random, len);
+        return (0, distributions_1.randIndex)(random, len);
     };
     let clone = arr.slice();
     limit = Math.min(limit || clone.length, clone.length);
@@ -15,8 +15,8 @@ exports.default = (random, arr, limit, loop, fnRandIndex, fnOutOfLimit) => {
     loop = !!loop;
     //ow(limit, ow.number.integer.gt(0));
     //ow(fnRandIndex, ow.function);
-    ow_1.default(limit).integer.gt(0);
-    ow_1.default(fnRandIndex).is.function();
+    (0, ow_1.default)(limit).integer.gt(0);
+    (0, ow_1.default)(fnRandIndex).is.function();
     let count = limit;
     let len;
     const _fnClone = function _fnClone(arr) {

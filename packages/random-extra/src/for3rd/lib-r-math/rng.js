@@ -84,11 +84,11 @@ class RandomRngWithLibRMath extends rng_1.default {
             // @ts-ignore
             this._rng = opts;
         }
-        else if (seed && is_extends_of_1.default(seed, libRMath.IRNG)) {
+        else if (seed && (0, is_extends_of_1.default)(seed, libRMath.IRNG)) {
             // @ts-ignore
             this._rng = new seed(this._seedNum(opts));
         }
-        else if (opts && is_extends_of_1.default(opts, libRMath.IRNG)) {
+        else if (opts && (0, is_extends_of_1.default)(opts, libRMath.IRNG)) {
             // @ts-ignore
             this._rng = new opts(this._seedNum(seed));
         }

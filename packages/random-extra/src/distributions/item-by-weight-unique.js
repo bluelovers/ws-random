@@ -6,10 +6,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const item_by_weight_1 = require("./internal/item-by-weight");
 const ow_1 = __importDefault(require("../util/ow"));
 function itemByWeightUnique(random, arr, size, options) {
-    let ws = item_by_weight_1._createWeight(arr, options);
-    ow_1.default(size).integer.gt(1);
-    ow_1.default(ws.vlist).have.length.gte(size);
-    ws = item_by_weight_1._percentageWeight(random, item_by_weight_1._sortWeight(random, ws, options));
+    let ws = (0, item_by_weight_1._createWeight)(arr, options);
+    (0, ow_1.default)(size).integer.gt(1);
+    (0, ow_1.default)(ws.vlist).have.length.gte(size);
+    ws = (0, item_by_weight_1._percentageWeight)(random, (0, item_by_weight_1._sortWeight)(random, ws, options));
     const { vlist, klist } = ws;
     ws = void 0;
     arr = void 0;
@@ -22,11 +22,11 @@ function itemByWeightUnique(random, arr, size, options) {
             klist: klist.slice(),
         };
         for (let i = 0; i < size; i++) {
-            let index = item_by_weight_1._itemByWeightCore(random.next(), ws.klist);
+            let index = (0, item_by_weight_1._itemByWeightCore)(random.next(), ws.klist);
             result.push(ws.vlist[index]);
             if (i < size_sub_1) {
                 ws.vlist.splice(index, 1);
-                item_by_weight_1._percentageWeight(random, ws);
+                (0, item_by_weight_1._percentageWeight)(random, ws);
             }
         }
         return result;

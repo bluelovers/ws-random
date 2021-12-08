@@ -7,7 +7,7 @@ exports.seedToken = void 0;
 const check_1 = require("chai-asserttype-extra/lib/check");
 function seedToken(seed, opts, ...argv) {
     // TODO: add entropy and stuff
-    if (check_1.isIntFinite(seed)) {
+    if ((0, check_1.isIntFinite)(seed)) {
         return seed;
     }
     else {

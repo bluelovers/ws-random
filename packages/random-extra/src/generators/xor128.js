@@ -37,10 +37,10 @@ class RNGXOR128 extends rng_1.default {
         }
     }
     clone(seed, opts, ...argv) {
-        return util_1.cloneClass(RNGXOR128, this, seed, opts, ...argv);
+        return (0, util_1.cloneClass)(RNGXOR128, this, seed, opts, ...argv);
     }
     _init(...argv) {
-        let [x = seed_1.randomSeedNum(), y = seed_1.randomSeedNum(), z = seed_1.randomSeedNum(), w = seed_1.randomSeedNum(),] = argv;
+        let [x = (0, seed_1.randomSeedNum)(), y = (0, seed_1.randomSeedNum)(), z = (0, seed_1.randomSeedNum)(), w = (0, seed_1.randomSeedNum)(),] = argv;
         this._seed(x, y, z, w);
     }
     _seed(...argv) {

@@ -44,7 +44,7 @@ exports.crossCrypto = (() => {
     };
 })();
 function randomBytes(size, callback) {
-    return exports.crossCrypto().randomBytes(size, callback);
+    return (0, exports.crossCrypto)().randomBytes(size, callback);
 }
 exports.randomBytes = randomBytes;
 //# sourceMappingURL=crypto.js.map

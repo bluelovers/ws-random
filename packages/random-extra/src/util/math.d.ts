@@ -17,7 +17,6 @@ export declare function get_range_by_size_sum(size: number, sum?: number): {
     sum: number;
     resultArray: any[];
 };
-export declare function toFixedNumber(n: number, fractionDigits: number): number;
 export declare function array_sum(na: number[]): number;
 /**
  * Given a buffer containing bytes of entropy, generate a double-precision
