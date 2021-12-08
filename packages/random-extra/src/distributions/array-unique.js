@@ -1,9 +1,6 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const ow_1 = __importDefault(require("../util/ow"));
+const expect_1 = require("@lazy-random/expect");
 const distributions_1 = require("../util/distributions");
 exports.default = (random, arr, limit, loop, fnRandIndex, fnOutOfLimit) => {
     const randIndex = (len) => {
@@ -15,8 +12,8 @@ exports.default = (random, arr, limit, loop, fnRandIndex, fnOutOfLimit) => {
     loop = !!loop;
     //ow(limit, ow.number.integer.gt(0));
     //ow(fnRandIndex, ow.function);
-    (0, ow_1.default)(limit).integer.gt(0);
-    (0, ow_1.default)(fnRandIndex).is.function();
+    (0, expect_1.expect)(limit).integer.gt(0);
+    (0, expect_1.expect)(fnRandIndex).is.function();
     let count = limit;
     let len;
     const _fnClone = function _fnClone(arr) {

@@ -1,10 +1,7 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const num_is_zero_1 = require("num-is-zero");
-const ow_1 = __importDefault(require("../util/ow"));
+const expect_1 = require("@lazy-random/expect");
 /**
  * https://zh.wikipedia.org/wiki/%E6%AD%90%E6%96%87%E2%80%93%E8%B3%80%E7%88%BE%E5%88%86%E4%BD%88
  * https://en.wikipedia.org/wiki/Irwin%E2%80%93Hall_distribution
@@ -14,7 +11,7 @@ const ow_1 = __importDefault(require("../util/ow"));
  * @return {function}
  */
 exports.default = (random, n = 1) => {
-    (0, ow_1.default)(n).integer.gte(0);
+    (0, expect_1.expect)(n).integer.gte(0);
     n = (0, num_is_zero_1.fixZero)(n);
     if (n === 0) {
         return () => 0;

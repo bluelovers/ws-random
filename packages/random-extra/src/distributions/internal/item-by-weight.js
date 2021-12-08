@@ -1,10 +1,7 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports._itemByWeightCore = exports._calcWeight = exports._percentageWeight = exports._sortWeight = exports._createWeight = exports._getWeight = void 0;
-const ow_1 = __importDefault(require("../../util/ow"));
+const expect_1 = require("@lazy-random/expect");
 function _getWeight(value, key) {
     return value + 0.001;
 }
@@ -20,7 +17,7 @@ function _createWeight(arr, options) {
         //weight = Math.exp(weight)
         weight = +weight;
         //ow(weight, ow.number.gt(0))
-        (0, ow_1.default)(weight).gt(0);
+        (0, expect_1.expect)(weight).gt(0);
         sum += weight;
         return {
             key,
@@ -52,7 +49,7 @@ function _createWeight(arr, options) {
         kwlist: {},
         last: 0,
     });
-    (0, ow_1.default)(ls.vlist).have.length.gt(1);
+    (0, expect_1.expect)(ls.vlist).have.length.gt(1);
     return {
         //source: arr,
         sum,

@@ -1,4 +1,4 @@
-import expect from '../util/ow'
+import { expect } from '@lazy-random/expect';
 import { Random } from '../random';
 import uniformFloat from './uniform';
 

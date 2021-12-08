@@ -6,7 +6,7 @@ import {
 	_createWeight,
 	_sortWeight, _percentageWeight, _itemByWeightCore, IWeight,
 } from './internal/item-by-weight';
-import expect from '../util/ow';
+import { expect } from '@lazy-random/expect';
 
 function itemByWeightUnique<T extends unknown>(random: Random, arr: T[],
 	size: number,

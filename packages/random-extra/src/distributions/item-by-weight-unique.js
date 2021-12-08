@@ -1,14 +1,11 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const item_by_weight_1 = require("./internal/item-by-weight");
-const ow_1 = __importDefault(require("../util/ow"));
+const expect_1 = require("@lazy-random/expect");
 function itemByWeightUnique(random, arr, size, options) {
     let ws = (0, item_by_weight_1._createWeight)(arr, options);
-    (0, ow_1.default)(size).integer.gt(1);
-    (0, ow_1.default)(ws.vlist).have.length.gte(size);
+    (0, expect_1.expect)(size).integer.gt(1);
+    (0, expect_1.expect)(ws.vlist).have.length.gte(size);
     ws = (0, item_by_weight_1._percentageWeight)(random, (0, item_by_weight_1._sortWeight)(random, ws, options));
     const { vlist, klist } = ws;
     ws = void 0;

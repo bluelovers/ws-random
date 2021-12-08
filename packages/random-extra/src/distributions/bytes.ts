@@ -1,5 +1,5 @@
 import { Random } from '../random';
-import expect from '../util/ow';
+import { expect } from '@lazy-random/expect';
 import uniformByte from './byte';
 
 export default function uniformBytes(random: Random, size: number, toStr: true): () => string[]

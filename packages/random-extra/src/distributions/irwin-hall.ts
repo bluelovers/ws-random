@@ -1,5 +1,5 @@
 import { fixZero } from 'num-is-zero';
-import expect from '../util/ow'
+import { expect } from '@lazy-random/expect';
 import { Random } from '../random';
 import RNG from '../rng'
 

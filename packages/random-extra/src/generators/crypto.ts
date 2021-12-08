@@ -2,7 +2,7 @@ import { randIndex } from '../util/array';
 import { FLOAT_ENTROPY_BYTES, UINT32_BYTES } from '../util/const';
 import { crossCrypto, ICryptoLike } from '../util/crypto';
 import { _floatFromBuffer, _floatFromBuffer2, floatFromBuffer } from '../util/math';
-import expect from '../util/ow'
+import { expect } from '@lazy-random/expect';
 import RNG from '../rng';
 import { tryRequire } from '../util/req';
 import _crypto from 'crypto';

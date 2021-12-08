@@ -2,7 +2,7 @@ import { ITSArrayLikeWriteable, TypedArray } from 'ts-type';
 import { IArrayInput02 } from '../type';
 import uniformInt from './uniform-int';
 import { Random } from '../random';
-import expect from '../util/ow';
+import { expect } from '@lazy-random/expect';
 import uniformByte from './byte';
 import uniform from './uniform';
 import { isUnset } from '../util/assers';

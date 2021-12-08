@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RNGFunction = void 0;
-const ow_1 = __importDefault(require("../util/ow"));
+const expect_1 = require("@lazy-random/expect");
 const rng_1 = __importDefault(require("../rng"));
 const util_1 = require("../util");
 class RNGFunction extends rng_1.default {
@@ -16,7 +16,7 @@ class RNGFunction extends rng_1.default {
     _init_check(seed, opts, ...argv) {
         let type = typeof seed;
         if (seed !== null && type !== 'undefined' && type !== 'function') {
-            (0, ow_1.default)(seed).to.be.function;
+            (0, expect_1.expect)(seed).to.be.function;
         }
     }
     _init(seed, opts, ...argv) {

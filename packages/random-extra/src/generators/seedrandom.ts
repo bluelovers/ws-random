@@ -7,7 +7,7 @@ import seedrandom from 'seedrandom';
 import { nonenumerable, readonly } from 'core-decorators';
 
 export import RNGSeedRandomOptions = seedrandom.seedRandomOptions;
-import expect from '../util/ow';
+import { expect } from '@lazy-random/expect';
 
 export const defaultOptions: RNGSeedRandomOptions = Object.freeze({
 	entropy: true

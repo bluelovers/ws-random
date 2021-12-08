@@ -1,14 +1,11 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const ow_1 = __importDefault(require("../util/ow"));
+const expect_1 = require("@lazy-random/expect");
 exports.default = (random, mu = 0, sigma = 1) => {
     //ow(mu, ow.number)
     //ow(sigma, ow.number)
-    (0, ow_1.default)(mu).number();
-    (0, ow_1.default)(sigma).number();
+    (0, expect_1.expect)(mu).number();
+    (0, expect_1.expect)(sigma).number();
     return () => {
         let x, y, r;
         do {

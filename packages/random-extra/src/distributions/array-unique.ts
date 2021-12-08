@@ -1,6 +1,6 @@
 import random from '../random';
 import { Random } from '../random';
-import expect from '../util/ow';
+import { expect } from '@lazy-random/expect';
 import uniformInt from './uniform-int';
 
 import { swapAlgorithm } from '../util/array';

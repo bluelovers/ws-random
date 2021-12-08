@@ -1,5 +1,5 @@
 import { Random } from '../random';
-import expect from '../util/ow';
+import { expect } from '@lazy-random/expect';
 import uniformInt from './uniform-int';
 import { stringifyByte } from '../util/byte';
 

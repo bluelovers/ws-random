@@ -1,4 +1,4 @@
-import expect from '../../util/ow';
+import { expect } from '@lazy-random/expect';
 import { Random } from '../../random';
 
 export function _getWeight(value, key: string): number

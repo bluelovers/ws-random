@@ -1,4 +1,4 @@
-import expect from '../util/ow';
+import { expect } from '@lazy-random/expect';
 import { Random } from '../random';
 
 export default (random: Random, alpha: number = 1) =>

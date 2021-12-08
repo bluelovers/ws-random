@@ -1,4 +1,4 @@
-import expect from '../util/ow'
+import { expect } from '@lazy-random/expect';
 import RNG from '../rng'
 import { cloneClass, getClass } from '../util';
 
@@ -16,7 +16,7 @@ export class RNGFunction<S extends IRNGFunctionSeed = IRNGFunctionSeed> extends 
 		this._init(seed, opts, ...argv)
 	}
 
-	protected _init_check(seed?, opts?, ...argv)
+	protected override _init_check(seed?, opts?, ...argv)
 	{
 		let type = typeof seed;
 		if (seed !== null && type !== 'undefined' && type !== 'function')
@@ -25,19 +25,19 @@ export class RNGFunction<S extends IRNGFunctionSeed = IRNGFunctionSeed> extends 
 		}
 	}
 
-	protected _init(seed?, opts?, ...argv)
+	protected override _init(seed?, opts?, ...argv)
 	{
 		this._init_check(seed, opts, ...argv);
 
 		this.seed(seed, opts, ...argv)
 	}
 
-	get name()
+	override get name()
 	{
 		return 'function'
 	}
 
-	public get seedable()
+	public override get seedable()
 	{
 		return this._seedable
 	}
@@ -47,7 +47,7 @@ export class RNGFunction<S extends IRNGFunctionSeed = IRNGFunctionSeed> extends 
 		return this._rng()
 	}
 
-	seed(seed: S, opts?, ...argv)
+	override seed(seed: S, opts?, ...argv)
 	{
 		if (typeof seed === 'function')
 		{
@@ -57,7 +57,7 @@ export class RNGFunction<S extends IRNGFunctionSeed = IRNGFunctionSeed> extends 
 		//expect(this._rng).function();
 	}
 
-	clone<S extends IRNGFunctionSeed = IRNGFunctionSeed>(seed: S, opts?, ...argv): RNGFunction<S>
+	override clone<S extends IRNGFunctionSeed = IRNGFunctionSeed>(seed: S, opts?, ...argv): RNGFunction<S>
 	{
 		return cloneClass(RNGFunction, this, seed, opts, ...argv)
 	}

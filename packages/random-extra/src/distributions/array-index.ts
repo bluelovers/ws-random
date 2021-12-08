@@ -1,6 +1,6 @@
 import { Random } from '../random';
 import * as UtilDistributions from '../util/distributions';
-import expect from '../util/ow';
+import { expect } from '@lazy-random/expect';
 import uniformInt from './uniform-int';
 import { int } from '../util/distributions';
 

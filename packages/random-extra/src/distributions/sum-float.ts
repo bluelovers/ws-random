@@ -7,7 +7,7 @@ import uniformFloat from './uniform';
 import { swapAlgorithm } from '../util/array';
 import { UtilDistributions } from '../util/distributions';
 import uniformInt from './uniform-int';
-import { expect, assert } from '../util/ow'
+import { expect } from '@lazy-random/expect';
 
 export default (random: Random, size: number, sum?: number, min?: number, max?: number, fractionDigits?: number) =>
 {

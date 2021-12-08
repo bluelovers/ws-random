@@ -9,7 +9,7 @@ const util_1 = require("../../for3rd/lib-r-math/util");
 const distributions_1 = require("../../util/distributions");
 const math_1 = require("../../util/math");
 const num_is_zero_1 = require("num-is-zero");
-const ow_1 = require("../../util/ow");
+const expect_1 = require("@lazy-random/expect");
 const uniform_1 = __importDefault(require("../uniform"));
 const assers_1 = require("../../util/assers");
 const to_fixed_number_1 = require("@lazy-random/to-fixed-number");
@@ -22,21 +22,21 @@ const to_fixed_number_1 = require("@lazy-random/to-fixed-number");
 function coreFnRandSumInt(argv) {
     let { random, size, sum, min, max, } = argv;
     // @ts-ignore
-    (0, ow_1.expect)(size).is.finite.integer.gt(1);
+    (0, expect_1.expect)(size).is.finite.integer.gt(1);
     let sum_1_to_size = (0, math_1.sum_1_to_n)(size);
     sum = (0, assers_1.isUnset)(sum) ? sum_1_to_size : sum;
     // @ts-ignore
-    (0, ow_1.expect)(sum).is.finite.integer();
+    (0, expect_1.expect)(sum).is.finite.integer();
     min = (0, assers_1.isUnset)(min) ? (sum > 0 ? 0 : sum) : min;
     max = (0, assers_1.isUnset)(max) ? Math.abs(sum) : max;
     // @ts-ignore
-    (0, ow_1.expect)(min).is.finite.integer();
+    (0, expect_1.expect)(min).is.finite.integer();
     // @ts-ignore
-    (0, ow_1.expect)(max).is.finite.integer();
+    (0, expect_1.expect)(max).is.finite.integer();
     //let n_sum = Math.abs(sum - size * min);
     let n_sum = sum - size * min;
     let maxv = max - min;
-    (0, ow_1.expect)(n_sum).gte(0);
+    (0, expect_1.expect)(n_sum).gte(0);
     /*
     console.log({
         sum_1_to_size,
@@ -49,7 +49,7 @@ function coreFnRandSumInt(argv) {
     });
     */
     if (sum > 0) {
-        (0, ow_1.expect)(sum).gt(min);
+        (0, expect_1.expect)(sum).gt(min);
     }
     /**
      * pre-check
@@ -59,7 +59,7 @@ function coreFnRandSumInt(argv) {
      * probabilities
      */
     let prob = (0, math_1.get_prob)(size, maxv);
-    (0, ow_1.expect)(prob).is.array.lengthOf(size);
+    (0, expect_1.expect)(prob).is.array.lengthOf(size);
     /**
      * make rmultinom use with random.next
      */
@@ -126,7 +126,7 @@ function coreFnRandSumInt(argv) {
             }
             cache = (0, array_hyper_unique_1.array_unique)(cache.map(v => v.sort()));
         }
-        (0, ow_1.expect)(cache, `invalid argv (size=${size}, sum=${sum}, min=${min}, max=${max})`)
+        (0, expect_1.expect)(cache, `invalid argv (size=${size}, sum=${sum}, min=${min}, max=${max})`)
             .is.array
             .have.lengthOf.gt(0);
         arr = undefined;
@@ -164,7 +164,7 @@ exports.coreFnRandSumInt = coreFnRandSumInt;
 function coreFnRandSumFloat(argv) {
     let { random, size, sum, min, max, fractionDigits, } = argv;
     // @ts-ignore
-    (0, ow_1.expect)(size).is.finite.integer.gt(1);
+    (0, expect_1.expect)(size).is.finite.integer.gt(1);
     if ((0, assers_1.isUnset)(sum) && typeof min === 'number' && typeof max === 'number') {
         sum = (size - 1) * min + max;
         //console.log(sum, min, max);
@@ -173,21 +173,21 @@ function coreFnRandSumFloat(argv) {
     min = (0, assers_1.isUnset)(min) ? (sum > 0 ? 0 : sum) : min;
     max = (0, assers_1.isUnset)(max) ? Math.abs(sum) : max;
     // @ts-ignore
-    (0, ow_1.expect)(min).is.finite.number();
+    (0, expect_1.expect)(min).is.finite.number();
     // @ts-ignore
-    (0, ow_1.expect)(max).is.finite.number();
+    (0, expect_1.expect)(max).is.finite.number();
     // @ts-ignore
-    (0, ow_1.expect)(sum).is.finite.number();
+    (0, expect_1.expect)(sum).is.finite.number();
     sum += 0.0;
     let n_sum = sum - size * min;
     let maxv = max - min;
     if (sum > 0) {
-        (0, ow_1.expect)(sum).gt(min);
+        (0, expect_1.expect)(sum).gt(min);
     }
-    (0, ow_1.expect)(n_sum).gte(0);
+    (0, expect_1.expect)(n_sum).gte(0);
     let fnFirst;
     if (!(0, assers_1.isUnset)(fractionDigits)) {
-        (0, ow_1.expect)(fractionDigits)
+        (0, expect_1.expect)(fractionDigits)
             // @ts-ignore
             .is.finite
             .integer.gt(0);

@@ -1,9 +1,6 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const ow_1 = __importDefault(require("../util/ow"));
+const expect_1 = require("@lazy-random/expect");
 const logFactorialTable = [
     0.0,
     0.0,
@@ -22,7 +19,7 @@ const logFactorial = (k) => {
 const logSqrt2PI = 0.91893853320467267;
 exports.default = (random, lambda = 1) => {
     //ow(lambda, ow.number.positive)
-    (0, ow_1.default)(lambda).gt(0);
+    (0, expect_1.expect)(lambda).gt(0);
     if (lambda < 10) {
         // inversion method
         const expMean = Math.exp(-lambda);

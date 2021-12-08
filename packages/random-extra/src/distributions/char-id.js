@@ -9,7 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const uni_string_1 = __importDefault(require("uni-string"));
 const const_1 = require("../util/const");
 const distributions_1 = require("../util/distributions");
-const ow_1 = __importDefault(require("../util/ow"));
+const expect_1 = require("@lazy-random/expect");
 const to_string_1 = require("../util/to-string");
 exports.default = (random, char, size) => {
     if (typeof char === 'number') {
@@ -22,13 +22,13 @@ exports.default = (random, char, size) => {
     }
     size = size || 8;
     //ow(size, ow.number.integer.gt(0));
-    (0, ow_1.default)(size).integer.gt(0);
+    (0, expect_1.expect)(size).integer.gt(0);
     if (!char) {
         char = const_1.ENUM_ALPHABET.DEFAULT;
     }
     let ls = uni_string_1.default.create(char).split('');
     let len = ls.length;
-    (0, ow_1.default)(ls).to.have.lengthOf.gt(1);
+    (0, expect_1.expect)(ls).to.have.lengthOf.gt(1);
     const randIndex = () => {
         return (0, distributions_1.randIndex)(random, len);
     };

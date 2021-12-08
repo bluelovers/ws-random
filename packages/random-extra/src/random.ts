@@ -1,7 +1,7 @@
 import { IArrayInput02 } from './type';
 
 /// <reference types="node" />
-import { expect } from './util/ow'
+import { expect } from '@lazy-random/expect';
 import Distributions, {
 	IRandomDistributions,
 	IRandomDistributionsCacheRow,
