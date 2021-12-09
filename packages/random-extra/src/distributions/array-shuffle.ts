@@ -1,11 +1,12 @@
 import { ITSArrayLikeWriteable } from 'ts-type';
 import random from '../random';
 import { Random } from '../random';
-import { IArrayInput02, TypedArray } from '../type';
+import { TypedArray } from 'ts-type';
 import uniformInt from './uniform-int';
 
 import { swapAlgorithm, swapAlgorithm2 } from '../util/array';
 import { randIndex as _randIndex } from '../util/distributions';
+import { IArrayInput02 } from '@lazy-random/shared-lib';
 
 function arrayShuffle<T extends ITSArrayLikeWriteable<any> | TypedArray | Buffer>(random: Random, arr: T, overwrite?: boolean): () => T
 {

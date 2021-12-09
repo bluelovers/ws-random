@@ -1,7 +1,7 @@
 import { expect } from '@lazy-random/expect';
 
 import { Random } from '../random';
-import RNG from '../rng'
+import { RNG } from '@lazy-random/rng-abstract'
 
 export default (random: Random, lambda = 1) =>
 {

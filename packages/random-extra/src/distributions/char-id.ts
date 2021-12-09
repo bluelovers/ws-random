@@ -4,7 +4,7 @@
 
 import UString from "uni-string";
 import { Random } from '../random';
-import { ENUM_ALPHABET } from '../util/const';
+import { ENUM_ALPHABET } from '@lazy-random/shared-lib';
 import { randIndex as _randIndex } from '../util/distributions';
 import { expect } from '@lazy-random/expect';
 import { floatToString } from '@lazy-num/float-to-string';

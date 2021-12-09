@@ -7,7 +7,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const uni_string_1 = __importDefault(require("uni-string"));
-const const_1 = require("../util/const");
 const distributions_1 = require("../util/distributions");
 const expect_1 = require("@lazy-random/expect");
 const float_to_string_1 = require("@lazy-num/float-to-string");
@@ -24,7 +23,7 @@ exports.default = (random, char, size) => {
     //ow(size, ow.number.integer.gt(0));
     (0, expect_1.expect)(size).integer.gt(0);
     if (!char) {
-        char = const_1.ENUM_ALPHABET.DEFAULT;
+        char = "ModuleSymbhasOwnPr0123456789ABCDEFGHIJKLNQRTUVWXYZcfgijkpqtvxz0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" /* DEFAULT */;
     }
     let ls = uni_string_1.default.create(char).split('');
     let len = ls.length;

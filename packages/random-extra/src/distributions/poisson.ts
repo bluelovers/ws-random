@@ -1,6 +1,6 @@
 import { expect } from '@lazy-random/expect';
 import { Random } from '../random';
-import RNG from '../rng'
+import { RNG } from '@lazy-random/rng-abstract'
 
 const logFactorialTable = [
 	0.0,

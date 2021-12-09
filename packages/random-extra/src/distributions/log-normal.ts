@@ -1,5 +1,5 @@
 import { Random } from '../random';
-import RNG from '../rng'
+import { RNG } from '@lazy-random/rng-abstract'
 
 // @ts-ignore
 export default (random: Random, ...args: Parameters<typeof random.dfNormal>) =>

@@ -3,6 +3,6 @@
  */
 /// <reference types="node" />
 import { Random } from '../random';
-import { ENUM_ALPHABET } from '../util/const';
+import { ENUM_ALPHABET } from '@lazy-random/shared-lib';
 declare const _default: (random: Random, char?: ENUM_ALPHABET | string | Buffer | number, size?: number) => () => string;
 export default _default;
