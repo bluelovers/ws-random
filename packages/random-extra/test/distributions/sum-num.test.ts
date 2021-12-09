@@ -12,7 +12,7 @@ import { fixZero } from 'num-is-zero';
 import { array_sum} from '../../src/util/math';
 import random from '../../'
 import checkTypesMatchers from '../jest/type';
-import { toFixedNumber } from '@lazy-random/to-fixed-number';
+import { toFixedNumber } from '@lazy-num/to-fixed-number';
 
 expect.extend({
 	toBeCloseToWithDelta: checkTypesMatchers.toBeCloseToWithDelta,

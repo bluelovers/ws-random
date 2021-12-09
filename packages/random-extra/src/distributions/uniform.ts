@@ -1,7 +1,7 @@
 import { expect } from '@lazy-random/expect';
 import { Random } from '../random';
 import { isUnset } from '../util/assers';
-import { toFixedNumber } from '@lazy-random/to-fixed-number';
+import { toFixedNumber } from '@lazy-num/to-fixed-number';
 
 export default (random: Random, min?: number, max?: number, fractionDigits?: number) =>
 {

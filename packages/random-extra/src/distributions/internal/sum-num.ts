@@ -7,7 +7,7 @@ import { fixZero } from 'num-is-zero';
 import { expect } from '@lazy-random/expect';
 import uniform from '../uniform';
 import { isUnset } from '../../util/assers';
-import { toFixedNumber } from '@lazy-random/to-fixed-number';
+import { toFixedNumber } from '@lazy-num/to-fixed-number';
 
 export interface ISumNumParameterBase
 {

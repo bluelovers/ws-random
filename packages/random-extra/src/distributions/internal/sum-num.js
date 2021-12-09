@@ -12,7 +12,7 @@ const num_is_zero_1 = require("num-is-zero");
 const expect_1 = require("@lazy-random/expect");
 const uniform_1 = __importDefault(require("../uniform"));
 const assers_1 = require("../../util/assers");
-const to_fixed_number_1 = require("@lazy-random/to-fixed-number");
+const to_fixed_number_1 = require("@lazy-num/to-fixed-number");
 /**
  * not support unique, but will try make unique if can
  * thx @SeverinPappadeux for int version

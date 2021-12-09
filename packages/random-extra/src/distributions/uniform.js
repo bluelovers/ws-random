@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const expect_1 = require("@lazy-random/expect");
-const to_fixed_number_1 = require("@lazy-random/to-fixed-number");
+const to_fixed_number_1 = require("@lazy-num/to-fixed-number");
 exports.default = (random, min, max, fractionDigits) => {
     if (max === undefined) {
         max = (min === undefined ? 1 : min);
