@@ -208,6 +208,10 @@ _snowpack
 web_modules
 tsc-multi.json.tpl
 
-src/*.d.ts
-src/*.js
-src/*.map
+/src/*.d.ts
+/src/*.js
+/src/*.map
+
+/src/**/*.d.ts
+/src/**/*.js
+/src/**/*.map
