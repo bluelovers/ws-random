@@ -1,15 +1,15 @@
-import RNG from '../rng'
+import { RNG } from '@lazy-random/rng-abstract'
 import { cloneClass } from '../util';
-import { _MathRandom } from '../util/_random';
+import { _MathRandom } from '@lazy-random/original-math-random';
 
 export class RNGMathRandom extends RNG
 {
-	get name()
+	override get name()
 	{
 		return 'math-random'
 	}
 
-	public get seedable()
+	public override get seedable()
 	{
 		return false
 	}
@@ -19,12 +19,12 @@ export class RNGMathRandom extends RNG
 		return _MathRandom()
 	}
 
-	seed(seed?, opts?, ...argv)
+	override seed(seed?, opts?, ...argv)
 	{
 		// intentionally empty
 	}
 
-	clone(seed?, opts?, ...argv): RNGMathRandom
+	override clone(seed?, opts?, ...argv): RNGMathRandom
 	{
 		return cloneClass(RNGMathRandom, this, seed, opts, ...argv)
 	}

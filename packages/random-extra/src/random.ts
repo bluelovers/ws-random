@@ -1,5 +1,3 @@
-import { IArrayInput02 } from './type';
-
 /// <reference types="node" />
 import { expect } from '@lazy-random/expect';
 import Distributions, {
@@ -7,15 +5,16 @@ import Distributions, {
 	IRandomDistributionsCacheRow,
 } from './distributions';
 import { IArrayUniqueOutOfLimitCallback, IRandIndex } from './distributions/array-unique';
-import { ENUM_ALPHABET } from './util/const';
+import { ENUM_ALPHABET } from '@lazy-random/shared-lib';
 import RNGSeedRandom from './generators/seedrandom';
 
-import RNG from './rng'
+import { RNG } from '@lazy-random/rng-abstract'
 import RNGFactory, { IRNGFactoryType } from './rng-factory'
 import { getClass, hashArgv } from './util';
 import { autobind, deprecate } from 'core-decorators';
 import { ITSArrayLikeWriteable, TypedArray } from 'ts-type';
 import { IObjectInput, IWeightEntrie, IGetWeight, IOptionsItemByWeight } from './distributions/internal/item-by-weight';
+import { IArrayInput02 } from '@lazy-random/shared-lib';
 
 /**
  * Seedable random number generator supporting many common distributions.

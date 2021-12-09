@@ -1,7 +1,7 @@
-import RNG from '../rng'
+import { RNG } from '@lazy-random/rng-abstract'
 import { cloneClass, getClass} from '../util';
 import { IRNGFunctionSeed } from './function';
-import { randomSeedNum } from '../util/seed';
+import { randomSeedNum } from '@lazy-random/seed-token';
 
 export class RNGXOR128 extends RNG
 {
@@ -21,12 +21,12 @@ export class RNGXOR128 extends RNG
 		this.seed(this.x)
 	}
 
-	get name()
+	override get name()
 	{
 		return 'xor128'
 	}
 
-	public get seedable()
+	public override get seedable()
 	{
 		return true
 	}
@@ -41,7 +41,7 @@ export class RNGXOR128 extends RNG
 		return (this.w >>> 0) / 0x100000000
 	}
 
-	seed(seed?, opts?, ...argv)
+	override seed(seed?, opts?, ...argv)
 	{
 //		this.x = this._seedNum(seed, opts, ...argv)
 		this._seed(seed, opts, ...argv)
@@ -54,12 +54,12 @@ export class RNGXOR128 extends RNG
 		}
 	}
 
-	clone(seed?, opts?, ...argv): RNGXOR128
+	override clone(seed?, opts?, ...argv): RNGXOR128
 	{
 		return cloneClass(RNGXOR128, this, seed, opts, ...argv)
 	}
 
-	protected _init(...argv)
+	protected override _init(...argv)
 	{
 		let [
 			x = randomSeedNum(),

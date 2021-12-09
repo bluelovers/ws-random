@@ -1,5 +1,5 @@
 import { expect } from '@lazy-random/expect';
-import RNG from '../rng'
+import { RNG } from '@lazy-random/rng-abstract'
 import { cloneClass, getClass } from '../util';
 
 export type IRNGFunctionSeed = (...argv) => number

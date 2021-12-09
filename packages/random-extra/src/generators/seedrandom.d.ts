@@ -1,7 +1,7 @@
-import { PickValueOf } from '../type';
 import RNGFunction from './function';
 import seedrandom from 'seedrandom';
 export import RNGSeedRandomOptions = seedrandom.seedRandomOptions;
+import { PickValueOf } from '@lazy-random/shared-lib';
 export declare const defaultOptions: RNGSeedRandomOptions;
 export declare type IRNGSeedRandomLibName = 'alea' | 'tychei' | 'xor128' | 'xor4096' | 'xorshift7' | 'xorwow';
 export declare type IRNGSeedRandomLib = IRNGSeedRandomLibName | string;

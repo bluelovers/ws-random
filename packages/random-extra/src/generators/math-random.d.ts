@@ -1,4 +1,4 @@
-import RNG from '../rng';
+import { RNG } from '@lazy-random/rng-abstract';
 export declare class RNGMathRandom extends RNG {
     get name(): string;
     get seedable(): boolean;

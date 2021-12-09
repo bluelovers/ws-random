@@ -1,7 +1,7 @@
 import RNGCrypto from './generators/crypto';
 import RNGMathRandom2 from './generators/math-random2';
 import RNGSeedRandom from './generators/seedrandom';
-import RNG from './rng'
+import { RNG } from '@lazy-random/rng-abstract'
 
 import RNGXOR128 from './generators/xor128'
 import RNGFunction, { IRNGFunctionSeed } from './generators/function'

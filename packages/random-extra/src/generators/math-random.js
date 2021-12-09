@@ -1,13 +1,10 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RNGMathRandom = void 0;
-const rng_1 = __importDefault(require("../rng"));
+const rng_abstract_1 = require("@lazy-random/rng-abstract");
 const util_1 = require("../util");
-const _random_1 = require("../util/_random");
-class RNGMathRandom extends rng_1.default {
+const original_math_random_1 = require("@lazy-random/original-math-random");
+class RNGMathRandom extends rng_abstract_1.RNG {
     get name() {
         return 'math-random';
     }
@@ -15,7 +12,7 @@ class RNGMathRandom extends rng_1.default {
         return false;
     }
     next() {
-        return (0, _random_1._MathRandom)();
+        return (0, original_math_random_1._MathRandom)();
     }
     seed(seed, opts, ...argv) {
         // intentionally empty

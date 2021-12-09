@@ -1,12 +1,9 @@
-import { array_unique } from 'array-hyper-unique';
-import { ITSArrayLikeWriteable } from 'ts-type';
-import { IArrayInput02 } from '../type';
-
-import { _MathRandom } from './_random';
+import { arrayRandIndexByLength } from '@lazy-random/array-rand-index';
+import { IArrayInput02 } from '@lazy-random/shared-lib';
 
 export function swapAlgorithm<T extends IArrayInput02<any>>(arr: T,
 	overwrite?: boolean,
-	fn: (n: number, ...argv) => number = randIndex,
+	fn: (n: number, ...argv) => number = arrayRandIndexByLength,
 )
 {
 	let i: number = arr.length;
@@ -31,7 +28,7 @@ export function swapAlgorithm<T extends IArrayInput02<any>>(arr: T,
 
 export function swapAlgorithm2<T extends IArrayInput02<any>>(arr: T,
 	overwrite?: boolean,
-	fn: (n: number, ...argv) => number = randIndex,
+	fn: (n: number, ...argv) => number = arrayRandIndexByLength,
 ): T
 {
 	let i: number = arr.length;
@@ -67,11 +64,6 @@ export function swapAlgorithm2<T extends IArrayInput02<any>>(arr: T,
 	}
 
 	return ret
-}
-
-export function randIndex(len: number, ...argv)
-{
-	return Math.floor(_MathRandom() * len)
 }
 
 /**

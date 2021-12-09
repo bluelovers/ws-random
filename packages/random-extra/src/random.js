@@ -17,7 +17,7 @@ exports.random = exports.Random = void 0;
 /// <reference types="node" />
 const expect_1 = require("@lazy-random/expect");
 const distributions_1 = __importDefault(require("./distributions"));
-const rng_1 = __importDefault(require("./rng"));
+const rng_abstract_1 = require("@lazy-random/rng-abstract");
 const rng_factory_1 = __importDefault(require("./rng-factory"));
 const util_1 = require("./util");
 const core_decorators_1 = require("core-decorators");
@@ -36,7 +36,7 @@ let Random = Random_1 = class Random {
         this._cache = {};
         if (rng) {
             //ow(rng, ow.object.instanceOf(RNG))
-            (0, expect_1.expect)(rng).instanceof(rng_1.default);
+            (0, expect_1.expect)(rng).instanceof(rng_abstract_1.RNG);
         }
         Object.defineProperty(this, 'Random', {
             configurable: false,

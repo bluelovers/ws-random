@@ -7,7 +7,7 @@
 /// <reference types="chai" />
 /// <reference types="node" />
 
-import { SUM_DELTA } from '../../src/util/const';
+import { SUM_DELTA } from '@lazy-random/shared-lib';
 import { fixZero } from 'num-is-zero';
 import { array_sum} from '../../src/util/math';
 import random from '../../'

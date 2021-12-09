@@ -1,6 +1,6 @@
-import RNG from '../rng'
+import { RNG } from '@lazy-random/rng-abstract'
 import RNGFunction from './function';
-import { _MathRandom } from '../util/_random';
+import { _MathRandom } from '@lazy-random/original-math-random';
 
 export class RNGMathRandom2 extends RNGFunction<typeof _MathRandom>
 {
@@ -9,7 +9,7 @@ export class RNGMathRandom2 extends RNGFunction<typeof _MathRandom>
 		super(seed || _MathRandom, opts, ...argv)
 	}
 
-	get name()
+	override get name()
 	{
 		return 'math-random2'
 	}

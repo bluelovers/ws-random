@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.array_rebase = exports.randIndex = exports.swapAlgorithm2 = exports.swapAlgorithm = void 0;
-const _random_1 = require("./_random");
-function swapAlgorithm(arr, overwrite, fn = randIndex) {
+exports.array_rebase = exports.swapAlgorithm2 = exports.swapAlgorithm = void 0;
+const array_rand_index_1 = require("@lazy-random/array-rand-index");
+function swapAlgorithm(arr, overwrite, fn = array_rand_index_1.arrayRandIndexByLength) {
     let i = arr.length;
     // @ts-ignore
     let ret = (overwrite ? arr : arr.slice());
@@ -18,7 +18,7 @@ function swapAlgorithm(arr, overwrite, fn = randIndex) {
     return ret;
 }
 exports.swapAlgorithm = swapAlgorithm;
-function swapAlgorithm2(arr, overwrite, fn = randIndex) {
+function swapAlgorithm2(arr, overwrite, fn = array_rand_index_1.arrayRandIndexByLength) {
     let i = arr.length;
     // @ts-ignore
     let ret = (overwrite ? arr : arr.slice());
@@ -45,10 +45,6 @@ function swapAlgorithm2(arr, overwrite, fn = randIndex) {
     return ret;
 }
 exports.swapAlgorithm2 = swapAlgorithm2;
-function randIndex(len, ...argv) {
-    return Math.floor((0, _random_1._MathRandom)() * len);
-}
-exports.randIndex = randIndex;
 /**
  * back to original interval
  */

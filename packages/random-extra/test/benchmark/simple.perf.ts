@@ -8,7 +8,7 @@ import _tests, { Benchmark, formatBenchmarkResult, sortBenchmarkResult, getMetho
 import console from 'debug-color2'
 
 import { defaultArgv } from '../../src/simple-wrap';
-import { _MathRandom } from '../../src/util/_random';
+import { _MathRandom } from '@lazy-random/original-math-random';
 
 const methods = [
 		'next',

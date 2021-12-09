@@ -4,7 +4,7 @@
 
 import random from '../../'
 import seedrandom from '../../preset/seedrandom'
-import { randomSeedNum } from '../../src/util/seed';
+import { randomSeedNum } from '@lazy-random/seed-token';
 
 const xor128 = random.newUse('xor128')
 const mathRandom2 = random.newUse('math-random2');

@@ -1,13 +1,10 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RNGXOR128 = void 0;
-const rng_1 = __importDefault(require("../rng"));
+const rng_abstract_1 = require("@lazy-random/rng-abstract");
 const util_1 = require("../util");
-const seed_1 = require("../util/seed");
-class RNGXOR128 extends rng_1.default {
+const seed_token_1 = require("@lazy-random/seed-token");
+class RNGXOR128 extends rng_abstract_1.RNG {
     constructor(...argv) {
         super();
         this._init(...argv);
@@ -40,7 +37,7 @@ class RNGXOR128 extends rng_1.default {
         return (0, util_1.cloneClass)(RNGXOR128, this, seed, opts, ...argv);
     }
     _init(...argv) {
-        let [x = (0, seed_1.randomSeedNum)(), y = (0, seed_1.randomSeedNum)(), z = (0, seed_1.randomSeedNum)(), w = (0, seed_1.randomSeedNum)(),] = argv;
+        let [x = (0, seed_token_1.randomSeedNum)(), y = (0, seed_token_1.randomSeedNum)(), z = (0, seed_token_1.randomSeedNum)(), w = (0, seed_token_1.randomSeedNum)(),] = argv;
         this._seed(x, y, z, w);
     }
     _seed(...argv) {

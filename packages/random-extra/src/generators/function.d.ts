@@ -1,4 +1,4 @@
-import RNG from '../rng';
+import { RNG } from '@lazy-random/rng-abstract';
 export declare type IRNGFunctionSeed = (...argv: any[]) => number;
 export declare class RNGFunction<S extends IRNGFunctionSeed = IRNGFunctionSeed> extends RNG {
     protected _rng: S;

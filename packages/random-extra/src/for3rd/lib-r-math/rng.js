@@ -25,7 +25,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RandomRngWithLibRMath = exports.LibRMathRngWithRandom = void 0;
 const libRMath = __importStar(require("lib-r-math.js"));
 const random_1 = require("../../random");
-const rng_1 = __importDefault(require("../../rng"));
+const rng_abstract_1 = require("@lazy-random/rng-abstract");
 const is_extends_of_1 = __importDefault(require("is-extends-of"));
 const lib_r_math_js_1 = require("lib-r-math.js");
 class LibRMathRngWithRandom extends lib_r_math_js_1.IRNG {
@@ -46,7 +46,7 @@ class LibRMathRngWithRandom extends lib_r_math_js_1.IRNG {
     }
     use(rng, _seed) {
         if (rng) {
-            if (rng instanceof rng_1.default || typeof rng.next === 'function') {
+            if (rng instanceof rng_abstract_1.RNG || typeof rng.next === 'function') {
                 //
             }
             else if (rng === 'seedrandom') {
@@ -69,7 +69,7 @@ class LibRMathRngWithRandom extends lib_r_math_js_1.IRNG {
     }
 }
 exports.LibRMathRngWithRandom = LibRMathRngWithRandom;
-class RandomRngWithLibRMath extends rng_1.default {
+class RandomRngWithLibRMath extends rng_abstract_1.RNG {
     constructor(seed, opts, ...argv) {
         super();
         this._seedable = true;

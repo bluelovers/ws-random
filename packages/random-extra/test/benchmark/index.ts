@@ -7,7 +7,7 @@ import cryptorandom = require('math-random');
 import randomOrigin = require('random');
 //import randomUglifyJS from '../../lib'
 import random from '../..'
-import { _MathRandom } from '../../src/util/_random';
+import { _MathRandom } from '@lazy-random/original-math-random';
 
 export { Benchmark }
 

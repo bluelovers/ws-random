@@ -1,5 +1,5 @@
 import RNGSeedRandom from './generators/seedrandom';
-import RNG from './rng';
+import { RNG } from '@lazy-random/rng-abstract';
 import RNGXOR128 from './generators/xor128';
 import RNGFunction, { IRNGFunctionSeed } from './generators/function';
 import RNGMathRandom from './generators/math-random';

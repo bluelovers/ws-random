@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import { ICryptoLike } from '../util/crypto';
-import RNG from '../rng';
+import { RNG } from '@lazy-random/rng-abstract';
 export declare class RNGCrypto extends RNG {
     protected _crypto: ICryptoLike;
     protected _seedable: boolean;

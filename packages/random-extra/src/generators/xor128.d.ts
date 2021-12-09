@@ -1,4 +1,4 @@
-import RNG from '../rng';
+import { RNG } from '@lazy-random/rng-abstract';
 export declare class RNGXOR128 extends RNG {
     protected x: number;
     protected y: number;

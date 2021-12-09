@@ -1,17 +1,17 @@
-import { randIndex } from '../util/array';
-import { FLOAT_ENTROPY_BYTES, UINT32_BYTES } from '../util/const';
+import { FLOAT_ENTROPY_BYTES, UINT32_BYTES } from '@lazy-random/shared-lib';
 import { crossCrypto, ICryptoLike } from '../util/crypto';
-import { _floatFromBuffer, _floatFromBuffer2, floatFromBuffer } from '../util/math';
 import { expect } from '@lazy-random/expect';
-import RNG from '../rng';
+import { RNG } from '@lazy-random/rng-abstract';
 import { tryRequire } from '../util/req';
 import _crypto from 'crypto';
+import { _floatFromBuffer, _floatFromBuffer2, floatFromBuffer } from '@lazy-num/float-from-buffer';
+import { arrayRandIndexByLength } from '@lazy-random/array-rand-index';
 
 export class RNGCrypto extends RNG
 {
 	protected _crypto: ICryptoLike;
 	protected _seedable: boolean = false;
-	protected _randIndex: (len: number) => number = randIndex;
+	protected _randIndex: (len: number) => number = arrayRandIndexByLength;
 	protected _seed_size = UINT32_BYTES;
 	protected _seed_size_min = UINT32_BYTES;
 	protected _fn: (buf: ArrayLike<number>) => number;
@@ -22,11 +22,11 @@ export class RNGCrypto extends RNG
 		this._init(seed, opts, ...argv)
 	}
 
-	protected _init(crypto?: ICryptoLike | any, opts?, ...argv)
+	protected override _init(crypto?: ICryptoLike | any, opts?, ...argv)
 	{
 		crypto = crypto || crossCrypto();
 		this._crypto = crypto;
-		this._randIndex = this._randIndex || randIndex;
+		this._randIndex = this._randIndex || arrayRandIndexByLength;
 
 		expect(crypto.randomBytes).is.a.function();
 
@@ -70,7 +70,7 @@ export class RNGCrypto extends RNG
 		return buf;
 	}
 
-	get name()
+	override get name()
 	{
 		return 'crypto';
 	}
@@ -80,7 +80,7 @@ export class RNGCrypto extends RNG
 		return this._fn(this._buffer())
 	}
 
-	public seed(seed?, opts?, ...argv)
+	public override seed(seed?, opts?, ...argv)
 	{
 
 	}

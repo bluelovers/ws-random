@@ -1,6 +1,6 @@
 import * as libRMath from 'lib-r-math.js';
 import { Random, random } from '../../random';
-import RNG, { IRNGLike } from '../../rng';
+import { RNG, IRNGLike } from '@lazy-random/rng-abstract';
 import isExtendsOf from 'is-extends-of';
 import { IRNG } from 'lib-r-math.js';
 
@@ -79,7 +79,7 @@ export class RandomRngWithLibRMath<R extends IRNG> extends RNG
 		this._init(seed, opts, ...argv)
 	}
 
-	protected _init(seed?, opts?, ...argv)
+	protected override _init(seed?, opts?, ...argv)
 	{
 		if (seed instanceof libRMath.IRNG)
 		{
@@ -128,14 +128,14 @@ export class RandomRngWithLibRMath<R extends IRNG> extends RNG
 		this._fn = (this._rng.internal_unif_rand || this._rng.unif_rand).bind(this._rng);
 	}
 
-	get name()
+	override get name()
 	{
 		return 'libRMath'
 			+ (this._rng.name ? `<${this._rng.name}>` : '')
 		;
 	}
 
-	public get options(): number[]
+	public override get options(): number[]
 	{
 		return this._rng.seed
 	}
@@ -145,7 +145,7 @@ export class RandomRngWithLibRMath<R extends IRNG> extends RNG
 		return this._fn()
 	}
 
-	public seed(seed?: any | number[], opts?, ...argv)
+	public override seed(seed?: any | number[], opts?, ...argv)
 	{
 		this._rng.seed = [this._seedNum(seed)]
 	}

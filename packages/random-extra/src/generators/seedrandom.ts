@@ -1,5 +1,4 @@
-import { hashAny } from '../seeder/hash-any';
-import { ValueOf, PickValueOf } from '../type';
+
 import { cloneClass } from '../util';
 import { tryRequire } from '../util/req';
 import RNGFunction from './function';
@@ -8,6 +7,7 @@ import { nonenumerable, readonly } from 'core-decorators';
 
 export import RNGSeedRandomOptions = seedrandom.seedRandomOptions;
 import { expect } from '@lazy-random/expect';
+import { PickValueOf, ValueOf } from '@lazy-random/shared-lib';
 
 export const defaultOptions: RNGSeedRandomOptions = Object.freeze({
 	entropy: true

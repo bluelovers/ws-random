@@ -37,6 +37,7 @@ const obj = {
 	},
 }
 
+// @ts-ignore
 const f1 = random.dfItemByWeight(obj, function (value, key)
 {
 	return value.w

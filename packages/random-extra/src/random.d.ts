@@ -1,12 +1,12 @@
 /// <reference types="node" />
-import { IArrayInput02 } from './type';
 import Distributions, { IRandomDistributions, IRandomDistributionsCacheRow } from './distributions';
 import { IArrayUniqueOutOfLimitCallback, IRandIndex } from './distributions/array-unique';
-import { ENUM_ALPHABET } from './util/const';
+import { ENUM_ALPHABET } from '@lazy-random/shared-lib';
 import RNGSeedRandom from './generators/seedrandom';
-import RNG from './rng';
+import { RNG } from '@lazy-random/rng-abstract';
 import { IRNGFactoryType } from './rng-factory';
 import { IObjectInput, IWeightEntrie, IOptionsItemByWeight } from './distributions/internal/item-by-weight';
+import { IArrayInput02 } from '@lazy-random/shared-lib';
 /**
  * Seedable random number generator supporting many common distributions.
  *

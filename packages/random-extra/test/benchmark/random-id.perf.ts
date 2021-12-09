@@ -14,7 +14,9 @@ import { defaultArgv } from '../../src/simple-wrap';
 
 const suite = (new Benchmark.Suite);
 
+// @ts-ignore
 shortid();
+// @ts-ignore
 nanoid();
 const random_charID = tests.random.dfCharID();
 const seedrandom_charID = tests.seedrandom.dfCharID();
@@ -23,6 +25,7 @@ const xor128_charID = tests.xor128.dfCharID();
 
 suite
 	.add(`shortid`, shortid)
+	// @ts-ignore
 	.add(`nanoid`, nanoid)
 	.add(`random.charID`, random_charID)
 	.add(`random.uuidv4`, random.dfUuidv4())

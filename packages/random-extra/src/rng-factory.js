@@ -7,7 +7,7 @@ exports.RNGFactory = void 0;
 const crypto_1 = __importDefault(require("./generators/crypto"));
 const math_random2_1 = __importDefault(require("./generators/math-random2"));
 const seedrandom_1 = __importDefault(require("./generators/seedrandom"));
-const rng_1 = __importDefault(require("./rng"));
+const rng_abstract_1 = require("@lazy-random/rng-abstract");
 const xor128_1 = __importDefault(require("./generators/xor128"));
 const function_1 = __importDefault(require("./generators/function"));
 const math_random_1 = __importDefault(require("./generators/math-random"));
@@ -25,7 +25,7 @@ function RNGFactory(...args) {
     const [arg0 = 'default', ...rest] = args;
     switch (typeof arg0) {
         case 'object':
-            if (arg0 instanceof rng_1.default) {
+            if (arg0 instanceof rng_abstract_1.RNG) {
                 return arg0;
             }
             break;
