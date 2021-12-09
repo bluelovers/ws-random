@@ -25,6 +25,7 @@
   },
   "resolutions": {},
   "dependencies": {
+    "nanoid": "^3.1.30",
     "@bluelovers/fast-glob": "^3.0.4",
     "@git-lazy/spawn": "^1.0.27",
     "@git-lazy/subtree": "^1.0.20",
@@ -47,6 +48,7 @@
     "float-number": "^2.0.2"
   },
   "devDependencies": {
+    "@types/nanoid": "^2.1.0",
     "@types/big.js": "^6.1.2",
     "@bluelovers/tsconfig": "^1.0.28",
     "@types/benchmark": "^2.1.1",

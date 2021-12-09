@@ -97,3 +97,11 @@ jest.config.js.map
 !npm-shrinkwrap.json
 *.stat
 /temp/subtree/
+
+packages/@*/*/src/*.d.ts
+packages/@*/*/src/*.js
+packages/@*/*/src/*.map
+
+packages/@*/*/src/**/*.d.ts
+packages/@*/*/src/**/*.js
+packages/@*/*/src/**/*.map

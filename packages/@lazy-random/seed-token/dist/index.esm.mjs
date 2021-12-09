@@ -1,16 +1,17 @@
 import hashSum$1 from 'hash-sum';
+import { nanoid as nanoid$1 } from 'nanoid/non-secure';
 import { name, version } from '@lazy-random/seed-data';
 import { floatToString } from '@lazy-num/float-to-string';
-import _nanoid from 'nanoid/non-secure';
+import { _MathRandom } from '@lazy-random/original-math-random';
+import { MATH_POW_2_32 } from '@lazy-random/shared-lib';
 import { isIntFinite } from 'chai-asserttype-extra/lib/check';
-import { _MathRandom } from '@lazy-random/original-math-random/src/index';
 
 function hashSum(input, ...argv) {
   return hashSum$1(input, ...argv);
 }
 
 function nanoid(input, ...argv) {
-  return _nanoid();
+  return nanoid$1();
 }
 
 let _name;
@@ -33,6 +34,10 @@ function hashAny(seed, ...argv) {
   return String(seed);
 }
 
+function randomSeedNum() {
+  return _MathRandom() * MATH_POW_2_32 + _MathRandom();
+}
+
 function seedToken(seed, opts, ...argv) {
   if (isIntFinite(seed)) {
     return seed;
@@ -49,5 +54,5 @@ function seedToken(seed, opts, ...argv) {
   }
 }
 
-export { seedToken as default, hashAny, hashSum, nanoid, randomSeedStr, seedToken };
+export { seedToken as default, hashAny, hashSum, nanoid, randomSeedNum, randomSeedStr, seedToken };
 //# sourceMappingURL=index.esm.mjs.map
