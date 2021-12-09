@@ -1,7 +1,7 @@
 import hashSum from 'hash-sum';
 import { nanoid as _nanoid } from 'nanoid/non-secure';
 import _pkg from './random-seed-str.data';
-import { floatToString } from './to-string';
+import { floatToString } from '@lazy-num/float-to-string';
 import { _MathRandom } from './_random';
 
 /**

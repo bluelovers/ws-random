@@ -1,7 +1,8 @@
 {
   "packages": [
     "packages/*",
-    "packages/@lazy-random/*"
+    "packages/@lazy-random/*",
+    "packages/@lazy-num/*"
   ],
   "command": {
     "publish": {

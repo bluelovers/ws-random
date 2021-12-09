@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`floatToString 0.37309237516003946 1`] = `"0.37309237516003946"`;

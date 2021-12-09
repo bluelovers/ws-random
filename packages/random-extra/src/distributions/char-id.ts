@@ -7,7 +7,7 @@ import { Random } from '../random';
 import { ENUM_ALPHABET } from '../util/const';
 import { randIndex as _randIndex } from '../util/distributions';
 import { expect } from '@lazy-random/expect';
-import { floatToString } from '../util/to-string';
+import { floatToString } from '@lazy-num/float-to-string';
 
 export default (random: Random, char?: ENUM_ALPHABET | string | Buffer | number, size?: number) =>
 {

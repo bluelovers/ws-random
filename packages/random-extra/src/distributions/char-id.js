@@ -10,11 +10,11 @@ const uni_string_1 = __importDefault(require("uni-string"));
 const const_1 = require("../util/const");
 const distributions_1 = require("../util/distributions");
 const expect_1 = require("@lazy-random/expect");
-const to_string_1 = require("../util/to-string");
+const float_to_string_1 = require("@lazy-num/float-to-string");
 exports.default = (random, char, size) => {
     if (typeof char === 'number') {
         if (typeof size === 'number') {
-            char = (0, to_string_1.floatToString)(char);
+            char = (0, float_to_string_1.floatToString)(char);
         }
         else {
             [size, char] = [char, null];
