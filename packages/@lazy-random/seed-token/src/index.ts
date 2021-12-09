@@ -1,30 +1,11 @@
-/**
- * Created by user on 2018/10/20/020.
- */
-import { isIntFinite } from 'chai-asserttype-extra/lib/check';
 
-export function seedToken(seed?: number | any, opts?: any, ...argv: any[]): number
-{
-	// TODO: add entropy and stuff
+export { hashSum } from './hash-sum';
+export { hashAny } from './hash-any';
+export { randomSeedStr } from './random-seed-str';
+export { nanoid } from './nanoid';
 
-	if (isIntFinite(seed))
-	{
-		return seed
-	}
-	else
-	{
-		let strSeed = '' + seed
-		let s = 0
-		let len = strSeed.length
+import { seedToken } from './seed-token';
 
-		for (let k = 0; k < len; ++k)
-		{
-			s ^= strSeed.charCodeAt(k) | 0
-		}
-
-		return s
-	}
-}
+export { seedToken }
 
 export default seedToken
-

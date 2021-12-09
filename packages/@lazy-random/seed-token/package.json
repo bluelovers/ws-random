@@ -52,7 +52,10 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
+    "@lazy-random/seed-data": "^1.0.0",
     "chai-asserttype-extra": "^1.2.3",
+    "hash-sum": "^2.0.0",
+    "nanoid": "^3.1.30",
     "tslib": "^2.3.1"
   },
   "devDependencies": {},
