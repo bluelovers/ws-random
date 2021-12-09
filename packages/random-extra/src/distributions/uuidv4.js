@@ -3,15 +3,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const byte_1 = require("../util/byte");
-const const_1 = require("../util/const");
+const shared_lib_1 = require("@lazy-random/shared-lib");
 const bytes_1 = __importDefault(require("./bytes"));
+const bytes_to_uuid_1 = require("@lazy-random/bytes-to-uuid");
 /**
  * @see https://github.com/tracker1/node-uuid4/blob/master/index.js
  */
 function default_1(random, toUpperCase) {
     let fn = (0, bytes_1.default)(random, 16);
-    let fn2 = toUpperCase ? (0, byte_1._bytesToUuid)(const_1.BYTE_TO_HEX_TO_UPPER_CASE) : (0, byte_1._bytesToUuid)(const_1.BYTE_TO_HEX_TO_LOWER_CASE);
+    let fn2 = (0, bytes_to_uuid_1._createBytesToUuidFn)(toUpperCase ? shared_lib_1.BYTE_TO_HEX_TO_UPPER_CASE : shared_lib_1.BYTE_TO_HEX_TO_LOWER_CASE);
     return () => {
         let arr = fn();
         arr[6] = (arr[6] & 0x0f) | 0x40;

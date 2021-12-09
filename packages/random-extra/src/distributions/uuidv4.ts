@@ -1,7 +1,7 @@
 import { Random } from '../random';
-import { _bytesToUuid} from '../util/byte';
-import { BYTE_TO_HEX_TO_LOWER_CASE, BYTE_TO_HEX_TO_UPPER_CASE } from '../util/const';
+import { BYTE_TO_HEX_TO_LOWER_CASE, BYTE_TO_HEX_TO_UPPER_CASE } from '@lazy-random/shared-lib';
 import uniformBytes from './bytes';
+import { _createBytesToUuidFn } from '@lazy-random/bytes-to-uuid';
 
 /**
  * @see https://github.com/tracker1/node-uuid4/blob/master/index.js
@@ -10,7 +10,7 @@ export default function (random: Random, toUpperCase?: boolean)
 {
 	let fn = uniformBytes(random, 16);
 
-	let fn2 = toUpperCase ? _bytesToUuid(BYTE_TO_HEX_TO_UPPER_CASE) : _bytesToUuid(BYTE_TO_HEX_TO_LOWER_CASE);
+	let fn2 = _createBytesToUuidFn(toUpperCase ? BYTE_TO_HEX_TO_UPPER_CASE : BYTE_TO_HEX_TO_LOWER_CASE);
 
 	return () =>
 	{
