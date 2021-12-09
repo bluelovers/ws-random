@@ -3,7 +3,7 @@
  */
 import { isIntFinite } from 'chai-asserttype-extra/lib/check';
 
-export function seedToken(seed?: number | any, opts?, ...argv): number
+export function seedToken(seed?: number | any, opts?: any, ...argv: any[]): number
 {
 	// TODO: add entropy and stuff
 
