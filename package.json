@@ -25,7 +25,6 @@
   },
   "resolutions": {},
   "dependencies": {
-    "nanoid": "^3.1.30",
     "@bluelovers/fast-glob": "^3.0.4",
     "@git-lazy/spawn": "^1.0.27",
     "@git-lazy/subtree": "^1.0.20",
@@ -33,6 +32,7 @@
     "bluebird": "^3.7.2",
     "check-types": "^11.1.2",
     "debug-color2": "^1.2.7",
+    "float-number": "^2.0.2",
     "fs-extra": "^10.0.0",
     "jest": "^27.4.3",
     "jest-chain": "^1.1.5",
@@ -40,24 +40,24 @@
     "jest-matcher-deep-close-to": "^3.0.2",
     "jest-matcher-utils": "^27.4.2",
     "math-random": "^2.0.1",
+    "nanoid": "^3.1.30",
     "random": "^3.0.6",
     "seedrandom": "^3.0",
     "shortid": "^2.2.16",
     "ts-jest": "^27.1.1",
-    "add": "^2.0.6",
-    "float-number": "^2.0.2"
+    "ts-type": "^2.1.2"
   },
   "devDependencies": {
-    "@types/nanoid": "^2.1.0",
-    "@types/big.js": "^6.1.2",
     "@bluelovers/tsconfig": "^1.0.28",
     "@types/benchmark": "^2.1.1",
+    "@types/big.js": "^6.1.2",
     "@types/chai": "^4",
     "@types/check-types": "^7.3.3",
     "@types/core-decorators": "^0.20.0",
     "@types/fs-extra": "^9.0.13",
     "@types/jest": "^27.0.3",
     "@types/mocha": "^9.0.0",
+    "@types/nanoid": "^2.1.0",
     "@types/node": "*"
   },
   "peerDependencies": {

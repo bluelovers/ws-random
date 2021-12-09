@@ -1,3 +1,5 @@
+import { ITSArrayLikeWriteable, TypedArray } from 'ts-type';
+
 export declare const enum ENUM_ALPHABET {
 	NANOID_URL = "ModuleSymbhasOwnPr-0123456789ABCDEFGHIJKLNQRTUVWXYZ_cfgijkpqtvxz",
 	SHORTID = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-",
@@ -18,5 +20,9 @@ export declare const UINT32_VALUE = 4294967295;
 export declare const MATH_POW_2_32: number;
 export declare let BYTE_TO_HEX_TO_LOWER_CASE: ReadonlyArray<string>;
 export declare let BYTE_TO_HEX_TO_UPPER_CASE: ReadonlyArray<string>;
+export declare type ValueOf<T> = T[keyof T];
+export declare type PickValueOf<T, K extends keyof T> = ValueOf<Pick<T, K>>;
+export declare type IArrayInput01<T extends any> = ITSArrayLikeWriteable<T> | TypedArray;
+export declare type IArrayInput02<T extends any> = IArrayInput01<T> | Buffer;
 
 export {};

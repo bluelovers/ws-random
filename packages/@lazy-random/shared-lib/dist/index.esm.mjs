@@ -36,4 +36,8 @@ for (let i = 0; i < 256; ++i) {
 exports.BYTE_TO_HEX_TO_LOWER_CASE = /*#__PURE__*/Object.freeze(exports.BYTE_TO_HEX_TO_LOWER_CASE); // @ts-ignore
 
 exports.BYTE_TO_HEX_TO_UPPER_CASE = /*#__PURE__*/Object.freeze(exports.BYTE_TO_HEX_TO_UPPER_CASE);
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 //# sourceMappingURL=index.esm.mjs.map
