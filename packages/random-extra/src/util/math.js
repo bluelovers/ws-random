@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.array_sum = exports.get_range_by_size_sum = exports.get_prob_float = exports.get_prob = exports.sum_1_to_n = exports.fixZero = void 0;
+exports.array_sum = exports.get_range_by_size_sum = exports.sum_1_to_n = exports.fixZero = void 0;
 const num_is_zero_1 = require("num-is-zero");
 Object.defineProperty(exports, "fixZero", { enumerable: true, get: function () { return num_is_zero_1.fixZero; } });
 /**
@@ -12,41 +12,6 @@ function sum_1_to_n(n) {
     return n * (n + 1) / 2;
 }
 exports.sum_1_to_n = sum_1_to_n;
-/**
- * simple probabilities
- */
-function get_prob(size, sum) {
-    let score = sum;
-    let resultArray = [];
-    let randomTotal = 0;
-    let i = size - 1;
-    while (i--) {
-        let random = Math.round(score / size);
-        resultArray.push(random);
-        randomTotal += random;
-        score = score - random;
-    }
-    let result = sum - randomTotal;
-    resultArray.unshift(result);
-    return resultArray;
-}
-exports.get_prob = get_prob;
-function get_prob_float(size, sum) {
-    let score = sum;
-    let resultArray = [];
-    let randomTotal = 0;
-    let i = size - 1;
-    while (i--) {
-        let random = score / size;
-        resultArray.push(random);
-        randomTotal += random;
-        score = score - random;
-    }
-    let result = sum - randomTotal;
-    resultArray.unshift(result);
-    return resultArray;
-}
-exports.get_prob_float = get_prob_float;
 function get_range_by_size_sum(size, sum) {
     sum = sum || sum_1_to_n(size);
     let score = sum;

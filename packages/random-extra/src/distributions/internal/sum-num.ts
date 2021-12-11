@@ -2,13 +2,14 @@ import { array_unique } from 'array-hyper-unique';
 import { Multinomial } from 'lib-r-math.js';
 import { Random } from '../../random';
 import { UtilDistributions } from '../../util/distributions';
-import { array_sum, get_prob, get_prob_float, sum_1_to_n} from '../../util/math';
+import { array_sum, sum_1_to_n} from '../../util/math';
 import { fixZero } from 'num-is-zero';
 import { expect } from '@lazy-random/expect';
 import uniform from '../uniform';
 import { isUnset } from '../../util/assers';
 import { toFixedNumber } from '@lazy-num/to-fixed-number';
 import { fakeLibRMathRng } from '@lazy-random/fake-lib-r-math-rng';
+import { get_prob, get_prob_float } from '@lazy-random/util-probabilities';
 
 export interface ISumNumParameterBase
 {

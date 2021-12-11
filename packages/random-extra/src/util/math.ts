@@ -12,55 +12,6 @@ export function sum_1_to_n(n: number)
 	return n * (n + 1) / 2;
 }
 
-/**
- * simple probabilities
- */
-export function get_prob(size: number, sum: number)
-{
-	let score = sum;
-	let resultArray: number[] = [];
-	let randomTotal = 0;
-	let i: number = size - 1;
-
-	while (i--)
-	{
-		let random = Math.round(score / size);
-
-		resultArray.push(random);
-		randomTotal += random;
-
-		score = score - random;
-	}
-
-	let result = sum - randomTotal;
-	resultArray.unshift(result);
-
-	return resultArray;
-}
-
-export function get_prob_float(size: number, sum: number)
-{
-	let score = sum;
-	let resultArray: number[] = [];
-	let randomTotal = 0;
-	let i: number = size - 1;
-
-	while (i--)
-	{
-		let random = score / size;
-
-		resultArray.push(random);
-		randomTotal += random;
-
-		score = score - random;
-	}
-
-	let result = sum - randomTotal;
-	resultArray.unshift(result);
-
-	return resultArray;
-}
-
 export function get_range_by_size_sum(size: number, sum?: number)
 {
 	sum = sum || sum_1_to_n(size);

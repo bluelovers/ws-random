@@ -14,6 +14,7 @@ const uniform_1 = __importDefault(require("../uniform"));
 const assers_1 = require("../../util/assers");
 const to_fixed_number_1 = require("@lazy-num/to-fixed-number");
 const fake_lib_r_math_rng_1 = require("@lazy-random/fake-lib-r-math-rng");
+const util_probabilities_1 = require("@lazy-random/util-probabilities");
 /**
  * not support unique, but will try make unique if can
  * thx @SeverinPappadeux for int version
@@ -59,7 +60,7 @@ function coreFnRandSumInt(argv) {
     /**
      * probabilities
      */
-    let prob = (0, math_1.get_prob)(size, maxv);
+    let prob = (0, util_probabilities_1.get_prob)(size, maxv);
     (0, expect_1.expect)(prob).is.array.lengthOf(size);
     /**
      * make rmultinom use with random.next
@@ -198,7 +199,7 @@ function coreFnRandSumFloat(argv) {
          * get_prob_float(3, 10)
          * // => [ 4.444444444444445, 3.3333333333333335, 2.222222222222222 ]
          */
-        let prob = (0, math_1.get_prob_float)(size, maxv);
+        let prob = (0, util_probabilities_1.get_prob_float)(size, maxv);
         /**
          * array_sum(prob.slice(0, -1))
          * // => 7.777777777777779
