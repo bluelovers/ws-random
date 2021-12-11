@@ -1,6 +1,6 @@
 
 import seedrandom from 'seedrandom';
-import crypto from 'crypto';
+import crypto from '@lazy-random/cross-crypto';
 
 export function tryRequire<T = typeof crypto>(name: 'crypto'): T
 export function tryRequire<T = typeof seedrandom>(name: 'seedrandom'): T

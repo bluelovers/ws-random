@@ -18,9 +18,10 @@ exports.random = exports.Random = void 0;
 const expect_1 = require("@lazy-random/expect");
 const distributions_1 = __importDefault(require("./distributions"));
 const rng_abstract_1 = require("@lazy-random/rng-abstract");
-const rng_factory_1 = __importDefault(require("./rng-factory"));
+const rng_factory_1 = require("@lazy-random/rng-factory");
 const util_1 = require("./util");
 const core_decorators_1 = require("core-decorators");
+const clone_class_1 = require("@lazy-random/clone-class");
 /**
  * Seedable random number generator supporting many common distributions.
  *
@@ -131,15 +132,15 @@ let Random = Random_1 = class Random {
      * @param {...*} args
      */
     use(arg0, ...args) {
-        this._rng = (0, rng_factory_1.default)(arg0, ...args);
+        this._rng = (0, rng_factory_1.RNGFactory)(arg0, ...args);
         return this;
     }
     /**
      * create new Random and use
      */
     newUse(arg0, ...args) {
-        let o = (0, util_1.getClass)(Random_1, this);
-        return new o((0, rng_factory_1.default)(arg0, ...args));
+        let o = (0, clone_class_1.getClass)(Random_1, this);
+        return new o((0, rng_factory_1.RNGFactory)(arg0, ...args));
     }
     cloneUse(arg0, ...args) {
         let o = this.clone();

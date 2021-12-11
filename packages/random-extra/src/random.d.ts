@@ -2,9 +2,9 @@
 import Distributions, { IRandomDistributions, IRandomDistributionsCacheRow } from './distributions';
 import { IArrayUniqueOutOfLimitCallback, IRandIndex } from './distributions/array-unique';
 import { ENUM_ALPHABET } from '@lazy-random/shared-lib';
-import RNGSeedRandom from './generators/seedrandom';
+import { RNGSeedRandom } from '@lazy-random/generators-seedrandom';
 import { RNG } from '@lazy-random/rng-abstract';
-import { IRNGFactoryType } from './rng-factory';
+import { IRNGFactoryType } from '@lazy-random/rng-factory';
 import { IObjectInput, IWeightEntrie, IOptionsItemByWeight } from './distributions/internal/item-by-weight';
 import { IArrayInput02 } from '@lazy-random/shared-lib';
 /**

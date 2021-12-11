@@ -1,5 +1,5 @@
-import RNGFunction from '../src/generators/function';
-import RNGMathRandom2 from '../src/generators/math-random2';
+import { RNGFunction } from '@lazy-random/generators-function';
+import { RNGMathRandom2 } from '@lazy-random/generators-math-random2';
 
 describe(`RNGMathRandom2`, () =>
 {

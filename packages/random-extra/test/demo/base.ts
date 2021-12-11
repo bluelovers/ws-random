@@ -3,7 +3,7 @@
  */
 
 import random from '../../'
-import seedrandom from '../../preset/seedrandom'
+import seedrandom from '@lazy-random/preset-seedrandom'
 import { randomSeedNum } from '@lazy-random/seed-token';
 
 const xor128 = random.newUse('xor128')

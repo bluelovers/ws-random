@@ -9,37 +9,6 @@
 //export { shortid, hashSum }
 
 
-/**
- * @todo support typescript
- */
-export function getClass<T>(RNGClass, thisArgv, ...argv): T
-{
-	let o;
-
-	if (thisArgv instanceof RNGClass)
-	{
-		// @ts-ignore
-		o = (thisArgv.__proto__.constructor)
-	}
-	else
-	{
-		o = RNGClass
-	}
-
-	return o
-}
-
-/**
- * @todo support typescript
- */
-export function cloneClass<T>(RNGClass, thisArgv, ...argv): T
-{
-	let o = getClass(RNGClass, thisArgv, ...argv)
-
-	// @ts-ignore
-	return new o(...argv)
-}
-
 export function hashArgv(args: any[]): string
 {
 	return String(args.join(';'));

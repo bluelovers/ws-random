@@ -10,7 +10,7 @@
 import { RNG } from '@lazy-random/rng-abstract';
 import random from '../../src/'
 import seedrandomOrigin from 'seedrandom';
-import RNGSeedRandom from '../../src/generators/seedrandom';
+import { RNGSeedRandom } from '@lazy-random/generators-seedrandom';
 import { tryRequire } from '../../src/util/req';
 import checkTypesMatchers from '../jest/type';
 

@@ -9,31 +9,7 @@
 //
 //export { shortid, hashSum }
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.array_unique_unsafe = exports.hashArgv = exports.cloneClass = exports.getClass = void 0;
-/**
- * @todo support typescript
- */
-function getClass(RNGClass, thisArgv, ...argv) {
-    let o;
-    if (thisArgv instanceof RNGClass) {
-        // @ts-ignore
-        o = (thisArgv.__proto__.constructor);
-    }
-    else {
-        o = RNGClass;
-    }
-    return o;
-}
-exports.getClass = getClass;
-/**
- * @todo support typescript
- */
-function cloneClass(RNGClass, thisArgv, ...argv) {
-    let o = getClass(RNGClass, thisArgv, ...argv);
-    // @ts-ignore
-    return new o(...argv);
-}
-exports.cloneClass = cloneClass;
+exports.array_unique_unsafe = exports.hashArgv = void 0;
 function hashArgv(args) {
     return String(args.join(';'));
 }

@@ -3,7 +3,7 @@
  */
 
 import random from '../../src/random';
-import seedrandom from '../../preset/seedrandom';
+import seedrandom from '@lazy-random/preset-seedrandom';
 import nanoid = require('nanoid')
 import shortid = require('shortid');
 import tests, { Benchmark, formatBenchmarkResult, sortBenchmarkResult, getMethods } from './'

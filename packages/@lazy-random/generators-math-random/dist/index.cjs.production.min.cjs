@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=require("@lazy-random/clone-class"),a=require("@lazy-random/rng-abstract"),r=require("@lazy-random/original-math-random");class RNGMathRandom extends a.RNG{get name(){return"math-random"}get seedable(){return!1}next(){return r._MathRandom()}seed(e,a,...r){}clone(a,r,...t){return e.cloneClass(RNGMathRandom,this,a,r,...t)}}exports.RNGMathRandom=RNGMathRandom,exports.default=RNGMathRandom;
+//# sourceMappingURL=index.cjs.production.min.cjs.map

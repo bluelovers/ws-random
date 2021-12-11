@@ -103,8 +103,10 @@
   "dependencies": {
     "@lazy-num/to-fixed-number": "^1.0.0",
     "@lazy-random/bytes-to-uuid": "^1.0.0",
+    "@lazy-random/clone-class": "^1.0.0",
     "@lazy-random/expect": "^1.0.0",
     "@lazy-random/fake-lib-r-math-rng": "^1.0.0",
+    "@lazy-random/rng-factory": "^1.0.0",
     "@types/seedrandom": "=2.4.28",
     "array-hyper-unique": "^2.0.6",
     "big.js": "^6.1.1",
