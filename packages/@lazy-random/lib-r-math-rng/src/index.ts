@@ -1,5 +1,5 @@
 import * as libRMath from 'lib-r-math.js';
-import { Random, random } from '../../random';
+import { Random, random } from 'random-extra/src/random';
 import { RNG, IRNGLike } from '@lazy-random/rng-abstract';
 import isExtendsOf from 'is-extends-of';
 import { IRNG } from 'lib-r-math.js';
@@ -150,3 +150,5 @@ export class RandomRngWithLibRMath<R extends IRNG> extends RNG
 		this._rng.seed = [this._seedNum(seed)]
 	}
 }
+
+export default RandomRngWithLibRMath

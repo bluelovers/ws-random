@@ -1,4 +1,4 @@
-import { Random } from '../../random';
+import { Random } from 'random-extra/src/random';
 import { RNG, IRNGLike } from '@lazy-random/rng-abstract';
 import { IRNG } from 'lib-r-math.js';
 export declare class LibRMathRngWithRandom extends IRNG {
