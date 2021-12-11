@@ -1,6 +1,6 @@
 import randomSrc from '../../src'
 import seedrandom from '@lazy-random/preset-seedrandom'
-import { simpleWrap } from '../../src/simple-wrap';
+import { simpleWrap } from '@lazy-random/simple-wrap';
 import Benchmark = require('benchmark');
 import crypto = require('crypto');
 import cryptorandom = require('math-random');

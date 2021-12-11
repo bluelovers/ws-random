@@ -5,7 +5,7 @@
 import tests, { Benchmark, formatBenchmarkResult, sortBenchmarkResult, getMethods } from './'
 
 import console from 'debug-color2'
-import { defaultArgv } from '../../src/simple-wrap';
+import { defaultArgv } from '@lazy-random/simple-wrap';
 
 const methods = Object.keys(tests.Math)
 	.filter(function (v)

@@ -10,7 +10,7 @@ import tests, { Benchmark, formatBenchmarkResult, sortBenchmarkResult, getMethod
 import hashSum = require('hash-sum');
 
 import console from 'debug-color2'
-import { defaultArgv } from '../../src/simple-wrap';
+import { defaultArgv } from '@lazy-random/simple-wrap';
 
 const suite = (new Benchmark.Suite);
 
