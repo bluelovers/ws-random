@@ -102,6 +102,7 @@
   },
   "dependencies": {
     "@lazy-num/to-fixed-number": "^1.0.0",
+    "@lazy-random/array-algorithm": "^1.0.0",
     "@lazy-random/bytes-to-uuid": "^1.0.0",
     "@lazy-random/clone-class": "^1.0.0",
     "@lazy-random/expect": "^1.0.0",
@@ -115,9 +116,7 @@
     "core-decorators": "^0.20.0",
     "hash-sum": "^2.0.0",
     "hex-lib": "^1.0.2",
-    "is-extends-of": "^1.0.3",
     "lib-r-math.js": "^1.0.89",
-    "nanoid": "^3.1.30",
     "num-in-delta": "^1.0.7",
     "num-is-zero": "^1.0.2",
     "ts-type": "^2.1.2",

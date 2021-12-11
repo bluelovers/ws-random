@@ -1,9 +1,9 @@
-import { arrayRandIndexByLength } from '@lazy-random/array-rand-index';
 import { IArrayInput02 } from '@lazy-random/shared-lib';
+import { arrayRandIndexByLength } from '@lazy-random/array-rand-index';
 
 export function swapAlgorithm<T extends IArrayInput02<any>>(arr: T,
 	overwrite?: boolean,
-	fn: (n: number, ...argv) => number = arrayRandIndexByLength,
+	fn: (n: number, ...argv: any[]) => number = arrayRandIndexByLength,
 )
 {
 	let i: number = arr.length;
@@ -28,7 +28,7 @@ export function swapAlgorithm<T extends IArrayInput02<any>>(arr: T,
 
 export function swapAlgorithm2<T extends IArrayInput02<any>>(arr: T,
 	overwrite?: boolean,
-	fn: (n: number, ...argv) => number = arrayRandIndexByLength,
+	fn: (n: number, ...argv: any[]) => number = arrayRandIndexByLength,
 ): T
 {
 	let i: number = arr.length;
@@ -65,58 +65,3 @@ export function swapAlgorithm2<T extends IArrayInput02<any>>(arr: T,
 
 	return ret
 }
-
-/**
- * back to original interval
- */
-export function array_rebase(ret_b: number[], n_diff: number, min: number, max: number)
-{
-	let b_sum = 0;
-
-	let bool: boolean;
-
-	let i = ret_b.length;
-
-	if (typeof min === 'number' || typeof max === 'number')
-	{
-		while (i--)
-		{
-			let v = ret_b[i];
-			let n = v + n_diff;
-
-			if (n >= min && n <= max)
-			{
-				bool = true;
-				ret_b[i] = n;
-
-				b_sum += n
-			}
-			else
-			{
-				bool = false;
-				break;
-			}
-		}
-	}
-	else
-	{
-		while (i--)
-		{
-			let v = ret_b[i];
-			let n = v + n_diff;
-
-			ret_b[i] = n;
-
-			b_sum += n
-		}
-
-		bool = true;
-	}
-
-	return {
-		bool,
-		b_sum,
-	};
-}
-
-

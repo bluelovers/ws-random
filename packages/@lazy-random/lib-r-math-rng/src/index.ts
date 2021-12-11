@@ -91,12 +91,12 @@ export class RandomRngWithLibRMath<R extends IRNG> extends RNG
 			// @ts-ignore
 			this._rng = opts
 		}
-		else if (seed && isExtendsOf(seed, libRMath.IRNG))
+		else if (seed && isExtendsOf(seed, libRMath.IRNG as any))
 		{
 			// @ts-ignore
 			this._rng = new seed(this._seedNum(opts))
 		}
-		else if (opts && isExtendsOf(opts, libRMath.IRNG))
+		else if (opts && isExtendsOf(opts, libRMath.IRNG as any))
 		{
 			// @ts-ignore
 			this._rng = new opts(this._seedNum(seed))

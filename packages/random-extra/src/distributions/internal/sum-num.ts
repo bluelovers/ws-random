@@ -1,5 +1,5 @@
 import { array_unique } from 'array-hyper-unique';
-import * as libRMath from 'lib-r-math.js';
+import { Multinomial } from 'lib-r-math.js';
 import { Random } from '../../random';
 import { UtilDistributions } from '../../util/distributions';
 import { array_sum, get_prob, get_prob_float, sum_1_to_n} from '../../util/math';
@@ -114,7 +114,7 @@ export function coreFnRandSumInt(argv: ISumNumParameterWuthCache)
 	/**
 	 * make rmultinom use with random.next
 	 */
-	let rmultinomFn = libRMath.Multinomial(fakeLibRMathRng(random.next)).rmultinom;
+	let rmultinomFn = Multinomial(fakeLibRMathRng(random.next)).rmultinom;
 
 	/**
 	 * low value for speed up, but more chance fail

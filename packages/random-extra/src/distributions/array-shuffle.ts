@@ -4,9 +4,9 @@ import { Random } from '../random';
 import { TypedArray } from 'ts-type';
 import uniformInt from './uniform-int';
 
-import { swapAlgorithm, swapAlgorithm2 } from '../util/array';
 import { randIndex as _randIndex } from '../util/distributions';
 import { IArrayInput02 } from '@lazy-random/shared-lib';
+import { swapAlgorithm, swapAlgorithm2 } from '@lazy-random/array-algorithm';
 
 function arrayShuffle<T extends ITSArrayLikeWriteable<any> | TypedArray | Buffer>(random: Random, arr: T, overwrite?: boolean): () => T
 {

@@ -1,5 +1,5 @@
 {
-  "name": "@lazy-random/lib-r-math-rng",
+  "name": "@lazy-random/array-algorithm",
   "version": "1.0.0",
   "description": "",
   "keywords": [
@@ -60,7 +60,7 @@
     "create-by-yarn-tool",
     "create-by-tsdx"
   ],
-  "homepage": "https://github.com/bluelovers/ws-random/tree/master/packages/@lazy-random/lib-r-math-rng#readme",
+  "homepage": "https://github.com/bluelovers/ws-random/tree/master/packages/@lazy-random/array-algorithm#readme",
   "bugs": {
     "url": "https://github.com/bluelovers/ws-random/issues"
   },
@@ -90,7 +90,7 @@
     "test:tsdx": "ynpx @bluelovers/tsdx test --passWithNoTests",
     "posttest": "yarn run build",
     "build": "yarn run build:tsdx && yarn run build:dts",
-    "build:dts": "copy .\\src\\index.d.ts .\\dist\\index.d.ts & echo build:dts",
+    "build:dts": "ynpx dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts --no-banner & echo build:dts",
     "build:tsdx": "ynpx @bluelovers/tsdx build --target node --name index",
     "preversion": "echo preversion && yarn run test",
     "version": "echo version",
@@ -106,9 +106,8 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/rng-abstract": "^1.0.0",
-    "is-extends-of": "^2.0.2",
-    "lib-r-math.js": "^1.0.89",
+    "@lazy-random/array-rand-index": "^1.0.0",
+    "@lazy-random/shared-lib": "^1.0.0",
     "tslib": "^2.3.1"
   },
   "devDependencies": {},

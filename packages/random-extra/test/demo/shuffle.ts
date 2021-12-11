@@ -1,5 +1,5 @@
 import random from '../../index';
-import { swapAlgorithm, swapAlgorithm2 } from '../../src/util/array';
+import { swapAlgorithm, swapAlgorithm2 } from '@lazy-random/array-algorithm';
 
 const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 

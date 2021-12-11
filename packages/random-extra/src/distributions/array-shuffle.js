@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const array_1 = require("../util/array");
 const distributions_1 = require("../util/distributions");
+const array_algorithm_1 = require("@lazy-random/array-algorithm");
 function arrayShuffle(random, arr, overwrite) {
     const randIndex = (len) => {
         return (0, distributions_1.randIndex)(random, len);
@@ -22,11 +22,11 @@ function arrayShuffle(random, arr, overwrite) {
             };
         }
         return () => {
-            return (0, array_1.swapAlgorithm2)(cloneArrayLike(arr), true, randIndex);
+            return (0, array_algorithm_1.swapAlgorithm2)(cloneArrayLike(arr), true, randIndex);
         };
     }
     return () => {
-        return (0, array_1.swapAlgorithm2)(arr, true, randIndex);
+        return (0, array_algorithm_1.swapAlgorithm2)(arr, true, randIndex);
     };
 }
 arrayShuffle.memoizable = false;
