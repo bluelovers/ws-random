@@ -1,9 +1,8 @@
 import { expect } from '@lazy-random/expect';
-import { Random } from '../random';
-import { isUnset } from '../util/assers';
 import { toFixedNumber } from '@lazy-num/to-fixed-number';
+import { IRNGLike } from '@lazy-random/rng-abstract';
 
-export default (random: Random, min?: number, max?: number, fractionDigits?: number) =>
+export function uniformFloat(random: IRNGLike, min?: number, max?: number, fractionDigits?: number)
 {
 	if (max === undefined)
 	{
@@ -48,3 +47,4 @@ export default (random: Random, min?: number, max?: number, fractionDigits?: num
 	return fn
 }
 
+export default uniformFloat

@@ -2,7 +2,7 @@ import { ITSArrayLikeWriteable } from 'ts-type';
 import random from '../random';
 import { Random } from '../random';
 import { TypedArray } from 'ts-type';
-import uniformInt from './uniform-int';
+import { uniformInt } from '@lazy-random/df-uniform';
 
 import { IArrayInput02 } from '@lazy-random/shared-lib';
 import { swapAlgorithm, swapAlgorithm2 } from '@lazy-random/array-algorithm';

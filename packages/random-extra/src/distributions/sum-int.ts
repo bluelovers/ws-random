@@ -1,7 +1,7 @@
 import random from '../random';
 import { Random } from '../random';
 import { coreFnRandSumInt } from './internal/sum-num';
-import uniformInt from './uniform-int';
+import { uniformInt } from '@lazy-random/df-uniform';
 import { expect } from '@lazy-random/expect';
 import * as UtilMath from '../util/math';
 import { ISumNumParameter } from './internal/sum-num';

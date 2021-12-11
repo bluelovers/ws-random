@@ -1,6 +1,6 @@
 import { Random } from '../random';
 import { expect } from '@lazy-random/expect';
-import uniformInt from './uniform-int';
+import { uniformInt } from '@lazy-random/df-uniform';
 import { int } from '@lazy-random/util-distributions';
 
 export default <T extends Array<unknown>>(random: Random, arr: T, size: number = 1, start: number = 0, end?: number) =>

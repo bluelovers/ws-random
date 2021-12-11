@@ -3,7 +3,7 @@ import { Multinomial } from 'lib-r-math.js';
 import { Random } from '../../random';
 import { fixZero } from 'num-is-zero';
 import { expect } from '@lazy-random/expect';
-import uniform from '../uniform';
+import { uniformFloat as uniform } from '@lazy-random/df-uniform';
 import { isUnset } from '../../util/assers';
 import { toFixedNumber } from '@lazy-num/to-fixed-number';
 import { fakeLibRMathRng } from '@lazy-random/fake-lib-r-math-rng';

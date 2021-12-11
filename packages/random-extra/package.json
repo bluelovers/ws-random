@@ -105,6 +105,7 @@
     "@lazy-random/array-algorithm": "^1.0.0",
     "@lazy-random/bytes-to-uuid": "^1.0.0",
     "@lazy-random/clone-class": "^1.0.0",
+    "@lazy-random/df-uniform": "^1.0.0",
     "@lazy-random/expect": "^1.0.0",
     "@lazy-random/fake-lib-r-math-rng": "^1.0.0",
     "@lazy-random/rng-factory": "^1.0.0",

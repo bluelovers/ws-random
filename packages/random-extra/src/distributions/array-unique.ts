@@ -1,7 +1,7 @@
 import random from '../random';
 import { Random } from '../random';
 import { expect } from '@lazy-random/expect';
-import uniformInt from './uniform-int';
+import { uniformInt } from '@lazy-random/df-uniform';
 
 import { swapAlgorithm } from '@lazy-random/array-algorithm';
 import { randIndex as _randIndex } from '@lazy-random/util-distributions';

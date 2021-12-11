@@ -1,14 +1,11 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.coreFnRandSumFloat = exports.coreFnRandSumInt = void 0;
 const array_hyper_unique_1 = require("array-hyper-unique");
 const lib_r_math_js_1 = require("lib-r-math.js");
 const num_is_zero_1 = require("num-is-zero");
 const expect_1 = require("@lazy-random/expect");
-const uniform_1 = __importDefault(require("../uniform"));
+const df_uniform_1 = require("@lazy-random/df-uniform");
 const assers_1 = require("../../util/assers");
 const to_fixed_number_1 = require("@lazy-num/to-fixed-number");
 const fake_lib_r_math_rng_1 = require("@lazy-random/fake-lib-r-math-rng");
@@ -205,7 +202,7 @@ function coreFnRandSumFloat(argv) {
          * // => 7.777777777777779
          */
         let prob_slice_sum = (0, sum_1.num_array_sum)(prob.slice(0, -1));
-        fnFirst = (0, uniform_1.default)(random, 0, prob_slice_sum);
+        fnFirst = (0, df_uniform_1.uniformFloat)(random, 0, prob_slice_sum);
     }
     let fnNext = util_distributions_1.float;
     return () => {

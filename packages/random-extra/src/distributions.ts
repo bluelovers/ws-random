@@ -36,12 +36,13 @@ import pareto from './distributions/pareto'
 
 import poisson from './distributions/poisson'
 
-import uniform from './distributions/uniform'
-import uniformBoolean from './distributions/uniform-boolean'
-import uniformInt from './distributions/uniform-int'
-
-import byte from './distributions/byte'
-import bytes from './distributions/bytes'
+import {
+	uniformFloat as uniform,
+	uniformInt,
+	uniformBoolean,
+	uniformByte as byte,
+	uniformBytes as bytes,
+} from '@lazy-random/df-uniform'
 
 import arrayIndex from './distributions/array-index'
 import arrayShuffle from './distributions/array-shuffle'

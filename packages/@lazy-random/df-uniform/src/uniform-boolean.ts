@@ -1,8 +1,7 @@
-import { Random } from '../random';
-import { RNG } from '@lazy-random/rng-abstract'
+import { IRNGLike } from '@lazy-random/rng-abstract'
 import { expect } from '@lazy-random/expect';
 
-export default (random: Random, likelihood: number = 0.5) =>
+export function uniformBoolean(random: IRNGLike, likelihood: number = 0.5)
 {
 	//ow(likelihood, ow.number.gt(0).lt(1))
 
@@ -17,3 +16,4 @@ export default (random: Random, likelihood: number = 0.5) =>
 	}
 }
 
+export default uniformBoolean

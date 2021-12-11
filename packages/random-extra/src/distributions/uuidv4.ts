@@ -1,6 +1,6 @@
 import { Random } from '../random';
 import { BYTE_TO_HEX_TO_LOWER_CASE, BYTE_TO_HEX_TO_UPPER_CASE } from '@lazy-random/shared-lib';
-import uniformBytes from './bytes';
+import { uniformBytes } from '@lazy-random/df-uniform';
 import { _createBytesToUuidFn } from '@lazy-random/bytes-to-uuid';
 
 /**

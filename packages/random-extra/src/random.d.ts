@@ -243,7 +243,7 @@ export declare class Random<R extends RNG = RNG> {
      * @param {number} [max=1] - Upper bound (float, exclusive)
      * @return {function}
      */
-    dfUniform(min?: number, max?: number, fractionDigits?: number): () => number;
+    dfUniform(min?: number, max?: number, fractionDigits?: number): any;
     /**
      * Generates a [Discrete dfUniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution).
      *

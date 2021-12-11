@@ -1,9 +1,7 @@
 import { ITSArrayLikeWriteable, TypedArray } from 'ts-type';
-import uniformInt from './uniform-int';
+import { uniformFloat as uniform, uniformInt, uniformByte } from '@lazy-random/df-uniform';
 import { Random } from '../random';
 import { expect } from '@lazy-random/expect';
-import uniformByte from './byte';
-import uniform from './uniform';
 import { isUnset } from '../util/assers';
 import { IArrayInput02 } from '@lazy-random/shared-lib';
 

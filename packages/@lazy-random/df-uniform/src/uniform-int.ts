@@ -1,8 +1,8 @@
 import { expect } from '@lazy-random/expect';
-import { Random } from '../random';
 import uniformFloat from './uniform';
+import { IRNGLike } from '@lazy-random/rng-abstract';
 
-export default (random: Random, min?: number, max?: number) =>
+export function uniformInt(random: IRNGLike, min?: number, max?: number)
 {
 	if (max === undefined)
 	{
@@ -24,3 +24,4 @@ export default (random: Random, min?: number, max?: number) =>
 	}
 }
 
+export default uniformInt
