@@ -1,7 +1,7 @@
 import { Random } from '../random';
 import { expect } from '@lazy-random/expect';
 import uniformInt from './uniform-int';
-import { stringifyByte } from '../util/byte';
+import { stringifyByte } from '@lazy-random/shared-lib';
 
 export default function uniformByte(random: Random, toStr: true): () => string
 export default function uniformByte(random: Random, toStr?: false): () => number

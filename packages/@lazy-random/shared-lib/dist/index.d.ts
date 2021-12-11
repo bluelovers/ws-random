@@ -24,5 +24,7 @@ export declare type ValueOf<T> = T[keyof T];
 export declare type PickValueOf<T, K extends keyof T> = ValueOf<Pick<T, K>>;
 export declare type IArrayInput01<T extends any> = ITSArrayLikeWriteable<T> | TypedArray;
 export declare type IArrayInput02<T extends any> = IArrayInput01<T> | Buffer;
+export declare function stringifyByte(byte: number): string;
+export declare function toHexArray(arr: number[]): string[];
 
 export {};

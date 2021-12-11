@@ -1,7 +1,4 @@
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.BYTE_TO_HEX_TO_UPPER_CASE = exports.BYTE_TO_HEX_TO_LOWER_CASE = exports.MATH_POW_2_32 = exports.UINT32_VALUE = exports.UINT32_BYTES = exports.FLOAT_ENTROPY_BYTES = exports.SUM_DELTA = exports.ENUM_ALPHABET = void 0;
+var ENUM_ALPHABET;
 
 (function (ENUM_ALPHABET) {
   ENUM_ALPHABET["NANOID_URL"] = "ModuleSymbhasOwnPr-0123456789ABCDEFGHIJKLNQRTUVWXYZ_cfgijkpqtvxz";
@@ -15,29 +12,30 @@ exports.BYTE_TO_HEX_TO_UPPER_CASE = exports.BYTE_TO_HEX_TO_LOWER_CASE = exports.
   ENUM_ALPHABET["BASE62"] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
   ENUM_ALPHABET["BASE66"] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-._~";
   ENUM_ALPHABET["BASE71"] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!'()*-._~";
-})(exports.ENUM_ALPHABET || (exports.ENUM_ALPHABET = {}));
+})(ENUM_ALPHABET || (ENUM_ALPHABET = {}));
 
-exports.SUM_DELTA = 0.00000000000005;
-exports.FLOAT_ENTROPY_BYTES = 7;
-exports.UINT32_BYTES = 4;
-exports.UINT32_VALUE = 0xffffffff;
-exports.MATH_POW_2_32 = /*#__PURE__*/Math.pow(2, 32);
-exports.BYTE_TO_HEX_TO_LOWER_CASE = [];
-exports.BYTE_TO_HEX_TO_UPPER_CASE = [];
+const SUM_DELTA = 0.00000000000005;
+const FLOAT_ENTROPY_BYTES = 7;
+const UINT32_BYTES = 4;
+const UINT32_VALUE = 0xffffffff;
+const MATH_POW_2_32 = /*#__PURE__*/Math.pow(2, 32);
+let BYTE_TO_HEX_TO_LOWER_CASE = [];
+let BYTE_TO_HEX_TO_UPPER_CASE = [];
 
 for (let i = 0; i < 256; ++i) {
-  // @ts-ignore
-  exports.BYTE_TO_HEX_TO_LOWER_CASE[i] = /*#__PURE__*/(i + 0x100).toString(16).substr(1); // @ts-ignore
+  BYTE_TO_HEX_TO_LOWER_CASE[i] = /*#__PURE__*/(i + 0x100).toString(16).substr(1);
+  BYTE_TO_HEX_TO_UPPER_CASE[i] = /*#__PURE__*/BYTE_TO_HEX_TO_LOWER_CASE[i].toUpperCase();
+}
 
-  exports.BYTE_TO_HEX_TO_UPPER_CASE[i] = /*#__PURE__*/exports.BYTE_TO_HEX_TO_LOWER_CASE[i].toUpperCase();
-} // @ts-ignore
+BYTE_TO_HEX_TO_LOWER_CASE = /*#__PURE__*/Object.freeze(BYTE_TO_HEX_TO_LOWER_CASE);
+BYTE_TO_HEX_TO_UPPER_CASE = /*#__PURE__*/Object.freeze(BYTE_TO_HEX_TO_UPPER_CASE);
 
+function stringifyByte(byte) {
+  return BYTE_TO_HEX_TO_UPPER_CASE[byte];
+}
+function toHexArray(arr) {
+  return arr.map(stringifyByte);
+}
 
-exports.BYTE_TO_HEX_TO_LOWER_CASE = /*#__PURE__*/Object.freeze(exports.BYTE_TO_HEX_TO_LOWER_CASE); // @ts-ignore
-
-exports.BYTE_TO_HEX_TO_UPPER_CASE = /*#__PURE__*/Object.freeze(exports.BYTE_TO_HEX_TO_UPPER_CASE);
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+export { BYTE_TO_HEX_TO_LOWER_CASE, BYTE_TO_HEX_TO_UPPER_CASE, ENUM_ALPHABET, FLOAT_ENTROPY_BYTES, MATH_POW_2_32, SUM_DELTA, UINT32_BYTES, UINT32_VALUE, stringifyByte, toHexArray };
 //# sourceMappingURL=index.esm.mjs.map
