@@ -1,4 +1,4 @@
-import randomSumFloat, { create } from '../index';
+import randomSumFloat, { create } from '../src/index';
 
 const size = 3;
 const sum = 10;
