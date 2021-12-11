@@ -3,7 +3,6 @@ import { Random } from '../random';
 import { coreFnRandSumInt } from './internal/sum-num';
 import uniformInt from './uniform-int';
 import { expect } from '@lazy-random/expect';
-import { UtilDistributions } from '../util/distributions';
 import * as UtilMath from '../util/math';
 import { ISumNumParameter } from './internal/sum-num';
 import { swapAlgorithm } from '@lazy-random/array-algorithm';

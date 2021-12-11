@@ -5,9 +5,9 @@
 import UString from "uni-string";
 import { Random } from '../random';
 import { ENUM_ALPHABET } from '@lazy-random/shared-lib';
-import { randIndex as _randIndex } from '../util/distributions';
 import { expect } from '@lazy-random/expect';
 import { floatToString } from '@lazy-num/float-to-string';
+import { randIndex as _randIndex } from '@lazy-random/util-distributions';
 
 export default (random: Random, char?: ENUM_ALPHABET | string | Buffer | number, size?: number) =>
 {

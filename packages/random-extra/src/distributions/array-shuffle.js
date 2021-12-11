@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const distributions_1 = require("../util/distributions");
 const array_algorithm_1 = require("@lazy-random/array-algorithm");
+const util_distributions_1 = require("@lazy-random/util-distributions");
 function arrayShuffle(random, arr, overwrite) {
     const randIndex = (len) => {
-        return (0, distributions_1.randIndex)(random, len);
+        return (0, util_distributions_1.randIndex)(random, len);
     };
     if (!overwrite) {
         let cloneArrayLike;

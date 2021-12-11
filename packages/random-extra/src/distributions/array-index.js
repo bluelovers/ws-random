@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const expect_1 = require("@lazy-random/expect");
-const distributions_1 = require("../util/distributions");
+const util_distributions_1 = require("@lazy-random/util-distributions");
 exports.default = (random, arr, size = 1, start = 0, end) => {
     let len = arr.length - 1;
     (0, expect_1.expect)(size).integer.gt(0);
@@ -9,7 +9,7 @@ exports.default = (random, arr, size = 1, start = 0, end) => {
     end = Math.max(0, Math.floor(end)) || len;
     (0, expect_1.expect)(end).integer.gt(0).lte(len);
     (0, expect_1.expect)(start).integer.gte(0).lt(end);
-    const fn = distributions_1.int;
+    const fn = util_distributions_1.int;
     let size_runtime = Math.max(Math.min(end - start, len, size), 0);
     (0, expect_1.expect)(size_runtime).gte(size).gt(0);
     return () => {

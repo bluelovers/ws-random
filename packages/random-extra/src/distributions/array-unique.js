@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const expect_1 = require("@lazy-random/expect");
-const distributions_1 = require("../util/distributions");
+const util_distributions_1 = require("@lazy-random/util-distributions");
 exports.default = (random, arr, limit, loop, fnRandIndex, fnOutOfLimit) => {
     const randIndex = (len) => {
-        return (0, distributions_1.randIndex)(random, len);
+        return (0, util_distributions_1.randIndex)(random, len);
     };
     let clone = arr.slice();
     limit = Math.min(limit || clone.length, clone.length);

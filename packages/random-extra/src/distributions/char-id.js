@@ -7,9 +7,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const uni_string_1 = __importDefault(require("uni-string"));
-const distributions_1 = require("../util/distributions");
 const expect_1 = require("@lazy-random/expect");
 const float_to_string_1 = require("@lazy-num/float-to-string");
+const util_distributions_1 = require("@lazy-random/util-distributions");
 exports.default = (random, char, size) => {
     if (typeof char === 'number') {
         if (typeof size === 'number') {
@@ -29,7 +29,7 @@ exports.default = (random, char, size) => {
     let len = ls.length;
     (0, expect_1.expect)(ls).to.have.lengthOf.gt(1);
     const randIndex = () => {
-        return (0, distributions_1.randIndex)(random, len);
+        return (0, util_distributions_1.randIndex)(random, len);
     };
     return () => {
         let i = size;

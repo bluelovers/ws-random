@@ -1,8 +1,7 @@
 import { Random } from '../random';
-import * as UtilDistributions from '../util/distributions';
 import { expect } from '@lazy-random/expect';
 import uniformInt from './uniform-int';
-import { int } from '../util/distributions';
+import { int } from '@lazy-random/util-distributions';
 
 export default <T extends Array<unknown>>(random: Random, arr: T, size: number = 1, start: number = 0, end?: number) =>
 {

@@ -4,7 +4,6 @@ import * as UtilMath from '../util/math';
 import { coreFnRandSumFloat, ISumNumParameterWuthCache } from './internal/sum-num';
 import uniformFloat from './uniform';
 
-import { UtilDistributions } from '../util/distributions';
 import uniformInt from './uniform-int';
 import { expect } from '@lazy-random/expect';
 import { swapAlgorithm } from '@lazy-random/array-algorithm';

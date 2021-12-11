@@ -1,5 +1,4 @@
 import { Random } from '../random';
-import { randIndex as _randIndex } from '../util/distributions';
 import {
 	_createWeight,
 	_getWeight,
@@ -8,6 +7,7 @@ import {
 	IGetWeight,
 	_percentageWeight, _sortWeight, IOptionsItemByWeight, _itemByWeightCore, _calcWeight,
 } from './internal/item-by-weight';
+import { randIndex as _randIndex } from '@lazy-random/util-distributions';
 
 function itemByWeight<T extends unknown>(random: Random, arr: T[],
 	options?: IOptionsItemByWeight<T>,

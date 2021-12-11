@@ -3,8 +3,8 @@ import { Random } from '../random';
 import { expect } from '@lazy-random/expect';
 import uniformInt from './uniform-int';
 
-import { randIndex as _randIndex } from '../util/distributions';
 import { swapAlgorithm } from '@lazy-random/array-algorithm';
+import { randIndex as _randIndex } from '@lazy-random/util-distributions';
 
 export interface IRandIndex
 {

@@ -1,7 +1,6 @@
 import { array_unique } from 'array-hyper-unique';
 import { Multinomial } from 'lib-r-math.js';
 import { Random } from '../../random';
-import { UtilDistributions } from '../../util/distributions';
 import { fixZero } from 'num-is-zero';
 import { expect } from '@lazy-random/expect';
 import uniform from '../uniform';
@@ -10,6 +9,7 @@ import { toFixedNumber } from '@lazy-num/to-fixed-number';
 import { fakeLibRMathRng } from '@lazy-random/fake-lib-r-math-rng';
 import { get_prob, get_prob_float } from '@lazy-random/util-probabilities';
 import { num_array_sum, sum_1_to_n } from '@lazy-num/sum';
+import { float, randIndex } from '@lazy-random/util-distributions';
 
 export interface ISumNumParameterBase
 {
@@ -250,7 +250,7 @@ export function coreFnRandSumInt(argv: ISumNumParameterWuthCache)
 		}
 		else if (c_len)
 		{
-			let i = UtilDistributions.randIndex(random, c_len);
+			let i = randIndex(random, c_len);
 
 			ret_b = cache[i];
 			bool_toplevel = true;
@@ -337,7 +337,7 @@ export function coreFnRandSumFloat(argv: ISumNumParameterWuthCache): () => numbe
 		fnFirst = uniform(random, 0, prob_slice_sum);
 	}
 
-	let fnNext = UtilDistributions.float;
+	let fnNext = float;
 
 	return () =>
 	{

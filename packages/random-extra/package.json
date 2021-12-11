@@ -108,6 +108,7 @@
     "@lazy-random/expect": "^1.0.0",
     "@lazy-random/fake-lib-r-math-rng": "^1.0.0",
     "@lazy-random/rng-factory": "^1.0.0",
+    "@lazy-random/util-distributions": "^1.0.0",
     "@types/seedrandom": "=2.4.28",
     "array-hyper-unique": "^2.0.6",
     "chai": "^4",
