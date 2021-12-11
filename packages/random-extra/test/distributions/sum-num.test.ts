@@ -9,10 +9,10 @@
 
 import { SUM_DELTA } from '@lazy-random/shared-lib';
 import { fixZero } from 'num-is-zero';
-import { array_sum} from '../../src/util/math';
 import random from '../../'
 import checkTypesMatchers from '../jest/type';
 import { toFixedNumber } from '@lazy-num/to-fixed-number';
+import { num_array_sum } from '@lazy-num/sum';
 
 expect.extend({
 	toBeCloseToWithDelta: checkTypesMatchers.toBeCloseToWithDelta,
@@ -58,7 +58,7 @@ describe(`random integer number list by expected sum`, () =>
 
 				const vs = Object.values(cache);
 
-				console.log(vs.length, vs[0], array_sum(vs[0]));
+				console.log(vs.length, vs[0], num_array_sum(vs[0]));
 
 				let check_range = typeof min === 'number' && typeof max === 'number';
 
@@ -69,7 +69,7 @@ describe(`random integer number list by expected sum`, () =>
 
 						if (typeof expected_sum === 'number')
 						{
-							const sum = array_sum(v);
+							const sum = num_array_sum(v);
 
 							expect(sum).toBeCloseToWithDelta(expected_sum, delta);
 						}
@@ -132,7 +132,7 @@ describe(`random float number list by expected sum`, () =>
 
 				const vs = Object.values(cache);
 
-				console.log(vs.length, vs[0], array_sum(vs[0]));
+				console.log(vs.length, vs[0], num_array_sum(vs[0]));
 
 				let check_range = typeof min === 'number' && typeof max === 'number';
 
@@ -143,7 +143,7 @@ describe(`random float number list by expected sum`, () =>
 
 						if (typeof expected_sum === 'number')
 						{
-							const sum = array_sum(v);
+							const sum = num_array_sum(v);
 
 							expect(sum).toBeCloseToWithDelta(expected_sum, delta);
 						}
@@ -209,14 +209,14 @@ describe(`fractionDigits`, () =>
 
 				const vs = Object.values(cache);
 
-				console.log(vs.length, vs[0], array_sum(vs[0]));
+				console.log(vs.length, vs[0], num_array_sum(vs[0]));
 
 				let check_range = typeof min === 'number' && typeof max === 'number';
 
 				vs
 					.forEach(function (v)
 					{
-						const sum = array_sum(v);
+						const sum = num_array_sum(v);
 
 						if (typeof expected_sum === 'number')
 						{

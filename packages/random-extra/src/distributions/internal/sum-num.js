@@ -7,7 +7,6 @@ exports.coreFnRandSumFloat = exports.coreFnRandSumInt = void 0;
 const array_hyper_unique_1 = require("array-hyper-unique");
 const lib_r_math_js_1 = require("lib-r-math.js");
 const distributions_1 = require("../../util/distributions");
-const math_1 = require("../../util/math");
 const num_is_zero_1 = require("num-is-zero");
 const expect_1 = require("@lazy-random/expect");
 const uniform_1 = __importDefault(require("../uniform"));
@@ -15,6 +14,7 @@ const assers_1 = require("../../util/assers");
 const to_fixed_number_1 = require("@lazy-num/to-fixed-number");
 const fake_lib_r_math_rng_1 = require("@lazy-random/fake-lib-r-math-rng");
 const util_probabilities_1 = require("@lazy-random/util-probabilities");
+const sum_1 = require("@lazy-num/sum");
 /**
  * not support unique, but will try make unique if can
  * thx @SeverinPappadeux for int version
@@ -25,7 +25,7 @@ function coreFnRandSumInt(argv) {
     let { random, size, sum, min, max, } = argv;
     // @ts-ignore
     (0, expect_1.expect)(size).is.finite.integer.gt(1);
-    let sum_1_to_size = (0, math_1.sum_1_to_n)(size);
+    let sum_1_to_size = (0, sum_1.sum_1_to_n)(size);
     sum = (0, assers_1.isUnset)(sum) ? sum_1_to_size : sum;
     // @ts-ignore
     (0, expect_1.expect)(sum).is.finite.integer();
@@ -204,7 +204,7 @@ function coreFnRandSumFloat(argv) {
          * array_sum(prob.slice(0, -1))
          * // => 7.777777777777779
          */
-        let prob_slice_sum = (0, math_1.array_sum)(prob.slice(0, -1));
+        let prob_slice_sum = (0, sum_1.num_array_sum)(prob.slice(0, -1));
         fnFirst = (0, uniform_1.default)(random, 0, prob_slice_sum);
     }
     let fnNext = distributions_1.UtilDistributions.float;

@@ -3,7 +3,7 @@
  */
 
 import random from '../../'
-import { sum_1_to_n } from '../../src/util/math';
+import { sum_1_to_n } from '@lazy-num/sum';
 
 const noUnique = false;
 
