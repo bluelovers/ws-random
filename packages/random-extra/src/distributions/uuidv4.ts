@@ -1,16 +1,16 @@
-import { Random } from '../random';
 import { BYTE_TO_HEX_TO_LOWER_CASE, BYTE_TO_HEX_TO_UPPER_CASE } from '@lazy-random/shared-lib';
-import { uniformBytes } from '@lazy-random/df-uniform';
+import { dfUniformBytes } from '@lazy-random/df-uniform';
 import { _createBytesToUuidFn } from '@lazy-random/bytes-to-uuid';
+import { IRNGLike } from '@lazy-random/rng-abstract';
 
 /**
  * @see https://github.com/tracker1/node-uuid4/blob/master/index.js
  */
-export default function (random: Random, toUpperCase?: boolean)
+export default function (random: IRNGLike, toUpperCase?: boolean)
 {
-	let fn = uniformBytes(random, 16);
+	const fn = dfUniformBytes(random, 16);
 
-	let fn2 = _createBytesToUuidFn(toUpperCase ? BYTE_TO_HEX_TO_UPPER_CASE : BYTE_TO_HEX_TO_LOWER_CASE);
+	const fn2 = _createBytesToUuidFn(toUpperCase ? BYTE_TO_HEX_TO_UPPER_CASE : BYTE_TO_HEX_TO_LOWER_CASE);
 
 	return () =>
 	{

@@ -5,13 +5,13 @@ const array_hyper_unique_1 = require("array-hyper-unique");
 const lib_r_math_js_1 = require("lib-r-math.js");
 const num_is_zero_1 = require("num-is-zero");
 const expect_1 = require("@lazy-random/expect");
-const df_uniform_1 = require("@lazy-random/df-uniform");
 const to_fixed_number_1 = require("@lazy-num/to-fixed-number");
 const fake_lib_r_math_rng_1 = require("@lazy-random/fake-lib-r-math-rng");
 const util_probabilities_1 = require("@lazy-random/util-probabilities");
 const sum_1 = require("@lazy-num/sum");
 const util_distributions_1 = require("@lazy-random/util-distributions");
 const shared_lib_1 = require("@lazy-random/shared-lib");
+const df_uniform_1 = require("@lazy-random/df-uniform");
 /**
  * not support unique, but will try make unique if can
  * thx @SeverinPappadeux for int version
@@ -22,7 +22,7 @@ function coreFnRandSumInt(argv) {
     let { random, size, sum, min, max, } = argv;
     // @ts-ignore
     (0, expect_1.expect)(size).is.finite.integer.gt(1);
-    let sum_1_to_size = (0, sum_1.sum_1_to_n)(size);
+    const sum_1_to_size = (0, sum_1.sum_1_to_n)(size);
     sum = (0, shared_lib_1.isUnset)(sum) ? sum_1_to_size : sum;
     // @ts-ignore
     (0, expect_1.expect)(sum).is.finite.integer();
@@ -57,16 +57,16 @@ function coreFnRandSumInt(argv) {
     /**
      * probabilities
      */
-    let prob = (0, util_probabilities_1.get_prob)(size, maxv);
+    const prob = (0, util_probabilities_1.get_prob)(size, maxv);
     (0, expect_1.expect)(prob).is.array.lengthOf(size);
     /**
      * make rmultinom use with random.next
      */
-    let rmultinomFn = (0, lib_r_math_js_1.Multinomial)((0, fake_lib_r_math_rng_1.fakeLibRMathRng)(random.next)).rmultinom;
+    const rmultinomFn = (0, lib_r_math_js_1.Multinomial)((0, fake_lib_r_math_rng_1.fakeLibRMathRng)(random.next)).rmultinom;
     /**
      * low value for speed up, but more chance fail
      */
-    let n_len = argv.limit || 5 || n_sum;
+    const n_len = argv.limit || 5 || n_sum;
     /**
      * rebase number
      */
@@ -178,8 +178,8 @@ function coreFnRandSumFloat(argv) {
     // @ts-ignore
     (0, expect_1.expect)(sum).is.finite.number();
     sum += 0.0;
-    let n_sum = sum - size * min;
-    let maxv = max - min;
+    const n_sum = sum - size * min;
+    const maxv = max - min;
     if (sum > 0) {
         (0, expect_1.expect)(sum).gt(min);
     }
@@ -196,20 +196,20 @@ function coreFnRandSumFloat(argv) {
          * get_prob_float(3, 10)
          * // => [ 4.444444444444445, 3.3333333333333335, 2.222222222222222 ]
          */
-        let prob = (0, util_probabilities_1.get_prob_float)(size, maxv);
+        const prob = (0, util_probabilities_1.get_prob_float)(size, maxv);
         /**
          * array_sum(prob.slice(0, -1))
          * // => 7.777777777777779
          */
-        let prob_slice_sum = (0, sum_1.num_array_sum)(prob.slice(0, -1));
-        fnFirst = (0, df_uniform_1.uniformFloat)(random, 0, prob_slice_sum);
+        const prob_slice_sum = (0, sum_1.num_array_sum)(prob.slice(0, -1));
+        fnFirst = (0, df_uniform_1.dfUniformFloat)(random, 0, prob_slice_sum);
     }
-    let fnNext = util_distributions_1.float;
+    const fnNext = util_distributions_1.float;
     return () => {
         let ret_b;
         let bool_toplevel;
         LABEL_TOP: do {
-            let ret_a = [];
+            const ret_a = [];
             let total = n_sum;
             let total2 = 0.0;
             let i = size - 1.0;

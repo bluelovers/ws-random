@@ -7,8 +7,8 @@ const bytes_to_uuid_1 = require("@lazy-random/bytes-to-uuid");
  * @see https://github.com/tracker1/node-uuid4/blob/master/index.js
  */
 function default_1(random, toUpperCase) {
-    let fn = (0, df_uniform_1.uniformBytes)(random, 16);
-    let fn2 = (0, bytes_to_uuid_1._createBytesToUuidFn)(toUpperCase ? shared_lib_1.BYTE_TO_HEX_TO_UPPER_CASE : shared_lib_1.BYTE_TO_HEX_TO_LOWER_CASE);
+    const fn = (0, df_uniform_1.dfUniformBytes)(random, 16);
+    const fn2 = (0, bytes_to_uuid_1._createBytesToUuidFn)(toUpperCase ? shared_lib_1.BYTE_TO_HEX_TO_UPPER_CASE : shared_lib_1.BYTE_TO_HEX_TO_LOWER_CASE);
     return () => {
         let arr = fn();
         arr[6] = (arr[6] & 0x0f) | 0x40;

@@ -1,15 +1,15 @@
 import { array_unique } from 'array-hyper-unique';
 import { Multinomial } from 'lib-r-math.js';
-import { Random } from '../../random';
 import { fixZero } from 'num-is-zero';
 import { expect } from '@lazy-random/expect';
-import { uniformFloat as uniform } from '@lazy-random/df-uniform';
 import { toFixedNumber } from '@lazy-num/to-fixed-number';
 import { fakeLibRMathRng } from '@lazy-random/fake-lib-r-math-rng';
 import { get_prob, get_prob_float } from '@lazy-random/util-probabilities';
 import { num_array_sum, sum_1_to_n } from '@lazy-num/sum';
 import { float, randIndex } from '@lazy-random/util-distributions';
 import { isUnset } from '@lazy-random/shared-lib';
+import { IRNGLike } from '@lazy-random/rng-abstract';
+import { dfUniformFloat } from '@lazy-random/df-uniform';
 
 export interface ISumNumParameterBase
 {
@@ -31,7 +31,7 @@ export interface ISumNumParameterBase
 
 export interface ISumNumParameter extends ISumNumParameterBase
 {
-	random: Random,
+	random: IRNGLike,
 	size: number,
 	min?: number,
 	max?: number,
@@ -62,7 +62,7 @@ export function coreFnRandSumInt(argv: ISumNumParameterWuthCache)
 	// @ts-ignore
 	expect(size).is.finite.integer.gt(1);
 
-	let sum_1_to_size = sum_1_to_n(size);
+	const sum_1_to_size = sum_1_to_n(size);
 
 	sum = isUnset(sum) ? sum_1_to_size : sum;
 
@@ -108,19 +108,19 @@ export function coreFnRandSumInt(argv: ISumNumParameterWuthCache)
 	/**
 	 * probabilities
 	 */
-	let prob = get_prob(size, maxv);
+	const prob = get_prob(size, maxv);
 
 	expect(prob).is.array.lengthOf(size);
 
 	/**
 	 * make rmultinom use with random.next
 	 */
-	let rmultinomFn = Multinomial(fakeLibRMathRng(random.next)).rmultinom;
+	const rmultinomFn = Multinomial(fakeLibRMathRng(random.next)).rmultinom;
 
 	/**
 	 * low value for speed up, but more chance fail
 	 */
-	let n_len = argv.limit || 5 || n_sum;
+	const n_len = argv.limit || 5 || n_sum;
 	/**
 	 * rebase number
 	 */
@@ -300,8 +300,8 @@ export function coreFnRandSumFloat(argv: ISumNumParameterWuthCache): () => numbe
 
 	sum += 0.0;
 
-	let n_sum = sum - size * min;
-	let maxv = max - min;
+	const n_sum = sum - size * min;
+	const maxv = max - min;
 
 	if (sum > 0)
 	{
@@ -326,18 +326,18 @@ export function coreFnRandSumFloat(argv: ISumNumParameterWuthCache): () => numbe
 		 * get_prob_float(3, 10)
 		 * // => [ 4.444444444444445, 3.3333333333333335, 2.222222222222222 ]
 		 */
-		let prob = get_prob_float(size, maxv);
+		const prob = get_prob_float(size, maxv);
 
 		/**
 		 * array_sum(prob.slice(0, -1))
 		 * // => 7.777777777777779
 		 */
-		let prob_slice_sum = num_array_sum(prob.slice(0, -1));
+		const prob_slice_sum = num_array_sum(prob.slice(0, -1));
 
-		fnFirst = uniform(random, 0, prob_slice_sum);
+		fnFirst = dfUniformFloat(random, 0, prob_slice_sum);
 	}
 
-	let fnNext = float;
+	const fnNext = float;
 
 	return () =>
 	{
@@ -346,7 +346,7 @@ export function coreFnRandSumFloat(argv: ISumNumParameterWuthCache): () => numbe
 
 		LABEL_TOP: do
 		{
-			let ret_a: number[] = [];
+			const ret_a: number[] = [];
 
 			let total = n_sum;
 			let total2 = 0.0;

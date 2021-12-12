@@ -1,10 +1,10 @@
-import { Random } from '../../random';
+import { IRNGLike } from '@lazy-random/rng-abstract';
 export interface ISumNumParameterBase {
     limit?: number;
     fractionDigits?: number;
 }
 export interface ISumNumParameter extends ISumNumParameterBase {
-    random: Random;
+    random: IRNGLike;
     size: number;
     min?: number;
     max?: number;

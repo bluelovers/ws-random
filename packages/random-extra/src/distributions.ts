@@ -6,7 +6,7 @@ import { Random } from './random';
 export interface IRandomDistributionsFn<R = any> extends Function
 {
 	(random: Random): R
-	(random: Random, ...argv): R
+	(random: Random, ...argv: any[]): R
 }
 
 export interface IRandomDistributionsCacheRow<F extends IRandomDistributionsFn = IRandomDistributionsFn>

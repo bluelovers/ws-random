@@ -1,13 +1,7 @@
-import random from '../random';
-import { Random } from '../random';
 import { coreFnRandSumInt } from './internal/sum-num';
-import { uniformInt } from '@lazy-random/df-uniform';
-import { expect } from '@lazy-random/expect';
-import * as UtilMath from '../util/math';
-import { ISumNumParameter } from './internal/sum-num';
-import { swapAlgorithm } from '@lazy-random/array-algorithm';
+import { IRNGLike } from '@lazy-random/rng-abstract';
 
-export default (random: Random, size: number, sum?: number, min?: number, max?: number, limit?: number) =>
+export default (random: IRNGLike, size: number, sum?: number, min?: number, max?: number, limit?: number) =>
 {
 	return coreFnRandSumInt({
 		random,
