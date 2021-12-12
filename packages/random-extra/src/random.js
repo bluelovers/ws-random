@@ -282,8 +282,7 @@ let Random = Random_1 = class Random {
      * @example console.log(random.dfArrayIndex([11, 22, 33], 1, 0));
      */
     dfArrayIndex(arr, size = 1, start = 0, end) {
-        // @ts-ignore
-        return this._memoizeFake('dfArrayIndex', distributions_1.default.arrayIndex, arr, size, start, end);
+        return this._memoizeFake('dfArrayIndex', distributions_1.default.dfArrayIndex, arr, size, start, end);
     }
     /**
      * get random item in array
@@ -303,13 +302,11 @@ let Random = Random_1 = class Random {
      * @example random.dfArrayShuffle([11, 22, 33])
      */
     arrayShuffle(arr, overwrite) {
-        // @ts-ignore
-        return this._memoizeFake('dfArrayShuffle', distributions_1.default.arrayShuffle, arr, overwrite)();
+        return this._memoizeFake('dfArrayShuffle', distributions_1.default.dfArrayShuffle, arr, overwrite)();
     }
     dfArrayShuffle(arr, overwrite) {
         //		return Distributions.arrayShuffle(this, arr, overwrite);
-        // @ts-ignore
-        return this._callDistributions(distributions_1.default.arrayShuffle, arr, overwrite);
+        return this._callDistributions(distributions_1.default.dfArrayShuffle, arr, overwrite);
     }
     arrayUnique(arr, limit, loop, fnRandIndex, fnOutOfLimit) {
         return this.dfArrayUnique(arr, limit, loop, fnRandIndex, fnOutOfLimit)();

@@ -421,8 +421,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	dfArrayIndex<T extends Array<unknown>>(arr: T, size: number = 1, start: number = 0, end?: number)
 	{
-		// @ts-ignore
-		return this._memoizeFake('dfArrayIndex', Distributions.arrayIndex, arr, size, start, end)
+		return this._memoizeFake('dfArrayIndex', Distributions.dfArrayIndex, arr, size, start, end)
 	}
 
 	/**
@@ -449,15 +448,13 @@ export class Random<R extends RNG = RNG>
 	 */
 	arrayShuffle<T extends IArrayInput02<any>>(arr: T, overwrite?: boolean): T
 	{
-		// @ts-ignore
-		return this._memoizeFake('dfArrayShuffle', Distributions.arrayShuffle, arr, overwrite)()
+		return this._memoizeFake('dfArrayShuffle', Distributions.dfArrayShuffle, arr, overwrite)() as any
 	}
 
 	dfArrayShuffle<T extends IArrayInput02<any>>(arr: T, overwrite?: boolean): () => T
 		{
 //		return Distributions.arrayShuffle(this, arr, overwrite);
-		// @ts-ignore
-		return this._callDistributions(Distributions.arrayShuffle, arr, overwrite)
+		return this._callDistributions(Distributions.dfArrayShuffle, arr, overwrite) as any
 	}
 
 	arrayUnique<T extends unknown>(arr: T[], limit?: number, loop?: boolean, fnRandIndex?: IRandIndex, fnOutOfLimit?: IArrayUniqueOutOfLimitCallback<T>)
