@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/seed-token",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "keywords": [
     "create-by-yarn-tool",
@@ -52,10 +52,10 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-num/float-to-string": "^1.0.5",
-    "@lazy-random/original-math-random": "^1.0.4",
-    "@lazy-random/seed-data": "^1.0.4",
-    "@lazy-random/shared-lib": "^1.0.4",
+    "@lazy-num/float-to-string": "^1.0.6",
+    "@lazy-random/original-math-random": "^1.0.5",
+    "@lazy-random/seed-data": "^1.0.5",
+    "@lazy-random/shared-lib": "^1.0.5",
     "chai-asserttype-extra": "^1.2.3",
     "hash-sum": "^2.0.0",
     "nanoid": "^3.1.30",

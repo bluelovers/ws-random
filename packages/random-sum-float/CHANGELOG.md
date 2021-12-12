@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.22](https://github.com/bluelovers/ws-random/compare/random-sum-float@1.0.17...random-sum-float@1.0.22) (2021-12-12)
+
+
+### 📦　Code Refactoring
+
+* `random-sum-float` ([a95d026](https://github.com/bluelovers/ws-random/commit/a95d026b55d473a46ace4bd089b92045c1050bdc))
+
+
+### 🚨　Tests
+
+* use `jest-extended/all` ([6d56a49](https://github.com/bluelovers/ws-random/commit/6d56a49e94ec701cd8744632a04871cba4e59ea8))
+
+
+### 🔖　Miscellaneous
+
+* . ([8d815a9](https://github.com/bluelovers/ws-random/commit/8d815a9451f12cabc9b81680e463d429c45f2506))
+* . ([2e85f8a](https://github.com/bluelovers/ws-random/commit/2e85f8a1a76c34161fdec36f07b7da0163a0eec7))
+* . ([8869fb0](https://github.com/bluelovers/ws-random/commit/8869fb0af949f1ff7c527aa11e5019628498267f))
+* . ([19cba61](https://github.com/bluelovers/ws-random/commit/19cba61e72fac18296cafcb70ebdb6e5d5d5c5ff))
+
+
+
+
+
 ## [1.0.21](https://github.com/bluelovers/ws-random/compare/random-sum-float@1.0.17...random-sum-float@1.0.21) (2021-12-12)
 
 

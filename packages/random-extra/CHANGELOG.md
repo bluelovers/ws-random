@@ -3,6 +3,64 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.1](https://github.com/bluelovers/ws-random/compare/random-extra@3.6.16...random-extra@4.0.1) (2021-12-12)
+
+
+### 🐛　Bug Fixes
+
+* import Distributions ([4f65772](https://github.com/bluelovers/ws-random/commit/4f6577299baeefd47fcd02f5bd369097556e325a))
+
+
+### 📦　Code Refactoring
+
+* `@lazy-random/distributions` ([852c888](https://github.com/bluelovers/ws-random/commit/852c888b8be1ac7cd6cce5c3fe3fe4ed60ad01f8))
+* `@lazy-random/df-uuid` ([019e54d](https://github.com/bluelovers/ws-random/commit/019e54d2c7544c86e75006f9a75efd3394c4923c))
+* `@lazy-random/df-char-id` ([962ad6d](https://github.com/bluelovers/ws-random/commit/962ad6dafbbc5337980011ccff929a51952725f4))
+* `@lazy-random/df-sum` ([33f20ae](https://github.com/bluelovers/ws-random/commit/33f20aee31d95ef264c2e027ea43ed85012ceaf0))
+* . ([67390e2](https://github.com/bluelovers/ws-random/commit/67390e2b9350644a80ac5c65747095f59b80729a))
+* `@lazy-random/df-uniform` ([516b48c](https://github.com/bluelovers/ws-random/commit/516b48c22c55a8f22e812d7ca60f62f73fe397a7))
+* `@lazy-random/df-algorithm` ([4af737e](https://github.com/bluelovers/ws-random/commit/4af737e5c387c61d978d2475e5758494209a6d16))
+* `@lazy-random/df-item-by-weight` ([904f5c0](https://github.com/bluelovers/ws-random/commit/904f5c0fbbdd27f4cdb420f7e3d8e4af9da6e75a))
+* `@lazy-random/df-array` ([6910a7b](https://github.com/bluelovers/ws-random/commit/6910a7b80c94ca50d3daa928e895b69f01d61342))
+* `@lazy-random/df-uniform` ([03b2665](https://github.com/bluelovers/ws-random/commit/03b266563e129611f797549688d563e0b8798df9))
+* `@lazy-random/util-distributions` ([24d5fec](https://github.com/bluelovers/ws-random/commit/24d5fec6642e326bd0b0ccc7ebd926810d566d2f))
+* `@lazy-num/sum` ([09c917d](https://github.com/bluelovers/ws-random/commit/09c917d4d3c63e98690781d25499f9a970e6c26a))
+* `@lazy-random/util-probabilities` ([b2d3f47](https://github.com/bluelovers/ws-random/commit/b2d3f47b31628028540f31422a80b1fbb3760b74))
+* stringifyByte ([1c6697a](https://github.com/bluelovers/ws-random/commit/1c6697a14e491dc7af2d7975c9ef2db392974b35))
+* `@lazy-random/array-algorithm` ([25871b2](https://github.com/bluelovers/ws-random/commit/25871b2b74a0268188ca17a488f2f91ade84f481))
+* `@lazy-random/simple-wrap` ([59249f4](https://github.com/bluelovers/ws-random/commit/59249f40e0e43948f59c265ff3905b9d3b88598b))
+* `@lazy-random/lib-r-math-rng` ([06e49b9](https://github.com/bluelovers/ws-random/commit/06e49b95d1d110069c5dec8ee042d9603a2be503))
+* `@lazy-random/rng-factory` ([65e2ce5](https://github.com/bluelovers/ws-random/commit/65e2ce545ec39234ee56d1575b00dfb0ef9a1415))
+* update import ([1c6c52c](https://github.com/bluelovers/ws-random/commit/1c6c52c5aec161618a2f930d3798741b251bb1d1))
+* update import ([68e7c9c](https://github.com/bluelovers/ws-random/commit/68e7c9c154127163defbd59dfb04d4758eab96fa))
+* `@lazy-random/fake-lib-r-math-rng` ([8b802ec](https://github.com/bluelovers/ws-random/commit/8b802ec68e692dad6980e76f17417db49934fce8))
+* `@lazy-random/bytes-to-uuid` ([7633e09](https://github.com/bluelovers/ws-random/commit/7633e0921bfbc8689a0428b972ce42b70c99896a))
+* `@lazy-random/seed-token` ([11fdb05](https://github.com/bluelovers/ws-random/commit/11fdb0507f466204f7c2fe2135febfff77000a96))
+* `@lazy-num/to-fixed-number` ([51e03fc](https://github.com/bluelovers/ws-random/commit/51e03fc7731a6e8ce073213a05da553d1941bc66))
+* `@lazy-num/float-to-string` ([2dcf95c](https://github.com/bluelovers/ws-random/commit/2dcf95ccdfbdb06780eb96c92d52ebbd1edd2acd))
+* `@lazy-random/expect` ([fc84e20](https://github.com/bluelovers/ws-random/commit/fc84e20e749aaec19767081107e402aac080dc1d))
+* `@lazy-random/to-fixed-number` ([ad6c883](https://github.com/bluelovers/ws-random/commit/ad6c88304aa82cbfe76f02bc301715637ff18d52))
+
+
+### 🚨　Tests
+
+* use `jest-extended/all` ([6d56a49](https://github.com/bluelovers/ws-random/commit/6d56a49e94ec701cd8744632a04871cba4e59ea8))
+
+
+### 🔖　Miscellaneous
+
+* . ([a661833](https://github.com/bluelovers/ws-random/commit/a66183340844ede09dab68640c9bc65ecef3397c))
+* . ([8d815a9](https://github.com/bluelovers/ws-random/commit/8d815a9451f12cabc9b81680e463d429c45f2506))
+* . ([03927ce](https://github.com/bluelovers/ws-random/commit/03927ce7eeb7c7480f1ad2a6c2cf92b9c3f7dddd))
+* . ([753faff](https://github.com/bluelovers/ws-random/commit/753faff904ea860afaa0644386a9f4858dea8ef2))
+* . ([830c654](https://github.com/bluelovers/ws-random/commit/830c6544fcb622f95c789f84d62011165e6990df))
+* . ([a0420c7](https://github.com/bluelovers/ws-random/commit/a0420c7b984f37cad60ff3fa3b9bb400f75ada32))
+* . ([82c5745](https://github.com/bluelovers/ws-random/commit/82c5745bfbee557b8703244d6c7d5ffbc1c25e12))
+
+
+
+
+
 ## [3.6.16](https://github.com/bluelovers/random/compare/random-extra@3.6.15...random-extra@3.6.16) (2021-05-15)
 
 
