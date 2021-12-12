@@ -27,16 +27,16 @@ const Distributions = {
   dfUniformBoolean: dfUniform.dfUniformBoolean,
   dfUniformByte: dfUniform.dfUniformByte,
   dfUniformBytes: dfUniform.dfUniformBytes,
-  arrayIndex: dfArray.arrayIndex,
-  arrayShuffle: dfArray.arrayShuffle,
-  arrayUnique: dfArray.arrayUnique,
-  itemByWeight: dfItemByWeight.itemByWeight,
-  itemByWeightUnique: dfItemByWeight.itemByWeightUnique,
+  dfArrayIndex: dfArray.dfArrayIndex,
+  dfArrayShuffle: dfArray.dfArrayShuffle,
+  dfArrayUnique: dfArray.dfArrayUnique,
+  dfArrayFill: dfArray.dfArrayFill,
+  dfItemByWeight: dfItemByWeight.dfItemByWeight,
+  dfItemByWeightUnique: dfItemByWeight.dfItemByWeightUnique,
   dfCharID: dfCharId.dfCharID,
   dfRandSumFloat: dfSum.dfRandSumFloat,
   dfRandSumInt: dfSum.dfRandSumInt,
-  dfUuidV4: dfUuid.dfUuidV4,
-  arrayFill: dfArray.arrayFill
+  dfUuidV4: dfUuid.dfUuidV4
 };
 
 Object.defineProperty(exports, 'dfBates', {
@@ -103,13 +103,13 @@ Object.defineProperty(exports, 'dfCharID', {
 	enumerable: true,
 	get: function () { return dfCharId.dfCharID; }
 });
-Object.defineProperty(exports, 'itemByWeight', {
+Object.defineProperty(exports, 'dfItemByWeight', {
 	enumerable: true,
-	get: function () { return dfItemByWeight.itemByWeight; }
+	get: function () { return dfItemByWeight.dfItemByWeight; }
 });
-Object.defineProperty(exports, 'itemByWeightUnique', {
+Object.defineProperty(exports, 'dfItemByWeightUnique', {
 	enumerable: true,
-	get: function () { return dfItemByWeight.itemByWeightUnique; }
+	get: function () { return dfItemByWeight.dfItemByWeightUnique; }
 });
 Object.defineProperty(exports, 'dfRandSumFloat', {
 	enumerable: true,
@@ -123,21 +123,21 @@ Object.defineProperty(exports, 'dfUuidV4', {
 	enumerable: true,
 	get: function () { return dfUuid.dfUuidV4; }
 });
-Object.defineProperty(exports, 'arrayFill', {
+Object.defineProperty(exports, 'dfArrayFill', {
 	enumerable: true,
-	get: function () { return dfArray.arrayFill; }
+	get: function () { return dfArray.dfArrayFill; }
 });
-Object.defineProperty(exports, 'arrayIndex', {
+Object.defineProperty(exports, 'dfArrayIndex', {
 	enumerable: true,
-	get: function () { return dfArray.arrayIndex; }
+	get: function () { return dfArray.dfArrayIndex; }
 });
-Object.defineProperty(exports, 'arrayShuffle', {
+Object.defineProperty(exports, 'dfArrayShuffle', {
 	enumerable: true,
-	get: function () { return dfArray.arrayShuffle; }
+	get: function () { return dfArray.dfArrayShuffle; }
 });
-Object.defineProperty(exports, 'arrayUnique', {
+Object.defineProperty(exports, 'dfArrayUnique', {
 	enumerable: true,
-	get: function () { return dfArray.arrayUnique; }
+	get: function () { return dfArray.dfArrayUnique; }
 });
 exports["default"] = Distributions;
 //# sourceMappingURL=index.cjs.development.cjs.map

@@ -477,7 +477,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	dfArrayUnique<T extends unknown>(arr: T[], limit?: number, loop?: boolean, fnRandIndex?: IRandIndex, fnOutOfLimit?: IArrayUniqueOutOfLimitCallback<T>)
 	{
-		return Distributions.arrayUnique(this, arr, limit, loop, fnRandIndex, fnOutOfLimit)
+		return Distributions.dfArrayUnique(this, arr, limit, loop, fnRandIndex, fnOutOfLimit)
 	}
 
 	/**
@@ -499,7 +499,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	dfArrayFill(min?: number, max?: number, float?: boolean)
 	{
-		return this._memoize('dfArrayFill', Distributions.arrayFill, min, max, float)
+		return this._memoize('dfArrayFill', Distributions.dfArrayFill, min, max, float)
 	}
 
 	// --------------------------------------------------------------------------
@@ -738,7 +738,7 @@ export class Random<R extends RNG = RNG>
 		...argv
 	)
 	{
-		return this._callDistributions(Distributions.itemByWeight, arr, options, ...argv)
+		return this._callDistributions(Distributions.dfItemByWeight, arr, options, ...argv)
 	}
 
 	/**
@@ -782,7 +782,7 @@ export class Random<R extends RNG = RNG>
 		...argv
 	)
 	{
-		return this._callDistributions(Distributions.itemByWeightUnique, arr, size, options, ...argv)
+		return this._callDistributions(Distributions.dfItemByWeightUnique, arr, size, options, ...argv)
 	}
 
 	/**

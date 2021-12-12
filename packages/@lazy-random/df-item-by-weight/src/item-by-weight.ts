@@ -7,14 +7,14 @@ import {
 } from './internal/item-by-weight';
 import { IRNGLike } from '@lazy-random/rng-abstract';
 
-export function itemByWeight<T extends unknown>(random: IRNGLike, arr: T[],
+export function dfItemByWeight<T extends unknown>(random: IRNGLike, arr: T[],
 	options?: IOptionsItemByWeight<T>,
 ): () => IWeightEntrie<T>
-export function itemByWeight<T extends unknown, K extends string = string>(random: IRNGLike,
+export function dfItemByWeight<T extends unknown, K extends string = string>(random: IRNGLike,
 	arr: IObjectInput<T, K>,
 	options?: IOptionsItemByWeight<T, K>,
 ): () => IWeightEntrie<T, K>
-export function itemByWeight<T extends unknown>(random: IRNGLike,
+export function dfItemByWeight<T extends unknown>(random: IRNGLike,
 	arr: T[] | IObjectInput<T>,
 	options?: IOptionsItemByWeight<T>,
 )
@@ -43,4 +43,4 @@ export function itemByWeight<T extends unknown>(random: IRNGLike,
 	}
 }
 
-export default itemByWeight
+export default dfItemByWeight

@@ -325,7 +325,7 @@ let Random = Random_1 = class Random {
      * console.log(fn());
      */
     dfArrayUnique(arr, limit, loop, fnRandIndex, fnOutOfLimit) {
-        return distributions_1.default.arrayUnique(this, arr, limit, loop, fnRandIndex, fnOutOfLimit);
+        return distributions_1.default.dfArrayUnique(this, arr, limit, loop, fnRandIndex, fnOutOfLimit);
     }
     /**
      * fill random value into any array-like object
@@ -343,7 +343,7 @@ let Random = Random_1 = class Random {
      * @see arrayFill
      */
     dfArrayFill(min, max, float) {
-        return this._memoize('dfArrayFill', distributions_1.default.arrayFill, min, max, float);
+        return this._memoize('dfArrayFill', distributions_1.default.dfArrayFill, min, max, float);
     }
     // --------------------------------------------------------------------------
     // Uniform distributions
@@ -522,13 +522,13 @@ let Random = Random_1 = class Random {
      *
      */
     dfItemByWeight(arr, options, ...argv) {
-        return this._callDistributions(distributions_1.default.itemByWeight, arr, options, ...argv);
+        return this._callDistributions(distributions_1.default.dfItemByWeight, arr, options, ...argv);
     }
     itemByWeightUnique(arr, size, options, ...argv) {
         return this.dfItemByWeightUnique(arr, size, options, ...argv)();
     }
     dfItemByWeightUnique(arr, size, options, ...argv) {
-        return this._callDistributions(distributions_1.default.itemByWeightUnique, arr, size, options, ...argv);
+        return this._callDistributions(distributions_1.default.dfItemByWeightUnique, arr, size, options, ...argv);
     }
     /**
      * returns n random numbers to get a sum k

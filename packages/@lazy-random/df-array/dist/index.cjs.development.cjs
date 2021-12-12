@@ -8,7 +8,7 @@ var arrayAlgorithm = require('@lazy-random/array-algorithm');
 var dfUniform = require('@lazy-random/df-uniform');
 var sharedLib = require('@lazy-random/shared-lib');
 
-function arrayIndex(random, arr, size = 1, start = 0, end) {
+function dfArrayIndex(random, arr, size = 1, start = 0, end) {
   let len = arr.length - 1;
   expect.expect(size).integer.gt(0);
   start = Math.max(Math.floor(start), 0);
@@ -37,7 +37,7 @@ function arrayIndex(random, arr, size = 1, start = 0, end) {
   };
 }
 
-function arrayShuffle(random, arr, overwrite) {
+function dfArrayShuffle(random, arr, overwrite) {
   const randIndex = len => {
     return utilDistributions.randIndex(random, len);
   };
@@ -64,9 +64,9 @@ function arrayShuffle(random, arr, overwrite) {
     return arrayAlgorithm.swapAlgorithm2(arr, true, randIndex);
   };
 }
-arrayShuffle.memoizable = false;
+dfArrayShuffle.memoizable = false;
 
-function arrayUnique(random, arr, limit, loop, fnRandIndex, fnOutOfLimit) {
+function dfArrayUnique(random, arr, limit, loop, fnRandIndex, fnOutOfLimit) {
   const randIndex = len => {
     return utilDistributions.randIndex(random, len);
   };
@@ -118,18 +118,18 @@ function arrayUnique(random, arr, limit, loop, fnRandIndex, fnOutOfLimit) {
   };
 }
 
-function arrayFill(random, min, max, float) {
+function dfArrayFill(random, min, max, float) {
   let fn;
   {
     let min_unset = sharedLib.isUnset(min);
     let max_unset = sharedLib.isUnset(max);
 
     if (max_unset && min_unset) {
-      fn = dfUniform.uniformByte(random);
+      fn = dfUniform.dfUniformByte(random);
     } else if (float) {
-      fn = dfUniform.uniformFloat(random, min, max);
+      fn = dfUniform.dfUniformFloat(random, min, max);
     } else {
-      fn = dfUniform.uniformInt(random, min, max);
+      fn = dfUniform.dfUniformInt(random, min, max);
     }
 
     min = void 0;
@@ -147,8 +147,8 @@ function arrayFill(random, min, max, float) {
   };
 }
 
-exports.arrayFill = arrayFill;
-exports.arrayIndex = arrayIndex;
-exports.arrayShuffle = arrayShuffle;
-exports.arrayUnique = arrayUnique;
+exports.dfArrayFill = dfArrayFill;
+exports.dfArrayIndex = dfArrayIndex;
+exports.dfArrayShuffle = dfArrayShuffle;
+exports.dfArrayUnique = dfArrayUnique;
 //# sourceMappingURL=index.cjs.development.cjs.map

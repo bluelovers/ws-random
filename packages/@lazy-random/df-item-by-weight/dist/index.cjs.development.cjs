@@ -106,7 +106,7 @@ function _itemByWeightCore(r, klist) {
   return (_index = index) !== null && _index !== void 0 ? _index : klist.length - 1;
 }
 
-function itemByWeight(random, arr, options) {
+function dfItemByWeight(random, arr, options) {
   let ws = _calcWeight(random, arr, options);
 
   const {
@@ -121,7 +121,7 @@ function itemByWeight(random, arr, options) {
   };
 }
 
-function itemByWeightUnique(random, arr, size, options) {
+function dfItemByWeightUnique(random, arr, size, options) {
   let ws = _createWeight(arr, options);
 
   expect.expect(size).integer.gt(1);
@@ -164,6 +164,6 @@ exports._getWeight = _getWeight;
 exports._itemByWeightCore = _itemByWeightCore;
 exports._percentageWeight = _percentageWeight;
 exports._sortWeight = _sortWeight;
-exports.itemByWeight = itemByWeight;
-exports.itemByWeightUnique = itemByWeightUnique;
+exports.dfItemByWeight = dfItemByWeight;
+exports.dfItemByWeightUnique = dfItemByWeightUnique;
 //# sourceMappingURL=index.cjs.development.cjs.map

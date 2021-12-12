@@ -1,10 +1,10 @@
 import { expect } from '@lazy-random/expect';
 import { int, randIndex } from '@lazy-random/util-distributions';
 import { swapAlgorithm2 } from '@lazy-random/array-algorithm';
-import { uniformByte, uniformFloat, uniformInt } from '@lazy-random/df-uniform';
+import { dfUniformByte, dfUniformFloat, dfUniformInt } from '@lazy-random/df-uniform';
 import { isUnset } from '@lazy-random/shared-lib';
 
-function arrayIndex(random, arr, size = 1, start = 0, end) {
+function dfArrayIndex(random, arr, size = 1, start = 0, end) {
   let len = arr.length - 1;
   expect(size).integer.gt(0);
   start = Math.max(Math.floor(start), 0);
@@ -33,7 +33,7 @@ function arrayIndex(random, arr, size = 1, start = 0, end) {
   };
 }
 
-function arrayShuffle(random, arr, overwrite) {
+function dfArrayShuffle(random, arr, overwrite) {
   const randIndex$1 = len => {
     return randIndex(random, len);
   };
@@ -60,9 +60,9 @@ function arrayShuffle(random, arr, overwrite) {
     return swapAlgorithm2(arr, true, randIndex$1);
   };
 }
-arrayShuffle.memoizable = false;
+dfArrayShuffle.memoizable = false;
 
-function arrayUnique(random, arr, limit, loop, fnRandIndex, fnOutOfLimit) {
+function dfArrayUnique(random, arr, limit, loop, fnRandIndex, fnOutOfLimit) {
   const randIndex$1 = len => {
     return randIndex(random, len);
   };
@@ -114,18 +114,18 @@ function arrayUnique(random, arr, limit, loop, fnRandIndex, fnOutOfLimit) {
   };
 }
 
-function arrayFill(random, min, max, float) {
+function dfArrayFill(random, min, max, float) {
   let fn;
   {
     let min_unset = isUnset(min);
     let max_unset = isUnset(max);
 
     if (max_unset && min_unset) {
-      fn = uniformByte(random);
+      fn = dfUniformByte(random);
     } else if (float) {
-      fn = uniformFloat(random, min, max);
+      fn = dfUniformFloat(random, min, max);
     } else {
-      fn = uniformInt(random, min, max);
+      fn = dfUniformInt(random, min, max);
     }
 
     min = void 0;
@@ -143,5 +143,5 @@ function arrayFill(random, min, max, float) {
   };
 }
 
-export { arrayFill, arrayIndex, arrayShuffle, arrayUnique };
+export { dfArrayFill, dfArrayIndex, dfArrayShuffle, dfArrayUnique };
 //# sourceMappingURL=index.esm.mjs.map

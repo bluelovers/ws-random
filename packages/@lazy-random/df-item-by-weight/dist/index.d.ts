@@ -46,9 +46,9 @@ export declare function _sortWeight<T extends unknown, K extends string = string
 export declare function _percentageWeight<T extends unknown, K extends string = string>(random: IRNGLike, ws: IWeight<T, K>): IWeight<T, K>;
 export declare function _calcWeight<T extends unknown, K extends string = string>(random: IRNGLike, arr: T[] | IObjectInput<T, K>, options?: IOptionsItemByWeight<T, K>): IWeight<T, K>;
 export declare function _itemByWeightCore(r: number, klist: number[]): number;
-export declare function itemByWeight<T extends unknown>(random: IRNGLike, arr: T[], options?: IOptionsItemByWeight<T>): () => IWeightEntrie<T>;
-export declare function itemByWeight<T extends unknown, K extends string = string>(random: IRNGLike, arr: IObjectInput<T, K>, options?: IOptionsItemByWeight<T, K>): () => IWeightEntrie<T, K>;
-export declare function itemByWeightUnique<T extends unknown>(random: IRNGLike, arr: T[], size: number, options?: IOptionsItemByWeight<T>): () => IWeightEntrie<T>[];
-export declare function itemByWeightUnique<T extends unknown, K extends string = string>(random: IRNGLike, arr: IObjectInput<T, K>, size: number, options?: IOptionsItemByWeight<T, K>): () => IWeightEntrie<T, K>[];
+export declare function dfItemByWeight<T extends unknown>(random: IRNGLike, arr: T[], options?: IOptionsItemByWeight<T>): () => IWeightEntrie<T>;
+export declare function dfItemByWeight<T extends unknown, K extends string = string>(random: IRNGLike, arr: IObjectInput<T, K>, options?: IOptionsItemByWeight<T, K>): () => IWeightEntrie<T, K>;
+export declare function dfItemByWeightUnique<T extends unknown>(random: IRNGLike, arr: T[], size: number, options?: IOptionsItemByWeight<T>): () => IWeightEntrie<T>[];
+export declare function dfItemByWeightUnique<T extends unknown, K extends string = string>(random: IRNGLike, arr: IObjectInput<T, K>, size: number, options?: IOptionsItemByWeight<T, K>): () => IWeightEntrie<T, K>[];
 
 export {};

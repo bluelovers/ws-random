@@ -14,7 +14,7 @@ export interface IArrayUniqueOutOfLimitCallback<T extends unknown>
 	(arr: T[], limit: number, loop: boolean, fn: IRandIndex): T[] | boolean | void
 }
 
-export function arrayUnique<T extends unknown>(random: IRNGLike, arr: T[], limit?: number, loop?: boolean, fnRandIndex?: IRandIndex, fnOutOfLimit?: IArrayUniqueOutOfLimitCallback<T>)
+export function dfArrayUnique<T extends unknown>(random: IRNGLike, arr: T[], limit?: number, loop?: boolean, fnRandIndex?: IRandIndex, fnOutOfLimit?: IArrayUniqueOutOfLimitCallback<T>)
 {
 	const randIndex = (len: number) =>
 	{
@@ -90,4 +90,4 @@ export function arrayUnique<T extends unknown>(random: IRNGLike, arr: T[], limit
 	}
 }
 
-export default arrayUnique
+export default dfArrayUnique

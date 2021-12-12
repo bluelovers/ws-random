@@ -1,5 +1,5 @@
 
 export * from './internal/item-by-weight'
 
-export { itemByWeight } from './item-by-weight'
-export { itemByWeightUnique } from './item-by-weight-unique'
+export { dfItemByWeight } from './item-by-weight'
+export { dfItemByWeightUnique } from './item-by-weight-unique'

@@ -2,7 +2,7 @@ import { expect } from '@lazy-random/expect';
 import { int } from '@lazy-random/util-distributions';
 import { IRNGLike } from '@lazy-random/rng-abstract';
 
-export function arrayIndex<T extends Array<unknown>>(random: IRNGLike, arr: T, size: number = 1, start: number = 0, end?: number)
+export function dfArrayIndex<T extends Array<unknown>>(random: IRNGLike, arr: T, size: number = 1, start: number = 0, end?: number)
 {
 	let len = arr.length - 1;
 
@@ -43,4 +43,4 @@ export function arrayIndex<T extends Array<unknown>>(random: IRNGLike, arr: T, s
 	}
 }
 
-export default arrayIndex
+export default dfArrayIndex

@@ -4,7 +4,7 @@ import { swapAlgorithm2 } from '@lazy-random/array-algorithm';
 import { randIndex as _randIndex } from '@lazy-random/util-distributions';
 import { IRNGLike } from '@lazy-random/rng-abstract';
 
-export function arrayShuffle<T extends ITSArrayLikeWriteable<any> | TypedArray | Buffer>(random: IRNGLike, arr: T, overwrite?: boolean): () => T
+export function dfArrayShuffle<T extends ITSArrayLikeWriteable<any> | TypedArray | Buffer>(random: IRNGLike, arr: T, overwrite?: boolean): () => T
 {
 	const randIndex = (len: number) =>
 	{
@@ -45,8 +45,8 @@ export function arrayShuffle<T extends ITSArrayLikeWriteable<any> | TypedArray |
 	}
 }
 
-arrayShuffle.memoizable = false;
+dfArrayShuffle.memoizable = false;
 
-export default arrayShuffle;
+export default dfArrayShuffle;
 
 

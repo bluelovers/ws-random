@@ -11,16 +11,16 @@ import {
 import { expect } from '@lazy-random/expect';
 import { IRNGLike } from '@lazy-random/rng-abstract';
 
-export function itemByWeightUnique<T extends unknown>(random: IRNGLike, arr: T[],
+export function dfItemByWeightUnique<T extends unknown>(random: IRNGLike, arr: T[],
 	size: number,
 	options?: IOptionsItemByWeight<T>,
 ): () => IWeightEntrie<T>[]
-export function itemByWeightUnique<T extends unknown, K extends string = string>(random: IRNGLike,
+export function dfItemByWeightUnique<T extends unknown, K extends string = string>(random: IRNGLike,
 	arr: IObjectInput<T, K>,
 	size: number,
 	options?: IOptionsItemByWeight<T, K>,
 ): () => IWeightEntrie<T, K>[]
-export function itemByWeightUnique<T extends unknown, K extends string = string>(random: IRNGLike,
+export function dfItemByWeightUnique<T extends unknown, K extends string = string>(random: IRNGLike,
 	arr: T[] | IObjectInput<T, K>,
 	size: number,
 	options?: IOptionsItemByWeight<T, K>,
@@ -66,4 +66,4 @@ export function itemByWeightUnique<T extends unknown, K extends string = string>
 	}
 }
 
-export default itemByWeightUnique
+export default dfItemByWeightUnique
