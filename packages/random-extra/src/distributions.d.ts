@@ -17,11 +17,11 @@ export interface IRandomDistributions<F extends IRandomDistributionsFn = IRandom
 import { dfBates, dfBernoulli, dfBinomial, dfExponential, dfGeometric, dfIrwinHall, dfLogNormal, dfNormal, dfPareto } from '@lazy-random/df-algorithm';
 import { dfPoisson } from '@lazy-random/df-poisson';
 import { dfUniformFloat, dfUniformInt, dfUniformBoolean, dfUniformByte, dfUniformBytes } from '@lazy-random/df-uniform';
-import charID from './distributions/char-id';
+import { dfCharID } from '@lazy-random/df-char-id';
 import { itemByWeight, itemByWeightUnique } from '@lazy-random/df-item-by-weight';
 import { dfRandSumFloat, dfRandSumInt } from '@lazy-random/df-sum';
 import uuidv4 from './distributions/uuidv4';
 import { arrayFill, arrayIndex, arrayShuffle, arrayUnique } from '@lazy-random/df-array';
-export { dfBates, dfBernoulli, dfBinomial, dfExponential, dfGeometric, dfIrwinHall, dfLogNormal, dfNormal, dfPareto, dfPoisson, dfUniformFloat, dfUniformInt, dfUniformBoolean, dfUniformByte, dfUniformBytes, arrayIndex, arrayShuffle, arrayUnique, itemByWeight, itemByWeightUnique, charID, dfRandSumFloat, dfRandSumInt, uuidv4, arrayFill, };
+export { dfBates, dfBernoulli, dfBinomial, dfExponential, dfGeometric, dfIrwinHall, dfLogNormal, dfNormal, dfPareto, dfPoisson, dfUniformFloat, dfUniformInt, dfUniformBoolean, dfUniformByte, dfUniformBytes, arrayIndex, arrayShuffle, arrayUnique, itemByWeight, itemByWeightUnique, dfCharID, dfRandSumFloat, dfRandSumInt, uuidv4, arrayFill, };
 declare const _default: typeof import("./distributions");
 export default _default;

@@ -181,13 +181,13 @@ export declare class Random<R extends RNG = RNG> {
      *
      * @example random.dfCharID() // => QcVH6FAi
      */
-    dfCharID(size: number): ReturnType<typeof Distributions.charID>;
+    dfCharID(size: number): ReturnType<typeof Distributions.dfCharID>;
     /**
      * generate random by input string, support unicode
      *
      * @example random.dfCharID() // => QcVH6FAi
      */
-    dfCharID(char?: ENUM_ALPHABET | string | Buffer | number, size?: number): ReturnType<typeof Distributions.charID>;
+    dfCharID(char?: ENUM_ALPHABET | string | Buffer | number, size?: number): ReturnType<typeof Distributions.dfCharID>;
     uuidv4(toUpperCase?: boolean): string;
     dfUuidv4(toUpperCase?: boolean): () => string;
     arrayIndex<T extends Array<unknown>>(arr: T, size?: number, start?: number, end?: number): number[];

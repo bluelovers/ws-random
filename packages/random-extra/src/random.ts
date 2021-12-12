@@ -373,7 +373,7 @@ export class Random<R extends RNG = RNG>
 	charID(char?: ENUM_ALPHABET | string | Buffer | number, size?: number): string
 	charID(char?: ENUM_ALPHABET | string | Buffer | number, size?: number)
 	{
-		return Distributions.charID(this, char, size)()
+		return Distributions.dfCharID(this, char, size)()
 	}
 
 	/**
@@ -381,13 +381,13 @@ export class Random<R extends RNG = RNG>
 	 *
 	 * @example random.dfCharID() // => QcVH6FAi
 	 */
-	dfCharID(size: number): ReturnType<typeof Distributions.charID>
+	dfCharID(size: number): ReturnType<typeof Distributions.dfCharID>
 	/**
 	 * generate random by input string, support unicode
 	 *
 	 * @example random.dfCharID() // => QcVH6FAi
 	 */
-	dfCharID(char?: ENUM_ALPHABET | string | Buffer | number, size?: number): ReturnType<typeof Distributions.charID>
+	dfCharID(char?: ENUM_ALPHABET | string | Buffer | number, size?: number): ReturnType<typeof Distributions.dfCharID>
 	/**
 	 * generate random by input string, support unicode
 	 *
@@ -395,7 +395,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	dfCharID(char?: ENUM_ALPHABET | string | Buffer | number, size?: number)
 	{
-		return this._memoize('dfCharID', Distributions.charID, char, size)
+		return this._memoize('dfCharID', Distributions.dfCharID, char, size)
 	}
 
 	uuidv4(toUpperCase?: boolean)

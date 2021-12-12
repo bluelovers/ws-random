@@ -257,7 +257,7 @@ let Random = Random_1 = class Random {
         return this._memoize('dfRandomBytes', warp, size);
     }
     charID(char, size) {
-        return distributions_1.default.charID(this, char, size)();
+        return distributions_1.default.dfCharID(this, char, size)();
     }
     /**
      * generate random by input string, support unicode
@@ -265,7 +265,7 @@ let Random = Random_1 = class Random {
      * @example random.dfCharID() // => QcVH6FAi
      */
     dfCharID(char, size) {
-        return this._memoize('dfCharID', distributions_1.default.charID, char, size);
+        return this._memoize('dfCharID', distributions_1.default.dfCharID, char, size);
     }
     uuidv4(toUpperCase) {
         return this.dfUuidv4(toUpperCase)();

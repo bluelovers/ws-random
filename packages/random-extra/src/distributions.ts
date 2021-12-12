@@ -43,7 +43,7 @@ import {
 	dfUniformBytes,
 } from '@lazy-random/df-uniform'
 
-import charID from './distributions/char-id'
+import { dfCharID } from '@lazy-random/df-char-id'
 
 import { itemByWeight, itemByWeightUnique } from '@lazy-random/df-item-by-weight'
 
@@ -83,7 +83,7 @@ export {
 	itemByWeight,
 	itemByWeightUnique,
 
-	charID,
+	dfCharID,
 
 	dfRandSumFloat,
 	dfRandSumInt,

@@ -3,13 +3,13 @@
  */
 
 import UString from "uni-string";
-import { Random } from '../random';
 import { ENUM_ALPHABET } from '@lazy-random/shared-lib';
 import { expect } from '@lazy-random/expect';
 import { floatToString } from '@lazy-num/float-to-string';
 import { randIndex as _randIndex } from '@lazy-random/util-distributions';
+import { IRNGLike } from '@lazy-random/rng-abstract';
 
-export default (random: Random, char?: ENUM_ALPHABET | string | Buffer | number, size?: number) =>
+export function dfCharID(random: IRNGLike, char?: ENUM_ALPHABET | string | Buffer | number, size?: number)
 {
 	if (typeof char === 'number')
 	{
@@ -32,8 +32,8 @@ export default (random: Random, char?: ENUM_ALPHABET | string | Buffer | number,
 		char = ENUM_ALPHABET.DEFAULT
 	}
 
-	let ls = UString.create(char).split('');
-	let len = ls.length;
+	const ls = UString.create(char).split('');
+	const len = ls.length;
 
 	expect(ls).to.have.lengthOf.gt(1);
 
@@ -54,4 +54,4 @@ export default (random: Random, char?: ENUM_ALPHABET | string | Buffer | number,
 	}
 }
 
-;
+export default dfCharID

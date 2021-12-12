@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.arrayFill = exports.uuidv4 = exports.dfRandSumInt = exports.dfRandSumFloat = exports.charID = exports.itemByWeightUnique = exports.itemByWeight = exports.arrayUnique = exports.arrayShuffle = exports.arrayIndex = exports.dfUniformBytes = exports.dfUniformByte = exports.dfUniformBoolean = exports.dfUniformInt = exports.dfUniformFloat = exports.dfPoisson = exports.dfPareto = exports.dfNormal = exports.dfLogNormal = exports.dfIrwinHall = exports.dfGeometric = exports.dfExponential = exports.dfBinomial = exports.dfBernoulli = exports.dfBates = void 0;
+exports.arrayFill = exports.uuidv4 = exports.dfRandSumInt = exports.dfRandSumFloat = exports.dfCharID = exports.itemByWeightUnique = exports.itemByWeight = exports.arrayUnique = exports.arrayShuffle = exports.arrayIndex = exports.dfUniformBytes = exports.dfUniformByte = exports.dfUniformBoolean = exports.dfUniformInt = exports.dfUniformFloat = exports.dfPoisson = exports.dfPareto = exports.dfNormal = exports.dfLogNormal = exports.dfIrwinHall = exports.dfGeometric = exports.dfExponential = exports.dfBinomial = exports.dfBernoulli = exports.dfBates = void 0;
 const df_algorithm_1 = require("@lazy-random/df-algorithm");
 Object.defineProperty(exports, "dfBates", { enumerable: true, get: function () { return df_algorithm_1.dfBates; } });
 Object.defineProperty(exports, "dfBernoulli", { enumerable: true, get: function () { return df_algorithm_1.dfBernoulli; } });
@@ -22,8 +22,8 @@ Object.defineProperty(exports, "dfUniformInt", { enumerable: true, get: function
 Object.defineProperty(exports, "dfUniformBoolean", { enumerable: true, get: function () { return df_uniform_1.dfUniformBoolean; } });
 Object.defineProperty(exports, "dfUniformByte", { enumerable: true, get: function () { return df_uniform_1.dfUniformByte; } });
 Object.defineProperty(exports, "dfUniformBytes", { enumerable: true, get: function () { return df_uniform_1.dfUniformBytes; } });
-const char_id_1 = __importDefault(require("./distributions/char-id"));
-exports.charID = char_id_1.default;
+const df_char_id_1 = require("@lazy-random/df-char-id");
+Object.defineProperty(exports, "dfCharID", { enumerable: true, get: function () { return df_char_id_1.dfCharID; } });
 const df_item_by_weight_1 = require("@lazy-random/df-item-by-weight");
 Object.defineProperty(exports, "itemByWeight", { enumerable: true, get: function () { return df_item_by_weight_1.itemByWeight; } });
 Object.defineProperty(exports, "itemByWeightUnique", { enumerable: true, get: function () { return df_item_by_weight_1.itemByWeightUnique; } });

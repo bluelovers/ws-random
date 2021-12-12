@@ -107,6 +107,7 @@
     "@lazy-random/clone-class": "^1.0.0",
     "@lazy-random/df-algorithm": "^1.0.0",
     "@lazy-random/df-array": "^1.0.0",
+    "@lazy-random/df-char-id": "^1.0.0",
     "@lazy-random/df-item-by-weight": "^1.0.0",
     "@lazy-random/df-poisson": "^1.0.0",
     "@lazy-random/df-sum": "^1.0.0",
