@@ -80,7 +80,7 @@
     "pretest": "yarn run build",
     "test": "jest",
     "posttest": "git commit -m \"build: update seed\" ./src/util/random-seed-str.data.* & echo posttest",
-    "build": "yarn run build:index",
+    "build_": "yarn run build:index",
     "build:index": "ts-node ./test/script/build-cache.ts",
     "build-minify": "npx -r fast-glob -r fs-extra -r uglify-es -r ts-node ts-node ./test/script/minify",
     "postbuild": "ynpx build-ts-file -- ../@lazy-random/seed-data/src/random-seed-str.data.ts && git add ./src/util/random-seed-str.data.ts ./src/util/random-seed-str.data.js",

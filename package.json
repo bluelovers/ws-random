@@ -71,7 +71,7 @@
     "prepare:fix-ws-links": "ynpx --quiet @yarn-tool/fix-ws-links",
     "prepublishOnly:lockfile": "ynpx --quiet sync-lockfile",
     "postpublish:subtree": "ts-node ./script/run/postpublish-subtree.ts",
-    "postpublishOnly": "yarn run postpublish:subtree",
+    "postpublishOnly": "echo postpublishOnly",
     "postpublishOnly:add": "ts-node ./script/run/postpublish-add.ts",
     "ncu": "yarn run ncu:root && yarn run ncu:ws",
     "ncu:root": "yarn-tool ncu -u",

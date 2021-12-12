@@ -1,4 +1,5 @@
-import { ITSArrayLikeWriteable, TypedArray } from 'ts-type';
+import { ITSArrayLikeWriteable } from 'ts-type/lib/generic';
+import { TypedArray } from 'typedarray-dts';
 
 export declare type IArrayInput01<T extends any> = ITSArrayLikeWriteable<T> | TypedArray;
 export declare type IArrayInput02<T extends any> = IArrayInput01<T> | Buffer;

@@ -23,3 +23,4 @@ export declare class RandomRngWithLibRMath<R extends IRNG> extends RNG {
     next(): number;
     seed(seed?: any | number[], opts?: any, ...argv: any[]): void;
 }
+export default RandomRngWithLibRMath;
