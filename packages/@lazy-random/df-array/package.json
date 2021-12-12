@@ -107,6 +107,7 @@
   },
   "dependencies": {
     "@lazy-random/array-algorithm": "^1.0.5",
+    "@lazy-random/df-uniform": "^1.0.4",
     "@lazy-random/expect": "^1.0.5",
     "@lazy-random/shared-lib": "^1.0.5",
     "@lazy-random/util-distributions": "^1.0.3",
