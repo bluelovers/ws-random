@@ -13,7 +13,7 @@ import { RNGFactory, IRNGFactoryType } from '@lazy-random/rng-factory'
 import { hashArgv } from './util';
 import { autobind, deprecate } from 'core-decorators';
 import { ITSArrayLikeWriteable, TypedArray } from 'ts-type';
-import { IObjectInput, IWeightEntrie, IGetWeight, IOptionsItemByWeight } from './distributions/internal/item-by-weight';
+import { IObjectInput, IWeightEntrie, IGetWeight, IOptionsItemByWeight } from '@lazy-random/df-item-by-weight';
 import { IArrayInput02 } from '@lazy-random/shared-lib';
 import { getClass } from '@lazy-random/clone-class';
 

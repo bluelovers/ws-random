@@ -32,10 +32,9 @@ Object.defineProperty(exports, "byte", { enumerable: true, get: function () { re
 Object.defineProperty(exports, "bytes", { enumerable: true, get: function () { return df_uniform_1.uniformBytes; } });
 const char_id_1 = __importDefault(require("./distributions/char-id"));
 exports.charID = char_id_1.default;
-const item_by_weight_1 = __importDefault(require("./distributions/item-by-weight"));
-exports.itemByWeight = item_by_weight_1.default;
-const item_by_weight_unique_1 = __importDefault(require("./distributions/item-by-weight-unique"));
-exports.itemByWeightUnique = item_by_weight_unique_1.default;
+const df_item_by_weight_1 = require("@lazy-random/df-item-by-weight");
+Object.defineProperty(exports, "itemByWeight", { enumerable: true, get: function () { return df_item_by_weight_1.itemByWeight; } });
+Object.defineProperty(exports, "itemByWeightUnique", { enumerable: true, get: function () { return df_item_by_weight_1.itemByWeightUnique; } });
 const sum_float_1 = __importDefault(require("./distributions/sum-float"));
 exports.sumFloat = sum_float_1.default;
 const sum_int_1 = __importDefault(require("./distributions/sum-int"));

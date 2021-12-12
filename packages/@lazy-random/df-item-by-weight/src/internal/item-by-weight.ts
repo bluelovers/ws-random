@@ -1,7 +1,8 @@
 import { expect } from '@lazy-random/expect';
-import { Random } from '../../random';
+import { IRNGLike } from '@lazy-random/rng-abstract';
+import { arrayShuffle } from '@lazy-random/df-array';
 
-export function _getWeight(value, key: string): number
+export function _getWeight(value: number, key: string): number
 {
 	return value + 0.001
 }
@@ -78,7 +79,7 @@ export function _createWeight<T extends unknown, K extends string = string>(arr:
 		{
 			let [key, value] = entrie
 
-			let weight = getWeight(value, key)
+			let weight = getWeight(value as any, key)
 
 			//weight = Math.exp(weight)
 
@@ -151,7 +152,7 @@ export function _createWeight<T extends unknown, K extends string = string>(arr:
 	}
 }
 
-export function _sortWeight<T extends unknown, K extends string = string>(random: Random,
+export function _sortWeight<T extends unknown, K extends string = string>(random: IRNGLike,
 	ws: IWeight<T, K>,
 	options: IOptionsItemByWeightSort = {},
 )
@@ -168,13 +169,13 @@ export function _sortWeight<T extends unknown, K extends string = string>(random
 
 	if (options.shuffle)
 	{
-		ws.vlist = random.arrayShuffle(ws.vlist, true)
+		ws.vlist = arrayShuffle(random,ws.vlist, true)();
 	}
 
 	return ws
 }
 
-export function _percentageWeight<T extends unknown, K extends string = string>(random: Random, ws: IWeight<T, K>)
+export function _percentageWeight<T extends unknown, K extends string = string>(random: IRNGLike, ws: IWeight<T, K>)
 {
 	let psum: number = 0
 
@@ -203,7 +204,7 @@ export function _percentageWeight<T extends unknown, K extends string = string>(
 	return ws
 }
 
-export function _calcWeight<T extends unknown, K extends string = string>(random: Random, arr: T[] | IObjectInput<T, K>,
+export function _calcWeight<T extends unknown, K extends string = string>(random: IRNGLike, arr: T[] | IObjectInput<T, K>,
 	options?: IOptionsItemByWeight<T, K>,
 ): IWeight<T, K>
 {

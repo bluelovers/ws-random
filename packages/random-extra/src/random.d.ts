@@ -5,7 +5,7 @@ import { ENUM_ALPHABET } from '@lazy-random/shared-lib';
 import { RNGSeedRandom } from '@lazy-random/generators-seedrandom';
 import { RNG } from '@lazy-random/rng-abstract';
 import { IRNGFactoryType } from '@lazy-random/rng-factory';
-import { IObjectInput, IWeightEntrie, IOptionsItemByWeight } from './distributions/internal/item-by-weight';
+import { IObjectInput, IWeightEntrie, IOptionsItemByWeight } from '@lazy-random/df-item-by-weight';
 import { IArrayInput02 } from '@lazy-random/shared-lib';
 /**
  * Seedable random number generator supporting many common distributions.

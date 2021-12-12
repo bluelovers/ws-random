@@ -1,26 +1,20 @@
-import { Random } from '../random';
 import {
-	_createWeight,
-	_getWeight,
 	IObjectInput,
 	IWeightEntrie,
-	IGetWeight,
-	_percentageWeight,
-	_sortWeight,
 	IOptionsItemByWeight,
 	_itemByWeightCore,
 	_calcWeight,
 } from './internal/item-by-weight';
-import { randIndex as _randIndex } from '@lazy-random/util-distributions';
+import { IRNGLike } from '@lazy-random/rng-abstract';
 
-function itemByWeight<T extends unknown>(random: Random, arr: T[],
+export function itemByWeight<T extends unknown>(random: IRNGLike, arr: T[],
 	options?: IOptionsItemByWeight<T>,
 ): () => IWeightEntrie<T>
-function itemByWeight<T extends unknown, K extends string = string>(random: Random,
+export function itemByWeight<T extends unknown, K extends string = string>(random: IRNGLike,
 	arr: IObjectInput<T, K>,
 	options?: IOptionsItemByWeight<T, K>,
 ): () => IWeightEntrie<T, K>
-function itemByWeight<T extends unknown>(random: Random,
+export function itemByWeight<T extends unknown>(random: IRNGLike,
 	arr: T[] | IObjectInput<T>,
 	options?: IOptionsItemByWeight<T>,
 )
