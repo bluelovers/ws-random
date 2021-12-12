@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/generators-math-random",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "keywords": [
     "create-by-yarn-tool",
@@ -52,13 +52,11 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/clone-class": "^1.0.0",
-    "@lazy-random/original-math-random": "^1.0.0",
-    "@lazy-random/rng-abstract": "^1.0.0",
+    "@lazy-random/clone-class": "^1.0.3",
+    "@lazy-random/original-math-random": "^1.0.2",
+    "@lazy-random/rng-abstract": "^1.0.1",
     "tslib": "^2.3.1"
   },
-  "devDependencies": {},
-  "peerDependencies": {},
   "publishConfig": {
     "access": "public"
   },

@@ -1,5 +1,5 @@
 import { expect } from '@lazy-random/expect';
-import { arrayShuffle } from '@lazy-random/df-array';
+import { dfArrayShuffle } from '@lazy-random/df-array';
 
 function _getWeight(value, key) {
   return value + 0.001;
@@ -57,7 +57,7 @@ function _sortWeight(random, ws, options = {}) {
   }
 
   if (options.shuffle) {
-    ws.vlist = arrayShuffle(random, ws.vlist, true)();
+    ws.vlist = dfArrayShuffle(random, ws.vlist, true)();
   }
 
   return ws;

@@ -77,7 +77,7 @@
     "test": "test"
   },
   "scripts": {
-    "pretest": "yarn run build",
+    "pretest_": "yarn run build",
     "test": "jest",
     "posttest": "git commit -m \"build: update seed\" ./src/util/random-seed-str.data.* & echo posttest",
     "build_": "yarn run build:index",

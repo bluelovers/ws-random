@@ -1,6 +1,6 @@
 import { expect } from '@lazy-random/expect';
 import { IRNGLike } from '@lazy-random/rng-abstract';
-import { arrayShuffle } from '@lazy-random/df-array';
+import { dfArrayShuffle } from '@lazy-random/df-array';
 
 export function _getWeight(value: number, key: string): number
 {
@@ -169,7 +169,7 @@ export function _sortWeight<T extends unknown, K extends string = string>(random
 
 	if (options.shuffle)
 	{
-		ws.vlist = arrayShuffle(random,ws.vlist, true)();
+		ws.vlist = dfArrayShuffle(random,ws.vlist, true)();
 	}
 
 	return ws

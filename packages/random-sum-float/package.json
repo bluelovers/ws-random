@@ -1,6 +1,6 @@
 {
   "name": "random-sum-float",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "create random float number array by size, sum, min, max",
   "keywords": [
     "float",

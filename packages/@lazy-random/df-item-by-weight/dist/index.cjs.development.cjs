@@ -61,7 +61,7 @@ function _sortWeight(random, ws, options = {}) {
   }
 
   if (options.shuffle) {
-    ws.vlist = dfArray.arrayShuffle(random, ws.vlist, true)();
+    ws.vlist = dfArray.dfArrayShuffle(random, ws.vlist, true)();
   }
 
   return ws;
