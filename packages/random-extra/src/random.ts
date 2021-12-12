@@ -555,7 +555,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	dfNormal(mu?: number, sigma?: number): () => number
 	{
-		return Distributions.normal(this, mu, sigma)
+		return Distributions.dfNormal(this, mu, sigma)
 	}
 
 	/**
@@ -567,7 +567,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	dfLogNormal(mu?: number, sigma?: number)
 	{
-		return Distributions.logNormal(this, mu, sigma)
+		return Distributions.dfLogNormal(this, mu, sigma)
 	}
 
 	// --------------------------------------------------------------------------
@@ -582,7 +582,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	dfBernoulli(p?: number)
 	{
-		return Distributions.bernoulli(this, p)
+		return Distributions.dfBernoulli(this, p)
 	}
 
 	/**
@@ -594,7 +594,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	dfBinomial(n?: number, p?: number)
 	{
-		return Distributions.binomial(this, n, p)
+		return Distributions.dfBinomial(this, n, p)
 	}
 
 	/**
@@ -605,7 +605,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	dfGeometric(p?: number)
 	{
-		return Distributions.geometric(this, p)
+		return Distributions.dfGeometric(this, p)
 	}
 
 	// --------------------------------------------------------------------------
@@ -631,7 +631,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	dfExponential(lambda?: number)
 	{
-		return Distributions.exponential(this, lambda)
+		return Distributions.dfExponential(this, lambda)
 	}
 
 	// --------------------------------------------------------------------------
@@ -646,7 +646,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	dfIrwinHall(n: number = 1): () => number
 	{
-		return Distributions.irwinHall(this, n)
+		return Distributions.dfIrwinHall(this, n)
 	}
 
 	/**
@@ -657,7 +657,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	dfBates(n: number = 1)
 	{
-		return Distributions.bates(this, n)
+		return Distributions.dfBates(this, n)
 	}
 
 	/**
@@ -668,7 +668,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	dfPareto(alpha: number = 1)
 	{
-		return Distributions.pareto(this, alpha)
+		return Distributions.dfPareto(this, alpha)
 	}
 
 	itemByWeight<T extends unknown>(arr: T[],

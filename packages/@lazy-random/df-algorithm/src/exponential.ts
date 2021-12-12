@@ -1,9 +1,7 @@
 import { expect } from '@lazy-random/expect';
+import { IRNGLike } from '@lazy-random/rng-abstract';
 
-import { Random } from '../random';
-import { RNG } from '@lazy-random/rng-abstract'
-
-export default (random: Random, lambda = 1) =>
+export function dfExponential(random: IRNGLike, lambda = 1)
 {
 	//ow(lambda, ow.number.positive)
 	expect(lambda).number.gt(0)

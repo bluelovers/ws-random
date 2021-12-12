@@ -1,9 +1,7 @@
 import { expect } from '@lazy-random/expect';
+import { IRNGLike } from '@lazy-random/rng-abstract'
 
-import { Random } from '../random';
-import { RNG } from '@lazy-random/rng-abstract'
-
-export default (random: Random, mu = 0, sigma = 1) =>
+export function dfNormal(random: IRNGLike, mu = 0, sigma = 1)
 {
 	//ow(mu, ow.number)
 	//ow(sigma, ow.number)

@@ -21,18 +21,17 @@ export interface IRandomDistributions<F extends IRandomDistributionsFn = IRandom
 	(random: Random, ...argv): ReturnType<F>
 }
 
-import bates from './distributions/bates'
-
-import bernoulli from './distributions/bernoulli'
-import binomial from './distributions/binomial'
-import exponential from './distributions/exponential'
-import geometric from './distributions/geometric'
-
-import irwinHall from './distributions/irwin-hall'
-import logNormal from './distributions/log-normal'
-
-import normal from './distributions/normal'
-import pareto from './distributions/pareto'
+import {
+	dfBates,
+	dfBernoulli,
+	dfBinomial,
+	dfExponential,
+	dfGeometric,
+	dfIrwinHall,
+	dfLogNormal,
+	dfNormal,
+	dfPareto,
+} from '@lazy-random/df-algorithm'
 
 import poisson from './distributions/poisson'
 
@@ -61,15 +60,15 @@ import {
 } from '@lazy-random/df-array'
 
 export {
-	bates,
-	bernoulli,
-	binomial,
-	exponential,
-	geometric,
-	irwinHall,
-	logNormal,
-	normal,
-	pareto,
+	dfBates,
+	dfBernoulli,
+	dfBinomial,
+	dfExponential,
+	dfGeometric,
+	dfIrwinHall,
+	dfLogNormal,
+	dfNormal,
+	dfPareto,
 	poisson,
 	uniform,
 	uniformBoolean,

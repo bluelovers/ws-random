@@ -1,7 +1,6 @@
 import { fixZero } from 'num-is-zero';
 import { expect } from '@lazy-random/expect';
-import { Random } from '../random';
-import { RNG } from '@lazy-random/rng-abstract'
+import { IRNGLike } from '@lazy-random/rng-abstract';
 
 /**
  * https://zh.wikipedia.org/wiki/%E6%AD%90%E6%96%87%E2%80%93%E8%B3%80%E7%88%BE%E5%88%86%E4%BD%88
@@ -11,7 +10,7 @@ import { RNG } from '@lazy-random/rng-abstract'
  * @param {number} n - Number of uniform samples to average (n >= 1)
  * @return {function}
  */
-export default (random: Random, n: number = 1) =>
+export function dfIrwinHall(random: IRNGLike, n: number = 1)
 {
 	expect(n).integer.gte(0)
 	n = fixZero(n)

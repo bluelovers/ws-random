@@ -14,15 +14,7 @@ export interface IRandomDistributions<F extends IRandomDistributionsFn = IRandom
     (...argv: Parameters<F>): ReturnType<F>;
     (random: Random, ...argv: any[]): ReturnType<F>;
 }
-import bates from './distributions/bates';
-import bernoulli from './distributions/bernoulli';
-import binomial from './distributions/binomial';
-import exponential from './distributions/exponential';
-import geometric from './distributions/geometric';
-import irwinHall from './distributions/irwin-hall';
-import logNormal from './distributions/log-normal';
-import normal from './distributions/normal';
-import pareto from './distributions/pareto';
+import { dfBates, dfBernoulli, dfBinomial, dfExponential, dfGeometric, dfIrwinHall, dfLogNormal, dfNormal, dfPareto } from '@lazy-random/df-algorithm';
 import poisson from './distributions/poisson';
 import { uniformFloat as uniform, uniformInt, uniformBoolean, uniformByte as byte, uniformBytes as bytes } from '@lazy-random/df-uniform';
 import charID from './distributions/char-id';
@@ -31,6 +23,6 @@ import sumFloat from './distributions/sum-float';
 import sumInt from './distributions/sum-int';
 import uuidv4 from './distributions/uuidv4';
 import { arrayFill, arrayIndex, arrayShuffle, arrayUnique } from '@lazy-random/df-array';
-export { bates, bernoulli, binomial, exponential, geometric, irwinHall, logNormal, normal, pareto, poisson, uniform, uniformBoolean, uniformInt, byte, bytes, arrayIndex, arrayShuffle, arrayUnique, itemByWeight, itemByWeightUnique, charID, sumFloat, sumInt, uuidv4, arrayFill, };
+export { dfBates, dfBernoulli, dfBinomial, dfExponential, dfGeometric, dfIrwinHall, dfLogNormal, dfNormal, dfPareto, poisson, uniform, uniformBoolean, uniformInt, byte, bytes, arrayIndex, arrayShuffle, arrayUnique, itemByWeight, itemByWeightUnique, charID, sumFloat, sumInt, uuidv4, arrayFill, };
 declare const _default: typeof import("./distributions");
 export default _default;

@@ -1,9 +1,7 @@
 import { expect } from '@lazy-random/expect';
+import { IRNGLike } from '@lazy-random/rng-abstract';
 
-import { Random } from '../random';
-import { RNG } from '@lazy-random/rng-abstract'
-
-export default (random: Random, p = 0.5) =>
+export function dfBernoulli(random: IRNGLike, p = 0.5)
 {
 	//ow(p, ow.number.gte(0).lte(1))
 	expect(p).number.gte(0).lte(1)

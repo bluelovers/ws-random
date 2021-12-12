@@ -390,7 +390,7 @@ let Random = Random_1 = class Random {
      * @return {function}
      */
     dfNormal(mu, sigma) {
-        return distributions_1.default.normal(this, mu, sigma);
+        return distributions_1.default.dfNormal(this, mu, sigma);
     }
     /**
      * Generates a [Log-dfNormal distribution](https://en.wikipedia.org/wiki/Log-normal_distribution).
@@ -400,7 +400,7 @@ let Random = Random_1 = class Random {
      * @return {function}
      */
     dfLogNormal(mu, sigma) {
-        return distributions_1.default.logNormal(this, mu, sigma);
+        return distributions_1.default.dfLogNormal(this, mu, sigma);
     }
     // --------------------------------------------------------------------------
     // Bernoulli distributions
@@ -412,7 +412,7 @@ let Random = Random_1 = class Random {
      * @return {function}
      */
     dfBernoulli(p) {
-        return distributions_1.default.bernoulli(this, p);
+        return distributions_1.default.dfBernoulli(this, p);
     }
     /**
      * Generates a [Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution).
@@ -422,7 +422,7 @@ let Random = Random_1 = class Random {
      * @return {function}
      */
     dfBinomial(n, p) {
-        return distributions_1.default.binomial(this, n, p);
+        return distributions_1.default.dfBinomial(this, n, p);
     }
     /**
      * Generates a [Geometric distribution](https://en.wikipedia.org/wiki/Geometric_distribution).
@@ -431,7 +431,7 @@ let Random = Random_1 = class Random {
      * @return {function}
      */
     dfGeometric(p) {
-        return distributions_1.default.geometric(this, p);
+        return distributions_1.default.dfGeometric(this, p);
     }
     // --------------------------------------------------------------------------
     // Poisson distributions
@@ -452,7 +452,7 @@ let Random = Random_1 = class Random {
      * @return {function}
      */
     dfExponential(lambda) {
-        return distributions_1.default.exponential(this, lambda);
+        return distributions_1.default.dfExponential(this, lambda);
     }
     // --------------------------------------------------------------------------
     // Misc distributions
@@ -464,7 +464,7 @@ let Random = Random_1 = class Random {
      * @return {function}
      */
     dfIrwinHall(n = 1) {
-        return distributions_1.default.irwinHall(this, n);
+        return distributions_1.default.dfIrwinHall(this, n);
     }
     /**
      * Generates a [Bates distribution](https://en.wikipedia.org/wiki/Bates_distribution).
@@ -473,7 +473,7 @@ let Random = Random_1 = class Random {
      * @return {function}
      */
     dfBates(n = 1) {
-        return distributions_1.default.bates(this, n);
+        return distributions_1.default.dfBates(this, n);
     }
     /**
      * Generates a [Pareto distribution](https://en.wikipedia.org/wiki/Pareto_distribution).
@@ -482,7 +482,7 @@ let Random = Random_1 = class Random {
      * @return {function}
      */
     dfPareto(alpha = 1) {
-        return distributions_1.default.pareto(this, alpha);
+        return distributions_1.default.dfPareto(this, alpha);
     }
     itemByWeight(arr, options, ...argv) {
         return this.dfItemByWeight(arr, options, ...argv)();

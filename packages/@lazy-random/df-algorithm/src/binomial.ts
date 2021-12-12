@@ -1,9 +1,7 @@
 import { expect } from '@lazy-random/expect';
+import { IRNGLike } from '@lazy-random/rng-abstract';
 
-import { Random } from '../random';
-import { RNG } from '@lazy-random/rng-abstract'
-
-export default (random: Random, n: number = 1, p: number = 0.5) =>
+export function dfBinomial(random: IRNGLike, n: number = 1, p: number = 0.5)
 {
 	expect(n).integer.gt(0)
 	expect(p).number.gte(0).lte(1)

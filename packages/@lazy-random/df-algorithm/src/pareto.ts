@@ -1,7 +1,7 @@
 import { expect } from '@lazy-random/expect';
-import { Random } from '../random';
+import { IRNGLike } from '@lazy-random/rng-abstract';
 
-export default (random: Random, alpha: number = 1) =>
+export function dfPareto(random: IRNGLike, alpha: number = 1)
 {
 	//ow(alpha, ow.number.gt(0))
 	expect(alpha).gt(0);
