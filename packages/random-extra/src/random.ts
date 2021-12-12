@@ -405,7 +405,7 @@ export class Random<R extends RNG = RNG>
 
 	dfUuidv4(toUpperCase?: boolean)
 	{
-		return this._memoize('uuidv4', Distributions.uuidv4, toUpperCase)
+		return this._memoize('uuidv4', Distributions.dfUuidV4, toUpperCase)
 	}
 
 	arrayIndex<T extends Array<unknown>>(arr: T, size: number = 1, start: number = 0, end?: number)

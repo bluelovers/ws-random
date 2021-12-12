@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=require("@lazy-random/shared-lib"),r=require("@lazy-random/df-uniform"),t=require("@lazy-random/bytes-to-uuid");function u(u,o){const d=r.dfUniformBytes(u,16),_=t._createBytesToUuidFn(o?e.BYTE_TO_HEX_TO_UPPER_CASE:e.BYTE_TO_HEX_TO_LOWER_CASE);return()=>{let e=d();return e[6]=15&e[6]|64,e[8]=63&e[8]|128,_(e)}}exports.default=u,exports.dfUuidV4=u;
+//# sourceMappingURL=index.cjs.production.min.cjs.map

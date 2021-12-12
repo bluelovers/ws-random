@@ -6,7 +6,7 @@ import { IRNGLike } from '@lazy-random/rng-abstract';
 /**
  * @see https://github.com/tracker1/node-uuid4/blob/master/index.js
  */
-export default function (random: IRNGLike, toUpperCase?: boolean)
+export function dfUuidV4(random: IRNGLike, toUpperCase?: boolean)
 {
 	const fn = dfUniformBytes(random, 16);
 
@@ -25,4 +25,5 @@ export default function (random: IRNGLike, toUpperCase?: boolean)
 	}
 }
 
+export default dfUuidV4
 

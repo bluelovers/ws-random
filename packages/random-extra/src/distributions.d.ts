@@ -20,8 +20,8 @@ import { dfUniformFloat, dfUniformInt, dfUniformBoolean, dfUniformByte, dfUnifor
 import { dfCharID } from '@lazy-random/df-char-id';
 import { itemByWeight, itemByWeightUnique } from '@lazy-random/df-item-by-weight';
 import { dfRandSumFloat, dfRandSumInt } from '@lazy-random/df-sum';
-import uuidv4 from './distributions/uuidv4';
+import { dfUuidV4 } from '@lazy-random/df-uuid';
 import { arrayFill, arrayIndex, arrayShuffle, arrayUnique } from '@lazy-random/df-array';
-export { dfBates, dfBernoulli, dfBinomial, dfExponential, dfGeometric, dfIrwinHall, dfLogNormal, dfNormal, dfPareto, dfPoisson, dfUniformFloat, dfUniformInt, dfUniformBoolean, dfUniformByte, dfUniformBytes, arrayIndex, arrayShuffle, arrayUnique, itemByWeight, itemByWeightUnique, dfCharID, dfRandSumFloat, dfRandSumInt, uuidv4, arrayFill, };
+export { dfBates, dfBernoulli, dfBinomial, dfExponential, dfGeometric, dfIrwinHall, dfLogNormal, dfNormal, dfPareto, dfPoisson, dfUniformFloat, dfUniformInt, dfUniformBoolean, dfUniformByte, dfUniformBytes, arrayIndex, arrayShuffle, arrayUnique, itemByWeight, itemByWeightUnique, dfCharID, dfRandSumFloat, dfRandSumInt, dfUuidV4, arrayFill, };
 declare const _default: typeof import("./distributions");
 export default _default;

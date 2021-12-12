@@ -271,7 +271,7 @@ let Random = Random_1 = class Random {
         return this.dfUuidv4(toUpperCase)();
     }
     dfUuidv4(toUpperCase) {
-        return this._memoize('uuidv4', distributions_1.default.uuidv4, toUpperCase);
+        return this._memoize('uuidv4', distributions_1.default.dfUuidV4, toUpperCase);
     }
     arrayIndex(arr, size = 1, start = 0, end) {
         return this.dfArrayIndex(arr, size, start, end)();
