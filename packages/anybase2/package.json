@@ -1,6 +1,6 @@
 {
   "name": "anybase2",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "convert from and to numeric bases from base 2 to base 62",
   "keywords": [
     "any",
