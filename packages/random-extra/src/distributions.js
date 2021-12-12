@@ -30,12 +30,6 @@ Object.defineProperty(exports, "uniformInt", { enumerable: true, get: function (
 Object.defineProperty(exports, "uniformBoolean", { enumerable: true, get: function () { return df_uniform_1.uniformBoolean; } });
 Object.defineProperty(exports, "byte", { enumerable: true, get: function () { return df_uniform_1.uniformByte; } });
 Object.defineProperty(exports, "bytes", { enumerable: true, get: function () { return df_uniform_1.uniformBytes; } });
-const array_index_1 = __importDefault(require("./distributions/array-index"));
-exports.arrayIndex = array_index_1.default;
-const array_shuffle_1 = __importDefault(require("./distributions/array-shuffle"));
-exports.arrayShuffle = array_shuffle_1.default;
-const array_unique_1 = __importDefault(require("./distributions/array-unique"));
-exports.arrayUnique = array_unique_1.default;
 const char_id_1 = __importDefault(require("./distributions/char-id"));
 exports.charID = char_id_1.default;
 const item_by_weight_1 = __importDefault(require("./distributions/item-by-weight"));
@@ -48,7 +42,10 @@ const sum_int_1 = __importDefault(require("./distributions/sum-int"));
 exports.sumInt = sum_int_1.default;
 const uuidv4_1 = __importDefault(require("./distributions/uuidv4"));
 exports.uuidv4 = uuidv4_1.default;
-const array_fill_1 = __importDefault(require("./distributions/array-fill"));
-exports.arrayFill = array_fill_1.default;
+const df_array_1 = require("@lazy-random/df-array");
+Object.defineProperty(exports, "arrayFill", { enumerable: true, get: function () { return df_array_1.arrayFill; } });
+Object.defineProperty(exports, "arrayIndex", { enumerable: true, get: function () { return df_array_1.arrayIndex; } });
+Object.defineProperty(exports, "arrayShuffle", { enumerable: true, get: function () { return df_array_1.arrayShuffle; } });
+Object.defineProperty(exports, "arrayUnique", { enumerable: true, get: function () { return df_array_1.arrayUnique; } });
 exports.default = exports;
 //# sourceMappingURL=distributions.js.map

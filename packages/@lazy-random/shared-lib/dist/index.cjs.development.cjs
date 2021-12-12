@@ -41,11 +41,16 @@ function toHexArray(arr) {
   return arr.map(stringifyByte);
 }
 
+function isUnset(n) {
+  return typeof n === 'undefined' || n === null;
+}
+
 exports.FLOAT_ENTROPY_BYTES = FLOAT_ENTROPY_BYTES;
 exports.MATH_POW_2_32 = MATH_POW_2_32;
 exports.SUM_DELTA = SUM_DELTA;
 exports.UINT32_BYTES = UINT32_BYTES;
 exports.UINT32_VALUE = UINT32_VALUE;
+exports.isUnset = isUnset;
 exports.stringifyByte = stringifyByte;
 exports.toHexArray = toHexArray;
 //# sourceMappingURL=index.cjs.development.cjs.map

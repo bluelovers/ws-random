@@ -44,11 +44,6 @@ import {
 	uniformBytes as bytes,
 } from '@lazy-random/df-uniform'
 
-import arrayIndex from './distributions/array-index'
-import arrayShuffle from './distributions/array-shuffle'
-
-import arrayUnique from './distributions/array-unique'
-
 import charID from './distributions/char-id'
 
 import itemByWeight from './distributions/item-by-weight'
@@ -59,7 +54,12 @@ import sumInt from './distributions/sum-int'
 
 import uuidv4 from './distributions/uuidv4'
 
-import arrayFill from './distributions/array-fill'
+import {
+	arrayFill,
+	arrayIndex,
+	arrayShuffle,
+	arrayUnique,
+} from '@lazy-random/df-array'
 
 export {
 	bates,

@@ -4,12 +4,12 @@ import { Random } from '../../random';
 import { fixZero } from 'num-is-zero';
 import { expect } from '@lazy-random/expect';
 import { uniformFloat as uniform } from '@lazy-random/df-uniform';
-import { isUnset } from '../../util/assers';
 import { toFixedNumber } from '@lazy-num/to-fixed-number';
 import { fakeLibRMathRng } from '@lazy-random/fake-lib-r-math-rng';
 import { get_prob, get_prob_float } from '@lazy-random/util-probabilities';
 import { num_array_sum, sum_1_to_n } from '@lazy-num/sum';
 import { float, randIndex } from '@lazy-random/util-distributions';
+import { isUnset } from '@lazy-random/shared-lib';
 
 export interface ISumNumParameterBase
 {

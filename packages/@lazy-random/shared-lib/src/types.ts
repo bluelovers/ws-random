@@ -1,4 +1,5 @@
-import { ITSArrayLikeWriteable, TypedArray } from 'ts-type';
+import { ITSArrayLikeWriteable } from 'ts-type/lib/generic';
+import { TypedArray } from 'typedarray-dts';
 
 export type ValueOf<T> = T[keyof T];
 export type PickValueOf<T, K extends keyof T> = ValueOf<Pick<T, K>>;

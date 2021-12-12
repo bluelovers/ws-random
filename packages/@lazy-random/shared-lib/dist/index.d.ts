@@ -1,4 +1,5 @@
-import { ITSArrayLikeWriteable, TypedArray } from 'ts-type';
+import { ITSArrayLikeWriteable } from 'ts-type/lib/generic';
+import { TypedArray } from 'typedarray-dts';
 
 export declare const enum ENUM_ALPHABET {
 	NANOID_URL = "ModuleSymbhasOwnPr-0123456789ABCDEFGHIJKLNQRTUVWXYZ_cfgijkpqtvxz",
@@ -26,5 +27,6 @@ export declare type IArrayInput01<T extends any> = ITSArrayLikeWriteable<T> | Ty
 export declare type IArrayInput02<T extends any> = IArrayInput01<T> | Buffer;
 export declare function stringifyByte(byte: number): string;
 export declare function toHexArray(arr: number[]): string[];
+export declare function isUnset(n: unknown): n is undefined | null;
 
 export {};

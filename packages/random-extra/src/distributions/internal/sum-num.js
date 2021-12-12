@@ -6,12 +6,12 @@ const lib_r_math_js_1 = require("lib-r-math.js");
 const num_is_zero_1 = require("num-is-zero");
 const expect_1 = require("@lazy-random/expect");
 const df_uniform_1 = require("@lazy-random/df-uniform");
-const assers_1 = require("../../util/assers");
 const to_fixed_number_1 = require("@lazy-num/to-fixed-number");
 const fake_lib_r_math_rng_1 = require("@lazy-random/fake-lib-r-math-rng");
 const util_probabilities_1 = require("@lazy-random/util-probabilities");
 const sum_1 = require("@lazy-num/sum");
 const util_distributions_1 = require("@lazy-random/util-distributions");
+const shared_lib_1 = require("@lazy-random/shared-lib");
 /**
  * not support unique, but will try make unique if can
  * thx @SeverinPappadeux for int version
@@ -23,11 +23,11 @@ function coreFnRandSumInt(argv) {
     // @ts-ignore
     (0, expect_1.expect)(size).is.finite.integer.gt(1);
     let sum_1_to_size = (0, sum_1.sum_1_to_n)(size);
-    sum = (0, assers_1.isUnset)(sum) ? sum_1_to_size : sum;
+    sum = (0, shared_lib_1.isUnset)(sum) ? sum_1_to_size : sum;
     // @ts-ignore
     (0, expect_1.expect)(sum).is.finite.integer();
-    min = (0, assers_1.isUnset)(min) ? (sum > 0 ? 0 : sum) : min;
-    max = (0, assers_1.isUnset)(max) ? Math.abs(sum) : max;
+    min = (0, shared_lib_1.isUnset)(min) ? (sum > 0 ? 0 : sum) : min;
+    max = (0, shared_lib_1.isUnset)(max) ? Math.abs(sum) : max;
     // @ts-ignore
     (0, expect_1.expect)(min).is.finite.integer();
     // @ts-ignore
@@ -164,13 +164,13 @@ function coreFnRandSumFloat(argv) {
     let { random, size, sum, min, max, fractionDigits, } = argv;
     // @ts-ignore
     (0, expect_1.expect)(size).is.finite.integer.gt(1);
-    if ((0, assers_1.isUnset)(sum) && typeof min === 'number' && typeof max === 'number') {
+    if ((0, shared_lib_1.isUnset)(sum) && typeof min === 'number' && typeof max === 'number') {
         sum = (size - 1) * min + max;
         //console.log(sum, min, max);
     }
-    sum = (0, assers_1.isUnset)(sum) ? 1.0 : sum;
-    min = (0, assers_1.isUnset)(min) ? (sum > 0 ? 0 : sum) : min;
-    max = (0, assers_1.isUnset)(max) ? Math.abs(sum) : max;
+    sum = (0, shared_lib_1.isUnset)(sum) ? 1.0 : sum;
+    min = (0, shared_lib_1.isUnset)(min) ? (sum > 0 ? 0 : sum) : min;
+    max = (0, shared_lib_1.isUnset)(max) ? Math.abs(sum) : max;
     // @ts-ignore
     (0, expect_1.expect)(min).is.finite.number();
     // @ts-ignore
@@ -185,7 +185,7 @@ function coreFnRandSumFloat(argv) {
     }
     (0, expect_1.expect)(n_sum).gte(0);
     let fnFirst;
-    if (!(0, assers_1.isUnset)(fractionDigits)) {
+    if (!(0, shared_lib_1.isUnset)(fractionDigits)) {
         (0, expect_1.expect)(fractionDigits)
             // @ts-ignore
             .is.finite

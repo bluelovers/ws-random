@@ -1,14 +1,10 @@
-import { ITSArrayLikeWriteable } from 'ts-type';
-import random from '../random';
-import { Random } from '../random';
-import { TypedArray } from 'ts-type';
-import { uniformInt } from '@lazy-random/df-uniform';
-
-import { IArrayInput02 } from '@lazy-random/shared-lib';
-import { swapAlgorithm, swapAlgorithm2 } from '@lazy-random/array-algorithm';
+import { ITSArrayLikeWriteable } from 'ts-type/lib/generic';
+import { TypedArray } from 'typedarray-dts';
+import { swapAlgorithm2 } from '@lazy-random/array-algorithm';
 import { randIndex as _randIndex } from '@lazy-random/util-distributions';
+import { IRNGLike } from '@lazy-random/rng-abstract';
 
-function arrayShuffle<T extends ITSArrayLikeWriteable<any> | TypedArray | Buffer>(random: Random, arr: T, overwrite?: boolean): () => T
+export function arrayShuffle<T extends ITSArrayLikeWriteable<any> | TypedArray | Buffer>(random: IRNGLike, arr: T, overwrite?: boolean): () => T
 {
 	const randIndex = (len: number) =>
 	{

@@ -4,7 +4,7 @@ import Distributions, {
 	IRandomDistributions,
 	IRandomDistributionsCacheRow,
 } from './distributions';
-import { IArrayUniqueOutOfLimitCallback, IRandIndex } from './distributions/array-unique';
+import { IArrayUniqueOutOfLimitCallback, IRandIndex } from '@lazy-random/df-array';
 import { ENUM_ALPHABET } from '@lazy-random/shared-lib';
 import { RNGSeedRandom } from '@lazy-random/generators-seedrandom';
 

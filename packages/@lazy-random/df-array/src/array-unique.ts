@@ -1,10 +1,6 @@
-import random from '../random';
-import { Random } from '../random';
 import { expect } from '@lazy-random/expect';
-import { uniformInt } from '@lazy-random/df-uniform';
-
-import { swapAlgorithm } from '@lazy-random/array-algorithm';
 import { randIndex as _randIndex } from '@lazy-random/util-distributions';
+import { IRNGLike } from '@lazy-random/rng-abstract';
 
 export interface IRandIndex
 {
@@ -18,7 +14,7 @@ export interface IArrayUniqueOutOfLimitCallback<T extends unknown>
 	(arr: T[], limit: number, loop: boolean, fn: IRandIndex): T[] | boolean | void
 }
 
-export default <T extends unknown>(random: Random, arr: T[], limit?: number, loop?: boolean, fnRandIndex?: IRandIndex, fnOutOfLimit?: IArrayUniqueOutOfLimitCallback<T>) =>
+export function arrayUnique<T extends unknown>(random: IRNGLike, arr: T[], limit?: number, loop?: boolean, fnRandIndex?: IRandIndex, fnOutOfLimit?: IArrayUniqueOutOfLimitCallback<T>)
 {
 	const randIndex = (len: number) =>
 	{
@@ -94,4 +90,4 @@ export default <T extends unknown>(random: Random, arr: T[], limit?: number, loo
 	}
 }
 
-
+export default arrayUnique

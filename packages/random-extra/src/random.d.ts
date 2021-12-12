@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import Distributions, { IRandomDistributions, IRandomDistributionsCacheRow } from './distributions';
-import { IArrayUniqueOutOfLimitCallback, IRandIndex } from './distributions/array-unique';
+import { IArrayUniqueOutOfLimitCallback, IRandIndex } from '@lazy-random/df-array';
 import { ENUM_ALPHABET } from '@lazy-random/shared-lib';
 import { RNGSeedRandom } from '@lazy-random/generators-seedrandom';
 import { RNG } from '@lazy-random/rng-abstract';
@@ -235,7 +235,7 @@ export declare class Random<R extends RNG = RNG> {
     /**
      * @see arrayFill
      */
-    dfArrayFill(min?: number, max?: number, float?: boolean): <T extends IArrayInput02<number>>(arr: T) => T;
+    dfArrayFill(min?: number, max?: number, float?: boolean): <T extends import("@lazy-random/df-array").IArrayInput02<number>>(arr: T) => T;
     /**
      * Generates a [Continuous dfUniform distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)).
      *
@@ -243,7 +243,7 @@ export declare class Random<R extends RNG = RNG> {
      * @param {number} [max=1] - Upper bound (float, exclusive)
      * @return {function}
      */
-    dfUniform(min?: number, max?: number, fractionDigits?: number): any;
+    dfUniform(min?: number, max?: number, fractionDigits?: number): () => number;
     /**
      * Generates a [Discrete dfUniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution).
      *

@@ -37,5 +37,9 @@ function toHexArray(arr) {
   return arr.map(stringifyByte);
 }
 
-export { BYTE_TO_HEX_TO_LOWER_CASE, BYTE_TO_HEX_TO_UPPER_CASE, ENUM_ALPHABET, FLOAT_ENTROPY_BYTES, MATH_POW_2_32, SUM_DELTA, UINT32_BYTES, UINT32_VALUE, stringifyByte, toHexArray };
+function isUnset(n) {
+  return typeof n === 'undefined' || n === null;
+}
+
+export { BYTE_TO_HEX_TO_LOWER_CASE, BYTE_TO_HEX_TO_UPPER_CASE, ENUM_ALPHABET, FLOAT_ENTROPY_BYTES, MATH_POW_2_32, SUM_DELTA, UINT32_BYTES, UINT32_VALUE, isUnset, stringifyByte, toHexArray };
 //# sourceMappingURL=index.esm.mjs.map

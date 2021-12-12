@@ -1,11 +1,10 @@
-import { ITSArrayLikeWriteable, TypedArray } from 'ts-type';
 import { uniformFloat as uniform, uniformInt, uniformByte } from '@lazy-random/df-uniform';
-import { Random } from '../random';
 import { expect } from '@lazy-random/expect';
-import { isUnset } from '../util/assers';
 import { IArrayInput02 } from '@lazy-random/shared-lib';
+import { isUnset } from '@lazy-random/shared-lib';
+import { IRNGLike } from '@lazy-random/rng-abstract';
 
-export default function arrayFill(random: Random, min?: number, max?: number, float?: boolean)
+export function arrayFill(random: IRNGLike, min?: number, max?: number, float?: boolean)
 {
 	let fn: () => number;
 
@@ -43,4 +42,4 @@ export default function arrayFill(random: Random, min?: number, max?: number, fl
 	}
 }
 
-;
+export default arrayFill
