@@ -800,7 +800,7 @@ export class Random<R extends RNG = RNG>
 
 	dfSumInt(size: number, sum?: number, min?: number, max?: number, limit?: number)
 	{
-		return this._memoize('sumInt', Distributions.sumInt, size, sum, min, max, limit)
+		return this._memoize('sumInt', Distributions.dfRandSumInt, size, sum, min, max, limit)
 	}
 
 	sumFloat(size: number, sum?: number, min?: number, max?: number, fractionDigits?: number)
@@ -810,7 +810,7 @@ export class Random<R extends RNG = RNG>
 
 	dfSumFloat(size: number, sum?: number, min?: number, max?: number, fractionDigits?: number)
 	{
-		return this._memoize('sumFloat', Distributions.sumFloat, size, sum, min, max, fractionDigits)
+		return this._memoize('sumFloat', Distributions.dfRandSumFloat, size, sum, min, max, fractionDigits)
 	}
 
 	// --------------------------------------------------------------------------

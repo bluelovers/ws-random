@@ -1,7 +1,7 @@
 import { coreFnRandSumInt } from './internal/sum-num';
 import { IRNGLike } from '@lazy-random/rng-abstract';
 
-export default (random: IRNGLike, size: number, sum?: number, min?: number, max?: number, limit?: number) =>
+export function dfRandSumInt(random: IRNGLike, size: number, sum?: number, min?: number, max?: number, limit?: number)
 {
 	return coreFnRandSumInt({
 		random,
@@ -13,4 +13,5 @@ export default (random: IRNGLike, size: number, sum?: number, min?: number, max?
 	})
 }
 
+export default dfRandSumInt
 

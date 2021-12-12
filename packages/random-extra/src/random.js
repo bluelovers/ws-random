@@ -543,13 +543,13 @@ let Random = Random_1 = class Random {
         return this.dfSumInt(size, sum, min, max, limit)();
     }
     dfSumInt(size, sum, min, max, limit) {
-        return this._memoize('sumInt', distributions_1.default.sumInt, size, sum, min, max, limit);
+        return this._memoize('sumInt', distributions_1.default.dfRandSumInt, size, sum, min, max, limit);
     }
     sumFloat(size, sum, min, max, fractionDigits) {
         return this.dfSumFloat(size, sum, min, max, fractionDigits)();
     }
     dfSumFloat(size, sum, min, max, fractionDigits) {
-        return this._memoize('sumFloat', distributions_1.default.sumFloat, size, sum, min, max, fractionDigits);
+        return this._memoize('sumFloat', distributions_1.default.dfRandSumFloat, size, sum, min, max, fractionDigits);
     }
     // --------------------------------------------------------------------------
     // Internal

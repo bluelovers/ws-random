@@ -47,8 +47,7 @@ import charID from './distributions/char-id'
 
 import { itemByWeight, itemByWeightUnique } from '@lazy-random/df-item-by-weight'
 
-import sumFloat from './distributions/sum-float'
-import sumInt from './distributions/sum-int'
+import { dfRandSumFloat, dfRandSumInt } from '@lazy-random/df-sum'
 
 import uuidv4 from './distributions/uuidv4'
 
@@ -86,8 +85,8 @@ export {
 
 	charID,
 
-	sumFloat,
-	sumInt,
+	dfRandSumFloat,
+	dfRandSumInt,
 
 	uuidv4,
 
