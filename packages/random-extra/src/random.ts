@@ -1,9 +1,10 @@
 /// <reference types="node" />
 import { expect } from '@lazy-random/expect';
-import Distributions, {
+import {
 	IRandomDistributions,
 	IRandomDistributionsCacheRow,
 } from './distributions';
+import Distributions from '@lazy-random/distributions';
 import { IArrayUniqueOutOfLimitCallback, IRandIndex } from '@lazy-random/df-array';
 import { ENUM_ALPHABET } from '@lazy-random/shared-lib';
 import { RNGSeedRandom } from '@lazy-random/generators-seedrandom';

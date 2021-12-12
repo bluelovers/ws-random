@@ -1,5 +1,6 @@
 /// <reference types="node" />
-import Distributions, { IRandomDistributions, IRandomDistributionsCacheRow } from './distributions';
+import { IRandomDistributions, IRandomDistributionsCacheRow } from './distributions';
+import Distributions from '@lazy-random/distributions';
 import { IArrayUniqueOutOfLimitCallback, IRandIndex } from '@lazy-random/df-array';
 import { ENUM_ALPHABET } from '@lazy-random/shared-lib';
 import { RNGSeedRandom } from '@lazy-random/generators-seedrandom';

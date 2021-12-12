@@ -16,7 +16,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.random = exports.Random = void 0;
 /// <reference types="node" />
 const expect_1 = require("@lazy-random/expect");
-const distributions_1 = __importDefault(require("./distributions"));
+const distributions_1 = __importDefault(require("@lazy-random/distributions"));
 const rng_abstract_1 = require("@lazy-random/rng-abstract");
 const rng_factory_1 = require("@lazy-random/rng-factory");
 const util_1 = require("./util");
