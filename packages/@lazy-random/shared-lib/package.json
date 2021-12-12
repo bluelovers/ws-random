@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/shared-lib",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "keywords": [
     "create-by-yarn-tool",
@@ -55,8 +55,6 @@
     "ts-type": "^2.1.2",
     "tslib": "^2.3.1"
   },
-  "devDependencies": {},
-  "peerDependencies": {},
   "publishConfig": {
     "access": "public"
   },

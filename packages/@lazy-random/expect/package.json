@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/expect",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "keywords": [
     "create-by-yarn-tool",
@@ -56,8 +56,6 @@
     "chai-asserttype-extra": "^1.2.3",
     "tslib": "^2.3.1"
   },
-  "devDependencies": {},
-  "peerDependencies": {},
   "publishConfig": {
     "access": "public"
   },
