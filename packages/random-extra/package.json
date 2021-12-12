@@ -108,6 +108,7 @@
     "@lazy-random/df-algorithm": "^1.0.0",
     "@lazy-random/df-array": "^1.0.0",
     "@lazy-random/df-item-by-weight": "^1.0.0",
+    "@lazy-random/df-poisson": "^1.0.0",
     "@lazy-random/df-uniform": "^1.0.0",
     "@lazy-random/expect": "^1.0.0",
     "@lazy-random/fake-lib-r-math-rng": "^1.0.0",

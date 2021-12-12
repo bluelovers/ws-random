@@ -2,7 +2,7 @@ import { expect } from '@lazy-random/expect';
 import { toFixedNumber } from '@lazy-num/to-fixed-number';
 import { stringifyByte } from '@lazy-random/shared-lib';
 
-function uniformFloat(random, min, max, fractionDigits) {
+function dfUniformFloat(random, min, max, fractionDigits) {
   if (max === undefined) {
     max = min === undefined ? 1 : min;
     min = 0;
@@ -34,7 +34,7 @@ function uniformFloat(random, min, max, fractionDigits) {
   return fn;
 }
 
-function uniformInt(random, min, max) {
+function dfUniformInt(random, min, max) {
   if (max === undefined) {
     max = min === undefined ? 1 : min;
     min = 0;
@@ -42,21 +42,21 @@ function uniformInt(random, min, max) {
 
   expect(min).integer();
   expect(max).integer.gt(min);
-  let fn = uniformFloat(random, min, max + 1);
+  let fn = dfUniformFloat(random, min, max + 1);
   return () => {
     return Math.floor(fn());
   };
 }
 
-function uniformBoolean(random, likelihood = 0.5) {
+function dfUniformBoolean(random, likelihood = 0.5) {
   expect(likelihood).number.gt(0).lt(1);
   return () => {
     return random.next() >= likelihood;
   };
 }
 
-function uniformByte(random, toStr) {
-  let fn = uniformInt(random, 0, 255);
+function dfUniformByte(random, toStr) {
+  let fn = dfUniformInt(random, 0, 255);
 
   if (typeof toStr !== 'undefined') {
     expect(toStr).is.boolean();
@@ -69,9 +69,9 @@ function uniformByte(random, toStr) {
   return fn;
 }
 
-function uniformBytes(random, size, toStr) {
+function dfUniformBytes(random, size, toStr) {
   expect(size).integer.gt(0);
-  const fn = uniformByte(random, toStr);
+  const fn = dfUniformByte(random, toStr);
   return () => {
     let i = size;
     let arr = [];
@@ -84,5 +84,5 @@ function uniformBytes(random, size, toStr) {
   };
 }
 
-export { uniformBoolean, uniformByte, uniformBytes, uniformFloat, uniformInt };
+export { dfUniformBoolean, dfUniformByte, dfUniformBytes, dfUniformFloat, dfUniformInt };
 //# sourceMappingURL=index.esm.mjs.map

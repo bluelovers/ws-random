@@ -1,6 +1,5 @@
 import { expect } from '@lazy-random/expect';
-import { Random } from '../random';
-import { RNG } from '@lazy-random/rng-abstract'
+import { IRNGLike } from '@lazy-random/rng-abstract'
 
 const logFactorialTable = [
 	0.0,
@@ -13,7 +12,7 @@ const logFactorialTable = [
 	8.5251613610654147,
 	10.604602902745251,
 	12.801827480081469,
-]
+] as const
 
 const logFactorial = (k: number) =>
 {
@@ -22,7 +21,7 @@ const logFactorial = (k: number) =>
 
 const logSqrt2PI = 0.91893853320467267
 
-export default (random: Random, lambda = 1) =>
+export function dfPoisson(random: IRNGLike, lambda = 1)
 {
 	//ow(lambda, ow.number.positive)
 	expect(lambda).gt(0);
@@ -111,3 +110,4 @@ export default (random: Random, lambda = 1) =>
 	}
 }
 
+export default dfPoisson

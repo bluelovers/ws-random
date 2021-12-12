@@ -1,8 +1,8 @@
 import { expect } from '@lazy-random/expect';
-import uniformFloat from './uniform';
+import dfUniformFloat from './uniform';
 import { IRNGLike } from '@lazy-random/rng-abstract';
 
-export function uniformInt(random: IRNGLike, min?: number, max?: number)
+export function dfUniformInt(random: IRNGLike, min?: number, max?: number)
 {
 	if (max === undefined)
 	{
@@ -16,7 +16,7 @@ export function uniformInt(random: IRNGLike, min?: number, max?: number)
 	//ow(min, ow.number.integer)
 	//ow(max, ow.number.integer.gt(min))
 
-	let fn = uniformFloat(random, min, max + 1);
+	let fn = dfUniformFloat(random, min, max + 1);
 
 	return () =>
 	{
@@ -24,4 +24,4 @@ export function uniformInt(random: IRNGLike, min?: number, max?: number)
 	}
 }
 
-export default uniformInt
+export default dfUniformInt

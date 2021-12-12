@@ -235,13 +235,13 @@ let Random = Random_1 = class Random {
         return this.dfByte(toStr)();
     }
     dfByte(toStr) {
-        return this._memoize('byte', distributions_1.default.byte, toStr);
+        return this._memoize('byte', distributions_1.default.dfUniformByte, toStr);
     }
     bytes(size = 1, toStr) {
         return this.dfBytes(size, toStr)();
     }
     dfBytes(size = 1, toStr) {
-        return this._memoize('bytes', distributions_1.default.bytes, size, toStr);
+        return this._memoize('bytes', distributions_1.default.dfUniformBytes, size, toStr);
     }
     /**
      * same as crypto.randomBytes(size)
@@ -356,7 +356,7 @@ let Random = Random_1 = class Random {
      * @return {function}
      */
     dfUniform(min, max, fractionDigits) {
-        return this._memoize('dfUniform', distributions_1.default.uniform, min, max, fractionDigits);
+        return this._memoize('dfUniform', distributions_1.default.dfUniformFloat, min, max, fractionDigits);
     }
     /**
      * Generates a [Discrete dfUniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution).
@@ -366,7 +366,7 @@ let Random = Random_1 = class Random {
      * @return {function}
      */
     dfUniformInt(min, max) {
-        return this._memoize('dfUniformInt', distributions_1.default.uniformInt, min, max);
+        return this._memoize('dfUniformInt', distributions_1.default.dfUniformInt, min, max);
     }
     /**
      * Generates a [Discrete dfUniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution),
@@ -377,7 +377,7 @@ let Random = Random_1 = class Random {
      * @return {function}
      */
     dfUniformBoolean(likelihood) {
-        return this._memoize('dfUniformBoolean', distributions_1.default.uniformBoolean, likelihood);
+        return this._memoize('dfUniformBoolean', distributions_1.default.dfUniformBoolean, likelihood);
     }
     // --------------------------------------------------------------------------
     // Normal distributions
@@ -443,7 +443,7 @@ let Random = Random_1 = class Random {
      * @return {function}
      */
     dfPoisson(lambda) {
-        return distributions_1.default.poisson(this, lambda);
+        return distributions_1.default.dfPoisson(this, lambda);
     }
     /**
      * Generates an [Exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution).

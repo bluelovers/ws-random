@@ -1,7 +1,7 @@
 import { IRNGLike } from '@lazy-random/rng-abstract'
 import { expect } from '@lazy-random/expect';
 
-export function uniformBoolean(random: IRNGLike, likelihood: number = 0.5)
+export function dfUniformBoolean(random: IRNGLike, likelihood: number = 0.5)
 {
 	//ow(likelihood, ow.number.gt(0).lt(1))
 
@@ -16,4 +16,4 @@ export function uniformBoolean(random: IRNGLike, likelihood: number = 0.5)
 	}
 }
 
-export default uniformBoolean
+export default dfUniformBoolean

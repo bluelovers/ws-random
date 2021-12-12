@@ -1,14 +1,14 @@
 import { expect } from '@lazy-random/expect';
-import uniformInt from './uniform-int';
+import { dfUniformInt } from './uniform-int';
 import { stringifyByte } from '@lazy-random/shared-lib';
 import { IRNGLike } from '@lazy-random/rng-abstract';
 
-export function uniformByte(random: IRNGLike, toStr: true): () => string
-export function uniformByte(random: IRNGLike, toStr?: false): () => number
-export function uniformByte(random: IRNGLike, toStr?: boolean): (() => string) | (() => number)
-export function uniformByte(random: IRNGLike, toStr?: boolean)
+export function dfUniformByte(random: IRNGLike, toStr: true): () => string
+export function dfUniformByte(random: IRNGLike, toStr?: false): () => number
+export function dfUniformByte(random: IRNGLike, toStr?: boolean): (() => string) | (() => number)
+export function dfUniformByte(random: IRNGLike, toStr?: boolean)
 {
-	let fn = uniformInt(random, 0, 255);
+	let fn = dfUniformInt(random, 0, 255);
 
 	if (typeof toStr !== 'undefined')
 	{
@@ -23,5 +23,5 @@ export function uniformByte(random: IRNGLike, toStr?: boolean)
 	return fn
 }
 
-export default uniformByte
+export default dfUniformByte
 

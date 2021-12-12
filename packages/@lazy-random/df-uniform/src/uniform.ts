@@ -2,7 +2,7 @@ import { expect } from '@lazy-random/expect';
 import { toFixedNumber } from '@lazy-num/to-fixed-number';
 import { IRNGLike } from '@lazy-random/rng-abstract';
 
-export function uniformFloat(random: IRNGLike, min?: number, max?: number, fractionDigits?: number)
+export function dfUniformFloat(random: IRNGLike, min?: number, max?: number, fractionDigits?: number)
 {
 	if (max === undefined)
 	{
@@ -47,4 +47,4 @@ export function uniformFloat(random: IRNGLike, min?: number, max?: number, fract
 	return fn
 }
 
-export default uniformFloat
+export default dfUniformFloat

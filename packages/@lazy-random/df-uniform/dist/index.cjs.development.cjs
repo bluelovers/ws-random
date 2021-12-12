@@ -6,7 +6,7 @@ var expect = require('@lazy-random/expect');
 var toFixedNumber = require('@lazy-num/to-fixed-number');
 var sharedLib = require('@lazy-random/shared-lib');
 
-function uniformFloat(random, min, max, fractionDigits) {
+function dfUniformFloat(random, min, max, fractionDigits) {
   if (max === undefined) {
     max = min === undefined ? 1 : min;
     min = 0;
@@ -38,7 +38,7 @@ function uniformFloat(random, min, max, fractionDigits) {
   return fn;
 }
 
-function uniformInt(random, min, max) {
+function dfUniformInt(random, min, max) {
   if (max === undefined) {
     max = min === undefined ? 1 : min;
     min = 0;
@@ -46,21 +46,21 @@ function uniformInt(random, min, max) {
 
   expect.expect(min).integer();
   expect.expect(max).integer.gt(min);
-  let fn = uniformFloat(random, min, max + 1);
+  let fn = dfUniformFloat(random, min, max + 1);
   return () => {
     return Math.floor(fn());
   };
 }
 
-function uniformBoolean(random, likelihood = 0.5) {
+function dfUniformBoolean(random, likelihood = 0.5) {
   expect.expect(likelihood).number.gt(0).lt(1);
   return () => {
     return random.next() >= likelihood;
   };
 }
 
-function uniformByte(random, toStr) {
-  let fn = uniformInt(random, 0, 255);
+function dfUniformByte(random, toStr) {
+  let fn = dfUniformInt(random, 0, 255);
 
   if (typeof toStr !== 'undefined') {
     expect.expect(toStr).is.boolean();
@@ -73,9 +73,9 @@ function uniformByte(random, toStr) {
   return fn;
 }
 
-function uniformBytes(random, size, toStr) {
+function dfUniformBytes(random, size, toStr) {
   expect.expect(size).integer.gt(0);
-  const fn = uniformByte(random, toStr);
+  const fn = dfUniformByte(random, toStr);
   return () => {
     let i = size;
     let arr = [];
@@ -88,9 +88,9 @@ function uniformBytes(random, size, toStr) {
   };
 }
 
-exports.uniformBoolean = uniformBoolean;
-exports.uniformByte = uniformByte;
-exports.uniformBytes = uniformBytes;
-exports.uniformFloat = uniformFloat;
-exports.uniformInt = uniformInt;
+exports.dfUniformBoolean = dfUniformBoolean;
+exports.dfUniformByte = dfUniformByte;
+exports.dfUniformBytes = dfUniformBytes;
+exports.dfUniformFloat = dfUniformFloat;
+exports.dfUniformInt = dfUniformInt;
 //# sourceMappingURL=index.cjs.development.cjs.map

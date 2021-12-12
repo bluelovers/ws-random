@@ -328,7 +328,7 @@ export class Random<R extends RNG = RNG>
 	dfByte(toStr?: boolean): (() => string) | (() => number)
 	dfByte(toStr?: boolean)
 	{
-		return this._memoize('byte', Distributions.byte, toStr)
+		return this._memoize('byte', Distributions.dfUniformByte, toStr)
 	}
 
 	/**
@@ -349,7 +349,7 @@ export class Random<R extends RNG = RNG>
 	dfBytes(size?: number, toStr?: boolean): (() => string[]) | (() => number[])
 	dfBytes(size: number = 1, toStr?: boolean)
 	{
-		return this._memoize('bytes', Distributions.bytes, size, toStr)
+		return this._memoize('bytes', Distributions.dfUniformBytes, size, toStr)
 	}
 
 	/**
@@ -514,7 +514,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	dfUniform(min?: number, max?: number, fractionDigits?: number)
 	{
-		return this._memoize('dfUniform', Distributions.uniform, min, max, fractionDigits)
+		return this._memoize('dfUniform', Distributions.dfUniformFloat, min, max, fractionDigits)
 	}
 
 	/**
@@ -526,7 +526,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	dfUniformInt(min?: number, max?: number)
 	{
-		return this._memoize('dfUniformInt', Distributions.uniformInt, min, max)
+		return this._memoize('dfUniformInt', Distributions.dfUniformInt, min, max)
 	}
 
 	/**
@@ -539,7 +539,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	dfUniformBoolean(likelihood?: number)
 	{
-		return this._memoize('dfUniformBoolean', Distributions.uniformBoolean, likelihood)
+		return this._memoize('dfUniformBoolean', Distributions.dfUniformBoolean, likelihood)
 	}
 
 	// --------------------------------------------------------------------------
@@ -620,7 +620,7 @@ export class Random<R extends RNG = RNG>
 	 */
 	dfPoisson(lambda?: number)
 	{
-		return Distributions.poisson(this, lambda)
+		return Distributions.dfPoisson(this, lambda)
 	}
 
 	/**

@@ -33,14 +33,14 @@ import {
 	dfPareto,
 } from '@lazy-random/df-algorithm'
 
-import poisson from './distributions/poisson'
+import { dfPoisson } from '@lazy-random/df-poisson'
 
 import {
-	uniformFloat as uniform,
-	uniformInt,
-	uniformBoolean,
-	uniformByte as byte,
-	uniformBytes as bytes,
+	dfUniformFloat,
+	dfUniformInt,
+	dfUniformBoolean,
+	dfUniformByte,
+	dfUniformBytes,
 } from '@lazy-random/df-uniform'
 
 import charID from './distributions/char-id'
@@ -69,13 +69,13 @@ export {
 	dfLogNormal,
 	dfNormal,
 	dfPareto,
-	poisson,
-	uniform,
-	uniformBoolean,
-	uniformInt,
+	dfPoisson,
+	dfUniformFloat,
+	dfUniformInt,
+	dfUniformBoolean,
 
-	byte,
-	bytes,
+	dfUniformByte,
+	dfUniformBytes,
 
 	arrayIndex,
 	arrayShuffle,
