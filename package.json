@@ -65,6 +65,7 @@
     "packages/@lazy-num/*"
   ],
   "scripts": {
+    "preversion": "ts-node script/run/del-src-js.ts",
     "test": "yarn-tool -- ws run test",
     "lerna:publish": "lerna publish",
     "lerna:publish:yes": "lerna publish --yes --bump patch && yarn run postpublishOnly",
