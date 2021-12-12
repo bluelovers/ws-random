@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/generators-crypto",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "keywords": [
     "alea",
@@ -106,12 +106,12 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-num/float-from-buffer": "^1.0.2",
-    "@lazy-random/array-rand-index": "^1.0.3",
-    "@lazy-random/cross-crypto": "^1.0.3",
-    "@lazy-random/expect": "^1.0.2",
-    "@lazy-random/rng-abstract": "^1.0.1",
-    "@lazy-random/shared-lib": "^1.0.2",
+    "@lazy-num/float-from-buffer": "^1.0.3",
+    "@lazy-random/array-rand-index": "^1.0.4",
+    "@lazy-random/cross-crypto": "^1.0.4",
+    "@lazy-random/expect": "^1.0.3",
+    "@lazy-random/rng-abstract": "^1.0.2",
+    "@lazy-random/shared-lib": "^1.0.3",
     "tslib": "^2.3.1"
   },
   "publishConfig": {

@@ -1,5 +1,5 @@
 import random from '../../'
-import { isFloat } from '../../src/util/assers';
+import { isFloat } from 'chai-asserttype-extra/lib/check';
 import { Random } from '../../src';
 
 function getDefaultArgv(method: keyof Random | string)

@@ -2,12 +2,7 @@
  * Created by user on 2018/11/22/022.
  */
 
-/// <reference types="mocha" />
-/// <reference types="benchmark" />
-/// <reference types="chai" />
-/// <reference types="node" />
-
-import { isInt } from '../src/util/assers';
+import { isIntFinite as isInt } from 'chai-asserttype-extra/lib/check';
 
 // @ts-ignore
 describe(`isInt`, () =>

@@ -11,7 +11,7 @@ module.exports = {
 	verbose: true,
 	"setupFilesAfterEnv": [
 		"jest-chain",
-		"jest-extended",
+		"jest-extended/all",
 	],
 	/**
 	 * if didn't set `coverageProvider` to `v8`

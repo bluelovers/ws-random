@@ -2,11 +2,6 @@
  * Created by user on 2018/11/16/016.
  */
 
-/// <reference types="mocha" />
-/// <reference types="benchmark" />
-/// <reference types="chai" />
-/// <reference types="node" />
-
 import { RNG } from '@lazy-random/rng-abstract';
 import random from '../../src/'
 import seedrandomOrigin from 'seedrandom';

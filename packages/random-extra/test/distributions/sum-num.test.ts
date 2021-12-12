@@ -2,11 +2,6 @@
  * Created by user on 2018/11/16/016.
  */
 
-/// <reference types="mocha" />
-/// <reference types="benchmark" />
-/// <reference types="chai" />
-/// <reference types="node" />
-
 import { SUM_DELTA } from '@lazy-random/shared-lib';
 import { fixZero } from 'num-is-zero';
 import random from '../../'
