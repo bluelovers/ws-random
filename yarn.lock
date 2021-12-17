@@ -325,6 +325,11 @@
   dependencies:
     tslib "^2.3.0"
 
+"@bluelovers/xorshift@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.npmjs.org/@bluelovers/xorshift/-/xorshift-1.2.1.tgz#1431bb6bfb9a8fdba89cac355ef0605f423c6d6f"
+  integrity sha512-IrLLS5NQB5v5lpN9ZAxTgVf8POhpA+SKHxdqQy7eMB5eGiNdaxuhhA56zpOSxGfhQH9paYIoaEtDUpVq5P1zwQ==
+
 "@git-lazy/debug@^1.0.10":
   version "1.0.10"
   resolved "https://registry.npmjs.org/@git-lazy/debug/-/debug-1.0.10.tgz#44d4a11abaa5b6aae18c03d13f1ba59c823abefb"
