@@ -26,6 +26,7 @@ export class RNGCrypto extends RNG
 		this._crypto = crypto;
 		this._randIndex = this._randIndex || arrayRandIndexByLength;
 
+		// @ts-ignore
 		expect(crypto.randomBytes).is.a.function();
 
 		if (1)

@@ -18,7 +18,7 @@ function coreFnRandSumInt(argv) {
     min,
     max
   } = argv;
-  expect(size).is.finite.integer.gt(1);
+  expect(size).finite.integer.gt(1);
   const sum_1_to_size = sum_1_to_n(size);
   sum = isUnset(sum) ? sum_1_to_size : sum;
   expect(sum).is.finite.integer();
@@ -35,7 +35,7 @@ function coreFnRandSumInt(argv) {
   }
 
   const prob = get_prob(size, maxv);
-  expect(prob).is.array.lengthOf(size);
+  expect(prob).array.lengthOf(size);
   const rmultinomFn = Multinomial(fakeLibRMathRng(random.next)).rmultinom;
   const n_len = argv.limit || 5 || n_sum;
   let n_diff = min;
@@ -98,7 +98,7 @@ function coreFnRandSumInt(argv) {
       cache = array_unique(cache.map(v => v.sort()));
     }
 
-    expect(cache, `invalid argv (size=${size}, sum=${sum}, min=${min}, max=${max})`).is.array.have.lengthOf.gt(0);
+    expect(cache, `invalid argv (size=${size}, sum=${sum}, min=${min}, max=${max})`).array.have.lengthOf.gt(0);
     arr = undefined;
   }
   argv = undefined;
@@ -162,7 +162,7 @@ function coreFnRandSumFloat(argv) {
   let fnFirst;
 
   if (!isUnset(fractionDigits)) {
-    expect(fractionDigits).is.finite.integer.gt(0);
+    expect(fractionDigits).finite.integer.gt(0);
   }
 
   {

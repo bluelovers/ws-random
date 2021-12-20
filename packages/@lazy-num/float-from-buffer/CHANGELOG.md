@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.7](https://github.com/bluelovers/ws-random/compare/@lazy-num/float-from-buffer@1.0.5...@lazy-num/float-from-buffer@1.0.7) (2021-12-20)
+
+
+### 🔖　Miscellaneous
+
+* . ([c9f90c3](https://github.com/bluelovers/ws-random/commit/c9f90c3c7bacda06796085537bc4e9b56e96759a))
+
+
+
+
+
 ## [1.0.6](https://github.com/bluelovers/ws-random/compare/@lazy-num/float-from-buffer@1.0.5...@lazy-num/float-from-buffer@1.0.6) (2021-12-20)
 
 **Note:** Version bump only for package @lazy-num/float-from-buffer

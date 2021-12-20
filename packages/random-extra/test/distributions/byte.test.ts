@@ -17,8 +17,7 @@ describe(`byte`, () =>
 		let ret = random.byte(true)
 
 		//.is.a('string')
-		expect(ret).toHaveLength(2)
-		;
+		expect(ret).toHaveLength(2);
 	});
 });
 

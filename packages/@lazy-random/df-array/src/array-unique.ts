@@ -32,7 +32,7 @@ export function dfArrayUnique<T extends unknown>(random: IRNGLike, arr: T[], lim
 	//ow(fnRandIndex, ow.function);
 
 	expect(limit).integer.gt(0)
-	expect(fnRandIndex).is.function()
+	expect(fnRandIndex).function()
 
 	let count = limit;
 	let len: number;

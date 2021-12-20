@@ -21,7 +21,7 @@ function dfCharID(random, char, size) {
 
   const ls = UString.create(char).split('');
   const len = ls.length;
-  expect(ls).to.have.lengthOf.gt(1);
+  expect(ls).lengthOf.gt(1);
 
   const randIndex$1 = () => {
     return randIndex(random, len);

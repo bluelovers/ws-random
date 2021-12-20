@@ -29,7 +29,7 @@ function dfCharID(random, char, size) {
 
   const ls = UString__default["default"].create(char).split('');
   const len = ls.length;
-  expect.expect(ls).to.have.lengthOf.gt(1);
+  expect.expect(ls).lengthOf.gt(1);
 
   const randIndex = () => {
     return utilDistributions.randIndex(random, len);

@@ -8,8 +8,8 @@ function dfUniformFloat(random, min, max, fractionDigits) {
     min = 0;
   }
 
-  expect(min).number();
-  expect(max).number.gt(min);
+  expect(min).number.finite;
+  expect(max).number.finite.gt(min);
   let fn;
 
   if (min === 0 && max === 1) {
@@ -59,7 +59,7 @@ function dfUniformByte(random, toStr) {
   let fn = dfUniformInt(random, 0, 255);
 
   if (typeof toStr !== 'undefined') {
-    expect(toStr).is.boolean();
+    expect(toStr).boolean();
   }
 
   if (toStr) {

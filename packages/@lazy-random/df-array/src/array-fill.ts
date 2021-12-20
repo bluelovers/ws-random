@@ -29,7 +29,7 @@ export function dfArrayFill(random: IRNGLike, min?: number, max?: number, float?
 		max = void 0;
 	}
 
-	expect(fn).is.function();
+	expect(fn).function();
 
 	return <T extends IArrayInput02<number>>(arr: T) =>
 	{

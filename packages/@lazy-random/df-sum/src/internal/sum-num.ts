@@ -60,7 +60,7 @@ export function coreFnRandSumInt(argv: ISumNumParameterWuthCache)
 	} = argv;
 
 	// @ts-ignore
-	expect(size).is.finite.integer.gt(1);
+	expect(size).finite.integer.gt(1);
 
 	const sum_1_to_size = sum_1_to_n(size);
 
@@ -110,7 +110,7 @@ export function coreFnRandSumInt(argv: ISumNumParameterWuthCache)
 	 */
 	const prob = get_prob(size, maxv);
 
-	expect(prob).is.array.lengthOf(size);
+	expect(prob).array.lengthOf(size);
 
 	/**
 	 * make rmultinom use with random.next
@@ -213,7 +213,7 @@ export function coreFnRandSumInt(argv: ISumNumParameterWuthCache)
 		}
 
 		expect(cache, `invalid argv (size=${size}, sum=${sum}, min=${min}, max=${max})`)
-			.is.array
+			.array
 			.have.lengthOf.gt(0)
 		;
 
@@ -314,11 +314,8 @@ export function coreFnRandSumFloat(argv: ISumNumParameterWuthCache): () => numbe
 
 	if (!isUnset(fractionDigits))
 	{
-		expect(fractionDigits)
 		// @ts-ignore
-			.is.finite
-			.integer.gt(0)
-		;
+		expect(fractionDigits).finite.integer.gt(0);
 	}
 
 	{

@@ -12,7 +12,7 @@ export function dfUniformByte(random: IRNGLike, toStr?: boolean)
 
 	if (typeof toStr !== 'undefined')
 	{
-		expect(toStr).is.boolean();
+		expect(toStr).boolean();
 	}
 
 	if (toStr)
