@@ -72,7 +72,7 @@ function dfArrayUnique(random, arr, limit, loop, fnRandIndex, fnOutOfLimit) {
   fnRandIndex = fnRandIndex || randIndex$1;
   loop = !!loop;
   expect(limit).integer.gt(0);
-  expect(fnRandIndex).is.function();
+  expect(fnRandIndex).function();
   let count = limit;
   let len;
 
@@ -131,7 +131,7 @@ function dfArrayFill(random, min, max, float) {
     min = void 0;
     max = void 0;
   }
-  expect(fn).is.function();
+  expect(fn).function();
   return arr => {
     let i = arr.length;
 
