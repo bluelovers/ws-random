@@ -797,7 +797,7 @@ export class RandomCore<R extends RNG = RNG>
 
 	get [Symbol.toStringTag]()
 	{
-		return this._rng.name;
+		return this._rng?.name;
 	}
 }
 

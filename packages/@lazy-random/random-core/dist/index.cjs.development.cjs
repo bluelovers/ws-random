@@ -329,7 +329,9 @@ exports.RandomCore = (_Symbol$toStringTag = Symbol.toStringTag, class RandomCore
   }
 
   get [_Symbol$toStringTag]() {
-    return this._rng.name;
+    var _this$_rng;
+
+    return (_this$_rng = this._rng) === null || _this$_rng === void 0 ? void 0 : _this$_rng.name;
   }
 
 });
