@@ -21,7 +21,8 @@ export class RNGFunction<S extends IRNGFunctionSeed = IRNGFunctionSeed> extends 
 		let type = typeof seed;
 		if (seed !== null && type !== 'undefined' && type !== 'function')
 		{
-			expect(seed).to.be.function
+			// @ts-ignore
+			expect(seed).function
 		}
 	}
 

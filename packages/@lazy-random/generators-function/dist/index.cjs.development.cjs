@@ -34,7 +34,7 @@ class RNGFunction extends rngAbstract.RNG {
     let type = typeof seed;
 
     if (seed !== null && type !== 'undefined' && type !== 'function') {
-      expect.expect(seed).to.be.function;
+      expect.expect(seed).function;
     }
   }
 
