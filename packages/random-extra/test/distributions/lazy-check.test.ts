@@ -1,6 +1,7 @@
 import random from '../../'
 import { isFloat } from '@lazy-assert/check-basic';
 import { Random } from '../../src';
+import { RandomCore } from '@lazy-random/random-core';
 
 function getDefaultArgv(method: keyof Random | string)
 {
@@ -59,7 +60,7 @@ function getDefaultArgv(method: keyof Random | string)
 }
 
 let ks = Object
-	.getOwnPropertyNames(Object.getPrototypeOf(random))
+	.getOwnPropertyNames(RandomCore.prototype)
 	.filter(function (v)
 	{
 		return !([
@@ -77,6 +78,7 @@ let ks = Object
 			'_rng',
 			'_cache',
 			'seed',
+			'_init',
 			'seedable',
 		].includes(v) || v.indexOf('_') === 0)
 	})
@@ -152,6 +154,9 @@ let ks = Object
 		distributions: [],
 		crash: [],
 	})
+;
+
+console.dir(ks);
 
 Object.keys(ks).forEach(function (cat)
 {
