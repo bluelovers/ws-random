@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/df-algorithm",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "",
   "keywords": [
     "alea",
@@ -106,12 +106,12 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/expect": "^1.0.8",
+    "@lazy-random/expect": "^1.0.9",
     "num-is-zero": "^1.0.8",
     "tslib": "^2.3.1"
   },
   "devDependencies": {
-    "@lazy-random/rng-abstract": "^1.0.6"
+    "@lazy-random/rng-abstract": "^1.0.7"
   },
   "publishConfig": {
     "access": "public"

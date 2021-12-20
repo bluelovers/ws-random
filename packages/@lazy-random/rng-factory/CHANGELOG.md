@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.4](https://github.com/bluelovers/ws-random/compare/@lazy-random/rng-factory@1.0.3...@lazy-random/rng-factory@1.0.4) (2021-12-20)
+
+
+### 📦　Code Refactoring
+
+* use `@lazy-random/random-core` ([166977f](https://github.com/bluelovers/ws-random/commit/166977f61f48cf397b255e9b5fc950457b6cdef9))
+
+
+
+
+
 ## 1.0.3 (2021-12-12)
 
 

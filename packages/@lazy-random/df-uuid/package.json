@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/df-uuid",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "keywords": [
     "alea",
@@ -106,13 +106,13 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/bytes-to-uuid": "^1.0.5",
-    "@lazy-random/df-uniform": "^1.0.4",
-    "@lazy-random/shared-lib": "^1.0.5",
+    "@lazy-random/bytes-to-uuid": "^1.0.9",
+    "@lazy-random/df-uniform": "^1.0.5",
+    "@lazy-random/shared-lib": "^1.0.9",
     "tslib": "^2.3.1"
   },
   "devDependencies": {
-    "@lazy-random/rng-abstract": "^1.0.4"
+    "@lazy-random/rng-abstract": "^1.0.7"
   },
   "publishConfig": {
     "access": "public"

@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.9](https://github.com/bluelovers/ws-random/compare/@lazy-random/expect@1.0.5...@lazy-random/expect@1.0.9) (2021-12-20)
+
+
+### 🐛　Bug Fixes
+
+* update `@lazy-random/expect` ([fdd126b](https://github.com/bluelovers/ws-random/commit/fdd126b684ca684228f00b25dd0cc8db064c97e1))
+
+
+### 🔖　Miscellaneous
+
+* . ([da26cb9](https://github.com/bluelovers/ws-random/commit/da26cb9a5e422be346b27b7ff834d2a1a3bbe434))
+* . ([df8ee00](https://github.com/bluelovers/ws-random/commit/df8ee0035628a6e2ca218f15429ab85880721f73))
+* . ([c9f90c3](https://github.com/bluelovers/ws-random/commit/c9f90c3c7bacda06796085537bc4e9b56e96759a))
+
+
+
+
+
 ## [1.0.8](https://github.com/bluelovers/ws-random/compare/@lazy-random/expect@1.0.5...@lazy-random/expect@1.0.8) (2021-12-20)
 
 

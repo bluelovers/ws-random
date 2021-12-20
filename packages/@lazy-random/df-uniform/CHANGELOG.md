@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.5](https://github.com/bluelovers/ws-random/compare/@lazy-random/df-uniform@1.0.4...@lazy-random/df-uniform@1.0.5) (2021-12-20)
+
+
+### 🐛　Bug Fixes
+
+* check value is finite ([d708b59](https://github.com/bluelovers/ws-random/commit/d708b59be94da43908d462c441920fa352bc5d0f))
+
+
+### 🔖　Miscellaneous
+
+* . ([da26cb9](https://github.com/bluelovers/ws-random/commit/da26cb9a5e422be346b27b7ff834d2a1a3bbe434))
+* . ([df8ee00](https://github.com/bluelovers/ws-random/commit/df8ee0035628a6e2ca218f15429ab85880721f73))
+
+
+
+
+
 ## 1.0.4 (2021-12-12)
 
 
