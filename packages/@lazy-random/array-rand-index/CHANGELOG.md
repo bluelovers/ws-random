@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.7](https://github.com/bluelovers/ws-random/compare/@lazy-random/array-rand-index@1.0.6...@lazy-random/array-rand-index@1.0.7) (2021-12-20)
+
+
+### 🐛　Bug Fixes
+
+* deps ([c2d246c](https://github.com/bluelovers/ws-random/commit/c2d246c5a2c8660c1e92a938c0ec50c314cf2ec4))
+
+
+
+
+
 ## 1.0.6 (2021-12-12)
 
 

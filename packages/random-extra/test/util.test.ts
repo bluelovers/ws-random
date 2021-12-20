@@ -2,7 +2,7 @@
  * Created by user on 2018/11/22/022.
  */
 
-import { isIntFinite as isInt } from 'chai-asserttype-extra/lib/check';
+import { isFiniteInt as isInt } from '@lazy-assert/check-basic';
 
 // @ts-ignore
 describe(`isInt`, () =>
