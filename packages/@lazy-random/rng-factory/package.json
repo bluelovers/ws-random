@@ -113,6 +113,7 @@
     "@lazy-random/generators-seedrandom": "^1.0.3",
     "@lazy-random/generators-xor128": "^1.0.4",
     "@lazy-random/rng-abstract": "^1.0.4",
+    "@types/seedrandom": "=2.4.28",
     "tslib": "^2.3.1"
   },
   "publishConfig": {

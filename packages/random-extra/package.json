@@ -81,6 +81,7 @@
     "test": "jest --maxConcurrency=1 --maxWorkers=1",
     "posttest": "git commit -m \"build: update seed\" ./src/util/random-seed-str.data.* & echo posttest",
     "build_": "yarn run build:index",
+    "build:tsc": "tsc",
     "build:index": "ts-node ./test/script/build-cache.ts",
     "build-minify": "npx -r fast-glob -r fs-extra -r uglify-es -r ts-node ts-node ./test/script/minify",
     "postbuild": "ynpx build-ts-file -- ../@lazy-random/seed-data/src/random-seed-str.data.ts && git add ./src/util/random-seed-str.data.ts ./src/util/random-seed-str.data.js",
@@ -102,18 +103,12 @@
   },
   "dependencies": {
     "@lazy-random/clone-class": "^1.0.6",
-    "@lazy-random/distributions": "^1.0.3",
-    "@lazy-random/expect": "^1.0.5",
+    "@lazy-random/random-core": "^1.0.0",
     "@lazy-random/rng-factory": "^1.0.3",
-    "@types/seedrandom": "=2.4.28",
-    "chai": "^4",
-    "chai-asserttype-extra": "^2.0.3",
-    "core-decorators": "^0.20.0",
-    "lib-r-math.js": "^1.0.89",
-    "num-in-delta": "^1.0.7",
-    "num-is-zero": "^1.0.8",
-    "ts-type": "^2.1.2",
-    "uni-string": "^1.1.11"
+    "ts-type": "^2.1.2"
+  },
+  "devDependencies": {
+    "num-in-delta": "^1.0.7"
   },
   "gitHead": "e61d528c84bd3340a59f288f65d20bfb2906c905",
   "packageManager": "yarn@^1.22.11"

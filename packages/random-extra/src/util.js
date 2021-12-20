@@ -1,19 +1,6 @@
 "use strict";
-/**
- * Created by user on 2018/10/20/020.
- */
-//import shortid = require('shortid');
-//
-//export declare function shortid(): string
-//export declare function hashSum(input): string
-//
-//export { shortid, hashSum }
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.array_unique_unsafe = exports.hashArgv = void 0;
-function hashArgv(args) {
-    return String(args.join(';'));
-}
-exports.hashArgv = hashArgv;
+exports.array_unique_unsafe = void 0;
 /**
  * for non-strict check, try get a little
  */
