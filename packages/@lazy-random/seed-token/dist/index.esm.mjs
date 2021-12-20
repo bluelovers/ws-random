@@ -4,7 +4,7 @@ import { name, version } from '@lazy-random/seed-data';
 import { floatToString } from '@lazy-num/float-to-string';
 import { _MathRandom } from '@lazy-random/original-math-random';
 import { MATH_POW_2_32 } from '@lazy-random/shared-lib';
-import { isIntFinite } from 'chai-asserttype-extra/lib/check';
+import { isFiniteInt } from '@lazy-assert/check-basic';
 
 function hashSum(input, ...argv) {
   return hashSum$1(input, ...argv);
@@ -39,7 +39,7 @@ function randomSeedNum() {
 }
 
 function seedToken(seed, opts, ...argv) {
-  if (isIntFinite(seed)) {
+  if (isFiniteInt(seed)) {
     return seed;
   } else {
     let strSeed = '' + seed;

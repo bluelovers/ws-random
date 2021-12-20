@@ -1,10 +1,10 @@
-import { isIntFinite } from 'chai-asserttype-extra/lib/check';
+import { isFiniteInt } from '@lazy-assert/check-basic';
 
 export function seedToken(seed?: number | any, opts?: any, ...argv: any[]): number
 {
 	// TODO: add entropy and stuff
 
-	if (isIntFinite(seed))
+	if (isFiniteInt(seed))
 	{
 		return seed
 	}

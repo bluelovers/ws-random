@@ -8,7 +8,7 @@ var seedData = require('@lazy-random/seed-data');
 var floatToString = require('@lazy-num/float-to-string');
 var originalMathRandom = require('@lazy-random/original-math-random');
 var sharedLib = require('@lazy-random/shared-lib');
-var check = require('chai-asserttype-extra/lib/check');
+var checkBasic = require('@lazy-assert/check-basic');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -47,7 +47,7 @@ function randomSeedNum() {
 }
 
 function seedToken(seed, opts, ...argv) {
-  if (check.isIntFinite(seed)) {
+  if (checkBasic.isFiniteInt(seed)) {
     return seed;
   } else {
     let strSeed = '' + seed;
