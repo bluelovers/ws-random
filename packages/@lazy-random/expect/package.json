@@ -53,7 +53,7 @@
   },
   "dependencies": {
     "chai": "^4.3.4",
-    "chai-asserttype-extra": "^1.2.3",
+    "chai-asserttype-extra": "^2.0.4",
     "tslib": "^2.3.1"
   },
   "publishConfig": {

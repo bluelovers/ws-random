@@ -9,7 +9,7 @@ function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'defau
 
 var _chai__default = /*#__PURE__*/_interopDefaultLegacy(_chai);
 
-const chai = /*#__PURE__*/chaiAsserttypeExtra.ChaiPlugin.install(_chai__default["default"]);
+const chai = /*#__PURE__*/chaiAsserttypeExtra.install(_chai__default["default"]);
 const expect = chai.expect;
 const assert = chai.assert;
 
