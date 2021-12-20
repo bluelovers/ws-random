@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.7](https://github.com/bluelovers/ws-random/compare/@lazy-random/df-char-id@1.0.6...@lazy-random/df-char-id@1.0.7) (2021-12-20)
+
+
+### 🔖　Miscellaneous
+
+* . ([df8ee00](https://github.com/bluelovers/ws-random/commit/df8ee0035628a6e2ca218f15429ab85880721f73))
+
+
+
+
+
 ## 1.0.6 (2021-12-12)
 
 

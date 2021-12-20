@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.8](https://github.com/bluelovers/ws-random/compare/@lazy-random/bytes-to-uuid@1.0.5...@lazy-random/bytes-to-uuid@1.0.8) (2021-12-20)
+
+
+### 🔖　Miscellaneous
+
+* . ([df8ee00](https://github.com/bluelovers/ws-random/commit/df8ee0035628a6e2ca218f15429ab85880721f73))
+* . ([c9f90c3](https://github.com/bluelovers/ws-random/commit/c9f90c3c7bacda06796085537bc4e9b56e96759a))
+
+
+
+
+
 ## [1.0.7](https://github.com/bluelovers/ws-random/compare/@lazy-random/bytes-to-uuid@1.0.5...@lazy-random/bytes-to-uuid@1.0.7) (2021-12-20)
 
 
