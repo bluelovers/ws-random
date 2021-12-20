@@ -3,6 +3,8 @@
   "compilerOptions": {
     "importHelpers": true,
     "noImplicitAny": false,
-    "noUnusedParameters": false
+    "noUnusedParameters": false,
+    "emitDeclarationOnly": false,
+    "noEmit": false
   }
 }

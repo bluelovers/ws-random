@@ -10,8 +10,8 @@ export function dfUniformFloat(random: IRNGLike, min?: number, max?: number, fra
 		min = 0;
 	}
 
-	expect(min).number();
-	expect(max).number.gt(min);
+	expect(min).number.finite;
+	expect(max).number.finite.gt(min);
 
 	let fn: () => number;
 
