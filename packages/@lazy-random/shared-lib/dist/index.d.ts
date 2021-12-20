@@ -27,6 +27,7 @@ export declare type IArrayInput01<T extends any> = ITSArrayLikeWriteable<T> | Ty
 export declare type IArrayInput02<T extends any> = IArrayInput01<T> | Buffer;
 export declare function stringifyByte(byte: number): string;
 export declare function toHexArray(arr: number[]): string[];
+export declare function hashArgv(args: any[]): string;
 export declare function isUnset(n: unknown): n is undefined | null;
 
 export {};
