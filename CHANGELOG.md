@@ -33,6 +33,7 @@ Please see the individual package changelogs for what's new:
 * 🌏 [`@lazy-random/lib-r-math-rng`](./packages/@lazy-random/lib-r-math-rng/CHANGELOG.md "packages/@lazy-random/lib-r-math-rng") *packages/@lazy-random/lib-r-math-rng*
 * 🌏 [`@lazy-random/original-math-random`](./packages/@lazy-random/original-math-random/CHANGELOG.md "packages/@lazy-random/original-math-random") *packages/@lazy-random/original-math-random*
 * 🌏 [`@lazy-random/preset-seedrandom`](./packages/@lazy-random/preset-seedrandom/CHANGELOG.md "packages/@lazy-random/preset-seedrandom") *packages/@lazy-random/preset-seedrandom*
+* 🌏 [`@lazy-random/random-core`](./packages/@lazy-random/random-core/CHANGELOG.md "packages/@lazy-random/random-core") *packages/@lazy-random/random-core*
 * 🌏 [`@lazy-random/rng-abstract`](./packages/@lazy-random/rng-abstract/CHANGELOG.md "packages/@lazy-random/rng-abstract") *packages/@lazy-random/rng-abstract*
 * 🌏 [`@lazy-random/rng-factory`](./packages/@lazy-random/rng-factory/CHANGELOG.md "packages/@lazy-random/rng-factory") *packages/@lazy-random/rng-factory*
 * 🌏 [`@lazy-random/seed-data`](./packages/@lazy-random/seed-data/CHANGELOG.md "packages/@lazy-random/seed-data") *packages/@lazy-random/seed-data*
