@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.6](https://github.com/bluelovers/ws-random/compare/@lazy-random/generators-xor128@1.0.4...@lazy-random/generators-xor128@1.0.6) (2021-12-20)
+
+
+### 🔖　Miscellaneous
+
+* . ([65cf74d](https://github.com/bluelovers/ws-random/commit/65cf74d7a39b1399cff63dd748ea79d8c0fb9a85))
+
+
+
+
+
 ## [1.0.5](https://github.com/bluelovers/ws-random/compare/@lazy-random/generators-xor128@1.0.4...@lazy-random/generators-xor128@1.0.5) (2021-12-20)
 
 **Note:** Version bump only for package @lazy-random/generators-xor128

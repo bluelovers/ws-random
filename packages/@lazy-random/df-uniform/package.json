@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/df-uniform",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "",
   "keywords": [
     "alea",
@@ -107,12 +107,12 @@
   },
   "dependencies": {
     "@lazy-num/to-fixed-number": "^1.0.6",
-    "@lazy-random/expect": "^1.0.9",
-    "@lazy-random/shared-lib": "^1.0.9",
+    "@lazy-random/expect": "^1.0.10",
+    "@lazy-random/shared-lib": "^1.0.10",
     "tslib": "^2.3.1"
   },
   "devDependencies": {
-    "@lazy-random/rng-abstract": "^1.0.7"
+    "@lazy-random/rng-abstract": "^1.0.8"
   },
   "publishConfig": {
     "access": "public"

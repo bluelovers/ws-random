@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.2](https://github.com/bluelovers/ws-random/compare/random-extra@4.0.1...random-extra@4.0.2) (2021-12-21)
+
+
+### 📦　Code Refactoring
+
+* use `@lazy-random/random-core` ([166977f](https://github.com/bluelovers/ws-random/commit/166977f61f48cf397b255e9b5fc950457b6cdef9))
+
+
+### 🚨　Tests
+
+* use `RandomCore.prototype` ([eb83d0d](https://github.com/bluelovers/ws-random/commit/eb83d0dd87d916d4036cca69a403be52c7250aec))
+
+
+### 🔖　Miscellaneous
+
+* . ([df8ee00](https://github.com/bluelovers/ws-random/commit/df8ee0035628a6e2ca218f15429ab85880721f73))
+* . ([c9f90c3](https://github.com/bluelovers/ws-random/commit/c9f90c3c7bacda06796085537bc4e9b56e96759a))
+* . ([9b4fe95](https://github.com/bluelovers/ws-random/commit/9b4fe95e0adbf7e8925b09457f1df79da4fc6a07))
+
+
+
+
+
 ## [4.0.1](https://github.com/bluelovers/ws-random/compare/random-extra@3.6.16...random-extra@4.0.1) (2021-12-12)
 
 

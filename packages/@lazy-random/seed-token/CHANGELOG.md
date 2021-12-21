@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.8](https://github.com/bluelovers/ws-random/compare/@lazy-random/seed-token@1.0.4...@lazy-random/seed-token@1.0.8) (2021-12-20)
+
+
+### 🐛　Bug Fixes
+
+* use `@lazy-assert/check-basic` ([e545885](https://github.com/bluelovers/ws-random/commit/e545885064f56f7b9d0ad0345e164fcfce007473))
+
+
+### 🔖　Miscellaneous
+
+* . ([65cf74d](https://github.com/bluelovers/ws-random/commit/65cf74d7a39b1399cff63dd748ea79d8c0fb9a85))
+* . ([da26cb9](https://github.com/bluelovers/ws-random/commit/da26cb9a5e422be346b27b7ff834d2a1a3bbe434))
+* . ([df8ee00](https://github.com/bluelovers/ws-random/commit/df8ee0035628a6e2ca218f15429ab85880721f73))
+* . ([9b4fe95](https://github.com/bluelovers/ws-random/commit/9b4fe95e0adbf7e8925b09457f1df79da4fc6a07))
+
+
+
+
+
 ## [1.0.7](https://github.com/bluelovers/ws-random/compare/@lazy-random/seed-token@1.0.4...@lazy-random/seed-token@1.0.7) (2021-12-20)
 
 

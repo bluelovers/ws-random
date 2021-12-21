@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/generators-seedrandom",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "keywords": [
     "alea",
@@ -107,8 +107,8 @@
   },
   "dependencies": {
     "@lazy-random/clone-class": "^1.0.6",
-    "@lazy-random/generators-function": "^1.0.5",
-    "@lazy-random/shared-lib": "^1.0.9",
+    "@lazy-random/generators-function": "^1.0.6",
+    "@lazy-random/shared-lib": "^1.0.10",
     "seedrandom": "^3.0.5",
     "tslib": "^2.3.1"
   },

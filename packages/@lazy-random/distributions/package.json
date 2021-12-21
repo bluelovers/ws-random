@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/distributions",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "keywords": [
     "alea",
@@ -106,14 +106,14 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/df-algorithm": "^1.0.7",
-    "@lazy-random/df-array": "^1.0.4",
-    "@lazy-random/df-char-id": "^1.0.8",
-    "@lazy-random/df-item-by-weight": "^1.0.4",
-    "@lazy-random/df-poisson": "^1.0.7",
-    "@lazy-random/df-sum": "^1.0.7",
-    "@lazy-random/df-uniform": "^1.0.5",
-    "@lazy-random/df-uuid": "^1.0.4",
+    "@lazy-random/df-algorithm": "^1.0.8",
+    "@lazy-random/df-array": "^1.0.5",
+    "@lazy-random/df-char-id": "^1.0.9",
+    "@lazy-random/df-item-by-weight": "^1.0.5",
+    "@lazy-random/df-poisson": "^1.0.8",
+    "@lazy-random/df-sum": "^1.0.8",
+    "@lazy-random/df-uniform": "^1.0.6",
+    "@lazy-random/df-uuid": "^1.0.5",
     "tslib": "^2.3.1"
   },
   "publishConfig": {
