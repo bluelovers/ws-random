@@ -17,7 +17,7 @@ export function dfUniformFloat(random: IRNGLike, min?: number, max?: number, fra
 
 	if (min === 0 && max === 1)
 	{
-		fn = random.next
+		fn = () => random.next()
 	}
 	else if (min === 0)
 	{

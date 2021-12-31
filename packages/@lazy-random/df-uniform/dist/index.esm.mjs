@@ -13,7 +13,7 @@ function dfUniformFloat(random, min, max, fractionDigits) {
   let fn;
 
   if (min === 0 && max === 1) {
-    fn = random.next;
+    fn = () => random.next();
   } else if (min === 0) {
     fn = () => {
       return random.next() * max;
@@ -69,7 +69,7 @@ function dfUniformByte(random, toStr) {
   return fn;
 }
 
-function dfUniformBytes(random, size, toStr) {
+function dfUniformBytes(random, size = 1, toStr) {
   expect(size).integer.gt(0);
   const fn = dfUniformByte(random, toStr);
   return () => {

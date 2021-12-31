@@ -9,7 +9,7 @@ export declare function dfUniformByte(random: IRNGLike, toStr: true): () => stri
 export declare function dfUniformByte(random: IRNGLike, toStr?: false): () => number;
 export declare function dfUniformByte(random: IRNGLike, toStr?: boolean): (() => string) | (() => number);
 export declare function dfUniformBytes(random: IRNGLike, size: number, toStr: true): () => string[];
-export declare function dfUniformBytes(random: IRNGLike, size: number, toStr?: false): () => number[];
-export declare function dfUniformBytes(random: IRNGLike, size: number, toStr?: boolean): (() => string[]) | (() => number[]);
+export declare function dfUniformBytes(random: IRNGLike, size?: number, toStr?: false): () => number[];
+export declare function dfUniformBytes(random: IRNGLike, size?: number, toStr?: boolean): (() => string[]) | (() => number[]);
 
 export {};

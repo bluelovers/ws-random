@@ -20,20 +20,38 @@
 //	}
 //}
 
-import random from '../..'
-import seedrandom from 'seedrandom';
-import checkTypesMatchers from '../jest/type';
+import { toBeCloseWith as toBeCloseToWithDelta } from 'jest-num-close-with';
+import { newRngSeedRandom } from '@lazy-random/util-test';
+import { dfUniformFloat } from '../src/index';
+
+declare global
+{
+
+	namespace jest
+	{
+
+		interface Matchers<R>
+		{
+			/**
+			 * check actual number is expected number ± delta
+			 */
+			toBeCloseToWithDelta(expected: number, delta?: number, numDigits?: number): R;
+		}
+
+	}
+
+}
 
 expect.extend({
-	toBeCloseToWithDelta: checkTypesMatchers.toBeCloseToWithDelta,
+	toBeCloseToWithDelta,
 })
 
-const r = random.clone(seedrandom('ZDJjM2IyNmFlNmVjNWQwMGZkMmY1Y2Nk'));
+const r = newRngSeedRandom();
 
 // @ts-ignore
 describe(`random.uniform()`, () =>
 {
-	const d = r.dfUniform();
+	const d = dfUniformFloat(r);
 
 	const delta = 0.05;
 
@@ -73,7 +91,7 @@ describe(`random.uniform()`, () =>
 describe(`random.uniform(max)`, () =>
 {
 	const input_max = 42;
-	const d = r.dfUniform(input_max);
+	const d = dfUniformFloat(r, input_max);
 
 	const delta = 0.5;
 
@@ -120,7 +138,7 @@ describe(`random.uniform(min, max)`, () =>
 {
 	const input_min = 10;
 	const input_max = 42;
-	const d = r.dfUniform(input_min, input_max);
+	const d = dfUniformFloat(r, input_min, input_max);
 
 	const delta = 0.5;
 

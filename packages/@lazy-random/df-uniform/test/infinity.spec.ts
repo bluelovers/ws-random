@@ -1,10 +1,9 @@
-import { _MathRandom } from '@lazy-random/original-math-random';
-import { simpleWrap } from '@lazy-random/simple-wrap';
 import { dfUniformFloat } from '../src/index';
+import { newRngMathRandom } from '@lazy-random/util-test';
 
 describe(`Infinity`, () =>
 {
-	let rng = simpleWrap(_MathRandom);
+	let rng = newRngMathRandom();
 
 	test(`dfUniformFloat:max=Infinity`, () =>
 	{
