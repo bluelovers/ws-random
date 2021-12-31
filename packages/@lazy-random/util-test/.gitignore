@@ -121,6 +121,12 @@ bin/**/*.d.cts
 /packages/*/tests/*.d.cts
 /packages/*/tests/temp*
 
+/src/**/*.d.ts
+/src/**/*.js
+/src/**/*.d.cts
+/src/**/*.d.mts
+/src/**/*.cjs
+/src/**/*.mjs
 
 **/node_modules
 *.tgz
@@ -192,8 +198,8 @@ jest.config.js.map
 !npm-shrinkwrap.json
 *.stat
 .vercel
-/test/tsconfig.json
-/tsconfig.json.tpl
+/test/*.tpl
+/*.tpl
 /report.json
 
 .opt-in

@@ -1,8 +1,9 @@
-import random from '../..'
+import { newRngSeedRandom } from '@lazy-random/util-test';
+import { dfArrayFill } from '../src/index';
 
-describe(`byte`, () =>
+describe(`dfArrayFill`, () =>
 {
-	const fn = random.dfArrayFill();
+	const fn = dfArrayFill(newRngSeedRandom());
 
 	const tests = [
 		['Array', new Array(10)],
@@ -17,6 +18,7 @@ describe(`byte`, () =>
 			let ret = fn(arr[1]);
 
 			expect(ret).toHaveLength(10);
+			expect(ret).toMatchSnapshot()
 		});
 	});
 });

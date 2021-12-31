@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`dfArrayFill Array 1`] = `
+Array [
+  241,
+  236,
+  111,
+  63,
+  1,
+  106,
+  184,
+  72,
+  141,
+  19,
+]
+`;
+
+exports[`dfArrayFill Buffer 1`] = `
+Object {
+  "data": Array [
+    239,
+    252,
+    20,
+    187,
+    246,
+    119,
+    163,
+    7,
+    172,
+    97,
+  ],
+  "type": "Buffer",
+}
+`;
+
+exports[`dfArrayFill Uint8Array 1`] = `
+Uint8Array [
+  238,
+  80,
+  56,
+  164,
+  182,
+  235,
+  19,
+  3,
+  187,
+  246,
+]
+`;

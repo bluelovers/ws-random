@@ -2,8 +2,9 @@
  * Created by user on 2018/11/16/016.
  */
 
-import random from '../../src'
 import expectInDelta from 'num-in-delta';
+import { dfItemByWeight } from '../src/index';
+import { newRngMathRandom, newRngSeedRandom } from '@lazy-random/util-test';
 
 describe(`ItemByWeight`, () =>
 {
@@ -15,11 +16,11 @@ describe(`ItemByWeight`, () =>
 	 */
 	it('returns random weighted item by index', () =>
 	{
-		let rnd = random.clone()
+		let rnd = newRngMathRandom()
 		const array = ['a', 'b', 'c', 'd']
 		const getWeight = (value, index) => +index + 1
 
-		const fn = rnd.dfItemByWeight(array, { getWeight })
+		const fn = dfItemByWeight(rnd, array, { getWeight })
 
 		/*
 	{ sum: 10,
@@ -65,10 +66,10 @@ describe(`ItemByWeight`, () =>
 
 	it('returns random weighted item by value', () =>
 	{
-		let rnd = random.clone()
+		let rnd = newRngMathRandom()
 		const array = [3, 7, 1, 4, 2]
 
-		const fn = rnd.dfItemByWeight(array)
+		const fn = dfItemByWeight(rnd, array)
 
 		/*
 	{ sum: 17,
@@ -120,7 +121,7 @@ describe(`ItemByWeight`, () =>
 
 	it('returns random weighted item by prop.w', () =>
 	{
-		let rnd = random.clone()
+		let rnd = newRngMathRandom()
 		const obj = {
 			a: {
 				w: 1,
@@ -137,7 +138,7 @@ describe(`ItemByWeight`, () =>
 		}
 		const getWeight = (value, index) => value.w
 
-		const fn = rnd.dfItemByWeight(obj, { getWeight })
+		const fn = dfItemByWeight(rnd, obj, { getWeight })
 
 		/*
 	{ sum: 10,
@@ -193,7 +194,7 @@ describe(`ItemByWeight`, () =>
 
 	it('allow has same weight', () =>
 	{
-		let rnd = random.clone()
+		let rnd = newRngMathRandom()
 		const obj = {
 			a: {
 				w: 5,
@@ -207,11 +208,13 @@ describe(`ItemByWeight`, () =>
 		}
 		const getWeight = (value, index) => value.w
 
-		const fn = rnd.dfItemByWeight(obj, { getWeight })
+		const fn = dfItemByWeight(rnd, obj, { getWeight })
+
+		let rnd2 = newRngMathRandom()
 
 		rnd.next = () =>
 		{
-			return random.float(0.1, 1)
+			return rnd2.float(0.1, 1)
 		}
 
 		let cache = {}
@@ -235,10 +238,10 @@ describe(`ItemByWeight`, () =>
 
 	it('random weighted item in expect percentage +/- 0.05', () =>
 	{
-		let rnd = random.clone()
+		let rnd = newRngMathRandom()
 		const arr = [1, 3, 2, 4, 1, 1, 4, 3, 2]
 
-		const fn = rnd.dfItemByWeight(arr, {
+		const fn = dfItemByWeight(rnd, arr, {
 			getWeight: null,
 			shuffle: true,
 			disableSort: true,
@@ -289,10 +292,10 @@ describe(`ItemByWeight`, () =>
 
 	it('[seedrandom] random weighted item in expect percentage +/- 0.05', () =>
 	{
-		let rnd = random.newUse('seedrandom')
+		let rnd = newRngSeedRandom()
 		const arr = [1, 3, 2, 4, 1, 1, 4, 3, 2]
 
-		const fn = rnd.dfItemByWeight(arr, {
+		const fn = dfItemByWeight(rnd, arr, {
 			getWeight: null,
 			shuffle: true,
 			disableSort: true,
