@@ -4,10 +4,11 @@
 
 import { SUM_DELTA } from '@lazy-random/shared-lib';
 import { fixZero } from 'num-is-zero';
-import random from '../../'
-import checkTypesMatchers from '../jest/type';
+import checkTypesMatchers from 'random-extra/test/jest/type';
 import { toFixedNumber } from '@lazy-num/to-fixed-number';
 import { num_array_sum } from '@lazy-num/sum';
+import { newRngSeedRandom } from '@lazy-random/util-test';
+import { dfRandSumInt, dfRandSumFloat } from '../src/index';
 
 expect.extend({
 	toBeCloseToWithDelta: checkTypesMatchers.toBeCloseToWithDelta,
@@ -15,10 +16,11 @@ expect.extend({
 
 const delta = SUM_DELTA;
 
+const rnd = newRngSeedRandom();
+
 // @ts-ignore
 describe(`random integer number list by expected sum`, () =>
 {
-
 	_createTest(3, 6);
 	_createTest(3, 21);
 	_createTest(3, -21);
@@ -38,7 +40,7 @@ describe(`random integer number list by expected sum`, () =>
 			`dfSumInt(${size}, ${sum}, ${min}, ${max}) => ${typeof expected_sum === 'number' ? expected_sum : 'unknow'}`,
 			() =>
 			{
-				const d = random.dfSumInt(size, sum, min, max);
+				const d = dfRandSumInt(rnd, size, sum, min, max);
 
 				let cache = {} as {
 					[k: string]: number[],
@@ -73,7 +75,8 @@ describe(`random integer number list by expected sum`, () =>
 
 						if (check_range)
 						{
-							v.forEach(n => {
+							v.forEach(n =>
+							{
 								expect(n).toBeGreaterThanOrEqual(min)
 								expect(n).toBeLessThanOrEqual(max)
 							})
@@ -112,7 +115,7 @@ describe(`random float number list by expected sum`, () =>
 			`dfSumFloat(${size}, ${sum}, ${min}, ${max}) => ${typeof expected_sum === 'number' ? expected_sum : 'unknow'}`,
 			() =>
 			{
-				const d = random.dfSumFloat(size, sum, min, max);
+				const d = dfRandSumFloat(rnd, size, sum, min, max);
 
 				let cache = {} as {
 					[k: string]: number[],
@@ -147,7 +150,8 @@ describe(`random float number list by expected sum`, () =>
 
 						if (check_range)
 						{
-							v.forEach(n => {
+							v.forEach(n =>
+							{
 								expect(n).toBeGreaterThanOrEqual(min)
 								expect(n).toBeLessThanOrEqual(max)
 							})
@@ -189,7 +193,7 @@ describe(`fractionDigits`, () =>
 				: 'unknow'}`,
 			() =>
 			{
-				const d = random.dfSumFloat(size, sum, min, max, fractionDigits);
+				const d = dfRandSumFloat(rnd, size, sum, min, max, fractionDigits);
 
 				let cache = {} as {
 					[k: string]: number[],
@@ -229,7 +233,8 @@ describe(`fractionDigits`, () =>
 
 						if (check_range)
 						{
-							v.forEach(n => {
+							v.forEach(n =>
+							{
 								expect(n).toBeGreaterThanOrEqual(min)
 								expect(n).toBeLessThanOrEqual(max)
 							})
