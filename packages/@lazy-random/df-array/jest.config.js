@@ -70,7 +70,7 @@ module.exports = {
 	//testRunner: 'jest-circus/runner',
 	setupFilesAfterEnv: [
 		//"jest-chain",
-		//"jest-extended",
+		"jest-extended/all",
 		//"jest-extended-extra",
 		//"jest-num-close-with",
 	],

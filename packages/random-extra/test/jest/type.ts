@@ -1,3 +1,4 @@
+/// <reference types="jest-extended" />
 import {
 	matcherHint,
 	printExpected,

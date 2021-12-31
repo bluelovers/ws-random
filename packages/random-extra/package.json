@@ -81,9 +81,9 @@
     "test": "jest --maxConcurrency=1 --maxWorkers=1",
     "posttest": "git commit -m \"build: update seed\" ./src/util/random-seed-str.data.* & echo posttest",
     "build_": "yarn run build:index",
-    "build:tsc": "tsc",
     "build:index": "ts-node ./test/script/build-cache.ts",
     "build-minify": "npx -r fast-glob -r fs-extra -r uglify-es -r ts-node ts-node ./test/script/minify",
+    "build:tsc": "tsc",
     "postbuild": "ynpx build-ts-file -- ../@lazy-random/seed-data/src/random-seed-str.data.ts && git add ./src/util/random-seed-str.data.ts ./src/util/random-seed-str.data.js",
     "preversion": "yarn run test",
     "version": "echo version",
@@ -107,9 +107,7 @@
     "@lazy-random/rng-factory": "^1.0.5",
     "ts-type": "^2.1.2"
   },
-  "devDependencies": {
-    "num-in-delta": "^1.0.7"
-  },
+  "devDependencies": {},
   "gitHead": "e61d528c84bd3340a59f288f65d20bfb2906c905",
   "packageManager": "yarn@^1.22.11"
 }

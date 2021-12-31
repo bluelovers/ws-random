@@ -37,13 +37,11 @@
     "probability",
     "pseudorandom",
     "rand",
-    "random",
     "random-extra",
     "random-sum",
     "randomSum",
     "randomize",
     "randomnumbers",
-    "rng",
     "seed",
     "seedrandom",
     "select",
@@ -80,7 +78,8 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.esm.mjs",
       "require": "./dist/index.cjs"
-    }
+    },
+    "./package.json": "./package.json"
   },
   "main": "dist/index.cjs",
   "module": "dist/index.esm.mjs",
