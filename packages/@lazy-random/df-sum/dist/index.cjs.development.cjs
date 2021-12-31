@@ -40,7 +40,7 @@ function coreFnRandSumInt(argv) {
 
   const prob = utilProbabilities.get_prob(size, maxv);
   expect.expect(prob).array.lengthOf(size);
-  const rmultinomFn = libRMath_js.Multinomial(fakeLibRMathRng.fakeLibRMathRng(random.next)).rmultinom;
+  const rmultinomFn = libRMath_js.Multinomial(fakeLibRMathRng.fakeLibRMathRng(() => random.next())).rmultinom;
   const n_len = argv.limit || 5 || n_sum;
   let n_diff = min;
 

@@ -115,7 +115,7 @@ export function coreFnRandSumInt(argv: ISumNumParameterWuthCache)
 	/**
 	 * make rmultinom use with random.next
 	 */
-	const rmultinomFn = Multinomial(fakeLibRMathRng(random.next)).rmultinom;
+	const rmultinomFn = Multinomial(fakeLibRMathRng(() => random.next())).rmultinom;
 
 	/**
 	 * low value for speed up, but more chance fail

@@ -36,7 +36,7 @@ function coreFnRandSumInt(argv) {
 
   const prob = get_prob(size, maxv);
   expect(prob).array.lengthOf(size);
-  const rmultinomFn = Multinomial(fakeLibRMathRng(random.next)).rmultinom;
+  const rmultinomFn = Multinomial(fakeLibRMathRng(() => random.next())).rmultinom;
   const n_len = argv.limit || 5 || n_sum;
   let n_diff = min;
 
