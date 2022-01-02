@@ -131,7 +131,8 @@
     "@types/fs-extra": "^9.0.13",
     "@types/jest": "^27.4.0",
     "@types/nanoid": "^2.1.0",
-    "@types/node": "*"
+    "@types/node": "*",
+    "reliable-random": "^0.0.1"
   },
   "peerDependencies": {
     "@bluelovers/conventional-changelog-bluelovers": "*",

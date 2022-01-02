@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test seedFloatByNow 1`] = `1641151990252.7175`;
+
+exports[`test seedStringByNow 1`] = `"1641151990258.36572265625"`;

@@ -35,7 +35,7 @@ bin/**/*.d.ts
 **/node_modules
 *.tgz
 /tsconfig.json.tpl
-/.eslintrc.json.tpl
+/.eslintrc.json
 !tsconfig.json
 !.eslintrc.json
 yarn-error.log

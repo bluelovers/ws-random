@@ -1,56 +1,52 @@
-
 import { RNGFunction } from '@lazy-random/generators-function';
 import seedrandom from 'seedrandom';
 
-export import RNGSeedRandomOptions = seedrandom.seedRandomOptions;
-
 import { PickValueOf } from '@lazy-random/shared-lib';
 import { cloneClass } from '@lazy-random/clone-class';
+export import RNGSeedRandomOptions = seedrandom.seedRandomOptions;
 
 export const defaultOptions: RNGSeedRandomOptions = Object.freeze({
-	entropy: true
+	entropy: true,
 });
 
-export type IRNGSeedRandomLibName = 'alea' | 'tychei' | 'xor128' | 'xor4096' | 'xorshift7' | 'xorwow'
-export type IRNGSeedRandomLib = IRNGSeedRandomLibName | string
-export type IRNGSeedRandomLibValueOf = PickValueOf<typeof seedrandom, IRNGSeedRandomLibName>
+export type IRNGSeedRandomLibName = 'alea' | 'tychei' | 'xor128' | 'xor4096' | 'xorshift7' | 'xorwow';
+export type IRNGSeedRandomLib = IRNGSeedRandomLibName | string;
+export type IRNGSeedRandomLibValueOf = PickValueOf<typeof seedrandom, IRNGSeedRandomLibName>;
 
 export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 {
-	protected _opts: RNGSeedRandomOptions
-	protected _seedrandom: IRNGSeedRandomGenerator
+	protected _opts: RNGSeedRandomOptions;
+	protected _seedrandom: IRNGSeedRandomGenerator;
 
-	protected override _seedable: boolean = true
+	protected override _seedable = true;
 
-	constructor(seed?, opts?: RNGSeedRandomOptions, lib?: IRNGSeedRandomLib, ...argv)
+	constructor(seed?, opts?: RNGSeedRandomOptions, lib?: IRNGSeedRandomLib, ...argv);
 	constructor(seed?, opts?: RNGSeedRandomOptions, ...argv)
 	{
-		super(seed, opts, ...argv)
+		super(seed, opts, ...argv);
 	}
 
-	public static createLib(lib?: IRNGSeedRandomLib, seed?, opts?: RNGSeedRandomOptions, ...argv): RNGSeedRandom
+	public static createLib(lib?: IRNGSeedRandomLib, seed?, opts?: RNGSeedRandomOptions, ...argv): RNGSeedRandom;
 	public static createLib(...argv)
 	{
-		return new this(argv[1], argv[2], argv[0], ...argv.slice(3))
+		return new this(argv[1], argv[2], argv[0], ...argv.slice(3));
 	}
 
-	public static override create(seed?, opts?: RNGSeedRandomOptions, lib?: IRNGSeedRandomLib, ...argv): RNGSeedRandom
+	public static override create(seed?, opts?: RNGSeedRandomOptions, lib?: IRNGSeedRandomLib, ...argv): RNGSeedRandom;
 	public static override create(...argv)
 	{
-		return new this(...argv)
+		return new this(...argv);
 	}
 
-	protected override _init_check(seed?, opts?, ...argv)
-	{
-
-	}
+// eslint-disable-next-line no-empty-function,@typescript-eslint/no-empty-function
+	protected override _init_check(seed?, opts?, ...argv) {}
 
 	protected override _init(seed?, opts?, ...argv)
 	{
-		this._opts = this._opts || Object.assign({}, defaultOptions)
-		this._seedrandom = this.__generator(...argv)
+		this._opts = this._opts || Object.assign({}, defaultOptions);
+		this._seedrandom = this.__generator(...argv);
 
-		super._init(seed, opts, ...argv)
+		super._init(seed, opts, ...argv);
 	}
 
 	protected readonly _NAME = 'seedrandom';
@@ -58,7 +54,7 @@ export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 
 	override get name()
 	{
-		return `${this._NAME}${this._TYPE ? ':' + this._TYPE : ''}`
+		return `${this._NAME}${this._TYPE ? ':' + this._TYPE : ''}`;
 	}
 
 	protected __generator(fn?: typeof seedrandom | IRNGSeedRandomLib | IRNGSeedRandomLibValueOf): IRNGSeedRandomGenerator
@@ -78,36 +74,36 @@ export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 					fn = seedrandom[fn];
 					//fn = require(`seedrandom/lib/${fn}`)
 
-					this._TYPE = fn
+					this._TYPE = fn;
 
 					break;
 				default:
-					if (fn.indexOf('..') === -1 && /^[a-z\-\.]+$/i.test(fn))
+					if (!fn.includes('..') && /^[a-z\-\.]+$/i.test(fn))
 					{
-						this._TYPE = fn
+						this._TYPE = fn;
 
-						fn = require(`seedrandom/lib/${fn}`)
-						break
+						fn = require(`seedrandom/lib/${fn}`);
+						break;
 					}
 					else
 					{
-						throw new RangeError(`unknow seedrandom lib name: ${fn}`)
+						throw new RangeError(`unknow seedrandom lib name: ${fn}`);
 					}
 			}
 		}
 		else if (fn)
 		{
 			// @ts-ignore
-			this._TYPE = fn.name
+			this._TYPE = fn.name;
 		}
 		else
 		{
-			this._TYPE = null
+			this._TYPE = null;
 		}
 
 		fn = fn || seedrandom;
 
-		return fn as IRNGSeedRandomGenerator
+		return fn as IRNGSeedRandomGenerator;
 
 		/*
 		return (seed?, opts?: RNGSeedRandomOptions, ...argv) => {
@@ -119,20 +115,22 @@ export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 
 	override get options()
 	{
-		return this._opts
+		return this._opts;
 	}
 
 	/**
 	 * only when option.state = true
 	 */
+	// eslint-disable-next-line consistent-return,getter-return
 	public get state(): IRNGSeedRandomState
 	{
-		let fn = this._rng.state
+		// eslint-disable-next-line @typescript-eslint/unbound-method
+		const fn = this._rng.state;
 
 		if (typeof fn === 'function')
 		{
 			// @ts-ignore
-			return fn()
+			return fn();
 		}
 	}
 
@@ -143,20 +141,20 @@ export class RNGSeedRandom extends RNGFunction<seedrandom.prng>
 	{
 		if (opts === null)
 		{
-			this._opts = undefined
+			this._opts = void 0;
 		}
 		else
 		{
 			this._opts = opts || this._opts;
 		}
 
-		this._rng = this._seedrandom(this._seedAuto(seed), this._opts, ...argv)
+		this._rng = this._seedrandom(this._seedAuto(seed), this._opts, ...argv);
 	}
 
 	// @ts-ignore
 	clone(seed?, opts?: RNGSeedRandomOptions, ...argv): RNGSeedRandom
 	{
-		return cloneClass(RNGSeedRandom, this, seed, opts, ...argv)
+		return cloneClass(RNGSeedRandom, this, seed, opts, ...argv);
 	}
 
 }
@@ -173,6 +171,4 @@ export interface IRNGSeedRandomGenerator
 	(seed?: any, opts?: seedrandom.seedRandomOptions, ...argv: any[]): seedrandom.prng
 }
 
-export default RNGSeedRandom
-
-
+export default RNGSeedRandom;

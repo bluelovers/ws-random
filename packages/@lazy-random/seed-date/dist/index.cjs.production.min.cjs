@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=require("@lazy-random/original-math-random"),t=require("@lazy-num/float-to-string");function r(t){return t.valueOf()+e._MathRandom()}exports.seedFloatByDate=r,exports.seedFloatByNow=function(){return r(new Date)},exports.seedStringByDate=function(e){return t.floatToString(r(e))},exports.seedStringByNow=function(){return t.floatToString(r(new Date))};
+//# sourceMappingURL=index.cjs.production.min.cjs.map

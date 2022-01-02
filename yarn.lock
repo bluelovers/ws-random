@@ -2974,6 +2974,11 @@ regexp-support@^1.0.43:
     sort-object-keys2 "^2.0.3"
     tslib "^2.3.1"
 
+reliable-random@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.npmjs.org/reliable-random/-/reliable-random-0.0.1.tgz#d74654d8281ca3d7fb3bad1a9f81b82c3e6798bb"
+  integrity sha512-xIGavEfnUNhy0PynyoqaWSkPBvDQf1NzVdXWXWYqeMH4Xx+887kuHSkoJm6uR/79XA0T5hkjv4H6GRTSNHih7A==
+
 require-directory@^2.1.1:
   version "2.1.1"
   resolved "https://registry.npmjs.org/require-directory/-/require-directory-2.1.1.tgz#8c64ad5fd30dab1c976e2344ffe7f792a6a6df42"

@@ -6,19 +6,17 @@ export function seedToken(seed?: number | any, opts?: any, ...argv: any[]): numb
 
 	if (isFiniteInt(seed))
 	{
-		return seed
+		return seed;
 	}
-	else
+
+	const strSeed = String(seed);
+	let s = 0;
+	const len = strSeed.length;
+
+	for (let k = 0; k < len; ++k)
 	{
-		let strSeed = '' + seed
-		let s = 0
-		let len = strSeed.length
-
-		for (let k = 0; k < len; ++k)
-		{
-			s ^= strSeed.charCodeAt(k) | 0
-		}
-
-		return s
+		s ^= strSeed.charCodeAt(k) | 0;
 	}
+
+	return s;
 }
