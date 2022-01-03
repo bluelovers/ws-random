@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.7](https://github.com/bluelovers/ws-random/compare/@lazy-random/generators-function@1.0.6...@lazy-random/generators-function@1.0.7) (2022-01-03)
+
+
+### 🔖　Miscellaneous
+
+* . ([e58253c](https://github.com/bluelovers/ws-random/commit/e58253c60984cc3947069ea4ae2eb1924cd2940e))
+
+
+
+
+
 ## [1.0.6](https://github.com/bluelovers/ws-random/compare/@lazy-random/generators-function@1.0.4...@lazy-random/generators-function@1.0.6) (2021-12-20)
 
 

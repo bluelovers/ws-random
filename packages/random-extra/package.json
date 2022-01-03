@@ -1,6 +1,6 @@
 {
   "name": "random-extra",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "Seedable random number generator supporting many common distributions.",
   "keywords": [
     "alea",
@@ -102,12 +102,11 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/clone-class": "^1.0.6",
-    "@lazy-random/random-core": "^1.0.2",
-    "@lazy-random/rng-factory": "^1.0.5",
+    "@lazy-random/clone-class": "^1.0.8",
+    "@lazy-random/random-core": "^1.0.3",
+    "@lazy-random/rng-factory": "^1.0.6",
     "ts-type": "^2.1.2"
   },
-  "devDependencies": {},
   "peerDependencies": {
     "seedrandom": "*"
   },

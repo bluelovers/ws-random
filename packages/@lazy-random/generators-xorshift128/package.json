@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/generators-xorshift128",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "wrap xorshift128+ to random number generator",
   "keywords": [
     "random",
@@ -111,7 +111,7 @@
   },
   "dependencies": {
     "@bluelovers/xorshift": "^1.2.1",
-    "@lazy-random/rng-abstract": "^1.0.8",
+    "@lazy-random/rng-abstract": "^1.0.9",
     "tslib": "^2.3.1"
   },
   "publishConfig": {

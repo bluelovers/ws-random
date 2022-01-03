@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/generators-seedrandom",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "",
   "keywords": [
     "alea",
@@ -107,9 +107,9 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/clone-class": "^1.0.6",
-    "@lazy-random/generators-function": "^1.0.6",
-    "@lazy-random/shared-lib": "^1.0.10",
+    "@lazy-random/clone-class": "^1.0.8",
+    "@lazy-random/generators-function": "^1.0.7",
+    "@lazy-random/shared-lib": "^1.0.12",
     "seedrandom": "^3.0.5",
     "tslib": "^2.3.1"
   },

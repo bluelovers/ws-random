@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.9](https://github.com/bluelovers/ws-random/compare/@lazy-random/seed-token@1.0.8...@lazy-random/seed-token@1.0.9) (2022-01-03)
+
+
+### ✨　Features
+
+* add many algorithm for seed and float ([9657c0f](https://github.com/bluelovers/ws-random/commit/9657c0f307e41178ac2402c9bf088761c3ca7ed8))
+
+
+### 🔖　Miscellaneous
+
+* . ([e58253c](https://github.com/bluelovers/ws-random/commit/e58253c60984cc3947069ea4ae2eb1924cd2940e))
+
+
+
+
+
 ## [1.0.8](https://github.com/bluelovers/ws-random/compare/@lazy-random/seed-token@1.0.4...@lazy-random/seed-token@1.0.8) (2021-12-20)
 
 

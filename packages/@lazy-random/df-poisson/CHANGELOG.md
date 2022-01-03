@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.9](https://github.com/bluelovers/ws-random/compare/@lazy-random/df-poisson@1.0.8...@lazy-random/df-poisson@1.0.9) (2022-01-03)
+
+
+### 📦　Code Refactoring
+
+* **test:** move test ([44c7ef0](https://github.com/bluelovers/ws-random/commit/44c7ef0062e7e91101f7a0596053548baab9e7a0))
+
+
+
+
+
 ## [1.0.8](https://github.com/bluelovers/ws-random/compare/@lazy-random/df-poisson@1.0.4...@lazy-random/df-poisson@1.0.8) (2021-12-20)
 
 

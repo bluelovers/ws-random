@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.3](https://github.com/bluelovers/ws-random/compare/random-extra@4.0.2...random-extra@4.0.3) (2022-01-03)
+
+
+### 🐛　Bug Fixes
+
+* `this` is undefined , default size of `dfUniformBytes` ([da7dae8](https://github.com/bluelovers/ws-random/commit/da7dae84f2f2ed4451effa215ab97f9cbc6ae769))
+
+
+### ✨　Features
+
+* add many algorithm for seed and float ([9657c0f](https://github.com/bluelovers/ws-random/commit/9657c0f307e41178ac2402c9bf088761c3ca7ed8))
+
+
+### 📦　Code Refactoring
+
+* **test:** move test ([44c7ef0](https://github.com/bluelovers/ws-random/commit/44c7ef0062e7e91101f7a0596053548baab9e7a0))
+
+
+### 🚨　Tests
+
+* update test ([f69e109](https://github.com/bluelovers/ws-random/commit/f69e10985662068e3490be710610efc027cbc5e9))
+
+
+### 🔖　Miscellaneous
+
+* . ([e58253c](https://github.com/bluelovers/ws-random/commit/e58253c60984cc3947069ea4ae2eb1924cd2940e))
+
+
+
+
+
 ## [4.0.2](https://github.com/bluelovers/ws-random/compare/random-extra@4.0.1...random-extra@4.0.2) (2021-12-21)
 
 

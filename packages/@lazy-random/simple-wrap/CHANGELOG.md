@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.7](https://github.com/bluelovers/ws-random/compare/@lazy-random/simple-wrap@1.0.5...@lazy-random/simple-wrap@1.0.7) (2022-01-03)
+
+
+### 🔖　Miscellaneous
+
+* . ([3fdb98e](https://github.com/bluelovers/ws-random/commit/3fdb98ebbc24a4e5d33d0ffbc5bbd3e2344d9120))
+* . ([e58253c](https://github.com/bluelovers/ws-random/commit/e58253c60984cc3947069ea4ae2eb1924cd2940e))
+
+
+
+
+
 ## [1.0.6](https://github.com/bluelovers/ws-random/compare/@lazy-random/simple-wrap@1.0.5...@lazy-random/simple-wrap@1.0.6) (2022-01-02)
 
 

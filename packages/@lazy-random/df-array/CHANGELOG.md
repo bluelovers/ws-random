@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.6](https://github.com/bluelovers/ws-random/compare/@lazy-random/df-array@1.0.5...@lazy-random/df-array@1.0.6) (2022-01-03)
+
+
+### 📦　Code Refactoring
+
+* **test:** move test ([44c7ef0](https://github.com/bluelovers/ws-random/commit/44c7ef0062e7e91101f7a0596053548baab9e7a0))
+
+
+### 🔖　Miscellaneous
+
+* . ([e58253c](https://github.com/bluelovers/ws-random/commit/e58253c60984cc3947069ea4ae2eb1924cd2940e))
+
+
+
+
+
 ## [1.0.5](https://github.com/bluelovers/ws-random/compare/@lazy-random/df-array@1.0.3...@lazy-random/df-array@1.0.5) (2021-12-20)
 
 

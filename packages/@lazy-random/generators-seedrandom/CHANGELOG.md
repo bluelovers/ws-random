@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.6](https://github.com/bluelovers/ws-random/compare/@lazy-random/generators-seedrandom@1.0.5...@lazy-random/generators-seedrandom@1.0.6) (2022-01-03)
+
+
+### ✨　Features
+
+* add many algorithm for seed and float ([9657c0f](https://github.com/bluelovers/ws-random/commit/9657c0f307e41178ac2402c9bf088761c3ca7ed8))
+
+
+### 🔖　Miscellaneous
+
+* . ([e58253c](https://github.com/bluelovers/ws-random/commit/e58253c60984cc3947069ea4ae2eb1924cd2940e))
+
+
+
+
+
 ## [1.0.5](https://github.com/bluelovers/ws-random/compare/@lazy-random/generators-seedrandom@1.0.3...@lazy-random/generators-seedrandom@1.0.5) (2021-12-20)
 
 

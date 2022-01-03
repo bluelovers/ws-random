@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/generators-function",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "",
   "keywords": [
     "create-by-yarn-tool",
@@ -53,9 +53,9 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/clone-class": "^1.0.6",
-    "@lazy-random/expect": "^1.0.10",
-    "@lazy-random/rng-abstract": "^1.0.8",
+    "@lazy-random/clone-class": "^1.0.8",
+    "@lazy-random/expect": "^1.0.12",
+    "@lazy-random/rng-abstract": "^1.0.9",
     "tslib": "^2.3.1"
   },
   "publishConfig": {

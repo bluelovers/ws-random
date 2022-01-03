@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.10](https://github.com/bluelovers/ws-random/compare/@lazy-random/df-sum@1.0.8...@lazy-random/df-sum@1.0.10) (2022-01-03)
+
+
+### 🐛　Bug Fixes
+
+* `this` is undefined ([7c4593f](https://github.com/bluelovers/ws-random/commit/7c4593f03fc10ffbf5d439439c310e4e5872ee7b))
+
+
+### 🚨　Tests
+
+* update test ([f69e109](https://github.com/bluelovers/ws-random/commit/f69e10985662068e3490be710610efc027cbc5e9))
+
+
+### 🔖　Miscellaneous
+
+* . ([3fdb98e](https://github.com/bluelovers/ws-random/commit/3fdb98ebbc24a4e5d33d0ffbc5bbd3e2344d9120))
+
+
+
+
+
 ## [1.0.9](https://github.com/bluelovers/ws-random/compare/@lazy-random/df-sum@1.0.8...@lazy-random/df-sum@1.0.9) (2022-01-02)
 
 
