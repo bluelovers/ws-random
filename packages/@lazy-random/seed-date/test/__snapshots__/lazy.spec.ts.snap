@@ -1,5 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test seedFloatByNow 1`] = `1641151990252.7175`;
+exports[`test seedFloatByDate 1`] = `1577836800000.111`;
 
-exports[`test seedStringByNow 1`] = `"1641151990258.36572265625"`;
+exports[`test seedStringByDate 1`] = `"1577836800000.111083984375"`;
