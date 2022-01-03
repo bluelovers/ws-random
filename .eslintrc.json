@@ -3,5 +3,7 @@
     "bluelovers"
   ],
   "rules": {
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-useless-constructor": "off"
   }
 }

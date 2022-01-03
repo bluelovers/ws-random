@@ -1,50 +1,13 @@
 import { randomSeedStr, seedToken, hashAny } from '@lazy-random/seed-token';
+import { RNGCore } from '@lazy-random/rng-abstract-core';
 
-class RNG {
-  constructor(seed, opts, ...argv) {}
-
-  _init_check(seed, opts, ...argv) {}
-
-  _init(seed, opts, ...argv) {
-    this._init_check(seed, opts, ...argv);
-  }
-
+class RNG extends RNGCore {
   static create(seed, opts, ...argv) {
-    if (this === RNG || !this) {
+    if (this === RNG || this === RNGCore || !this) {
       throw new ReferenceError('RNG is abstract class');
     }
 
     return new this(seed, opts, ...argv);
-  }
-
-  get name() {
-    throw new Error('RNG.name must be overridden');
-  }
-
-  get options() {
-    return null;
-  }
-
-  get seedable() {
-    return null;
-  }
-
-  next() {
-    throw new ReferenceError('RNG.next must be overridden');
-  }
-
-  seed(seed, opts, ...argv) {}
-
-  clone(seed, opts, ...argv) {
-    throw new ReferenceError('RNG.clone must be overridden');
-  }
-
-  _seedAuto(seed, opts, ...argv) {
-    if (seed && typeof seed === 'number') {
-      return this._seedNum(seed, opts, ...argv);
-    }
-
-    return this._seedStr(seed, opts, ...argv);
   }
 
   _seedNum(seed, opts, ...argv) {
