@@ -76,7 +76,7 @@ class RNGSeedRandom extends generatorsFunction.RNGFunction {
           break;
 
         default:
-          if (fn.indexOf('..') === -1 && /^[a-z\-\.]+$/i.test(fn)) {
+          if (!fn.includes('..') && /^[a-z\-\.]+$/i.test(fn)) {
             this._TYPE = fn;
             fn = require(`seedrandom/lib/${fn}`);
             break;
@@ -100,7 +100,7 @@ class RNGSeedRandom extends generatorsFunction.RNGFunction {
   }
 
   get state() {
-    let fn = this._rng.state;
+    const fn = this._rng.state;
 
     if (typeof fn === 'function') {
       return fn();
@@ -109,7 +109,7 @@ class RNGSeedRandom extends generatorsFunction.RNGFunction {
 
   seed(seed, opts, ...argv) {
     if (opts === null) {
-      this._opts = undefined;
+      this._opts = void 0;
     } else {
       this._opts = opts || this._opts;
     }

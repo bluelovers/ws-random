@@ -49,17 +49,17 @@ function randomSeedNum() {
 function seedToken(seed, opts, ...argv) {
   if (checkBasic.isFiniteInt(seed)) {
     return seed;
-  } else {
-    let strSeed = '' + seed;
-    let s = 0;
-    let len = strSeed.length;
-
-    for (let k = 0; k < len; ++k) {
-      s ^= strSeed.charCodeAt(k) | 0;
-    }
-
-    return s;
   }
+
+  const strSeed = String(seed);
+  let s = 0;
+  const len = strSeed.length;
+
+  for (let k = 0; k < len; ++k) {
+    s ^= strSeed.charCodeAt(k) | 0;
+  }
+
+  return s;
 }
 
 exports["default"] = seedToken;

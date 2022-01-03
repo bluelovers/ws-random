@@ -1,6 +1,7 @@
-export declare function seedFloatByDate(date: Date): number;
-export declare function seedFloatByNow(): number;
-export declare function seedStringByDate(date: Date): string;
-export declare function seedStringByNow(): string;
+export declare type IFnRandomFloat = () => number;
+export declare function seedFloatByDate(date: Date, fnRandomFloat: IFnRandomFloat): number;
+export declare function seedFloatByNow(fnRandomFloat?: IFnRandomFloat): number;
+export declare function seedStringByDate(date: Date, fnRandomFloat?: IFnRandomFloat): string;
+export declare function seedStringByNow(fnRandomFloat?: IFnRandomFloat): string;
 
 export {};
