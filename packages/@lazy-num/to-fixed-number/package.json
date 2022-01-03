@@ -1,6 +1,6 @@
 {
   "name": "@lazy-num/to-fixed-number",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "number using fixed-point notation",
   "keywords": [
     "create-by-yarn-tool",
