@@ -36,8 +36,11 @@
     "test:mocha": "ynpx --quiet -p ts-node -p mocha mocha -- --require ts-node/register \"!(node_modules)/**/*.{test,spec}.{ts,tsx}\"",
     "test:tsdx": "ynpx @bluelovers/tsdx test --passWithNoTests",
     "posttest": "yarn run build",
-    "build": "yarn run build:tsdx && yarn run build:dts",
-    "build:dts": "copy .\\src\\index.d.ts .\\dist\\index.d.ts & echo build:dts",
+    "build": "yarn run build:tsdx && yarn run build:dts:tsc && yarn run build:dts:copy",
+    "build:dts": "ynpx dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts --no-banner & echo build:dts",
+    "build:dts:copy": "copy .\\src\\index.d.ts .\\dist\\index.d.ts & echo build:dts",
+    "build:dts:tsc": "tsc --emitDeclarationOnly --declaration --noEmit false",
+    "build:microbundle": "ynpx microbundle --target node",
     "build:tsdx": "ynpx @bluelovers/tsdx build --target node --name index",
     "preversion": "echo preversion && yarn run test",
     "version": "echo version",
@@ -55,7 +58,7 @@
   "dependencies": {
     "@lazy-random/clone-class": "^1.0.8",
     "@lazy-random/original-math-random": "^1.0.7",
-    "@lazy-random/rng-abstract": "^1.0.9",
+    "@lazy-random/rng-abstract-core": "^1.0.0",
     "tslib": "^2.3.1"
   },
   "publishConfig": {

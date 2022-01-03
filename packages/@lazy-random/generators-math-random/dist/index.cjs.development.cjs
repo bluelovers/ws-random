@@ -3,10 +3,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var cloneClass = require('@lazy-random/clone-class');
-var rngAbstract = require('@lazy-random/rng-abstract');
 var originalMathRandom = require('@lazy-random/original-math-random');
+var rngAbstractCore = require('@lazy-random/rng-abstract-core');
 
-class RNGMathRandom extends rngAbstract.RNG {
+class RNGMathRandom extends rngAbstractCore.RNGCore {
   get name() {
     return 'math-random';
   }
@@ -18,8 +18,6 @@ class RNGMathRandom extends rngAbstract.RNG {
   next() {
     return originalMathRandom._MathRandom();
   }
-
-  seed(seed, opts, ...argv) {}
 
   clone(seed, opts, ...argv) {
     return cloneClass.cloneClass(RNGMathRandom, this, seed, opts, ...argv);
