@@ -36,12 +36,16 @@ Please see the individual package changelogs for what's new:
 * 🌏 [`@lazy-random/random-core`](./packages/@lazy-random/random-core/CHANGELOG.md "packages/@lazy-random/random-core") *packages/@lazy-random/random-core*
 * 🌏 [`@lazy-random/rng-abstract`](./packages/@lazy-random/rng-abstract/CHANGELOG.md "packages/@lazy-random/rng-abstract") *packages/@lazy-random/rng-abstract*
 * 🌏 [`@lazy-random/rng-factory`](./packages/@lazy-random/rng-factory/CHANGELOG.md "packages/@lazy-random/rng-factory") *packages/@lazy-random/rng-factory*
+* 🌏 [`@lazy-random/seed-algorithm`](./packages/@lazy-random/seed-algorithm/CHANGELOG.md "packages/@lazy-random/seed-algorithm") *packages/@lazy-random/seed-algorithm*
 * 🌏 [`@lazy-random/seed-data`](./packages/@lazy-random/seed-data/CHANGELOG.md "packages/@lazy-random/seed-data") *packages/@lazy-random/seed-data*
+* 🌏 [`@lazy-random/seed-date`](./packages/@lazy-random/seed-date/CHANGELOG.md "packages/@lazy-random/seed-date") *packages/@lazy-random/seed-date*
 * 🌏 [`@lazy-random/seed-token`](./packages/@lazy-random/seed-token/CHANGELOG.md "packages/@lazy-random/seed-token") *packages/@lazy-random/seed-token*
 * 🌏 [`@lazy-random/shared-lib`](./packages/@lazy-random/shared-lib/CHANGELOG.md "packages/@lazy-random/shared-lib") *packages/@lazy-random/shared-lib*
 * 🌏 [`@lazy-random/simple-wrap`](./packages/@lazy-random/simple-wrap/CHANGELOG.md "packages/@lazy-random/simple-wrap") *packages/@lazy-random/simple-wrap*
 * 🌏 [`@lazy-random/util-distributions`](./packages/@lazy-random/util-distributions/CHANGELOG.md "packages/@lazy-random/util-distributions") *packages/@lazy-random/util-distributions*
 * 🌏 [`@lazy-random/util-probabilities`](./packages/@lazy-random/util-probabilities/CHANGELOG.md "packages/@lazy-random/util-probabilities") *packages/@lazy-random/util-probabilities*
+* 🌏 [`@lazy-random/util-test`](./packages/@lazy-random/util-test/CHANGELOG.md "packages/@lazy-random/util-test") *packages/@lazy-random/util-test*
+* 🌏 [`@lazy-num/float-algorithm`](./packages/@lazy-num/float-algorithm/CHANGELOG.md "packages/@lazy-num/float-algorithm") *packages/@lazy-num/float-algorithm*
 * 🌏 [`@lazy-num/float-from-buffer`](./packages/@lazy-num/float-from-buffer/CHANGELOG.md "packages/@lazy-num/float-from-buffer") *packages/@lazy-num/float-from-buffer*
 * 🌏 [`@lazy-num/float-to-string`](./packages/@lazy-num/float-to-string/CHANGELOG.md "packages/@lazy-num/float-to-string") *packages/@lazy-num/float-to-string*
 * 🌏 [`@lazy-num/max-safe-number`](./packages/@lazy-num/max-safe-number/CHANGELOG.md "packages/@lazy-num/max-safe-number") *packages/@lazy-num/max-safe-number*
