@@ -28,6 +28,7 @@ Please see the individual package changelogs for what's new:
 * 🌏 [`@lazy-random/generators-math-random`](./packages/@lazy-random/generators-math-random/CHANGELOG.md "packages/@lazy-random/generators-math-random") *packages/@lazy-random/generators-math-random*
 * 🌏 [`@lazy-random/generators-math-random2`](./packages/@lazy-random/generators-math-random2/CHANGELOG.md "packages/@lazy-random/generators-math-random2") *packages/@lazy-random/generators-math-random2*
 * 🌏 [`@lazy-random/generators-seedrandom`](./packages/@lazy-random/generators-seedrandom/CHANGELOG.md "packages/@lazy-random/generators-seedrandom") *packages/@lazy-random/generators-seedrandom*
+* 🌏 [`@lazy-random/generators-sfc32`](./packages/@lazy-random/generators-sfc32/CHANGELOG.md "packages/@lazy-random/generators-sfc32") *packages/@lazy-random/generators-sfc32*
 * 🌏 [`@lazy-random/generators-xor128`](./packages/@lazy-random/generators-xor128/CHANGELOG.md "packages/@lazy-random/generators-xor128") *packages/@lazy-random/generators-xor128*
 * 🌏 [`@lazy-random/generators-xorshift128`](./packages/@lazy-random/generators-xorshift128/CHANGELOG.md "packages/@lazy-random/generators-xorshift128") *packages/@lazy-random/generators-xorshift128*
 * 🌏 [`@lazy-random/lib-r-math-rng`](./packages/@lazy-random/lib-r-math-rng/CHANGELOG.md "packages/@lazy-random/lib-r-math-rng") *packages/@lazy-random/lib-r-math-rng*
@@ -35,6 +36,7 @@ Please see the individual package changelogs for what's new:
 * 🌏 [`@lazy-random/preset-seedrandom`](./packages/@lazy-random/preset-seedrandom/CHANGELOG.md "packages/@lazy-random/preset-seedrandom") *packages/@lazy-random/preset-seedrandom*
 * 🌏 [`@lazy-random/random-core`](./packages/@lazy-random/random-core/CHANGELOG.md "packages/@lazy-random/random-core") *packages/@lazy-random/random-core*
 * 🌏 [`@lazy-random/rng-abstract`](./packages/@lazy-random/rng-abstract/CHANGELOG.md "packages/@lazy-random/rng-abstract") *packages/@lazy-random/rng-abstract*
+* 🌏 [`@lazy-random/rng-abstract-core`](./packages/@lazy-random/rng-abstract-core/CHANGELOG.md "packages/@lazy-random/rng-abstract-core") *packages/@lazy-random/rng-abstract-core*
 * 🌏 [`@lazy-random/rng-factory`](./packages/@lazy-random/rng-factory/CHANGELOG.md "packages/@lazy-random/rng-factory") *packages/@lazy-random/rng-factory*
 * 🌏 [`@lazy-random/seed-algorithm`](./packages/@lazy-random/seed-algorithm/CHANGELOG.md "packages/@lazy-random/seed-algorithm") *packages/@lazy-random/seed-algorithm*
 * 🌏 [`@lazy-random/seed-data`](./packages/@lazy-random/seed-data/CHANGELOG.md "packages/@lazy-random/seed-data") *packages/@lazy-random/seed-data*
