@@ -120,10 +120,8 @@
   },
   "dependencies": {
     "@lazy-num/float-algorithm": "^1.0.2",
-    "@lazy-random/original-math-random": "^1.0.7",
     "@lazy-random/rng-abstract-core": "^1.0.0",
     "@lazy-random/seed-algorithm": "^1.0.2",
-    "ts-type": "^2.1.2",
     "tslib": "^2.3.1"
   },
   "devDependencies": {},

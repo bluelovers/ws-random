@@ -2,6 +2,8 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
+var originalMathRandom = require('@lazy-random/original-math-random');
+
 function df_xfnv1a(str) {
   let h = 2166136261 >>> 0;
 
@@ -143,10 +145,47 @@ function df_v3b(a, b, c, d) {
   };
 }
 
+function seedFromStringOrNumberOrArray(seedInput, size) {
+  let exists_zero = false;
+  let s;
+  const seed = [seedInput !== null && seedInput !== void 0 ? seedInput : []].flat().slice(0, 4);
+
+  for (let i = 0; i < size; i++) {
+    const type = typeof seed[i];
+
+    if (type === 'string') {
+      seed[i] = df_xfnv1a(`${seed[i]}#sfc32#${i}`)();
+    } else if (type !== 'number') {
+      exists_zero = true;
+      seed[i] = void 0;
+    } else {
+      seed[i] = Math.abs(seed[i]);
+    }
+
+    if (!seed[i]) {
+      if (seed[i] === 0 && !exists_zero) {
+        exists_zero = true;
+      } else {
+        var _s;
+
+        (_s = s) !== null && _s !== void 0 ? _s : s = doubleToIEEE(originalMathRandom._MathRandom());
+        seed[i] = s.pop();
+
+        if (!s.length) {
+          s = void 0;
+        }
+      }
+    }
+  }
+
+  return seed;
+}
+
 exports.df_v3b = df_v3b;
 exports.df_xfnv1a = df_xfnv1a;
 exports.df_xfnv1a_2 = df_xfnv1a_2;
 exports.df_xmur3 = df_xmur3;
 exports.df_xmur3a = df_xmur3a;
 exports.doubleToIEEE = doubleToIEEE;
+exports.seedFromStringOrNumberOrArray = seedFromStringOrNumberOrArray;
 //# sourceMappingURL=index.cjs.development.cjs.map

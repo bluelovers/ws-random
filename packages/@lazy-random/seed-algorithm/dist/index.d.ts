@@ -1,3 +1,5 @@
+import { ITSValueOrArrayMaybeReadonly } from 'ts-type/lib/type/base';
+
 /**
  * @see https://github.com/michaeldzjap/rand-seed/blob/939181cf160e929cac8397f702cced6acb0e95d5/src/Algorithms/Base.ts#L13
  * @see https://github.com/bryc/code/blob/master/jshash/PRNGs.md
@@ -20,5 +22,9 @@ export declare function doubleToIEEE(floatNumber: number): [
  * var next = v3b(seed, 2654435769, 1013904242, 3668340011);
  */
 export declare function df_v3b(a: number, b?: number, c?: number, d?: number): () => number;
+export declare type ISeedInputFromStringOrNumberOrArray = ITSValueOrArrayMaybeReadonly<string | number>;
+export declare function seedFromStringOrNumberOrArray<L extends number>(seedInput: ISeedInputFromStringOrNumberOrArray, size: L): number[] & {
+	length: L;
+};
 
 export {};
