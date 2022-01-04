@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/preset-seedrandom",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "",
   "keywords": [
     "create-by-yarn-tool",
@@ -53,7 +53,7 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "random-extra": "^4.0.3",
+    "random-extra": "^4.0.4",
     "tslib": "^2.3.1"
   },
   "peerDependencies": {

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/bluelovers/ws-random/compare/@lazy-random/seed-algorithm@1.0.2...@lazy-random/seed-algorithm@1.0.3) (2022-01-04)
+
+
+### 📦　Code Refactoring
+
+* move seed fn ([467ffa0](https://github.com/bluelovers/ws-random/commit/467ffa0c5663f7a52a7edc4739091f6397007961))
+
+
+
+
+
 ## 1.0.2 (2022-01-03)
 
 

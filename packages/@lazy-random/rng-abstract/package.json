@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/rng-abstract",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "",
   "keywords": [
     "create-by-yarn-tool",
@@ -38,7 +38,7 @@
     "posttest": "yarn run build",
     "build": "yarn run build:tsdx && yarn run build:dts:tsc && yarn run build:dts:copy",
     "build:dts": "ynpx dts-bundle-generator -o ./dist/index.d.ts src/index.ts --no-banner & echo build:dts",
-     "build:dts:copy": "copy .\\src\\index.d.ts .\\dist\\index.d.ts & echo build:dts",
+    "build:dts:copy": "copy .\\src\\index.d.ts .\\dist\\index.d.ts & echo build:dts",
     "build:dts:tsc": "tsc --emitDeclarationOnly --declaration --noEmit false",
     "build:tsdx": "ynpx @bluelovers/tsdx build --target node --name index",
     "preversion": "echo preversion && yarn run test",
@@ -55,8 +55,8 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/rng-abstract-core": "^1.0.0",
-    "@lazy-random/seed-token": "^1.0.9",
+    "@lazy-random/rng-abstract-core": "^1.0.1",
+    "@lazy-random/seed-token": "^1.0.10",
     "tslib": "^2.3.1"
   },
   "publishConfig": {

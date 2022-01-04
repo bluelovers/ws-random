@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.10](https://github.com/bluelovers/ws-random/compare/@lazy-random/rng-abstract@1.0.9...@lazy-random/rng-abstract@1.0.10) (2022-01-04)
+
+
+### ✨　Features
+
+* add `@lazy-random/generators-sfc32` ([22f03de](https://github.com/bluelovers/ws-random/commit/22f03de92ba1dc7f165db4c0a94524a386214dbd))
+
+
+
+
+
 ## [1.0.9](https://github.com/bluelovers/ws-random/compare/@lazy-random/rng-abstract@1.0.8...@lazy-random/rng-abstract@1.0.9) (2022-01-03)
 
 

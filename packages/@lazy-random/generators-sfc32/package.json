@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/generators-sfc32",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "keywords": [
     "alea",
@@ -120,12 +120,10 @@
   },
   "dependencies": {
     "@lazy-num/float-algorithm": "^1.0.2",
-    "@lazy-random/rng-abstract-core": "^1.0.0",
-    "@lazy-random/seed-algorithm": "^1.0.2",
+    "@lazy-random/rng-abstract-core": "^1.0.1",
+    "@lazy-random/seed-algorithm": "^1.0.3",
     "tslib": "^2.3.1"
   },
-  "devDependencies": {},
-  "peerDependencies": {},
   "publishConfig": {
     "access": "public"
   },

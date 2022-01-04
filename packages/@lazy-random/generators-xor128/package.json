@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/generators-xor128",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "",
   "keywords": [
     "alea",
@@ -108,8 +108,8 @@
   },
   "dependencies": {
     "@lazy-random/clone-class": "^1.0.8",
-    "@lazy-random/rng-abstract": "^1.0.9",
-    "@lazy-random/seed-token": "^1.0.9",
+    "@lazy-random/rng-abstract": "^1.0.10",
+    "@lazy-random/seed-token": "^1.0.10",
     "tslib": "^2.3.1"
   },
   "publishConfig": {

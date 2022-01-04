@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/generators-xorshift128",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "wrap xorshift128+ to random number generator",
   "keywords": [
     "random",
@@ -95,7 +95,7 @@
     "posttest": "yarn run build",
     "build": "yarn run build:tsdx && yarn run build:dts:tsc && yarn run build:dts:copy",
     "build:dts": "ynpx dts-bundle-generator -o ./dist/index.d.ts src/index.ts --no-banner & echo build:dts",
-     "build:dts:copy": "copy .\\src\\index.d.ts .\\dist\\index.d.ts & echo build:dts",
+    "build:dts:copy": "copy .\\src\\index.d.ts .\\dist\\index.d.ts & echo build:dts",
     "build:dts:tsc": "tsc --emitDeclarationOnly --declaration --noEmit false",
     "build:tsdx": "ynpx @bluelovers/tsdx build --target node --name index",
     "preversion": "echo preversion && yarn run test",
@@ -113,7 +113,7 @@
   },
   "dependencies": {
     "@bluelovers/xorshift": "^1.2.1",
-    "@lazy-random/rng-abstract": "^1.0.9",
+    "@lazy-random/rng-abstract": "^1.0.10",
     "tslib": "^2.3.1"
   },
   "publishConfig": {
