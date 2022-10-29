@@ -1,2 +1,21 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=require("uni-string"),t=require("@lazy-random/expect"),r=require("@lazy-num/float-to-string"),n=require("@lazy-random/util-distributions");function u(e){return e&&"object"==typeof e&&"default"in e?e:{default:e}}var o=u(e);function i(e,u,i){"number"==typeof u&&("number"==typeof i?u=r.floatToString(u):[i,u]=[u,null]),t.expect(i=i||8).integer.gt(0),u||(u="ModuleSymbhasOwnPr0123456789ABCDEFGHIJKLNQRTUVWXYZcfgijkpqtvxz0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");const l=o.default.create(u).split(""),a=l.length;return t.expect(l).lengthOf.gt(1),()=>{let t=i,r=[];for(;t--;)r.push(l[n.randIndex(e,a)]);return r.join("")}}exports.default=i,exports.dfCharID=i;
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: !0
+});
+
+var e = require("uni-string"), r = require("@lazy-random/expect"), t = require("@lazy-num/float-to-string"), n = require("@lazy-random/util-distributions");
+
+function dfCharID(u, i, o) {
+  "number" == typeof i && ("number" == typeof o ? i = t.floatToString(i) : [o, i] = [ i, null ]), 
+  r.expect(o = o || 8).integer.gt(0), i || (i = "ModuleSymbhasOwnPr0123456789ABCDEFGHIJKLNQRTUVWXYZcfgijkpqtvxz0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+  const a = e.create(i).split(""), l = a.length;
+  return r.expect(a).lengthOf.gt(1), () => {
+    let e = o, r = [];
+    for (;e--; ) r.push(a[n.randIndex(u, l)]);
+    return r.join("");
+  };
+}
+
+exports.default = dfCharID, exports.dfCharID = dfCharID;
 //# sourceMappingURL=index.cjs.production.min.cjs.map

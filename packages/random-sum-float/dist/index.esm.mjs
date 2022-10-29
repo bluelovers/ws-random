@@ -1,8 +1,9 @@
-import { dfSumFloat } from 'random-extra';
-export { dfSumFloat as create } from 'random-extra';
+import { dfSumFloat as a } from "random-extra";
 
-function randomSumFloat(size, sum, min, max) {
-  return dfSumFloat(size, sum, min, max)();
+export { dfSumFloat as create } from "random-extra";
+
+function randomSumFloat(o, r, t, m) {
+  return a(o, r, t, m)();
 }
 
 export { randomSumFloat as default, randomSumFloat };

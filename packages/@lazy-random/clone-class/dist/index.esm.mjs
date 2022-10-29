@@ -1,17 +1,10 @@
-function getClass(RNGClass, thisArgv, ...argv) {
-  let o;
-
-  if (thisArgv instanceof RNGClass) {
-    o = thisArgv.__proto__.constructor;
-  } else {
-    o = RNGClass;
-  }
-
-  return o;
+function getClass(s, t, ...e) {
+  let n;
+  return n = t instanceof s ? t.__proto__.constructor : s, n;
 }
-function cloneClass(RNGClass, thisArgv, ...argv) {
-  let o = getClass(RNGClass, thisArgv, ...argv);
-  return new o(...argv);
+
+function cloneClass(s, t, ...e) {
+  return new (getClass(s, t, ...e))(...e);
 }
 
 export { cloneClass, cloneClass as default, getClass };

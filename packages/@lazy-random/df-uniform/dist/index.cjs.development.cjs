@@ -11,11 +11,9 @@ function dfUniformFloat(random, min, max, fractionDigits) {
     max = min === undefined ? 1 : min;
     min = 0;
   }
-
   expect.expect(min).number.finite;
   expect.expect(max).number.finite.gt(min);
   let fn;
-
   if (min === 0 && max === 1) {
     fn = () => random.next();
   } else if (min === 0) {
@@ -27,14 +25,12 @@ function dfUniformFloat(random, min, max, fractionDigits) {
       return random.next() * (max - min) + min;
     };
   }
-
   if (fractionDigits !== undefined) {
     expect.expect(fractionDigits).integer.gte(0);
     return () => {
       return toFixedNumber.toFixedNumber(fn(), fractionDigits);
     };
   }
-
   return fn;
 }
 
@@ -43,7 +39,6 @@ function dfUniformInt(random, min, max) {
     max = min === undefined ? 1 : min;
     min = 0;
   }
-
   expect.expect(min).integer();
   expect.expect(max).integer.gt(min);
   let fn = dfUniformFloat(random, min, max + 1);
@@ -61,15 +56,12 @@ function dfUniformBoolean(random, likelihood = 0.5) {
 
 function dfUniformByte(random, toStr) {
   let fn = dfUniformInt(random, 0, 255);
-
   if (typeof toStr !== 'undefined') {
     expect.expect(toStr).boolean();
   }
-
   if (toStr) {
     return () => sharedLib.stringifyByte(fn());
   }
-
   return fn;
 }
 
@@ -79,11 +71,9 @@ function dfUniformBytes(random, size = 1, toStr) {
   return () => {
     let i = size;
     let arr = [];
-
     while (i--) {
       arr[i] = fn();
     }
-
     return arr;
   };
 }

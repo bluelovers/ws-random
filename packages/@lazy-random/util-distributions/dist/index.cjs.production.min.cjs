@@ -1,2 +1,22 @@
-"use strict";function t(t,e){return Math.floor(t.next()*e)}function e(t,e,n){return t.next()*(n-e)+e}function n(t,n,r){return Math.floor(e(t,n,r+1))}Object.defineProperty(exports,"__esModule",{value:!0}),exports.default={randIndex:t,float:e,int:n},exports.float=e,exports.int=n,exports.randIndex=t;
+"use strict";
+
+function randIndex(t, n) {
+  return Math.floor(t.next() * n);
+}
+
+function float(t, n, e) {
+  return t.next() * (e - n) + n;
+}
+
+function int(t, n, e) {
+  return Math.floor(float(t, n, e + 1));
+}
+
+Object.defineProperty(exports, "__esModule", {
+  value: !0
+}), exports.default = {
+  randIndex,
+  float,
+  int
+}, exports.float = float, exports.int = int, exports.randIndex = randIndex;
 //# sourceMappingURL=index.cjs.production.min.cjs.map

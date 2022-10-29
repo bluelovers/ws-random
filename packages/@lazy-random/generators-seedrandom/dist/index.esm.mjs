@@ -1,119 +1,68 @@
-import { RNGFunction } from '@lazy-random/generators-function';
-import seedrandom from 'seedrandom';
-import { cloneClass } from '@lazy-random/clone-class';
+import { RNGFunction as e } from "@lazy-random/generators-function";
 
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
+import t from "seedrandom";
 
-  return obj;
-}
+import { cloneClass as s } from "@lazy-random/clone-class";
 
-const defaultOptions = /*#__PURE__*/Object.freeze({
-  entropy: true
+const r = Object.freeze({
+  entropy: !0
 });
-class RNGSeedRandom extends RNGFunction {
-  constructor(seed, opts, ...argv) {
-    super(seed, opts, ...argv);
 
-    _defineProperty(this, "_seedable", true);
-
-    _defineProperty(this, "_NAME", 'seedrandom');
-
-    _defineProperty(this, "_TYPE", null);
+class RNGSeedRandom extends e {
+  _seedable=!0;
+  constructor(e, t, ...s) {
+    super(e, t, ...s);
   }
-
-  static createLib(...argv) {
-    return new this(argv[1], argv[2], argv[0], ...argv.slice(3));
+  static createLib(...e) {
+    return new this(e[1], e[2], e[0], ...e.slice(3));
   }
-
-  static create(...argv) {
-    return new this(...argv);
+  static create(...e) {
+    return new this(...e);
   }
-
-  _init_check(seed, opts, ...argv) {}
-
-  _init(seed, opts, ...argv) {
-    this._opts = this._opts || Object.assign({}, defaultOptions);
-    this._seedrandom = this.__generator(...argv);
-
-    super._init(seed, opts, ...argv);
+  _init_check(e, t, ...s) {}
+  _init(e, t, ...s) {
+    this._opts = this._opts || Object.assign({}, r), this._seedrandom = this.__generator(...s), 
+    super._init(e, t, ...s);
   }
-
+  _NAME="seedrandom";
+  _TYPE=null;
   get name() {
-    return `${this._NAME}${this._TYPE ? ':' + this._TYPE : ''}`;
+    return `${this._NAME}${this._TYPE ? ":" + this._TYPE : ""}`;
   }
+  __generator(e) {
+    if (e && "string" == typeof e) switch (this._TYPE = null, e) {
+     case "alea":
+     case "tychei":
+     case "xor128":
+     case "xor4096":
+     case "xorshift7":
+     case "xorwow":
+      this._TYPE = e = t[e];
+      break;
 
-  __generator(fn) {
-    if (fn && typeof fn === 'string') {
-      this._TYPE = null;
-
-      switch (fn) {
-        case 'alea':
-        case 'tychei':
-        case 'xor128':
-        case 'xor4096':
-        case 'xorshift7':
-        case 'xorwow':
-          fn = seedrandom[fn];
-          this._TYPE = fn;
-          break;
-
-        default:
-          if (!fn.includes('..') && /^[a-z\-\.]+$/i.test(fn)) {
-            this._TYPE = fn;
-            fn = require(`seedrandom/lib/${fn}`);
-            break;
-          } else {
-            throw new RangeError(`unknow seedrandom lib name: ${fn}`);
-          }
-
+     default:
+      if (!e.includes("..") && /^[a-z\-\.]+$/i.test(e)) {
+        this._TYPE = e, e = require(`seedrandom/lib/${e}`);
+        break;
       }
-    } else if (fn) {
-      this._TYPE = fn.name;
-    } else {
-      this._TYPE = null;
-    }
-
-    fn = fn || seedrandom;
-    return fn;
+      throw new RangeError(`unknow seedrandom lib name: ${e}`);
+    } else this._TYPE = e ? e.name : null;
+    return e || t;
   }
-
   get options() {
     return this._opts;
   }
-
   get state() {
-    const fn = this._rng.state;
-
-    if (typeof fn === 'function') {
-      return fn();
-    }
+    const e = this._rng.state;
+    if ("function" == typeof e) return e();
   }
-
-  seed(seed, opts, ...argv) {
-    if (opts === null) {
-      this._opts = void 0;
-    } else {
-      this._opts = opts || this._opts;
-    }
-
-    this._rng = this._seedrandom(this._seedAuto(seed), this._opts, ...argv);
+  seed(e, t, ...s) {
+    this._opts = null === t ? void 0 : t || this._opts, this._rng = this._seedrandom(this._seedAuto(e), this._opts, ...s);
   }
-
-  clone(seed, opts, ...argv) {
-    return cloneClass(RNGSeedRandom, this, seed, opts, ...argv);
+  clone(e, t, ...r) {
+    return s(RNGSeedRandom, this, e, t, ...r);
   }
-
 }
 
-export { RNGSeedRandom, RNGSeedRandom as default, defaultOptions };
+export { RNGSeedRandom, RNGSeedRandom as default, r as defaultOptions };
 //# sourceMappingURL=index.esm.mjs.map

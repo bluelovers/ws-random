@@ -10,21 +10,17 @@ class RNGMathRandom extends rngAbstractCore.RNGCore {
   get name() {
     return 'math-random';
   }
-
   get seedable() {
     return false;
   }
-
   next() {
     return originalMathRandom._MathRandom();
   }
-
   clone(seed, opts, ...argv) {
     return cloneClass.cloneClass(RNGMathRandom, this, seed, opts, ...argv);
   }
-
 }
 
 exports.RNGMathRandom = RNGMathRandom;
-exports["default"] = RNGMathRandom;
+exports.default = RNGMathRandom;
 //# sourceMappingURL=index.cjs.development.cjs.map

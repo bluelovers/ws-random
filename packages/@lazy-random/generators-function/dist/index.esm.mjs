@@ -1,67 +1,36 @@
-import { expect } from '@lazy-random/expect';
-import { RNG } from '@lazy-random/rng-abstract';
-import { cloneClass } from '@lazy-random/clone-class';
+import { expect as t } from "@lazy-random/expect";
 
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
+import { RNG as n } from "@lazy-random/rng-abstract";
+
+import { cloneClass as e } from "@lazy-random/clone-class";
+
+class RNGFunction extends n {
+  _seedable=null;
+  constructor(t, n, ...e) {
+    super(), this._init(t, n, ...e);
   }
-
-  return obj;
-}
-
-class RNGFunction extends RNG {
-  constructor(seed, opts, ...argv) {
-    super();
-
-    _defineProperty(this, "_seedable", null);
-
-    this._init(seed, opts, ...argv);
+  _init_check(n, e, ...i) {
+    let r = typeof n;
+    null !== n && "undefined" !== r && "function" !== r && t(n);
   }
-
-  _init_check(seed, opts, ...argv) {
-    let type = typeof seed;
-
-    if (seed !== null && type !== 'undefined' && type !== 'function') {
-      expect(seed).function;
-    }
+  _init(t, n, ...e) {
+    this._init_check(t, n, ...e), this.seed(t, n, ...e);
   }
-
-  _init(seed, opts, ...argv) {
-    this._init_check(seed, opts, ...argv);
-
-    this.seed(seed, opts, ...argv);
-  }
-
   get name() {
-    return 'function';
+    return "function";
   }
-
   get seedable() {
     return this._seedable;
   }
-
   next() {
     return this._rng();
   }
-
-  seed(seed, opts, ...argv) {
-    if (typeof seed === 'function') {
-      this._rng = seed || this._rng;
-    }
+  seed(t, n, ...e) {
+    "function" == typeof t && (this._rng = t || this._rng);
   }
-
-  clone(seed, opts, ...argv) {
-    return cloneClass(RNGFunction, this, seed, opts, ...argv);
+  clone(t, n, ...i) {
+    return e(RNGFunction, this, t, n, ...i);
   }
-
 }
 
 export { RNGFunction, RNGFunction as default };

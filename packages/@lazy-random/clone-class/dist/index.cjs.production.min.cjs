@@ -1,2 +1,15 @@
-"use strict";function e(e,t,...o){let r;return r=t instanceof e?t.__proto__.constructor:e,r}function t(t,o,...r){return new(e(t,o,...r))(...r)}Object.defineProperty(exports,"__esModule",{value:!0}),exports.cloneClass=t,exports.default=t,exports.getClass=e;
+"use strict";
+
+function getClass(e, s, ...t) {
+  let o;
+  return o = s instanceof e ? s.__proto__.constructor : e, o;
+}
+
+function cloneClass(e, s, ...t) {
+  return new (getClass(e, s, ...t))(...t);
+}
+
+Object.defineProperty(exports, "__esModule", {
+  value: !0
+}), exports.cloneClass = cloneClass, exports.default = cloneClass, exports.getClass = getClass;
 //# sourceMappingURL=index.cjs.production.min.cjs.map

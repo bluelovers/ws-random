@@ -26,12 +26,12 @@ export interface IWeightRawData<T extends unknown, K extends string = string> {
 /**
  * [key, value, percentage]
  */
-export declare type IWeightEntrie<T extends unknown, K extends string = string> = [
+export type IWeightEntrie<T extends unknown, K extends string = string> = [
 	K,
 	T,
 	number
 ];
-export declare type IObjectInput<T extends unknown, K extends string = string> = {
+export type IObjectInput<T extends unknown, K extends string = string> = {
 	[k in K]: T;
 };
 export interface IOptionsItemByWeightSort {

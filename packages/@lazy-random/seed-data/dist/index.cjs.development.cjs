@@ -9,7 +9,7 @@ const randomSeedStrData = /*#__PURE__*/Object.freeze({
 const name = randomSeedStrData.name;
 const version = randomSeedStrData.version;
 
-exports["default"] = randomSeedStrData;
+exports.default = randomSeedStrData;
 exports.name = name;
 exports.randomSeedStrData = randomSeedStrData;
 exports.version = version;

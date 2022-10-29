@@ -10,9 +10,9 @@ import {
 import check from 'check-types';
 import CustomMatcher = jest.CustomMatcher;
 import ExpectExtendMap = jest.ExpectExtendMap;
-import { printCloseTo } from 'expect/build/print';
+import { printCloseTo } from 'expect-print-close-to';
 import MatcherUtils = jest.MatcherUtils;
-import expectInDelta from 'num-in-delta';
+import { numberInDelta as expectInDelta } from 'num-in-delta';
 
 const types = ['number', 'string', 'boolean', 'object', 'array', 'date', 'function', 'float'];
 

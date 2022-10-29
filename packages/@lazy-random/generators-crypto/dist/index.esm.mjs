@@ -1,83 +1,44 @@
-import { UINT32_BYTES } from '@lazy-random/shared-lib';
-import { crossCrypto } from '@lazy-random/cross-crypto';
-import { expect } from '@lazy-random/expect';
-import { RNG } from '@lazy-random/rng-abstract';
-import { _floatFromBuffer2 } from '@lazy-num/float-from-buffer';
-import { arrayRandIndexByLength } from '@lazy-random/array-rand-index';
+import { UINT32_BYTES as e } from "@lazy-random/shared-lib";
 
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
+import { crossCrypto as t } from "@lazy-random/cross-crypto";
+
+import { expect as r } from "@lazy-random/expect";
+
+import { RNG as s } from "@lazy-random/rng-abstract";
+
+import { _floatFromBuffer2 as i } from "@lazy-num/float-from-buffer";
+
+import { arrayRandIndexByLength as n } from "@lazy-random/array-rand-index";
+
+class RNGCrypto extends s {
+  _seedable=!1;
+  _randIndex=n;
+  _seed_size=e;
+  _seed_size_min=e;
+  constructor(e, t, ...r) {
+    super(), this._init(e, t, ...r);
   }
-
-  return obj;
-}
-
-class RNGCrypto extends RNG {
-  constructor(seed, opts, ...argv) {
-    super();
-
-    _defineProperty(this, "_seedable", false);
-
-    _defineProperty(this, "_randIndex", arrayRandIndexByLength);
-
-    _defineProperty(this, "_seed_size", UINT32_BYTES);
-
-    _defineProperty(this, "_seed_size_min", UINT32_BYTES);
-
-    this._init(seed, opts, ...argv);
+  _init(s, a, ...o) {
+    s = s || t(), this._crypto = s, this._randIndex = this._randIndex || n, r(s.randomBytes).is.a.function(), 
+    this._seed_size = Math.min(Math.max(this._seed_size, e), 255), this._seed_size_min = Math.min(Math.max(this._seed_size_min, e), 255), 
+    this._fn = i;
   }
-
-  _init(crypto, opts, ...argv) {
-    crypto = crypto || crossCrypto();
-    this._crypto = crypto;
-    this._randIndex = this._randIndex || arrayRandIndexByLength;
-    expect(crypto.randomBytes).is.a.function();
-
-    {
-      this._seed_size = Math.min(Math.max(this._seed_size, UINT32_BYTES), 255);
-      this._seed_size_min = Math.min(Math.max(this._seed_size_min, UINT32_BYTES), 255);
-      this._fn = _floatFromBuffer2;
+  _buffer(e, t = this._seed_size_min) {
+    (e = 0 | (e || this._seed_size)) < t ? e = t : e > 255 && (e = 255);
+    let r = this._crypto.randomBytes(e);
+    if (e > t) {
+      let s = this._randIndex(e - t);
+      r = r.slice(s, s + t);
     }
+    return r;
   }
-
-  _buffer(size, size_min = this._seed_size_min) {
-    size = (size || this._seed_size) | 0;
-
-    if (size < size_min) {
-      size = size_min;
-    } else if (size > 255) {
-      size = 255;
-    }
-
-    let buf = this._crypto.randomBytes(size);
-
-    if (size > size_min) {
-      let i = this._randIndex(size - size_min);
-
-      buf = buf.slice(i, i + size_min);
-    }
-
-    return buf;
-  }
-
   get name() {
-    return 'crypto';
+    return "crypto";
   }
-
   next() {
     return this._fn(this._buffer());
   }
-
-  seed(seed, opts, ...argv) {}
-
+  seed(e, t, ...r) {}
 }
 
 export { RNGCrypto, RNGCrypto as default };

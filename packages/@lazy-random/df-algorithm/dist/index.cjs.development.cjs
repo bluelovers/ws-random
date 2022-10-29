@@ -8,19 +8,15 @@ var numIsZero = require('num-is-zero');
 function dfIrwinHall(random, n = 1) {
   expect.expect(n).integer.gte(0);
   n = numIsZero.fixZero(n);
-
   if (n === 0) {
     return () => 0;
   }
-
   return () => {
     let i = n;
     let sum = 0;
-
     while (i--) {
       sum += random.next();
     }
-
     return sum;
   };
 }
@@ -46,13 +42,11 @@ function dfBinomial(random, n = 1, p = 0.5) {
   return () => {
     let i = n;
     let x = 0;
-
     while (i--) {
       if (random.next() < p) {
         x++;
       }
     }
-
     return x;
   };
 }
@@ -77,13 +71,11 @@ function dfNormal(random, mu = 0, sigma = 1) {
   expect.expect(sigma).number();
   return () => {
     let x, y, r;
-
     do {
       x = random.next() * 2 - 1;
       y = random.next() * 2 - 1;
       r = x * x + y * y;
     } while (!r || r > 1);
-
     return mu + sigma * y * Math.sqrt(-2 * Math.log(r) / r);
   };
 }

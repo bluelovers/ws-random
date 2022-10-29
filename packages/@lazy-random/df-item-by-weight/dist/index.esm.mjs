@@ -1,156 +1,92 @@
-import { expect } from '@lazy-random/expect';
-import { dfArrayShuffle } from '@lazy-random/df-array';
+import { expect as t } from "@lazy-random/expect";
 
-function _getWeight(value, key) {
-  return value + 0.001;
+import { dfArrayShuffle as e } from "@lazy-random/df-array";
+
+function _getWeight(t, e) {
+  return t + 0.001;
 }
-function _createWeight(arr, options) {
-  var _options$getWeight;
 
-  let sum = 0;
-  const getWeight = (_options$getWeight = options === null || options === void 0 ? void 0 : options.getWeight) !== null && _options$getWeight !== void 0 ? _options$getWeight : _getWeight;
-  let ls2 = Object.entries(arr).map(function (entrie) {
-    let [key, value] = entrie;
-    let weight = getWeight(value, key);
-    weight = +weight;
-    expect(weight).gt(0);
-    sum += weight;
-    return {
-      key,
-      value,
-      weight,
+function _createWeight(e, i) {
+  var r;
+  let l = 0;
+  const n = null !== (r = null == i ? void 0 : i.getWeight) && void 0 !== r ? r : _getWeight;
+  let g = Object.entries(e).map((function(e) {
+    let [i, r] = e, g = n(r, i);
+    return g = +g, t(g).gt(0), l += g, {
+      key: i,
+      value: r,
+      weight: g,
       percentage: 0
     };
-  });
-  let ls = ls2.reduce(function (a, entrie) {
-    entrie.percentage = entrie.weight / sum;
-    let item = [entrie.key, entrie.value, entrie.percentage];
-
-    if (a.last === 0) {
-      a.last = entrie.percentage;
-    } else {
-      a.last += entrie.percentage;
-    }
-
-    a.vlist.push(item);
-    a.kwlist[entrie.key] = entrie.weight;
-    return a;
-  }, {
+  })), s = g.reduce((function(t, e) {
+    e.percentage = e.weight / l;
+    let i = [ e.key, e.value, e.percentage ];
+    return 0 === t.last ? t.last = e.percentage : t.last += e.percentage, t.vlist.push(i), 
+    t.kwlist[e.key] = e.weight, t;
+  }), {
     vlist: [],
     kwlist: {},
     last: 0
   });
-  expect(ls.vlist).have.length.gt(1);
-  return {
-    sum,
-    list: ls2,
-    kwlist: ls.kwlist,
-    vlist: ls.vlist
-  };
-}
-function _sortWeight(random, ws, options = {}) {
-  if (!options.disableSort) {
-    ws.vlist = ws.vlist.sort(function (a, b) {
-      let n = a[2] - b[2];
-      return n;
-    });
-  }
-
-  if (options.shuffle) {
-    ws.vlist = dfArrayShuffle(random, ws.vlist, true)();
-  }
-
-  return ws;
-}
-function _percentageWeight(random, ws) {
-  let psum = 0;
-  ws.plist = [];
-  ws.klist = ws.vlist.reduce(function (a, list) {
-    let percentage = list[2];
-
-    if (psum === 0) {
-      psum = percentage;
-    } else {
-      psum += percentage;
-    }
-
-    a.push(psum);
-    ws.plist.push(percentage);
-    return a;
-  }, []);
-  return ws;
-}
-function _calcWeight(random, arr, options) {
-  let ws = _createWeight(arr, options);
-
-  ws = _sortWeight(random, ws, options);
-  ws = _percentageWeight(random, ws);
-  return ws;
-}
-function _itemByWeightCore(r, klist) {
-  var _index;
-
-  let index;
-
-  for (let k = 0; k < klist.length; k++) {
-    if (r <= klist[k]) {
-      index = k;
-      break;
-    }
-  }
-
-  return (_index = index) !== null && _index !== void 0 ? _index : klist.length - 1;
-}
-
-function dfItemByWeight(random, arr, options) {
-  let ws = _calcWeight(random, arr, options);
-
-  const {
-    vlist,
-    klist
-  } = ws;
-  ws = void 0;
-  arr = void 0;
-  options = void 0;
-  return () => {
-    return vlist[_itemByWeightCore(random.next(), klist)];
+  return t(s.vlist).have.length.gt(1), {
+    sum: l,
+    list: g,
+    kwlist: s.kwlist,
+    vlist: s.vlist
   };
 }
 
-function dfItemByWeightUnique(random, arr, size, options) {
-  let ws = _createWeight(arr, options);
+function _sortWeight(t, i, r = {}) {
+  return r.disableSort || (i.vlist = i.vlist.sort((function(t, e) {
+    return t[2] - e[2];
+  }))), r.shuffle && (i.vlist = e(t, i.vlist, !0)()), i;
+}
 
-  expect(size).integer.gt(1);
-  expect(ws.vlist).have.length.gte(size);
-  ws = _percentageWeight(random, _sortWeight(random, ws, options));
-  const {
-    vlist,
-    klist
-  } = ws;
-  ws = void 0;
-  arr = void 0;
-  options = void 0;
-  const size_sub_1 = size - 1;
+function _percentageWeight(t, e) {
+  let i = 0;
+  return e.plist = [], e.klist = e.vlist.reduce((function(t, r) {
+    let l = r[2];
+    return 0 === i ? i = l : i += l, t.push(i), e.plist.push(l), t;
+  }), []), e;
+}
+
+function _calcWeight(t, e, i) {
+  let r = _createWeight(e, i);
+  return r = _sortWeight(t, r, i), r = _percentageWeight(0, r), r;
+}
+
+function _itemByWeightCore(t, e) {
+  var i;
+  let r;
+  for (let i = 0; i < e.length; i++) if (t <= e[i]) {
+    r = i;
+    break;
+  }
+  return null !== (i = r) && void 0 !== i ? i : e.length - 1;
+}
+
+function dfItemByWeight(t, e, i) {
+  let r = _calcWeight(t, e, i);
+  const {vlist: l, klist: n} = r;
+  return r = void 0, e = void 0, i = void 0, () => l[_itemByWeightCore(t.next(), n)];
+}
+
+function dfItemByWeightUnique(e, i, r, l) {
+  let n = _createWeight(i, l);
+  t(r).integer.gt(1), t(n.vlist).have.length.gte(r), n = _percentageWeight(0, _sortWeight(e, n, l));
+  const {vlist: g, klist: s} = n;
+  n = void 0, i = void 0, l = void 0;
+  const o = r - 1;
   return () => {
-    const result = [];
-    const ws = {
-      vlist: vlist.slice(),
-      klist: klist.slice()
+    const t = [], i = {
+      vlist: g.slice(),
+      klist: s.slice()
     };
-
-    for (let i = 0; i < size; i++) {
-      let index = _itemByWeightCore(random.next(), ws.klist);
-
-      result.push(ws.vlist[index]);
-
-      if (i < size_sub_1) {
-        ws.vlist.splice(index, 1);
-
-        _percentageWeight(random, ws);
-      }
+    for (let l = 0; l < r; l++) {
+      let r = _itemByWeightCore(e.next(), i.klist);
+      t.push(i.vlist[r]), l < o && (i.vlist.splice(r, 1), _percentageWeight(0, i));
     }
-
-    return result;
+    return t;
   };
 }
 

@@ -10,6 +10,9 @@ export declare function splitFloatNumber(n: number): [
 ];
 export declare function joinFloatNumber(int: number | string, float?: string): string;
 export declare function floatToString(n: number, fractionDigits?: number): string;
-export default floatToString;
+
+export {
+	floatToString as default,
+};
 
 export {};

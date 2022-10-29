@@ -13,5 +13,5 @@ function arrayRandIndex(array, ...argv) {
 
 exports.arrayRandIndex = arrayRandIndex;
 exports.arrayRandIndexByLength = arrayRandIndexByLength;
-exports["default"] = arrayRandIndex;
+exports.default = arrayRandIndex;
 //# sourceMappingURL=index.cjs.development.cjs.map

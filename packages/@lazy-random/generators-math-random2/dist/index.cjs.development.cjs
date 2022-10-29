@@ -9,13 +9,11 @@ class RNGMathRandom2 extends generatorsFunction.RNGFunction {
   constructor(seed = originalMathRandom._MathRandom, opts, ...argv) {
     super(seed || originalMathRandom._MathRandom, opts, ...argv);
   }
-
   get name() {
     return 'math-random2';
   }
-
 }
 
 exports.RNGMathRandom2 = RNGMathRandom2;
-exports["default"] = RNGMathRandom2;
+exports.default = RNGMathRandom2;
 //# sourceMappingURL=index.cjs.development.cjs.map

@@ -1,9 +1,8 @@
-import _chai from 'chai';
-import { install } from 'chai-asserttype-extra';
+import t from "chai";
 
-const chai = /*#__PURE__*/install(_chai);
-const expect = chai.expect;
-const assert = chai.assert;
+import { install as e } from "chai-asserttype-extra";
 
-export { assert, expect as default, expect };
+const r = e(t), a = r.expect, o = r.assert;
+
+export { o as assert, a as default, a as expect };
 //# sourceMappingURL=index.esm.mjs.map

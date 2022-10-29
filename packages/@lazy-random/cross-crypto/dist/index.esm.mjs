@@ -1,54 +1,31 @@
-const crossCrypto = /*#__PURE__*/(() => {
-  let crypto;
+const r = (() => {
+  let r;
   return () => {
-    if (typeof crypto === 'undefined') {
-      var _crypto3;
-
-      let _crypto;
-
+    if (void 0 === r) {
+      var t;
+      let e;
       try {
-        _crypto = crypto = require('crypto');
-      } catch (e) {
-        var _crypto2;
-
-        _crypto = global.crypto || global.msCrypto;
-
-        if ((_crypto2 = _crypto) !== null && _crypto2 !== void 0 && _crypto2.getRandomValues) {
-          crypto = _crypto;
-        }
+        e = r = require("crypto");
+      } catch (t) {
+        var o;
+        e = global.crypto || global.msCrypto, null !== (o = e) && void 0 !== o && o.getRandomValues && (r = e);
       }
-
-      if (!((_crypto3 = crypto) !== null && _crypto3 !== void 0 && _crypto3.randomBytes)) {
-        crypto.randomBytes = crypto.randomBytes || function randomBytes(size, cb) {
-          if (size > 65536) throw new Error('requested too many random bytes');
-          let rawBytes = new Uint8Array(size);
-
-          if (size > 0) {
-            _crypto.getRandomValues(rawBytes);
-          }
-
-          let bytes = Buffer.from(rawBytes.buffer);
-
-          if (typeof cb === 'function') {
-            cb(null, bytes);
-          }
-
-          return bytes;
-        };
-      }
+      null !== (t = r) && void 0 !== t && t.randomBytes || (r.randomBytes = r.randomBytes || function randomBytes(r, t) {
+        if (r > 65536) throw new Error("requested too many random bytes");
+        let o = new Uint8Array(r);
+        r > 0 && e.getRandomValues(o);
+        let n = Buffer.from(o.buffer);
+        return "function" == typeof t && t(null, n), n;
+      });
     }
-
-    if (!crypto) {
-      crypto = null;
-      throw new Error(`not support crypto`);
-    }
-
-    return crypto;
+    if (!r) throw r = null, new Error("not support crypto");
+    return r;
   };
 })();
-function randomBytes(size, callback) {
-  return crossCrypto().randomBytes(size, callback);
+
+function randomBytes(t, o) {
+  return r().randomBytes(t, o);
 }
 
-export { crossCrypto, crossCrypto as default, randomBytes };
+export { r as crossCrypto, r as default, randomBytes };
 //# sourceMappingURL=index.esm.mjs.map

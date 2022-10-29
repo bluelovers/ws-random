@@ -17,5 +17,5 @@ function bytesToUuid(buf, offset, bth = sharedLib.BYTE_TO_HEX_TO_LOWER_CASE) {
 
 exports._createBytesToUuidFn = _createBytesToUuidFn;
 exports.bytesToUuid = bytesToUuid;
-exports["default"] = bytesToUuid;
+exports.default = bytesToUuid;
 //# sourceMappingURL=index.cjs.development.cjs.map

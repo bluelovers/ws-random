@@ -1,9 +1,12 @@
 export declare const randomSeedStrData: Readonly<{
-	name: string;
-	version: string;
+	name: "random-extra";
+	version: "3.6.15";
 }>;
-export declare const name: string;
-export declare const version: string;
-export default randomSeedStrData;
+export declare const name: "random-extra";
+export declare const version: "3.6.15";
+
+export {
+	randomSeedStrData as default,
+};
 
 export {};

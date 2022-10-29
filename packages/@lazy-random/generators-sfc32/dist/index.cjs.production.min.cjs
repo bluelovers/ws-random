@@ -1,2 +1,31 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=require("@lazy-num/float-algorithm"),r=require("@lazy-random/rng-abstract-core"),t=require("@lazy-random/seed-algorithm");class RNGSfc32 extends r.RNGCore{constructor(e,r,...t){super(e,r,...t),this._init(e,r,...t)}_init(r,s,...i){r=t.seedFromStringOrNumberOrArray(r,4),this._seed=r,this._rng=e.df_sfc32(...r)}seed(e,r,...t){return this._init(e,r,...t)}get seedable(){return!0}next(){return this._rng()}get name(){return"sfc32"}}exports.RNGSfc32=RNGSfc32,exports.default=RNGSfc32;
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: !0
+});
+
+var e = require("@lazy-num/float-algorithm"), r = require("@lazy-random/rng-abstract-core"), t = require("@lazy-random/seed-algorithm");
+
+class RNGSfc32 extends r.RNGCore {
+  constructor(e, r, ...t) {
+    super(e, r, ...t), this._init(e, r, ...t);
+  }
+  _init(r, s, ...i) {
+    r = t.seedFromStringOrNumberOrArray(r, 4), this._seed = r, this._rng = e.df_sfc32(...r);
+  }
+  seed(e, r, ...t) {
+    return this._init(e, r, ...t);
+  }
+  get seedable() {
+    return !0;
+  }
+  next() {
+    return this._rng();
+  }
+  get name() {
+    return "sfc32";
+  }
+}
+
+exports.RNGSfc32 = RNGSfc32, exports.default = RNGSfc32;
 //# sourceMappingURL=index.cjs.production.min.cjs.map

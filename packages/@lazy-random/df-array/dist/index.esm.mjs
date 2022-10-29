@@ -1,147 +1,74 @@
-import { expect } from '@lazy-random/expect';
-import { int, randIndex } from '@lazy-random/util-distributions';
-import { swapAlgorithm2 } from '@lazy-random/array-algorithm';
-import { dfUniformByte, dfUniformFloat, dfUniformInt } from '@lazy-random/df-uniform';
-import { isUnset } from '@lazy-random/shared-lib';
+import { expect as r } from "@lazy-random/expect";
 
-function dfArrayIndex(random, arr, size = 1, start = 0, end) {
-  let len = arr.length - 1;
-  expect(size).integer.gt(0);
-  start = Math.max(Math.floor(start), 0);
-  end = Math.max(0, Math.floor(end)) || len;
-  expect(end).integer.gt(0).lte(len);
-  expect(start).integer.gte(0).lt(end);
-  const fn = int;
-  let size_runtime = Math.max(Math.min(end - start, len, size), 0);
-  expect(size_runtime).gte(size).gt(0);
-  return () => {
-    let ids = [];
-    let prev;
+import { int as t, randIndex as e } from "@lazy-random/util-distributions";
 
-    LABEL_TOP: do {
-      let i = fn(random, start, end);
+import { swapAlgorithm2 as n } from "@lazy-random/array-algorithm";
 
-      if (prev === i || ids.includes(i)) {
-        continue LABEL_TOP;
-      }
+import { dfUniformByte as l, dfUniformFloat as i, dfUniformInt as f } from "@lazy-random/df-uniform";
 
-      ids.push(prev = i);
-      --size_runtime;
-    } while (size_runtime > 0);
+import { isUnset as o } from "@lazy-random/shared-lib";
 
-    return ids;
+function dfArrayIndex(e, n, l = 1, i = 0, f) {
+  let o = n.length - 1;
+  r(l).integer.gt(0), i = Math.max(Math.floor(i), 0), f = Math.max(0, Math.floor(f)) || o, 
+  r(f).integer.gt(0).lte(o), r(i).integer.gte(0).lt(f);
+  const a = t;
+  let u = Math.max(Math.min(f - i, o, l), 0);
+  return r(u).gte(l).gt(0), () => {
+    let r, t = [];
+    do {
+      let n = a(e, i, f);
+      r === n || t.includes(n) || (t.push(r = n), --u);
+    } while (u > 0);
+    return t;
   };
 }
 
-function dfArrayShuffle(random, arr, overwrite) {
-  const randIndex$1 = len => {
-    return randIndex(random, len);
-  };
-
-  if (!overwrite) {
-    let cloneArrayLike;
-
-    if (Buffer.isBuffer(arr)) {
-      cloneArrayLike = arr => {
-        return Buffer.from(arr);
-      };
-    } else {
-      cloneArrayLike = arr => {
-        return arr.slice();
-      };
-    }
-
-    return () => {
-      return swapAlgorithm2(cloneArrayLike(arr), true, randIndex$1);
-    };
+function dfArrayShuffle(r, t, l) {
+  const randIndex$1 = t => e(r, t);
+  if (!l) {
+    let r;
+    return r = Buffer.isBuffer(t) ? r => Buffer.from(r) : r => r.slice(), () => n(r(t), !0, randIndex$1);
   }
-
-  return () => {
-    return swapAlgorithm2(arr, true, randIndex$1);
-  };
+  return () => n(t, !0, randIndex$1);
 }
-dfArrayShuffle.memoizable = false;
 
-function dfArrayUnique(random, arr, limit, loop, fnRandIndex, fnOutOfLimit) {
-  const randIndex$1 = len => {
-    return randIndex(random, len);
+function dfArrayUnique(t, n, l, i, f, o) {
+  let a = n.slice();
+  l = Math.min(l || a.length, a.length), f = f || (r => e(t, r)), i = !!i, r(l).integer.gt(0), 
+  r(f).function();
+  let u, m = l;
+  const d = function _fnClone(r) {
+    a = r.slice(), m = l, u = a.length;
   };
-
-  let clone = arr.slice();
-  limit = Math.min(limit || clone.length, clone.length);
-  fnRandIndex = fnRandIndex || randIndex$1;
-  loop = !!loop;
-  expect(limit).integer.gt(0);
-  expect(fnRandIndex).function();
-  let count = limit;
-  let len;
-
-  const _fnClone = function _fnClone(arr) {
-    clone = arr.slice();
-    count = limit;
-    len = clone.length;
-  };
-
   return () => {
-    len = clone.length;
-
-    if (len === 0 || count-- === 0) {
-      let _loop = loop;
-
-      if (fnOutOfLimit) {
-        let ret = fnOutOfLimit(arr, limit, loop, fnRandIndex);
-
-        if (Array.isArray(ret) && ret.length > 0) {
-          _fnClone(ret);
-
-          _loop = null;
-        } else if (ret == true) {
-          _loop = true;
-        } else if (typeof ret !== 'undefined') {
-          _loop = false;
-        }
+    if (u = a.length, 0 === u || 0 == m--) {
+      let r = i;
+      if (o) {
+        let t = o(n, l, i, f);
+        Array.isArray(t) && t.length > 0 ? (d(t), r = null) : 1 == t ? r = !0 : void 0 !== t && (r = !1);
       }
-
-      if (_loop) {
-        _fnClone(arr);
-      } else if (_loop !== null) {
-        throw new RangeError(`can't call arrayUnique > ${limit} times`);
-      }
+      if (r) d(n); else if (null !== r) throw new RangeError(`can't call arrayUnique > ${l} times`);
     }
-
-    let i = fnRandIndex(len);
-    return clone.splice(i, 1)[0];
+    let r = f(u);
+    return a.splice(r, 1)[0];
   };
 }
 
-function dfArrayFill(random, min, max, float) {
-  let fn;
+function dfArrayFill(t, e, n, a) {
+  let u;
   {
-    let min_unset = isUnset(min);
-    let max_unset = isUnset(max);
-
-    if (max_unset && min_unset) {
-      fn = dfUniformByte(random);
-    } else if (float) {
-      fn = dfUniformFloat(random, min, max);
-    } else {
-      fn = dfUniformInt(random, min, max);
-    }
-
-    min = void 0;
-    max = void 0;
+    let r = o(e), m = o(n);
+    u = m && r ? l(t) : a ? i(t, e, n) : f(t, e, n), e = void 0, n = void 0;
   }
-  expect(fn).function();
-  return arr => {
-    let i = arr.length;
-
-    while (i--) {
-      arr[i] = fn();
-    }
-
-    return arr;
+  return r(u).function(), r => {
+    let t = r.length;
+    for (;t--; ) r[t] = u();
+    return r;
   };
 }
+
+dfArrayShuffle.memoizable = !1;
 
 export { dfArrayFill, dfArrayIndex, dfArrayShuffle, dfArrayUnique };
 //# sourceMappingURL=index.esm.mjs.map

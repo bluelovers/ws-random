@@ -12,6 +12,6 @@ Object.defineProperty(exports, 'create', {
 	enumerable: true,
 	get: function () { return randomExtra.dfSumFloat; }
 });
-exports["default"] = randomSumFloat;
+exports.default = randomSumFloat;
 exports.randomSumFloat = randomSumFloat;
 //# sourceMappingURL=index.cjs.development.cjs.map

@@ -10,6 +10,9 @@ declare const UtilDistributions: {
 	float: typeof float;
 	int: typeof int;
 };
-export default UtilDistributions;
+
+export {
+	UtilDistributions as default,
+};
 
 export {};

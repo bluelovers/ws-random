@@ -1,18 +1,20 @@
-function randIndex(random, len) {
-  return Math.floor(random.next() * len);
-}
-function float(random, min, max) {
-  return random.next() * (max - min) + min;
-}
-function int(random, min, max) {
-  return Math.floor(float(random, min, max + 1));
+function randIndex(n, t) {
+  return Math.floor(n.next() * t);
 }
 
-const UtilDistributions = {
+function float(n, t, o) {
+  return n.next() * (o - t) + t;
+}
+
+function int(n, t, o) {
+  return Math.floor(float(n, t, o + 1));
+}
+
+const n = {
   randIndex,
   float,
   int
 };
 
-export { UtilDistributions as default, float, int, randIndex };
+export { n as default, float, int, randIndex };
 //# sourceMappingURL=index.esm.mjs.map

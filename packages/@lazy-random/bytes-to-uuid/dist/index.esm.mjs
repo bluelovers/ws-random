@@ -1,14 +1,15 @@
-import { BYTE_TO_HEX_TO_LOWER_CASE } from '@lazy-random/shared-lib';
+import { BYTE_TO_HEX_TO_LOWER_CASE as e } from "@lazy-random/shared-lib";
 
-function _createBytesToUuidFn(bth = BYTE_TO_HEX_TO_LOWER_CASE) {
-  return (buf, offset) => {
-    let i = offset || 0;
-    return [bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], '-', bth[buf[i++]], bth[buf[i++]], '-', bth[buf[i++]], bth[buf[i++]], '-', bth[buf[i++]], bth[buf[i++]], '-', bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], bth[buf[i++]]].join('');
+function _createBytesToUuidFn(t = e) {
+  return (e, o) => {
+    let r = o || 0;
+    return [ t[e[r++]], t[e[r++]], t[e[r++]], t[e[r++]], "-", t[e[r++]], t[e[r++]], "-", t[e[r++]], t[e[r++]], "-", t[e[r++]], t[e[r++]], "-", t[e[r++]], t[e[r++]], t[e[r++]], t[e[r++]], t[e[r++]], t[e[r++]] ].join("");
   };
 }
-function bytesToUuid(buf, offset, bth = BYTE_TO_HEX_TO_LOWER_CASE) {
-  let i = offset || 0;
-  return [bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], '-', bth[buf[i++]], bth[buf[i++]], '-', bth[buf[i++]], bth[buf[i++]], '-', bth[buf[i++]], bth[buf[i++]], '-', bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], bth[buf[i++]]].join('');
+
+function bytesToUuid(t, o, r = e) {
+  let n = o || 0;
+  return [ r[t[n++]], r[t[n++]], r[t[n++]], r[t[n++]], "-", r[t[n++]], r[t[n++]], "-", r[t[n++]], r[t[n++]], "-", r[t[n++]], r[t[n++]], "-", r[t[n++]], r[t[n++]], r[t[n++]], r[t[n++]], r[t[n++]], r[t[n++]] ].join("");
 }
 
 export { _createBytesToUuidFn, bytesToUuid, bytesToUuid as default };

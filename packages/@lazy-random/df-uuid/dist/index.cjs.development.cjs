@@ -8,9 +8,7 @@ var bytesToUuid = require('@lazy-random/bytes-to-uuid');
 
 function dfUuidV4(random, toUpperCase) {
   const fn = dfUniform.dfUniformBytes(random, 16);
-
   const fn2 = bytesToUuid._createBytesToUuidFn(toUpperCase ? sharedLib.BYTE_TO_HEX_TO_UPPER_CASE : sharedLib.BYTE_TO_HEX_TO_LOWER_CASE);
-
   return () => {
     let arr = fn();
     arr[6] = arr[6] & 0x0f | 0x40;
@@ -26,7 +24,7 @@ function isUUID4(id) {
 }
 
 exports.UUID4_PATTERN = UUID4_PATTERN;
-exports["default"] = dfUuidV4;
+exports.default = dfUuidV4;
 exports.dfUuidV4 = dfUuidV4;
 exports.isUUID4 = isUUID4;
 //# sourceMappingURL=index.cjs.development.cjs.map

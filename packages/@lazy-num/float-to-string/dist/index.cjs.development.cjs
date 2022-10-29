@@ -24,7 +24,6 @@ function joinFloatNumber(int, float) {
 function floatToString(n, fractionDigits) {
   let int;
   let s;
-
   if (typeof fractionDigits === 'number') {
     assertFractionDigits(fractionDigits);
     [int, s] = splitFloatNumberToString(n.toFixed(fractionDigits));
@@ -33,12 +32,11 @@ function floatToString(n, fractionDigits) {
     [int, float] = splitFloatNumber(n);
     s = getFractionDigitsString(float);
   }
-
   return joinFloatNumber(int, s);
 }
 
 exports.assertFractionDigits = assertFractionDigits;
-exports["default"] = floatToString;
+exports.default = floatToString;
 exports.floatToString = floatToString;
 exports.getFractionDigitsString = getFractionDigitsString;
 exports.joinFloatNumber = joinFloatNumber;

@@ -1,8 +1,9 @@
-function toFixedStringNumber(n, fractionDigits) {
-  return n.toFixed(fractionDigits);
+function toFixedStringNumber(e, t) {
+  return e.toFixed(t);
 }
-function toFixedNumber(n, fractionDigits) {
-  return parseFloat(n.toFixed(fractionDigits));
+
+function toFixedNumber(e, t) {
+  return parseFloat(e.toFixed(t));
 }
 
 export { toFixedNumber as default, toFixedNumber, toFixedStringNumber };

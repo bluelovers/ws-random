@@ -1,45 +1,42 @@
-import { RNGCrypto } from '@lazy-random/generators-crypto';
-import { RNGMathRandom2 } from '@lazy-random/generators-math-random2';
-import { RNGSeedRandom } from '@lazy-random/generators-seedrandom';
-import { RNG } from '@lazy-random/rng-abstract';
-import { RNGXOR128 } from '@lazy-random/generators-xor128';
-import { RNGFunction } from '@lazy-random/generators-function';
-import { RNGMathRandom } from '@lazy-random/generators-math-random';
+import { RNGCrypto as r } from "@lazy-random/generators-crypto";
 
-const PRNG_BUILTINS = {
-  'xor128': RNGXOR128,
-  'function': RNGFunction,
-  'default': RNGMathRandom2,
-  'math-random': RNGMathRandom,
-  'math-random2': RNGMathRandom2,
-  'seedrandom': RNGSeedRandom,
-  'crypto': RNGCrypto
+import { RNGMathRandom2 as o } from "@lazy-random/generators-math-random2";
+
+import { RNGSeedRandom as a } from "@lazy-random/generators-seedrandom";
+
+import { RNG as t } from "@lazy-random/rng-abstract";
+
+import { RNGXOR128 as n } from "@lazy-random/generators-xor128";
+
+import { RNGFunction as e } from "@lazy-random/generators-function";
+
+import { RNGMathRandom as m } from "@lazy-random/generators-math-random";
+
+const c = {
+  xor128: n,
+  function: e,
+  default: o,
+  "math-random": m,
+  "math-random2": o,
+  seedrandom: a,
+  crypto: r
 };
-function RNGFactory(...args) {
-  const [arg0 = 'default', ...rest] = args;
 
-  switch (typeof arg0) {
-    case 'object':
-      if (arg0 instanceof RNG) {
-        return arg0;
-      }
+function RNGFactory(...r) {
+  const [o = "default", ...a] = r;
+  switch (typeof o) {
+   case "object":
+    if (o instanceof t) return o;
+    break;
 
-      break;
+   case "function":
+    return new e(o);
 
-    case 'function':
-      return new RNGFunction(arg0);
-
-    case 'string':
-      const PRNG = PRNG_BUILTINS[arg0];
-
-      if (PRNG) {
-        return new PRNG(...rest);
-      }
-
-      break;
+   case "string":
+    const r = c[o];
+    if (r) return new r(...a);
   }
-
-  throw new TypeError(`invalid RNG "${arg0}"`);
+  throw new TypeError(`invalid RNG "${o}"`);
 }
 
 export { RNGFactory, RNGFactory as default };

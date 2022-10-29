@@ -1,79 +1,46 @@
-import { arrayRandIndexByLength } from '@lazy-random/array-rand-index';
+import { arrayRandIndexByLength as e } from "@lazy-random/array-rand-index";
 
-function swapAlgorithm(arr, overwrite, fn = arrayRandIndexByLength) {
-  let i = arr.length;
-  let ret = overwrite ? arr : arr.slice();
-
-  while (i) {
-    let idx = fn(i--);
-    if (i === idx) continue;
-    let cache = ret[i];
-    ret[i] = ret[idx];
-    ret[idx] = cache;
+function swapAlgorithm(r, t, l = e) {
+  let n = r.length, o = t ? r : r.slice();
+  for (;n; ) {
+    let e = l(n--);
+    if (n === e) continue;
+    let r = o[n];
+    o[n] = o[e], o[e] = r;
   }
-
-  return ret;
-}
-function swapAlgorithm2(arr, overwrite, fn = arrayRandIndexByLength) {
-  let i = arr.length;
-  let ret = overwrite ? arr : arr.slice();
-  let len = i;
-  let j = Math.ceil(len / 2);
-
-  while (i) {
-    let idx = fn(len);
-    i--;
-
-    if (idx === i) {
-      if (i < j) {
-        idx = fn(len);
-      } else {
-        idx = fn(i);
-      }
-    }
-
-    if (i === idx) continue;
-    let cache = ret[i];
-    ret[i] = ret[idx];
-    ret[idx] = cache;
-  }
-
-  return ret;
+  return o;
 }
 
-function array_rebase(ret_b, n_diff, min, max) {
-  let b_sum = 0;
-  let bool;
-  let i = ret_b.length;
+function swapAlgorithm2(r, t, l = e) {
+  let n = r.length, o = t ? r : r.slice(), i = n, a = Math.ceil(i / 2);
+  for (;n; ) {
+    let e = l(i);
+    if (n--, e === n && (e = l(n < a ? i : n)), n === e) continue;
+    let r = o[n];
+    o[n] = o[e], o[e] = r;
+  }
+  return o;
+}
 
-  if (typeof min === 'number' || typeof max === 'number') {
-    while (i--) {
-      let v = ret_b[i];
-      let n = v + n_diff;
-
-      if (n >= min && n <= max) {
-        bool = true;
-        ret_b[i] = n;
-        b_sum += n;
-      } else {
-        bool = false;
-        break;
-      }
+function array_rebase(e, r, t, l) {
+  let n, o = 0, i = e.length;
+  if ("number" == typeof t || "number" == typeof l) for (;i--; ) {
+    let a = e[i] + r;
+    if (!(a >= t && a <= l)) {
+      n = !1;
+      break;
     }
+    n = !0, e[i] = a, o += a;
   } else {
-    while (i--) {
-      let v = ret_b[i];
-      let n = v + n_diff;
-      ret_b[i] = n;
-      b_sum += n;
+    for (;i--; ) {
+      let t = e[i] + r;
+      e[i] = t, o += t;
     }
-
-    bool = true;
+    n = !0;
   }
-
   return {
-    bool,
-    b_sum
+    bool: n,
+    b_sum: o
   };
 }
 

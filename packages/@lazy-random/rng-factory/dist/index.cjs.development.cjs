@@ -21,31 +21,24 @@ const PRNG_BUILTINS = {
 };
 function RNGFactory(...args) {
   const [arg0 = 'default', ...rest] = args;
-
   switch (typeof arg0) {
     case 'object':
       if (arg0 instanceof rngAbstract.RNG) {
         return arg0;
       }
-
       break;
-
     case 'function':
       return new generatorsFunction.RNGFunction(arg0);
-
     case 'string':
       const PRNG = PRNG_BUILTINS[arg0];
-
       if (PRNG) {
         return new PRNG(...rest);
       }
-
       break;
   }
-
   throw new TypeError(`invalid RNG "${arg0}"`);
 }
 
 exports.RNGFactory = RNGFactory;
-exports["default"] = RNGFactory;
+exports.default = RNGFactory;
 //# sourceMappingURL=index.cjs.development.cjs.map

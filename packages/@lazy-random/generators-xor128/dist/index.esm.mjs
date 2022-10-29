@@ -1,78 +1,42 @@
-import { RNG } from '@lazy-random/rng-abstract';
-import { randomSeedNum } from '@lazy-random/seed-token';
-import { cloneClass } from '@lazy-random/clone-class';
+import { RNG as t } from "@lazy-random/rng-abstract";
 
-class RNGXOR128 extends RNG {
-  constructor(...argv) {
-    super();
+import { randomSeedNum as s } from "@lazy-random/seed-token";
 
-    this._init(...argv);
+import { cloneClass as e } from "@lazy-random/clone-class";
 
-    this.seed(this.x);
+class RNGXOR128 extends t {
+  constructor(...t) {
+    super(), this._init(...t), this.seed(this.x);
   }
-
   get name() {
-    return 'xor128';
+    return "xor128";
   }
-
   get seedable() {
-    return true;
+    return !0;
   }
-
   next() {
     const t = this.x ^ this.x << 1;
-    this.x = this.y;
-    this.y = this.z;
-    this.z = this.w;
-    this.w = this.w ^ (this.w >>> 19 ^ t ^ t >>> 8);
-    return (this.w >>> 0) / 0x100000000;
+    return this.x = this.y, this.y = this.z, this.z = this.w, this.w = this.w ^ this.w >>> 19 ^ t ^ t >>> 8, 
+    (this.w >>> 0) / 0x100000000;
   }
-
-  seed(seed, opts, ...argv) {
-    this._seed(seed, opts, ...argv);
-
+  seed(t, s, ...e) {
+    this._seed(t, s, ...e);
     let i = 64;
-
-    while (i--) {
-      this.next();
-    }
+    for (;i--; ) this.next();
   }
-
-  clone(seed, opts, ...argv) {
-    return cloneClass(RNGXOR128, this, seed, opts, ...argv);
+  clone(t, s, ...i) {
+    return e(RNGXOR128, this, t, s, ...i);
   }
-
-  _init(...argv) {
-    let [x = randomSeedNum(), y = randomSeedNum(), z = randomSeedNum(), w = randomSeedNum()] = argv;
-
-    this._seed(x, y, z, w);
+  _init(...t) {
+    let [e = s(), i = s(), h = s(), r = s()] = t;
+    this._seed(e, i, h, r);
   }
-
-  _seed(...argv) {
-    let [x = this.x, y = this.y, z = this.z, w = this.w] = argv;
-
-    if (typeof x !== 'number') {
-      x = this._seedNum(x) || this.x;
-    }
-
-    if (typeof y !== 'number') {
-      y = this.y;
-    }
-
-    if (typeof z !== 'number') {
-      z = this.z;
-    }
-
-    if (typeof x !== 'number') {
-      w = this.w;
-    }
-
-    this.x = x;
-    this.y = y;
-    this.z = z;
-    this.w = w;
+  _seed(...t) {
+    let [s = this.x, e = this.y, i = this.z, h = this.w] = t;
+    "number" != typeof s && (s = this._seedNum(s) || this.x), "number" != typeof e && (e = this.y), 
+    "number" != typeof i && (i = this.z), "number" != typeof s && (h = this.w), this.x = s, 
+    this.y = e, this.z = i, this.w = h;
   }
-
 }
 
 export { RNGXOR128, RNGXOR128 as default };

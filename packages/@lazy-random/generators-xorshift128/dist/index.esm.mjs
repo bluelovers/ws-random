@@ -1,40 +1,27 @@
-import { RNG } from '@lazy-random/rng-abstract';
-import { getRandomSeedAuto, XorShift } from '@bluelovers/xorshift';
+import { RNG as r } from "@lazy-random/rng-abstract";
 
-class RNGXorShift128 extends RNG {
-  constructor(seed, opts, ...argv) {
-    super();
+import { getRandomSeedAuto as t, XorShift as e } from "@bluelovers/xorshift";
 
-    this._init(seed, opts, ...argv);
+class RNGXorShift128 extends r {
+  constructor(r, t, ...e) {
+    super(), this._init(r, t, ...e);
   }
-
-  _init(seed, opts, ...argv) {
-    super._init(seed, opts, ...argv);
-
-    seed = getRandomSeedAuto(seed);
-    this._rng = new XorShift(seed);
+  _init(r, i, ...n) {
+    super._init(r, i, ...n), r = t(r), this._rng = new e(r);
   }
-
-  seed(seed, opts, ...argv) {
-    var _seed;
-
-    (_seed = seed) !== null && _seed !== void 0 ? _seed : seed = getRandomSeedAuto();
-
-    this._rng.seed(seed);
+  seed(r, e, ...i) {
+    var n;
+    null !== (n = r) && void 0 !== n || (r = t()), this._rng.seed(r);
   }
-
   next() {
     return this._rng.random();
   }
-
   get seedable() {
-    return true;
+    return !0;
   }
-
   get name() {
-    return 'xorshift128';
+    return "xorshift128";
   }
-
 }
 
 export { RNGXorShift128, RNGXorShift128 as default };

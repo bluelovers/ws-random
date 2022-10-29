@@ -1,2 +1,119 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=require("array-hyper-unique"),t=require("lib-r-math.js"),i=require("num-is-zero"),r=require("@lazy-random/expect"),n=require("@lazy-num/to-fixed-number"),u=require("@lazy-random/fake-lib-r-math-rng"),a=require("@lazy-random/util-probabilities"),o=require("@lazy-num/sum"),s=require("@lazy-random/util-distributions"),l=require("@lazy-random/shared-lib"),m=require("@lazy-random/df-uniform");function f(n){let{random:m,size:f,sum:c,min:p,max:x}=n;r.expect(f).finite.integer.gt(1);const d=o.sum_1_to_n(f);c=l.isUnset(c)?d:c,r.expect(c).is.finite.integer(),p=l.isUnset(p)?c>0?0:c:p,x=l.isUnset(x)?Math.abs(c):x,r.expect(p).is.finite.integer(),r.expect(x).is.finite.integer();let g=c-f*p,b=x-p;r.expect(g).gte(0),c>0&&r.expect(c).gt(p);const h=a.get_prob(f,b);r.expect(h).array.lengthOf(f);const y=t.Multinomial(u.fakeLibRMathRng((()=>m.next()))).rmultinom,q=n.limit||5;let _=p;const v=e=>y(e,g,h).reduce(((e,t)=>{let i=t.length,r=0,n=!1,u=0;for(;i--;){let e=t[i],a=e+_;if(t.indexOf(e)===i&&u++,!(a>=p&&a<=x)){n=!1;break}n=!0,t[i]=a,r+=a}return n&&r===c&&e.push({value:t,unique_len:u,b_sum:r,bool:n}),e}),[]).sort(((e,t)=>t.unique_len-e.unique_len));let z=[];{let t=e.array_unique(v(200).map((e=>(e.value=e.value.map(i.fixZero),e))));if(t.length){let i=Math.min(10,t.length);for(;i--;)z.push(t[i].value);z=e.array_unique(z.map((e=>e.sort())))}r.expect(z,`invalid argv (size=${f}, sum=${c}, min=${p}, max=${x})`).array.have.lengthOf.gt(0),t=void 0}return n=void 0,()=>{let e,t,r=v(q),n=z.length;if(r.length)e=r[0].value,t=r[0].bool,e=e.map(i.fixZero),t&&n<10&&z.push(e);else if(n){let i=s.randIndex(m,n);e=z[i],t=!0}if(!t||!e)throw new Error("can't generator value by current input argv, or try set limit for high number");return e}}function c(e){let{random:t,size:u,sum:f,min:c,max:p,fractionDigits:x}=e;r.expect(u).is.finite.integer.gt(1),l.isUnset(f)&&"number"==typeof c&&"number"==typeof p&&(f=(u-1)*c+p),f=l.isUnset(f)?1:f,c=l.isUnset(c)?f>0?0:f:c,p=l.isUnset(p)?Math.abs(f):p,r.expect(c).is.finite.number(),r.expect(p).is.finite.number(),r.expect(f).is.finite.number(),f+=0;const d=f-u*c,g=p-c;let b;f>0&&r.expect(f).gt(c),r.expect(d).gte(0),l.isUnset(x)||r.expect(x).finite.integer.gt(0);{const e=a.get_prob_float(u,g),i=o.num_array_sum(e.slice(0,-1));b=m.dfUniformFloat(t,0,i)}const h=s.float;return()=>{let e,r;e:do{const a=[];let o,s,l=d,m=0,g=u-1,y=b(),q=i.fixZero(y+c);if(x&&(q=n.toFixedNumber(q,x)),q<c||q>p)continue e;let _=l-y,v=_+c;if(v<c)continue e;m+=q,a.push(q),l=_;let z=q;for(;g>1;){o=h(t,0,l);let e=l-o;if(e+c<c)continue e;s=i.fixZero(o+c),x&&(s=n.toFixedNumber(s,x)),s<c||s>p||s===z||(m+=s,a.push(s),l=e,g--,z=s)}v=i.fixZero(f-m),x&&(v=n.toFixedNumber(v,x)),v<c||v>p||v===q||v===z||(a.push(v),r=!0,e=a)}while(0);return e}}exports.coreFnRandSumFloat=c,exports.coreFnRandSumInt=f,exports.dfRandSumFloat=function(e,t,i,r,n,u){return c({random:e,size:t,sum:i,min:r,max:n,fractionDigits:u})},exports.dfRandSumInt=function(e,t,i,r,n,u){return f({random:e,size:t,sum:i,min:r,max:n,limit:u})};
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: !0
+});
+
+var e = require("array-hyper-unique"), t = require("lib-r-math.js"), n = require("num-is-zero"), i = require("@lazy-random/expect"), r = require("@lazy-num/to-fixed-number"), u = require("@lazy-random/fake-lib-r-math-rng"), a = require("@lazy-random/util-probabilities"), o = require("@lazy-num/sum"), s = require("@lazy-random/util-distributions"), l = require("@lazy-random/shared-lib"), m = require("@lazy-random/df-uniform");
+
+function coreFnRandSumInt(r) {
+  let {random: m, size: f, sum: c, min: d, max: p} = r;
+  i.expect(f).finite.integer.gt(1);
+  const x = o.sum_1_to_n(f);
+  c = l.isUnset(c) ? x : c, i.expect(c).is.finite.integer(), d = l.isUnset(d) ? c > 0 ? 0 : c : d, 
+  p = l.isUnset(p) ? Math.abs(c) : p, i.expect(d).is.finite.integer(), i.expect(p).is.finite.integer();
+  let g = c - f * d, b = p - d;
+  i.expect(g).gte(0), c > 0 && i.expect(c).gt(d);
+  const h = a.get_prob(f, b);
+  i.expect(h).array.lengthOf(f);
+  const y = t.Multinomial(u.fakeLibRMathRng((() => m.next()))).rmultinom, F = r.limit || 5;
+  let q = d;
+  const rmultinomCreateFn = e => y(e, g, h).reduce(((e, t) => {
+    let n = t.length, i = 0, r = !1, u = 0;
+    for (;n--; ) {
+      let e = t[n], a = e + q;
+      if (t.indexOf(e) === n && u++, !(a >= d && a <= p)) {
+        r = !1;
+        break;
+      }
+      r = !0, t[n] = a, i += a;
+    }
+    return r && i === c && e.push({
+      value: t,
+      unique_len: u,
+      b_sum: i,
+      bool: r
+    }), e;
+  }), []).sort(((e, t) => t.unique_len - e.unique_len));
+  let _ = [];
+  {
+    let t = e.array_unique(rmultinomCreateFn(200).map((e => (e.value = e.value.map(n.fixZero), 
+    e))));
+    if (t.length) {
+      let n = Math.min(10, t.length);
+      for (;n--; ) _.push(t[n].value);
+      _ = e.array_unique(_.map((e => e.sort())));
+    }
+    i.expect(_, `invalid argv (size=${f}, sum=${c}, min=${d}, max=${p})`).array.have.lengthOf.gt(0), 
+    t = void 0;
+  }
+  return r = void 0, () => {
+    let e, t, i = rmultinomCreateFn(F), r = _.length;
+    if (i.length) e = i[0].value, t = i[0].bool, e = e.map(n.fixZero), t && r < 10 && _.push(e); else if (r) {
+      let n = s.randIndex(m, r);
+      e = _[n], t = !0;
+    }
+    if (!t || !e) throw new Error("can't generator value by current input argv, or try set limit for high number");
+    return e;
+  };
+}
+
+function coreFnRandSumFloat(e) {
+  let {random: t, size: u, sum: f, min: c, max: d, fractionDigits: p} = e;
+  i.expect(u).is.finite.integer.gt(1), l.isUnset(f) && "number" == typeof c && "number" == typeof d && (f = (u - 1) * c + d), 
+  f = l.isUnset(f) ? 1.0 : f, c = l.isUnset(c) ? f > 0 ? 0 : f : c, d = l.isUnset(d) ? Math.abs(f) : d, 
+  i.expect(c).is.finite.number(), i.expect(d).is.finite.number(), i.expect(f).is.finite.number(), 
+  f += 0.0;
+  const x = f - u * c, g = d - c;
+  let b;
+  f > 0 && i.expect(f).gt(c), i.expect(x).gte(0), l.isUnset(p) || i.expect(p).finite.integer.gt(0);
+  {
+    const e = a.get_prob_float(u, g), n = o.num_array_sum(e.slice(0, -1));
+    b = m.dfUniformFloat(t, 0, n);
+  }
+  const h = s.float;
+  return () => {
+    let e, i;
+    e: do {
+      const a = [];
+      let o, s, l = x, m = 0.0, g = u - 1.0, y = b(), F = n.fixZero(y + c);
+      if (p && (F = r.toFixedNumber(F, p)), F < c || F > d) continue e;
+      let q = l - y, _ = q + c;
+      if (_ < c) continue e;
+      m += F, a.push(F), l = q;
+      let v = F;
+      for (;g > 1; ) {
+        o = h(t, 0, l);
+        let e = l - o;
+        if (e + c < c) continue e;
+        s = n.fixZero(o + c), p && (s = r.toFixedNumber(s, p)), s < c || s > d || s === v || (m += s, 
+        a.push(s), l = e, g--, v = s);
+      }
+      _ = n.fixZero(f - m), p && (_ = r.toFixedNumber(_, p)), _ < c || _ > d || _ === F || _ === v || (a.push(_), 
+      i = !0, e = a);
+    } while (0);
+    return e;
+  };
+}
+
+exports.coreFnRandSumFloat = coreFnRandSumFloat, exports.coreFnRandSumInt = coreFnRandSumInt, 
+exports.dfRandSumFloat = function dfRandSumFloat(e, t, n, i, r, u) {
+  return coreFnRandSumFloat({
+    random: e,
+    size: t,
+    sum: n,
+    min: i,
+    max: r,
+    fractionDigits: u
+  });
+}, exports.dfRandSumInt = function dfRandSumInt(e, t, n, i, r, u) {
+  return coreFnRandSumInt({
+    random: e,
+    size: t,
+    sum: n,
+    min: i,
+    max: r,
+    limit: u
+  });
+};
 //# sourceMappingURL=index.cjs.production.min.cjs.map

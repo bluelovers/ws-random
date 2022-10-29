@@ -8,6 +8,9 @@ export interface IRNGLike {
 export declare function dfUuidV4(random: IRNGLike, toUpperCase?: boolean): () => string;
 export declare const UUID4_PATTERN: RegExp;
 export declare function isUUID4(id: string): boolean;
-export default dfUuidV4;
+
+export {
+	dfUuidV4 as default,
+};
 
 export {};

@@ -6,11 +6,9 @@ var originalMathRandom = require('@lazy-random/original-math-random');
 
 function df_xfnv1a(str) {
   let h = 2166136261 >>> 0;
-
   for (let i = 0; i < str.length; i++) {
     h = Math.imul(h ^ str.charCodeAt(i), 16777619);
   }
-
   return () => {
     h += h << 13;
     h ^= h >>> 7;
@@ -21,13 +19,11 @@ function df_xfnv1a(str) {
 }
 function df_xfnv1a_2(str) {
   let h = 0xdeadbeef | 0;
-
   for (let i = 0; i < str.length; i++) {
     h = Math.imul(h + str.charCodeAt(i), 2654435761);
     h ^= h >>> 24;
     h = Math.imul(h << 11 | h >>> 21, 2246822519);
   }
-
   return () => {
     h += h << 13;
     h ^= h >>> 7;
@@ -43,12 +39,10 @@ function df_xfnv1a_2(str) {
 
 function df_xmur3(str) {
   let h = 1779033703 ^ str.length;
-
   for (let i = 0; i < str.length; i++) {
     h = Math.imul(h ^ str.charCodeAt(i), 3432918353);
     h = h << 13 | h >>> 19;
   }
-
   return () => {
     h = Math.imul(h ^ h >>> 16, 2246822507);
     h = Math.imul(h ^ h >>> 13, 3266489909);
@@ -57,7 +51,6 @@ function df_xmur3(str) {
 }
 function df_xmur3a(str) {
   let h = 2166136261 >>> 0;
-
   for (let k, i = 0; i < str.length; i++) {
     k = Math.imul(str.charCodeAt(i), 3432918353);
     k = k << 15 | k >>> 17;
@@ -65,7 +58,6 @@ function df_xmur3a(str) {
     h = h << 13 | h >>> 19;
     h = Math.imul(h, 5) + 3864292196 | 0;
   }
-
   h ^= str.length;
   return () => {
     h ^= h >>> 16;
@@ -88,11 +80,11 @@ function df_v3b(a, b, c, d) {
   c || (c = 1013904242);
   d || (d = 3668340011);
   let out,
-      pos = 0,
-      a0 = 0,
-      b0 = b,
-      c0 = c,
-      d0 = d;
+    pos = 0,
+    a0 = 0,
+    b0 = b,
+    c0 = c,
+    d0 = d;
   return () => {
     if (pos === 0) {
       a += d;
@@ -122,25 +114,20 @@ function df_v3b(a, b, c, d) {
       a0++;
       pos = 4;
     }
-
     switch (--pos) {
       case 0:
         out = a;
         break;
-
       case 1:
         out = b;
         break;
-
       case 2:
         out = c;
         break;
-
       case 3:
         out = d;
         break;
     }
-
     return out >>> 0;
   };
 }
@@ -149,10 +136,8 @@ function seedFromStringOrNumberOrArray(seedInput, size) {
   let exists_zero = false;
   let s;
   const seed = [seedInput !== null && seedInput !== void 0 ? seedInput : []].flat().slice(0, 4);
-
   for (let i = 0; i < size; i++) {
     const type = typeof seed[i];
-
     if (type === 'string') {
       seed[i] = df_xfnv1a(`${seed[i]}#sfc32#${i}`)();
     } else if (type !== 'number') {
@@ -161,23 +146,19 @@ function seedFromStringOrNumberOrArray(seedInput, size) {
     } else {
       seed[i] = Math.abs(seed[i]);
     }
-
     if (!seed[i]) {
       if (seed[i] === 0 && !exists_zero) {
         exists_zero = true;
       } else {
         var _s;
-
         (_s = s) !== null && _s !== void 0 ? _s : s = doubleToIEEE(originalMathRandom._MathRandom());
         seed[i] = s.pop();
-
         if (!s.length) {
           s = void 0;
         }
       }
     }
   }
-
   return seed;
 }
 

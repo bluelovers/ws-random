@@ -1,2 +1,38 @@
-"use strict";var _;Object.defineProperty(exports,"__esModule",{value:!0}),exports.ENUM_ALPHABET=void 0,(_=exports.ENUM_ALPHABET||(exports.ENUM_ALPHABET={})).NANOID_URL="ModuleSymbhasOwnPr-0123456789ABCDEFGHIJKLNQRTUVWXYZ_cfgijkpqtvxz",_.SHORTID="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-",_.SHORTID2="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@",_.UNI_CHAR1="ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ①②③④⑤⑥⑦⑧⑨⑩⑪⑫",_.DEFAULT="ModuleSymbhasOwnPr0123456789ABCDEFGHIJKLNQRTUVWXYZcfgijkpqtvxz0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",_.BASE16="0123456789abcdef",_.BASE36="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ",_.BASE58="123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz",_.BASE62="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",_.BASE66="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-._~",_.BASE71="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!'()*-._~";const E=Math.pow(2,32);exports.BYTE_TO_HEX_TO_LOWER_CASE=[],exports.BYTE_TO_HEX_TO_UPPER_CASE=[];for(let _=0;_<256;++_)exports.BYTE_TO_HEX_TO_LOWER_CASE[_]=(_+256).toString(16).substr(1),exports.BYTE_TO_HEX_TO_UPPER_CASE[_]=exports.BYTE_TO_HEX_TO_LOWER_CASE[_].toUpperCase();function e(_){return exports.BYTE_TO_HEX_TO_UPPER_CASE[_]}exports.BYTE_TO_HEX_TO_LOWER_CASE=Object.freeze(exports.BYTE_TO_HEX_TO_LOWER_CASE),exports.BYTE_TO_HEX_TO_UPPER_CASE=Object.freeze(exports.BYTE_TO_HEX_TO_UPPER_CASE),exports.FLOAT_ENTROPY_BYTES=7,exports.MATH_POW_2_32=E,exports.SUM_DELTA=5e-14,exports.UINT32_BYTES=4,exports.UINT32_VALUE=4294967295,exports.hashArgv=function(_){return String(_.join(";"))},exports.isUnset=function(_){return null==_},exports.stringifyByte=e,exports.toHexArray=function(_){return _.map(e)};
+"use strict";
+
+var _;
+
+Object.defineProperty(exports, "__esModule", {
+  value: !0
+}), exports.ENUM_ALPHABET = void 0, (_ = exports.ENUM_ALPHABET || (exports.ENUM_ALPHABET = {})).NANOID_URL = "ModuleSymbhasOwnPr-0123456789ABCDEFGHIJKLNQRTUVWXYZ_cfgijkpqtvxz", 
+_.SHORTID = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-", 
+_.SHORTID2 = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@", 
+_.UNI_CHAR1 = "ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ①②③④⑤⑥⑦⑧⑨⑩⑪⑫", 
+_.DEFAULT = "ModuleSymbhasOwnPr0123456789ABCDEFGHIJKLNQRTUVWXYZcfgijkpqtvxz0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 
+_.BASE16 = "0123456789abcdef", _.BASE36 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ", 
+_.BASE58 = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz", _.BASE62 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", 
+_.BASE66 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-._~", 
+_.BASE71 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!'()*-._~";
+
+const E = Math.pow(2, 32);
+
+exports.BYTE_TO_HEX_TO_LOWER_CASE = [], exports.BYTE_TO_HEX_TO_UPPER_CASE = [];
+
+for (let _ = 0; _ < 256; ++_) exports.BYTE_TO_HEX_TO_LOWER_CASE[_] = (_ + 0x100).toString(16).substr(1), 
+exports.BYTE_TO_HEX_TO_UPPER_CASE[_] = exports.BYTE_TO_HEX_TO_LOWER_CASE[_].toUpperCase();
+
+function stringifyByte(_) {
+  return exports.BYTE_TO_HEX_TO_UPPER_CASE[_];
+}
+
+exports.BYTE_TO_HEX_TO_LOWER_CASE = Object.freeze(exports.BYTE_TO_HEX_TO_LOWER_CASE), 
+exports.BYTE_TO_HEX_TO_UPPER_CASE = Object.freeze(exports.BYTE_TO_HEX_TO_UPPER_CASE), 
+exports.FLOAT_ENTROPY_BYTES = 7, exports.MATH_POW_2_32 = E, exports.SUM_DELTA = 0.00000000000005, 
+exports.UINT32_BYTES = 4, exports.UINT32_VALUE = 0xffffffff, exports.hashArgv = function hashArgv(_) {
+  return String(_.join(";"));
+}, exports.isUnset = function isUnset(_) {
+  return null == _;
+}, exports.stringifyByte = stringifyByte, exports.toHexArray = function toHexArray(_) {
+  return _.map(stringifyByte);
+};
 //# sourceMappingURL=index.cjs.production.min.cjs.map

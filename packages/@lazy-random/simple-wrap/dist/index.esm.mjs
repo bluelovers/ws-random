@@ -1,56 +1,30 @@
-const defaultArgv = /*#__PURE__*/Object.freeze({
-  int: /*#__PURE__*/Object.freeze([0, 100]),
-  integer: /*#__PURE__*/Object.freeze([0, 100]),
-  boolean: /*#__PURE__*/Object.freeze([0.5]),
-  bytes: /*#__PURE__*/Object.freeze([1])
+const e = Object.freeze({
+  int: Object.freeze([ 0, 100 ]),
+  integer: Object.freeze([ 0, 100 ]),
+  boolean: Object.freeze([ 0.5 ]),
+  bytes: Object.freeze([ 1 ])
 });
-function simpleWrap(fn) {
-  let self = {
-    next() {
-      return fn();
-    },
 
-    random() {
-      return fn();
-    },
-
-    float(min = 0, max = 1) {
-      return fn() * (max - min + 1) + min;
-    },
-
-    int(min = 0, max = 100) {
-      return Math.floor(fn() * (max - min + 1) + min);
-    },
-
+function simpleWrap(e) {
+  let t = {
+    next: () => e(),
+    random: () => e(),
+    float: (t = 0, r = 1) => e() * (r - t + 1) + t,
+    int: (t = 0, r = 100) => Math.floor(e() * (r - t + 1) + t),
     get integer() {
-      return self.int;
+      return t.int;
     },
-
-    boolean(likelihood = 0.5) {
-      return fn() >= likelihood;
+    boolean: (t = .5) => e() >= t,
+    byte: () => t.int(0, 255),
+    bytes(e = 1) {
+      let r = [];
+      for (let n = 0; n < e; n++) r.push(t.byte());
+      return r;
     },
-
-    byte() {
-      return self.int(0, 255);
-    },
-
-    bytes(size = 1) {
-      let arr = [];
-
-      for (let i = 0; i < size; i++) {
-        arr.push(self.byte());
-      }
-
-      return arr;
-    },
-
-    seed(...argv) {
-      return self;
-    }
-
+    seed: (...e) => t
   };
-  return self;
+  return t;
 }
 
-export { simpleWrap as default, defaultArgv, simpleWrap };
+export { simpleWrap as default, e as defaultArgv, simpleWrap };
 //# sourceMappingURL=index.esm.mjs.map

@@ -1,2 +1,23 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=require("@lazy-random/seed-token"),r=require("@lazy-random/rng-abstract-core");class RNG extends r.RNGCore{static create(e,t,...s){if(this===RNG||this===r.RNGCore||!this)throw new ReferenceError("RNG is abstract class");return new this(e,t,...s)}_seedNum(r,t,...s){return null!=r&&0!==r||(r=e.randomSeedStr()),e.seedToken(r,t,...s)}_seedStr(r,t,...s){return e.hashAny(r,t,...s)}}exports.RNG=RNG,exports.default=RNG;
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: !0
+});
+
+var e = require("@lazy-random/seed-token"), r = require("@lazy-random/rng-abstract-core");
+
+class RNG extends r.RNGCore {
+  static create(e, t, ...s) {
+    if (this === RNG || this === r.RNGCore || !this) throw new ReferenceError("RNG is abstract class");
+    return new this(e, t, ...s);
+  }
+  _seedNum(r, t, ...s) {
+    return null != r && 0 !== r || (r = e.randomSeedStr()), e.seedToken(r, t, ...s);
+  }
+  _seedStr(r, t, ...s) {
+    return e.hashAny(r, t, ...s);
+  }
+}
+
+exports.RNG = RNG, exports.default = RNG;
 //# sourceMappingURL=index.cjs.production.min.cjs.map

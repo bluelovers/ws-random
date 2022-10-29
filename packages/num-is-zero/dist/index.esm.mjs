@@ -1,8 +1,9 @@
-function isZero(val) {
-  return val === 0 || val === -0;
+function isZero(r) {
+  return 0 === r || -0 === r;
 }
-function fixZero(val) {
-  return val === -0 ? 0 : val;
+
+function fixZero(r) {
+  return -0 === r ? 0 : r;
 }
 
 export { isZero as default, fixZero, isZero };

@@ -3,7 +3,6 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 exports.ENUM_ALPHABET = void 0;
-
 (function (ENUM_ALPHABET) {
   ENUM_ALPHABET["NANOID_URL"] = "ModuleSymbhasOwnPr-0123456789ABCDEFGHIJKLNQRTUVWXYZ_cfgijkpqtvxz";
   ENUM_ALPHABET["SHORTID"] = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-";
@@ -17,7 +16,6 @@ exports.ENUM_ALPHABET = void 0;
   ENUM_ALPHABET["BASE66"] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-._~";
   ENUM_ALPHABET["BASE71"] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!'()*-._~";
 })(exports.ENUM_ALPHABET || (exports.ENUM_ALPHABET = {}));
-
 const SUM_DELTA = 0.00000000000005;
 const FLOAT_ENTROPY_BYTES = 7;
 const UINT32_BYTES = 4;
@@ -25,12 +23,10 @@ const UINT32_VALUE = 0xffffffff;
 const MATH_POW_2_32 = /*#__PURE__*/Math.pow(2, 32);
 exports.BYTE_TO_HEX_TO_LOWER_CASE = [];
 exports.BYTE_TO_HEX_TO_UPPER_CASE = [];
-
 for (let i = 0; i < 256; ++i) {
   exports.BYTE_TO_HEX_TO_LOWER_CASE[i] = /*#__PURE__*/(i + 0x100).toString(16).substr(1);
   exports.BYTE_TO_HEX_TO_UPPER_CASE[i] = /*#__PURE__*/exports.BYTE_TO_HEX_TO_LOWER_CASE[i].toUpperCase();
 }
-
 exports.BYTE_TO_HEX_TO_LOWER_CASE = /*#__PURE__*/Object.freeze(exports.BYTE_TO_HEX_TO_LOWER_CASE);
 exports.BYTE_TO_HEX_TO_UPPER_CASE = /*#__PURE__*/Object.freeze(exports.BYTE_TO_HEX_TO_UPPER_CASE);
 

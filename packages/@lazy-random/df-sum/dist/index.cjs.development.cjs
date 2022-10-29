@@ -33,32 +33,26 @@ function coreFnRandSumInt(argv) {
   let n_sum = sum$1 - size * min;
   let maxv = max - min;
   expect.expect(n_sum).gte(0);
-
   if (sum$1 > 0) {
     expect.expect(sum$1).gt(min);
   }
-
   const prob = utilProbabilities.get_prob(size, maxv);
   expect.expect(prob).array.lengthOf(size);
   const rmultinomFn = libRMath_js.Multinomial(fakeLibRMathRng.fakeLibRMathRng(() => random.next())).rmultinom;
   const n_len = argv.limit || 5 || n_sum;
   let n_diff = min;
-
   const rmultinomCreateFn = n_len => {
     return rmultinomFn(n_len, n_sum, prob).reduce((a, value) => {
       let i = value.length;
       let b_sum = 0;
       let bool = false;
       let unique_len = 0;
-
       while (i--) {
         let v = value[i];
         let n = v + n_diff;
-
         if (value.indexOf(v) === i) {
           unique_len++;
         }
-
         if (n >= min && n <= max) {
           bool = true;
           value[i] = n;
@@ -68,7 +62,6 @@ function coreFnRandSumInt(argv) {
           break;
         }
       }
-
       if (bool && b_sum === sum$1) {
         let item = {
           value,
@@ -78,11 +71,9 @@ function coreFnRandSumInt(argv) {
         };
         a.push(item);
       }
-
       return a;
     }, []).sort((a, b) => b.unique_len - a.unique_len);
   };
-
   const cache_max = 10;
   let cache = [];
   {
@@ -91,17 +82,13 @@ function coreFnRandSumInt(argv) {
       v.value = v.value.map(numIsZero.fixZero);
       return v;
     }));
-
     if (arr.length) {
       let i = Math.min(cache_max, arr.length);
-
       while (i--) {
         cache.push(arr[i].value);
       }
-
       cache = arrayHyperUnique.array_unique(cache.map(v => v.sort()));
     }
-
     expect.expect(cache, `invalid argv (size=${size}, sum=${sum$1}, min=${min}, max=${max})`).array.have.lengthOf.gt(0);
     arr = undefined;
   }
@@ -111,12 +98,10 @@ function coreFnRandSumInt(argv) {
     let ret_b;
     let bool_toplevel;
     let c_len = cache.length;
-
     if (arr.length) {
       ret_b = arr[0].value;
       bool_toplevel = arr[0].bool;
       ret_b = ret_b.map(numIsZero.fixZero);
-
       if (bool_toplevel && c_len < cache_max) {
         cache.push(ret_b);
       }
@@ -125,11 +110,9 @@ function coreFnRandSumInt(argv) {
       ret_b = cache[i];
       bool_toplevel = true;
     }
-
     if (!bool_toplevel || !ret_b) {
       throw new Error(`can't generator value by current input argv, or try set limit for high number`);
     }
-
     return ret_b;
   };
 }
@@ -143,11 +126,9 @@ function coreFnRandSumFloat(argv) {
     fractionDigits
   } = argv;
   expect.expect(size).is.finite.integer.gt(1);
-
   if (sharedLib.isUnset(sum$1) && typeof min === 'number' && typeof max === 'number') {
     sum$1 = (size - 1) * min + max;
   }
-
   sum$1 = sharedLib.isUnset(sum$1) ? 1.0 : sum$1;
   min = sharedLib.isUnset(min) ? sum$1 > 0 ? 0 : sum$1 : min;
   max = sharedLib.isUnset(max) ? Math.abs(sum$1) : max;
@@ -157,18 +138,14 @@ function coreFnRandSumFloat(argv) {
   sum$1 += 0.0;
   const n_sum = sum$1 - size * min;
   const maxv = max - min;
-
   if (sum$1 > 0) {
     expect.expect(sum$1).gt(min);
   }
-
   expect.expect(n_sum).gte(0);
   let fnFirst;
-
   if (!sharedLib.isUnset(fractionDigits)) {
     expect.expect(fractionDigits).finite.integer.gt(0);
   }
-
   {
     const prob = utilProbabilities.get_prob_float(size, maxv);
     const prob_slice_sum = sum.num_array_sum(prob.slice(0, -1));
@@ -178,7 +155,6 @@ function coreFnRandSumFloat(argv) {
   return () => {
     let ret_b;
     let bool_toplevel;
-
     LABEL_TOP: do {
       const ret_a = [];
       let total = n_sum;
@@ -188,68 +164,52 @@ function coreFnRandSumFloat(argv) {
       let n11;
       let n00 = fnFirst();
       let n01 = numIsZero.fixZero(n00 + min);
-
       if (fractionDigits) {
         n01 = toFixedNumber.toFixedNumber(n01, fractionDigits);
       }
-
       if (n01 < min || n01 > max) {
         continue LABEL_TOP;
       }
-
       let t0 = total - n00;
       let t1 = t0 + min;
-
       if (t1 < min) {
         continue LABEL_TOP;
       }
-
       total2 += n01;
       ret_a.push(n01);
       total = t0;
       let n_prev = n01;
-
       LABEL_SUB: while (i > 1) {
         n10 = fnNext(random, 0, total);
         let t0 = total - n10;
         let t1 = t0 + min;
-
         if (t1 < min) {
           continue LABEL_TOP;
         }
-
         n11 = numIsZero.fixZero(n10 + min);
-
         if (fractionDigits) {
           n11 = toFixedNumber.toFixedNumber(n11, fractionDigits);
         }
-
         if (n11 < min || n11 > max || n11 === n_prev) {
           continue LABEL_SUB;
         }
-
         total2 += n11;
         ret_a.push(n11);
         total = t0;
         i--;
         n_prev = n11;
       }
-
       t1 = numIsZero.fixZero(sum$1 - total2);
-
       if (fractionDigits) {
         t1 = toFixedNumber.toFixedNumber(t1, fractionDigits);
       }
-
       if (t1 < min || t1 > max || t1 === n01 || t1 === n_prev) {
         continue LABEL_TOP;
       }
-
       ret_a.push(t1);
       bool_toplevel = true;
       ret_b = ret_a;
     } while (!bool_toplevel);
-
     return ret_b;
   };
 }

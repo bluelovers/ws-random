@@ -1,9 +1,7 @@
-const randomSeedStrData = /*#__PURE__*/Object.freeze({
-  "name": "random-extra",
-  "version": "3.6.15"
-});
-const name = randomSeedStrData.name;
-const version = randomSeedStrData.version;
+const e = Object.freeze({
+  name: "random-extra",
+  version: "3.6.15"
+}), a = e.name, n = e.version;
 
-export { randomSeedStrData as default, name, randomSeedStrData, version };
+export { e as default, a as name, e as randomSeedStrData, n as version };
 //# sourceMappingURL=index.esm.mjs.map

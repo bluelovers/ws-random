@@ -13,6 +13,9 @@ export declare function _floatFromBuffer(buf: ArrayLike<number>, offset?: number
 export declare function _floatFromBuffer2(buf: ArrayLike<number>, offset?: number): number;
 export declare function readUInt32LE(buf: ArrayLike<number>, offset?: number): number;
 export declare function readUInt32BE(buf: ArrayLike<number>, offset?: number): number;
-export default floatFromBuffer;
+
+export {
+	floatFromBuffer as default,
+};
 
 export {};

@@ -30,6 +30,9 @@ export declare abstract class RNGCore implements IRNGLike {
 	 */
 	protected _seedStr(seed?: any, opts?: any, ...argv: any[]): string;
 }
-export default RNGCore;
+
+export {
+	RNGCore as default,
+};
 
 export {};

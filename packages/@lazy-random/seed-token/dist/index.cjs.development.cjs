@@ -10,12 +10,8 @@ var originalMathRandom = require('@lazy-random/original-math-random');
 var sharedLib = require('@lazy-random/shared-lib');
 var checkBasic = require('@lazy-assert/check-basic');
 
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-var hashSum__default = /*#__PURE__*/_interopDefaultLegacy(hashSum$1);
-
 function hashSum(input, ...argv) {
-  return hashSum__default["default"](input, ...argv);
+  return hashSum$1(input, ...argv);
 }
 
 function nanoid(input, ...argv) {
@@ -23,13 +19,10 @@ function nanoid(input, ...argv) {
 }
 
 let _name;
-
 let _version;
-
 function randomSeedStr() {
   var _name2, _version2;
-
-  return [nanoid(), (_name2 = _name) !== null && _name2 !== void 0 ? _name2 : _name = hashSum__default["default"](seedData.name), (_version2 = _version) !== null && _version2 !== void 0 ? _version2 : _version = hashSum__default["default"](seedData.version), Date.now(), floatToString.floatToString(originalMathRandom._MathRandom())].join('_');
+  return [nanoid(), (_name2 = _name) !== null && _name2 !== void 0 ? _name2 : _name = hashSum$1(seedData.name), (_version2 = _version) !== null && _version2 !== void 0 ? _version2 : _version = hashSum$1(seedData.version), Date.now(), floatToString.floatToString(originalMathRandom._MathRandom())].join('_');
 }
 
 function hashAny(seed, ...argv) {
@@ -38,7 +31,6 @@ function hashAny(seed, ...argv) {
   } else if (typeof seed !== 'string') {
     seed = hashSum(seed);
   }
-
   return String(seed);
 }
 
@@ -50,19 +42,16 @@ function seedToken(seed, opts, ...argv) {
   if (checkBasic.isFiniteInt(seed)) {
     return seed;
   }
-
   const strSeed = String(seed);
   let s = 0;
   const len = strSeed.length;
-
   for (let k = 0; k < len; ++k) {
     s ^= strSeed.charCodeAt(k) | 0;
   }
-
   return s;
 }
 
-exports["default"] = seedToken;
+exports.default = seedToken;
 exports.hashAny = hashAny;
 exports.hashSum = hashSum;
 exports.nanoid = nanoid;

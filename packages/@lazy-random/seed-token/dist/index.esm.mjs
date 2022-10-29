@@ -1,57 +1,47 @@
-import hashSum$1 from 'hash-sum';
-import { nanoid as nanoid$1 } from 'nanoid/non-secure';
-import { name, version } from '@lazy-random/seed-data';
-import { floatToString } from '@lazy-num/float-to-string';
-import { _MathRandom } from '@lazy-random/original-math-random';
-import { MATH_POW_2_32 } from '@lazy-random/shared-lib';
-import { isFiniteInt } from '@lazy-assert/check-basic';
+import n from "hash-sum";
 
-function hashSum(input, ...argv) {
-  return hashSum$1(input, ...argv);
+import { nanoid as r } from "nanoid/non-secure";
+
+import { name as o, version as t } from "@lazy-random/seed-data";
+
+import { floatToString as e } from "@lazy-num/float-to-string";
+
+import { _MathRandom as a } from "@lazy-random/original-math-random";
+
+import { MATH_POW_2_32 as m } from "@lazy-random/shared-lib";
+
+import { isFiniteInt as i } from "@lazy-assert/check-basic";
+
+function hashSum(r, ...o) {
+  return n(r, ...o);
 }
 
-function nanoid(input, ...argv) {
-  return nanoid$1();
+function nanoid(n, ...o) {
+  return r();
 }
 
-let _name;
-
-let _version;
+let d, u;
 
 function randomSeedStr() {
-  var _name2, _version2;
-
-  return [nanoid(), (_name2 = _name) !== null && _name2 !== void 0 ? _name2 : _name = hashSum$1(name), (_version2 = _version) !== null && _version2 !== void 0 ? _version2 : _version = hashSum$1(version), Date.now(), floatToString(_MathRandom())].join('_');
+  var r, m;
+  return [ nanoid(), null !== (r = d) && void 0 !== r ? r : d = n(o), null !== (m = u) && void 0 !== m ? m : u = n(t), Date.now(), e(a()) ].join("_");
 }
 
-function hashAny(seed, ...argv) {
-  if (!seed) {
-    seed = randomSeedStr();
-  } else if (typeof seed !== 'string') {
-    seed = hashSum(seed);
-  }
-
-  return String(seed);
+function hashAny(n, ...r) {
+  return n ? "string" != typeof n && (n = hashSum(n)) : n = randomSeedStr(), String(n);
 }
 
 function randomSeedNum() {
-  return _MathRandom() * MATH_POW_2_32 + _MathRandom();
+  return a() * m + a();
 }
 
-function seedToken(seed, opts, ...argv) {
-  if (isFiniteInt(seed)) {
-    return seed;
-  }
-
-  const strSeed = String(seed);
-  let s = 0;
-  const len = strSeed.length;
-
-  for (let k = 0; k < len; ++k) {
-    s ^= strSeed.charCodeAt(k) | 0;
-  }
-
-  return s;
+function seedToken(n, r, ...o) {
+  if (i(n)) return n;
+  const t = String(n);
+  let e = 0;
+  const a = t.length;
+  for (let n = 0; n < a; ++n) e ^= 0 | t.charCodeAt(n);
+  return e;
 }
 
 export { seedToken as default, hashAny, hashSum, nanoid, randomSeedNum, randomSeedStr, seedToken };

@@ -16,6 +16,9 @@ export interface IRNGLike {
 	seed?(seed?: any, opts?: any, ...argv: any[]): any;
 }
 export declare function dfCharID(random: IRNGLike, char?: ENUM_ALPHABET | string | Buffer | number, size?: number): () => string;
-export default dfCharID;
+
+export {
+	dfCharID as default,
+};
 
 export {};

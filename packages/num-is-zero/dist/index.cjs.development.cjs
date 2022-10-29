@@ -9,7 +9,7 @@ function fixZero(val) {
   return val === -0 ? 0 : val;
 }
 
-exports["default"] = isZero;
+exports.default = isZero;
 exports.fixZero = fixZero;
 exports.isZero = isZero;
 //# sourceMappingURL=index.cjs.development.cjs.map

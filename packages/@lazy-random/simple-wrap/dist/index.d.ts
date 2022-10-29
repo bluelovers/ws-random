@@ -18,6 +18,9 @@ export declare function simpleWrap<T extends (() => number)>(fn: T): {
 	bytes(size?: number): number[];
 	seed(...argv: any[]): any;
 };
-export default simpleWrap;
+
+export {
+	simpleWrap as default,
+};
 
 export {};

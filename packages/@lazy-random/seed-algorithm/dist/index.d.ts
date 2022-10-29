@@ -22,7 +22,7 @@ export declare function doubleToIEEE(floatNumber: number): [
  * var next = v3b(seed, 2654435769, 1013904242, 3668340011);
  */
 export declare function df_v3b(a: number, b?: number, c?: number, d?: number): () => number;
-export declare type ISeedInputFromStringOrNumberOrArray = ITSValueOrArrayMaybeReadonly<string | number>;
+export type ISeedInputFromStringOrNumberOrArray = ITSValueOrArrayMaybeReadonly<string | number>;
 export declare function seedFromStringOrNumberOrArray<L extends number>(seedInput: ISeedInputFromStringOrNumberOrArray, size: L): number[] & {
 	length: L;
 };

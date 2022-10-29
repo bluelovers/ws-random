@@ -1,2 +1,39 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=require("@lazy-random/expect"),t=require("@lazy-random/rng-abstract"),n=require("@lazy-random/clone-class");class RNGFunction extends t.RNG{constructor(e,t,...n){var r;super(),(r="_seedable")in this?Object.defineProperty(this,r,{value:null,enumerable:!0,configurable:!0,writable:!0}):this[r]=null,this._init(e,t,...n)}_init_check(t,n,...r){let i=typeof t;null!==t&&"undefined"!==i&&"function"!==i&&e.expect(t)}_init(e,t,...n){this._init_check(e,t,...n),this.seed(e,t,...n)}get name(){return"function"}get seedable(){return this._seedable}next(){return this._rng()}seed(e,t,...n){"function"==typeof e&&(this._rng=e||this._rng)}clone(e,t,...r){return n.cloneClass(RNGFunction,this,e,t,...r)}}exports.RNGFunction=RNGFunction,exports.default=RNGFunction;
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: !0
+});
+
+var e = require("@lazy-random/expect"), t = require("@lazy-random/rng-abstract"), n = require("@lazy-random/clone-class");
+
+class RNGFunction extends t.RNG {
+  _seedable=null;
+  constructor(e, t, ...n) {
+    super(), this._init(e, t, ...n);
+  }
+  _init_check(t, n, ...r) {
+    let i = typeof t;
+    null !== t && "undefined" !== i && "function" !== i && e.expect(t);
+  }
+  _init(e, t, ...n) {
+    this._init_check(e, t, ...n), this.seed(e, t, ...n);
+  }
+  get name() {
+    return "function";
+  }
+  get seedable() {
+    return this._seedable;
+  }
+  next() {
+    return this._rng();
+  }
+  seed(e, t, ...n) {
+    "function" == typeof e && (this._rng = e || this._rng);
+  }
+  clone(e, t, ...r) {
+    return n.cloneClass(RNGFunction, this, e, t, ...r);
+  }
+}
+
+exports.RNGFunction = RNGFunction, exports.default = RNGFunction;
 //# sourceMappingURL=index.cjs.production.min.cjs.map

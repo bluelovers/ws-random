@@ -1,102 +1,62 @@
-import { expect } from '@lazy-random/expect';
-import { fixZero } from 'num-is-zero';
+import { expect as t } from "@lazy-random/expect";
 
-function dfIrwinHall(random, n = 1) {
-  expect(n).integer.gte(0);
-  n = fixZero(n);
+import { fixZero as n } from "num-is-zero";
 
-  if (n === 0) {
-    return () => 0;
-  }
-
-  return () => {
-    let i = n;
-    let sum = 0;
-
-    while (i--) {
-      sum += random.next();
-    }
-
-    return sum;
+function dfIrwinHall(e, r = 1) {
+  return t(r).integer.gte(0), 0 === (r = n(r)) ? () => 0 : () => {
+    let t = r, n = 0;
+    for (;t--; ) n += e.next();
+    return n;
   };
 }
 
-function dfBates(random, n = 1) {
-  expect(n).integer.gt(0);
-  const irwinHall = dfIrwinHall(random, n);
-  return () => {
-    return irwinHall() / n;
+function dfBates(n, e = 1) {
+  t(e).integer.gt(0);
+  const r = dfIrwinHall(n, e);
+  return () => r() / e;
+}
+
+function dfBernoulli(n, e = .5) {
+  return t(e).number.gte(0).lte(1), () => Math.floor(n.next() + e);
+}
+
+function dfBinomial(n, e = 1, r = .5) {
+  return t(e).integer.gt(0), t(r).number.gte(0).lte(1), () => {
+    let t = e, o = 0;
+    for (;t--; ) n.next() < r && o++;
+    return o;
   };
 }
 
-function dfBernoulli(random, p = 0.5) {
-  expect(p).number.gte(0).lte(1);
-  return () => {
-    return Math.floor(random.next() + p);
-  };
+function dfExponential(n, e = 1) {
+  return t(e).number.gt(0), () => -Math.log(1 - n.next()) / e;
 }
 
-function dfBinomial(random, n = 1, p = 0.5) {
-  expect(n).integer.gt(0);
-  expect(p).number.gte(0).lte(1);
-  return () => {
-    let i = n;
-    let x = 0;
-
-    while (i--) {
-      if (random.next() < p) {
-        x++;
-      }
-    }
-
-    return x;
-  };
+function dfGeometric(n, e = .5) {
+  t(e).number.gt(0).lte(1);
+  const r = 1.0 / Math.log(1.0 - e);
+  return () => Math.floor(1 + Math.log(n.next()) * r);
 }
 
-function dfExponential(random, lambda = 1) {
-  expect(lambda).number.gt(0);
-  return () => {
-    return -Math.log(1 - random.next()) / lambda;
-  };
-}
-
-function dfGeometric(random, p = 0.5) {
-  expect(p).number.gt(0).lte(1);
-  const invLogP = 1.0 / Math.log(1.0 - p);
-  return () => {
-    return Math.floor(1 + Math.log(random.next()) * invLogP);
-  };
-}
-
-function dfNormal(random, mu = 0, sigma = 1) {
-  expect(mu).number();
-  expect(sigma).number();
-  return () => {
-    let x, y, r;
-
+function dfNormal(n, e = 0, r = 1) {
+  return t(e).number(), t(r).number(), () => {
+    let t, o, f;
     do {
-      x = random.next() * 2 - 1;
-      y = random.next() * 2 - 1;
-      r = x * x + y * y;
-    } while (!r || r > 1);
-
-    return mu + sigma * y * Math.sqrt(-2 * Math.log(r) / r);
+      t = 2 * n.next() - 1, o = 2 * n.next() - 1, f = t * t + o * o;
+    } while (!f || f > 1);
+    return e + r * o * Math.sqrt(-2 * Math.log(f) / f);
   };
 }
 
-function dfLogNormal(...args) {
-  const normal = dfNormal(...args);
-  return () => {
-    return Math.exp(normal());
-  };
+function dfLogNormal(...t) {
+  const n = dfNormal(...t);
+  return () => Math.exp(n());
 }
 
-function dfPareto(random, alpha = 1) {
-  expect(alpha).gt(0);
-  const invAlpha = 1.0 / alpha;
-  return () => {
-    return 1.0 / Math.pow(1.0 - random.next(), invAlpha);
-  };
+function dfPareto(n, e = 1) {
+  t(e).gt(0);
+  const r = 1.0 / e;
+  return () => 1.0 / Math.pow(1.0 - n.next(), r);
 }
 
 export { dfBates, dfBernoulli, dfBinomial, dfExponential, dfGeometric, dfIrwinHall, dfLogNormal, dfNormal, dfPareto };

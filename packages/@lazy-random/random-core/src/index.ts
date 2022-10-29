@@ -1,12 +1,11 @@
 /// <reference types="node" />
 import { expect } from '@lazy-random/expect';
 import { autobind, deprecate } from 'core-decorators';
-import { ENUM_ALPHABET, IArrayInput02 } from '@lazy-random/shared-lib';
+import { ENUM_ALPHABET, IArrayInput02, hashArgv } from '@lazy-random/shared-lib';
 import Distributions from '@lazy-random/distributions';
 import { RNG, IRNGLike } from '@lazy-random/rng-abstract'
 import { IArrayUniqueOutOfLimitCallback, IRandIndex } from '@lazy-random/df-array';
 import { IObjectInput, IWeightEntrie, IGetWeight, IOptionsItemByWeight } from '@lazy-random/df-item-by-weight';
-import { hashArgv } from '@lazy-random/shared-lib';
 
 /**
  * Seedable random number generator supporting many common distributions.
@@ -766,6 +765,7 @@ export class RandomCore<R extends RNG = RNG>
 		{
 			value = {
 				key,
+				// @ts-ignore
 				distribution: getter(this, ...args)
 			};
 			this._cache[label] = value
@@ -810,6 +810,7 @@ export interface IRandomDistributionsFn<R = any> extends Function
 export interface IRandomDistributionsCacheRow<F extends IRandomDistributionsFn = IRandomDistributionsFn>
 {
 	key: string,
+	// @ts-ignore
 	distribution: IRandomDistributions<F>,
 }
 

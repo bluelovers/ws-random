@@ -1,19 +1,13 @@
-function fakeLibRMathRng(fn) {
+function fakeLibRMathRng(n) {
   return {
-    unif_rand(n) {
-      if (n > 1) {
+    unif_rand(t) {
+      if (t > 1) {
         let a = [];
-
-        while (n--) {
-          a[n] = fn();
-        }
-
+        for (;t--; ) a[t] = n();
         return a;
       }
-
-      return fn();
+      return n();
     }
-
   };
 }
 

@@ -1,2 +1,36 @@
-"use strict";function e(e,t){let r=e;for(let n=10**-t;n<1;n+=10**-t){if(e+n===r)return!0;r=e+n}return!1}function t(t,r=!1){let n,o=Number.MAX_SAFE_INTEGER,a=0;for(;;){if(r&&console.table({"":{n:o,"Relative to Number.MAX_SAFE_INTEGER":`(MAX + 1) / ${(Number.MAX_SAFE_INTEGER+1)/(o+1)} - 1`,lastSafe:a,lastUnsafe:n,"lastUnsafe - lastSafe":n-a}}),e(o,t))n=o;else{if(a+1===o)return console.log(`\n\nMax safe number to a precision of ${t} digits after the decimal point: ${o}\t((MAX + 1) / ${(Number.MAX_SAFE_INTEGER+1)/(o+1)} - 1)\n\n`),o;a=o}o=Math.round((a+n)/2)}}Object.defineProperty(exports,"__esModule",{value:!0}),exports.MAX_SAFE_FLOAT=t(1),exports.default=t,exports.findMaxSafeFloat=t,exports.isUnsafe=e;
+"use strict";
+
+function isUnsafe(e, a) {
+  let t = e;
+  for (let f = 10 ** -a; f < 1; f += 10 ** -a) {
+    if (e + f === t) return !0;
+    t = e + f;
+  }
+  return !1;
+}
+
+function findMaxSafeFloat(e, a = !1) {
+  let t, f = Number.MAX_SAFE_INTEGER, n = 0;
+  for (;;) {
+    if (a && console.table({
+      "": {
+        n: f,
+        "Relative to Number.MAX_SAFE_INTEGER": `(MAX + 1) / ${(Number.MAX_SAFE_INTEGER + 1) / (f + 1)} - 1`,
+        lastSafe: n,
+        lastUnsafe: t,
+        "lastUnsafe - lastSafe": t - n
+      }
+    }), isUnsafe(f, e)) t = f; else {
+      if (n + 1 === f) return console.log(`\n\nMax safe number to a precision of ${e} digits after the decimal point: ${f}\t((MAX + 1) / ${(Number.MAX_SAFE_INTEGER + 1) / (f + 1)} - 1)\n\n`), 
+      f;
+      n = f;
+    }
+    f = Math.round((n + t) / 2);
+  }
+}
+
+Object.defineProperty(exports, "__esModule", {
+  value: !0
+}), exports.MAX_SAFE_FLOAT = findMaxSafeFloat(1), exports.default = findMaxSafeFloat, 
+exports.findMaxSafeFloat = findMaxSafeFloat, exports.isUnsafe = isUnsafe;
 //# sourceMappingURL=index.cjs.production.min.cjs.map

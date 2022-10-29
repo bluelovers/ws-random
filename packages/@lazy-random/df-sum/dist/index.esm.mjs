@@ -1,274 +1,132 @@
-import { array_unique } from 'array-hyper-unique';
-import { Multinomial } from 'lib-r-math.js';
-import { fixZero } from 'num-is-zero';
-import { expect } from '@lazy-random/expect';
-import { toFixedNumber } from '@lazy-num/to-fixed-number';
-import { fakeLibRMathRng } from '@lazy-random/fake-lib-r-math-rng';
-import { get_prob, get_prob_float } from '@lazy-random/util-probabilities';
-import { sum_1_to_n, num_array_sum } from '@lazy-num/sum';
-import { randIndex, float } from '@lazy-random/util-distributions';
-import { isUnset } from '@lazy-random/shared-lib';
-import { dfUniformFloat } from '@lazy-random/df-uniform';
+import { array_unique as t } from "array-hyper-unique";
 
-function coreFnRandSumInt(argv) {
-  let {
-    random,
-    size,
-    sum,
-    min,
-    max
-  } = argv;
-  expect(size).finite.integer.gt(1);
-  const sum_1_to_size = sum_1_to_n(size);
-  sum = isUnset(sum) ? sum_1_to_size : sum;
-  expect(sum).is.finite.integer();
-  min = isUnset(min) ? sum > 0 ? 0 : sum : min;
-  max = isUnset(max) ? Math.abs(sum) : max;
-  expect(min).is.finite.integer();
-  expect(max).is.finite.integer();
-  let n_sum = sum - size * min;
-  let maxv = max - min;
-  expect(n_sum).gte(0);
+import { Multinomial as n } from "lib-r-math.js";
 
-  if (sum > 0) {
-    expect(sum).gt(min);
-  }
+import { fixZero as e } from "num-is-zero";
 
-  const prob = get_prob(size, maxv);
-  expect(prob).array.lengthOf(size);
-  const rmultinomFn = Multinomial(fakeLibRMathRng(() => random.next())).rmultinom;
-  const n_len = argv.limit || 5 || n_sum;
-  let n_diff = min;
+import { expect as i } from "@lazy-random/expect";
 
-  const rmultinomCreateFn = n_len => {
-    return rmultinomFn(n_len, n_sum, prob).reduce((a, value) => {
-      let i = value.length;
-      let b_sum = 0;
-      let bool = false;
-      let unique_len = 0;
+import { toFixedNumber as r } from "@lazy-num/to-fixed-number";
 
-      while (i--) {
-        let v = value[i];
-        let n = v + n_diff;
+import { fakeLibRMathRng as o } from "@lazy-random/fake-lib-r-math-rng";
 
-        if (value.indexOf(v) === i) {
-          unique_len++;
-        }
+import { get_prob as m, get_prob_float as a } from "@lazy-random/util-probabilities";
 
-        if (n >= min && n <= max) {
-          bool = true;
-          value[i] = n;
-          b_sum += n;
-        } else {
-          bool = false;
-          break;
-        }
+import { sum_1_to_n as u, num_array_sum as l } from "@lazy-num/sum";
+
+import { randIndex as f, float as s } from "@lazy-random/util-distributions";
+
+import { isUnset as d } from "@lazy-random/shared-lib";
+
+import { dfUniformFloat as c } from "@lazy-random/df-uniform";
+
+function coreFnRandSumInt(r) {
+  let {random: a, size: l, sum: s, min: c, max: g} = r;
+  i(l).finite.integer.gt(1);
+  const p = u(l);
+  s = d(s) ? p : s, i(s).is.finite.integer(), c = d(c) ? s > 0 ? 0 : s : c, g = d(g) ? Math.abs(s) : g, 
+  i(c).is.finite.integer(), i(g).is.finite.integer();
+  let h = s - l * c, b = g - c;
+  i(h).gte(0), s > 0 && i(s).gt(c);
+  const y = m(l, b);
+  i(y).array.lengthOf(l);
+  const z = n(o((() => a.next()))).rmultinom, v = r.limit || 5;
+  let F = c;
+  const rmultinomCreateFn = t => z(t, h, y).reduce(((t, n) => {
+    let e = n.length, i = 0, r = !1, o = 0;
+    for (;e--; ) {
+      let t = n[e], m = t + F;
+      if (n.indexOf(t) === e && o++, !(m >= c && m <= g)) {
+        r = !1;
+        break;
       }
-
-      if (bool && b_sum === sum) {
-        let item = {
-          value,
-          unique_len,
-          b_sum,
-          bool
-        };
-        a.push(item);
-      }
-
-      return a;
-    }, []).sort((a, b) => b.unique_len - a.unique_len);
-  };
-
-  const cache_max = 10;
-  let cache = [];
+      r = !0, n[e] = m, i += m;
+    }
+    return r && i === s && t.push({
+      value: n,
+      unique_len: o,
+      b_sum: i,
+      bool: r
+    }), t;
+  }), []).sort(((t, n) => n.unique_len - t.unique_len));
+  let x = [];
   {
-    let len = 200;
-    let arr = array_unique(rmultinomCreateFn(len).map(v => {
-      v.value = v.value.map(fixZero);
-      return v;
-    }));
-
-    if (arr.length) {
-      let i = Math.min(cache_max, arr.length);
-
-      while (i--) {
-        cache.push(arr[i].value);
-      }
-
-      cache = array_unique(cache.map(v => v.sort()));
+    let n = t(rmultinomCreateFn(200).map((t => (t.value = t.value.map(e), t))));
+    if (n.length) {
+      let e = Math.min(10, n.length);
+      for (;e--; ) x.push(n[e].value);
+      x = t(x.map((t => t.sort())));
     }
-
-    expect(cache, `invalid argv (size=${size}, sum=${sum}, min=${min}, max=${max})`).array.have.lengthOf.gt(0);
-    arr = undefined;
+    i(x, `invalid argv (size=${l}, sum=${s}, min=${c}, max=${g})`).array.have.lengthOf.gt(0), 
+    n = void 0;
   }
-  argv = undefined;
-  return () => {
-    let arr = rmultinomCreateFn(n_len);
-    let ret_b;
-    let bool_toplevel;
-    let c_len = cache.length;
-
-    if (arr.length) {
-      ret_b = arr[0].value;
-      bool_toplevel = arr[0].bool;
-      ret_b = ret_b.map(fixZero);
-
-      if (bool_toplevel && c_len < cache_max) {
-        cache.push(ret_b);
-      }
-    } else if (c_len) {
-      let i = randIndex(random, c_len);
-      ret_b = cache[i];
-      bool_toplevel = true;
+  return r = void 0, () => {
+    let t, n, i = rmultinomCreateFn(v), r = x.length;
+    if (i.length) t = i[0].value, n = i[0].bool, t = t.map(e), n && r < 10 && x.push(t); else if (r) {
+      let e = f(a, r);
+      t = x[e], n = !0;
     }
-
-    if (!bool_toplevel || !ret_b) {
-      throw new Error(`can't generator value by current input argv, or try set limit for high number`);
-    }
-
-    return ret_b;
-  };
-}
-function coreFnRandSumFloat(argv) {
-  let {
-    random,
-    size,
-    sum,
-    min,
-    max,
-    fractionDigits
-  } = argv;
-  expect(size).is.finite.integer.gt(1);
-
-  if (isUnset(sum) && typeof min === 'number' && typeof max === 'number') {
-    sum = (size - 1) * min + max;
-  }
-
-  sum = isUnset(sum) ? 1.0 : sum;
-  min = isUnset(min) ? sum > 0 ? 0 : sum : min;
-  max = isUnset(max) ? Math.abs(sum) : max;
-  expect(min).is.finite.number();
-  expect(max).is.finite.number();
-  expect(sum).is.finite.number();
-  sum += 0.0;
-  const n_sum = sum - size * min;
-  const maxv = max - min;
-
-  if (sum > 0) {
-    expect(sum).gt(min);
-  }
-
-  expect(n_sum).gte(0);
-  let fnFirst;
-
-  if (!isUnset(fractionDigits)) {
-    expect(fractionDigits).finite.integer.gt(0);
-  }
-
-  {
-    const prob = get_prob_float(size, maxv);
-    const prob_slice_sum = num_array_sum(prob.slice(0, -1));
-    fnFirst = dfUniformFloat(random, 0, prob_slice_sum);
-  }
-  const fnNext = float;
-  return () => {
-    let ret_b;
-    let bool_toplevel;
-
-    LABEL_TOP: do {
-      const ret_a = [];
-      let total = n_sum;
-      let total2 = 0.0;
-      let i = size - 1.0;
-      let n10;
-      let n11;
-      let n00 = fnFirst();
-      let n01 = fixZero(n00 + min);
-
-      if (fractionDigits) {
-        n01 = toFixedNumber(n01, fractionDigits);
-      }
-
-      if (n01 < min || n01 > max) {
-        continue LABEL_TOP;
-      }
-
-      let t0 = total - n00;
-      let t1 = t0 + min;
-
-      if (t1 < min) {
-        continue LABEL_TOP;
-      }
-
-      total2 += n01;
-      ret_a.push(n01);
-      total = t0;
-      let n_prev = n01;
-
-      LABEL_SUB: while (i > 1) {
-        n10 = fnNext(random, 0, total);
-        let t0 = total - n10;
-        let t1 = t0 + min;
-
-        if (t1 < min) {
-          continue LABEL_TOP;
-        }
-
-        n11 = fixZero(n10 + min);
-
-        if (fractionDigits) {
-          n11 = toFixedNumber(n11, fractionDigits);
-        }
-
-        if (n11 < min || n11 > max || n11 === n_prev) {
-          continue LABEL_SUB;
-        }
-
-        total2 += n11;
-        ret_a.push(n11);
-        total = t0;
-        i--;
-        n_prev = n11;
-      }
-
-      t1 = fixZero(sum - total2);
-
-      if (fractionDigits) {
-        t1 = toFixedNumber(t1, fractionDigits);
-      }
-
-      if (t1 < min || t1 > max || t1 === n01 || t1 === n_prev) {
-        continue LABEL_TOP;
-      }
-
-      ret_a.push(t1);
-      bool_toplevel = true;
-      ret_b = ret_a;
-    } while (!bool_toplevel);
-
-    return ret_b;
+    if (!n || !t) throw new Error("can't generator value by current input argv, or try set limit for high number");
+    return t;
   };
 }
 
-function dfRandSumFloat(random, size, sum, min, max, fractionDigits) {
+function coreFnRandSumFloat(t) {
+  let {random: n, size: o, sum: m, min: u, max: f, fractionDigits: g} = t;
+  i(o).is.finite.integer.gt(1), d(m) && "number" == typeof u && "number" == typeof f && (m = (o - 1) * u + f), 
+  m = d(m) ? 1.0 : m, u = d(u) ? m > 0 ? 0 : m : u, f = d(f) ? Math.abs(m) : f, i(u).is.finite.number(), 
+  i(f).is.finite.number(), i(m).is.finite.number(), m += 0.0;
+  const p = m - o * u, h = f - u;
+  let b;
+  m > 0 && i(m).gt(u), i(p).gte(0), d(g) || i(g).finite.integer.gt(0);
+  {
+    const t = a(o, h), e = l(t.slice(0, -1));
+    b = c(n, 0, e);
+  }
+  const y = s;
+  return () => {
+    let t, i;
+    t: do {
+      const a = [];
+      let l, s, d = p, c = 0.0, h = o - 1.0, z = b(), v = e(z + u);
+      if (g && (v = r(v, g)), v < u || v > f) continue t;
+      let F = d - z, x = F + u;
+      if (x < u) continue t;
+      c += v, a.push(v), d = F;
+      let R = v;
+      for (;h > 1; ) {
+        l = y(n, 0, d);
+        let t = d - l;
+        if (t + u < u) continue t;
+        s = e(l + u), g && (s = r(s, g)), s < u || s > f || s === R || (c += s, a.push(s), 
+        d = t, h--, R = s);
+      }
+      x = e(m - c), g && (x = r(x, g)), x < u || x > f || x === v || x === R || (a.push(x), 
+      i = !0, t = a);
+    } while (0);
+    return t;
+  };
+}
+
+function dfRandSumFloat(t, n, e, i, r, o) {
   return coreFnRandSumFloat({
-    random,
-    size,
-    sum,
-    min,
-    max,
-    fractionDigits
+    random: t,
+    size: n,
+    sum: e,
+    min: i,
+    max: r,
+    fractionDigits: o
   });
 }
 
-function dfRandSumInt(random, size, sum, min, max, limit) {
+function dfRandSumInt(t, n, e, i, r, o) {
   return coreFnRandSumInt({
-    random,
-    size,
-    sum,
-    min,
-    max,
-    limit
+    random: t,
+    size: n,
+    sum: e,
+    min: i,
+    max: r,
+    limit: o
   });
 }
 

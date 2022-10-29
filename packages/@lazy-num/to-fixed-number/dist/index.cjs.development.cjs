@@ -9,7 +9,7 @@ function toFixedNumber(n, fractionDigits) {
   return parseFloat(n.toFixed(fractionDigits));
 }
 
-exports["default"] = toFixedNumber;
+exports.default = toFixedNumber;
 exports.toFixedNumber = toFixedNumber;
 exports.toFixedStringNumber = toFixedStringNumber;
 //# sourceMappingURL=index.cjs.development.cjs.map

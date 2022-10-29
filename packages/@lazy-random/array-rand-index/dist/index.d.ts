@@ -1,5 +1,8 @@
 export declare function arrayRandIndexByLength(len: number, ...argv: any[]): number;
 export declare function arrayRandIndex(array: any[], ...argv: any[]): number;
-export default arrayRandIndex;
+
+export {
+	arrayRandIndex as default,
+};
 
 export {};

@@ -1,86 +1,38 @@
-import { expect } from '@lazy-random/expect';
-import { toFixedNumber } from '@lazy-num/to-fixed-number';
-import { stringifyByte } from '@lazy-random/shared-lib';
+import { expect as n } from "@lazy-random/expect";
 
-function dfUniformFloat(random, min, max, fractionDigits) {
-  if (max === undefined) {
-    max = min === undefined ? 1 : min;
-    min = 0;
-  }
+import { toFixedNumber as t } from "@lazy-num/to-fixed-number";
 
-  expect(min).number.finite;
-  expect(max).number.finite.gt(min);
-  let fn;
+import { stringifyByte as o } from "@lazy-random/shared-lib";
 
-  if (min === 0 && max === 1) {
-    fn = () => random.next();
-  } else if (min === 0) {
-    fn = () => {
-      return random.next() * max;
-    };
-  } else {
-    fn = () => {
-      return random.next() * (max - min) + min;
-    };
-  }
-
-  if (fractionDigits !== undefined) {
-    expect(fractionDigits).integer.gte(0);
-    return () => {
-      return toFixedNumber(fn(), fractionDigits);
-    };
-  }
-
-  return fn;
+function dfUniformFloat(o, r, e, f) {
+  let i;
+  return void 0 === e && (e = void 0 === r ? 1 : r, r = 0), n(r), n(e).number.finite.gt(r), 
+  i = 0 === r && 1 === e ? () => o.next() : 0 === r ? () => o.next() * e : () => o.next() * (e - r) + r, 
+  void 0 !== f ? (n(f).integer.gte(0), () => t(i(), f)) : i;
 }
 
-function dfUniformInt(random, min, max) {
-  if (max === undefined) {
-    max = min === undefined ? 1 : min;
-    min = 0;
-  }
+function dfUniformInt(t, o, r) {
+  void 0 === r && (r = void 0 === o ? 1 : o, o = 0), n(o).integer(), n(r).integer.gt(o);
+  let e = dfUniformFloat(t, o, r + 1);
+  return () => Math.floor(e());
+}
 
-  expect(min).integer();
-  expect(max).integer.gt(min);
-  let fn = dfUniformFloat(random, min, max + 1);
+function dfUniformBoolean(t, o = .5) {
+  return n(o).number.gt(0).lt(1), () => t.next() >= o;
+}
+
+function dfUniformByte(t, r) {
+  let e = dfUniformInt(t, 0, 255);
+  return void 0 !== r && n(r).boolean(), r ? () => o(e()) : e;
+}
+
+function dfUniformBytes(t, o = 1, r) {
+  n(o).integer.gt(0);
+  const e = dfUniformByte(t, r);
   return () => {
-    return Math.floor(fn());
-  };
-}
-
-function dfUniformBoolean(random, likelihood = 0.5) {
-  expect(likelihood).number.gt(0).lt(1);
-  return () => {
-    return random.next() >= likelihood;
-  };
-}
-
-function dfUniformByte(random, toStr) {
-  let fn = dfUniformInt(random, 0, 255);
-
-  if (typeof toStr !== 'undefined') {
-    expect(toStr).boolean();
-  }
-
-  if (toStr) {
-    return () => stringifyByte(fn());
-  }
-
-  return fn;
-}
-
-function dfUniformBytes(random, size = 1, toStr) {
-  expect(size).integer.gt(0);
-  const fn = dfUniformByte(random, toStr);
-  return () => {
-    let i = size;
-    let arr = [];
-
-    while (i--) {
-      arr[i] = fn();
-    }
-
-    return arr;
+    let n = o, t = [];
+    for (;n--; ) t[n] = e();
+    return t;
   };
 }
 

@@ -7,15 +7,11 @@ var originalMathRandom = require('@lazy-random/original-math-random');
 var rngFactory = require('@lazy-random/rng-factory');
 var seedrandom = require('seedrandom');
 
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-var seedrandom__default = /*#__PURE__*/_interopDefaultLegacy(seedrandom);
-
 function newRngMathRandom() {
   return simpleWrap.simpleWrap(originalMathRandom._MathRandom);
 }
 function newRngSeedRandom() {
-  return rngFactory.RNGFactory(seedrandom__default["default"]('ZDJjM2IyNmFlNmVjNWQwMGZkMmY1Y2Nk'));
+  return rngFactory.RNGFactory(seedrandom('ZDJjM2IyNmFlNmVjNWQwMGZkMmY1Y2Nk'));
 }
 
 Object.defineProperty(exports, 'newRngFactory', {

@@ -1,2 +1,48 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=require("@lazy-random/array-rand-index");exports.array_rebase=function(e,r,t,n){let l,o=0,a=e.length;if("number"==typeof t||"number"==typeof n)for(;a--;){let i=e[a]+r;if(!(i>=t&&i<=n)){l=!1;break}l=!0,e[a]=i,o+=i}else{for(;a--;){let t=e[a]+r;e[a]=t,o+=t}l=!0}return{bool:l,b_sum:o}},exports.swapAlgorithm=function(r,t,n=e.arrayRandIndexByLength){let l=r.length,o=t?r:r.slice();for(;l;){let e=n(l--);if(l===e)continue;let r=o[l];o[l]=o[e],o[e]=r}return o},exports.swapAlgorithm2=function(r,t,n=e.arrayRandIndexByLength){let l=r.length,o=t?r:r.slice(),a=l,i=Math.ceil(a/2);for(;l;){let e=n(a);if(l--,e===l&&(e=n(l<i?a:l)),l===e)continue;let r=o[l];o[l]=o[e],o[e]=r}return o};
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: !0
+});
+
+var e = require("@lazy-random/array-rand-index");
+
+exports.array_rebase = function array_rebase(e, r, t, n) {
+  let a, l = 0, o = e.length;
+  if ("number" == typeof t || "number" == typeof n) for (;o--; ) {
+    let i = e[o] + r;
+    if (!(i >= t && i <= n)) {
+      a = !1;
+      break;
+    }
+    a = !0, e[o] = i, l += i;
+  } else {
+    for (;o--; ) {
+      let t = e[o] + r;
+      e[o] = t, l += t;
+    }
+    a = !0;
+  }
+  return {
+    bool: a,
+    b_sum: l
+  };
+}, exports.swapAlgorithm = function swapAlgorithm(r, t, n = e.arrayRandIndexByLength) {
+  let a = r.length, l = t ? r : r.slice();
+  for (;a; ) {
+    let e = n(a--);
+    if (a === e) continue;
+    let r = l[a];
+    l[a] = l[e], l[e] = r;
+  }
+  return l;
+}, exports.swapAlgorithm2 = function swapAlgorithm2(r, t, n = e.arrayRandIndexByLength) {
+  let a = r.length, l = t ? r : r.slice(), o = a, i = Math.ceil(o / 2);
+  for (;a; ) {
+    let e = n(o);
+    if (a--, e === a && (e = n(a < i ? o : a)), a === e) continue;
+    let r = l[a];
+    l[a] = l[e], l[e] = r;
+  }
+  return l;
+};
 //# sourceMappingURL=index.cjs.production.min.cjs.map

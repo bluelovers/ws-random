@@ -139,5 +139,5 @@ Object.defineProperty(exports, 'dfArrayUnique', {
 	enumerable: true,
 	get: function () { return dfArray.dfArrayUnique; }
 });
-exports["default"] = Distributions;
+exports.default = Distributions;
 //# sourceMappingURL=index.cjs.development.cjs.map

@@ -1,2 +1,19 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=require("@lazy-random/simple-wrap"),r=require("@lazy-random/original-math-random"),n=require("@lazy-random/rng-factory");function t(e){return e&&"object"==typeof e&&"default"in e?e:{default:e}}var a=t(require("seedrandom"));Object.defineProperty(exports,"newRngFactory",{enumerable:!0,get:function(){return n.RNGFactory}}),exports.newRngMathRandom=function(){return e.simpleWrap(r._MathRandom)},exports.newRngSeedRandom=function(){return n.RNGFactory(a.default("ZDJjM2IyNmFlNmVjNWQwMGZkMmY1Y2Nk"))};
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: !0
+});
+
+var e = require("@lazy-random/simple-wrap"), r = require("@lazy-random/original-math-random"), n = require("@lazy-random/rng-factory"), a = require("seedrandom");
+
+Object.defineProperty(exports, "newRngFactory", {
+  enumerable: !0,
+  get: function() {
+    return n.RNGFactory;
+  }
+}), exports.newRngMathRandom = function newRngMathRandom() {
+  return e.simpleWrap(r._MathRandom);
+}, exports.newRngSeedRandom = function newRngSeedRandom() {
+  return n.RNGFactory(a("ZDJjM2IyNmFlNmVjNWQwMGZkMmY1Y2Nk"));
+};
 //# sourceMappingURL=index.cjs.production.min.cjs.map

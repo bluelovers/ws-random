@@ -3,6 +3,9 @@ export declare function _createBytesToUuidFn(bth?: readonly string[]): (buf: Arr
  * @see https://github.com/kelektiv/node-uuid/blob/master/lib/bytesToUuid.js
  */
 export declare function bytesToUuid(buf: ArrayLike<number>, offset?: number, bth?: readonly string[]): string;
-export default bytesToUuid;
+
+export {
+	bytesToUuid as default,
+};
 
 export {};

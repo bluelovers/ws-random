@@ -3,6 +3,9 @@
  */
 export declare function isZero(val: unknown): val is 0;
 export declare function fixZero<T>(val: T): T;
-export default isZero;
+
+export {
+	isZero as default,
+};
 
 export {};

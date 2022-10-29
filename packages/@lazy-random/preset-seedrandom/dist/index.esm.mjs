@@ -1,6 +1,6 @@
-import _random from 'random-extra';
+import a from "random-extra";
 
-const seedrandom = /*#__PURE__*/_random.newUse('seedrandom');
+const e = a.newUse("seedrandom");
 
-export { seedrandom as default, seedrandom as random, seedrandom };
+export { e as default, e as random, e as seedrandom };
 //# sourceMappingURL=index.esm.mjs.map

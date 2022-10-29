@@ -1,2 +1,10 @@
-"use strict";function e(e){return e&&"object"==typeof e&&"default"in e?e:{default:e}}Object.defineProperty(exports,"__esModule",{value:!0});const t=e(require("random-extra")).default.newUse("seedrandom");exports.default=t,exports.random=t,exports.seedrandom=t;
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: !0
+});
+
+const e = require("random-extra").newUse("seedrandom");
+
+exports.default = e, exports.random = e, exports.seedrandom = e;
 //# sourceMappingURL=index.cjs.production.min.cjs.map

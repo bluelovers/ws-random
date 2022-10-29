@@ -10,7 +10,6 @@ function _getWeight(value, key) {
 }
 function _createWeight(arr, options) {
   var _options$getWeight;
-
   let sum = 0;
   const getWeight = (_options$getWeight = options === null || options === void 0 ? void 0 : options.getWeight) !== null && _options$getWeight !== void 0 ? _options$getWeight : _getWeight;
   let ls2 = Object.entries(arr).map(function (entrie) {
@@ -29,13 +28,11 @@ function _createWeight(arr, options) {
   let ls = ls2.reduce(function (a, entrie) {
     entrie.percentage = entrie.weight / sum;
     let item = [entrie.key, entrie.value, entrie.percentage];
-
     if (a.last === 0) {
       a.last = entrie.percentage;
     } else {
       a.last += entrie.percentage;
     }
-
     a.vlist.push(item);
     a.kwlist[entrie.key] = entrie.weight;
     return a;
@@ -59,11 +56,9 @@ function _sortWeight(random, ws, options = {}) {
       return n;
     });
   }
-
   if (options.shuffle) {
     ws.vlist = dfArray.dfArrayShuffle(random, ws.vlist, true)();
   }
-
   return ws;
 }
 function _percentageWeight(random, ws) {
@@ -71,13 +66,11 @@ function _percentageWeight(random, ws) {
   ws.plist = [];
   ws.klist = ws.vlist.reduce(function (a, list) {
     let percentage = list[2];
-
     if (psum === 0) {
       psum = percentage;
     } else {
       psum += percentage;
     }
-
     a.push(psum);
     ws.plist.push(percentage);
     return a;
@@ -86,29 +79,24 @@ function _percentageWeight(random, ws) {
 }
 function _calcWeight(random, arr, options) {
   let ws = _createWeight(arr, options);
-
   ws = _sortWeight(random, ws, options);
   ws = _percentageWeight(random, ws);
   return ws;
 }
 function _itemByWeightCore(r, klist) {
   var _index;
-
   let index;
-
   for (let k = 0; k < klist.length; k++) {
     if (r <= klist[k]) {
       index = k;
       break;
     }
   }
-
   return (_index = index) !== null && _index !== void 0 ? _index : klist.length - 1;
 }
 
 function dfItemByWeight(random, arr, options) {
   let ws = _calcWeight(random, arr, options);
-
   const {
     vlist,
     klist
@@ -123,7 +111,6 @@ function dfItemByWeight(random, arr, options) {
 
 function dfItemByWeightUnique(random, arr, size, options) {
   let ws = _createWeight(arr, options);
-
   expect.expect(size).integer.gt(1);
   expect.expect(ws.vlist).have.length.gte(size);
   ws = _percentageWeight(random, _sortWeight(random, ws, options));
@@ -141,19 +128,14 @@ function dfItemByWeightUnique(random, arr, size, options) {
       vlist: vlist.slice(),
       klist: klist.slice()
     };
-
     for (let i = 0; i < size; i++) {
       let index = _itemByWeightCore(random.next(), ws.klist);
-
       result.push(ws.vlist[index]);
-
       if (i < size_sub_1) {
         ws.vlist.splice(index, 1);
-
         _percentageWeight(random, ws);
       }
     }
-
     return result;
   };
 }

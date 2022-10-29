@@ -18,7 +18,7 @@ const UtilDistributions = {
   int
 };
 
-exports["default"] = UtilDistributions;
+exports.default = UtilDistributions;
 exports.float = float;
 exports.int = int;
 exports.randIndex = randIndex;

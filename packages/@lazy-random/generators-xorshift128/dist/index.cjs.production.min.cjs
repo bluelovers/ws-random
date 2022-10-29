@@ -1,2 +1,32 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=require("@lazy-random/rng-abstract"),r=require("@bluelovers/xorshift");class RNGXorShift128 extends e.RNG{constructor(e,r,...t){super(),this._init(e,r,...t)}_init(e,t,...s){super._init(e,t,...s),e=r.getRandomSeedAuto(e),this._rng=new r.XorShift(e)}seed(e,t,...s){var i;null!==(i=e)&&void 0!==i||(e=r.getRandomSeedAuto()),this._rng.seed(e)}next(){return this._rng.random()}get seedable(){return!0}get name(){return"xorshift128"}}exports.RNGXorShift128=RNGXorShift128,exports.default=RNGXorShift128;
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: !0
+});
+
+var e = require("@lazy-random/rng-abstract"), r = require("@bluelovers/xorshift");
+
+class RNGXorShift128 extends e.RNG {
+  constructor(e, r, ...t) {
+    super(), this._init(e, r, ...t);
+  }
+  _init(e, t, ...s) {
+    super._init(e, t, ...s), e = r.getRandomSeedAuto(e), this._rng = new r.XorShift(e);
+  }
+  seed(e, t, ...s) {
+    var i;
+    null !== (i = e) && void 0 !== i || (e = r.getRandomSeedAuto()), this._rng.seed(e);
+  }
+  next() {
+    return this._rng.random();
+  }
+  get seedable() {
+    return !0;
+  }
+  get name() {
+    return "xorshift128";
+  }
+}
+
+exports.RNGXorShift128 = RNGXorShift128, exports.default = RNGXorShift128;
 //# sourceMappingURL=index.cjs.production.min.cjs.map

@@ -1,24 +1,22 @@
-import { cloneClass } from '@lazy-random/clone-class';
-import { _MathRandom } from '@lazy-random/original-math-random';
-import { RNGCore } from '@lazy-random/rng-abstract-core';
+import { cloneClass as a } from "@lazy-random/clone-class";
 
-class RNGMathRandom extends RNGCore {
+import { _MathRandom as r } from "@lazy-random/original-math-random";
+
+import { RNGCore as t } from "@lazy-random/rng-abstract-core";
+
+class RNGMathRandom extends t {
   get name() {
-    return 'math-random';
+    return "math-random";
   }
-
   get seedable() {
-    return false;
+    return !1;
   }
-
   next() {
-    return _MathRandom();
+    return r();
   }
-
-  clone(seed, opts, ...argv) {
-    return cloneClass(RNGMathRandom, this, seed, opts, ...argv);
+  clone(r, t, ...n) {
+    return a(RNGMathRandom, this, r, t, ...n);
   }
-
 }
 
 export { RNGMathRandom, RNGMathRandom as default };

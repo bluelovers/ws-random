@@ -1,17 +1,21 @@
-import { _MathRandom } from '@lazy-random/original-math-random';
-import { floatToString } from '@lazy-num/float-to-string';
+import { _MathRandom as e } from "@lazy-random/original-math-random";
 
-function seedFloatByDate(date, fnRandomFloat) {
-  return date.valueOf() + (fnRandomFloat !== null && fnRandomFloat !== void 0 ? fnRandomFloat : _MathRandom)();
+import { floatToString as t } from "@lazy-num/float-to-string";
+
+function seedFloatByDate(t, o) {
+  return t.valueOf() + (null != o ? o : e)();
 }
-function seedFloatByNow(fnRandomFloat) {
-  return seedFloatByDate(new Date(), fnRandomFloat);
+
+function seedFloatByNow(e) {
+  return seedFloatByDate(new Date, e);
 }
-function seedStringByDate(date, fnRandomFloat) {
-  return floatToString(seedFloatByDate(date, fnRandomFloat));
+
+function seedStringByDate(e, o) {
+  return t(seedFloatByDate(e, o));
 }
-function seedStringByNow(fnRandomFloat) {
-  return floatToString(seedFloatByDate(new Date(), fnRandomFloat));
+
+function seedStringByNow(e) {
+  return t(seedFloatByDate(new Date, e));
 }
 
 export { seedFloatByDate, seedFloatByNow, seedStringByDate, seedStringByNow };

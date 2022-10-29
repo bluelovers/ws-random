@@ -5,6 +5,9 @@
  * @alias Math.random
  */
 export declare const _MathRandom: () => number;
-export default _MathRandom;
+
+export {
+	_MathRandom as default,
+};
 
 export {};

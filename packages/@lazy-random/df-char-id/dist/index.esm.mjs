@@ -1,41 +1,19 @@
-import UString from 'uni-string';
-import { expect } from '@lazy-random/expect';
-import { floatToString } from '@lazy-num/float-to-string';
-import { randIndex } from '@lazy-random/util-distributions';
+import t from "uni-string";
 
-function dfCharID(random, char, size) {
-  if (typeof char === 'number') {
-    if (typeof size === 'number') {
-      char = floatToString(char);
-    } else {
-      [size, char] = [char, null];
-    }
-  }
+import { expect as r } from "@lazy-random/expect";
 
-  size = size || 8;
-  expect(size).integer.gt(0);
+import { floatToString as o } from "@lazy-num/float-to-string";
 
-  if (!char) {
-    char = "ModuleSymbhasOwnPr0123456789ABCDEFGHIJKLNQRTUVWXYZcfgijkpqtvxz0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  }
+import { randIndex as n } from "@lazy-random/util-distributions";
 
-  const ls = UString.create(char).split('');
-  const len = ls.length;
-  expect(ls).lengthOf.gt(1);
-
-  const randIndex$1 = () => {
-    return randIndex(random, len);
-  };
-
-  return () => {
-    let i = size;
-    let list = [];
-
-    while (i--) {
-      list.push(ls[randIndex$1()]);
-    }
-
-    return list.join('');
+function dfCharID(e, i, f) {
+  "number" == typeof i && ("number" == typeof f ? i = o(i) : [f, i] = [ i, null ]), 
+  r(f = f || 8).integer.gt(0), i || (i = "ModuleSymbhasOwnPr0123456789ABCDEFGHIJKLNQRTUVWXYZcfgijkpqtvxz0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+  const m = t.create(i).split(""), a = m.length;
+  return r(m).lengthOf.gt(1), () => {
+    let t = f, r = [];
+    for (;t--; ) r.push(m[n(e, a)]);
+    return r.join("");
   };
 }
 

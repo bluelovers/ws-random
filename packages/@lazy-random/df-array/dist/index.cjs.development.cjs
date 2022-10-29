@@ -21,18 +21,14 @@ function dfArrayIndex(random, arr, size = 1, start = 0, end) {
   return () => {
     let ids = [];
     let prev;
-
     LABEL_TOP: do {
       let i = fn(random, start, end);
-
       if (prev === i || ids.includes(i)) {
         continue LABEL_TOP;
       }
-
       ids.push(prev = i);
       --size_runtime;
     } while (size_runtime > 0);
-
     return ids;
   };
 }
@@ -41,10 +37,8 @@ function dfArrayShuffle(random, arr, overwrite) {
   const randIndex = len => {
     return utilDistributions.randIndex(random, len);
   };
-
   if (!overwrite) {
     let cloneArrayLike;
-
     if (Buffer.isBuffer(arr)) {
       cloneArrayLike = arr => {
         return Buffer.from(arr);
@@ -54,12 +48,10 @@ function dfArrayShuffle(random, arr, overwrite) {
         return arr.slice();
       };
     }
-
     return () => {
       return arrayAlgorithm.swapAlgorithm2(cloneArrayLike(arr), true, randIndex);
     };
   }
-
   return () => {
     return arrayAlgorithm.swapAlgorithm2(arr, true, randIndex);
   };
@@ -70,7 +62,6 @@ function dfArrayUnique(random, arr, limit, loop, fnRandIndex, fnOutOfLimit) {
   const randIndex = len => {
     return utilDistributions.randIndex(random, len);
   };
-
   let clone = arr.slice();
   limit = Math.min(limit || clone.length, clone.length);
   fnRandIndex = fnRandIndex || randIndex;
@@ -79,25 +70,19 @@ function dfArrayUnique(random, arr, limit, loop, fnRandIndex, fnOutOfLimit) {
   expect.expect(fnRandIndex).function();
   let count = limit;
   let len;
-
   const _fnClone = function _fnClone(arr) {
     clone = arr.slice();
     count = limit;
     len = clone.length;
   };
-
   return () => {
     len = clone.length;
-
     if (len === 0 || count-- === 0) {
       let _loop = loop;
-
       if (fnOutOfLimit) {
         let ret = fnOutOfLimit(arr, limit, loop, fnRandIndex);
-
         if (Array.isArray(ret) && ret.length > 0) {
           _fnClone(ret);
-
           _loop = null;
         } else if (ret == true) {
           _loop = true;
@@ -105,14 +90,12 @@ function dfArrayUnique(random, arr, limit, loop, fnRandIndex, fnOutOfLimit) {
           _loop = false;
         }
       }
-
       if (_loop) {
         _fnClone(arr);
       } else if (_loop !== null) {
         throw new RangeError(`can't call arrayUnique > ${limit} times`);
       }
     }
-
     let i = fnRandIndex(len);
     return clone.splice(i, 1)[0];
   };
@@ -123,7 +106,6 @@ function dfArrayFill(random, min, max, float) {
   {
     let min_unset = sharedLib.isUnset(min);
     let max_unset = sharedLib.isUnset(max);
-
     if (max_unset && min_unset) {
       fn = dfUniform.dfUniformByte(random);
     } else if (float) {
@@ -131,18 +113,15 @@ function dfArrayFill(random, min, max, float) {
     } else {
       fn = dfUniform.dfUniformInt(random, min, max);
     }
-
     min = void 0;
     max = void 0;
   }
   expect.expect(fn).function();
   return arr => {
     let i = arr.length;
-
     while (i--) {
       arr[i] = fn();
     }
-
     return arr;
   };
 }

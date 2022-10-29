@@ -12,6 +12,9 @@ export declare function isUnsafe(n: number, digits: number): boolean;
  */
 export declare function findMaxSafeFloat(digits: number, log?: boolean): number;
 export declare const MAX_SAFE_FLOAT: number;
-export default findMaxSafeFloat;
+
+export {
+	findMaxSafeFloat as default,
+};
 
 export {};

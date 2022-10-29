@@ -1,2 +1,45 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=require("@lazy-random/rng-abstract"),t=require("@lazy-random/seed-token"),s=require("@lazy-random/clone-class");class RNGXOR128 extends e.RNG{constructor(...e){super(),this._init(...e),this.seed(this.x)}get name(){return"xor128"}get seedable(){return!0}next(){const e=this.x^this.x<<1;return this.x=this.y,this.y=this.z,this.z=this.w,this.w=this.w^this.w>>>19^e^e>>>8,(this.w>>>0)/4294967296}seed(e,t,...s){this._seed(e,t,...s);let i=64;for(;i--;)this.next()}clone(e,t,...i){return s.cloneClass(RNGXOR128,this,e,t,...i)}_init(...e){let[s=t.randomSeedNum(),i=t.randomSeedNum(),r=t.randomSeedNum(),h=t.randomSeedNum()]=e;this._seed(s,i,r,h)}_seed(...e){let[t=this.x,s=this.y,i=this.z,r=this.w]=e;"number"!=typeof t&&(t=this._seedNum(t)||this.x),"number"!=typeof s&&(s=this.y),"number"!=typeof i&&(i=this.z),"number"!=typeof t&&(r=this.w),this.x=t,this.y=s,this.z=i,this.w=r}}exports.RNGXOR128=RNGXOR128,exports.default=RNGXOR128;
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: !0
+});
+
+var e = require("@lazy-random/rng-abstract"), t = require("@lazy-random/seed-token"), s = require("@lazy-random/clone-class");
+
+class RNGXOR128 extends e.RNG {
+  constructor(...e) {
+    super(), this._init(...e), this.seed(this.x);
+  }
+  get name() {
+    return "xor128";
+  }
+  get seedable() {
+    return !0;
+  }
+  next() {
+    const e = this.x ^ this.x << 1;
+    return this.x = this.y, this.y = this.z, this.z = this.w, this.w = this.w ^ this.w >>> 19 ^ e ^ e >>> 8, 
+    (this.w >>> 0) / 0x100000000;
+  }
+  seed(e, t, ...s) {
+    this._seed(e, t, ...s);
+    let i = 64;
+    for (;i--; ) this.next();
+  }
+  clone(e, t, ...i) {
+    return s.cloneClass(RNGXOR128, this, e, t, ...i);
+  }
+  _init(...e) {
+    let [s = t.randomSeedNum(), i = t.randomSeedNum(), r = t.randomSeedNum(), h = t.randomSeedNum()] = e;
+    this._seed(s, i, r, h);
+  }
+  _seed(...e) {
+    let [t = this.x, s = this.y, i = this.z, r = this.w] = e;
+    "number" != typeof t && (t = this._seedNum(t) || this.x), "number" != typeof s && (s = this.y), 
+    "number" != typeof i && (i = this.z), "number" != typeof t && (r = this.w), this.x = t, 
+    this.y = s, this.z = i, this.w = r;
+  }
+}
+
+exports.RNGXOR128 = RNGXOR128, exports.default = RNGXOR128;
 //# sourceMappingURL=index.cjs.production.min.cjs.map

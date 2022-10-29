@@ -8,6 +8,9 @@ export interface ICryptoLike {
 }
 export declare const crossCrypto: () => ICryptoLike;
 export declare function randomBytes(size: number, callback?: (err: Error | null, buf: Buffer) => void): Buffer;
-export default crossCrypto;
+
+export {
+	crossCrypto as default,
+};
 
 export {};

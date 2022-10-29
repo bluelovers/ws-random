@@ -6,11 +6,9 @@ var sharedLib = require('@lazy-random/shared-lib');
 
 function floatFromBuffer(buf, offset = 0) {
   offset = Math.floor(offset);
-
   if (buf.length < sharedLib.FLOAT_ENTROPY_BYTES + offset || offset < 0) {
     throw new RangeError(`buffer must contain at least ${sharedLib.FLOAT_ENTROPY_BYTES}${offset > 0 ? ' +' + offset : ''} bytes of entropy`);
   }
-
   return _floatFromBuffer(buf, offset);
 }
 function _floatFromBuffer(buf, offset = 0) {
@@ -31,7 +29,7 @@ function readUInt32BE(buf, offset = 0) {
 
 exports._floatFromBuffer = _floatFromBuffer;
 exports._floatFromBuffer2 = _floatFromBuffer2;
-exports["default"] = floatFromBuffer;
+exports.default = floatFromBuffer;
 exports.floatFromBuffer = floatFromBuffer;
 exports.readUInt32BE = readUInt32BE;
 exports.readUInt32LE = readUInt32LE;

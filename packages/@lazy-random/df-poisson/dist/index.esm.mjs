@@ -1,73 +1,30 @@
-import { expect } from '@lazy-random/expect';
+import { expect as t } from "@lazy-random/expect";
 
-const logFactorialTable = [0.0, 0.0, 0.69314718055994529, 1.7917594692280550, 3.1780538303479458, 4.7874917427820458, 6.5792512120101012, 8.5251613610654147, 10.604602902745251, 12.801827480081469];
+const o = [ 0.0, 0.0, 0.69314718055994529, 1.7917594692280550, 3.1780538303479458, 4.7874917427820458, 6.5792512120101012, 8.5251613610654147, 10.604602902745251, 12.801827480081469 ], logFactorial = t => o[t];
 
-const logFactorial = k => {
-  return logFactorialTable[k];
-};
-
-const logSqrt2PI = 0.91893853320467267;
-function dfPoisson(random, lambda = 1) {
-  expect(lambda).gt(0);
-
-  if (lambda < 10) {
-    const expMean = Math.exp(-lambda);
+function dfPoisson(o, n = 1) {
+  if (t(n).gt(0), n < 10) {
+    const t = Math.exp(-n);
     return () => {
-      let p = expMean;
-      let x = 0;
-      let u = random.next();
-
-      while (u > p) {
-        u = u - p;
-        p = lambda * p / ++x;
-      }
-
-      return x;
+      let r = t, e = 0, s = o.next();
+      for (;s > r; ) s -= r, r = n * r / ++e;
+      return e;
     };
-  } else {
-    const smu = Math.sqrt(lambda);
-    const b = 0.931 + 2.53 * smu;
-    const a = -0.059 + 0.02483 * b;
-    const invAlpha = 1.1239 + 1.1328 / (b - 3.4);
-    const vR = 0.9277 - 3.6224 / (b - 2);
+  }
+  {
+    const t = Math.sqrt(n), r = 0.931 + 2.53 * t, e = 0.02483 * r - 0.059, s = 1.1239 + 1.1328 / (r - 3.4), a = 0.9277 - 3.6224 / (r - 2);
     return () => {
-      while (true) {
-        let u;
-        let v = random.next();
-
-        if (v <= 0.86 * vR) {
-          u = v / vR - 0.43;
-          return Math.floor((2 * a / (0.5 - Math.abs(u)) + b) * u + lambda + 0.445);
-        }
-
-        if (v >= vR) {
-          u = random.next() - 0.5;
-        } else {
-          u = v / vR - 0.93;
-          u = (u < 0 ? -0.5 : 0.5) - u;
-          v = random.next() * vR;
-        }
-
-        const us = 0.5 - Math.abs(u);
-
-        if (us < 0.013 && v > us) {
-          continue;
-        }
-
-        const k = Math.floor((2 * a / us + b) * u + lambda + 0.445);
-        v = v * invAlpha / (a / (us * us) + b);
-
-        if (k >= 10) {
-          const t = (k + 0.5) * Math.log(lambda / k) - lambda - logSqrt2PI + k - (1 / 12.0 - (1 / 360.0 - 1 / (1260.0 * k * k)) / (k * k)) / k;
-
-          if (Math.log(v * smu) <= t) {
-            return k;
-          }
-        } else if (k >= 0) {
-          if (Math.log(v) <= k * Math.log(lambda) - lambda - logFactorial(k)) {
-            return k;
-          }
-        }
+      for (;;) {
+        let f, i = o.next();
+        if (i <= 0.86 * a) return f = i / a - 0.43, Math.floor((2 * e / (0.5 - Math.abs(f)) + r) * f + n + 0.445);
+        i >= a ? f = o.next() - 0.5 : (f = i / a - 0.93, f = (f < 0 ? -0.5 : 0.5) - f, i = o.next() * a);
+        const l = 0.5 - Math.abs(f);
+        if (l < 0.013 && i > l) continue;
+        const h = Math.floor((2 * e / l + r) * f + n + 0.445);
+        if (i = i * s / (e / (l * l) + r), h >= 10) {
+          const o = (h + 0.5) * Math.log(n / h) - n - .9189385332046727 + h - (1 / 12.0 - (1 / 360.0 - 1 / (1260.0 * h * h)) / (h * h)) / h;
+          if (Math.log(i * t) <= o) return h;
+        } else if (h >= 0 && Math.log(i) <= h * Math.log(n) - n - logFactorial(h)) return h;
       }
     };
   }
