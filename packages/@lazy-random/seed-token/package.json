@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/seed-token",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "",
   "keywords": [
     "create-by-yarn-tool",
@@ -58,10 +58,10 @@
   },
   "dependencies": {
     "@lazy-assert/check-basic": "^1.0.10",
-    "@lazy-num/float-to-string": "^1.0.8",
-    "@lazy-random/original-math-random": "^1.0.7",
-    "@lazy-random/seed-data": "^1.0.7",
-    "@lazy-random/shared-lib": "^1.0.12",
+    "@lazy-num/float-to-string": "^1.0.9",
+    "@lazy-random/original-math-random": "^1.0.8",
+    "@lazy-random/seed-data": "^1.0.8",
+    "@lazy-random/shared-lib": "^1.0.13",
     "hash-sum": "^2.0.0",
     "nanoid": "<4 >=3.3.4"
   },

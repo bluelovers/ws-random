@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.5](https://github.com/bluelovers/ws-random/compare/@lazy-random/generators-xorshift128@1.0.4...@lazy-random/generators-xorshift128@1.0.5) (2022-10-29)
+
+
+
+### 🛠　Build System
+
+* update build ([a3377a4](https://github.com/bluelovers/ws-random/commit/a3377a45f6e3895378d1b633d02a501464836ea1))
+
+
+### ♻️　Chores
+
+* update config ([10d8b20](https://github.com/bluelovers/ws-random/commit/10d8b20d2ebc76491ac971bf8b9280f66285e056))
+
+
+
 ## [1.0.4](https://github.com/bluelovers/ws-random/compare/@lazy-random/generators-xorshift128@1.0.3...@lazy-random/generators-xorshift128@1.0.4) (2022-01-04)
 
 

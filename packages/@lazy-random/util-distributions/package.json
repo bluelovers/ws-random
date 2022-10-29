@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/util-distributions",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "",
   "keywords": [
     "alea",
@@ -110,9 +110,8 @@
     "sort-package-json": "yarn-tool sort",
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
-  "dependencies": {},
   "devDependencies": {
-    "@lazy-random/rng-abstract": "^1.0.10"
+    "@lazy-random/rng-abstract": "^1.0.11"
   },
   "packageManager": "yarn@^1.22.11",
   "publishConfig": {

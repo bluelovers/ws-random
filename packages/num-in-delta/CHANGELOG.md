@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.8](https://github.com/bluelovers/ws-random/compare/num-in-delta@1.0.7...num-in-delta@1.0.8) (2022-10-29)
+
+
+
+### ♻️　Chores
+
+* update config ([10d8b20](https://github.com/bluelovers/ws-random/commit/10d8b20d2ebc76491ac971bf8b9280f66285e056))
+
+
+
 ## [1.0.7](https://github.com/bluelovers/ws-random/compare/num-in-delta@1.0.5...num-in-delta@1.0.7) (2021-05-15)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/generators-xor128",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "",
   "keywords": [
     "alea",
@@ -111,9 +111,9 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/clone-class": "^1.0.8",
-    "@lazy-random/rng-abstract": "^1.0.10",
-    "@lazy-random/seed-token": "^1.0.10"
+    "@lazy-random/clone-class": "^1.0.9",
+    "@lazy-random/rng-abstract": "^1.0.11",
+    "@lazy-random/seed-token": "^1.0.11"
   },
   "packageManager": "yarn@^1.22.11",
   "publishConfig": {

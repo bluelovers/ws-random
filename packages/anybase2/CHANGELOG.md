@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.10](https://github.com/bluelovers/ws-random/compare/anybase2@1.0.9...anybase2@1.0.10) (2022-10-29)
+
+
+
+### ♻️　Chores
+
+* update config ([10d8b20](https://github.com/bluelovers/ws-random/commit/10d8b20d2ebc76491ac971bf8b9280f66285e056))
+
+
+
 ## [1.0.9](https://github.com/bluelovers/ws-random/compare/anybase2@1.0.3...anybase2@1.0.9) (2021-12-12)
 
 

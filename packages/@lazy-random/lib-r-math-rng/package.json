@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/lib-r-math-rng",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "",
   "keywords": [
     "alea",
@@ -111,7 +111,7 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/rng-abstract": "^1.0.10",
+    "@lazy-random/rng-abstract": "^1.0.11",
     "is-extends-of": "^2.0.2",
     "lib-r-math.js": "^1.0.89"
   },

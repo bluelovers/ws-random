@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/rng-abstract",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "",
   "keywords": [
     "create-by-yarn-tool",
@@ -59,8 +59,8 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/rng-abstract-core": "^1.0.1",
-    "@lazy-random/seed-token": "^1.0.10"
+    "@lazy-random/rng-abstract-core": "^1.0.2",
+    "@lazy-random/seed-token": "^1.0.11"
   },
   "packageManager": "yarn@^1.22.11",
   "publishConfig": {

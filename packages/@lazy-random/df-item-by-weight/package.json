@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/df-item-by-weight",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "",
   "keywords": [
     "alea",
@@ -111,11 +111,11 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/df-array": "^1.0.7",
-    "@lazy-random/expect": "^1.0.12"
+    "@lazy-random/df-array": "^1.0.8",
+    "@lazy-random/expect": "^1.0.13"
   },
   "devDependencies": {
-    "@lazy-random/rng-abstract": "^1.0.10"
+    "@lazy-random/rng-abstract": "^1.0.11"
   },
   "packageManager": "yarn@^1.22.11",
   "publishConfig": {

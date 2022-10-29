@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/util-test",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "keywords": [
     "alea",
@@ -123,8 +123,8 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/original-math-random": "^1.0.7",
-    "@lazy-random/simple-wrap": "^1.0.7"
+    "@lazy-random/original-math-random": "^1.0.8",
+    "@lazy-random/simple-wrap": "^1.0.8"
   },
   "packageManager": "yarn@^1.22.11",
   "publishConfig": {
