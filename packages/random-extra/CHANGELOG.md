@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.6](https://github.com/bluelovers/ws-random/compare/random-extra@4.0.5...random-extra@4.0.6) (2022-10-29)
+
+
+
+### 🐛　Bug Fixes
+
+* lost .js ([cecfa2e](https://github.com/bluelovers/ws-random/commit/cecfa2e94a1ca69891afe7f13e8774700b921dd5))
+
+
+
 ## [4.0.5](https://github.com/bluelovers/ws-random/compare/random-extra@4.0.4...random-extra@4.0.5) (2022-10-29)
 
 
