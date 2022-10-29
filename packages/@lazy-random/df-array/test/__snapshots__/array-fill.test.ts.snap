@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`dfArrayFill Array 1`] = `
-Array [
+[
   241,
   236,
   111,
@@ -16,8 +16,8 @@ Array [
 `;
 
 exports[`dfArrayFill Buffer 1`] = `
-Object {
-  "data": Array [
+{
+  "data": [
     239,
     252,
     20,

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`int-list df_v3b 1`] = `
-Array [
+[
   843401409,
   1028374738,
   3082933767,
@@ -22,7 +22,7 @@ Array [
 `;
 
 exports[`int-list df_v3b 2`] = `
-Array [
+[
   3812805103,
   2668641755,
   3850392519,

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`string df_xfnv1a 1`] = `
-Array [
+[
   1880952902,
   3822283825,
   478043131,
@@ -22,7 +22,7 @@ Array [
 `;
 
 exports[`string df_xfnv1a 2`] = `
-Array [
+[
   3813144010,
   1070432286,
   792785484,
@@ -43,7 +43,7 @@ Array [
 `;
 
 exports[`string df_xfnv1a_2 1`] = `
-Array [
+[
   3759755561,
   1147060720,
   4097353528,
@@ -64,7 +64,7 @@ Array [
 `;
 
 exports[`string df_xfnv1a_2 2`] = `
-Array [
+[
   3757097379,
   347599353,
   494481804,
@@ -85,7 +85,7 @@ Array [
 `;
 
 exports[`string df_xmur3 1`] = `
-Array [
+[
   1463900127,
   3382348051,
   4017611752,
@@ -106,7 +106,7 @@ Array [
 `;
 
 exports[`string df_xmur3 2`] = `
-Array [
+[
   3071847068,
   3608824145,
   769630472,
@@ -127,7 +127,7 @@ Array [
 `;
 
 exports[`string df_xmur3a 1`] = `
-Array [
+[
   3032347235,
   3966414462,
   272600060,
@@ -148,7 +148,7 @@ Array [
 `;
 
 exports[`string df_xmur3a 2`] = `
-Array [
+[
   4243690504,
   1134027138,
   3456639521,

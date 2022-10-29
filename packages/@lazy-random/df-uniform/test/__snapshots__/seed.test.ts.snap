@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`random.newUse witth a seed is consistent 1`] = `
-Array [
+[
   0.9362808130793461,
   0.4864517867266793,
   0.5065797249862649,
@@ -106,7 +106,7 @@ Array [
 `;
 
 exports[`random.newUse witth a seed is consistent 2 1`] = `
-Array [
+[
   0.07443305527510492,
   0.5512855663360036,
   0.28500542102540444,
