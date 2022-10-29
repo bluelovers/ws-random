@@ -1,5 +1,5 @@
 /// <reference types="jest-extended" />
-import checkTypesMatchers from 'random-extra/test/jest/type';
+import { checkTypesMatchers } from 'random-extra/test/jest/type';
 import { dfArrayUnique } from '../src/index';
 import { newRngMathRandom } from '@lazy-random/util-test';
 

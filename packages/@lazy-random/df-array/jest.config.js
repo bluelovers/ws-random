@@ -1,5 +1,15 @@
 // @ts-check
 
+const { basename, extname, dirname } = require('path');
+
+/**
+ * // @type { import('@jest/types').Config.InitialOptions }
+ * @type { import('ts-jest').InitialOptionsTsJest }
+ */
+let jestConfig = {
+
+}
+
 /**
  * @param {string} name
  * @returns {string}
@@ -11,6 +21,7 @@ function _requireResolve(name)
 
 	try
 	{
+		// @ts-ignore
 		const { requireResolveExtra, requireResolveCore } = require('@yarn-tool/require-resolve');
 
 		const paths = [
@@ -29,69 +40,77 @@ function _requireResolve(name)
 
 	}
 
-	return result || require.resolve(name)
+	result = result || require.resolve(name);
+
+	console.info('[require.resolve]', name, '=>', result)
+
+	return result
 }
 
-const testExt = [
-	'ts',
-	'tsx',
-	//'js',
-	//'jsx',
-].join('|');
+let _ok = true;
 
-/**
- * @type { import('@jest/types').Config.InitialOptions }
- */
-module.exports = {
-	clearMocks: true,
-	moduleFileExtensions: [
-		'ts',
-		'tsx',
-		'js',
-		'jsx',
-		'json',
-		'node',
-	],
-	testEnvironment: 'node',
-	//testMatch: ['**/*.test.ts', '**/*.spec.ts'],
-	testMatch: void 0,
-	testRegex: [
-		`\\.(tests?|spec)\\.(${testExt})$`,
-		`__tests__\/\.*\\.(${testExt})$`,
-	],
-	testPathIgnorePatterns: [
-		'/node_modules/',
-		'/__fixtures__/',
-		'/fixtures/',
-		'/__tests__/helpers/',
-		'/__tests__/utils/',
-		'__mocks__',
-	],
-	//testRunner: 'jest-circus/runner',
-	setupFilesAfterEnv: [
-		//"jest-chain",
-		"jest-extended/all",
-		//"jest-extended-extra",
-		//"jest-num-close-with",
-	],
-	transform: {
-		'.(ts|tsx)$': _requireResolve('ts-jest'),
-	},
-	verbose: true,
-	/**
-	 * if didn't set `coverageProvider` to `v8`
-	 * with `collectCoverage` `true`, nodejs debug point maybe will fail
-	 */
-	coverageProvider: 'v8',
-	collectCoverage: false,
-	coveragePathIgnorePatterns: [
-		'/node_modules/',
-		'**/node_modules/',
-		'**/__snapshots__/',
-		'**/__tests__/',
-	],
-	/**
-	 * https://github.com/facebook/jest/issues/9771#issuecomment-872764344
-	 */
-	//resolver: 'jest-node-exports-resolver',
+try
+{
+	if (!jestConfig.preset)
+	{
+
+		let result = require('@yarn-tool/ws-find-up-paths').findUpPathsWorkspaces([
+			'jest-preset.js',
+			'jest.config.js',
+		], {
+			ignoreCurrentPackage: true,
+			onlyFiles: true,
+		}).result;
+
+		if (result)
+		{
+			let name = basename(result, extname(result))
+
+			switch (name)
+			{
+				case 'jest-preset':
+					jestConfig.preset = dirname(result);
+					break;
+				default:
+					jestConfig = {
+						...require(result),
+						jestConfig,
+					};
+					break;
+			}
+
+			_ok = false;
+		}
+	}
 }
+catch (e)
+{
+
+}
+
+try
+{
+	if (_ok && !jestConfig.preset)
+	{
+		let result = _requireResolve('@bluelovers/jest-config/package.json');
+		if (result)
+		{
+			jestConfig.preset = dirname(result);
+			_ok = false;
+		}
+	}
+}
+catch (e)
+{
+
+}
+
+if (_ok && !jestConfig.preset)
+{
+	jestConfig.preset = '@bluelovers/jest-config';
+	_ok = false;
+}
+
+console.info(`jest.config.preset: ${jestConfig.preset}`);
+
+module.exports = jestConfig

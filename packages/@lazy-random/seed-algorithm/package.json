@@ -60,21 +60,22 @@
     "create-by-yarn-tool",
     "create-by-tsdx"
   ],
-  "homepage": "https://github.com/bluelovers/ws-random/tree/master/packages/@lazy-random/seed-hash-str#readme",
+  "homepage": "https://github.com/bluelovers/ws-random/tree/master/packages/@lazy-random/seed-algorithm#readme",
   "bugs": {
     "url": "https://github.com/bluelovers/ws-random/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bluelovers/ws-random.git"
+    "url": "git+https://github.com/bluelovers/ws-random.git",
+    "directory": "packages/@lazy-random/seed-algorithm"
   },
   "license": "ISC",
   "author": "bluelovers",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.esm.mjs",
-      "require": "./dist/index.cjs"
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.esm.mjs"
     },
     "./package.json": "./package.json"
   },
@@ -92,7 +93,10 @@
     "lint:eslint": "ynpx eslint --ext .ts,.tsx,.mts,.cts ./",
     "test": "jest --passWithNoTests",
     "test:jest": "jest --passWithNoTests",
+    "test:jest:snapshot": "yarn run test:jest -- -u",
     "test:mocha": "ynpx --quiet -p ts-node -p mocha mocha -- --require ts-node/register \"!(node_modules)/**/*.{test,spec}.{ts,tsx}\"",
+    "test:snapshot": "yarn run test -- -u",
+    "test:tsd": "ynpx tsd",
     "test:tsdx": "ynpx @bluelovers/tsdx test --passWithNoTests",
     "posttest": "yarn run build",
     "build": "yarn run build:tsdx && yarn run build:dts",
@@ -120,11 +124,10 @@
   },
   "dependencies": {
     "@lazy-random/original-math-random": "^1.0.7",
-    "ts-type": "^2.1.2",
-    "tslib": "^2.3.1"
+    "ts-type": "^3.0.1"
   },
+  "packageManager": "yarn@^1.22.11",
   "publishConfig": {
     "access": "public"
-  },
-  "packageManager": "yarn@^1.22.11"
+  }
 }

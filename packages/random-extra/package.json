@@ -65,7 +65,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bluelovers/ws-random.git"
+    "url": "git+https://github.com/bluelovers/ws-random.git",
+    "directory": "packages/random-extra"
   },
   "license": "MIT",
   "author": "Travis Fischer <travis@automagical.ai>",
@@ -77,8 +78,13 @@
     "test": "test"
   },
   "scripts": {
+    "coverage": "yarn run test -- --coverage",
     "pretest_": "yarn run build",
     "test": "jest --maxConcurrency=1 --maxWorkers=1",
+    "test:jest": "jest --passWithNoTests",
+    "test:jest:snapshot": "yarn run test:jest -- -u",
+    "test:snapshot": "yarn run test -- -u",
+    "test:tsd": "ynpx tsd",
     "posttest": "git commit -m \"build: update seed\" ./src/util/random-seed-str.data.* & echo posttest",
     "build_": "yarn run build:index",
     "build:index": "ts-node ./test/script/build-cache.ts",
@@ -105,11 +111,11 @@
     "@lazy-random/clone-class": "^1.0.8",
     "@lazy-random/random-core": "^1.0.4",
     "@lazy-random/rng-factory": "^1.0.7",
-    "ts-type": "^2.1.2"
+    "ts-type": "^3.0.1"
   },
   "peerDependencies": {
     "seedrandom": "*"
   },
-  "gitHead": "e61d528c84bd3340a59f288f65d20bfb2906c905",
-  "packageManager": "yarn@^1.22.11"
+  "packageManager": "yarn@^1.22.11",
+  "gitHead": "e61d528c84bd3340a59f288f65d20bfb2906c905"
 }

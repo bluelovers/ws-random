@@ -24,15 +24,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bluelovers/ws-random.git"
+    "url": "git+https://github.com/bluelovers/ws-random.git",
+    "directory": "packages/random-sum-float"
   },
   "license": "ISC",
   "author": "bluelovers",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.esm.mjs",
-      "require": "./dist/index.cjs"
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.esm.mjs"
     },
     "./package.json": "./package.json"
   },
@@ -44,7 +45,12 @@
     "test": "test"
   },
   "scripts": {
+    "coverage": "yarn run test -- --coverage",
     "test": "jest",
+    "test:jest": "jest --passWithNoTests",
+    "test:jest:snapshot": "yarn run test:jest -- -u",
+    "test:snapshot": "yarn run test -- -u",
+    "test:tsd": "ynpx tsd",
     "posttest": "yarn run build",
     "build": "yarn run build:tsdx && yarn run build:dts",
     "build:dts": "copy .\\src\\index.d.ts .\\dist\\index.d.ts & echo build:dts",
@@ -66,6 +72,6 @@
   "dependencies": {
     "random-extra": "^4.0.4"
   },
-  "gitHead": "e61d528c84bd3340a59f288f65d20bfb2906c905",
-  "packageManager": "yarn@^1.22.11"
+  "packageManager": "yarn@^1.22.11",
+  "gitHead": "e61d528c84bd3340a59f288f65d20bfb2906c905"
 }
