@@ -1,9 +1,5 @@
 {
-  "packages": [
-    "packages/*",
-    "packages/@lazy-random/*",
-    "packages/@lazy-num/*"
-  ],
+  "version": "independent",
   "command": {
     "publish": {
       "concurrency": 1,
@@ -50,6 +46,10 @@
     }
   },
   "npmClient": "yarn",
-  "useWorkspaces": true,
-  "version": "independent"
+  "packages": [
+    "packages/*",
+    "packages/@lazy-random/*",
+    "packages/@lazy-num/*"
+  ],
+  "useWorkspaces": true
 }
