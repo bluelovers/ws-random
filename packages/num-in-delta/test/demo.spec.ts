@@ -1,5 +1,5 @@
-import numberInDelta from '../index';
-import { subAbs } from '../lib/util';
+import numberInDelta from '../src';
+import { subAbs } from '../src/util';
 
 describe(`number in delta`, () =>
 {
