@@ -1,13 +1,15 @@
 function fakeLibRMathRng(n) {
-  return {
-    unif_rand(t) {
-      if (t > 1) {
-        let a = [];
-        for (;t--; ) a[t] = n();
-        return a;
-      }
-      return n();
+  function unif_rand(a) {
+    if (a > 1) {
+      let r = [];
+      for (;a--; ) r[a] = n();
+      return r;
     }
+    return n();
+  }
+  return {
+    unif_rand,
+    internal_unif_rand: unif_rand
   };
 }
 

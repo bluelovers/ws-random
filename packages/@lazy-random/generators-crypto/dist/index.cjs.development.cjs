@@ -22,6 +22,7 @@ class RNGCrypto extends rngAbstract.RNG {
     crypto = crypto || crossCrypto.crossCrypto();
     this._crypto = crypto;
     this._randIndex = this._randIndex || arrayRandIndex.arrayRandIndexByLength;
+    // @ts-ignore
     expect.expect(crypto.randomBytes).is.a.function();
     {
       this._seed_size = Math.min(Math.max(this._seed_size, sharedLib.UINT32_BYTES), 255);
@@ -39,6 +40,7 @@ class RNGCrypto extends rngAbstract.RNG {
     let buf = this._crypto.randomBytes(size);
     if (size > size_min) {
       let i = this._randIndex(size - size_min);
+      // @ts-ignore
       buf = buf.slice(i, i + size_min);
     }
     return buf;

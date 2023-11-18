@@ -27,7 +27,9 @@ class RNGXOR128 extends rngAbstract.RNG {
     return (this.w >>> 0) / 0x100000000;
   }
   seed(seed, opts, ...argv) {
+    //		this.x = this._seedNum(seed, opts, ...argv)
     this._seed(seed, opts, ...argv);
+    // discard an initial batch of 64 values
     let i = 64;
     while (i--) {
       this.next();

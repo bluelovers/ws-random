@@ -1,4 +1,12 @@
 /**
+ * @see big.js
+ */
+export declare const enum EnumBigComparison {
+    GT = 1,
+    EQ = 0,
+    LT = -1
+}
+/**
  * expect {actual} to be near {expected} +/- {delta}
  *
  * @example

@@ -6,6 +6,9 @@ var sharedLib = require('@lazy-random/shared-lib');
 var dfUniform = require('@lazy-random/df-uniform');
 var bytesToUuid = require('@lazy-random/bytes-to-uuid');
 
+/**
+ * @see https://github.com/tracker1/node-uuid4/blob/master/index.js
+ */
 function dfUuidV4(random, toUpperCase) {
   const fn = dfUniform.dfUniformBytes(random, 16);
   const fn2 = bytesToUuid._createBytesToUuidFn(toUpperCase ? sharedLib.BYTE_TO_HEX_TO_UPPER_CASE : sharedLib.BYTE_TO_HEX_TO_LOWER_CASE);

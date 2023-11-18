@@ -24,10 +24,14 @@ const MATH_POW_2_32 = /*#__PURE__*/Math.pow(2, 32);
 exports.BYTE_TO_HEX_TO_LOWER_CASE = [];
 exports.BYTE_TO_HEX_TO_UPPER_CASE = [];
 for (let i = 0; i < 256; ++i) {
+  // @ts-ignore
   exports.BYTE_TO_HEX_TO_LOWER_CASE[i] = /*#__PURE__*/(i + 0x100).toString(16).substr(1);
+  // @ts-ignore
   exports.BYTE_TO_HEX_TO_UPPER_CASE[i] = /*#__PURE__*/exports.BYTE_TO_HEX_TO_LOWER_CASE[i].toUpperCase();
 }
+// @ts-ignore
 exports.BYTE_TO_HEX_TO_LOWER_CASE = /*#__PURE__*/Object.freeze(exports.BYTE_TO_HEX_TO_LOWER_CASE);
+// @ts-ignore
 exports.BYTE_TO_HEX_TO_UPPER_CASE = /*#__PURE__*/Object.freeze(exports.BYTE_TO_HEX_TO_UPPER_CASE);
 
 function stringifyByte(byte) {

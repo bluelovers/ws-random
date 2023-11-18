@@ -3,7 +3,7 @@ import { RNG } from '@lazy-random/rng-abstract';
 import { RNGXOR128 } from '@lazy-random/generators-xor128';
 import { RNGFunction, IRNGFunctionSeed } from '@lazy-random/generators-function';
 import { RNGMathRandom } from '@lazy-random/generators-math-random';
-export declare type IRNGFactoryType = 'xor128' | 'function' | 'default' | 'seedrandom' | RNG | IRNGFunctionSeed | any;
+export type IRNGFactoryType = 'xor128' | 'function' | 'default' | 'seedrandom' | RNG | IRNGFunctionSeed | any;
 export declare function RNGFactory(): RNGFunction;
 export declare function RNGFactory<R extends RNG>(arg0: R, ...rest: any[]): R;
 export declare function RNGFactory(arg0: 'xor128', ...rest: any[]): RNGXOR128;

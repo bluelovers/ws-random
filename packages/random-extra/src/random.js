@@ -97,11 +97,11 @@ let Random = Random_1 = class Random extends random_core_1.RandomCore {
         return o;
     }
 };
+exports.Random = Random;
 Random.Random = Random_1;
-Random = Random_1 = __decorate([
+exports.Random = Random = Random_1 = __decorate([
     core_decorators_1.autobind
 ], Random);
-exports.Random = Random;
 exports.random = new Random();
 // @ts-ignore
 //random.default = random

@@ -2,6 +2,9 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
+/**
+ * Created by user on 2018/10/22/022.
+ */
 const defaultArgv = /*#__PURE__*/Object.freeze({
   int: /*#__PURE__*/Object.freeze([0, 100]),
   integer: /*#__PURE__*/Object.freeze([0, 100]),

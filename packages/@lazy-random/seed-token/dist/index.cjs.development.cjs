@@ -14,12 +14,17 @@ function hashSum(input, ...argv) {
   return hashSum$1(input, ...argv);
 }
 
+// @ts-ignore
 function nanoid(input, ...argv) {
+  // @ts-ignore
   return nonSecure.nanoid();
 }
 
 let _name;
 let _version;
+/**
+ * give a random string for create seed
+ */
 function randomSeedStr() {
   var _name2, _version2;
   return [nanoid(), (_name2 = _name) !== null && _name2 !== void 0 ? _name2 : _name = hashSum$1(seedData.name), (_version2 = _version) !== null && _version2 !== void 0 ? _version2 : _version = hashSum$1(seedData.version), Date.now(), floatToString.floatToString(originalMathRandom._MathRandom())].join('_');
@@ -39,6 +44,7 @@ function randomSeedNum() {
 }
 
 function seedToken(seed, opts, ...argv) {
+  // TODO: add entropy and stuff
   if (checkBasic.isFiniteInt(seed)) {
     return seed;
   }

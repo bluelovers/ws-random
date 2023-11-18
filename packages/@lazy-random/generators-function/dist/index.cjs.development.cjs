@@ -15,6 +15,7 @@ class RNGFunction extends rngAbstract.RNG {
   _init_check(seed, opts, ...argv) {
     let type = typeof seed;
     if (seed !== null && type !== 'undefined' && type !== 'function') {
+      // @ts-ignore
       expect.expect(seed).function;
     }
   }
@@ -35,7 +36,10 @@ class RNGFunction extends rngAbstract.RNG {
     if (typeof seed === 'function') {
       this._rng = seed || this._rng;
     }
+    //ow(this._rng, ow.function)
+    //expect(this._rng).function();
   }
+
   clone(seed, opts, ...argv) {
     return cloneClass.cloneClass(RNGFunction, this, seed, opts, ...argv);
   }

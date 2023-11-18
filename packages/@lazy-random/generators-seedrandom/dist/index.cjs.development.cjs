@@ -20,6 +20,7 @@ class RNGSeedRandom extends generatorsFunction.RNGFunction {
   static create(...argv) {
     return new this(...argv);
   }
+  // eslint-disable-next-line no-empty-function,@typescript-eslint/no-empty-function
   _init_check(seed, opts, ...argv) {}
   _init(seed, opts, ...argv) {
     this._opts = this._opts || Object.assign({}, defaultOptions);
@@ -42,6 +43,7 @@ class RNGSeedRandom extends generatorsFunction.RNGFunction {
         case 'xorshift7':
         case 'xorwow':
           fn = seedrandom[fn];
+          //fn = require(`seedrandom/lib/${fn}`)
           this._TYPE = fn;
           break;
         default:
@@ -54,22 +56,39 @@ class RNGSeedRandom extends generatorsFunction.RNGFunction {
           }
       }
     } else if (fn) {
+      // @ts-ignore
       this._TYPE = fn.name;
     } else {
       this._TYPE = null;
     }
     fn = fn || seedrandom;
     return fn;
+    /*
+    return (seed?, opts?: RNGSeedRandomOptions, ...argv) => {
+        // @ts-ignore
+        return fn(seed, opts, ...argv)
+    }
+    */
   }
+
   get options() {
     return this._opts;
   }
+  /**
+   * only when option.state = true
+   */
+  // eslint-disable-next-line consistent-return,getter-return
   get state() {
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     const fn = this._rng.state;
     if (typeof fn === 'function') {
+      // @ts-ignore
       return fn();
     }
   }
+  /**
+   * @todo options for change seeder
+   */
   seed(seed, opts, ...argv) {
     if (opts === null) {
       this._opts = void 0;
@@ -78,6 +97,7 @@ class RNGSeedRandom extends generatorsFunction.RNGFunction {
     }
     this._rng = this._seedrandom(this._seedAuto(seed), this._opts, ...argv);
   }
+  // @ts-ignore
   clone(seed, opts, ...argv) {
     return cloneClass.cloneClass(RNGSeedRandom, this, seed, opts, ...argv);
   }

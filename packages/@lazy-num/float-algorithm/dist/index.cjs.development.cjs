@@ -26,6 +26,9 @@ function df_splitmix32(n) {
   };
 }
 
+/**
+ * Yet another chaotic PRNG, the sfc stands for "Small Fast Counter". It is part of the PracRand PRNG test suite. It passes PractRand, as well as Crush/BigCrush (TestU01). Also one of the fastest.
+ */
 function df_sfc32(a, b, c, d) {
   return function () {
     a |= 0;
@@ -42,6 +45,9 @@ function df_sfc32(a, b, c, d) {
   };
 }
 
+/**
+ * Tyche is based on ChaCha's quarter-round. It's a bit slow but should be good quality. tychei, the inverted version, is 20% faster.
+ */
 function df_tychei(a, b, c, d) {
   return () => {
     a |= 0;
@@ -59,6 +65,9 @@ function df_tychei(a, b, c, d) {
     return (a >>> 0) / MATH_POW_2_32;
   };
 }
+/**
+ * Tyche is based on ChaCha's quarter-round. It's a bit slow but should be good quality. tychei, the inverted version, is 20% faster.
+ */
 function df_tyche(a, b, c, d) {
   return () => {
     a |= 0;

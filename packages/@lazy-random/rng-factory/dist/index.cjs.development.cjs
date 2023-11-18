@@ -11,6 +11,7 @@ var generatorsFunction = require('@lazy-random/generators-function');
 var generatorsMathRandom = require('@lazy-random/generators-math-random');
 
 const PRNG_BUILTINS = {
+  // TODO: add more prng from C++11 lib
   'xor128': generatorsXor128.RNGXOR128,
   'function': generatorsFunction.RNGFunction,
   'default': generatorsMathRandom2.RNGMathRandom2,

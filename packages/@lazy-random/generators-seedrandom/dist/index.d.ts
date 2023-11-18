@@ -1,11 +1,11 @@
 import { RNGFunction } from '@lazy-random/generators-function';
 import seedrandom from 'seedrandom';
-export import RNGSeedRandomOptions = seedrandom.seedRandomOptions;
 import { PickValueOf } from '@lazy-random/shared-lib';
+export import RNGSeedRandomOptions = seedrandom.seedRandomOptions;
 export declare const defaultOptions: RNGSeedRandomOptions;
-export declare type IRNGSeedRandomLibName = 'alea' | 'tychei' | 'xor128' | 'xor4096' | 'xorshift7' | 'xorwow';
-export declare type IRNGSeedRandomLib = IRNGSeedRandomLibName | string;
-export declare type IRNGSeedRandomLibValueOf = PickValueOf<typeof seedrandom, IRNGSeedRandomLibName>;
+export type IRNGSeedRandomLibName = 'alea' | 'tychei' | 'xor128' | 'xor4096' | 'xorshift7' | 'xorwow';
+export type IRNGSeedRandomLib = IRNGSeedRandomLibName | string;
+export type IRNGSeedRandomLibValueOf = PickValueOf<typeof seedrandom, IRNGSeedRandomLibName>;
 export declare class RNGSeedRandom extends RNGFunction<seedrandom.prng> {
     protected _opts: RNGSeedRandomOptions;
     protected _seedrandom: IRNGSeedRandomGenerator;

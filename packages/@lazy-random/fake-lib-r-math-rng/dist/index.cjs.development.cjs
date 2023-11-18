@@ -3,17 +3,20 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 function fakeLibRMathRng(fn) {
-  return {
-    unif_rand(n) {
-      if (n > 1) {
-        let a = [];
-        while (n--) {
-          a[n] = fn();
-        }
-        return a;
+  function unif_rand(n) {
+    if (n > 1) {
+      let a = [];
+      while (n--) {
+        a[n] = fn();
       }
-      return fn();
+      return a;
     }
+    return fn();
+  }
+  return {
+    // @ts-ignore
+    unif_rand,
+    internal_unif_rand: unif_rand
   };
 }
 

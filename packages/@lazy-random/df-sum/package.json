@@ -112,8 +112,12 @@
   },
   "dependencies": {
     "@lazy-num/sum": "^1.0.8",
+    "@lazy-random/df-uniform": "^1.0.9",
+    "@lazy-random/fake-lib-r-math-rng": "^1.0.8",
     "@lazy-random/util-distributions": "^1.0.8",
-    "@lazy-random/util-probabilities": "^1.0.8"
+    "@lazy-random/util-probabilities": "^1.0.8",
+    "array-hyper-unique": "^2.1.4",
+    "lib-r-math.js": "<2 >=1.0.94"
   },
   "packageManager": "yarn@^1.22.11",
   "publishConfig": {

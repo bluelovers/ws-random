@@ -12,6 +12,7 @@ class RNGCore {
     if (this === RNGCore || !this) {
       throw new ReferenceError('RNG is abstract class');
     }
+    // @ts-ignore
     return new this(seed, opts, ...argv);
   }
   get name() {
@@ -23,10 +24,16 @@ class RNGCore {
   get seedable() {
     return null;
   }
+  /**
+   * should return a float between 0 ~ 1
+   */
+  // @ts-ignore
   next() {
     throw new ReferenceError('RNG.next must be overridden');
   }
-  seed(seed, opts, ...argv) {}
+  seed(seed, opts, ...argv) {
+    //throw new ReferenceError('RNG.seed must be overridden')
+  }
   clone(seed, opts, ...argv) {
     throw new ReferenceError('RNG.clone must be overridden');
   }
@@ -36,9 +43,15 @@ class RNGCore {
     }
     return this._seedStr(seed, opts, ...argv);
   }
+  /**
+   * return number for make new seed
+   */
   _seedNum(seed, opts, ...argv) {
     throw new ReferenceError('RNG._seedNum must be overridden');
   }
+  /**
+   * return string for make new seed
+   */
   _seedStr(seed, opts, ...argv) {
     throw new ReferenceError('RNG._seedStr must be overridden');
   }

@@ -4,6 +4,16 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var sharedLib = require('@lazy-random/shared-lib');
 
+/**
+ * Given a buffer containing bytes of entropy, generate a double-precision
+ * 64-bit float.
+ *
+ * @param {Buffer} buf a buffer of bytes
+ * @returns {Number} a float
+ *
+ * @see https://github.com/fardog/node-random-lib/blob/master/index.js
+ * @see http://stackoverflow.com/questions/15753019/floating-point-number-from-crypto-randombytes-in-javascript
+ */
 function floatFromBuffer(buf, offset = 0) {
   offset = Math.floor(offset);
   if (buf.length < sharedLib.FLOAT_ENTROPY_BYTES + offset || offset < 0) {

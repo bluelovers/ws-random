@@ -74,8 +74,8 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "chai": "^4.3.6",
-    "chai-asserttype-extra": "^2.0.10"
+    "chai": "^4.3.10",
+    "chai-asserttype-extra": "^2.0.14"
   },
   "packageManager": "yarn@^1.22.11",
   "publishConfig": {

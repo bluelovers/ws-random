@@ -14,6 +14,12 @@ var utilDistributions = require('@lazy-random/util-distributions');
 var sharedLib = require('@lazy-random/shared-lib');
 var dfUniform = require('@lazy-random/df-uniform');
 
+/**
+ * not support unique, but will try make unique if can
+ * thx @SeverinPappadeux for int version
+ *
+ * @see https://stackoverflow.com/questions/53279807/how-to-get-random-number-list-with-fixed-sum-and-size
+ */
 function coreFnRandSumInt(argv) {
   let {
     random,
@@ -22,24 +28,56 @@ function coreFnRandSumInt(argv) {
     min,
     max
   } = argv;
+  // @ts-ignore
   expect.expect(size).finite.integer.gt(1);
   const sum_1_to_size = sum.sum_1_to_n(size);
   sum$1 = sharedLib.isUnset(sum$1) ? sum_1_to_size : sum$1;
+  // @ts-ignore
   expect.expect(sum$1).is.finite.integer();
   min = sharedLib.isUnset(min) ? sum$1 > 0 ? 0 : sum$1 : min;
   max = sharedLib.isUnset(max) ? Math.abs(sum$1) : max;
+  // @ts-ignore
   expect.expect(min).is.finite.integer();
+  // @ts-ignore
   expect.expect(max).is.finite.integer();
+  //let n_sum = Math.abs(sum - size * min);
   let n_sum = sum$1 - size * min;
   let maxv = max - min;
   expect.expect(n_sum).gte(0);
+  /*
+  console.log({
+      sum_1_to_size,
+      size,
+      sum,
+      min,
+      max,
+      n_sum,
+      maxv,
+  });
+  */
   if (sum$1 > 0) {
     expect.expect(sum$1).gt(min);
   }
+  /**
+   * pre-check
+   */
+  //expect(maxv, `(max - min) should > sum_1_to_size`).gte(sum_1_to_size);
+  /**
+   * probabilities
+   */
   const prob = utilProbabilities.get_prob(size, maxv);
   expect.expect(prob).array.lengthOf(size);
+  /**
+   * make rmultinom use with random.next
+   */
   const rmultinomFn = libRMath_js.Multinomial(fakeLibRMathRng.fakeLibRMathRng(() => random.next())).rmultinom;
+  /**
+   * low value for speed up, but more chance fail
+   */
   const n_len = argv.limit || 5 || n_sum;
+  /**
+   * rebase number
+   */
   let n_diff = min;
   const rmultinomCreateFn = n_len => {
     return rmultinomFn(n_len, n_sum, prob).reduce((a, value) => {
@@ -74,6 +112,9 @@ function coreFnRandSumInt(argv) {
       return a;
     }, []).sort((a, b) => b.unique_len - a.unique_len);
   };
+  /**
+   * pre-make fail-back value
+   */
   const cache_max = 10;
   let cache = [];
   {
@@ -91,7 +132,11 @@ function coreFnRandSumInt(argv) {
     }
     expect.expect(cache, `invalid argv (size=${size}, sum=${sum$1}, min=${min}, max=${max})`).array.have.lengthOf.gt(0);
     arr = undefined;
+    //		console.log(cache);
   }
+  /**
+   * try reset memory
+   */
   argv = undefined;
   return () => {
     let arr = rmultinomCreateFn(n_len);
@@ -125,15 +170,21 @@ function coreFnRandSumFloat(argv) {
     max,
     fractionDigits
   } = argv;
+  // @ts-ignore
   expect.expect(size).is.finite.integer.gt(1);
   if (sharedLib.isUnset(sum$1) && typeof min === 'number' && typeof max === 'number') {
     sum$1 = (size - 1) * min + max;
+    //console.log(sum, min, max);
   }
+
   sum$1 = sharedLib.isUnset(sum$1) ? 1.0 : sum$1;
   min = sharedLib.isUnset(min) ? sum$1 > 0 ? 0 : sum$1 : min;
   max = sharedLib.isUnset(max) ? Math.abs(sum$1) : max;
+  // @ts-ignore
   expect.expect(min).is.finite.number();
+  // @ts-ignore
   expect.expect(max).is.finite.number();
+  // @ts-ignore
   expect.expect(sum$1).is.finite.number();
   sum$1 += 0.0;
   const n_sum = sum$1 - size * min;
@@ -144,10 +195,19 @@ function coreFnRandSumFloat(argv) {
   expect.expect(n_sum).gte(0);
   let fnFirst;
   if (!sharedLib.isUnset(fractionDigits)) {
+    // @ts-ignore
     expect.expect(fractionDigits).finite.integer.gt(0);
   }
   {
+    /**
+     * get_prob_float(3, 10)
+     * // => [ 4.444444444444445, 3.3333333333333335, 2.222222222222222 ]
+     */
     const prob = utilProbabilities.get_prob_float(size, maxv);
+    /**
+     * array_sum(prob.slice(0, -1))
+     * // => 7.777777777777779
+     */
     const prob_slice_sum = sum.num_array_sum(prob.slice(0, -1));
     fnFirst = dfUniform.dfUniformFloat(random, 0, prob_slice_sum);
   }
@@ -210,6 +270,12 @@ function coreFnRandSumFloat(argv) {
       bool_toplevel = true;
       ret_b = ret_a;
     } while (!bool_toplevel);
+    /*
+    if (!bool_toplevel)
+    {
+        throw new Error(`invalid argv (size=${size}, sum=${sum}, min=${min}, max=${max})`)
+    }
+    */
     return ret_b;
   };
 }

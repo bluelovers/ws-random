@@ -10,8 +10,10 @@ const logFactorial = k => {
 };
 const logSqrt2PI = 0.91893853320467267;
 function dfPoisson(random, lambda = 1) {
+  //ow(lambda, ow.number.positive)
   expect.expect(lambda).gt(0);
   if (lambda < 10) {
+    // inversion method
     const expMean = Math.exp(-lambda);
     return () => {
       let p = expMean;
@@ -24,6 +26,7 @@ function dfPoisson(random, lambda = 1) {
       return x;
     };
   } else {
+    // generative method
     const smu = Math.sqrt(lambda);
     const b = 0.931 + 2.53 * smu;
     const a = -0.059 + 0.02483 * b;

@@ -57,7 +57,7 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-assert/check-basic": "^1.0.10",
+    "@lazy-assert/check-basic": "^1.0.13",
     "@lazy-num/float-to-string": "^1.0.9",
     "@lazy-random/original-math-random": "^1.0.8",
     "@lazy-random/seed-data": "^1.0.8",

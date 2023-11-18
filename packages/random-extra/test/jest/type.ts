@@ -5,7 +5,9 @@ import {
 	printReceived,
 	MatcherHintOptions,
 	matcherErrorMessage,
-	EXPECTED_COLOR, printWithType, RECEIVED_COLOR,
+	EXPECTED_COLOR,
+	printWithType,
+	RECEIVED_COLOR,
 } from 'jest-matcher-utils';
 import check from 'check-types';
 import CustomMatcher = jest.CustomMatcher;

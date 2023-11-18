@@ -2,6 +2,12 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
+/**
+ * Created by user on 2021/12/11.
+ */
+/**
+ * simple probabilities
+ */
 function get_prob(size, sum) {
   let score = sum;
   let resultArray = [];

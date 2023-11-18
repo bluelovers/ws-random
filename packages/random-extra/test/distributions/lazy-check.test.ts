@@ -2,6 +2,9 @@ import random from '../../'
 import { isFloat } from '@lazy-assert/check-basic';
 import { Random } from '../../src';
 import { RandomCore } from '@lazy-random/random-core';
+import { toBeFunction } from 'jest-extended';
+
+expect.extend({ toBeFunction });
 
 function getDefaultArgv(method: keyof Random | string)
 {

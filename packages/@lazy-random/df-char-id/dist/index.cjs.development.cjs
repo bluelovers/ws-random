@@ -7,6 +7,9 @@ var expect = require('@lazy-random/expect');
 var floatToString = require('@lazy-num/float-to-string');
 var utilDistributions = require('@lazy-random/util-distributions');
 
+/**
+ * Created by user on 2018/11/9/009.
+ */
 function dfCharID(random, char, size) {
   if (typeof char === 'number') {
     if (typeof size === 'number') {
@@ -16,10 +19,12 @@ function dfCharID(random, char, size) {
     }
   }
   size = size || 8;
+  //ow(size, ow.number.integer.gt(0));
   expect.expect(size).integer.gt(0);
   if (!char) {
-    char = "ModuleSymbhasOwnPr0123456789ABCDEFGHIJKLNQRTUVWXYZcfgijkpqtvxz0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    char = "ModuleSymbhasOwnPr0123456789ABCDEFGHIJKLNQRTUVWXYZcfgijkpqtvxz0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" /* ENUM_ALPHABET.DEFAULT */;
   }
+
   const ls = UString.create(char).split('');
   const len = ls.length;
   expect.expect(ls).lengthOf.gt(1);

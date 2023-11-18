@@ -4,6 +4,10 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var originalMathRandom = require('@lazy-random/original-math-random');
 
+/**
+ * @see https://github.com/michaeldzjap/rand-seed/blob/939181cf160e929cac8397f702cced6acb0e95d5/src/Algorithms/Base.ts#L13
+ * @see https://github.com/bryc/code/blob/master/jshash/PRNGs.md
+ */
 function df_xfnv1a(str) {
   let h = 2166136261 >>> 0;
   for (let i = 0; i < str.length; i++) {
@@ -69,12 +73,21 @@ function df_xmur3a(str) {
   };
 }
 
+/**
+ * @example
+ * doubleToIEEE(0.732821894576773)
+ */
 function doubleToIEEE(floatNumber) {
   const buf = new ArrayBuffer(8);
   new Float64Array(buf)[0] = floatNumber;
   return [new Uint32Array(buf)[0], new Uint32Array(buf)[1]];
 }
 
+/**
+ * @example
+ * var seed = 0; // any unsigned 32-bit integer
+ * var next = v3b(seed, 2654435769, 1013904242, 3668340011);
+ */
 function df_v3b(a, b, c, d) {
   b || (b = 2654435769);
   c || (c = 1013904242);
@@ -152,6 +165,7 @@ function seedFromStringOrNumberOrArray(seedInput, size) {
       } else {
         var _s;
         (_s = s) !== null && _s !== void 0 ? _s : s = doubleToIEEE(originalMathRandom._MathRandom());
+        // @ts-ignore
         seed[i] = s.pop();
         if (!s.length) {
           s = void 0;

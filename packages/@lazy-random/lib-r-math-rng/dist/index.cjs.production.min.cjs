@@ -4,33 +4,41 @@ Object.defineProperty(exports, "__esModule", {
   value: !0
 });
 
-var e = require("lib-r-math.js"), n = require("random-extra/src/random"), t = require("@lazy-random/rng-abstract"), r = require("is-extends-of");
+var e = require("lib-r-math.js"), t = require("random-extra/src/random"), n = require("@lazy-random/rng-abstract"), i = require("is-extends-of");
 
 function _interopNamespaceDefault(e) {
-  var n = Object.create(null);
-  return e && Object.keys(e).forEach((function(t) {
-    if ("default" !== t) {
-      var r = Object.getOwnPropertyDescriptor(e, t);
-      Object.defineProperty(n, t, r.get ? r : {
+  var t = Object.create(null);
+  return e && Object.keys(e).forEach((function(n) {
+    if ("default" !== n) {
+      var i = Object.getOwnPropertyDescriptor(e, n);
+      Object.defineProperty(t, n, i.get ? i : {
         enumerable: !0,
         get: function() {
-          return e[t];
+          return e[n];
         }
       });
     }
-  })), n.default = e, n;
+  })), t.default = e, t;
 }
 
-var s = _interopNamespaceDefault(e);
+var r = _interopNamespaceDefault(e);
 
-class RandomRngWithLibRMath extends t.RNG {
+function _isLibRMathRNGLike(e) {
+  return !(!e || "function" != typeof e.unif_rand && "function" != typeof e.internal_unif_rand);
+}
+
+function _isExtendsOfLibRMathRNGLike(t) {
+  return !(!t || !i(t, e.IRNG));
+}
+
+class RandomRngWithLibRMath extends n.RNG {
   _seedable=!0;
-  constructor(e, n, ...t) {
-    super(), this._init(e, n, ...t);
+  constructor(e, t, ...n) {
+    super(), this._init(e, t, ...n);
   }
-  _init(e, n, ...t) {
-    this._rng = e instanceof s.IRNG ? e : n instanceof s.IRNG ? n : e && r(e, s.IRNG) ? new e(this._seedNum(n)) : n && r(n, s.IRNG) ? new n(this._seedNum(e)) : "function" == typeof (null == e ? void 0 : e.unif_rand) ? e : "function" == typeof (null == n ? void 0 : n.unif_rand) ? n : n && s[n] ? new (0, 
-    s[n])(this._seedNum(e)) : new s.rng.MersenneTwister(this._seedNum(e)), this._fn = (this._rng.internal_unif_rand || this._rng.unif_rand).bind(this._rng);
+  _init(t, n, ...i) {
+    this._rng = t instanceof e.IRNG ? t : n instanceof e.IRNG ? n : _isExtendsOfLibRMathRNGLike(t) ? new t(this._seedNum(n)) : _isExtendsOfLibRMathRNGLike(n) ? new n(this._seedNum(t)) : _isLibRMathRNGLike(t) ? t : _isLibRMathRNGLike(n) ? n : n && r[n] ? new (0, 
+    r[n])(this._seedNum(t)) : new r.rng.MersenneTwister(this._seedNum(t)), this._fn = (this._rng.internal_unif_rand || this._rng.unif_rand).bind(this._rng);
   }
   get name() {
     return "libRMath" + (this._rng.name ? `<${this._rng.name}>` : "");
@@ -41,14 +49,14 @@ class RandomRngWithLibRMath extends t.RNG {
   next() {
     return this._fn();
   }
-  seed(e, n, ...t) {
+  seed(e, t, ...n) {
     this._rng.seed = [ this._seedNum(e) ];
   }
 }
 
 exports.LibRMathRngWithRandom = class LibRMathRngWithRandom extends e.IRNG {
-  constructor(e, n) {
-    super(e), this.use(n, e);
+  constructor(e, t) {
+    super(e), this.use(t, e);
   }
   get _name() {
     return "Random<" + this.__random.rng.name + ">";
@@ -57,18 +65,19 @@ exports.LibRMathRngWithRandom = class LibRMathRngWithRandom extends e.IRNG {
     return this.__seed;
   }
   set seed(e) {
-    var n, t;
-    null === (n = (t = this.__random).seed) || void 0 === n || n.call(t, this.__seed = e);
+    var t, n;
+    null === (t = (n = this.__random).seed) || void 0 === t || t.call(n, this.__seed = e);
   }
-  use(e, r) {
-    e && (e instanceof t.RNG || "function" == typeof e.next || ("seedrandom" === e ? e = n.random.newUse("seedrandom", r, {
+  use(e, i) {
+    e && (e instanceof n.RNG || "function" == typeof e.next || ("seedrandom" === e ? e = t.random.newUse("seedrandom", i, {
       entropy: !1
-    }) : e instanceof n.Random || (e = n.random.newUse(e)))), this.__random = e || this.__random || n.random, 
-    void 0 !== r && (this.seed = r);
+    }) : e instanceof t.Random || (e = t.random.newUse(e)))), this.__random = e || this.__random || t.random, 
+    void 0 !== i && (this.seed = i);
   }
   _setup() {}
   internal_unif_rand() {
     return this.__random.next();
   }
-}, exports.RandomRngWithLibRMath = RandomRngWithLibRMath, exports.default = RandomRngWithLibRMath;
+}, exports.RandomRngWithLibRMath = RandomRngWithLibRMath, exports._isExtendsOfLibRMathRNGLike = _isExtendsOfLibRMathRNGLike, 
+exports._isLibRMathRNGLike = _isLibRMathRNGLike, exports.default = RandomRngWithLibRMath;
 //# sourceMappingURL=index.cjs.production.min.cjs.map

@@ -15,7 +15,9 @@ function _createWeight(arr, options) {
   let ls2 = Object.entries(arr).map(function (entrie) {
     let [key, value] = entrie;
     let weight = getWeight(value, key);
+    //weight = Math.exp(weight)
     weight = +weight;
+    //ow(weight, ow.number.gt(0))
     expect.expect(weight).gt(0);
     sum += weight;
     return {
@@ -27,24 +29,36 @@ function _createWeight(arr, options) {
   });
   let ls = ls2.reduce(function (a, entrie) {
     entrie.percentage = entrie.weight / sum;
+    //let k = entrie.percentage
     let item = [entrie.key, entrie.value, entrie.percentage];
     if (a.last === 0) {
       a.last = entrie.percentage;
     } else {
       a.last += entrie.percentage;
     }
+    //a.klist.push(a.last)
+    //a.plist.push(entrie.percentage)
     a.vlist.push(item);
     a.kwlist[entrie.key] = entrie.weight;
     return a;
   }, {
+    //klist: [],
+    //plist: [],
     vlist: [],
     kwlist: {},
     last: 0
   });
   expect.expect(ls.vlist).have.length.gt(1);
   return {
+    //source: arr,
     sum,
+    //sum2,
+    //psum,
+    //psum2,
+    //		list: ls,
     list: ls2,
+    //klist: ls.klist,
+    //plist: ls.plist,
     kwlist: ls.kwlist,
     vlist: ls.vlist
   };
@@ -96,11 +110,17 @@ function _itemByWeightCore(r, klist) {
 }
 
 function dfItemByWeight(random, arr, options) {
+  /*
+  let ws = _createWeight(arr, options)
+   ws = _sortWeight(random, ws, options);
+   ws = _percentageWeight(random, ws);
+   */
   let ws = _calcWeight(random, arr, options);
   const {
     vlist,
     klist
   } = ws;
+  //console.dir(ws)
   ws = void 0;
   arr = void 0;
   options = void 0;

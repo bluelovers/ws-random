@@ -13,7 +13,9 @@ class RNGSfc32 extends rngAbstractCore.RNGCore {
   }
   _init(seed, opts, ...argv) {
     seed = seedAlgorithm.seedFromStringOrNumberOrArray(seed, 4);
+    // @ts-ignore
     this._seed = seed;
+    // @ts-ignore
     this._rng = floatAlgorithm.df_sfc32(...seed);
   }
   seed(seed, opts, ...argv) {

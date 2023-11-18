@@ -11,6 +11,7 @@ export class LibRMathRngWithRandom extends IRNG
 
 	constructor(_seed?: number, rng?: Random | RNG | any | IRNGLike)
 	{
+		// @ts-ignore
 		super(_seed);
 		this.use(rng, _seed)
 	}
@@ -67,6 +68,25 @@ export class LibRMathRngWithRandom extends IRNG
 	}
 }
 
+export function _isLibRMathRNGLike<R extends IRNG>(rng: R | unknown): rng is R
+{
+	// @ts-ignore
+	if (rng && (typeof rng.unif_rand === 'function' || typeof rng.internal_unif_rand === 'function'))
+	{
+		return true
+	}
+	return false
+}
+
+export function _isExtendsOfLibRMathRNGLike<R extends IRNG>(rng: R | unknown): rng is R
+{
+	if (rng && isExtendsOf(rng, IRNG as any))
+	{
+		return true
+	}
+	return false
+}
+
 export class RandomRngWithLibRMath<R extends IRNG> extends RNG
 {
 	protected _rng: R;
@@ -81,33 +101,31 @@ export class RandomRngWithLibRMath<R extends IRNG> extends RNG
 
 	protected override _init(seed?, opts?, ...argv)
 	{
-		if (seed instanceof libRMath.IRNG)
+		if (seed instanceof IRNG)
 		{
 			// @ts-ignore
 			this._rng = seed
 		}
-		else if (opts instanceof libRMath.IRNG)
+		else if (opts instanceof IRNG)
 		{
 			// @ts-ignore
 			this._rng = opts
 		}
-		else if (seed && isExtendsOf(seed, libRMath.IRNG as any))
+		else if (_isExtendsOfLibRMathRNGLike<R>(seed))
 		{
 			// @ts-ignore
 			this._rng = new seed(this._seedNum(opts))
 		}
-		else if (opts && isExtendsOf(opts, libRMath.IRNG as any))
+		else if (_isExtendsOfLibRMathRNGLike<R>(opts))
 		{
 			// @ts-ignore
 			this._rng = new opts(this._seedNum(seed))
 		}
-		// @ts-ignore
-		else if (typeof seed?.unif_rand === 'function')
+		else if (_isLibRMathRNGLike<R>(seed))
 		{
 			this._rng = seed
 		}
-		// @ts-ignore
-		else if (typeof opts?.unif_rand === 'function')
+		else if (_isLibRMathRNGLike<R>(opts))
 		{
 			this._rng = opts
 		}
@@ -137,6 +155,7 @@ export class RandomRngWithLibRMath<R extends IRNG> extends RNG
 
 	public override get options(): number[]
 	{
+		// @ts-ignore
 		return this._rng.seed
 	}
 
@@ -145,8 +164,10 @@ export class RandomRngWithLibRMath<R extends IRNG> extends RNG
 		return this._fn()
 	}
 
+	// @ts-ignore
 	public override seed(seed?: any | number[], opts?, ...argv)
 	{
+		// @ts-ignore
 		this._rng.seed = [this._seedNum(seed)]
 	}
 }

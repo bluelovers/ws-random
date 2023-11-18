@@ -1,15 +1,17 @@
 "use strict";
 
-function fakeLibRMathRng(e) {
-  return {
-    unif_rand(t) {
-      if (t > 1) {
-        let r = [];
-        for (;t--; ) r[t] = e();
-        return r;
-      }
-      return e();
+function fakeLibRMathRng(n) {
+  function unif_rand(e) {
+    if (e > 1) {
+      let r = [];
+      for (;e--; ) r[e] = n();
+      return r;
     }
+    return n();
+  }
+  return {
+    unif_rand,
+    internal_unif_rand: unif_rand
   };
 }
 

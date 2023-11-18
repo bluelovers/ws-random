@@ -40,11 +40,14 @@ function dfArrayShuffle(random, arr, overwrite) {
   if (!overwrite) {
     let cloneArrayLike;
     if (Buffer.isBuffer(arr)) {
+      // @ts-ignore
       cloneArrayLike = arr => {
+        // @ts-ignore
         return Buffer.from(arr);
       };
     } else {
       cloneArrayLike = arr => {
+        // @ts-ignore
         return arr.slice();
       };
     }
@@ -66,6 +69,8 @@ function dfArrayUnique(random, arr, limit, loop, fnRandIndex, fnOutOfLimit) {
   limit = Math.min(limit || clone.length, clone.length);
   fnRandIndex = fnRandIndex || randIndex;
   loop = !!loop;
+  //ow(limit, ow.number.integer.gt(0));
+  //ow(fnRandIndex, ow.function);
   expect.expect(limit).integer.gt(0);
   expect.expect(fnRandIndex).function();
   let count = limit;
