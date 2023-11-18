@@ -169,8 +169,8 @@
     "@types/fs-extra": "^11.0.4",
     "@types/jest": "^29.5.8",
     "@types/nanoid": "^2.1.0",
-    "@types/node": "*",
-    "@yarn-tool/ws-find-up-paths": "*",
+    "@types/node": "^20.9.1",
+    "@yarn-tool/ws-find-up-paths": "^1.0.12",
     "reliable-random": "^0.0.1"
   },
   "peerDependencies": {

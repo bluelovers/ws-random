@@ -1012,10 +1012,12 @@
   dependencies:
     "@types/node" "*"
 
-"@types/node@*":
-  version "18.11.7"
-  resolved "https://registry.npmjs.org/@types/node/-/node-18.11.7.tgz#8ccef136f240770c1379d50100796a6952f01f94"
-  integrity sha512-LhFTglglr63mNXUSRYD8A+ZAIu5sFqNJ4Y2fPuY7UlrySJH87rRRlhtVmMHplmfk5WkoJGmDjE9oiTfyX94CpQ==
+"@types/node@*", "@types/node@^20.9.1":
+  version "20.9.1"
+  resolved "https://registry.npmjs.org/@types/node/-/node-20.9.1.tgz#9d578c610ce1e984adda087f685ace940954fe19"
+  integrity sha512-HhmzZh5LSJNS5O8jQKpJ/3ZcrrlG6L70hpGqMIAoM9YVD0YBRNWYsfwcXq8VnSjlNpCpgLzMXdiPo+dxcvSmiA==
+  dependencies:
+    undici-types "~5.26.4"
 
 "@types/seedrandom@=2.4.28":
   version "2.4.28"
@@ -1049,25 +1051,25 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@yarn-tool/find-root@^2.0.12":
-  version "2.0.12"
-  resolved "https://registry.npmjs.org/@yarn-tool/find-root/-/find-root-2.0.12.tgz#a0b5f64f64a7a169a584b37a170d1baefa0e9c64"
-  integrity sha512-3ZNPd5GM8JSj7EyJBfX2opQ4j3OVpDlCnYd6xzIkWK2Eabng5HH/hc1cjC2jKDUWrVOHxflXkXFQTMvX22vQDQ==
+"@yarn-tool/find-root@^2.0.13":
+  version "2.0.13"
+  resolved "https://registry.npmjs.org/@yarn-tool/find-root/-/find-root-2.0.13.tgz#b61b0638d778b3d6aa32c4538c2a1246f9473dd4"
+  integrity sha512-/JrkILXg+c0IGfXdtydKEd0K/dj5FPtsrrm0d7lYhz+FaVWHKGjeDAKLP/UtsNY5OC1UsBi+1DlvWXp+ebL2hQ==
   dependencies:
     "@ts-type/package-dts" "^2.0.8"
     err-code "^3.0.1"
-    find-yarn-workspace-root2 "^1.2.48"
+    find-yarn-workspace-root2 "^1.2.49"
     path-is-same "^1.0.25"
     pkg-dir "<6 >=5"
     tslib ">=2"
     upath2 "^3.1.19"
 
-"@yarn-tool/ws-find-up-paths@*":
-  version "1.0.11"
-  resolved "https://registry.npmjs.org/@yarn-tool/ws-find-up-paths/-/ws-find-up-paths-1.0.11.tgz#306b267cba4704f21e2200752501480f9b020498"
-  integrity sha512-ux60ZmSm/6UqEMgbIWztse3fMPHIghPunAPgQiOWBrOi60rlbpQLXA2YNlvVb0vIhShsRQYWt7vHiAcolb4Aeg==
+"@yarn-tool/ws-find-up-paths@^1.0.12":
+  version "1.0.12"
+  resolved "https://registry.npmjs.org/@yarn-tool/ws-find-up-paths/-/ws-find-up-paths-1.0.12.tgz#e9428af266f16018adb800a78ae7a4e1853cd70a"
+  integrity sha512-yFcGPFn9YlX013lYgGlbS/qbiu979bzvX+V0W1cp32c2j3KFLMuNqb7YaS+/JHqCSAyt8SqDYs/cD7FJjzwyxA==
   dependencies:
-    "@yarn-tool/find-root" "^2.0.12"
+    "@yarn-tool/find-root" "^2.0.13"
     find-up-paths "^1.0.16"
     tslib ">=2"
 
@@ -1738,10 +1740,10 @@ find-up@^5.0.0:
     locate-path "^6.0.0"
     path-exists "^4.0.0"
 
-find-yarn-workspace-root2@^1.2.48:
-  version "1.2.48"
-  resolved "https://registry.npmjs.org/find-yarn-workspace-root2/-/find-yarn-workspace-root2-1.2.48.tgz#9381d1ea14872cb02300e1c769bf74816f14c5eb"
-  integrity sha512-l7wrJqDQeu+jW4Vlh9Iu9fwAy2YBGeUymKd43Slt1mxkvAR+YOl8mO1Bi/I1v6J0ob72oDaE+iaYkSi7GXt3WQ==
+find-yarn-workspace-root2@^1.2.49:
+  version "1.2.49"
+  resolved "https://registry.npmjs.org/find-yarn-workspace-root2/-/find-yarn-workspace-root2-1.2.49.tgz#2a5f6cd54f54b821d53bf46d70622bc3118e0061"
+  integrity sha512-j09jBA+gTzhRKMzYmNUluvEBwcw5WrOB96qZRJ2eVUCs+ct5yS5J1yn/PUoAy8W6ztDVzuiJD+oYynWb1/ok4g==
   dependencies:
     micromatch "^4.0.5"
     pkg-dir "<6 >=5"
@@ -3198,6 +3200,11 @@ typedarray-dts@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/typedarray-dts/-/typedarray-dts-1.0.0.tgz#9dec9811386dbfba964c295c2606cf9a6b982d06"
   integrity sha512-Ka0DBegjuV9IPYFT1h0Qqk5U4pccebNIJCGl8C5uU7xtOs+jpJvKGAY4fHGK25hTmXZOEUl9Cnsg5cS6K/b5DA==
+
+undici-types@~5.26.4:
+  version "5.26.5"
+  resolved "https://registry.npmjs.org/undici-types/-/undici-types-5.26.5.tgz#bcd539893d00b56e964fd2657a4866b221a65617"
+  integrity sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==
 
 uni-string@^2.0.2:
   version "2.0.2"
