@@ -1,6 +1,7 @@
 import { expect } from '@lazy-random/expect';
 import { randIndex as _randIndex } from '@lazy-random/util-distributions';
 import { IRNGLike } from '@lazy-random/rng-abstract';
+import { ITSArrayListMaybeReadonly } from 'ts-type/lib/type/base';
 
 export interface IRandIndex
 {
@@ -11,10 +12,10 @@ export interface IRandIndex
 
 export interface IArrayUniqueOutOfLimitCallback<T extends unknown>
 {
-	(arr: T[], limit: number, loop: boolean, fn: IRandIndex): T[] | boolean | void
+	(arr: ITSArrayListMaybeReadonly<T>, limit: number, loop: boolean, fn: IRandIndex): T[] | boolean | void
 }
 
-export function dfArrayUnique<T extends unknown>(random: IRNGLike, arr: T[], limit?: number, loop?: boolean, fnRandIndex?: IRandIndex, fnOutOfLimit?: IArrayUniqueOutOfLimitCallback<T>)
+export function dfArrayUnique<T extends unknown>(random: IRNGLike, arr: ITSArrayListMaybeReadonly<T>, limit?: number, loop?: boolean, fnRandIndex?: IRandIndex, fnOutOfLimit?: IArrayUniqueOutOfLimitCallback<T>)
 {
 	const randIndex = (len: number) =>
 	{
@@ -31,13 +32,13 @@ export function dfArrayUnique<T extends unknown>(random: IRNGLike, arr: T[], lim
 	//ow(limit, ow.number.integer.gt(0));
 	//ow(fnRandIndex, ow.function);
 
-	expect(limit).integer.gt(0)
-	expect(fnRandIndex).function()
+	expect(limit, `limit`).integer.gt(0)
+	expect(fnRandIndex, `fnRandIndex`).function()
 
 	let count = limit;
 	let len: number;
 
-	const _fnClone = function _fnClone(arr: T[])
+	const _fnClone = function _fnClone(arr: ITSArrayListMaybeReadonly<T>)
 	{
 		clone = arr.slice();
 		count = limit;
@@ -82,7 +83,7 @@ export function dfArrayUnique<T extends unknown>(random: IRNGLike, arr: T[], lim
 			}
 		}
 
-		let i = fnRandIndex(len);
+		const i = fnRandIndex(len);
 
 		return clone
 			.splice(i, 1)[0]

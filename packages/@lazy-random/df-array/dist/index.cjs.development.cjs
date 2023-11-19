@@ -8,21 +8,66 @@ var arrayAlgorithm = require('@lazy-random/array-algorithm');
 var dfUniform = require('@lazy-random/df-uniform');
 var sharedLib = require('@lazy-random/shared-lib');
 
-function dfArrayIndex(random, arr, size = 1, start = 0, end) {
-  let len = arr.length - 1;
-  expect.expect(size).integer.gt(0);
+function _handleStartEnd(arr, start = 0, end, disableCheck) {
+  var _end;
+  const len = arr.length;
+  const enableCheck = !disableCheck;
   start = Math.max(Math.floor(start), 0);
-  end = Math.max(0, Math.floor(end)) || len;
-  expect.expect(end).integer.gt(0).lte(len);
-  expect.expect(start).integer.gte(0).lt(end);
-  const fn = utilDistributions.int;
-  let size_runtime = Math.max(Math.min(end - start, len, size), 0);
-  expect.expect(size_runtime).gte(size).gt(0);
+  if (typeof end !== 'undefined' && end !== null) {
+    end = Math.floor(end);
+    enableCheck && expect.expect(end).integer.gt(start + 1, `END(${end}) should greater than START(${start}+1)`).gt(0);
+  }
+  end = Math.min(Math.max(0, (_end = end) !== null && _end !== void 0 ? _end : len), len);
+  enableCheck && expect.expect(end, `END(${end})`).integer.gte(0).lte(len);
+  enableCheck && expect.expect(start, `START(${start})`).integer.gte(0).lt(end);
+  return {
+    start,
+    end,
+    len
+  };
+}
+
+/**
+ * return index number form array
+ */
+function dfArrayIndexOne(random, arr, start = 0, end) {
+  ({
+    start,
+    end
+  } = _handleStartEnd(arr, start, end));
+  if (start === end - 1) {
+    return () => start;
+  }
   return () => {
+    return utilDistributions.int(random, start, end);
+  };
+}
+
+/**
+ * return index list form array
+ */
+function dfArrayIndex(random, arr, size = 1, start = 0, end) {
+  expect.expect(size, `size`).integer.gt(0);
+  expect.expect(arr.length, `arr.length`).integer.gt(0);
+  const fn = dfArrayIndexOne(random, arr, start, end);
+  let len;
+  ({
+    start,
+    end,
+    len
+  } = _handleStartEnd(arr, start, end, true));
+  let size_runtime = Math.max(Math.min(end - start, len, size), 0);
+  expect.expect(size_runtime, `size_runtime(${size_runtime})`).lte(size).gt(0);
+  size = size_runtime;
+  return () => {
+    /**
+     * reset size_runtime
+     */
+    size_runtime = size;
     let ids = [];
     let prev;
     LABEL_TOP: do {
-      let i = fn(random, start, end);
+      let i = fn();
       if (prev === i || ids.includes(i)) {
         continue LABEL_TOP;
       }
@@ -71,8 +116,8 @@ function dfArrayUnique(random, arr, limit, loop, fnRandIndex, fnOutOfLimit) {
   loop = !!loop;
   //ow(limit, ow.number.integer.gt(0));
   //ow(fnRandIndex, ow.function);
-  expect.expect(limit).integer.gt(0);
-  expect.expect(fnRandIndex).function();
+  expect.expect(limit, `limit`).integer.gt(0);
+  expect.expect(fnRandIndex, `fnRandIndex`).function();
   let count = limit;
   let len;
   const _fnClone = function _fnClone(arr) {
@@ -101,7 +146,7 @@ function dfArrayUnique(random, arr, limit, loop, fnRandIndex, fnOutOfLimit) {
         throw new RangeError(`can't call arrayUnique > ${limit} times`);
       }
     }
-    let i = fnRandIndex(len);
+    const i = fnRandIndex(len);
     return clone.splice(i, 1)[0];
   };
 }
@@ -133,6 +178,7 @@ function dfArrayFill(random, min, max, float) {
 
 exports.dfArrayFill = dfArrayFill;
 exports.dfArrayIndex = dfArrayIndex;
+exports.dfArrayIndexOne = dfArrayIndexOne;
 exports.dfArrayShuffle = dfArrayShuffle;
 exports.dfArrayUnique = dfArrayUnique;
 //# sourceMappingURL=index.cjs.development.cjs.map

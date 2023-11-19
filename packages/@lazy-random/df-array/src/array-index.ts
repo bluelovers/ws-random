@@ -9,7 +9,10 @@ import { ITSArrayListMaybeReadonly } from 'ts-type/lib/type/base';
  */
 export function dfArrayIndex<T extends ITSArrayListMaybeReadonly<unknown>>(random: IRNGLike, arr: T, size: number = 1, start: number = 0, end?: number)
 {
-	expect(size).integer.gt(0);
+	expect(size, `size`).integer.gt(0);
+	expect(arr.length, `arr.length`).integer.gt(0);
+
+	const fn = dfArrayIndexOne(random, arr, start, end);
 
 	let len: number;
 
@@ -17,16 +20,21 @@ export function dfArrayIndex<T extends ITSArrayListMaybeReadonly<unknown>>(rando
 		start,
 		end,
 		len,
-	} = _handleStartEnd(arr, start, end));
+	} = _handleStartEnd(arr, start, end, true));
 
-	let size_runtime = Math.max(Math.min(end - start, len, size), 0);
+	let size_runtime = Math.max(Math.min((end - start), len, size), 0);
 
-	expect(size_runtime).gte(size).gt(0)
+	expect(size_runtime, `size_runtime(${size_runtime})`).lte(size).gt(0)
 
-	const fn = dfArrayIndexOne(random, arr, start, end);
+	size = size_runtime;
 
 	return () =>
 	{
+		/**
+		 * reset size_runtime
+		 */
+		size_runtime = size;
+
 		let ids: number[] = [];
 		let prev: number;
 

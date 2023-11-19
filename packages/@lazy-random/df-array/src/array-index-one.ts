@@ -17,6 +17,11 @@ export function dfArrayIndexOne<T extends ITSArrayListMaybeReadonly<unknown>>(ra
 		end,
 	} = _handleStartEnd(arr, start, end));
 
+	if (start === end - 1)
+	{
+		return () => start
+	}
+
 	return () =>
 	{
 		return int(random, start, end)

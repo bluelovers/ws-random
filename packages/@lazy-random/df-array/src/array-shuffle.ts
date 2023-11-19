@@ -3,8 +3,9 @@ import { TypedArray } from 'typedarray-dts';
 import { swapAlgorithm2 } from '@lazy-random/array-algorithm';
 import { randIndex as _randIndex } from '@lazy-random/util-distributions';
 import { IRNGLike } from '@lazy-random/rng-abstract';
+import { ITSArrayListMaybeReadonly } from 'ts-type/lib/type/base';
 
-export function dfArrayShuffle<T extends ITSArrayLikeWriteable<any> | TypedArray | Buffer>(random: IRNGLike, arr: T, overwrite?: boolean): () => T
+export function dfArrayShuffle<T extends ITSArrayLikeWriteable<any> | TypedArray | Buffer | ITSArrayListMaybeReadonly<any>>(random: IRNGLike, arr: T, overwrite?: boolean): () => T
 {
 	const randIndex = (len: number) =>
 	{
