@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/bluelovers/ws-random/compare/@lazy-random/random-core@1.0.5...@lazy-random/random-core@2.0.1) (2023-11-19)
+
+
+### BREAKING CHANGES
+
+* add `dfArrayItemOne` and support readonly array
+* update deps
+
+
+
+### 📦　Code Refactoring
+
+* add `dfArrayItemOne` and support readonly array ([19050b3](https://github.com/bluelovers/ws-random/commit/19050b35398cc23112f286df051272bd5fbe5600))
+
+
+### 📌　Dependencies
+
+* update deps ([01283f2](https://github.com/bluelovers/ws-random/commit/01283f2965c23c70d2e3c2d3cbdedbfe55df51e5))
+
+
+
 ## [1.0.5](https://github.com/bluelovers/ws-random/compare/@lazy-random/random-core@1.0.4...@lazy-random/random-core@1.0.5) (2022-10-29)
 
 

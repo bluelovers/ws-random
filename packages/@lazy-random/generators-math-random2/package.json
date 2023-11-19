@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/generators-math-random2",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "",
   "keywords": [
     "alea",
@@ -112,8 +112,8 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/generators-function": "^1.0.9",
-    "@lazy-random/original-math-random": "^1.0.8"
+    "@lazy-random/generators-function": "^1.0.10",
+    "@lazy-random/original-math-random": "^1.0.9"
   },
   "packageManager": "yarn@^1.22.11",
   "publishConfig": {

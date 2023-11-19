@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/bluelovers/ws-random/compare/@lazy-random/distributions@1.0.8...@lazy-random/distributions@2.0.1) (2023-11-19)
+
+
+### BREAKING CHANGES
+
+* dfArrayIndexOne
+
+
+
+### 📦　Code Refactoring
+
+* dfArrayIndexOne ([36a345c](https://github.com/bluelovers/ws-random/commit/36a345c85e6887b8769d890bea64289701531f0b))
+* dfArrayIndexOne ([6bc3300](https://github.com/bluelovers/ws-random/commit/6bc3300f0b7d15d9ccf6f29b4f610c41bf3340ef))
+
+
+### 🔖　Miscellaneous
+
+* . ([6f6a913](https://github.com/bluelovers/ws-random/commit/6f6a9134e94200862ac5956980cf7046fd9aadac))
+
+
+
 ## [1.0.8](https://github.com/bluelovers/ws-random/compare/@lazy-random/distributions@1.0.7...@lazy-random/distributions@1.0.8) (2022-10-29)
 
 

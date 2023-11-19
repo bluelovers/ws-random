@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/generators-sfc32",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "keywords": [
     "alea",
@@ -124,9 +124,9 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-num/float-algorithm": "^1.0.3",
-    "@lazy-random/rng-abstract-core": "^1.0.2",
-    "@lazy-random/seed-algorithm": "^1.0.4"
+    "@lazy-num/float-algorithm": "^1.0.4",
+    "@lazy-random/rng-abstract-core": "^1.0.3",
+    "@lazy-random/seed-algorithm": "^1.0.5"
   },
   "packageManager": "yarn@^1.22.11",
   "publishConfig": {

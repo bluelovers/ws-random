@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.4](https://github.com/bluelovers/ws-random/compare/@lazy-random/util-test@1.0.3...@lazy-random/util-test@1.0.4) (2023-11-19)
+
+
+
+### 🔖　Miscellaneous
+
+* . ([6f6a913](https://github.com/bluelovers/ws-random/commit/6f6a9134e94200862ac5956980cf7046fd9aadac))
+
+
+
 ## [1.0.3](https://github.com/bluelovers/ws-random/compare/@lazy-random/util-test@1.0.2...@lazy-random/util-test@1.0.3) (2022-10-29)
 
 

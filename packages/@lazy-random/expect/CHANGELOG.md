@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.14](https://github.com/bluelovers/ws-random/compare/@lazy-random/expect@1.0.13...@lazy-random/expect@1.0.14) (2023-11-19)
+
+
+### BREAKING CHANGES
+
+* update deps
+
+
+
+### 📌　Dependencies
+
+* update deps ([01283f2](https://github.com/bluelovers/ws-random/commit/01283f2965c23c70d2e3c2d3cbdedbfe55df51e5))
+
+
+### 🔖　Miscellaneous
+
+* . ([6f6a913](https://github.com/bluelovers/ws-random/commit/6f6a9134e94200862ac5956980cf7046fd9aadac))
+
+
+
 ## [1.0.13](https://github.com/bluelovers/ws-random/compare/@lazy-random/expect@1.0.12...@lazy-random/expect@1.0.13) (2022-10-29)
 
 

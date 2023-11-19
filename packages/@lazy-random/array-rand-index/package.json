@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/array-rand-index",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "",
   "keywords": [
     "create-by-yarn-tool",
@@ -58,7 +58,7 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/original-math-random": "^1.0.8"
+    "@lazy-random/original-math-random": "^1.0.9"
   },
   "packageManager": "yarn@^1.22.11",
   "publishConfig": {

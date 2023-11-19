@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.9](https://github.com/bluelovers/ws-random/compare/@lazy-random/df-item-by-weight@1.0.8...@lazy-random/df-item-by-weight@1.0.9) (2023-11-19)
+
+
+### BREAKING CHANGES
+
+* update deps
+
+
+
+### ✨　Features
+
+* **type:** support readonly array ([d8b49e7](https://github.com/bluelovers/ws-random/commit/d8b49e7f820331e292aa7de8283e5f8b980bda7c))
+
+
+### 📌　Dependencies
+
+* update deps ([01283f2](https://github.com/bluelovers/ws-random/commit/01283f2965c23c70d2e3c2d3cbdedbfe55df51e5))
+
+
+
 ## [1.0.8](https://github.com/bluelovers/ws-random/compare/@lazy-random/df-item-by-weight@1.0.7...@lazy-random/df-item-by-weight@1.0.8) (2022-10-29)
 
 

@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.9](https://github.com/bluelovers/ws-random/compare/@lazy-random/util-distributions@1.0.8...@lazy-random/util-distributions@1.0.9) (2023-11-19)
+
+
+
+### 📦　Code Refactoring
+
+* randIndexWithRange ([8155e63](https://github.com/bluelovers/ws-random/commit/8155e635b73ffa63964dddecf84378167e20b784))
+
+
+### 🔖　Miscellaneous
+
+* . ([6f6a913](https://github.com/bluelovers/ws-random/commit/6f6a9134e94200862ac5956980cf7046fd9aadac))
+
+
+
 ## [1.0.8](https://github.com/bluelovers/ws-random/compare/@lazy-random/util-distributions@1.0.7...@lazy-random/util-distributions@1.0.8) (2022-10-29)
 
 
