@@ -157,7 +157,8 @@
     "seedrandom": "^3.0",
     "shortid": "^2.2.16",
     "ts-jest": "^29.1.1",
-    "ts-type": "^3.0.1"
+    "ts-type": "^3.0.1",
+    "tslib": "^2.6.2"
   },
   "devDependencies": {
     "@bluelovers/tsconfig": "^1.0.34",
@@ -169,7 +170,7 @@
     "@types/fs-extra": "^11.0.4",
     "@types/jest": "^29.5.8",
     "@types/nanoid": "^2.1.0",
-    "@types/node": "^20.9.1",
+    "@types/node": "^20.9.2",
     "@yarn-tool/ws-find-up-paths": "^1.0.12",
     "reliable-random": "^0.0.1"
   },

@@ -78,18 +78,18 @@
       "require": "./dist/index.cjs",
       "import": "./dist/index.esm.mjs"
     },
-    "./package.json": "./package.json",
-    "./src/*": "./src/*",
+    "./lib/unsafe001": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.esm.mjs"
+    },
     "./lib/util": {
       "types": "./dist/index.d.ts",
       "require": "./dist/index.cjs",
       "import": "./dist/index.esm.mjs"
     },
-    "./lib/unsafe001": {
-      "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.esm.mjs"
-    }
+    "./package.json": "./package.json",
+    "./src/*": "./src/*"
   },
   "main": "dist/index.cjs",
   "unpkg": "dist/index.umd.production.min.cjs",
@@ -105,6 +105,7 @@
     "pretest": "echo pretest",
     "test": "jest",
     "test:jest": "ynpx --quiet jest -- --coverage",
+    "test:jest:coverage": "yarn run test:jest -- --coverage",
     "test:jest:snapshot": "yarn run test:jest -- -u",
     "test:mocha": "ynpx --quiet -p ts-node -p mocha mocha -- --require ts-node/register \"!(node_modules)/**/*.{test,spec}.{ts,tsx}\"",
     "test:snapshot": "yarn run test -- -u",
@@ -133,7 +134,8 @@
     "postpublish": "echo postpublish",
     "postpublishOnly": "echo postpublishOnly",
     "ncu": "ynpx --quiet yarn-tool -- ncu -u",
-    "sort-package-json": "ynpx --quiet yarn-tool -- sort"
+    "sort-package-json": "ynpx --quiet yarn-tool -- sort",
+    "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
     "big.js": "^6.2.1"
