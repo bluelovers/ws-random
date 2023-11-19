@@ -18,8 +18,13 @@ function getDefaultArgv(method: keyof Random | string)
 		case 'arrayShuffle':
 		case 'arrayUnique':
 		case 'dfArrayIndex':
-		// @ts-ignore
 		case 'dfArrayItem':
+
+		case 'arrayIndexOne':
+		case 'arrayItemOne':
+		case 'dfArrayIndexOne':
+		case 'dfArrayItemOne':
+
 		case 'dfArrayShuffle':
 		case 'dfArrayUnique':
 			argv = [[11, 22, 33, 44, 55]];
