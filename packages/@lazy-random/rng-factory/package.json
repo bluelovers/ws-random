@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/rng-factory",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "",
   "keywords": [
     "alea",
@@ -112,13 +112,13 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/generators-crypto": "^1.0.10",
-    "@lazy-random/generators-function": "^1.0.10",
-    "@lazy-random/generators-math-random": "^1.0.10",
-    "@lazy-random/generators-math-random2": "^1.0.9",
-    "@lazy-random/generators-seedrandom": "^1.0.9",
-    "@lazy-random/generators-xor128": "^1.0.10",
-    "@lazy-random/rng-abstract": "^1.0.12",
+    "@lazy-random/generators-crypto": "^1.0.11",
+    "@lazy-random/generators-function": "^1.0.11",
+    "@lazy-random/generators-math-random": "^1.0.11",
+    "@lazy-random/generators-math-random2": "^1.0.10",
+    "@lazy-random/generators-seedrandom": "^1.0.10",
+    "@lazy-random/generators-xor128": "^1.0.11",
+    "@lazy-random/rng-abstract": "^1.0.13",
     "@types/seedrandom": "=2.4.28"
   },
   "packageManager": "yarn@^1.22.11",

@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/df-sum",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "",
   "keywords": [
     "alea",
@@ -112,11 +112,11 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-num/sum": "^1.0.9",
-    "@lazy-random/df-uniform": "^1.0.10",
-    "@lazy-random/fake-lib-r-math-rng": "^1.0.9",
-    "@lazy-random/util-distributions": "^1.0.9",
-    "@lazy-random/util-probabilities": "^1.0.9",
+    "@lazy-num/sum": "^1.0.10",
+    "@lazy-random/df-uniform": "^1.0.11",
+    "@lazy-random/fake-lib-r-math-rng": "^1.0.10",
+    "@lazy-random/util-distributions": "^1.0.10",
+    "@lazy-random/util-probabilities": "^1.0.10",
     "array-hyper-unique": "^2.1.4",
     "lib-r-math.js": "<2 >=1.0.94"
   },

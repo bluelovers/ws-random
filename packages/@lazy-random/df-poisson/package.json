@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/df-poisson",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "",
   "keywords": [
     "alea",
@@ -112,10 +112,10 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/expect": "^1.0.14"
+    "@lazy-random/expect": "^1.0.15"
   },
   "devDependencies": {
-    "@lazy-random/rng-abstract": "^1.0.12"
+    "@lazy-random/rng-abstract": "^1.0.13"
   },
   "packageManager": "yarn@^1.22.11",
   "publishConfig": {

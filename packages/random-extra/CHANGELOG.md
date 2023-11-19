@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.1](https://github.com/bluelovers/ws-random/compare/random-extra@4.0.6...random-extra@5.0.1) (2023-11-19)
+
+
+### BREAKING CHANGES
+
+* update deps
+
+
+
+### 🚨　Tests
+
+* update test ([7ed84fb](https://github.com/bluelovers/ws-random/commit/7ed84fbd3604e03b1d261b31878c7d423d135fb8))
+
+
+### 📌　Dependencies
+
+* update deps ([01283f2](https://github.com/bluelovers/ws-random/commit/01283f2965c23c70d2e3c2d3cbdedbfe55df51e5))
+
+
+### 🔖　Miscellaneous
+
+* . ([6f6a913](https://github.com/bluelovers/ws-random/commit/6f6a9134e94200862ac5956980cf7046fd9aadac))
+
+
+
 ## [4.0.6](https://github.com/bluelovers/ws-random/compare/random-extra@4.0.5...random-extra@4.0.6) (2022-10-29)
 
 

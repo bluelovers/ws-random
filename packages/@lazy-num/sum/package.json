@@ -1,6 +1,6 @@
 {
   "name": "@lazy-num/sum",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "",
   "keywords": [
     "alea",
@@ -112,7 +112,7 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "num-is-zero": "^1.0.12"
+    "num-is-zero": "^1.0.13"
   },
   "packageManager": "yarn@^1.22.11",
   "publishConfig": {

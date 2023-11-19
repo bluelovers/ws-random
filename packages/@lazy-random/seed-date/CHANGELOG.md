@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.5](https://github.com/bluelovers/ws-random/compare/@lazy-random/seed-date@1.0.3...@lazy-random/seed-date@1.0.5) (2023-11-19)
+
+
+
+### 🔖　Miscellaneous
+
+* . ([7be09a4](https://github.com/bluelovers/ws-random/commit/7be09a4bc2fc047a3831a2b600d662b2c79e11ed))
+* . ([6f6a913](https://github.com/bluelovers/ws-random/commit/6f6a9134e94200862ac5956980cf7046fd9aadac))
+
+
+
 ## [1.0.4](https://github.com/bluelovers/ws-random/compare/@lazy-random/seed-date@1.0.3...@lazy-random/seed-date@1.0.4) (2023-11-19)
 
 

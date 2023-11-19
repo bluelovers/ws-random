@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.13](https://github.com/bluelovers/ws-random/compare/num-is-zero@1.0.11...num-is-zero@1.0.13) (2023-11-19)
+
+
+### BREAKING CHANGES
+
+* update deps
+
+
+
+### 📌　Dependencies
+
+* update deps ([01283f2](https://github.com/bluelovers/ws-random/commit/01283f2965c23c70d2e3c2d3cbdedbfe55df51e5))
+
+
+### 🔖　Miscellaneous
+
+* . ([7be09a4](https://github.com/bluelovers/ws-random/commit/7be09a4bc2fc047a3831a2b600d662b2c79e11ed))
+* . ([6f6a913](https://github.com/bluelovers/ws-random/commit/6f6a9134e94200862ac5956980cf7046fd9aadac))
+
+
+
 ## [1.0.12](https://github.com/bluelovers/ws-random/compare/num-is-zero@1.0.11...num-is-zero@1.0.12) (2023-11-19)
 
 

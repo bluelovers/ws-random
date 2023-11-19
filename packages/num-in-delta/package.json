@@ -1,6 +1,6 @@
 {
   "name": "num-in-delta",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "check actual number is expected number ± delta",
   "keywords": [
     "alea",
