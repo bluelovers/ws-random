@@ -6,8 +6,9 @@ import {
 	_calcWeight,
 } from './internal/item-by-weight';
 import { IRNGLike } from '@lazy-random/rng-abstract';
+import { ITSArrayListMaybeReadonly } from 'ts-type/lib/type/base';
 
-export function dfItemByWeight<T extends unknown>(random: IRNGLike, arr: T[],
+export function dfItemByWeight<T extends unknown>(random: IRNGLike, arr: ITSArrayListMaybeReadonly<T>,
 	options?: IOptionsItemByWeight<T>,
 ): () => IWeightEntrie<T>
 export function dfItemByWeight<T extends unknown, K extends string = string>(random: IRNGLike,
@@ -15,7 +16,7 @@ export function dfItemByWeight<T extends unknown, K extends string = string>(ran
 	options?: IOptionsItemByWeight<T, K>,
 ): () => IWeightEntrie<T, K>
 export function dfItemByWeight<T extends unknown>(random: IRNGLike,
-	arr: T[] | IObjectInput<T>,
+	arr: ITSArrayListMaybeReadonly<T> | IObjectInput<T>,
 	options?: IOptionsItemByWeight<T>,
 )
 {

@@ -10,8 +10,9 @@ import {
 } from './internal/item-by-weight';
 import { expect } from '@lazy-random/expect';
 import { IRNGLike } from '@lazy-random/rng-abstract';
+import { ITSArrayListMaybeReadonly } from 'ts-type/lib/type/base';
 
-export function dfItemByWeightUnique<T extends unknown>(random: IRNGLike, arr: T[],
+export function dfItemByWeightUnique<T extends unknown>(random: IRNGLike, arr: ITSArrayListMaybeReadonly<T>,
 	size: number,
 	options?: IOptionsItemByWeight<T>,
 ): () => IWeightEntrie<T>[]
@@ -21,7 +22,7 @@ export function dfItemByWeightUnique<T extends unknown, K extends string = strin
 	options?: IOptionsItemByWeight<T, K>,
 ): () => IWeightEntrie<T, K>[]
 export function dfItemByWeightUnique<T extends unknown, K extends string = string>(random: IRNGLike,
-	arr: T[] | IObjectInput<T, K>,
+	arr: ITSArrayListMaybeReadonly<T> | IObjectInput<T, K>,
 	size: number,
 	options?: IOptionsItemByWeight<T, K>,
 ): () => IWeightEntrie<T, K>[]

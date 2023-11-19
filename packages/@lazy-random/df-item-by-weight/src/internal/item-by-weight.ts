@@ -1,6 +1,7 @@
 import { expect } from '@lazy-random/expect';
 import { IRNGLike } from '@lazy-random/rng-abstract';
 import { dfArrayShuffle } from '@lazy-random/df-array';
+import { ITSArrayListMaybeReadonly } from 'ts-type/lib/type/base';
 
 export function _getWeight(value: number, key: string): number
 {
@@ -66,7 +67,7 @@ export interface IOptionsItemByWeight<T extends unknown, K extends string = stri
 	getWeight?: IGetWeight<T, K>,
 }
 
-export function _createWeight<T extends unknown, K extends string = string>(arr: T[] | IObjectInput<T, K>,
+export function _createWeight<T extends unknown, K extends string = string>(arr: ITSArrayListMaybeReadonly<T> | IObjectInput<T, K>,
 	options?: IOptionsItemByWeight<T, K>,
 ): IWeight<T, K>
 {
@@ -204,7 +205,7 @@ export function _percentageWeight<T extends unknown, K extends string = string>(
 	return ws
 }
 
-export function _calcWeight<T extends unknown, K extends string = string>(random: IRNGLike, arr: T[] | IObjectInput<T, K>,
+export function _calcWeight<T extends unknown, K extends string = string>(random: IRNGLike, arr: ITSArrayListMaybeReadonly<T> | IObjectInput<T, K>,
 	options?: IOptionsItemByWeight<T, K>,
 ): IWeight<T, K>
 {
@@ -218,7 +219,7 @@ export function _calcWeight<T extends unknown, K extends string = string>(random
 }
 
 export function _itemByWeightCore(r: number,
-	klist: number[],
+	klist: ITSArrayListMaybeReadonly<number>,
 ): number
 {
 	let index: number
