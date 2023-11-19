@@ -1,15 +1,19 @@
 "use strict";
 
-function randIndex(t, n) {
-  return Math.floor(t.next() * n);
+function randIndex(n, t) {
+  return Math.floor(n.next() * t);
 }
 
-function float(t, n, e) {
-  return t.next() * (e - n) + n;
+function randIndexWithRange(n, t, e) {
+  return Math.floor(float(n, t, e));
 }
 
-function int(t, n, e) {
-  return Math.floor(float(t, n, e + 1));
+function float(n, t, e) {
+  return n.next() * (e - t) + t;
+}
+
+function int(n, t, e) {
+  return randIndexWithRange(n, t, e + 1);
 }
 
 Object.defineProperty(exports, "__esModule", {
@@ -18,5 +22,5 @@ Object.defineProperty(exports, "__esModule", {
   randIndex,
   float,
   int
-}, exports.float = float, exports.int = int, exports.randIndex = randIndex;
+}, exports.float = float, exports.int = int, exports.randIndex = randIndex, exports.randIndexWithRange = randIndexWithRange;
 //# sourceMappingURL=index.cjs.production.min.cjs.map

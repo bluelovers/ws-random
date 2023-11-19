@@ -2,12 +2,16 @@ function randIndex(n, t) {
   return Math.floor(n.next() * t);
 }
 
-function float(n, t, o) {
-  return n.next() * (o - t) + t;
+function randIndexWithRange(n, t, a) {
+  return Math.floor(float(n, t, a));
 }
 
-function int(n, t, o) {
-  return Math.floor(float(n, t, o + 1));
+function float(n, t, a) {
+  return n.next() * (a - t) + t;
+}
+
+function int(n, t, a) {
+  return randIndexWithRange(n, t, a + 1);
 }
 
 const n = {
@@ -16,5 +20,5 @@ const n = {
   int
 };
 
-export { n as default, float, int, randIndex };
+export { n as default, float, int, randIndex, randIndexWithRange };
 //# sourceMappingURL=index.esm.mjs.map

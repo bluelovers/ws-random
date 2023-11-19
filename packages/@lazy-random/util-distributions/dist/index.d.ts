@@ -3,6 +3,7 @@ export interface IRNGLike {
 	seed?(seed?: any, opts?: any, ...argv: any[]): any;
 }
 export declare function randIndex(random: IRNGLike, len: number): number;
+export declare function randIndexWithRange(random: IRNGLike, start: number, end: number): number;
 export declare function float(random: IRNGLike, min: number, max: number): number;
 export declare function int(random: IRNGLike, min: number, max: number): number;
 declare const UtilDistributions: {
