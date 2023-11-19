@@ -5,8 +5,8 @@ import { dfCharID } from '@lazy-random/df-char-id';
 import { dfItemByWeight, dfItemByWeightUnique } from '@lazy-random/df-item-by-weight';
 import { dfRandSumFloat, dfRandSumInt } from '@lazy-random/df-sum';
 import { dfUuidV4 } from '@lazy-random/df-uuid';
-import { dfArrayIndex, dfArrayShuffle, dfArrayUnique, dfArrayFill } from '@lazy-random/df-array';
-export { dfBates, dfBernoulli, dfBinomial, dfExponential, dfGeometric, dfIrwinHall, dfLogNormal, dfNormal, dfPareto, dfPoisson, dfUniformFloat, dfUniformInt, dfUniformBoolean, dfUniformByte, dfUniformBytes, dfArrayIndex, dfArrayShuffle, dfArrayUnique, dfArrayFill, dfItemByWeight, dfItemByWeightUnique, dfCharID, dfRandSumFloat, dfRandSumInt, dfUuidV4, };
+import { dfArrayIndex, dfArrayIndexOne, dfArrayShuffle, dfArrayUnique, dfArrayFill } from '@lazy-random/df-array';
+export { dfBates, dfBernoulli, dfBinomial, dfExponential, dfGeometric, dfIrwinHall, dfLogNormal, dfNormal, dfPareto, dfPoisson, dfUniformFloat, dfUniformInt, dfUniformBoolean, dfUniformByte, dfUniformBytes, dfArrayIndex, dfArrayIndexOne, dfArrayShuffle, dfArrayUnique, dfArrayFill, dfItemByWeight, dfItemByWeightUnique, dfCharID, dfRandSumFloat, dfRandSumInt, dfUuidV4, };
 declare const Distributions: {
     readonly dfBates: typeof dfBates;
     readonly dfBernoulli: typeof dfBernoulli;
@@ -24,6 +24,7 @@ declare const Distributions: {
     readonly dfUniformByte: typeof dfUniformByte;
     readonly dfUniformBytes: typeof dfUniformBytes;
     readonly dfArrayIndex: typeof dfArrayIndex;
+    readonly dfArrayIndexOne: typeof dfArrayIndexOne;
     readonly dfArrayShuffle: typeof dfArrayShuffle;
     readonly dfArrayUnique: typeof dfArrayUnique;
     readonly dfArrayFill: typeof dfArrayFill;

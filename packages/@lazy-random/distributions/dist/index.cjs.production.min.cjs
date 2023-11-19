@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: !0
 });
 
-var e = require("@lazy-random/df-algorithm"), r = require("@lazy-random/df-poisson"), t = require("@lazy-random/df-uniform"), n = require("@lazy-random/df-char-id"), f = require("@lazy-random/df-item-by-weight"), o = require("@lazy-random/df-sum"), d = require("@lazy-random/df-uuid"), i = require("@lazy-random/df-array");
+var e = require("@lazy-random/df-algorithm"), r = require("@lazy-random/df-poisson"), n = require("@lazy-random/df-uniform"), t = require("@lazy-random/df-char-id"), f = require("@lazy-random/df-item-by-weight"), d = require("@lazy-random/df-sum"), o = require("@lazy-random/df-uuid"), i = require("@lazy-random/df-array");
 
 const u = {
   dfBates: e.dfBates,
@@ -17,21 +17,22 @@ const u = {
   dfNormal: e.dfNormal,
   dfPareto: e.dfPareto,
   dfPoisson: r.dfPoisson,
-  dfUniformFloat: t.dfUniformFloat,
-  dfUniformInt: t.dfUniformInt,
-  dfUniformBoolean: t.dfUniformBoolean,
-  dfUniformByte: t.dfUniformByte,
-  dfUniformBytes: t.dfUniformBytes,
+  dfUniformFloat: n.dfUniformFloat,
+  dfUniformInt: n.dfUniformInt,
+  dfUniformBoolean: n.dfUniformBoolean,
+  dfUniformByte: n.dfUniformByte,
+  dfUniformBytes: n.dfUniformBytes,
   dfArrayIndex: i.dfArrayIndex,
+  dfArrayIndexOne: i.dfArrayIndexOne,
   dfArrayShuffle: i.dfArrayShuffle,
   dfArrayUnique: i.dfArrayUnique,
   dfArrayFill: i.dfArrayFill,
   dfItemByWeight: f.dfItemByWeight,
   dfItemByWeightUnique: f.dfItemByWeightUnique,
-  dfCharID: n.dfCharID,
-  dfRandSumFloat: o.dfRandSumFloat,
-  dfRandSumInt: o.dfRandSumInt,
-  dfUuidV4: d.dfUuidV4
+  dfCharID: t.dfCharID,
+  dfRandSumFloat: d.dfRandSumFloat,
+  dfRandSumInt: d.dfRandSumInt,
+  dfUuidV4: o.dfUuidV4
 };
 
 Object.defineProperty(exports, "dfBates", {
@@ -87,32 +88,32 @@ Object.defineProperty(exports, "dfBates", {
 }), Object.defineProperty(exports, "dfUniformBoolean", {
   enumerable: !0,
   get: function() {
-    return t.dfUniformBoolean;
+    return n.dfUniformBoolean;
   }
 }), Object.defineProperty(exports, "dfUniformByte", {
   enumerable: !0,
   get: function() {
-    return t.dfUniformByte;
+    return n.dfUniformByte;
   }
 }), Object.defineProperty(exports, "dfUniformBytes", {
   enumerable: !0,
   get: function() {
-    return t.dfUniformBytes;
+    return n.dfUniformBytes;
   }
 }), Object.defineProperty(exports, "dfUniformFloat", {
   enumerable: !0,
   get: function() {
-    return t.dfUniformFloat;
+    return n.dfUniformFloat;
   }
 }), Object.defineProperty(exports, "dfUniformInt", {
   enumerable: !0,
   get: function() {
-    return t.dfUniformInt;
+    return n.dfUniformInt;
   }
 }), Object.defineProperty(exports, "dfCharID", {
   enumerable: !0,
   get: function() {
-    return n.dfCharID;
+    return t.dfCharID;
   }
 }), Object.defineProperty(exports, "dfItemByWeight", {
   enumerable: !0,
@@ -127,17 +128,17 @@ Object.defineProperty(exports, "dfBates", {
 }), Object.defineProperty(exports, "dfRandSumFloat", {
   enumerable: !0,
   get: function() {
-    return o.dfRandSumFloat;
+    return d.dfRandSumFloat;
   }
 }), Object.defineProperty(exports, "dfRandSumInt", {
   enumerable: !0,
   get: function() {
-    return o.dfRandSumInt;
+    return d.dfRandSumInt;
   }
 }), Object.defineProperty(exports, "dfUuidV4", {
   enumerable: !0,
   get: function() {
-    return d.dfUuidV4;
+    return o.dfUuidV4;
   }
 }), Object.defineProperty(exports, "dfArrayFill", {
   enumerable: !0,
@@ -148,6 +149,11 @@ Object.defineProperty(exports, "dfBates", {
   enumerable: !0,
   get: function() {
     return i.dfArrayIndex;
+  }
+}), Object.defineProperty(exports, "dfArrayIndexOne", {
+  enumerable: !0,
+  get: function() {
+    return i.dfArrayIndexOne;
   }
 }), Object.defineProperty(exports, "dfArrayShuffle", {
   enumerable: !0,

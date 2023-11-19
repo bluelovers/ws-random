@@ -1,4 +1,4 @@
-import { dfBates as f, dfBernoulli as r, dfBinomial as o, dfExponential as d, dfGeometric as a, dfIrwinHall as m, dfLogNormal as n, dfNormal as i, dfPareto as t } from "@lazy-random/df-algorithm";
+import { dfBates as r, dfBernoulli as f, dfBinomial as d, dfExponential as o, dfGeometric as a, dfIrwinHall as m, dfLogNormal as n, dfNormal as i, dfPareto as t } from "@lazy-random/df-algorithm";
 
 export { dfBates, dfBernoulli, dfBinomial, dfExponential, dfGeometric, dfIrwinHall, dfLogNormal, dfNormal, dfPareto } from "@lazy-random/df-algorithm";
 
@@ -14,27 +14,27 @@ import { dfCharID as z } from "@lazy-random/df-char-id";
 
 export { dfCharID } from "@lazy-random/df-char-id";
 
-import { dfItemByWeight as B, dfItemByWeightUnique as U } from "@lazy-random/df-item-by-weight";
+import { dfItemByWeight as B, dfItemByWeightUnique as I } from "@lazy-random/df-item-by-weight";
 
 export { dfItemByWeight, dfItemByWeightUnique } from "@lazy-random/df-item-by-weight";
 
-import { dfRandSumFloat as h, dfRandSumInt as I } from "@lazy-random/df-sum";
+import { dfRandSumFloat as U, dfRandSumInt as x } from "@lazy-random/df-sum";
 
 export { dfRandSumFloat, dfRandSumInt } from "@lazy-random/df-sum";
 
-import { dfUuidV4 as x } from "@lazy-random/df-uuid";
+import { dfUuidV4 as h } from "@lazy-random/df-uuid";
 
 export { dfUuidV4 } from "@lazy-random/df-uuid";
 
-import { dfArrayIndex as g, dfArrayShuffle as A, dfArrayUnique as F, dfArrayFill as S } from "@lazy-random/df-array";
+import { dfArrayIndex as g, dfArrayIndexOne as A, dfArrayShuffle as F, dfArrayUnique as S, dfArrayFill as c } from "@lazy-random/df-array";
 
-export { dfArrayFill, dfArrayIndex, dfArrayShuffle, dfArrayUnique } from "@lazy-random/df-array";
+export { dfArrayFill, dfArrayIndex, dfArrayIndexOne, dfArrayShuffle, dfArrayUnique } from "@lazy-random/df-array";
 
-const c = {
-  dfBates: f,
-  dfBernoulli: r,
-  dfBinomial: o,
-  dfExponential: d,
+const q = {
+  dfBates: r,
+  dfBernoulli: f,
+  dfBinomial: d,
+  dfExponential: o,
   dfGeometric: a,
   dfIrwinHall: m,
   dfLogNormal: n,
@@ -47,16 +47,17 @@ const c = {
   dfUniformByte: p,
   dfUniformBytes: s,
   dfArrayIndex: g,
-  dfArrayShuffle: A,
-  dfArrayUnique: F,
-  dfArrayFill: S,
+  dfArrayIndexOne: A,
+  dfArrayShuffle: F,
+  dfArrayUnique: S,
+  dfArrayFill: c,
   dfItemByWeight: B,
-  dfItemByWeightUnique: U,
+  dfItemByWeightUnique: I,
   dfCharID: z,
-  dfRandSumFloat: h,
-  dfRandSumInt: I,
-  dfUuidV4: x
+  dfRandSumFloat: U,
+  dfRandSumInt: x,
+  dfUuidV4: h
 };
 
-export { c as default };
+export { q as default };
 //# sourceMappingURL=index.esm.mjs.map

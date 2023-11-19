@@ -28,6 +28,7 @@ const Distributions = {
   dfUniformByte: dfUniform.dfUniformByte,
   dfUniformBytes: dfUniform.dfUniformBytes,
   dfArrayIndex: dfArray.dfArrayIndex,
+  dfArrayIndexOne: dfArray.dfArrayIndexOne,
   dfArrayShuffle: dfArray.dfArrayShuffle,
   dfArrayUnique: dfArray.dfArrayUnique,
   dfArrayFill: dfArray.dfArrayFill,
@@ -130,6 +131,10 @@ Object.defineProperty(exports, 'dfArrayFill', {
 Object.defineProperty(exports, 'dfArrayIndex', {
 	enumerable: true,
 	get: function () { return dfArray.dfArrayIndex; }
+});
+Object.defineProperty(exports, 'dfArrayIndexOne', {
+	enumerable: true,
+	get: function () { return dfArray.dfArrayIndexOne; }
 });
 Object.defineProperty(exports, 'dfArrayShuffle', {
 	enumerable: true,
