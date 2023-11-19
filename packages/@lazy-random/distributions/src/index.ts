@@ -23,14 +23,21 @@ import {
 
 import { dfCharID } from '@lazy-random/df-char-id'
 
-import { dfItemByWeight, dfItemByWeightUnique } from '@lazy-random/df-item-by-weight'
+import {
+	dfItemByWeight,
+	dfItemByWeightUnique
+} from '@lazy-random/df-item-by-weight'
 
-import { dfRandSumFloat, dfRandSumInt } from '@lazy-random/df-sum'
+import {
+	dfRandSumFloat,
+	dfRandSumInt
+} from '@lazy-random/df-sum'
 
 import { dfUuidV4 } from '@lazy-random/df-uuid'
 
 import {
 	dfArrayIndex,
+	dfArrayIndexOne,
 	dfArrayShuffle,
 	dfArrayUnique,
 	dfArrayFill,
@@ -55,6 +62,7 @@ export {
 	dfUniformBytes,
 
 	dfArrayIndex,
+	dfArrayIndexOne,
 	dfArrayShuffle,
 	dfArrayUnique,
 	dfArrayFill,
@@ -90,6 +98,7 @@ const Distributions = {
 	dfUniformBytes,
 
 	dfArrayIndex,
+	dfArrayIndexOne,
 	dfArrayShuffle,
 	dfArrayUnique,
 	dfArrayFill,

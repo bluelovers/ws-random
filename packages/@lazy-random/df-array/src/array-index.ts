@@ -1,24 +1,29 @@
 import { expect } from '@lazy-random/expect';
-import { int } from '@lazy-random/util-distributions';
 import { IRNGLike } from '@lazy-random/rng-abstract';
+import { _handleStartEnd } from './util/options';
+import { dfArrayIndexOne } from './array-index-one';
+import { ITSArrayListMaybeReadonly } from 'ts-type/lib/type/base';
 
-export function dfArrayIndex<T extends Array<unknown>>(random: IRNGLike, arr: T, size: number = 1, start: number = 0, end?: number)
+/**
+ * return index list form array
+ */
+export function dfArrayIndex<T extends ITSArrayListMaybeReadonly<unknown>>(random: IRNGLike, arr: T, size: number = 1, start: number = 0, end?: number)
 {
-	let len = arr.length - 1;
+	expect(size).integer.gt(0);
 
-	expect(size).integer.gt(0)
+	let len: number;
 
-	start = Math.max(Math.floor(start), 0);
-	end = Math.max(0, Math.floor(end)) || len;
-
-	expect(end).integer.gt(0).lte(len)
-	expect(start).integer.gte(0).lt(end)
-
-	const fn = int;
+	({
+		start,
+		end,
+		len,
+	} = _handleStartEnd(arr, start, end));
 
 	let size_runtime = Math.max(Math.min(end - start, len, size), 0);
 
 	expect(size_runtime).gte(size).gt(0)
+
+	const fn = dfArrayIndexOne(random, arr, start, end);
 
 	return () =>
 	{
@@ -27,7 +32,7 @@ export function dfArrayIndex<T extends Array<unknown>>(random: IRNGLike, arr: T,
 
 		LABEL_TOP: do
 		{
-			let i = fn(random, start, end)
+			let i = fn()
 
 			if (prev === i || ids.includes(i))
 			{
