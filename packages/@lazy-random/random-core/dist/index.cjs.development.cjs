@@ -230,17 +230,35 @@ exports.RandomCore = class RandomCore {
   dfArrayIndex(arr, size = 1, start = 0, end) {
     return this._memoizeFake('dfArrayIndex', Distributions.dfArrayIndex, arr, size, start, end);
   }
+  arrayIndexOne(arr, size = 1, start = 0, end) {
+    return this.dfArrayIndexOne(arr, start, end)();
+  }
+  dfArrayIndexOne(arr, start = 0, end) {
+    return this._memoizeFake('dfArrayIndexOne', Distributions.dfArrayIndexOne, arr, start, end);
+  }
   /**
    * get random item in array
    *
    * @example console.log(random.dfArrayItem([11, 22, 33], 2));
    */
   arrayItem(arr, size = 1, start = 0, end) {
-    let ids = this.arrayIndex(arr, size, start, end);
-    return ids.reduce(function (a, idx) {
-      a.push(arr[idx]);
-      return a;
-    }, []);
+    return this.dfArrayItem(arr, size, start, end)();
+  }
+  dfArrayItem(arr, size = 1, start = 0, end) {
+    const fn = this.dfArrayIndex(arr, size, start, end);
+    return () => {
+      return fn().reduce(function (a, idx) {
+        a.push(arr[idx]);
+        return a;
+      }, []);
+    };
+  }
+  arrayItemOne(arr, start = 0, end) {
+    return this.dfArrayItemOne(arr, start, end)();
+  }
+  dfArrayItemOne(arr, start = 0, end) {
+    const fn = this.dfArrayIndexOne(arr, start, end);
+    return () => arr[fn()];
   }
   /**
    * Shuffle an array

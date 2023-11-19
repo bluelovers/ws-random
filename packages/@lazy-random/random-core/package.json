@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/random-core",
-  "version": "1.0.5",
+  "version": "2.0.0",
   "description": "",
   "keywords": [
     "alea",
@@ -88,6 +88,7 @@
     "lint": "ynpx --quiet eslint -- **/*.ts",
     "test": "jest --passWithNoTests",
     "test:jest": "jest --passWithNoTests",
+    "test:jest:coverage": "yarn run test:jest -- --coverage",
     "test:jest:snapshot": "yarn run test:jest -- -u",
     "test:mocha": "ynpx --quiet -p ts-node -p mocha mocha -- --require ts-node/register \"!(node_modules)/**/*.{test,spec}.{ts,tsx}\"",
     "test:snapshot": "yarn run test -- -u",
@@ -112,11 +113,12 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/distributions": "^1.0.8",
+    "@lazy-random/distributions": "^2.0.0",
     "@lazy-random/expect": "^1.0.13",
     "@lazy-random/rng-abstract": "^1.0.11",
     "@lazy-random/shared-lib": "^1.0.13",
-    "core-decorators": "^0.20.0"
+    "core-decorators": "^0.20.0",
+    "tslib": "^2.6.2"
   },
   "packageManager": "yarn@^1.22.11",
   "publishConfig": {

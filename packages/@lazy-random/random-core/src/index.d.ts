@@ -4,6 +4,7 @@ import Distributions from '@lazy-random/distributions';
 import { RNG } from '@lazy-random/rng-abstract';
 import { IArrayUniqueOutOfLimitCallback, IRandIndex } from '@lazy-random/df-array';
 import { IObjectInput, IWeightEntrie, IOptionsItemByWeight } from '@lazy-random/df-item-by-weight';
+import { ITSArrayListMaybeReadonly } from 'ts-type/lib/type/base';
 /**
  * Seedable random number generator supporting many common distributions.
  *
@@ -159,27 +160,32 @@ export declare class RandomCore<R extends RNG = RNG> {
     dfCharID(char?: ENUM_ALPHABET | string | Buffer | number, size?: number): ReturnType<typeof Distributions.dfCharID>;
     uuidv4(toUpperCase?: boolean): string;
     dfUuidv4(toUpperCase?: boolean): () => string;
-    arrayIndex<T extends Array<unknown>>(arr: T, size?: number, start?: number, end?: number): number[];
+    arrayIndex<T extends ITSArrayListMaybeReadonly<unknown>>(arr: T, size?: number, start?: number, end?: number): number[];
     /**
      * get random index in array
      *
      * @example console.log(random.dfArrayIndex([11, 22, 33], 1, 0));
      */
-    dfArrayIndex<T extends Array<unknown>>(arr: T, size?: number, start?: number, end?: number): () => number[];
+    dfArrayIndex<T extends ITSArrayListMaybeReadonly<unknown>>(arr: T, size?: number, start?: number, end?: number): () => number[];
+    arrayIndexOne<T extends ITSArrayListMaybeReadonly<unknown>>(arr: T, size?: number, start?: number, end?: number): number;
+    dfArrayIndexOne<T extends ITSArrayListMaybeReadonly<unknown>>(arr: T, start?: number, end?: number): () => number;
     /**
      * get random item in array
      *
      * @example console.log(random.dfArrayItem([11, 22, 33], 2));
      */
-    arrayItem<T extends unknown>(arr: T[], size?: number, start?: number, end?: number): T[];
+    arrayItem<T extends unknown>(arr: ITSArrayListMaybeReadonly<T>, size?: number, start?: number, end?: number): T[];
+    dfArrayItem<T extends unknown>(arr: ITSArrayListMaybeReadonly<T>, size?: number, start?: number, end?: number): () => T[];
+    arrayItemOne<T extends unknown>(arr: ITSArrayListMaybeReadonly<T>, start?: number, end?: number): T;
+    dfArrayItemOne<T extends unknown>(arr: ITSArrayListMaybeReadonly<T>, start?: number, end?: number): () => T;
     /**
      * Shuffle an array
      *
      * @example random.dfArrayShuffle([11, 22, 33])
      */
-    arrayShuffle<T extends IArrayInput02<any>>(arr: T, overwrite?: boolean): T;
-    dfArrayShuffle<T extends IArrayInput02<any>>(arr: T, overwrite?: boolean): () => T;
-    arrayUnique<T extends unknown>(arr: T[], limit?: number, loop?: boolean, fnRandIndex?: IRandIndex, fnOutOfLimit?: IArrayUniqueOutOfLimitCallback<T>): T;
+    arrayShuffle<T extends IArrayInput02<any> | ITSArrayListMaybeReadonly<any>>(arr: T, overwrite?: boolean): T;
+    dfArrayShuffle<T extends IArrayInput02<any> | ITSArrayListMaybeReadonly<any>>(arr: T, overwrite?: boolean): () => T;
+    arrayUnique<T extends unknown>(arr: ITSArrayListMaybeReadonly<T>, limit?: number, loop?: boolean, fnRandIndex?: IRandIndex, fnOutOfLimit?: IArrayUniqueOutOfLimitCallback<T>): T;
     /**
      * Get consecutively unique elements from an array
      *
@@ -190,7 +196,7 @@ export declare class RandomCore<R extends RNG = RNG> {
      * // will throw error
      * console.log(fn());
      */
-    dfArrayUnique<T extends unknown>(arr: T[], limit?: number, loop?: boolean, fnRandIndex?: IRandIndex, fnOutOfLimit?: IArrayUniqueOutOfLimitCallback<T>): () => T;
+    dfArrayUnique<T extends unknown>(arr: ITSArrayListMaybeReadonly<T>, limit?: number, loop?: boolean, fnRandIndex?: IRandIndex, fnOutOfLimit?: IArrayUniqueOutOfLimitCallback<T>): () => T;
     /**
      * fill random value into any array-like object
      *

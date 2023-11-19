@@ -1,22 +1,22 @@
-import { __decorate as t, __metadata as r } from "tslib";
+import { __decorate as r, __metadata as t } from "tslib";
 
 import { expect as e } from "@lazy-random/expect";
 
 import { deprecate as n, autobind as i } from "core-decorators";
 
-import { hashArgv as o } from "@lazy-random/shared-lib";
+import { hashArgv as d } from "@lazy-random/shared-lib";
 
-import s from "@lazy-random/distributions";
+import o from "@lazy-random/distributions";
 
-import { RNG as d } from "@lazy-random/rng-abstract";
+import { RNG as s } from "@lazy-random/rng-abstract";
 
 let a = class RandomCore {
   _cache={};
-  constructor(t, ...r) {
-    this._init(t, ...r);
+  constructor(r, ...t) {
+    this._init(r, ...t);
   }
-  _init(t, ...r) {
-    t && e(t).instanceof(d), this.use(t);
+  _init(r, ...t) {
+    r && e(r).instanceof(s), this.use(r);
   }
   get rng() {
     return this._rng;
@@ -30,25 +30,25 @@ let a = class RandomCore {
   get rand() {
     return this.next;
   }
-  seed(...t) {
-    return this._rng.seed(...t), this;
+  seed(...r) {
+    return this._rng.seed(...r), this;
   }
   get srandom() {
     return this.srand;
   }
-  srand(...t) {
-    return this.seed(...t).next();
+  srand(...r) {
+    return this.seed(...r).next();
   }
-  clone(t, ...r) {
+  clone(r, ...t) {
     throw new Error("not implemented");
   }
-  use(t, ...r) {
-    return e(t).instanceof(d), this._rng = t, this;
+  use(r, ...t) {
+    return e(r).instanceof(s), this._rng = r, this;
   }
-  newUse(t, ...r) {
+  newUse(r, ...t) {
     throw new Error("not implemented");
   }
-  cloneUse(t, ...r) {
+  cloneUse(r, ...t) {
     throw new Error("not implemented");
   }
   patch() {
@@ -61,170 +61,187 @@ let a = class RandomCore {
   next() {
     return this._rng.next();
   }
-  float(t, r, e) {
-    return this.dfUniform(t, r, e)();
+  float(r, t, e) {
+    return this.dfUniform(r, t, e)();
   }
-  int(t = 100, r) {
-    return this.dfUniformInt(t, r)();
+  int(r = 100, t) {
+    return this.dfUniformInt(r, t)();
   }
-  integer(t, r) {
-    return this.int(t, r);
+  integer(r, t) {
+    return this.int(r, t);
   }
-  bool(t) {
-    return this.boolean(t);
+  bool(r) {
+    return this.boolean(r);
   }
-  boolean(t) {
-    return this.dfUniformBoolean(t)();
+  boolean(r) {
+    return this.dfUniformBoolean(r)();
   }
-  byte(t) {
-    return this.dfByte(t)();
+  byte(r) {
+    return this.dfByte(r)();
   }
-  dfByte(t) {
-    return this._memoize("byte", s.dfUniformByte, t);
+  dfByte(r) {
+    return this._memoize("byte", o.dfUniformByte, r);
   }
-  bytes(t = 1, r) {
-    return this.dfBytes(t, r)();
+  bytes(r = 1, t) {
+    return this.dfBytes(r, t)();
   }
-  dfBytes(t = 1, r) {
-    return this._memoize("bytes", s.dfUniformBytes, t, r);
+  dfBytes(r = 1, t) {
+    return this._memoize("bytes", o.dfUniformBytes, r, t);
   }
-  randomBytes(t) {
-    return Buffer.from(this.bytes(t));
+  randomBytes(r) {
+    return Buffer.from(this.bytes(r));
   }
-  dfRandomBytes(t) {
-    let r = this.dfBytes(t);
-    return this._memoize("dfRandomBytes", (() => () => Buffer.from(r())), t);
+  dfRandomBytes(r) {
+    let t = this.dfBytes(r);
+    return this._memoize("dfRandomBytes", (() => () => Buffer.from(t())), r);
   }
-  charID(t, r) {
-    return s.dfCharID(this, t, r)();
+  charID(r, t) {
+    return o.dfCharID(this, r, t)();
   }
-  dfCharID(t, r) {
-    return this._memoize("dfCharID", s.dfCharID, t, r);
+  dfCharID(r, t) {
+    return this._memoize("dfCharID", o.dfCharID, r, t);
   }
-  uuidv4(t) {
-    return this.dfUuidv4(t)();
+  uuidv4(r) {
+    return this.dfUuidv4(r)();
   }
-  dfUuidv4(t) {
-    return this._memoize("uuidv4", s.dfUuidV4, t);
+  dfUuidv4(r) {
+    return this._memoize("uuidv4", o.dfUuidV4, r);
   }
-  arrayIndex(t, r = 1, e = 0, n) {
-    return this.dfArrayIndex(t, r, e, n)();
+  arrayIndex(r, t = 1, e = 0, n) {
+    return this.dfArrayIndex(r, t, e, n)();
   }
-  dfArrayIndex(t, r = 1, e = 0, n) {
-    return this._memoizeFake("dfArrayIndex", s.dfArrayIndex, t, r, e, n);
+  dfArrayIndex(r, t = 1, e = 0, n) {
+    return this._memoizeFake("dfArrayIndex", o.dfArrayIndex, r, t, e, n);
   }
-  arrayItem(t, r = 1, e = 0, n) {
-    return this.arrayIndex(t, r, e, n).reduce((function(r, e) {
-      return r.push(t[e]), r;
+  arrayIndexOne(r, t = 1, e = 0, n) {
+    return this.dfArrayIndexOne(r, e, n)();
+  }
+  dfArrayIndexOne(r, t = 0, e) {
+    return this._memoizeFake("dfArrayIndexOne", o.dfArrayIndexOne, r, t, e);
+  }
+  arrayItem(r, t = 1, e = 0, n) {
+    return this.dfArrayItem(r, t, e, n)();
+  }
+  dfArrayItem(r, t = 1, e = 0, n) {
+    const i = this.dfArrayIndex(r, t, e, n);
+    return () => i().reduce((function(t, e) {
+      return t.push(r[e]), t;
     }), []);
   }
-  arrayShuffle(t, r) {
-    return this._memoizeFake("dfArrayShuffle", s.dfArrayShuffle, t, r)();
+  arrayItemOne(r, t = 0, e) {
+    return this.dfArrayItemOne(r, t, e)();
   }
-  dfArrayShuffle(t, r) {
-    return this._callDistributions(s.dfArrayShuffle, t, r);
+  dfArrayItemOne(r, t = 0, e) {
+    const n = this.dfArrayIndexOne(r, t, e);
+    return () => r[n()];
   }
-  arrayUnique(t, r, e, n, i) {
-    return this.dfArrayUnique(t, r, e, n, i)();
+  arrayShuffle(r, t) {
+    return this._memoizeFake("dfArrayShuffle", o.dfArrayShuffle, r, t)();
   }
-  dfArrayUnique(t, r, e, n, i) {
-    return s.dfArrayUnique(this, t, r, e, n, i);
+  dfArrayShuffle(r, t) {
+    return this._callDistributions(o.dfArrayShuffle, r, t);
   }
-  arrayFill(t, r, e, n) {
-    return this.dfArrayFill(r, e, n)(t);
+  arrayUnique(r, t, e, n, i) {
+    return this.dfArrayUnique(r, t, e, n, i)();
   }
-  dfArrayFill(t, r, e) {
-    return this._memoize("dfArrayFill", s.dfArrayFill, t, r, e);
+  dfArrayUnique(r, t, e, n, i) {
+    return o.dfArrayUnique(this, r, t, e, n, i);
   }
-  dfUniform(t, r, e) {
-    return this._memoize("dfUniform", s.dfUniformFloat, t, r, e);
+  arrayFill(r, t, e, n) {
+    return this.dfArrayFill(t, e, n)(r);
   }
-  dfUniformInt(t, r) {
-    return this._memoize("dfUniformInt", s.dfUniformInt, t, r);
+  dfArrayFill(r, t, e) {
+    return this._memoize("dfArrayFill", o.dfArrayFill, r, t, e);
   }
-  dfUniformBoolean(t) {
-    return this._memoize("dfUniformBoolean", s.dfUniformBoolean, t);
+  dfUniform(r, t, e) {
+    return this._memoize("dfUniform", o.dfUniformFloat, r, t, e);
   }
-  dfNormal(t, r) {
-    return s.dfNormal(this, t, r);
+  dfUniformInt(r, t) {
+    return this._memoize("dfUniformInt", o.dfUniformInt, r, t);
   }
-  dfLogNormal(t, r) {
-    return s.dfLogNormal(this, t, r);
+  dfUniformBoolean(r) {
+    return this._memoize("dfUniformBoolean", o.dfUniformBoolean, r);
   }
-  dfBernoulli(t) {
-    return s.dfBernoulli(this, t);
+  dfNormal(r, t) {
+    return o.dfNormal(this, r, t);
   }
-  dfBinomial(t, r) {
-    return s.dfBinomial(this, t, r);
+  dfLogNormal(r, t) {
+    return o.dfLogNormal(this, r, t);
   }
-  dfGeometric(t) {
-    return s.dfGeometric(this, t);
+  dfBernoulli(r) {
+    return o.dfBernoulli(this, r);
   }
-  dfPoisson(t) {
-    return s.dfPoisson(this, t);
+  dfBinomial(r, t) {
+    return o.dfBinomial(this, r, t);
   }
-  dfExponential(t) {
-    return s.dfExponential(this, t);
+  dfGeometric(r) {
+    return o.dfGeometric(this, r);
   }
-  dfIrwinHall(t = 1) {
-    return s.dfIrwinHall(this, t);
+  dfPoisson(r) {
+    return o.dfPoisson(this, r);
   }
-  dfBates(t = 1) {
-    return s.dfBates(this, t);
+  dfExponential(r) {
+    return o.dfExponential(this, r);
   }
-  dfPareto(t = 1) {
-    return s.dfPareto(this, t);
+  dfIrwinHall(r = 1) {
+    return o.dfIrwinHall(this, r);
   }
-  itemByWeight(t, r, ...e) {
-    return this.dfItemByWeight(t, r, ...e)();
+  dfBates(r = 1) {
+    return o.dfBates(this, r);
   }
-  dfItemByWeight(t, r, ...e) {
-    return this._callDistributions(s.dfItemByWeight, t, r, ...e);
+  dfPareto(r = 1) {
+    return o.dfPareto(this, r);
   }
-  itemByWeightUnique(t, r, e, ...n) {
-    return this.dfItemByWeightUnique(t, r, e, ...n)();
+  itemByWeight(r, t, ...e) {
+    return this.dfItemByWeight(r, t, ...e)();
   }
-  dfItemByWeightUnique(t, r, e, ...n) {
-    return this._callDistributions(s.dfItemByWeightUnique, t, r, e, ...n);
+  dfItemByWeight(r, t, ...e) {
+    return this._callDistributions(o.dfItemByWeight, r, t, ...e);
   }
-  sumInt(t, r, e, n, i) {
-    return this.dfSumInt(t, r, e, n, i)();
+  itemByWeightUnique(r, t, e, ...n) {
+    return this.dfItemByWeightUnique(r, t, e, ...n)();
   }
-  dfSumInt(t, r, e, n, i) {
-    return this._memoize("sumInt", s.dfRandSumInt, t, r, e, n, i);
+  dfItemByWeightUnique(r, t, e, ...n) {
+    return this._callDistributions(o.dfItemByWeightUnique, r, t, e, ...n);
   }
-  sumFloat(t, r, e, n, i) {
-    return this.dfSumFloat(t, r, e, n, i)();
+  sumInt(r, t, e, n, i) {
+    return this.dfSumInt(r, t, e, n, i)();
   }
-  dfSumFloat(t, r, e, n, i) {
-    return this._memoize("sumFloat", s.dfRandSumFloat, t, r, e, n, i);
+  dfSumInt(r, t, e, n, i) {
+    return this._memoize("sumInt", o.dfRandSumInt, r, t, e, n, i);
   }
-  _memoize(t, r, ...e) {
-    const n = o(e);
-    let i = this._cache[t];
+  sumFloat(r, t, e, n, i) {
+    return this.dfSumFloat(r, t, e, n, i)();
+  }
+  dfSumFloat(r, t, e, n, i) {
+    return this._memoize("sumFloat", o.dfRandSumFloat, r, t, e, n, i);
+  }
+  _memoize(r, t, ...e) {
+    const n = d(e);
+    let i = this._cache[r];
     return void 0 !== i && i.key === n || (i = {
       key: n,
-      distribution: r(this, ...e)
-    }, this._cache[t] = i), i.distribution;
+      distribution: t(this, ...e)
+    }, this._cache[r] = i), i.distribution;
   }
-  _memoizeFake(t, r, ...e) {
-    return r(this, ...e);
+  _memoizeFake(r, t, ...e) {
+    return t(this, ...e);
   }
-  _callDistributions(t, ...r) {
-    return t(this, ...r);
+  _callDistributions(r, ...t) {
+    return r(this, ...t);
   }
   reset() {
     return this._cache = {}, this;
   }
   get [Symbol.toStringTag]() {
-    var t;
-    return null === (t = this._rng) || void 0 === t ? void 0 : t.name;
+    var r;
+    return null === (r = this._rng) || void 0 === r ? void 0 : r.name;
   }
 };
 
-t([ n("not recommended use"), r("design:type", Function), r("design:paramtypes", []), r("design:returntype", void 0) ], a.prototype, "patch", null), 
-t([ n("not recommended use"), r("design:type", Function), r("design:paramtypes", []), r("design:returntype", void 0) ], a.prototype, "unpatch", null), 
-a = t([ i, r("design:paramtypes", [ Object, Object ]) ], a);
+r([ n("not recommended use"), t("design:type", Function), t("design:paramtypes", []), t("design:returntype", void 0) ], a.prototype, "patch", null), 
+r([ n("not recommended use"), t("design:type", Function), t("design:paramtypes", []), t("design:returntype", void 0) ], a.prototype, "unpatch", null), 
+a = r([ i, t("design:paramtypes", [ Object, Object ]) ], a);
 
 var f = a;
 

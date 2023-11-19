@@ -6,6 +6,7 @@ import Distributions from '@lazy-random/distributions';
 import { RNG, IRNGLike } from '@lazy-random/rng-abstract'
 import { IArrayUniqueOutOfLimitCallback, IRandIndex } from '@lazy-random/df-array';
 import { IObjectInput, IWeightEntrie, IGetWeight, IOptionsItemByWeight } from '@lazy-random/df-item-by-weight';
+import { ITSArrayListMaybeReadonly } from 'ts-type/lib/type/base';
 
 /**
  * Seedable random number generator supporting many common distributions.
@@ -336,7 +337,7 @@ export class RandomCore<R extends RNG = RNG>
 		return this._memoize('uuidv4', Distributions.dfUuidV4, toUpperCase)
 	}
 
-	arrayIndex<T extends Array<unknown>>(arr: T, size: number = 1, start: number = 0, end?: number)
+	arrayIndex<T extends ITSArrayListMaybeReadonly<unknown>>(arr: T, size: number = 1, start: number = 0, end?: number)
 	{
 		return this.dfArrayIndex(arr, size, start, end)()
 	}
@@ -346,9 +347,19 @@ export class RandomCore<R extends RNG = RNG>
 	 *
 	 * @example console.log(random.dfArrayIndex([11, 22, 33], 1, 0));
 	 */
-	dfArrayIndex<T extends Array<unknown>>(arr: T, size: number = 1, start: number = 0, end?: number)
+	dfArrayIndex<T extends ITSArrayListMaybeReadonly<unknown>>(arr: T, size: number = 1, start: number = 0, end?: number)
 	{
 		return this._memoizeFake('dfArrayIndex', Distributions.dfArrayIndex, arr, size, start, end)
+	}
+
+	arrayIndexOne<T extends ITSArrayListMaybeReadonly<unknown>>(arr: T, size: number = 1, start: number = 0, end?: number)
+	{
+		return this.dfArrayIndexOne(arr, start, end)()
+	}
+
+	dfArrayIndexOne<T extends ITSArrayListMaybeReadonly<unknown>>(arr: T, start: number = 0, end?: number)
+	{
+		return this._memoizeFake('dfArrayIndexOne', Distributions.dfArrayIndexOne, arr, start, end)
 	}
 
 	/**
@@ -356,16 +367,34 @@ export class RandomCore<R extends RNG = RNG>
 	 *
 	 * @example console.log(random.dfArrayItem([11, 22, 33], 2));
 	 */
-	arrayItem<T extends unknown>(arr: T[], size: number = 1, start: number = 0, end?: number): T[]
+	arrayItem<T extends unknown>(arr: ITSArrayListMaybeReadonly<T>, size: number = 1, start: number = 0, end?: number)
 	{
-		let ids = this.arrayIndex(arr, size, start, end)
+		return this.dfArrayItem(arr, size, start, end)()
+	}
 
-		return ids.reduce(function (a, idx)
-		{
-			a.push(arr[idx])
+	dfArrayItem<T extends unknown>(arr: ITSArrayListMaybeReadonly<T>, size: number = 1, start: number = 0, end?: number)
+	{
+		const fn = this.dfArrayIndex(arr, size, start, end)
 
-			return a;
-		}, [])
+		return () => {
+			return fn().reduce(function (a, idx)
+			{
+				a.push(arr[idx])
+
+				return a;
+			}, [] as T[])
+		}
+	}
+
+	arrayItemOne<T extends unknown>(arr: ITSArrayListMaybeReadonly<T>, start: number = 0, end?: number)
+	{
+		return this.dfArrayItemOne(arr, start, end)()
+	}
+
+	dfArrayItemOne<T extends unknown>(arr: ITSArrayListMaybeReadonly<T>, start: number = 0, end?: number)
+	{
+		const fn = this.dfArrayIndexOne(arr, start, end);
+		return () => arr[fn()]
 	}
 
 	/**
@@ -373,18 +402,18 @@ export class RandomCore<R extends RNG = RNG>
 	 *
 	 * @example random.dfArrayShuffle([11, 22, 33])
 	 */
-	arrayShuffle<T extends IArrayInput02<any>>(arr: T, overwrite?: boolean): T
+	arrayShuffle<T extends IArrayInput02<any> | ITSArrayListMaybeReadonly<any>>(arr: T, overwrite?: boolean): T
 	{
 		return this._memoizeFake('dfArrayShuffle', Distributions.dfArrayShuffle, arr, overwrite)() as any
 	}
 
-	dfArrayShuffle<T extends IArrayInput02<any>>(arr: T, overwrite?: boolean): () => T
+	dfArrayShuffle<T extends IArrayInput02<any> | ITSArrayListMaybeReadonly<any>>(arr: T, overwrite?: boolean): () => T
 		{
 //		return Distributions.arrayShuffle(this, arr, overwrite);
 		return this._callDistributions(Distributions.dfArrayShuffle, arr, overwrite) as any
 	}
 
-	arrayUnique<T extends unknown>(arr: T[], limit?: number, loop?: boolean, fnRandIndex?: IRandIndex, fnOutOfLimit?: IArrayUniqueOutOfLimitCallback<T>)
+	arrayUnique<T extends unknown>(arr: ITSArrayListMaybeReadonly<T>, limit?: number, loop?: boolean, fnRandIndex?: IRandIndex, fnOutOfLimit?: IArrayUniqueOutOfLimitCallback<T>)
 	{
 		return this.dfArrayUnique(arr, limit, loop, fnRandIndex, fnOutOfLimit)()
 	}
@@ -399,7 +428,7 @@ export class RandomCore<R extends RNG = RNG>
 	 * // will throw error
 	 * console.log(fn());
 	 */
-	dfArrayUnique<T extends unknown>(arr: T[], limit?: number, loop?: boolean, fnRandIndex?: IRandIndex, fnOutOfLimit?: IArrayUniqueOutOfLimitCallback<T>)
+	dfArrayUnique<T extends unknown>(arr: ITSArrayListMaybeReadonly<T>, limit?: number, loop?: boolean, fnRandIndex?: IRandIndex, fnOutOfLimit?: IArrayUniqueOutOfLimitCallback<T>)
 	{
 		return Distributions.dfArrayUnique(this, arr, limit, loop, fnRandIndex, fnOutOfLimit)
 	}
