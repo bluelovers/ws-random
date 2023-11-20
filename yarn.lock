@@ -2947,10 +2947,10 @@ run-parallel@^1.1.9:
   dependencies:
     queue-microtask "^1.2.2"
 
-runes2@^1.0.9:
-  version "1.0.9"
-  resolved "https://registry.npmjs.org/runes2/-/runes2-1.0.9.tgz#548a748db40f57765413aea5107e9be25f523778"
-  integrity sha512-hChv3gRFer2JaWrqhptiGkAYd5MExTY0G5ZMv17mVciAh9RIuvgwV4pjaxWN4PXTzITW3bqgnM/eZd/nZR27RQ==
+runes2@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.npmjs.org/runes2/-/runes2-1.1.2.tgz#408a4cdd31077ca62f52a9aa5bd22d6d16ae6a41"
+  integrity sha512-v6XIdRpUKdFLNhgF2AC9XvntZsDzxyTpVlpQ8HD592XD6vHiW8jEcHFnTV5ztUjWJC5cGOcdi9YKIwxWVh0f9w==
 
 seedrandom@^3.0, seedrandom@^3.0.5:
   version "3.0.5"
@@ -3181,7 +3181,7 @@ ts-type@^2.1.10:
     tslib "^2"
     typedarray-dts "^1.0.0"
 
-tslib@*, tslib@>=2, tslib@^2:
+tslib@*, tslib@>=2, tslib@^2, tslib@^2.6.2:
   version "2.6.2"
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.6.2.tgz#703ac29425e7b37cd6fd456e92404d46d1f3e4ae"
   integrity sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==
@@ -3206,13 +3206,13 @@ undici-types@~5.26.4:
   resolved "https://registry.npmjs.org/undici-types/-/undici-types-5.26.5.tgz#bcd539893d00b56e964fd2657a4866b221a65617"
   integrity sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==
 
-uni-string@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.npmjs.org/uni-string/-/uni-string-2.0.2.tgz#4ed72df0bc513139abf725e2ca92a3870cb04bdd"
-  integrity sha512-YngGC1Sh79FAm1Haqa5dTDUmOEWrkLFlZO52FeleWFy8sZz4erIjABOELX5LEc625xTZv0mQsKziub0G1Gy4tA==
+uni-string@^2.0.2, uni-string@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.npmjs.org/uni-string/-/uni-string-2.0.5.tgz#d97c87bff9548b8f570fd61a978f614c52a08b3c"
+  integrity sha512-P2trBOQaqy9hiBtfkpn0MxripLhQqGua1Qy9cshYlVRIChUP6SmFhILWAsRWPhsWhGAWC8ymVYXr+vOKkyWALg==
   dependencies:
     es6-class-prototype "^2.0.0"
-    runes2 "^1.0.9"
+    runes2 "^1.1.2"
 
 universalify@^2.0.0:
   version "2.0.0"
