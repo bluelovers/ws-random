@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/distributions",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "",
   "keywords": [
     "alea",
@@ -114,7 +114,7 @@
   "dependencies": {
     "@lazy-random/df-algorithm": "^1.0.13",
     "@lazy-random/df-array": "^2.0.2",
-    "@lazy-random/df-char-id": "^1.0.14",
+    "@lazy-random/df-char-id": "^1.0.15",
     "@lazy-random/df-item-by-weight": "^1.0.10",
     "@lazy-random/df-poisson": "^1.0.13",
     "@lazy-random/df-sum": "^1.0.13",
