@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test.spec "+.1" 1`] = `
+{
+  "parseFloatOnlyString": 0.1,
+  "parseFloatString": 0.1,
+  "parseIntString": undefined,
+}
+`;
+
+exports[`test.spec "+0" 1`] = `
+{
+  "parseFloatOnlyString": undefined,
+  "parseFloatString": 0,
+  "parseIntString": 0,
+}
+`;
+
+exports[`test.spec "+0.0" 1`] = `
+{
+  "parseFloatOnlyString": 0,
+  "parseFloatString": 0,
+  "parseIntString": undefined,
+}
+`;
+
+exports[`test.spec "+0.1" 1`] = `
+{
+  "parseFloatOnlyString": 0.1,
+  "parseFloatString": 0.1,
+  "parseIntString": undefined,
+}
+`;
+
+exports[`test.spec ".1" 1`] = `
+{
+  "parseFloatOnlyString": 0.1,
+  "parseFloatString": 0.1,
+  "parseIntString": undefined,
+}
+`;
+
+exports[`test.spec "-.1" 1`] = `
+{
+  "parseFloatOnlyString": -0.1,
+  "parseFloatString": -0.1,
+  "parseIntString": undefined,
+}
+`;
+
+exports[`test.spec "-0" 1`] = `
+{
+  "parseFloatOnlyString": undefined,
+  "parseFloatString": -0,
+  "parseIntString": -0,
+}
+`;
+
+exports[`test.spec "-0.0" 1`] = `
+{
+  "parseFloatOnlyString": -0,
+  "parseFloatString": -0,
+  "parseIntString": undefined,
+}
+`;
+
+exports[`test.spec "-0.1" 1`] = `
+{
+  "parseFloatOnlyString": -0.1,
+  "parseFloatString": -0.1,
+  "parseIntString": undefined,
+}
+`;
+
+exports[`test.spec "0" 1`] = `
+{
+  "parseFloatOnlyString": undefined,
+  "parseFloatString": 0,
+  "parseIntString": 0,
+}
+`;
+
+exports[`test.spec "0.0" 1`] = `
+{
+  "parseFloatOnlyString": 0,
+  "parseFloatString": 0,
+  "parseIntString": undefined,
+}
+`;
+
+exports[`test.spec "0.1" 1`] = `
+{
+  "parseFloatOnlyString": 0.1,
+  "parseFloatString": 0.1,
+  "parseIntString": undefined,
+}
+`;
