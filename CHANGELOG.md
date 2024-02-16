@@ -51,6 +51,7 @@ Please see the individual package changelogs for what's new:
 * 🌏 [`@lazy-num/float-from-buffer`](./packages/@lazy-num/float-from-buffer/CHANGELOG.md "packages/@lazy-num/float-from-buffer") *packages/@lazy-num/float-from-buffer*
 * 🌏 [`@lazy-num/float-to-string`](./packages/@lazy-num/float-to-string/CHANGELOG.md "packages/@lazy-num/float-to-string") *packages/@lazy-num/float-to-string*
 * 🌏 [`@lazy-num/max-safe-number`](./packages/@lazy-num/max-safe-number/CHANGELOG.md "packages/@lazy-num/max-safe-number") *packages/@lazy-num/max-safe-number*
+* 🌏 [`@lazy-num/parse-number-string`](./packages/@lazy-num/parse-number-string/CHANGELOG.md "packages/@lazy-num/parse-number-string") *packages/@lazy-num/parse-number-string*
 * 🌏 [`@lazy-num/sum`](./packages/@lazy-num/sum/CHANGELOG.md "packages/@lazy-num/sum") *packages/@lazy-num/sum*
 * 🌏 [`@lazy-num/to-fixed-number`](./packages/@lazy-num/to-fixed-number/CHANGELOG.md "packages/@lazy-num/to-fixed-number") *packages/@lazy-num/to-fixed-number*
 
