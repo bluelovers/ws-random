@@ -81,6 +81,54 @@ import toFixedNumber from '@lazy-num/to-fixed-number';
 - 回傳 (Returns)：`string` — 格式化後的字串
 - 拋出 (Throws)：`RangeError` — 當 `fractionDigits` 不在 `0`–`100` 範圍時，由 `toFixed()` 拋出
 
+## 限制 (Limitations)
+
+本套件底層直接委派給 `Number.prototype.toFixed()`，因此會完整反映 IEEE 754
+雙精度浮點數 (Double-Precision Floating Point) 的表示誤差與內建捨入 (Rounding) 行為。
+
+以下範例同時輸出原生 `toFixed()`、本套件 `toFixedNumber()` 與
+`toPrecision(17)`（用以顯示記憶體中的真實值）：
+
+```ts
+import { toFixedNumber } from '@lazy-num/to-fixed-number';
+
+[
+	1.004,
+	1.005,
+	1.015,
+	1.016,
+	12.345,
+	12.0345,
+	12.305,
+].forEach((item) => {
+	const n = item;
+	const fractionDigits = 2;
+	console.log(n, ' ／ ', n.toFixed(fractionDigits), ' ／ ', toFixedNumber(n, fractionDigits), ' ／ ', n.toPrecision(17));
+});
+```
+
+輸出 (Output)：
+
+```
+1.004  ／  1.00  ／  1  ／  1.0040000000000000
+1.005  ／  1.00  ／  1  ／  1.0049999999999999
+1.015  ／  1.01  ／  1.01  ／  1.0149999999999999
+1.016  ／  1.02  ／  1.02  ／  1.0160000000000000
+12.345  ／  12.35  ／  12.35  ／  12.345000000000001
+12.0345  ／  12.03  ／  12.03  ／  12.034500000000000
+12.305  ／  12.30  ／  12.3  ／  12.305000000000000
+```
+
+重點 (Key points)：
+
+- 欄位依序為：原始值 ／ 原生 `toFixed(2)` ／ `toFixedNumber(2)` ／ `toPrecision(17)`
+- `1.005` 在記憶體中實際為 `1.0049999999999999`，因此捨入到 `1.00` 而非 `1.01`
+- `12.305` 經 `toFixedNumber` 回傳 `12.3`（捨去尾端補零），`toFixedStringNumber` 則回傳 `'12.30'`
+- 上述差異來自 JavaScript 數值型別本身，並非本套件的轉換錯誤
+
+> 需要數學準確性 (Mathematical accuracy) 時，請改用專門計算用的模組，
+> 例如 [big.js](https://github.com/MikeMcl/big.js)。
+
 ## 開發 (Development)
 
 ```bash
