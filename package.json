@@ -1,6 +1,7 @@
 {
   "name": "ws-random",
   "version": "1.0.0",
+  "description": "亂數 (Random Number) 產生與分佈 (Distribution) 相關工具的 pnpm + lerna monorepo",
   "private": true,
   "keywords": [
     "alea",
@@ -35,7 +36,6 @@
     "random",
     "random-extra",
     "random-sum",
-    "randomSum",
     "randomize",
     "randomnumbers",
     "rng",

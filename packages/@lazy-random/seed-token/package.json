@@ -1,8 +1,20 @@
 {
   "name": "@lazy-random/seed-token",
   "version": "1.0.13",
-  "description": "",
+  "description": "產生與正規化亂數種子權杖 (Seed Token) 的小工具集，提供任意輸入轉數值種子 (Numeric Seed) 與高熵 (Entropy) 隨機種子字串的方法",
   "keywords": [
+    "seed",
+    "seed-token",
+    "token",
+    "numeric-seed",
+    "random",
+    "random-seed",
+    "hash",
+    "nanoid",
+    "entropy",
+    "timestamp",
+    "rng",
+    "prng",
     "create-by-yarn-tool",
     "create-by-tsdx"
   ],

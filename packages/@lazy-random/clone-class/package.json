@@ -1,8 +1,17 @@
 {
   "name": "@lazy-random/clone-class",
   "version": "1.0.11",
-  "description": "",
+  "description": "用於複製 (Clone) 隨機數生成器類別 (RNG Class) 的小工具，判斷實例所屬類別並以相同類別建立新實例",
   "keywords": [
+    "clone",
+    "clone-class",
+    "rng",
+    "random",
+    "class",
+    "instance",
+    "constructor",
+    "fork",
+    "lazy-random",
     "create-by-yarn-tool",
     "create-by-tsdx"
   ],

@@ -1,8 +1,18 @@
 {
   "name": "@lazy-num/float-to-string",
   "version": "1.0.11",
-  "description": "",
+  "description": "將浮點數 (Float) 轉換為字串的工具函式庫，可選擇固定小數位數 (Fraction Digits)",
   "keywords": [
+    "decimal-places",
+    "float",
+    "float-to-string",
+    "fraction-digits",
+    "join",
+    "number-to-string",
+    "split",
+    "string",
+    "to-string",
+    "tofixed",
     "create-by-yarn-tool",
     "create-by-tsdx"
   ],

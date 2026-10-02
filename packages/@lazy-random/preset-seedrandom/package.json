@@ -1,8 +1,18 @@
 {
   "name": "@lazy-random/preset-seedrandom",
   "version": "1.0.11",
-  "description": "",
+  "description": "以 seedrandom 作為亂數產生器 (Random Number Generator, RNG) 的 random-extra 預設實例 (Preset)，載入即可直接使用",
   "keywords": [
+    "random",
+    "rng",
+    "prng",
+    "pseudorandom",
+    "generator",
+    "random-number-generator",
+    "seed",
+    "seedrandom",
+    "preset",
+    "random-extra",
     "create-by-yarn-tool",
     "create-by-tsdx"
   ],

@@ -3,7 +3,9 @@
   "version": "1.0.29",
   "description": "create random float number array by size, sum, min, max",
   "keywords": [
+    "random-sum-float",
     "float",
+    "array",
     "generate",
     "generate-random-numbers",
     "n-random-numbers",
@@ -12,7 +14,6 @@
     "random",
     "random-extra",
     "random-sum",
-    "randomSum",
     "randomnumbers",
     "sum",
     "create-by-yarn-tool",

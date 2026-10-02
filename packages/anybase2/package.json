@@ -3,11 +3,13 @@
   "version": "1.0.12",
   "description": "convert from and to numeric bases from base 2 to base 62",
   "keywords": [
+    "anybase2",
     "any",
     "numeric",
     "number",
     "base",
     "convert",
+    "cli",
     "int",
     "integer",
     "decimal",

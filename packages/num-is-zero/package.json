@@ -1,8 +1,17 @@
 {
   "name": "num-is-zero",
   "version": "1.0.13",
-  "description": "",
+  "description": "判斷數值是否為零 (Zero)，並將負零 (-0) 正規化 (Normalize) 為 0 的工具函式",
   "keywords": [
+    "num-is-zero",
+    "zero",
+    "is-zero",
+    "negative-zero",
+    "normalize",
+    "type-guard",
+    "number",
+    "check",
+    "fix-zero",
     "create-by-yarn-tool",
     "create-by-tsdx"
   ],

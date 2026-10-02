@@ -1,8 +1,6 @@
 # ws-random
 
-亂數 (Random Number) 產生與分佈 (Distribution) 相關工具的 pnpm + lerna monorepo。
-
-本倉庫 (Repository) 為 **private** 根套件，不會發布至 npm；所有可發布的程式碼皆位於 `packages/` 下的子套件。
+亂數 (Random Number) 產生與分佈 (Distribution) 相關工具的 monorepo。
 
 ## 特色 (Features)
 

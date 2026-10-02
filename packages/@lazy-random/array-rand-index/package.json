@@ -1,8 +1,20 @@
 {
   "name": "@lazy-random/array-rand-index",
   "version": "1.0.16",
-  "description": "",
+  "description": "產生陣列隨機索引 (Random Index) 的極簡工具，可作為洗牌 (Shuffle) 或抽籤演算法的預設取樣 (Sampling) 函式",
   "keywords": [
+    "array",
+    "array-rand-index",
+    "index",
+    "math-random",
+    "pick",
+    "random",
+    "random-index",
+    "random-integer",
+    "sample",
+    "sampling",
+    "shuffle",
+    "lazy-random",
     "create-by-yarn-tool",
     "create-by-tsdx"
   ],

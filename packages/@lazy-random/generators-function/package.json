@@ -1,8 +1,17 @@
 {
   "name": "@lazy-random/generators-function",
   "version": "1.0.11",
-  "description": "",
+  "description": "把任意回傳 0～1 亂數 (Random Number) 的函式包裝為 RNG 類別，讓自訂函式也能使用統一的亂數產生器 (Random Number Generator) API",
   "keywords": [
+    "function",
+    "generator",
+    "generators-function",
+    "prng",
+    "random",
+    "random-function",
+    "random-number-generator",
+    "rng",
+    "wrapper",
     "create-by-yarn-tool",
     "create-by-tsdx"
   ],

@@ -1,8 +1,18 @@
 {
   "name": "@lazy-num/float-from-buffer",
   "version": "1.0.14",
-  "description": "",
+  "description": "從位元組緩衝區 (Buffer) 讀取隨機位元組，轉換為 [0, 1) 區間的雙精度浮點數 (Double-precision Float)",
   "keywords": [
+    "buffer",
+    "bytes",
+    "crypto",
+    "double",
+    "float",
+    "float-from-buffer",
+    "floating-point",
+    "random-bytes",
+    "uint8array",
+    "uniform",
     "create-by-yarn-tool",
     "create-by-tsdx"
   ],

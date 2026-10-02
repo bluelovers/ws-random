@@ -3,6 +3,16 @@
   "version": "1.0.11",
   "description": "number using fixed-point notation",
   "keywords": [
+    "decimal",
+    "fixed-point",
+    "format",
+    "number-format",
+    "precision",
+    "rounding",
+    "to-fixed-number",
+    "tofixednumber",
+    "tofixedstringnumber",
+    "lazy-num",
     "create-by-yarn-tool",
     "create-by-tsdx"
   ],
@@ -32,7 +42,7 @@
   "scripts": {
     "coverage": "pnpm run test -- --coverage",
     "lint": "ynpx --quiet eslint -- **/*.ts",
-    "test": "echo jest --passWithNoTests",
+    "test": "tsx --test --test-update-snapshots test/**/*.spec.ts test/**/*.test.ts",
     "test:jest": "jest --passWithNoTests",
     "test:jest:coverage": "pnpm run test:jest -- --coverage",
     "test:jest:snapshot": "pnpm run test:jest -- -u",

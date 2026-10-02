@@ -1,8 +1,19 @@
 {
   "name": "@lazy-random/bytes-to-uuid",
   "version": "1.0.14",
-  "description": "",
+  "description": "將位元組陣列 (Byte Array) 格式化為 UUID (Universally Unique Identifier) 字串的小工具",
   "keywords": [
+    "byte-array",
+    "bytes-to-uuid",
+    "format",
+    "guid",
+    "hex",
+    "hex-string",
+    "lookup-table",
+    "string",
+    "uuid",
+    "universally-unique-identifier",
+    "lazy-random",
     "create-by-yarn-tool",
     "create-by-tsdx"
   ],
