@@ -80,7 +80,7 @@
   "scripts": {
     "coverage": "pnpm run test -- --coverage",
     "pretest_": "pnpm run build",
-    "test": "jest --maxConcurrency=1 --maxWorkers=1",
+    "test": "dotenv -v NODE_OPTIONS=--experimental-vm-modules -- jest --maxConcurrency=1 --maxWorkers=1",
     "test:jest": "jest --passWithNoTests",
     "test:jest:coverage": "pnpm run test:jest -- --coverage",
     "test:jest:snapshot": "pnpm run test:jest -- -u",

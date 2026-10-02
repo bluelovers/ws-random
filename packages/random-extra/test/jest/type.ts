@@ -15,6 +15,7 @@ import ExpectExtendMap = jest.ExpectExtendMap;
 import { printCloseTo } from 'expect-print-close-to';
 import MatcherUtils = jest.MatcherUtils;
 import { numberInDelta as expectInDelta } from 'num-in-delta';
+import { toContainKeys } from 'jest-extended';
 
 const types = ['number', 'string', 'boolean', 'object', 'array', 'date', 'function', 'float'];
 
@@ -48,6 +49,10 @@ declare global
 	}
 
 }
+
+expect.extend({
+	toContainKeys,
+});
 
 export const checkTypesMatchers = types.reduce((a, type) =>
 {

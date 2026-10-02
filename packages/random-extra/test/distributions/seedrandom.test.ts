@@ -82,7 +82,7 @@ describe(`test sub seedrandom`, () =>
 
 			//console.log(libName, s.quick(), r.next());
 
-			expect(s).toContainAllKeys(methods);
+			expect(s).toContainKeys(methods);
 			expect(r.next()).not.toBeNaN();
 
 			let v = r.next();
@@ -114,7 +114,7 @@ describe(`test sub seedrandom`, () =>
 
 			//console.log(libName, s.quick(), r.next());
 
-			expect(s).toContainAllKeys(methods);
+			expect(s).toContainKeys(methods);
 			expect(r.next()).not.toBeNaN();
 
 			let v = r.next();

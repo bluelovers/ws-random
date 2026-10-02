@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`test sub seedrandom RNGSeedRandom.createLib('alea', seed, opts) 1`] = `0.8297006865032017`;
 
