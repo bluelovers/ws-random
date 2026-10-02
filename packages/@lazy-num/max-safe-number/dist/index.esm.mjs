@@ -27,7 +27,7 @@ function findMaxSafeFloat(e, a = !1) {
   }
 }
 
-const e = findMaxSafeFloat(1);
+const e = /*#__PURE__*/ findMaxSafeFloat(1);
 
 export { e as MAX_SAFE_FLOAT, findMaxSafeFloat as default, findMaxSafeFloat, isUnsafe };
 //# sourceMappingURL=index.esm.mjs.map

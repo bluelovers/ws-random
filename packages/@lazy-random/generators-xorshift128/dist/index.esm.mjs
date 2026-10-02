@@ -6,12 +6,11 @@ class RNGXorShift128 extends r {
   constructor(r, t, ...e) {
     super(), this._init(r, t, ...e);
   }
-  _init(r, i, ...n) {
-    super._init(r, i, ...n), r = t(r), this._rng = new e(r);
+  _init(r, n, ...s) {
+    super._init(r, n, ...s), r = t(r), this._rng = new e(r);
   }
-  seed(r, e, ...i) {
-    var n;
-    null !== (n = r) && void 0 !== n || (r = t()), this._rng.seed(r);
+  seed(r, e, ...n) {
+    null != r || (r = t()), this._rng.seed(r);
   }
   next() {
     return this._rng.random();

@@ -8,7 +8,7 @@ var e = require("lib-r-math.js"), t = require("random-extra/src/random"), n = re
 
 function _interopNamespaceDefault(e) {
   var t = Object.create(null);
-  return e && Object.keys(e).forEach((function(n) {
+  return e && Object.keys(e).forEach(function(n) {
     if ("default" !== n) {
       var i = Object.getOwnPropertyDescriptor(e, n);
       Object.defineProperty(t, n, i.get ? i : {
@@ -18,10 +18,10 @@ function _interopNamespaceDefault(e) {
         }
       });
     }
-  })), t.default = e, t;
+  }), t.default = e, t;
 }
 
-var r = _interopNamespaceDefault(e);
+var r = /*#__PURE__*/ _interopNamespaceDefault(e);
 
 function _isLibRMathRNGLike(e) {
   return !(!e || "function" != typeof e.unif_rand && "function" != typeof e.internal_unif_rand);

@@ -16,8 +16,7 @@ class RNGXorShift128 extends rngAbstract.RNG {
     this._rng = new xorshift.XorShift(seed);
   }
   seed(seed, opts, ...argv) {
-    var _seed;
-    (_seed = seed) !== null && _seed !== void 0 ? _seed : seed = xorshift.getRandomSeedAuto();
+    seed !== null && seed !== void 0 ? seed : seed = xorshift.getRandomSeedAuto();
     this._rng.seed(seed);
   }
   next() {

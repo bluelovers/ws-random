@@ -8,12 +8,9 @@ Object.defineProperty(exports, '__esModule', { value: true });
  * @see https://stackoverflow.com/a/57225494/4563339
  */
 function isUnsafe(n, digits) {
-  // digits = 1 loops 10 times with 0.1 increases.
-  // digits = 2 means 100 steps of 0.01, and so on.
   let prev = n;
   for (let i = 10 ** -digits; i < 1; i += 10 ** -digits) {
     if (n + i === prev) {
-      // eg 10.2 === 10.1
       return true;
     }
     prev = n + i;
@@ -45,9 +42,7 @@ function findMaxSafeFloat(digits, log = false) {
     if (isUnsafe(n, digits)) {
       lastUnsafe = n;
     } else {
-      // safe
       if (lastSafe + 1 === n) {
-        // Closed in as far as possible
         console.log(`\n\nMax safe number to a precision of ${digits} digits after the decimal point: ${n}\t((MAX + 1) / ${(Number.MAX_SAFE_INTEGER + 1) / (n + 1)} - 1)\n\n`);
         return n;
       } else {

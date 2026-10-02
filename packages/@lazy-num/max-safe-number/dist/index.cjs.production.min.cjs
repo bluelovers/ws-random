@@ -31,6 +31,6 @@ function findMaxSafeFloat(e, a = !1) {
 
 Object.defineProperty(exports, "__esModule", {
   value: !0
-}), exports.MAX_SAFE_FLOAT = findMaxSafeFloat(1), exports.default = findMaxSafeFloat, 
+}), exports.MAX_SAFE_FLOAT = /*#__PURE__*/ findMaxSafeFloat(1), exports.default = findMaxSafeFloat, 
 exports.findMaxSafeFloat = findMaxSafeFloat, exports.isUnsafe = isUnsafe;
 //# sourceMappingURL=index.cjs.production.min.cjs.map
