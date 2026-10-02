@@ -3,14 +3,12 @@
  */
 
 import random from '../../src/random';
-import seedrandom from '@lazy-random/preset-seedrandom';
 import nanoid = require('nanoid')
 import shortid = require('shortid');
-import tests, { Benchmark, formatBenchmarkResult, sortBenchmarkResult, getMethods } from './'
+import tests, { Benchmark, formatBenchmarkResult, sortBenchmarkResult } from './'
 import hashSum = require('hash-sum');
 
 import console from 'debug-color2'
-import { defaultArgv } from '@lazy-random/simple-wrap';
 
 const suite = (new Benchmark.Suite);
 
