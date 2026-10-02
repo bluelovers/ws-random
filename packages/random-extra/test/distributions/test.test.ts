@@ -15,12 +15,12 @@ it(`make sure test lib is support float check`, () =>
 	expect(function ()
 	{
 		expect(1).toBeFloat();
-	}).toThrowError()
+	}).toThrow()
 
 	expect(function ()
 	{
 		expect(0.9).toBeInteger()
-	}).toThrowError()
+	}).toThrow()
 });
 
 it(`make sure test lib is support length check`, () =>
@@ -33,7 +33,7 @@ it(`make sure test lib is support length check`, () =>
 	expect(() =>
 	{
 		expect(a.length).toBeGreaterThan(3)
-	}).toThrowError()
+	}).toThrow()
 
 	expect('abc').toHaveLength(3)
 
@@ -43,7 +43,7 @@ it(`make sure test lib is support length check`, () =>
 	expect(() =>
 	{
 		expect(a.length).not.toBeGreaterThanOrEqual(3)
-	}).toThrowError()
+	}).toThrow()
 });
 
 
