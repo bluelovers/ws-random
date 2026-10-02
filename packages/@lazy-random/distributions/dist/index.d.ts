@@ -7,6 +7,12 @@ import { dfRandSumFloat, dfRandSumInt } from '@lazy-random/df-sum';
 import { dfUniformBoolean, dfUniformByte, dfUniformBytes, dfUniformFloat, dfUniformInt } from '@lazy-random/df-uniform';
 import { dfUuidV4 } from '@lazy-random/df-uuid';
 
+/**
+ * 預設匯出 (Default Export) 的集合物件：以 as const 凍結屬性，讓使用端可用
+ * `Distributions.dfPoisson` 這類命名空間 (Namespace) 風格一次取得所有分佈函式
+ * Default-exported aggregate object: `as const` freezes the properties so consumers can
+ * access every distribution function in a namespace style such as `Distributions.dfPoisson`
+ */
 declare const Distributions: {
 	readonly dfBates: typeof dfBates;
 	readonly dfBernoulli: typeof dfBernoulli;

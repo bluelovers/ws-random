@@ -66,6 +66,16 @@ function deprecateWarning(method, message) {
  */
 class RandomCore {
   _cache = {};
+  /**
+   * 建立實例：先綁定原型方法，再由 `_init()` 解析底層亂數產生器 (RNG)
+   * Create an instance: bind prototype methods first, then resolve the underlying RNG in `_init()`
+   *
+   * 先綁定再初始化，可確保整個 `_init()` 流程（含子類別覆寫的方法）都保有正確的 `this`
+   * Binding before initialization keeps the right `this` throughout `_init()` (including subclass overrides)
+   *
+   * @param rng - 底層亂數產生器 (RNG) / the underlying RNG
+   * @param argv - 轉交 `_init()` 的額外參數 / extra arguments forwarded to `_init()`
+   */
   constructor(rng, ...argv) {
     autoBindMethods(this);
     this._init(rng, ...argv);
@@ -75,6 +85,14 @@ class RandomCore {
       // @ts-ignore
       expect.expect(rng).instanceof(rngAbstract.RNG);
     }
+    /**
+     * TODO: 未傳入 `rng` 時 `_init()` 仍會呼叫 `use(undefined)`，而 `use()` 對任何輸入都執行
+     * `expect(rng).instanceof(RNG)` 驗證；需確認 `@lazy-random/expect` 對 `undefined` 的行為，
+     * 因為這可能與類別文件所述「預設以 Math.random 為底層」相衝突
+     * TODO: `_init()` still calls `use(undefined)` when `rng` is omitted, while `use()` asserts
+     * `expect(rng).instanceof(RNG)` for any input; verify how `@lazy-random/expect` treats `undefined`,
+     * since it may contradict the class doc claiming Math.random as the default
+     */
     this.use(rng);
   }
   /**
@@ -113,9 +131,30 @@ class RandomCore {
   srand(...argv) {
     return this.seed(...argv).next();
   }
+  /**
+   * 複製目前實例（可指定新的種子 (Seed)）
+   * Clone the current instance (optionally with a new seed)
+   *
+   * `RandomCore` 本體不提供實作，交由子類別決定如何複製
+   * `RandomCore` itself provides no implementation; subclasses decide how to clone
+   *
+   * @param seed - 新實例使用的種子 (Seed) / seed for the new instance
+   * @throws 恆拋出 `not implemented` / always throws `not implemented`
+   */
   clone(seed, ...args) {
     throw new Error(`not implemented`);
   }
+  /**
+   * 切換底層亂數產生器 (RNG)
+   * Switch the underlying RNG
+   *
+   * 任何輸入都會先經 `expect()` 驗證，非 `RNG` 實例會拋出驗證錯誤
+   * Every input is validated by `expect()` first; a non-`RNG` value throws a validation error
+   *
+   * @param rng - 新的 `RNG` 實例 / the new `RNG` instance
+   * @param args - 目前未使用，保留給子類別覆寫 / currently unused, reserved for subclass overrides
+   * @returns 回傳自身以便鏈式呼叫 (Chain) / returns `this` for chaining
+   */
   use(rng, ...args) {
     // @ts-ignore
     expect.expect(rng).instanceof(rngAbstract.RNG);
@@ -214,6 +253,13 @@ class RandomCore {
   byte(toStr) {
     return this.dfByte(toStr)();
   }
+  /**
+   * 取得建立「隨機位元組 (Byte)」分佈的函式；`toStr` 決定產出字串或數字
+   * Get a function that builds a random byte distribution; `toStr` decides string vs. number output
+   *
+   * @param toStr - `true` 時產出字串 / produce a string when `true`
+   */
+
   dfByte(toStr) {
     return this._memoize('byte', Distributions.dfUniformByte, toStr);
   }
@@ -226,6 +272,14 @@ class RandomCore {
   bytes(size = 1, toStr) {
     return this.dfBytes(size, toStr)();
   }
+  /**
+   * 取得建立「隨機位元組 (Byte) 序列」分佈的函式；`size` 為每次產生的數量
+   * Get a function that builds a random byte sequence distribution; `size` is the amount produced per call
+   *
+   * @param size - 每次產生的位元組數 / number of bytes per call
+   * @param toStr - `true` 時產出字串陣列 / produce an array of strings when `true`
+   */
+
   dfBytes(size = 1, toStr) {
     return this._memoize('bytes', Distributions.dfUniformBytes, size, toStr);
   }
@@ -237,11 +291,27 @@ class RandomCore {
   randomBytes(size) {
     return Buffer.from(this.bytes(size));
   }
+  /**
+   * 取得建立 `Buffer` 位元組序列的分佈函式
+   * Get a function that builds a distribution producing a `Buffer` of bytes
+   *
+   * @param size - 每次產生的位元組數 / number of bytes per call
+   */
   dfRandomBytes(size) {
     let fn = this.dfBytes(size);
     let warp = () => () => Buffer.from(fn());
     return this._memoize('dfRandomBytes', warp, size);
   }
+  /**
+   * 依字元集 (Alphabet) 產生隨機字串 ID，並立即回傳結果
+   * Generate a random string ID from an alphabet and return it immediately
+   *
+   * 多載 (Overload)：可只傳入長度，或傳入字元集搭配長度
+   * Overloads: pass a length only, or an alphabet together with a length
+   *
+   * @param char - 字元集來源：`ENUM_ALPHABET`、字串、`Buffer`，為數字時視為長度 / alphabet source: `ENUM_ALPHABET`, string, or `Buffer`; a number is treated as the length
+   * @param size - 產生的字串長度 / length of the generated string
+   */
   charID(char, size) {
     return Distributions.dfCharID(this, char, size)();
   }
@@ -265,12 +335,33 @@ class RandomCore {
   dfCharID(char, size) {
     return this._memoize('dfCharID', Distributions.dfCharID, char, size);
   }
+  /**
+   * 產生 UUID v4 字串並立即回傳
+   * Generate a UUID v4 string and return it immediately
+   *
+   * @param toUpperCase - 是否回傳大寫 (Uppercase) / whether to return uppercase
+   */
   uuidv4(toUpperCase) {
     return this.dfUuidv4(toUpperCase)();
   }
+  /**
+   * 取得建立 UUID v4 分佈的函式
+   * Get a function that builds a UUID v4 distribution
+   *
+   * @param toUpperCase - 是否回傳大寫 (Uppercase) / whether to return uppercase
+   */
   dfUuidv4(toUpperCase) {
     return this._memoize('uuidv4', Distributions.dfUuidV4, toUpperCase);
   }
+  /**
+   * 取得陣列中的隨機索引 (Index)，立即回傳結果
+   * Get random indices from an array and return the result immediately
+   *
+   * @param arr - 目標陣列 / target array
+   * @param size - 取得的索引數量 / number of indices to draw
+   * @param start - 起始位置（含）/ start position (inclusive)
+   * @param end - 結束位置 / end position
+   */
   arrayIndex(arr, size = 1, start = 0, end) {
     return this.dfArrayIndex(arr, size, start, end)();
   }
@@ -282,9 +373,29 @@ class RandomCore {
   dfArrayIndex(arr, size = 1, start = 0, end) {
     return this._memoizeFake('dfArrayIndex', Distributions.dfArrayIndex, arr, size, start, end);
   }
+  /**
+   * TODO: `size` 參數未被使用（呼叫 `dfArrayIndexOne()` 時未轉交），疑似 bug；依規範僅記錄、不修改邏輯
+   * TODO: the `size` parameter is unused (not forwarded to `dfArrayIndexOne()`); suspected bug, recorded only, logic untouched
+   *
+   * 取得單一隨機索引 (Index)，立即回傳結果
+   * Get a single random index and return it immediately
+   *
+   * @param arr - 目標陣列 / target array
+   * @param size - 目前未生效（見上方 TODO）/ currently ineffective (see TODO above)
+   * @param start - 起始位置（含）/ start position (inclusive)
+   * @param end - 結束位置 / end position
+   */
   arrayIndexOne(arr, size = 1, start = 0, end) {
     return this.dfArrayIndexOne(arr, start, end)();
   }
+  /**
+   * 取得建立「單一隨機索引 (Index)」分佈的函式，不使用快取 (Cache)
+   * Get a function that builds a single random index distribution, without using the cache
+   *
+   * @param arr - 目標陣列 / target array
+   * @param start - 起始位置（含）/ start position (inclusive)
+   * @param end - 結束位置 / end position
+   */
   dfArrayIndexOne(arr, start = 0, end) {
     return this._memoizeFake('dfArrayIndexOne', Distributions.dfArrayIndexOne, arr, start, end);
   }
@@ -296,6 +407,15 @@ class RandomCore {
   arrayItem(arr, size = 1, start = 0, end) {
     return this.dfArrayItem(arr, size, start, end)();
   }
+  /**
+   * 取得建立「隨機陣列元素序列」分佈的函式
+   * Get a function that builds a distribution producing a sequence of random array elements
+   *
+   * @param arr - 目標陣列 / target array
+   * @param size - 取得的元素數量 / number of elements to draw
+   * @param start - 起始位置（含）/ start position (inclusive)
+   * @param end - 結束位置 / end position
+   */
   dfArrayItem(arr, size = 1, start = 0, end) {
     const fn = this.dfArrayIndex(arr, size, start, end);
     return () => {
@@ -305,9 +425,25 @@ class RandomCore {
       }, []);
     };
   }
+  /**
+   * 取得單一隨機陣列元素，立即回傳結果
+   * Get a single random array element and return it immediately
+   *
+   * @param arr - 目標陣列 / target array
+   * @param start - 起始位置（含）/ start position (inclusive)
+   * @param end - 結束位置 / end position
+   */
   arrayItemOne(arr, start = 0, end) {
     return this.dfArrayItemOne(arr, start, end)();
   }
+  /**
+   * 取得建立「單一隨機陣列元素」分佈的函式
+   * Get a function that builds a single random array element distribution
+   *
+   * @param arr - 目標陣列 / target array
+   * @param start - 起始位置（含）/ start position (inclusive)
+   * @param end - 結束位置 / end position
+   */
   dfArrayItemOne(arr, start = 0, end) {
     const fn = this.dfArrayIndexOne(arr, start, end);
     return () => arr[fn()];
@@ -320,9 +456,26 @@ class RandomCore {
   arrayShuffle(arr, overwrite) {
     return this._memoizeFake('dfArrayShuffle', Distributions.dfArrayShuffle, arr, overwrite)();
   }
+  /**
+   * 取得建立「洗牌 (Shuffle)」分佈的函式，可選擇是否覆寫原陣列
+   * Get a function that builds a shuffle distribution, optionally overwriting the original array
+   *
+   * @param arr - 目標陣列 / target array
+   * @param overwrite - 是否覆寫原陣列 / whether to overwrite the original array
+   */
   dfArrayShuffle(arr, overwrite) {
     return this._callDistributions(Distributions.dfArrayShuffle, arr, overwrite);
   }
+  /**
+   * 連續不重複地取得陣列元素，立即回傳結果
+   * Draw consecutively unique array elements and return the result immediately
+   *
+   * @param arr - 目標陣列 / target array
+   * @param limit - 允許連續取樣的次數上限 / maximum number of consecutive draws
+   * @param loop - 超過上限時是否循環重來 / whether to restart when the limit is exceeded
+   * @param fnRandIndex - 自訂索引取得方式 / custom index getter
+   * @param fnOutOfLimit - 超過上限時的處理回呼，預設行為由 `dfArrayUnique()` 決定 / callback invoked when the limit is exceeded; the default behavior is decided by `dfArrayUnique()`
+   */
   arrayUnique(arr, limit, loop, fnRandIndex, fnOutOfLimit) {
     return this.dfArrayUnique(arr, limit, loop, fnRandIndex, fnOutOfLimit)();
   }
@@ -481,6 +634,14 @@ class RandomCore {
   dfPareto(alpha = 1) {
     return Distributions.dfPareto(this, alpha);
   }
+  /**
+   * 依權重 (Weight) 從陣列或物件隨機取得一個項目，立即回傳結果
+   * Randomly pick one item from an array or object by weight and return it immediately
+   *
+   * @param arr - 陣列或物件輸入 / array or object input
+   * @param options - 取樣選項 (Options)，可含自訂權重取得方式 / sampling options, may include a custom weight getter
+   * @param argv - 額外參數，轉交 `dfItemByWeight()` / extra arguments forwarded to `dfItemByWeight()`
+   */
   itemByWeight(arr, options, ...argv) {
     return this.dfItemByWeight(arr, options, ...argv)();
   }
@@ -539,12 +700,42 @@ class RandomCore {
   sumInt(size, sum, min, max, limit) {
     return this.dfSumInt(size, sum, min, max, limit)();
   }
+  /**
+   * 取得建立「指定總和的隨機整數列」分佈的函式，行為同 `sumInt()`
+   * Get a function that builds a distribution of random integers with a target sum; same behavior as `sumInt()`
+   *
+   * @param size - 整數的個數 / number of integers
+   * @param sum - 目標總和 / target sum
+   * @param min - 單一數值下界（含）/ lower bound per value (inclusive)
+   * @param max - 單一數值上界 / upper bound per value
+   * @param limit - 重試次數上限 / maximum number of retries
+   */
   dfSumInt(size, sum, min, max, limit) {
     return this._memoize('sumInt', Distributions.dfRandSumInt, size, sum, min, max, limit);
   }
+  /**
+   * 產生總和為指定值的隨機浮點數列，立即回傳結果
+   * Produce random floating point numbers that add up to a target sum, returning the result immediately
+   *
+   * @param size - 浮點數的個數 / number of floats
+   * @param sum - 目標總和 / target sum
+   * @param min - 單一數值下界（含）/ lower bound per value (inclusive)
+   * @param max - 單一數值上界 / upper bound per value
+   * @param fractionDigits - 保留的小數位數 / number of fraction digits to keep
+   */
   sumFloat(size, sum, min, max, fractionDigits) {
     return this.dfSumFloat(size, sum, min, max, fractionDigits)();
   }
+  /**
+   * 取得建立「指定總和的隨機浮點數列」分佈的函式，行為同 `sumFloat()`
+   * Get a function that builds a distribution of random floats with a target sum; same behavior as `sumFloat()`
+   *
+   * @param size - 浮點數的個數 / number of floats
+   * @param sum - 目標總和 / target sum
+   * @param min - 單一數值下界（含）/ lower bound per value (inclusive)
+   * @param max - 單一數值上界 / upper bound per value
+   * @param fractionDigits - 保留的小數位數 / number of fraction digits to keep
+   */
   dfSumFloat(size, sum, min, max, fractionDigits) {
     return this._memoize('sumFloat', Distributions.dfRandSumFloat, size, sum, min, max, fractionDigits);
   }
@@ -579,6 +770,13 @@ class RandomCore {
   _memoizeFake(label, getter, ...args) {
     return getter(this, ...args);
   }
+  /**
+   * 不經任何快取 (Cache)，直接以傳入參數建立分佈
+   * Build a distribution from the given arguments without any caching
+   *
+   * @param getter - 分佈建立函式 / the distribution builder
+   * @param args - 交給分佈建立函式的參數 / arguments passed to the builder
+   */
   _callDistributions(getter, ...args) {
     return getter(this, ...args);
   }

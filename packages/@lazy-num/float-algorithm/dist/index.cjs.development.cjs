@@ -4,6 +4,13 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const MATH_POW_2_32 = /*#__PURE__*/Math.pow(2, 32);
 
+/**
+ * mulberry32 演算法：以單一 32 位元整數為狀態的偽亂數產生器 (PRNG)。
+ * mulberry32: a PRNG that keeps its state in a single 32-bit integer.
+ *
+ * @param n 初始狀態 initial state
+ * @returns 每次呼叫回傳 [0, 1) 浮點數的抽樣函式 a thunk returning [0, 1) floats
+ */
 function df_mulberry32(n) {
   n |= 0;
   return () => {
@@ -14,6 +21,13 @@ function df_mulberry32(n) {
   };
 }
 
+/**
+ * splitmix32 演算法：以單一 32 位元整數為狀態、經 TestU01 測試的偽亂數產生器 (PRNG)。
+ * splitmix32: a PRNG with a single 32-bit state that passes TestU01 tests.
+ *
+ * @param n 初始狀態 initial state
+ * @returns 每次呼叫回傳 [0, 1) 浮點數的抽樣函式 a thunk returning [0, 1) floats
+ */
 function df_splitmix32(n) {
   n |= 0;
   return () => {

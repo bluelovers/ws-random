@@ -1,9 +1,62 @@
 import { IRNGLike } from '@lazy-random/rng-abstract';
 
+/**
+ * 依亂數產生器 (RNG) 回傳 `0 ～ len - 1` 的隨機索引 (Random Index)。
+ * Return a random index from `0` to `len - 1` using the given RNG.
+ *
+ * 以 `Math.floor()` 取整，等機率 (Uniform) 切分 `[0, len)` 區間。
+ * `Math.floor()` divides `[0, len)` into equal-probability buckets.
+ *
+ * @param random 實作 `IRNGLike` 的亂數產生器 / An RNG implementing `IRNGLike`
+ * @param len 索引長度，通常為陣列 (Array) 長度 / The index length, usually an array length
+ * @returns 隨機索引 / A random index
+ */
 export declare function randIndex(random: IRNGLike, len: number): number;
+/**
+ * 在 `[start, end)` 區間內回傳取整後的隨機索引 (Random Index)。
+ * Return a floored random index within `[start, end)`.
+ *
+ * 與 `randIndex()` 的差別在於支援任意起訖，方便做區間抽樣 (Range Sampling)。
+ * Unlike `randIndex()`, this accepts arbitrary bounds for range sampling.
+ *
+ * @param random 實作 `IRNGLike` 的亂數產生器 / An RNG implementing `IRNGLike`
+ * @param start 起始值（含，Inclusive）/ Start value, inclusive
+ * @param end 結束值（不含，Exclusive）/ End value, exclusive
+ * @returns 取整後的隨機索引 / A floored random index
+ */
 export declare function randIndexWithRange(random: IRNGLike, start: number, end: number): number;
+/**
+ * 回傳 `[min, max)` 區間內的浮點數 (Float)。
+ * Return a float within the `[min, max)` range.
+ *
+ * 先以 `max - min` 決定跨度 (Span)，再平移至 `min`，可處理負數與非零下界。
+ * Scales by `max - min` then offsets by `min`, supporting negative values and non-zero lower bounds.
+ *
+ * @param random 實作 `IRNGLike` 的亂數產生器 / An RNG implementing `IRNGLike`
+ * @param min 下界 (Lower Bound)，含於結果 / Lower bound, included
+ * @param max 上界 (Upper Bound)，不含於結果 / Upper bound, excluded
+ * @returns 區間內的浮點數 / A float within the range
+ */
 export declare function float(random: IRNGLike, min: number, max: number): number;
+/**
+ * 回傳 `[min, max]`（含端點，Inclusive）區間內的整數 (Integer)。
+ * Return an integer in the inclusive range `[min, max]`.
+ *
+ * 以 `max + 1` 轉成半開區間 (Half-open Interval) 後取整，確保上界也能被抽中。
+ * Shifts to a half-open interval with `max + 1` so the upper bound can be drawn as well.
+ *
+ * @param random 實作 `IRNGLike` 的亂數產生器 / An RNG implementing `IRNGLike`
+ * @param min 下界 (Lower Bound)，含於結果 / Lower bound, included
+ * @param max 上界 (Upper Bound)，含於結果 / Upper bound, included
+ * @returns 區間內的整數 / An integer within the range
+ */
 export declare function int(random: IRNGLike, min: number, max: number): number;
+/**
+ * 彙整 `randIndex`、`float`、`int` 的預設導出 (Default Export) 集合，
+ * 便於以屬性 (Property) 方式一次取得常用分布工具。
+ * Default export bundling `randIndex`, `float`, and `int` for property-style access
+ * to the common distribution utilities.
+ */
 declare const UtilDistributions: {
 	randIndex: typeof randIndex;
 	float: typeof float;

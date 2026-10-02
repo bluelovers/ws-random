@@ -34,17 +34,56 @@ exports.BYTE_TO_HEX_TO_LOWER_CASE = /*#__PURE__*/Object.freeze(exports.BYTE_TO_H
 // @ts-ignore
 exports.BYTE_TO_HEX_TO_UPPER_CASE = /*#__PURE__*/Object.freeze(exports.BYTE_TO_HEX_TO_UPPER_CASE);
 
+/**
+ * 將單一位元組 (Byte) 轉為兩碼大寫十六進制字串 (Hex String)。
+ * Convert a single byte to a two-digit uppercase hex string.
+ *
+ * 查表 (Lookup) 而非執行期轉換，回傳快取的唯讀字串。
+ * Uses a lookup table instead of runtime conversion, returning a cached read-only string.
+ *
+ * @param byte 0～255 的位元組值 / A byte value from 0 to 255
+ * @returns 大寫十六進制字串 / The uppercase hex string
+ */
 function stringifyByte(byte) {
   return exports.BYTE_TO_HEX_TO_UPPER_CASE[byte];
 }
+/**
+ * 將位元組陣列 (Byte Array) 依序轉為十六進制 (Hex) 字串陣列。
+ * Convert a byte array into an array of hex strings in order.
+ *
+ * @param arr 位元組數值陣列 / An array of byte values
+ * @returns 十六進制字串陣列 / An array of hex strings
+ */
 function toHexArray(arr) {
   return arr.map(stringifyByte);
 }
 
+/**
+ * 將參數陣列 (Arguments Array) 轉為字串，作為快取 (Cache) 的鍵 (Key)。
+ * Turn an arguments array into a string used as a cache key.
+ *
+ * 以 `;` 分隔各參數；`Array.prototype.join` 會把 `null`/`undefined` 視為空字串，
+ * 相同外觀的參數可能產生相同鍵，屬已知限制。
+ * Joins arguments with `;`; `Array.prototype.join` treats `null`/`undefined` as empty
+ * strings, so visually different arguments may collide into the same key (known limitation).
+ *
+ * @param args 參數陣列 / The arguments array
+ * @returns 字串鍵 / The string key
+ */
 function hashArgv(args) {
   return String(args.join(';'));
 }
 
+/**
+ * 判斷輸入是否未設定 (Unset)，即 `undefined` 或 `null`。
+ * Check whether a value is unset, i.e. `undefined` or `null`.
+ *
+ * 以型別守衛 (Type Guard) 回傳，讓呼叫端在判斷後能直接收窄 (Narrow) 型別。
+ * Returns a type guard so callers can narrow the type after the check.
+ *
+ * @param n 待檢查的值 / The value to check
+ * @returns 是否為 `undefined` 或 `null` / Whether the value is `undefined` or `null`
+ */
 function isUnset(n) {
   return typeof n === 'undefined' || n === null;
 }
