@@ -91,7 +91,7 @@
     "build:index": "ts-node ./test/script/build-cache.ts",
     "build-minify": "ts-node ./test/script/minify",
     "build:tsc": "tsc",
-    "postbuild": "ynpx build-ts-file -- ../@lazy-random/seed-data/src/random-seed-str.data.ts && git add ./src/util/random-seed-str.data.ts ./src/util/random-seed-str.data.js",
+    "postbuild_": "ynpx build-ts-file -- ../@lazy-random/seed-data/src/random-seed-str.data.ts && git add ./src/util/random-seed-str.data.ts ./src/util/random-seed-str.data.js",
     "preversion": "pnpm run test",
     "version": "echo version",
     "postversion": "echo postversion",
@@ -115,7 +115,8 @@
     "@lazy-random/random-core": "^2.0.3",
     "@lazy-random/rng-abstract": "^1.0.13",
     "@lazy-random/rng-factory": "^1.0.10",
-    "core-decorators": "^0.20.0"
+    "core-decorators": "^0.20.0",
+    "tslib": "^2.8.1"
   },
   "devDependencies": {
     "@lazy-assert/check-basic": "^1.0.14",

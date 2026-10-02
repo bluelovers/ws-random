@@ -25,6 +25,7 @@ export class Random<R extends RNG = RNG> extends RandomCore<R>
 		if (rng)
 		{
 			//ow(rng, ow.object.instanceOf(RNG))
+			// @ts-ignore
 			expect(rng).instanceof(RNG)
 		}
 

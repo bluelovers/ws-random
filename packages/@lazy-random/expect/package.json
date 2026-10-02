@@ -78,10 +78,10 @@
     "chai": "^6.3.0",
     "chai-asserttype-extra": "^2.0.15"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "devDependencies": {
     "@types/chai": "^5.2.3"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

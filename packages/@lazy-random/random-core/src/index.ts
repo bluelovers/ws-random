@@ -105,6 +105,7 @@ export class RandomCore<R extends RNG = RNG>
 		if (rng)
 		{
 			//ow(rng, ow.object.instanceOf(RNG))
+			// @ts-ignore
 			expect(rng).instanceof(RNG)
 		}
 		else
@@ -179,6 +180,7 @@ export class RandomCore<R extends RNG = RNG>
 
 	use(rng: any, ...args: any[])
 	{
+		// @ts-ignore
 		expect(rng).instanceof(RNG)
 
 		this._rng = rng

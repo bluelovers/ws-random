@@ -123,6 +123,9 @@
     "sort-package-json": "yarn-tool sort",
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
+  "devDependencies": {
+    "@lazy-random/seed-algorithm": "^1.0.6"
+  },
   "publishConfig": {
     "access": "public"
   }
