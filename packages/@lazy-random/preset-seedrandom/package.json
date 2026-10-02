@@ -58,9 +58,7 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "random-extra": "^5.0.2"
-  },
-  "peerDependencies": {
+    "random-extra": "^5.0.2",
     "seedrandom": "*"
   },
   "publishConfig": {

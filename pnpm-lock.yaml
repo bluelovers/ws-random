@@ -711,9 +711,6 @@ importers:
       core-decorators:
         specifier: ^0.20.0
         version: 0.20.0
-      seedrandom:
-        specifier: '*'
-        version: 3.0.5
     devDependencies:
       '@lazy-assert/check-basic':
         specifier: ^1.0.14

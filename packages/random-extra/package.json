@@ -117,10 +117,6 @@
     "@lazy-random/rng-factory": "^1.0.10",
     "core-decorators": "^0.20.0"
   },
-  "peerDependencies": {
-    "seedrandom": "*"
-  },
-  "gitHead": "e61d528c84bd3340a59f288f65d20bfb2906c905",
   "devDependencies": {
     "@lazy-assert/check-basic": "^1.0.14",
     "@lazy-num/sum": "^1.0.10",
@@ -129,5 +125,6 @@
     "@lazy-random/preset-seedrandom": "^1.0.11",
     "@lazy-random/seed-token": "^1.0.13",
     "@lazy-random/simple-wrap": "^1.0.10"
-  }
+  },
+  "gitHead": "e61d528c84bd3340a59f288f65d20bfb2906c905"
 }
