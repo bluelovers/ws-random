@@ -123,7 +123,6 @@
     "@lazy-num/sum": "^1.0.10",
     "@lazy-random/array-algorithm": "^1.0.14",
     "@lazy-random/original-math-random": "^1.0.10",
-    "@lazy-random/preset-seedrandom": "^1.0.11",
     "@lazy-random/seed-token": "^1.0.13",
     "@lazy-random/simple-wrap": "^1.0.10"
   },

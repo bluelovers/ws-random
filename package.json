@@ -130,6 +130,7 @@
     "@bluelovers/fast-glob": "^3.0.4",
     "@git-lazy/spawn": "^2.0.3",
     "@git-lazy/subtree": "^2.0.3",
+    "@lazy-random/preset-seedrandom": "^1.0.11",
     "benchmark": "^2.1.4",
     "bluebird": "^3.7.2",
     "check-types": "^11.2.3",
