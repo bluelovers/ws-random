@@ -5,6 +5,15 @@
     "noImplicitAny": false,
     "noUnusedParameters": false,
     "emitDeclarationOnly": false,
-    "noEmit": false
-  }
+    "noEmit": false,
+    "moduleResolution": "bundler",
+    "rootDir": "src",
+    "types": [
+      "node"
+    ]
+  },
+  "exclude": [
+    "dist",
+    "test"
+  ]
 }

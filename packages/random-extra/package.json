@@ -78,44 +78,56 @@
     "test": "test"
   },
   "scripts": {
-    "coverage": "yarn run test -- --coverage",
-    "pretest_": "yarn run build",
+    "coverage": "pnpm run test -- --coverage",
+    "pretest_": "pnpm run build",
     "test": "jest --maxConcurrency=1 --maxWorkers=1",
     "test:jest": "jest --passWithNoTests",
-    "test:jest:coverage": "yarn run test:jest -- --coverage",
-    "test:jest:snapshot": "yarn run test:jest -- -u",
-    "test:snapshot": "yarn run test -- -u",
+    "test:jest:coverage": "pnpm run test:jest -- --coverage",
+    "test:jest:snapshot": "pnpm run test:jest -- -u",
+    "test:snapshot": "pnpm run test -- -u",
     "test:tsd": "ynpx tsd",
     "posttest": "git commit -m \"build: update seed\" ./src/util/random-seed-str.data.* & echo posttest",
-    "build_": "yarn run build:index",
+    "build_": "pnpm run build:index",
     "build:index": "ts-node ./test/script/build-cache.ts",
-    "build-minify": "npx -r fast-glob -r fs-extra -r uglify-es -r ts-node ts-node ./test/script/minify",
+    "build-minify": "ts-node ./test/script/minify",
     "build:tsc": "tsc",
     "postbuild": "ynpx build-ts-file -- ../@lazy-random/seed-data/src/random-seed-str.data.ts && git add ./src/util/random-seed-str.data.ts ./src/util/random-seed-str.data.js",
-    "preversion": "yarn run test",
+    "preversion": "pnpm run test",
     "version": "echo version",
     "postversion": "echo postversion",
-    "prepublish": "yarn run postpublishOnly:add",
+    "prepublish": "pnpm run postpublishOnly:add",
     "prepublishOnly": "echo prepublishOnly",
     "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
-    "prepublishOnly:update": "yarn run ncu && yarn run sort-package-json",
+    "prepublishOnly:update": "pnpm run ncu && pnpm run sort-package-json",
     "publish": "echo publish",
     "postpublish": "echo postpublish",
     "postpublishOnly": "echo postpublishOnly",
-    "postpublishOnly:add": "yarn-tool root run postpublishOnly:add random-extra",
-    "benchmark": "npx ts-node ./test/benchmark/simple.perf.ts && npx ts-node ./test/benchmark/base.perf.ts && npx ts-node ./test/benchmark/random-id.perf.ts",
-    "ncu": "ynpx --quiet yarn-tool -- ncu -u",
-    "sort-package-json": "ynpx --quiet yarn-tool -- sort",
+    "postpublishOnly:add": "pnpm -w run postpublishOnly:add random-extra",
+    "benchmark": "ts-node ./test/benchmark/simple.perf.ts && ts-node ./test/benchmark/base.perf.ts && ts-node ./test/benchmark/random-id.perf.ts",
+    "ncu": "yarn-tool ncu -u",
+    "sort-package-json": "yarn-tool sort",
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
     "@lazy-random/clone-class": "^1.0.11",
+    "@lazy-random/expect": "^1.0.15",
+    "@lazy-random/generators-seedrandom": "^1.0.10",
     "@lazy-random/random-core": "^2.0.3",
-    "@lazy-random/rng-factory": "^1.0.10"
+    "@lazy-random/rng-abstract": "^1.0.13",
+    "@lazy-random/rng-factory": "^1.0.10",
+    "core-decorators": "^0.20.0"
   },
   "peerDependencies": {
     "seedrandom": "*"
   },
-  "packageManager": "yarn@^1.22.11",
-  "gitHead": "e61d528c84bd3340a59f288f65d20bfb2906c905"
+  "gitHead": "e61d528c84bd3340a59f288f65d20bfb2906c905",
+  "devDependencies": {
+    "@lazy-assert/check-basic": "^1.0.14",
+    "@lazy-num/sum": "^1.0.10",
+    "@lazy-random/array-algorithm": "^1.0.14",
+    "@lazy-random/original-math-random": "^1.0.10",
+    "@lazy-random/preset-seedrandom": "^1.0.11",
+    "@lazy-random/seed-token": "^1.0.13",
+    "@lazy-random/simple-wrap": "^1.0.10"
+  }
 }

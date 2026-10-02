@@ -5,6 +5,15 @@
     "noImplicitAny": false,
     "noUnusedParameters": false,
     "allowUnusedLabels": true,
-    "noUnusedLocals": false
-  }
+    "noUnusedLocals": false,
+    "moduleResolution": "bundler",
+    "rootDir": "src",
+    "types": [
+      "node"
+    ]
+  },
+  "exclude": [
+    "dist",
+    "test"
+  ]
 }

@@ -3,6 +3,15 @@
   "compilerOptions": {
     "importHelpers": true,
     "noUnusedParameters": false,
-    "noImplicitAny": false
-  }
+    "noImplicitAny": false,
+    "moduleResolution": "bundler",
+    "rootDir": "src",
+    "types": [
+      "node"
+    ]
+  },
+  "exclude": [
+    "dist",
+    "test"
+  ]
 }
