@@ -2,6 +2,8 @@
 
 > Seedable random number generator supporting many common distributions.
 
+支援種子 (Seed) 的亂數產生器，提供多種常見分佈 (Distribution) 的抽樣函式。
+
 [![NPM](https://img.shields.io/npm/v/random-extra.svg)](https://www.npmjs.com/package/random-extra)
 [![Build Status](https://travis-ci.org/bluelovers/random.svg?branch=master)](https://travis-ci.org/bluelovers/random)
 
@@ -9,7 +11,7 @@
 
 Welcome to the most **random** module on npm! 😜
 
-## Highlights
+## 特色 (Highlights)
 
 > **Wellcome send PR for more API support or performance up**
 
@@ -17,7 +19,7 @@ Welcome to the most **random** module on npm! 😜
 -   Seedable based on entropy or user input
 -   Plugin support for different pseudo random number generators (PRNGs)
 -   Sample from many common distributions
-    -   dfUniform, dfNormal, dfPoisson, dfBernoulli, etc see [distributions](src/distributions)
+    -   dfUniform, dfNormal, dfPoisson, dfBernoulli, etc, see the `df` prefix methods
 -   Validates all user input via [chai](https://www.chaijs.com)
 -   Integrates with [seedrandom](https://github.com/davidbau/seedrandom)
 -   Supports **node.js** >= **7** and browser _(if here has no break)_
@@ -30,17 +32,16 @@ Welcome to the most **random** module on npm! 😜
   when run in loop, or wanna performance, pls use (**distribution function**) version
 - remove `shortid`
 
-## Install
+## 安裝 (Installation)
 
 ```bash
 npm install random-extra seedrandom
 ```
 
-[benchmark](docs/benchmark)
+-   [benchmark 效能基準測試](docs/benchmark)
+-   [random.d.ts 型別宣告](src/random.d.ts)
 
-[random.d.ts](src/random.d.ts)
-
-## Usage (new)
+## 使用方式 (Usage, 新版 API)
 
 ```ts
 import random from 'random-extra';
@@ -52,7 +53,7 @@ import random = require('random-extra');
 -   `.use` will change current random object
 -   `.newUse` will create new random object
 
-### preset
+### 設定 (preset)
 
 #### seedrandom
 
@@ -62,6 +63,9 @@ use [seedrandom](https://github.com/davidbau/seedrandom) for make seed-able
 import seedrandom from 'random-extra/preset/seedrandom';
 import { seedrandom } from 'random-extra/preset/seedrandom';
 ```
+
+> **注意 (Note)**：目前 `random-extra@5.0.2` 的套件目錄內並沒有 `preset/` 子路徑，
+> 若上述 import 無法解析，請改用下段「other way make seedrandom」的 `random.newUse('seedrandom', ...)` 寫法。
 
 > when use seedrandom, srand will able use
 
@@ -85,7 +89,7 @@ random.newUse(_seedrandom('hello.', { entropy: false }))
 random.newUse(_seedrandom('hello.'))
 ```
 
-## Usage (original)
+## 使用方式 (Usage, 主要 API)
 
 ```js
 const random = require('random-extra')
@@ -189,6 +193,39 @@ Type: `function (rng)`
 
 * * *
 
+#### Random 實例方法 (Instance Methods)
+
+-   `clone(seed?, opts?, ...args?)` — 建立一個新的 `Random` 實例，可指定新種子 (Seed)。
+-   `use(rng)` — 替換**目前**實例的底層亂數產生器 (PRNG)，並回傳自身，可串接使用。
+-   `newUse(rng, ...args)` — 以指定的亂數產生器**另外建立**一個新的 `Random` 實例。
+-   `cloneUse(rng, ...args)` — 先 `clone` 出新實例，再對新實例執行 `use`。
+
+```js
+// use：就地替換目前的 PRNG
+random.use('xor128', 'foobar')
+
+// newUse：保留目前實例，回傳新的實例
+const r2 = random.newUse('seedrandom', 'hello.', null)
+
+// cloneUse：複製後再換 PRNG
+const r3 = random.cloneUse('seedrandom', 'kittyfoo')
+```
+
+#### 分佈函式 (Distribution Functions)
+
+所有 `df` 前綴的分佈函式皆回傳一個 thunk（無參數函式），重複呼叫可高效取得同一分佈的連續亂數樣本：
+
+| 分佈 (Distribution) | 方法 |
+| --- | --- |
+| 均勻分佈 (Uniform) | `dfUniform`、`dfUniformInt`、`dfUniformBoolean` |
+| 常態分佈 (Normal) | `dfNormal`、`dfLogNormal` |
+| 伯努利分佈 (Bernoulli) | `dfBernoulli`、`dfBinomial`、`dfGeometric` |
+| 泊松分佈 (Poisson) | `dfPoisson`、`dfExponential` |
+| 其他 (Misc) | `dfIrwinHall`、`dfBates`、`dfPareto` |
+| 陣列／權重 (Array / Weighted) | `dfItemByWeight`、`dfItemByWeightUnique`、`dfArrayShuffle`、`dfArrayUnique`、`dfSumInt`、`dfSumFloat` 等 |
+
+> 完整清單請見 [src/random.d.ts](src/random.d.ts) 與 `RandomCore` 的型別宣告。
+
 ## Todo
 
 -   Distributions
@@ -230,7 +267,22 @@ Type: `function (rng)`
     -   [ ] full test suite
     -   [x] initial release!
 
-## Related
+## 開發 (Development)
+
+在 monorepo 根目錄或本套件目錄下執行：
+
+```bash
+pnpm run test
+pnpm run test:jest
+pnpm run build:tsc
+pnpm run benchmark
+```
+
+## 變更日誌 (Changelog)
+
+請見 [CHANGELOG.md](./CHANGELOG.md)。
+
+## 相關資源 (Related)
 
 -   [d3-random](https://github.com/d3/d3-random) - D3's excellent random number generation library.
 -   [seedrandom](https://github.com/davidbau/seedrandom) - Seedable pseudo random number generator.

@@ -110,12 +110,14 @@
   },
   "dependencies": {
     "@lazy-random/clone-class": "^1.0.11",
+    "@lazy-random/cross-crypto": "^1.0.11",
     "@lazy-random/expect": "^1.0.15",
     "@lazy-random/generators-seedrandom": "^1.0.10",
     "@lazy-random/random-core": "^2.0.3",
     "@lazy-random/rng-abstract": "^1.0.13",
     "@lazy-random/rng-factory": "^1.0.10",
     "core-decorators": "^0.20.0",
+    "num-is-zero": "^1.0.13",
     "tslib": "^2.8.1"
   },
   "devDependencies": {

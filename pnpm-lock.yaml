@@ -693,12 +693,6 @@ importers:
 
   packages/anybase2: {}
 
-  packages/local_cross_test:
-    dependencies:
-      tslib:
-        specifier: '>=2.8.1'
-        version: 2.8.1
-
   packages/num-in-delta:
     dependencies:
       big.js:
@@ -712,6 +706,9 @@ importers:
       '@lazy-random/clone-class':
         specifier: ^1.0.11
         version: link:../@lazy-random/clone-class
+      '@lazy-random/cross-crypto':
+        specifier: ^1.0.11
+        version: link:../@lazy-random/cross-crypto
       '@lazy-random/expect':
         specifier: ^1.0.15
         version: link:../@lazy-random/expect
@@ -730,6 +727,9 @@ importers:
       core-decorators:
         specifier: ^0.20.0
         version: 0.20.0
+      num-is-zero:
+        specifier: ^1.0.13
+        version: link:../num-is-zero
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
