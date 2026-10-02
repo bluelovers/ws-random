@@ -6,7 +6,6 @@ var generatorsFunction = require('@lazy-random/generators-function');
 var seedrandom = require('seedrandom');
 var cloneClass = require('@lazy-random/clone-class');
 
-var RNGSeedRandomOptions = seedrandom.seedRandomOptions;
 const defaultOptions = /*#__PURE__*/Object.freeze({
   entropy: true
 });
@@ -91,7 +90,6 @@ class RNGSeedRandom extends generatorsFunction.RNGFunction {
 }
 
 exports.RNGSeedRandom = RNGSeedRandom;
-exports.RNGSeedRandomOptions = RNGSeedRandomOptions;
 exports.default = RNGSeedRandom;
 exports.defaultOptions = defaultOptions;
 //# sourceMappingURL=index.cjs.development.cjs.map

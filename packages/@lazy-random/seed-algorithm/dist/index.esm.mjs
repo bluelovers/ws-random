@@ -67,9 +67,8 @@ function seedFromStringOrNumberOrArray(r, e) {
   const l = [ null != r ? r : [] ].flat().slice(0, 4);
   for (let r = 0; r < e; r++) {
     const e = typeof l[r];
-    var u;
     "string" === e ? l[r] = df_xfnv1a(`${l[r]}#sfc32#${r}`)() : "number" !== e ? (a = !0, 
-    l[r] = void 0) : l[r] = Math.abs(l[r]), l[r] || (0 !== l[r] || a ? (null !== (u = n) && void 0 !== u || (n = doubleToIEEE(t())), 
+    l[r] = void 0) : l[r] = Math.abs(l[r]), l[r] || (0 !== l[r] || a ? (null != n || (n = doubleToIEEE(t())), 
     l[r] = n.pop(), n.length || (n = void 0)) : a = !0);
   }
   return l;

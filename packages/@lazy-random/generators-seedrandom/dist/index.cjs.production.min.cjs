@@ -4,9 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: !0
 });
 
-var e = require("@lazy-random/generators-function"), t = require("seedrandom"), s = require("@lazy-random/clone-class"), r = t.seedRandomOptions;
+var e = require("@lazy-random/generators-function"), t = require("seedrandom"), s = require("@lazy-random/clone-class");
 
-const n = /*#__PURE__*/ Object.freeze({
+const r = /*#__PURE__*/ Object.freeze({
   entropy: !0
 });
 
@@ -23,7 +23,7 @@ class RNGSeedRandom extends e.RNGFunction {
   }
   _init_check(e, t, ...s) {}
   _init(e, t, ...s) {
-    this._opts = this._opts || Object.assign({}, n), this._seedrandom = this.__generator(...s), 
+    this._opts = this._opts || Object.assign({}, r), this._seedrandom = this.__generator(...s), 
     super._init(e, t, ...s);
   }
   _NAME="seedrandom";
@@ -66,6 +66,5 @@ class RNGSeedRandom extends e.RNGFunction {
   }
 }
 
-exports.RNGSeedRandom = RNGSeedRandom, exports.RNGSeedRandomOptions = r, exports.default = RNGSeedRandom, 
-exports.defaultOptions = n;
+exports.RNGSeedRandom = RNGSeedRandom, exports.default = RNGSeedRandom, exports.defaultOptions = r;
 //# sourceMappingURL=index.cjs.production.min.cjs.map

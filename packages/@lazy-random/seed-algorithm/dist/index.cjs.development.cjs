@@ -163,8 +163,7 @@ function seedFromStringOrNumberOrArray(seedInput, size) {
       if (seed[i] === 0 && !exists_zero) {
         exists_zero = true;
       } else {
-        var _s;
-        (_s = s) !== null && _s !== void 0 ? _s : s = doubleToIEEE(originalMathRandom._MathRandom());
+        s !== null && s !== void 0 ? s : s = doubleToIEEE(originalMathRandom._MathRandom());
         // @ts-ignore
         seed[i] = s.pop();
         if (!s.length) {

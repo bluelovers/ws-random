@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import { ENUM_ALPHABET, IArrayInput02 } from '@lazy-random/shared-lib';
 import Distributions from '@lazy-random/distributions';
 import { RNG } from '@lazy-random/rng-abstract';
@@ -142,8 +141,8 @@ export declare class RandomCore<R extends RNG = RNG> {
      *
      * @param size
      */
-    randomBytes(size?: number): Buffer;
-    dfRandomBytes(size?: number): () => Buffer;
+    randomBytes(size?: number): Buffer<ArrayBuffer>;
+    dfRandomBytes(size?: number): () => Buffer<ArrayBuffer>;
     charID(size: number): string;
     charID(char?: ENUM_ALPHABET | string | Buffer | number, size?: number): string;
     /**
@@ -210,7 +209,7 @@ export declare class RandomCore<R extends RNG = RNG> {
     /**
      * @see arrayFill
      */
-    dfArrayFill(min?: number, max?: number, float?: boolean): <T extends import("@lazy-random/df-array").IArrayInput02<number>>(arr: T) => T;
+    dfArrayFill(min?: number, max?: number, float?: boolean): <T extends IArrayInput02<number>>(arr: T) => T;
     /**
      * Generates a [Continuous dfUniform distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)).
      *

@@ -1,4 +1,4 @@
-const t = /^[+-]?\d+$/, r = /^[+-]?(?:\d+)?\.\d+$/, n = new RegExp(t.source + "|" + r.source);
+const t = /^[+-]?\d+$/, r = /^[+-]?(?:\d+)?\.\d+$/, n = /*#__PURE__*/ new RegExp(t.source + "|" + r.source);
 
 function isIntString(r) {
   return "string" == typeof r && t.test(r);

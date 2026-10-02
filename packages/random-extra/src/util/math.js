@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.get_range_by_size_sum = exports.fixZero = void 0;
+exports.fixZero = void 0;
+exports.get_range_by_size_sum = get_range_by_size_sum;
 const num_is_zero_1 = require("num-is-zero");
 Object.defineProperty(exports, "fixZero", { enumerable: true, get: function () { return num_is_zero_1.fixZero; } });
 const sum_1 = require("@lazy-num/sum");
@@ -40,5 +41,4 @@ function get_range_by_size_sum(size, sum) {
         resultArray,
     };
 }
-exports.get_range_by_size_sum = get_range_by_size_sum;
 //# sourceMappingURL=math.js.map

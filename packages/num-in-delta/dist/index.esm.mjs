@@ -12,15 +12,13 @@ function numberInDeltaUnsafe001(n, e, u = .05) {
   return e - u <= n && n <= e + u;
 }
 
-var e;
+let e = /*#__PURE__*/ function(n) {
+  return n[n.GT = 1] = "GT", n[n.EQ = 0] = "EQ", n[n.LT = -1] = "LT", n;
+}({});
 
-function numberInDelta(e, u, t = .05) {
-  return 1 !== new n(u).sub(e).abs().cmp(t);
+function numberInDelta(u, t, r = .05) {
+  return new n(t).sub(u).abs().cmp(r) !== e.GT;
 }
-
-!function(n) {
-  n[n.GT = 1] = "GT", n[n.EQ = 0] = "EQ", n[n.LT = -1] = "LT";
-}(e || (e = {}));
 
 export { e as EnumBigComparison, numberInDelta as default, numberInDelta, numberInDeltaUnsafe001, numberInDeltaUnsafe002, subAbs };
 //# sourceMappingURL=index.esm.mjs.map

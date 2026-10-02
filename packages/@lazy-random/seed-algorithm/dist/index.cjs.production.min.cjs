@@ -65,9 +65,8 @@ exports.df_v3b = function df_v3b(t, r, e, n) {
   const o = [ null != r ? r : [] ].flat().slice(0, 4);
   for (let r = 0; r < e; r++) {
     const e = typeof o[r];
-    var l;
     "string" === e ? o[r] = df_xfnv1a(`${o[r]}#sfc32#${r}`)() : "number" !== e ? (a = !0, 
-    o[r] = void 0) : o[r] = Math.abs(o[r]), o[r] || (0 !== o[r] || a ? (null !== (l = n) && void 0 !== l || (n = doubleToIEEE(t._MathRandom())), 
+    o[r] = void 0) : o[r] = Math.abs(o[r]), o[r] || (0 !== o[r] || a ? (null != n || (n = doubleToIEEE(t._MathRandom())), 
     o[r] = n.pop(), n.length || (n = void 0)) : a = !0);
   }
   return o;

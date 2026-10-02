@@ -1,4 +1,4 @@
-const t = Math.pow(2, 32);
+const t = /*#__PURE__*/ Math.pow(2, 32);
 
 function df_mulberry32(n) {
   return n |= 0, () => {

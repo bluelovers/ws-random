@@ -72,6 +72,7 @@ class RandomCore {
   }
   _init(rng, ...argv) {
     if (rng) {
+      // @ts-ignore
       expect.expect(rng).instanceof(rngAbstract.RNG);
     }
     this.use(rng);
@@ -116,6 +117,7 @@ class RandomCore {
     throw new Error(`not implemented`);
   }
   use(rng, ...args) {
+    // @ts-ignore
     expect.expect(rng).instanceof(rngAbstract.RNG);
     this._rng = rng;
     return this;

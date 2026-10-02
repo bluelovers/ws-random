@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: !0
 });
 
-const t = Math.pow(2, 32);
+const t = /*#__PURE__*/ Math.pow(2, 32);
 
 exports.df_mulberry32 = function df_mulberry32(e) {
   return e |= 0, () => {
