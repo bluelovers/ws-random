@@ -24,8 +24,8 @@ export declare class Random<R extends RNG = RNG> extends RandomCore<R> {
      * @param {object} [opts] - Optional config for new RNG options.
      * @return {Random}
      */
-    clone(seed?: any, opts?: any, ...args: any[]): Random<R>;
-    clone<T extends RNG>(seed?: any, opts?: any, ...args: any[]): Random<T>;
+    clone(seed?: unknown, opts?: unknown, ...args: unknown[]): Random<R>;
+    clone<T extends RNG>(seed?: unknown, opts?: unknown, ...args: unknown[]): Random<T>;
     /**
      * Sets the underlying pseudorandom number generator used via
      * either an instance of `seedrandom`, a custom instance of RNG
@@ -44,15 +44,15 @@ export declare class Random<R extends RNG = RNG> extends RandomCore<R> {
      *
      * @param {...*} args
      */
-    use(arg0: IRNGFactoryType, ...args: any[]): this;
-    newUse(arg0: 'seedrandom', ...args: any[]): Random<RNGSeedRandom>;
-    newUse<T extends RNG>(arg0: T, ...args: any[]): Random<T>;
-    newUse(arg0: IRNGFactoryType, ...args: any[]): Random<R | any>;
+    use(arg0: IRNGFactoryType, ...args: unknown[]): this;
+    newUse(arg0: 'seedrandom', ...args: unknown[]): Random<RNGSeedRandom>;
+    newUse<T extends RNG>(arg0: T, ...args: unknown[]): Random<T>;
+    newUse(arg0: IRNGFactoryType, ...args: unknown[]): Random<R | any>;
     /**
      * clone current Random and use
      */
-    cloneUse<T extends RNG>(arg0: IRNGFactoryType, ...args: any[]): Random<T>;
-    cloneUse(arg0: IRNGFactoryType, ...args: any[]): Random<R | any>;
+    cloneUse<T extends RNG>(arg0: IRNGFactoryType, ...args: unknown[]): Random<T>;
+    cloneUse(arg0: IRNGFactoryType, ...args: unknown[]): Random<R | any>;
     protected static default: typeof Random;
     readonly Random: typeof Random;
     static Random: typeof Random;

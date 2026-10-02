@@ -12,6 +12,8 @@ export declare class LibRMathRngWithRandom extends IRNG {
     _setup(): void;
     internal_unif_rand(): number;
 }
+export declare function _isLibRMathRNGLike<R extends IRNG>(rng: R | unknown): rng is R;
+export declare function _isExtendsOfLibRMathRNGLike<R extends IRNG>(rng: R | unknown): rng is R;
 export declare class RandomRngWithLibRMath<R extends IRNG> extends RNG {
     protected _rng: R;
     protected _seedable: boolean;

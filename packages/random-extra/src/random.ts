@@ -3,7 +3,7 @@ import { expect } from '@lazy-random/expect';
 import { RNGSeedRandom } from '@lazy-random/generators-seedrandom';
 import { RNG } from '@lazy-random/rng-abstract'
 import { RNGFactory, IRNGFactoryType } from '@lazy-random/rng-factory'
-import { autobind, deprecate } from 'core-decorators';
+import { autobind } from 'core-decorators';
 import { getClass } from '@lazy-random/clone-class';
 import { RandomCore } from '@lazy-random/random-core';
 
@@ -51,8 +51,8 @@ export class Random<R extends RNG = RNG> extends RandomCore<R>
 	 * @param {object} [opts] - Optional config for new RNG options.
 	 * @return {Random}
 	 */
-	override clone(seed?, opts?, ...args): Random<R>
-	override clone<T extends RNG>(seed?, opts?, ...args): Random<T>
+	override clone(seed?: unknown, opts?: unknown, ...args: unknown[]): Random<R>
+	override clone<T extends RNG>(seed?: unknown, opts?: unknown, ...args: unknown[]): Random<T>
 	/**
 	 * Creates a new `Random` instance, optionally specifying parameters to
 	 * set a new seed.
@@ -63,7 +63,7 @@ export class Random<R extends RNG = RNG> extends RandomCore<R>
 	 * @param {object} [opts] - Optional config for new RNG options.
 	 * @return {Random}
 	 */
-	override clone<T>(seed?: T, ...args)
+	override clone<T>(seed?: T, ...args: unknown[])
 	{
 
 		let o: typeof Random;
@@ -100,20 +100,20 @@ export class Random<R extends RNG = RNG> extends RandomCore<R>
 	 *
 	 * @param {...*} args
 	 */
-	override use(arg0: IRNGFactoryType, ...args): this
+	override use(arg0: IRNGFactoryType, ...args: unknown[]): this
 	{
 		this._rng = RNGFactory(arg0, ...args)
 
 		return this as any;
 	}
 
-	override newUse(arg0: 'seedrandom', ...args): Random<RNGSeedRandom>
-	override newUse<T extends RNG>(arg0: T, ...args): Random<T>
-	override newUse(arg0: IRNGFactoryType, ...args): Random<R | any>
+	override newUse(arg0: 'seedrandom', ...args: unknown[]): Random<RNGSeedRandom>
+	override newUse<T extends RNG>(arg0: T, ...args: unknown[]): Random<T>
+	override newUse(arg0: IRNGFactoryType, ...args: unknown[]): Random<R | any>
 	/**
 	 * create new Random and use
 	 */
-	override newUse(arg0: IRNGFactoryType, ...args)
+	override newUse(arg0: IRNGFactoryType, ...args: unknown[])
 	{
 		let o: typeof Random = getClass(Random, this)
 
@@ -123,9 +123,9 @@ export class Random<R extends RNG = RNG> extends RandomCore<R>
 	/**
 	 * clone current Random and use
 	 */
-	override cloneUse<T extends RNG>(arg0: IRNGFactoryType, ...args): Random<T>
-	override cloneUse(arg0: IRNGFactoryType, ...args): Random<R | any>
-	override cloneUse(arg0: IRNGFactoryType, ...args)
+	override cloneUse<T extends RNG>(arg0: IRNGFactoryType, ...args: unknown[]): Random<T>
+	override cloneUse(arg0: IRNGFactoryType, ...args: unknown[]): Random<R | any>
+	override cloneUse(arg0: IRNGFactoryType, ...args: unknown[])
 	{
 		let o = this.clone();
 		o.use(arg0, ...args);

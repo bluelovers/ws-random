@@ -74,7 +74,7 @@
   ],
   "scripts": {
     "test": "pnpm run test:since",
-    "test:all": "yarn-tool ws run test --concurrency 1",
+    "test:all": "dotenv --override -- yarn-tool ws run test --concurrency 1",
     "test:jest:clearCache": "jest --clearCache",
     "test:since": "pnpm run test:all --since",
     "test:snapshot:all": "yarn-tool ws run test:snapshot --concurrency 1",
