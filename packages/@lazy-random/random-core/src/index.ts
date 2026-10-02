@@ -1,12 +1,78 @@
 /// <reference types="node" />
 import { expect } from '@lazy-random/expect';
-import { autobind, deprecate } from 'core-decorators';
 import { ENUM_ALPHABET, IArrayInput02, hashArgv } from '@lazy-random/shared-lib';
 import Distributions from '@lazy-random/distributions';
 import { RNG, IRNGLike } from '@lazy-random/rng-abstract'
 import { IArrayUniqueOutOfLimitCallback, IRandIndex } from '@lazy-random/df-array';
 import { IObjectInput, IWeightEntrie, IGetWeight, IOptionsItemByWeight } from '@lazy-random/df-item-by-weight';
 import { ITSArrayListMaybeReadonly } from 'ts-type/lib/type/base';
+
+/**
+ * 取代 `core-decorators` 的 `@autobind` 裝飾器
+ *
+ * 將原型鏈上的方法綁定到實例，使方法脫離實例呼叫時仍保有正確的 `this`
+ * Bind prototype methods onto the instance, so detached calls keep the right `this`
+ *
+ * 從最衍生的原型開始遍歷，子類別覆寫的方法會優先被綁定
+ * Walk from the most derived prototype so subclass overrides win
+ *
+ * getter/setter（例如 `random`、`rng`）與非方法屬性會被略過
+ * Accessors (e.g. `random`, `rng`) and non-method properties are skipped
+ */
+function autoBindMethods<T extends object>(instance: T): T
+{
+	const bound = new Set<string>();
+	let proto = Object.getPrototypeOf(instance);
+
+	while (proto && proto !== Object.prototype)
+	{
+		for (const key of Object.getOwnPropertyNames(proto))
+		{
+			if (key === 'constructor' || bound.has(key))
+			{
+				continue;
+			}
+
+			// 最衍生的原型已提供此 key，父層不再處理，避免用父層方法蓋掉子類別的覆寫
+			// The most derived prototype already provides this key; do not let an
+			// ancestor method shadow a subclass override
+			bound.add(key);
+
+			const desc = Object.getOwnPropertyDescriptor(proto, key);
+
+			// 保留 getter/setter 原本的行為（例如子類別的 @autobind 惰性綁定）
+			// Keep accessors as-is (e.g. lazy binding from a subclass `@autobind`)
+			if (!desc || typeof desc.value !== 'function')
+			{
+				continue;
+			}
+
+			Object.defineProperty(instance, key, {
+				configurable: true,
+				enumerable: desc.enumerable,
+				writable: true,
+				value: desc.value.bind(instance),
+			});
+		}
+
+		proto = Object.getPrototypeOf(proto);
+	}
+
+	return instance;
+}
+
+/**
+ * 取代 `core-decorators` 的 `@deprecate` 裝飾器
+ *
+ * 於方法被呼叫時輸出棄用警告 / Emit a deprecation warning when the method is called
+ */
+function deprecateWarning(method: string, message: string)
+{
+	if (typeof console !== 'undefined' && typeof console.warn === 'function')
+	{
+		console.warn(`DEPRECATION WARNING: '${method}' is deprecated. ${message}.`)
+	}
+}
 
 /**
  * Seedable random number generator supporting many common distributions.
@@ -18,7 +84,6 @@ import { ITSArrayListMaybeReadonly } from 'ts-type/lib/type/base';
  *
  * @param {Rng|function} [rng=Math.random] - Underlying pseudorandom number generator.
  */
-@autobind
 export class RandomCore<R extends RNG = RNG>
 {
 	protected _patch: typeof Math.random;
@@ -30,6 +95,8 @@ export class RandomCore<R extends RNG = RNG>
 
 	constructor(rng?: R, ...argv: any[])
 	{
+		autoBindMethods(this)
+
 		this._init(rng, ...argv)
 	}
 
@@ -139,9 +206,10 @@ export class RandomCore<R extends RNG = RNG>
 	 * Patches `Math.random` with this Random instance's PRNG.
 	 * @deprecated unsafe method
 	 */
-	@deprecate('not recommended use')
 	patch()
 	{
+		deprecateWarning('patch', 'not recommended use')
+
 		if (this._patch)
 		{
 			throw new Error('Math.random already patched')
@@ -157,9 +225,10 @@ export class RandomCore<R extends RNG = RNG>
 	 *
 	 * @deprecated unsafe method
 	 */
-	@deprecate('not recommended use')
 	unpatch()
 	{
+		deprecateWarning('unpatch', 'not recommended use')
+
 		if (this._patch)
 		{
 			Math.random = this._patch
