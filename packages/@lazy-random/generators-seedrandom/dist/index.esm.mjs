@@ -4,7 +4,9 @@ import t from "seedrandom";
 
 import { cloneClass as s } from "@lazy-random/clone-class";
 
-const r = Object.freeze({
+var r = t.seedRandomOptions;
+
+const n = /*#__PURE__*/ Object.freeze({
   entropy: !0
 });
 
@@ -21,7 +23,7 @@ class RNGSeedRandom extends e {
   }
   _init_check(e, t, ...s) {}
   _init(e, t, ...s) {
-    this._opts = this._opts || Object.assign({}, r), this._seedrandom = this.__generator(...s), 
+    this._opts = this._opts || Object.assign({}, n), this._seedrandom = this.__generator(...s), 
     super._init(e, t, ...s);
   }
   _NAME="seedrandom";
@@ -64,5 +66,5 @@ class RNGSeedRandom extends e {
   }
 }
 
-export { RNGSeedRandom, RNGSeedRandom as default, r as defaultOptions };
+export { RNGSeedRandom, r as RNGSeedRandomOptions, RNGSeedRandom as default, n as defaultOptions };
 //# sourceMappingURL=index.esm.mjs.map

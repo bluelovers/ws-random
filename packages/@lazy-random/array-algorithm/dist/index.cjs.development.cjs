@@ -14,9 +14,7 @@ function swapAlgorithm(arr, overwrite, fn = arrayRandIndex.arrayRandIndexByLengt
     let cache = ret[i];
     ret[i] = ret[idx];
     ret[idx] = cache;
-    //console.log(i, idx, ret);
   }
-
   return ret;
 }
 function swapAlgorithm2(arr, overwrite, fn = arrayRandIndex.arrayRandIndexByLength) {
@@ -39,15 +37,10 @@ function swapAlgorithm2(arr, overwrite, fn = arrayRandIndex.arrayRandIndexByLeng
     let cache = ret[i];
     ret[i] = ret[idx];
     ret[idx] = cache;
-    //console.log(i, idx, ret);
   }
-
   return ret;
 }
 
-/**
- * back to original interval
- */
 function array_rebase(ret_b, n_diff, min, max) {
   let b_sum = 0;
   let bool;

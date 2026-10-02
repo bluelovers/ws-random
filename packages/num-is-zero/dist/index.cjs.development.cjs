@@ -2,9 +2,6 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-/**
- * Created by user on 2020/6/27.
- */
 function isZero(val) {
   return val === 0 || val === -0;
 }

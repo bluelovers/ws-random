@@ -9,7 +9,6 @@ var dfUniform = require('@lazy-random/df-uniform');
 var sharedLib = require('@lazy-random/shared-lib');
 
 function _handleStartEnd(arr, start = 0, end, disableCheck) {
-  var _end;
   const len = arr.length;
   const enableCheck = !disableCheck;
   start = Math.max(Math.floor(start), 0);
@@ -17,7 +16,7 @@ function _handleStartEnd(arr, start = 0, end, disableCheck) {
     end = Math.floor(end);
     enableCheck && expect.expect(end).integer.gt(start + 1, `END(${end}) should greater than START(${start}+1)`).gt(0);
   }
-  end = Math.min(Math.max(0, (_end = end) !== null && _end !== void 0 ? _end : len), len);
+  end = Math.min(Math.max(0, end !== null && end !== void 0 ? end : len), len);
   enableCheck && expect.expect(end, `END(${end})`).integer.gte(0).lte(len);
   enableCheck && expect.expect(start, `START(${start})`).integer.gte(0).lt(end);
   return {
@@ -27,9 +26,6 @@ function _handleStartEnd(arr, start = 0, end, disableCheck) {
   };
 }
 
-/**
- * return index number form array
- */
 function dfArrayIndexOne(random, arr, start = 0, end) {
   ({
     start,
@@ -43,9 +39,6 @@ function dfArrayIndexOne(random, arr, start = 0, end) {
   };
 }
 
-/**
- * return index list form array
- */
 function dfArrayIndex(random, arr, size = 1, start = 0, end) {
   expect.expect(size, `size`).integer.gt(0);
   expect.expect(arr.length, `arr.length`).integer.gt(0);
@@ -60,9 +53,6 @@ function dfArrayIndex(random, arr, size = 1, start = 0, end) {
   expect.expect(size_runtime, `size_runtime(${size_runtime})`).lte(size).gt(0);
   size = size_runtime;
   return () => {
-    /**
-     * reset size_runtime
-     */
     size_runtime = size;
     let ids = [];
     let prev;
@@ -114,8 +104,6 @@ function dfArrayUnique(random, arr, limit, loop, fnRandIndex, fnOutOfLimit) {
   limit = Math.min(limit || clone.length, clone.length);
   fnRandIndex = fnRandIndex || randIndex;
   loop = !!loop;
-  //ow(limit, ow.number.integer.gt(0));
-  //ow(fnRandIndex, ow.function);
   expect.expect(limit, `limit`).integer.gt(0);
   expect.expect(fnRandIndex, `fnRandIndex`).function();
   let count = limit;

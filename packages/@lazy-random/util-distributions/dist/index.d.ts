@@ -1,7 +1,5 @@
-export interface IRNGLike {
-	next(): number;
-	seed?(seed?: any, opts?: any, ...argv: any[]): any;
-}
+import { IRNGLike } from '@lazy-random/rng-abstract';
+
 export declare function randIndex(random: IRNGLike, len: number): number;
 export declare function randIndexWithRange(random: IRNGLike, start: number, end: number): number;
 export declare function float(random: IRNGLike, min: number, max: number): number;

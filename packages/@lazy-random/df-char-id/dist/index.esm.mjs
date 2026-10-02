@@ -1,19 +1,23 @@
-import t from "uni-string";
+import r from "uni-string";
 
-import { expect as r } from "@lazy-random/expect";
+import { ENUM_ALPHABET as t } from "@lazy-random/shared-lib";
 
-import { floatToString as o } from "@lazy-num/float-to-string";
+import { expect as o } from "@lazy-random/expect";
 
-import { randIndex as n } from "@lazy-random/util-distributions";
+import { floatToString as n } from "@lazy-num/float-to-string";
 
-function dfCharID(e, i, f) {
-  "number" == typeof i && ("number" == typeof f ? i = o(i) : [f, i] = [ i, null ]), 
-  r(f = f || 8).integer.gt(0), i || (i = "ModuleSymbhasOwnPr0123456789ABCDEFGHIJKLNQRTUVWXYZcfgijkpqtvxz0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
-  const m = t.create(i).split(""), a = m.length;
-  return r(m).lengthOf.gt(1), () => {
-    let t = f, r = [];
-    for (;t--; ) r.push(m[n(e, a)]);
-    return r.join("");
+import { randIndex as e } from "@lazy-random/util-distributions";
+
+function dfCharID(i, m, a) {
+  "number" == typeof m && ("number" == typeof a ? m = n(m) : [a, m] = [ m, null ]), 
+  o(a = a || 8).integer.gt(0), m || (m = t.DEFAULT);
+  const f = r.create(m).split(""), l = f.length;
+  o(f).lengthOf.gt(1);
+  const randIndex$1 = () => e(i, l);
+  return () => {
+    let r = a, t = [];
+    for (;r--; ) t.push(f[randIndex$1()]);
+    return t.join("");
   };
 }
 

@@ -17,9 +17,6 @@ class RNGCore {
   get seedable() {
     return null;
   }
-  next() {
-    throw new ReferenceError("RNG.next must be overridden");
-  }
   seed(e, r, ...t) {}
   clone(e, r, ...t) {
     throw new ReferenceError("RNG.clone must be overridden");

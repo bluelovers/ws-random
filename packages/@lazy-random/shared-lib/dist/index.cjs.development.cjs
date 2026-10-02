@@ -2,8 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-exports.ENUM_ALPHABET = void 0;
-(function (ENUM_ALPHABET) {
+let ENUM_ALPHABET = /*#__PURE__*/function (ENUM_ALPHABET) {
   ENUM_ALPHABET["NANOID_URL"] = "ModuleSymbhasOwnPr-0123456789ABCDEFGHIJKLNQRTUVWXYZ_cfgijkpqtvxz";
   ENUM_ALPHABET["SHORTID"] = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-";
   ENUM_ALPHABET["SHORTID2"] = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@";
@@ -15,7 +14,8 @@ exports.ENUM_ALPHABET = void 0;
   ENUM_ALPHABET["BASE62"] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
   ENUM_ALPHABET["BASE66"] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-._~";
   ENUM_ALPHABET["BASE71"] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!'()*-._~";
-})(exports.ENUM_ALPHABET || (exports.ENUM_ALPHABET = {}));
+  return ENUM_ALPHABET;
+}({});
 const SUM_DELTA = 0.00000000000005;
 const FLOAT_ENTROPY_BYTES = 7;
 const UINT32_BYTES = 4;
@@ -49,6 +49,7 @@ function isUnset(n) {
   return typeof n === 'undefined' || n === null;
 }
 
+exports.ENUM_ALPHABET = ENUM_ALPHABET;
 exports.FLOAT_ENTROPY_BYTES = FLOAT_ENTROPY_BYTES;
 exports.MATH_POW_2_32 = MATH_POW_2_32;
 exports.SUM_DELTA = SUM_DELTA;

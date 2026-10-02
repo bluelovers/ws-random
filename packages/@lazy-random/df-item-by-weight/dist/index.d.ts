@@ -1,9 +1,6 @@
+import { IRNGLike } from '@lazy-random/rng-abstract';
 import { ITSArrayListMaybeReadonly } from 'ts-type/lib/type/base';
 
-export interface IRNGLike {
-	next(): number;
-	seed?(seed?: any, opts?: any, ...argv: any[]): any;
-}
 export declare function _getWeight(value: number, key: string): number;
 export interface IGetWeight<T extends unknown, K extends string = string> {
 	(value: T, key: K, ...argv: any[]): number;

@@ -5,7 +5,7 @@ function sum_1_to_n(r) {
 }
 
 function num_array_sum(u) {
-  return r(u.reduce(((r, u) => r + u)));
+  return r(u.reduce((r, u) => r + u));
 }
 
 export { num_array_sum, sum_1_to_n };

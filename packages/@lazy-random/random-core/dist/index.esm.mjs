@@ -1,22 +1,39 @@
-import { __decorate as r, __metadata as t } from "tslib";
-
 import { expect as e } from "@lazy-random/expect";
 
-import { deprecate as n, autobind as i } from "core-decorators";
+import { hashArgv as r } from "@lazy-random/shared-lib";
 
-import { hashArgv as d } from "@lazy-random/shared-lib";
+import t from "@lazy-random/distributions";
 
-import o from "@lazy-random/distributions";
+import { RNG as n } from "@lazy-random/rng-abstract";
 
-import { RNG as s } from "@lazy-random/rng-abstract";
+function deprecateWarning(e, r) {
+  "undefined" != typeof console && "function" == typeof console.warn && console.warn(`DEPRECATION WARNING: '${e}' is deprecated. ${r}.`);
+}
 
-let a = class RandomCore {
+class RandomCore {
   _cache={};
-  constructor(r, ...t) {
-    this._init(r, ...t);
+  constructor(e, ...r) {
+    !function autoBindMethods(e) {
+      const r = new Set;
+      let t = Object.getPrototypeOf(e);
+      for (;t && t !== Object.prototype; ) {
+        for (const n of Object.getOwnPropertyNames(t)) {
+          if ("constructor" === n || r.has(n)) continue;
+          r.add(n);
+          const i = Object.getOwnPropertyDescriptor(t, n);
+          i && "function" == typeof i.value && Object.defineProperty(e, n, {
+            configurable: !0,
+            enumerable: i.enumerable,
+            writable: !0,
+            value: i.value.bind(e)
+          });
+        }
+        t = Object.getPrototypeOf(t);
+      }
+    }(this), this._init(e, ...r);
   }
   _init(r, ...t) {
-    r && e(r).instanceof(s), this.use(r);
+    r && e(r).instanceof(n), this.use(r);
   }
   get rng() {
     return this._rng;
@@ -30,220 +47,215 @@ let a = class RandomCore {
   get rand() {
     return this.next;
   }
-  seed(...r) {
-    return this._rng.seed(...r), this;
+  seed(...e) {
+    return this._rng.seed(...e), this;
   }
   get srandom() {
     return this.srand;
   }
-  srand(...r) {
-    return this.seed(...r).next();
+  srand(...e) {
+    return this.seed(...e).next();
   }
-  clone(r, ...t) {
+  clone(e, ...r) {
     throw new Error("not implemented");
   }
   use(r, ...t) {
-    return e(r).instanceof(s), this._rng = r, this;
+    return e(r).instanceof(n), this._rng = r, this;
   }
-  newUse(r, ...t) {
+  newUse(e, ...r) {
     throw new Error("not implemented");
   }
-  cloneUse(r, ...t) {
+  cloneUse(e, ...r) {
     throw new Error("not implemented");
   }
   patch() {
-    if (this._patch) throw new Error("Math.random already patched");
+    if (deprecateWarning("patch", "not recommended use"), this._patch) throw new Error("Math.random already patched");
     this._patch = Math.random, Math.random = this.dfUniform();
   }
   unpatch() {
-    this._patch && (Math.random = this._patch, delete this._patch);
+    deprecateWarning("unpatch", "not recommended use"), this._patch && (Math.random = this._patch, 
+    delete this._patch);
   }
   next() {
     return this._rng.next();
   }
-  float(r, t, e) {
-    return this.dfUniform(r, t, e)();
+  float(e, r, t) {
+    return this.dfUniform(e, r, t)();
   }
-  int(r = 100, t) {
-    return this.dfUniformInt(r, t)();
+  int(e = 100, r) {
+    return this.dfUniformInt(e, r)();
   }
-  integer(r, t) {
-    return this.int(r, t);
+  integer(e, r) {
+    return this.int(e, r);
   }
-  bool(r) {
-    return this.boolean(r);
+  bool(e) {
+    return this.boolean(e);
   }
-  boolean(r) {
-    return this.dfUniformBoolean(r)();
+  boolean(e) {
+    return this.dfUniformBoolean(e)();
   }
-  byte(r) {
-    return this.dfByte(r)();
+  byte(e) {
+    return this.dfByte(e)();
   }
-  dfByte(r) {
-    return this._memoize("byte", o.dfUniformByte, r);
+  dfByte(e) {
+    return this._memoize("byte", t.dfUniformByte, e);
   }
-  bytes(r = 1, t) {
-    return this.dfBytes(r, t)();
+  bytes(e = 1, r) {
+    return this.dfBytes(e, r)();
   }
-  dfBytes(r = 1, t) {
-    return this._memoize("bytes", o.dfUniformBytes, r, t);
+  dfBytes(e = 1, r) {
+    return this._memoize("bytes", t.dfUniformBytes, e, r);
   }
-  randomBytes(r) {
-    return Buffer.from(this.bytes(r));
+  randomBytes(e) {
+    return Buffer.from(this.bytes(e));
   }
-  dfRandomBytes(r) {
-    let t = this.dfBytes(r);
-    return this._memoize("dfRandomBytes", (() => () => Buffer.from(t())), r);
+  dfRandomBytes(e) {
+    let r = this.dfBytes(e);
+    return this._memoize("dfRandomBytes", () => () => Buffer.from(r()), e);
   }
-  charID(r, t) {
-    return o.dfCharID(this, r, t)();
+  charID(e, r) {
+    return t.dfCharID(this, e, r)();
   }
-  dfCharID(r, t) {
-    return this._memoize("dfCharID", o.dfCharID, r, t);
+  dfCharID(e, r) {
+    return this._memoize("dfCharID", t.dfCharID, e, r);
   }
-  uuidv4(r) {
-    return this.dfUuidv4(r)();
+  uuidv4(e) {
+    return this.dfUuidv4(e)();
   }
-  dfUuidv4(r) {
-    return this._memoize("uuidv4", o.dfUuidV4, r);
+  dfUuidv4(e) {
+    return this._memoize("uuidv4", t.dfUuidV4, e);
   }
-  arrayIndex(r, t = 1, e = 0, n) {
-    return this.dfArrayIndex(r, t, e, n)();
+  arrayIndex(e, r = 1, t = 0, n) {
+    return this.dfArrayIndex(e, r, t, n)();
   }
-  dfArrayIndex(r, t = 1, e = 0, n) {
-    return this._memoizeFake("dfArrayIndex", o.dfArrayIndex, r, t, e, n);
+  dfArrayIndex(e, r = 1, n = 0, i) {
+    return this._memoizeFake("dfArrayIndex", t.dfArrayIndex, e, r, n, i);
   }
-  arrayIndexOne(r, t = 1, e = 0, n) {
-    return this.dfArrayIndexOne(r, e, n)();
+  arrayIndexOne(e, r = 1, t = 0, n) {
+    return this.dfArrayIndexOne(e, t, n)();
   }
-  dfArrayIndexOne(r, t = 0, e) {
-    return this._memoizeFake("dfArrayIndexOne", o.dfArrayIndexOne, r, t, e);
+  dfArrayIndexOne(e, r = 0, n) {
+    return this._memoizeFake("dfArrayIndexOne", t.dfArrayIndexOne, e, r, n);
   }
-  arrayItem(r, t = 1, e = 0, n) {
-    return this.dfArrayItem(r, t, e, n)();
+  arrayItem(e, r = 1, t = 0, n) {
+    return this.dfArrayItem(e, r, t, n)();
   }
-  dfArrayItem(r, t = 1, e = 0, n) {
-    const i = this.dfArrayIndex(r, t, e, n);
-    return () => i().reduce((function(t, e) {
-      return t.push(r[e]), t;
-    }), []);
+  dfArrayItem(e, r = 1, t = 0, n) {
+    const i = this.dfArrayIndex(e, r, t, n);
+    return () => i().reduce(function(r, t) {
+      return r.push(e[t]), r;
+    }, []);
   }
-  arrayItemOne(r, t = 0, e) {
-    return this.dfArrayItemOne(r, t, e)();
+  arrayItemOne(e, r = 0, t) {
+    return this.dfArrayItemOne(e, r, t)();
   }
-  dfArrayItemOne(r, t = 0, e) {
-    const n = this.dfArrayIndexOne(r, t, e);
-    return () => r[n()];
+  dfArrayItemOne(e, r = 0, t) {
+    const n = this.dfArrayIndexOne(e, r, t);
+    return () => e[n()];
   }
-  arrayShuffle(r, t) {
-    return this._memoizeFake("dfArrayShuffle", o.dfArrayShuffle, r, t)();
+  arrayShuffle(e, r) {
+    return this._memoizeFake("dfArrayShuffle", t.dfArrayShuffle, e, r)();
   }
-  dfArrayShuffle(r, t) {
-    return this._callDistributions(o.dfArrayShuffle, r, t);
+  dfArrayShuffle(e, r) {
+    return this._callDistributions(t.dfArrayShuffle, e, r);
   }
-  arrayUnique(r, t, e, n, i) {
-    return this.dfArrayUnique(r, t, e, n, i)();
+  arrayUnique(e, r, t, n, i) {
+    return this.dfArrayUnique(e, r, t, n, i)();
   }
-  dfArrayUnique(r, t, e, n, i) {
-    return o.dfArrayUnique(this, r, t, e, n, i);
+  dfArrayUnique(e, r, n, i, o) {
+    return t.dfArrayUnique(this, e, r, n, i, o);
   }
-  arrayFill(r, t, e, n) {
-    return this.dfArrayFill(t, e, n)(r);
+  arrayFill(e, r, t, n) {
+    return this.dfArrayFill(r, t, n)(e);
   }
-  dfArrayFill(r, t, e) {
-    return this._memoize("dfArrayFill", o.dfArrayFill, r, t, e);
+  dfArrayFill(e, r, n) {
+    return this._memoize("dfArrayFill", t.dfArrayFill, e, r, n);
   }
-  dfUniform(r, t, e) {
-    return this._memoize("dfUniform", o.dfUniformFloat, r, t, e);
+  dfUniform(e, r, n) {
+    return this._memoize("dfUniform", t.dfUniformFloat, e, r, n);
   }
-  dfUniformInt(r, t) {
-    return this._memoize("dfUniformInt", o.dfUniformInt, r, t);
+  dfUniformInt(e, r) {
+    return this._memoize("dfUniformInt", t.dfUniformInt, e, r);
   }
-  dfUniformBoolean(r) {
-    return this._memoize("dfUniformBoolean", o.dfUniformBoolean, r);
+  dfUniformBoolean(e) {
+    return this._memoize("dfUniformBoolean", t.dfUniformBoolean, e);
   }
-  dfNormal(r, t) {
-    return o.dfNormal(this, r, t);
+  dfNormal(e, r) {
+    return t.dfNormal(this, e, r);
   }
-  dfLogNormal(r, t) {
-    return o.dfLogNormal(this, r, t);
+  dfLogNormal(e, r) {
+    return t.dfLogNormal(this, e, r);
   }
-  dfBernoulli(r) {
-    return o.dfBernoulli(this, r);
+  dfBernoulli(e) {
+    return t.dfBernoulli(this, e);
   }
-  dfBinomial(r, t) {
-    return o.dfBinomial(this, r, t);
+  dfBinomial(e, r) {
+    return t.dfBinomial(this, e, r);
   }
-  dfGeometric(r) {
-    return o.dfGeometric(this, r);
+  dfGeometric(e) {
+    return t.dfGeometric(this, e);
   }
-  dfPoisson(r) {
-    return o.dfPoisson(this, r);
+  dfPoisson(e) {
+    return t.dfPoisson(this, e);
   }
-  dfExponential(r) {
-    return o.dfExponential(this, r);
+  dfExponential(e) {
+    return t.dfExponential(this, e);
   }
-  dfIrwinHall(r = 1) {
-    return o.dfIrwinHall(this, r);
+  dfIrwinHall(e = 1) {
+    return t.dfIrwinHall(this, e);
   }
-  dfBates(r = 1) {
-    return o.dfBates(this, r);
+  dfBates(e = 1) {
+    return t.dfBates(this, e);
   }
-  dfPareto(r = 1) {
-    return o.dfPareto(this, r);
+  dfPareto(e = 1) {
+    return t.dfPareto(this, e);
   }
-  itemByWeight(r, t, ...e) {
-    return this.dfItemByWeight(r, t, ...e)();
+  itemByWeight(e, r, ...t) {
+    return this.dfItemByWeight(e, r, ...t)();
   }
-  dfItemByWeight(r, t, ...e) {
-    return this._callDistributions(o.dfItemByWeight, r, t, ...e);
+  dfItemByWeight(e, r, ...n) {
+    return this._callDistributions(t.dfItemByWeight, e, r, ...n);
   }
-  itemByWeightUnique(r, t, e, ...n) {
-    return this.dfItemByWeightUnique(r, t, e, ...n)();
+  itemByWeightUnique(e, r, t, ...n) {
+    return this.dfItemByWeightUnique(e, r, t, ...n)();
   }
-  dfItemByWeightUnique(r, t, e, ...n) {
-    return this._callDistributions(o.dfItemByWeightUnique, r, t, e, ...n);
+  dfItemByWeightUnique(e, r, n, ...i) {
+    return this._callDistributions(t.dfItemByWeightUnique, e, r, n, ...i);
   }
-  sumInt(r, t, e, n, i) {
-    return this.dfSumInt(r, t, e, n, i)();
+  sumInt(e, r, t, n, i) {
+    return this.dfSumInt(e, r, t, n, i)();
   }
-  dfSumInt(r, t, e, n, i) {
-    return this._memoize("sumInt", o.dfRandSumInt, r, t, e, n, i);
+  dfSumInt(e, r, n, i, o) {
+    return this._memoize("sumInt", t.dfRandSumInt, e, r, n, i, o);
   }
-  sumFloat(r, t, e, n, i) {
-    return this.dfSumFloat(r, t, e, n, i)();
+  sumFloat(e, r, t, n, i) {
+    return this.dfSumFloat(e, r, t, n, i)();
   }
-  dfSumFloat(r, t, e, n, i) {
-    return this._memoize("sumFloat", o.dfRandSumFloat, r, t, e, n, i);
+  dfSumFloat(e, r, n, i, o) {
+    return this._memoize("sumFloat", t.dfRandSumFloat, e, r, n, i, o);
   }
-  _memoize(r, t, ...e) {
-    const n = d(e);
-    let i = this._cache[r];
-    return void 0 !== i && i.key === n || (i = {
-      key: n,
-      distribution: t(this, ...e)
-    }, this._cache[r] = i), i.distribution;
+  _memoize(e, t, ...n) {
+    const i = r(n);
+    let o = this._cache[e];
+    return void 0 !== o && o.key === i || (o = {
+      key: i,
+      distribution: t(this, ...n)
+    }, this._cache[e] = o), o.distribution;
   }
-  _memoizeFake(r, t, ...e) {
-    return t(this, ...e);
-  }
-  _callDistributions(r, ...t) {
+  _memoizeFake(e, r, ...t) {
     return r(this, ...t);
+  }
+  _callDistributions(e, ...r) {
+    return e(this, ...r);
   }
   reset() {
     return this._cache = {}, this;
   }
   get [Symbol.toStringTag]() {
-    var r;
-    return null === (r = this._rng) || void 0 === r ? void 0 : r.name;
+    var e;
+    return null === (e = this._rng) || void 0 === e ? void 0 : e.name;
   }
-};
+}
 
-r([ n("not recommended use"), t("design:type", Function), t("design:paramtypes", []), t("design:returntype", void 0) ], a.prototype, "patch", null), 
-r([ n("not recommended use"), t("design:type", Function), t("design:paramtypes", []), t("design:returntype", void 0) ], a.prototype, "unpatch", null), 
-a = r([ i, t("design:paramtypes", [ Object, Object ]) ], a);
-
-var f = a;
-
-export { a as RandomCore, f as default };
+export { RandomCore, RandomCore as default };
 //# sourceMappingURL=index.esm.mjs.map

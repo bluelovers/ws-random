@@ -9,14 +9,13 @@ import { dfUniformByte as l, dfUniformFloat as a, dfUniformInt as i } from "@laz
 import { isUnset as f } from "@lazy-random/shared-lib";
 
 function _handleStartEnd(t, e = 0, n, l) {
-  var a;
-  const i = t.length, f = !l;
-  return e = Math.max(Math.floor(e), 0), null != n && (n = Math.floor(n), f && r(n).integer.gt(e + 1, `END(${n}) should greater than START(${e}+1)`).gt(0)), 
-  n = Math.min(Math.max(0, null !== (a = n) && void 0 !== a ? a : i), i), f && r(n, `END(${n})`).integer.gte(0).lte(i), 
-  f && r(e, `START(${e})`).integer.gte(0).lt(n), {
+  const a = t.length, i = !l;
+  return e = Math.max(Math.floor(e), 0), null != n && (n = Math.floor(n), i && r(n).integer.gt(e + 1, `END(${n}) should greater than START(${e}+1)`).gt(0)), 
+  n = Math.min(Math.max(0, null != n ? n : a), a), i && r(n, `END(${n})`).integer.gte(0).lte(a), 
+  i && r(e, `START(${e})`).integer.gte(0).lt(n), {
     start: e,
     end: n,
-    len: i
+    len: a
   };
 }
 
@@ -59,7 +58,7 @@ function dfArrayUnique(t, n, l, a, i, f) {
     o = r.slice(), u = l, d = o.length;
   };
   return () => {
-    if (d = o.length, 0 === d || 0 == u--) {
+    if (d = o.length, 0 === d || 0 === u--) {
       let r = a;
       if (f) {
         let t = f(n, l, a, i);

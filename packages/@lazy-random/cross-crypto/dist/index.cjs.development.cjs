@@ -2,9 +2,6 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-/**
- * Created by user on 2018/11/25/025.
- */
 const crossCrypto = /*#__PURE__*/(() => {
   let crypto;
   return () => {
@@ -28,7 +25,6 @@ const crossCrypto = /*#__PURE__*/(() => {
           if (size > 0) {
             _crypto.getRandomValues(rawBytes);
           }
-          // XXX: phantomjs doesn't like a buffer being passed here
           let bytes = Buffer.from(rawBytes.buffer);
           if (typeof cb === 'function') {
             cb(null, bytes);

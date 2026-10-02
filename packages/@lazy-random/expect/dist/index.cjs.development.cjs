@@ -2,10 +2,10 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var _chai = require('chai');
+var chai$1 = require('chai');
 var chaiAsserttypeExtra = require('chai-asserttype-extra');
 
-const chai = /*#__PURE__*/chaiAsserttypeExtra.install(_chai);
+const chai = /*#__PURE__*/chai$1.use(chaiAsserttypeExtra.ChaiPluginAssertType);
 const expect = chai.expect;
 const assert = chai.assert;
 

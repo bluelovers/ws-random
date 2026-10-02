@@ -1,4 +1,4 @@
-const e = Object.freeze({
+const e = /*#__PURE__*/ Object.freeze({
   name: "random-extra",
   version: "3.6.15"
 }), a = e.name, n = e.version;

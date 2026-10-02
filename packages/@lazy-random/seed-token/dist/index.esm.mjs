@@ -23,8 +23,7 @@ function nanoid(n, ...o) {
 let d, u;
 
 function randomSeedStr() {
-  var r, m;
-  return [ nanoid(), null !== (r = d) && void 0 !== r ? r : d = n(o), null !== (m = u) && void 0 !== m ? m : u = n(t), Date.now(), e(a()) ].join("_");
+  return [ nanoid(), null != d ? d : d = n(o), null != u ? u : u = n(t), Date.now(), e(a()) ].join("_");
 }
 
 function hashAny(n, ...r) {

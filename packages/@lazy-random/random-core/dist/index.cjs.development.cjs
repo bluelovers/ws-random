@@ -2,13 +2,58 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var tslib = require('tslib');
 var expect = require('@lazy-random/expect');
-var coreDecorators = require('core-decorators');
 var sharedLib = require('@lazy-random/shared-lib');
 var Distributions = require('@lazy-random/distributions');
 var rngAbstract = require('@lazy-random/rng-abstract');
 
+/// <reference types="node" />
+/**
+ * 取代 `core-decorators` 的 `@autobind` 裝飾器
+ *
+ * 將原型鏈上的方法綁定到實例，使方法脫離實例呼叫時仍保有正確的 `this`
+ * Bind prototype methods onto the instance, so detached calls keep the right `this`
+ *
+ * 從最衍生的原型開始遍歷，子類別覆寫的方法會優先被綁定
+ * Walk from the most derived prototype so subclass overrides win
+ *
+ * getter/setter（例如 `random`、`rng`）與非方法屬性會被略過
+ * Accessors (e.g. `random`, `rng`) and non-method properties are skipped
+ */
+function autoBindMethods(instance) {
+  const bound = new Set();
+  let proto = Object.getPrototypeOf(instance);
+  while (proto && proto !== Object.prototype) {
+    for (const key of Object.getOwnPropertyNames(proto)) {
+      if (key === 'constructor' || bound.has(key)) {
+        continue;
+      }
+      bound.add(key);
+      const desc = Object.getOwnPropertyDescriptor(proto, key);
+      if (!desc || typeof desc.value !== 'function') {
+        continue;
+      }
+      Object.defineProperty(instance, key, {
+        configurable: true,
+        enumerable: desc.enumerable,
+        writable: true,
+        value: desc.value.bind(instance)
+      });
+    }
+    proto = Object.getPrototypeOf(proto);
+  }
+  return instance;
+}
+/**
+ * 取代 `core-decorators` 的 `@deprecate` 裝飾器
+ *
+ * 於方法被呼叫時輸出棄用警告 / Emit a deprecation warning when the method is called
+ */
+function deprecateWarning(method, message) {
+  if (typeof console !== 'undefined' && typeof console.warn === 'function') {
+    console.warn(`DEPRECATION WARNING: '${method}' is deprecated. ${message}.`);
+  }
+}
 /**
  * Seedable random number generator supporting many common distributions.
  *
@@ -19,14 +64,14 @@ var rngAbstract = require('@lazy-random/rng-abstract');
  *
  * @param {Rng|function} [rng=Math.random] - Underlying pseudorandom number generator.
  */
-exports.RandomCore = class RandomCore {
+class RandomCore {
   _cache = {};
   constructor(rng, ...argv) {
+    autoBindMethods(this);
     this._init(rng, ...argv);
   }
   _init(rng, ...argv) {
     if (rng) {
-      //ow(rng, ow.object.instanceOf(RNG))
       expect.expect(rng).instanceof(rngAbstract.RNG);
     }
     this.use(rng);
@@ -54,9 +99,6 @@ exports.RandomCore = class RandomCore {
   get rand() {
     return this.next;
   }
-  /**
-   * initialize new seeds
-   */
   seed(...argv) {
     this._rng.seed(...argv);
     return this;
@@ -67,9 +109,6 @@ exports.RandomCore = class RandomCore {
   get srandom() {
     return this.srand;
   }
-  /**
-   * initialize seeds for rand() to create random numbers
-   */
   srand(...argv) {
     return this.seed(...argv).next();
   }
@@ -81,15 +120,9 @@ exports.RandomCore = class RandomCore {
     this._rng = rng;
     return this;
   }
-  /**
-   * create new Random and use
-   */
   newUse(rng, ...args) {
     throw new Error(`not implemented`);
   }
-  /**
-   * clone current Random and use
-   */
   cloneUse(rng, ...args) {
     throw new Error(`not implemented`);
   }
@@ -98,6 +131,7 @@ exports.RandomCore = class RandomCore {
    * @deprecated unsafe method
    */
   patch() {
+    deprecateWarning('patch', 'not recommended use');
     if (this._patch) {
       throw new Error('Math.random already patched');
     }
@@ -111,14 +145,12 @@ exports.RandomCore = class RandomCore {
    * @deprecated unsafe method
    */
   unpatch() {
+    deprecateWarning('unpatch', 'not recommended use');
     if (this._patch) {
       Math.random = this._patch;
       delete this._patch;
     }
   }
-  // --------------------------------------------------------------------------
-  // Uniform utility functions
-  // --------------------------------------------------------------------------
   /**
    * Convenience wrapper around `this.rng.next()`
    *
@@ -183,6 +215,12 @@ exports.RandomCore = class RandomCore {
   dfByte(toStr) {
     return this._memoize('byte', Distributions.dfUniformByte, toStr);
   }
+  /**
+   * random bytes, with size
+   *
+   * @example Buffer.from(random.bytes(10)) // => <Buffer 5d 4b 06 94 08 e2 85 5b 79 4f>
+   */
+
   bytes(size = 1, toStr) {
     return this.dfBytes(size, toStr)();
   }
@@ -205,6 +243,18 @@ exports.RandomCore = class RandomCore {
   charID(char, size) {
     return Distributions.dfCharID(this, char, size)();
   }
+  /**
+   * generate random by input string, support unicode
+   *
+   * @example random.dfCharID() // => QcVH6FAi
+   */
+
+  /**
+   * generate random by input string, support unicode
+   *
+   * @example random.dfCharID() // => QcVH6FAi
+   */
+
   /**
    * generate random by input string, support unicode
    *
@@ -269,7 +319,6 @@ exports.RandomCore = class RandomCore {
     return this._memoizeFake('dfArrayShuffle', Distributions.dfArrayShuffle, arr, overwrite)();
   }
   dfArrayShuffle(arr, overwrite) {
-    //		return Distributions.arrayShuffle(this, arr, overwrite);
     return this._callDistributions(Distributions.dfArrayShuffle, arr, overwrite);
   }
   arrayUnique(arr, limit, loop, fnRandIndex, fnOutOfLimit) {
@@ -306,9 +355,6 @@ exports.RandomCore = class RandomCore {
   dfArrayFill(min, max, float) {
     return this._memoize('dfArrayFill', Distributions.dfArrayFill, min, max, float);
   }
-  // --------------------------------------------------------------------------
-  // Uniform distributions
-  // --------------------------------------------------------------------------
   /**
    * Generates a [Continuous dfUniform distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)).
    *
@@ -340,9 +386,6 @@ exports.RandomCore = class RandomCore {
   dfUniformBoolean(likelihood) {
     return this._memoize('dfUniformBoolean', Distributions.dfUniformBoolean, likelihood);
   }
-  // --------------------------------------------------------------------------
-  // Normal distributions
-  // --------------------------------------------------------------------------
   /**
    * Generates a [Normal distribution](https://en.wikipedia.org/wiki/Normal_distribution).
    *
@@ -363,9 +406,6 @@ exports.RandomCore = class RandomCore {
   dfLogNormal(mu, sigma) {
     return Distributions.dfLogNormal(this, mu, sigma);
   }
-  // --------------------------------------------------------------------------
-  // Bernoulli distributions
-  // --------------------------------------------------------------------------
   /**
    * Generates a [Bernoulli distribution](https://en.wikipedia.org/wiki/Bernoulli_distribution).
    *
@@ -394,9 +434,6 @@ exports.RandomCore = class RandomCore {
   dfGeometric(p) {
     return Distributions.dfGeometric(this, p);
   }
-  // --------------------------------------------------------------------------
-  // Poisson distributions
-  // --------------------------------------------------------------------------
   /**
    * Generates a [Poisson distribution](https://en.wikipedia.org/wiki/Poisson_distribution).
    *
@@ -415,9 +452,6 @@ exports.RandomCore = class RandomCore {
   dfExponential(lambda) {
     return Distributions.dfExponential(this, lambda);
   }
-  // --------------------------------------------------------------------------
-  // Misc distributions
-  // --------------------------------------------------------------------------
   /**
    * Generates an [Irwin Hall distribution](https://en.wikipedia.org/wiki/Irwin%E2%80%93Hall_distribution).
    *
@@ -453,15 +487,15 @@ exports.RandomCore = class RandomCore {
    *
    * @example
    * const obj = {
-      a: {
-          w: 5,
-      },
-      b: {
-          w: 5,
-      },
-      c: {
-          w: 1,
-      },
+  	a: {
+  		w: 5,
+  	},
+  	b: {
+  		w: 5,
+  	},
+  	c: {
+  		w: 1,
+  	},
   }
    * const getWeight = (value, index) => value.w
    * const fn = random.dfItemByWeight(obj, getWeight)
@@ -512,9 +546,6 @@ exports.RandomCore = class RandomCore {
   dfSumFloat(size, sum, min, max, fractionDigits) {
     return this._memoize('sumFloat', Distributions.dfRandSumFloat, size, sum, min, max, fractionDigits);
   }
-  // --------------------------------------------------------------------------
-  // Internal
-  // --------------------------------------------------------------------------
   /**
    * Memoizes distributions to ensure they're only created when necessary.
    *
@@ -549,9 +580,6 @@ exports.RandomCore = class RandomCore {
   _callDistributions(getter, ...args) {
     return getter(this, ...args);
   }
-  /**
-   * reset Memoizes distributions
-   */
   reset() {
     this._cache = {};
     return this;
@@ -560,11 +588,8 @@ exports.RandomCore = class RandomCore {
     var _this$_rng;
     return (_this$_rng = this._rng) === null || _this$_rng === void 0 ? void 0 : _this$_rng.name;
   }
-};
-tslib.__decorate([coreDecorators.deprecate('not recommended use'), tslib.__metadata("design:type", Function), tslib.__metadata("design:paramtypes", []), tslib.__metadata("design:returntype", void 0)], exports.RandomCore.prototype, "patch", null);
-tslib.__decorate([coreDecorators.deprecate('not recommended use'), tslib.__metadata("design:type", Function), tslib.__metadata("design:paramtypes", []), tslib.__metadata("design:returntype", void 0)], exports.RandomCore.prototype, "unpatch", null);
-exports.RandomCore = /*#__PURE__*/tslib.__decorate([coreDecorators.autobind, /*#__PURE__*/tslib.__metadata("design:paramtypes", [Object, Object])], exports.RandomCore);
-var RandomCore = exports.RandomCore;
+}
 
+exports.RandomCore = RandomCore;
 exports.default = RandomCore;
 //# sourceMappingURL=index.cjs.development.cjs.map

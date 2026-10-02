@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: !0
 });
 
-const e = Object.freeze({
+const e = /*#__PURE__*/ Object.freeze({
   name: "random-extra",
   version: "3.6.15"
 }), r = e.name, t = e.version;

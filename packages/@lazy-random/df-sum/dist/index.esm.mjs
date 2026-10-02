@@ -30,9 +30,9 @@ function coreFnRandSumInt(r) {
   i(h).gte(0), s > 0 && i(s).gt(c);
   const y = m(l, b);
   i(y).array.lengthOf(l);
-  const z = n(o((() => a.next()))).rmultinom, v = r.limit || 5;
+  const z = n(o(() => a.next())).rmultinom, v = r.limit || 5;
   let F = c;
-  const rmultinomCreateFn = t => z(t, h, y).reduce(((t, n) => {
+  const rmultinomCreateFn = t => z(t, h, y).reduce((t, n) => {
     let e = n.length, i = 0, r = !1, o = 0;
     for (;e--; ) {
       let t = n[e], m = t + F;
@@ -48,14 +48,14 @@ function coreFnRandSumInt(r) {
       b_sum: i,
       bool: r
     }), t;
-  }), []).sort(((t, n) => n.unique_len - t.unique_len));
+  }, []).sort((t, n) => n.unique_len - t.unique_len);
   let x = [];
   {
-    let n = t(rmultinomCreateFn(200).map((t => (t.value = t.value.map(e), t))));
+    let n = t(rmultinomCreateFn(200).map(t => (t.value = t.value.map(e), t)));
     if (n.length) {
       let e = Math.min(10, n.length);
       for (;e--; ) x.push(n[e].value);
-      x = t(x.map((t => t.sort())));
+      x = t(x.map(t => t.sort()));
     }
     i(x, `invalid argv (size=${l}, sum=${s}, min=${c}, max=${g})`).array.have.lengthOf.gt(0), 
     n = void 0;

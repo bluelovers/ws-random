@@ -36,10 +36,7 @@ class RNGFunction extends rngAbstract.RNG {
     if (typeof seed === 'function') {
       this._rng = seed || this._rng;
     }
-    //ow(this._rng, ow.function)
-    //expect(this._rng).function();
   }
-
   clone(seed, opts, ...argv) {
     return cloneClass.cloneClass(RNGFunction, this, seed, opts, ...argv);
   }

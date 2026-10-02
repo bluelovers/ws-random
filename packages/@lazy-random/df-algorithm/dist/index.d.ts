@@ -1,7 +1,5 @@
-export interface IRNGLike {
-	next(): number;
-	seed?(seed?: any, opts?: any, ...argv: any[]): any;
-}
+import { IRNGLike } from '@lazy-random/rng-abstract';
+
 export declare function dfBates(random: IRNGLike, n?: number): () => number;
 export declare function dfBernoulli(random: IRNGLike, p?: number): () => number;
 export declare function dfBinomial(random: IRNGLike, n?: number, p?: number): () => number;

@@ -1,4 +1,4 @@
-const r = (() => {
+const r = /*#__PURE__*/ (() => {
   let r;
   return () => {
     if (void 0 === r) {

@@ -1,7 +1,5 @@
-export interface IRNGLike {
-	next(): number;
-	seed?(seed?: any, opts?: any, ...argv: any[]): any;
-}
+import { IRNGLike } from '@lazy-random/rng-abstract';
+
 /**
  * @see https://github.com/tracker1/node-uuid4/blob/master/index.js
  */

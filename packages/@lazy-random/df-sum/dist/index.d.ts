@@ -1,7 +1,5 @@
-export interface IRNGLike {
-	next(): number;
-	seed?(seed?: any, opts?: any, ...argv: any[]): any;
-}
+import { IRNGLike } from '@lazy-random/rng-abstract';
+
 export interface ISumNumParameterBase {
 	limit?: number;
 	fractionDigits?: number;

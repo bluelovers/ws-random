@@ -2,6 +2,8 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
+// @ts-ignore
+
 function fakeLibRMathRng(fn) {
   function unif_rand(n) {
     if (n > 1) {

@@ -12,7 +12,6 @@ function float(random, min, max) {
   return random.next() * (max - min) + min;
 }
 function int(random, min, max) {
-  //return Math.floor(float(random, min, max + 1))
   return randIndexWithRange(random, min, max + 1);
 }
 

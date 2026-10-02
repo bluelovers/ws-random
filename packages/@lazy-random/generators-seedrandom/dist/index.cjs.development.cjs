@@ -6,6 +6,7 @@ var generatorsFunction = require('@lazy-random/generators-function');
 var seedrandom = require('seedrandom');
 var cloneClass = require('@lazy-random/clone-class');
 
+var RNGSeedRandomOptions = seedrandom.seedRandomOptions;
 const defaultOptions = /*#__PURE__*/Object.freeze({
   entropy: true
 });
@@ -20,7 +21,6 @@ class RNGSeedRandom extends generatorsFunction.RNGFunction {
   static create(...argv) {
     return new this(...argv);
   }
-  // eslint-disable-next-line no-empty-function,@typescript-eslint/no-empty-function
   _init_check(seed, opts, ...argv) {}
   _init(seed, opts, ...argv) {
     this._opts = this._opts || Object.assign({}, defaultOptions);
@@ -43,7 +43,6 @@ class RNGSeedRandom extends generatorsFunction.RNGFunction {
         case 'xorshift7':
         case 'xorwow':
           fn = seedrandom[fn];
-          //fn = require(`seedrandom/lib/${fn}`)
           this._TYPE = fn;
           break;
         default:
@@ -63,23 +62,11 @@ class RNGSeedRandom extends generatorsFunction.RNGFunction {
     }
     fn = fn || seedrandom;
     return fn;
-    /*
-    return (seed?, opts?: RNGSeedRandomOptions, ...argv) => {
-        // @ts-ignore
-        return fn(seed, opts, ...argv)
-    }
-    */
   }
-
   get options() {
     return this._opts;
   }
-  /**
-   * only when option.state = true
-   */
-  // eslint-disable-next-line consistent-return,getter-return
   get state() {
-    // eslint-disable-next-line @typescript-eslint/unbound-method
     const fn = this._rng.state;
     if (typeof fn === 'function') {
       // @ts-ignore
@@ -104,6 +91,7 @@ class RNGSeedRandom extends generatorsFunction.RNGFunction {
 }
 
 exports.RNGSeedRandom = RNGSeedRandom;
+exports.RNGSeedRandomOptions = RNGSeedRandomOptions;
 exports.default = RNGSeedRandom;
 exports.defaultOptions = defaultOptions;
 //# sourceMappingURL=index.cjs.development.cjs.map

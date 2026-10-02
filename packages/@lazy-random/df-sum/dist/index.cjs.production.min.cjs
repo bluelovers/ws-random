@@ -16,9 +16,9 @@ function coreFnRandSumInt(r) {
   i.expect(g).gte(0), c > 0 && i.expect(c).gt(d);
   const h = a.get_prob(f, b);
   i.expect(h).array.lengthOf(f);
-  const y = t.Multinomial(u.fakeLibRMathRng((() => m.next()))).rmultinom, F = r.limit || 5;
+  const y = t.Multinomial(u.fakeLibRMathRng(() => m.next())).rmultinom, F = r.limit || 5;
   let q = d;
-  const rmultinomCreateFn = e => y(e, g, h).reduce(((e, t) => {
+  const rmultinomCreateFn = e => y(e, g, h).reduce((e, t) => {
     let n = t.length, i = 0, r = !1, u = 0;
     for (;n--; ) {
       let e = t[n], a = e + q;
@@ -34,15 +34,15 @@ function coreFnRandSumInt(r) {
       b_sum: i,
       bool: r
     }), e;
-  }), []).sort(((e, t) => t.unique_len - e.unique_len));
+  }, []).sort((e, t) => t.unique_len - e.unique_len);
   let _ = [];
   {
-    let t = e.array_unique(rmultinomCreateFn(200).map((e => (e.value = e.value.map(n.fixZero), 
-    e))));
+    let t = e.array_unique(rmultinomCreateFn(200).map(e => (e.value = e.value.map(n.fixZero), 
+    e)));
     if (t.length) {
       let n = Math.min(10, t.length);
       for (;n--; ) _.push(t[n].value);
-      _ = e.array_unique(_.map((e => e.sort())));
+      _ = e.array_unique(_.map(e => e.sort()));
     }
     i.expect(_, `invalid argv (size=${f}, sum=${c}, min=${d}, max=${p})`).array.have.lengthOf.gt(0), 
     t = void 0;

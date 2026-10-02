@@ -41,8 +41,6 @@ function dfUniformInt(random, min, max) {
   }
   expect.expect(min).integer();
   expect.expect(max).integer.gt(min);
-  //ow(min, ow.number.integer)
-  //ow(max, ow.number.integer.gt(min))
   let fn = dfUniformFloat(random, min, max + 1);
   return () => {
     return Math.floor(fn());
@@ -50,7 +48,6 @@ function dfUniformInt(random, min, max) {
 }
 
 function dfUniformBoolean(random, likelihood = 0.5) {
-  //ow(likelihood, ow.number.gt(0).lt(1))
   expect.expect(likelihood).number.gt(0).lt(1);
   return () => {
     return random.next() >= likelihood;

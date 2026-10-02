@@ -1,11 +1,10 @@
+import { IRNGLike } from '@lazy-random/rng-abstract';
+import { IRNGLike } from '@lazy-random/rng-abstract-core';
+import { IArrayInput02 } from '@lazy-random/shared-lib';
 import { ITSArrayLikeWriteable } from 'ts-type/lib/generic';
 import { ITSArrayListMaybeReadonly } from 'ts-type/lib/type/base';
 import { TypedArray } from 'typedarray-dts';
 
-export interface IRNGLike {
-	next(): number;
-	seed?(seed?: any, opts?: any, ...argv: any[]): any;
-}
 /**
  * return index list form array
  */
@@ -27,8 +26,6 @@ export interface IArrayUniqueOutOfLimitCallback<T extends unknown> {
 	(arr: ITSArrayListMaybeReadonly<T>, limit: number, loop: boolean, fn: IRandIndex): T[] | boolean | void;
 }
 export declare function dfArrayUnique<T extends unknown>(random: IRNGLike, arr: ITSArrayListMaybeReadonly<T>, limit?: number, loop?: boolean, fnRandIndex?: IRandIndex, fnOutOfLimit?: IArrayUniqueOutOfLimitCallback<T>): () => T;
-export type IArrayInput01<T extends any> = ITSArrayLikeWriteable<T> | TypedArray;
-export type IArrayInput02<T extends any> = IArrayInput01<T> | Buffer;
 export declare function dfArrayFill(random: IRNGLike, min?: number, max?: number, float?: boolean): <T extends IArrayInput02<number>>(arr: T) => T;
 
 export {};

@@ -30,4 +30,9 @@ export declare function toHexArray(arr: number[]): string[];
 export declare function hashArgv(args: any[]): string;
 export declare function isUnset(n: unknown): n is undefined | null;
 
+export {
+	ITSArrayLikeWriteable,
+	TypedArray,
+};
+
 export {};

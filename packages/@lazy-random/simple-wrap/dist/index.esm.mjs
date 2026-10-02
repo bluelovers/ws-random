@@ -1,8 +1,8 @@
-const e = Object.freeze({
-  int: Object.freeze([ 0, 100 ]),
-  integer: Object.freeze([ 0, 100 ]),
-  boolean: Object.freeze([ 0.5 ]),
-  bytes: Object.freeze([ 1 ])
+const e = /*#__PURE__*/ Object.freeze({
+  int: /*#__PURE__*/ Object.freeze([ 0, 100 ]),
+  integer: /*#__PURE__*/ Object.freeze([ 0, 100 ]),
+  boolean: /*#__PURE__*/ Object.freeze([ 0.5 ]),
+  bytes: /*#__PURE__*/ Object.freeze([ 1 ])
 });
 
 function simpleWrap(e) {
