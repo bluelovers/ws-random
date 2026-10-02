@@ -14,6 +14,8 @@
 ## 安裝 (Installation)
 
 ```bash
+pnpm add @lazy-random/rng-factory
+npm install @lazy-random/rng-factory
 yarn add @lazy-random/rng-factory
 yarn-tool add @lazy-random/rng-factory
 yt add @lazy-random/rng-factory

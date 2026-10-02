@@ -41,6 +41,10 @@ function _lazyRequire(name, paths)
 			paths,
 		});
 	}
+	/**
+	 * 解析工具載入失敗時忽略例外，改由下方標準 `require` 作為後備 (Fallback)；
+	 * Ignore load failures of the resolver tool and let the standard `require` below act as fallback
+	 */
 	catch (e)
 	{}
 
@@ -83,6 +87,10 @@ function _requireResolve(name)
 			paths,
 		})
 	}
+	/**
+	 * 解析失敗時忽略例外，改由下方標準 `require.resolve` 作為後備 (Fallback)；
+	 * Ignore resolution failures and let the standard `require.resolve` below act as fallback
+	 */
 	catch (e)
 	{
 
@@ -105,6 +113,12 @@ function _requireResolve(name)
  */
 let _isNeedConfig = true;
 
+/**
+ * 第一層解析：以 try/catch 包裹，是因為工作區中的設定檔可能不存在或載入失敗；
+ * 發生例外時靜默忽略，讓流程繼續嘗試第二、三層解析，避免整個設定流程中斷；
+ * Wrapped in try/catch because workspace config files may be missing or fail to load;
+ * exceptions are silently ignored so resolution continues with the second and third levels instead of aborting
+ */
 try
 {
 	/**
@@ -130,6 +144,10 @@ try
 			onlyFiles: true,
 		}).result;
 
+		/**
+		 * 找到工作區設定檔才解析其內容；找不到則維持 `_isNeedConfig`，交由下一層接手；
+		 * Parse the workspace config only when one is found; otherwise keep `_isNeedConfig` so the next level takes over
+		 */
 		if (result)
 		{
 			let name = basename(result, extname(result))
@@ -150,6 +168,13 @@ try
 				 * Otherwise, load the configuration file content
 				 */
 				default:
+					/**
+					 * TODO: 疑似誤用簡寫屬性 `jestConfig`（應為展開 `...jestConfig`），
+					 * 現況會在設定物件上產生無效的 `jestConfig` 鍵，且原本的 `jestConfig` 內容並未以展開語意併入；
+					 * Suspected bug: the shorthand property `jestConfig` (likely meant `...jestConfig`) adds an invalid
+					 * `jestConfig` key, and the previous `jestConfig` contents are not spread into the result.
+					 * 邏輯未修改，僅記錄待確認；Logic left untouched, recorded for follow-up only
+					 */
 					jestConfig = {
 						...require(result),
 						jestConfig,
@@ -166,6 +191,12 @@ catch (e)
 
 }
 
+/**
+ * 第二層解析：同樣以 try/catch 包裹，解析不到共用設定時靜默略過，
+ * 讓最後的預設 preset fallback 接手，確保 `jestConfig.preset` 一定有值；
+ * Also wrapped in try/catch: when the shared config cannot be resolved it is silently skipped,
+ * letting the final default-preset fallback take over so `jestConfig.preset` is always set
+ */
 try
 {
 	/**
@@ -175,6 +206,10 @@ try
 	if (_isNeedConfig && !jestConfig.preset)
 	{
 		let result = _requireResolve('@bluelovers/jest-config/package.json');
+		/**
+		 * 成功解析到共用設定路徑才套用 preset；失敗則保留 `_isNeedConfig` 標誌，交由第三層預設值接手；
+		 * Apply the preset only when the shared config path resolves; otherwise keep `_isNeedConfig` for the third-level default
+		 */
 		if (result)
 		{
 			// @ts-ignore
@@ -188,6 +223,12 @@ catch (e)
 
 }
 
+/**
+ * 第三層守衛 (Guard)：僅在前兩層都未成功（`_isNeedConfig` 仍為 true）且尚未取得 preset 時，
+ * 才套用預設的 preset，避免覆蓋已解析出來的設定；
+ * Third-level guard: only used when both earlier levels failed (`_isNeedConfig` still true) and no preset
+ * has been resolved yet, so an already-resolved setting is never overwritten
+ */
 if (_isNeedConfig && !jestConfig.preset)
 {
 	/**

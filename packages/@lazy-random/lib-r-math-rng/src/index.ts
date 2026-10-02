@@ -161,6 +161,10 @@ export function _isLibRMathRNGLike<R extends IRNG>(rng: R | unknown): rng is R
  */
 export function _isExtendsOfLibRMathRNGLike<R extends IRNG>(rng: R | unknown): rng is R
 {
+	/**
+	 * 先確認值存在再檢查繼承關係，避免 `null`／`undefined` 直接交給 `isExtendsOf` 造成誤判
+	 * Ensure the value exists before checking inheritance, so `null`/`undefined` is not misjudged by `isExtendsOf`
+	 */
 	if (rng && isExtendsOf(rng, IRNG as any))
 	{
 		return true

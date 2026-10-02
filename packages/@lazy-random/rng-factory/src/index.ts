@@ -54,6 +54,11 @@ export type IRNGFactoryType =
  * @returns 對應的 RNG 實例 / the matching RNG instance
  * @throws {TypeError} 當第一個參數不是合法的 RNG 表示法時 / when the first argument is not a valid RNG representation
  */
+/**
+ * TODO: 無參數呼叫時實作會走 `'default'` 分派、建立 `RNGMathRandom2`，
+ * 但此 overload 宣告回傳 `RNGFunction`，型別與執行期行為可能不一致，待確認。
+ * Calling with no arguments instantiates `RNGMathRandom2` via the `'default'` path, but this overload declares `RNGFunction`; verify.
+ */
 export function RNGFactory(): RNGFunction
 
 export function RNGFactory<R extends RNG>(arg0: R, ...rest): R

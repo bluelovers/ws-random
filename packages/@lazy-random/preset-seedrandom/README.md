@@ -63,6 +63,20 @@ pnpm run test:jest
 
 詳細版本紀錄請見 [CHANGELOG.md](./CHANGELOG.md)。
 
+## FAQ
+
+**Q：預設匯出、`seedrandom`、`random` 三個匯出有差別嗎？**
+
+A：沒有，三者是同一個 `Random` 實例 (Singleton)，可依匯入習慣擇一使用。
+
+**Q：如何讓每次執行產生相同的亂數序列？**
+
+A：建立後自行設定種子 (Seed)，例如呼叫 `seedrandom.seed(1234)`；未設定時由 seedrandom 自動決定初始狀態。
+
+**Q：可以改用其他亂數產生器 (RNG) 嗎？**
+
+A：本套件固定以 seedrandom 建立實例；如需其他產生器，請直接使用 `random-extra` 的 `newUse()` 自行建立。
+
 ## 相關資源 (Related Resources)
 
 - [seedrandom](https://www.npmjs.com/package/seedrandom)

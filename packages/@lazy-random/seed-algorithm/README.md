@@ -8,11 +8,13 @@
 - 浮點數 (Float) 轉換工具：以 `ArrayBuffer` 拆解 IEEE 754 表示法
 - 整數序列 (Integer List) 演算法：`v3b` 可由單一種子展開出 32 位元無號整數序列
 - `seedFromStringOrNumberOrArray()` 統一處理字串、數字、陣列三種種子輸入，並補足缺失欄位
-- 純函式 (Pure Function) 設計，無全域狀態、無额外設定
+- 純函式 (Pure Function) 設計，無全域狀態、無額外設定
 
 ## 安裝 (Installation)
 
 ```bash
+pnpm add @lazy-random/seed-algorithm
+npm install @lazy-random/seed-algorithm
 yarn add @lazy-random/seed-algorithm
 yarn-tool add @lazy-random/seed-algorithm
 yt add @lazy-random/seed-algorithm

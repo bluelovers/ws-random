@@ -15,6 +15,8 @@
 ## 安裝 (Installation)
 
 ```bash
+pnpm add @lazy-random/rng-abstract
+npm install @lazy-random/rng-abstract
 yarn add @lazy-random/rng-abstract
 yarn-tool add @lazy-random/rng-abstract
 yt add @lazy-random/rng-abstract
@@ -93,9 +95,10 @@ const rng = MyRNG.create();
 
 - **回傳 (Returns)**：`string` — 用於建立新種子的字串
 
-#### 重新匯出 (Re-export)
+#### 重新匯出 (Re-export) 與預設匯出 (Default Export)
 
 - `IRNGLike`：由 `@lazy-random/rng-abstract-core` 重新匯出的 RNG 介面型別 (Interface Type)
+- `export default RNG`：`RNG` 同時作為預設匯出 (Default Export)，可用 `import RNG from '@lazy-random/rng-abstract'` 引入
 
 ## 相依套件 (Dependencies)
 

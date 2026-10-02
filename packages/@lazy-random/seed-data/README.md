@@ -12,6 +12,8 @@
 ## 安裝 (Installation)
 
 ```bash
+pnpm add @lazy-random/seed-data
+npm install @lazy-random/seed-data
 yarn add @lazy-random/seed-data
 yarn-tool add @lazy-random/seed-data
 yt add @lazy-random/seed-data
@@ -40,7 +42,7 @@ console.log(version); // '3.6.15'
 | `name` | `string` | 來源套件名稱，目前為 `random-extra` |
 | `version` | `string` | 來源套件版本，目前為 `3.6.15` |
 
-物件透過 `Object.freeze()` 凍結，於嚴格模式 (Strict Mode) 下試圖寫入會拋出 `TypeError`。
+物件透過 `Object.freeze()` 凍結，於嚴格模式 (Strict Mode) 下試圖寫入會拋出 `TypeError`；除預設匯出外，亦提供同名的具名匯出 (Named Export)，可與 `name`、`version` 一併以具名方式引入。
 
 ### `name`
 

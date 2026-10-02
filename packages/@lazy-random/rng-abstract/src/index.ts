@@ -75,6 +75,16 @@ export abstract class RNG extends RNGCore implements IRNGLike
 	 */
 	protected override _seedStr(seed?, opts?, ...argv): string
 	{
+		/**
+		 * TODO: 與 `_seedNum()` 不同，此處未將空值 (Falsy) 種子替換為 `randomSeedStr()`，
+		 * 未傳入種子時可能固定推導出同一字串種子，待確認是否為預期行為。
+		 * Unlike `_seedNum()`, falsy seeds are not replaced by `randomSeedStr()` here; verify whether this is intended.
+		 */
+		/**
+		 * 字串型種子 (String Seed) 統一交由 `hashAny()` 雜湊 (Hash) 任意輸入，
+		 * 使相同輸入永遠推導出同一字串，維持種子的可重現性 (Reproducibility)。
+		 * Delegates any input to `hashAny()` so the same input always derives the same string seed.
+		 */
 		return hashAny(seed, opts, ...argv);
 	}
 

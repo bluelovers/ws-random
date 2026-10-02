@@ -145,6 +145,24 @@ pnpm run test:jest
 
 詳細版本紀錄請見 [CHANGELOG.md](./CHANGELOG.md)。
 
+## FAQ
+
+**Q: 建立 `RandomRngWithLibRMath` 時如何決定使用哪個底層產生器 (RNG)？**
+
+A: 依 `constructor` 的優先順序解析（詳見上方 API 文件），從 `IRNG` 實例、`IRNG` 子類別、RNGLike 實例、lib-r-math.js 匯出名稱，最後退回預設的 MersenneTwister。
+
+**Q: 呼叫 `seed()` 之後，下一次 `next()` 會用到新種子 (Seed) 嗎？**
+
+A: 會。`seed()` 會將種子寫入底層 `IRNG` 的 `seed`，之後的 `next()` 皆由該底層產生器繼續取亂數 (Random Number)。
+
+**Q: 為什麼 `name` 會顯示 `libRMath<MersenneTwister>`？**
+
+A: `name` getter 會回傳 `libRMath` 加上底層 `IRNG` 的名稱；若底層未提供名稱，則僅回傳 `libRMath`。
+
+**Q: 如何在 lib-r-math.js 中改用 `random-extra` 的亂數來源？**
+
+A: 使用 `LibRMathRngWithRandom` 包裝後，再交給 lib-r-math.js 的函式使用，可透過 `use()` 切換底層產生器、透過 `seed` setter 重設種子。
+
 ## 相關資源 (Related Resources)
 
 - [lib-r-math.js](https://www.npmjs.com/package/lib-r-math.js)

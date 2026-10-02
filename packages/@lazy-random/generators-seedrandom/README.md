@@ -94,7 +94,7 @@ rng.seed('another seed')
 
 #### `seed(seed?, opts?, ...argv): void`
 
-重新指定種子並重建亂數序列。傳入 `opts === null` 可清除既有選項、回退至 `defaultOptions`；傳入其他值則覆寫或沿用現有選項。
+重新指定種子並重建亂數序列。傳入 `opts === null` 會清除既有選項（`_opts` 設為 `undefined`，待下一次 `_init()` 才重新套用 `defaultOptions`）；傳入其他假值 (Falsy) 則沿用現有選項，真值 (Truthy) 才覆寫。
 
 #### `clone(seed?, opts?, ...argv): RNGSeedRandom`
 
