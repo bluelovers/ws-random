@@ -1,0 +1,28 @@
+exports[`test.spec > int 1`] = `
+{
+  "1": true,
+  "2": true,
+  "3": true,
+  "4": true,
+  "5": true
+}
+`;
+
+exports[`test.spec > randIndex 1`] = `
+{
+  "0": true,
+  "1": true,
+  "2": true,
+  "3": true,
+  "4": true
+}
+`;
+
+exports[`test.spec > randIndexWithRange 1`] = `
+{
+  "1": true,
+  "2": true,
+  "3": true,
+  "4": true
+}
+`;

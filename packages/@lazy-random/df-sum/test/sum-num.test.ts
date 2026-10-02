@@ -1,24 +1,35 @@
 /**
  * Created by user on 2018/11/16/016.
+ *
+ * Node.js 原生測試 / Node.js Native Test Runner (node:test)
+ *
+ * 由 jest 測試改寫為 `node:test` + `node:assert/strict`
+ * `expect.extend(checkTypesMatchers)` 的 `toBeCloseToWithDelta()` 以 `assertCloseToWithDelta()` 取代
  */
 
+import assert from 'node:assert/strict';
+import { describe, test } from 'node:test';
 import { SUM_DELTA } from '@lazy-random/shared-lib';
 import { fixZero } from 'num-is-zero';
-import checkTypesMatchers from 'random-extra/test/jest/type';
 import { toFixedNumber } from '@lazy-num/to-fixed-number';
 import { num_array_sum } from '@lazy-num/sum';
 import { newRngSeedRandom } from '@lazy-random/util-test';
 import { dfRandSumInt, dfRandSumFloat } from '../src/index';
 
-expect.extend({
-	toBeCloseToWithDelta: checkTypesMatchers.toBeCloseToWithDelta,
-})
+/**
+ * 檢查實際值是否為期望值 ± delta / check actual number is expected number ± delta
+ */
+function assertCloseToWithDelta(actual: number, expected: number, delta: number)
+{
+	assert.ok(Math.abs(actual - expected) <= delta,
+		`Expected ${actual} to be within ${expected} ± ${delta}`,
+	);
+}
 
 const delta = SUM_DELTA;
 
 const rnd = newRngSeedRandom();
 
-// @ts-ignore
 describe(`random integer number list by expected sum`, () =>
 {
 	_createTest(3, 6);
@@ -36,7 +47,7 @@ describe(`random integer number list by expected sum`, () =>
 	{
 		expected_sum = typeof expected_sum === 'number' ? expected_sum : sum;
 
-		it(
+		test(
 			`dfSumInt(${size}, ${sum}, ${min}, ${max}) => ${typeof expected_sum === 'number' ? expected_sum : 'unknow'}`,
 			() =>
 			{
@@ -68,23 +79,23 @@ describe(`random integer number list by expected sum`, () =>
 						{
 							const sum = num_array_sum(v);
 
-							expect(sum).toBeCloseToWithDelta(expected_sum, delta);
+							assertCloseToWithDelta(sum, expected_sum, delta);
 						}
 
-						expect(v).toHaveLength(size);
+						assert.strictEqual(v.length, size);
 
 						if (check_range)
 						{
 							v.forEach(n =>
 							{
-								expect(n).toBeGreaterThanOrEqual(min)
-								expect(n).toBeLessThanOrEqual(max)
+								assert.ok(n >= min, `${n} should be >= ${min}`);
+								assert.ok(n <= max, `${n} should be <= ${max}`);
 							})
 						}
 					})
 				;
 
-				expect(vs.length).toBeGreaterThan(0)
+				assert.ok(vs.length > 0, `should produce at least one result`)
 				;
 			},
 		);
@@ -111,7 +122,7 @@ describe(`random float number list by expected sum`, () =>
 	{
 		expected_sum = typeof expected_sum === 'number' ? expected_sum : sum;
 
-		it(
+		test(
 			`dfSumFloat(${size}, ${sum}, ${min}, ${max}) => ${typeof expected_sum === 'number' ? expected_sum : 'unknow'}`,
 			() =>
 			{
@@ -143,23 +154,23 @@ describe(`random float number list by expected sum`, () =>
 						{
 							const sum = num_array_sum(v);
 
-							expect(sum).toBeCloseToWithDelta(expected_sum, delta);
+							assertCloseToWithDelta(sum, expected_sum, delta);
 						}
 
-						expect(v).toHaveLength(size);
+						assert.strictEqual(v.length, size);
 
 						if (check_range)
 						{
 							v.forEach(n =>
 							{
-								expect(n).toBeGreaterThanOrEqual(min)
-								expect(n).toBeLessThanOrEqual(max)
+								assert.ok(n >= min, `${n} should be >= ${min}`);
+								assert.ok(n <= max, `${n} should be <= ${max}`);
 							})
 						}
 					})
 				;
 
-				expect(vs.length).toBeGreaterThan(0)
+				assert.ok(vs.length > 0, `should produce at least one result`)
 				;
 			},
 		);
@@ -187,7 +198,7 @@ describe(`fractionDigits`, () =>
 	{
 		expected_sum = typeof expected_sum === 'number' ? expected_sum : sum;
 
-		it(
+		test(
 			`dfSumFloat(${size}, ${sum}, ${min}, ${max}, fractionDigits = ${fractionDigits}) => ${typeof expected_sum === 'number'
 				? expected_sum
 				: 'unknow'}`,
@@ -219,30 +230,30 @@ describe(`fractionDigits`, () =>
 
 						if (typeof expected_sum === 'number')
 						{
-							expect(sum).toBeCloseToWithDelta(expected_sum, delta);
+							assertCloseToWithDelta(sum, expected_sum, delta);
 						}
 
 						//console.log(v, sum);
 
 						v.forEach(n =>
 						{
-							expect(fixZero(n)).toEqual(fixZero(toFixedNumber(n, fractionDigits)));
+							assert.deepStrictEqual(fixZero(n), fixZero(toFixedNumber(n, fractionDigits)));
 						});
 
-						expect(v).toHaveLength(size);
+						assert.strictEqual(v.length, size);
 
 						if (check_range)
 						{
 							v.forEach(n =>
 							{
-								expect(n).toBeGreaterThanOrEqual(min)
-								expect(n).toBeLessThanOrEqual(max)
+								assert.ok(n >= min, `${n} should be >= ${min}`);
+								assert.ok(n <= max, `${n} should be <= ${max}`);
 							})
 						}
 					})
 				;
 
-				expect(vs.length).toBeGreaterThan(0)
+				assert.ok(vs.length > 0, `should produce at least one result`)
 				;
 			},
 		);

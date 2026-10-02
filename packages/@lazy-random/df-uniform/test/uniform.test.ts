@@ -1,54 +1,29 @@
-//import { toBeDeepCloseTo, toMatchCloseTo } from 'jest-matcher-deep-close-to';
-//
-//expect.extend({ toBeDeepCloseTo, toMatchCloseTo });
+/**
+ * Node.js 原生測試 / Node.js Native Test Runner (node:test)
+ *
+ * 由 jest 測試改寫為 `node:test` + `node:assert/strict`
+ * `toBeCloseToWithDelta` 以 `assertCloseToWithDelta()` 取代
+ * Rewritten from jest to `node:test` + `node:assert/strict`,
+ * `toBeCloseToWithDelta` is replaced by `assertCloseToWithDelta()`
+ */
 
-//declare global {
-//	namespace jest {
-//		type Iterable = number | number[] | { [k: string]: Iterable };
-//		interface Matchers<R> {
-//			toBeDeepCloseTo: (
-//				received: Iterable,
-//				expected: Iterable,
-//				decimals?: number,
-//			) => R;
-//			toMatchCloseTo: (
-//				received: Iterable,
-//				expected: Iterable,
-//				decimals?: number,
-//			) => R;
-//		}
-//	}
-//}
-
-import { toBeCloseWith as toBeCloseToWithDelta } from 'jest-num-close-with';
+import assert from 'node:assert/strict';
+import { describe, test } from 'node:test';
 import { newRngSeedRandom } from '@lazy-random/util-test';
 import { dfUniformFloat } from '../src/index';
 
-declare global
+/**
+ * 檢查實際值是否為期望值 ± delta / check actual number is expected number ± delta
+ */
+function assertCloseToWithDelta(actual: number, expected: number, delta: number)
 {
-
-	namespace jest
-	{
-
-		interface Matchers<R>
-		{
-			/**
-			 * check actual number is expected number ± delta
-			 */
-			toBeCloseToWithDelta(expected: number, delta?: number, numDigits?: number): R;
-		}
-
-	}
-
+	assert.ok(Math.abs(actual - expected) <= delta,
+		`Expected ${actual} to be within ${expected} ± ${delta}`,
+	);
 }
-
-expect.extend({
-	toBeCloseToWithDelta,
-})
 
 const r = newRngSeedRandom();
 
-// @ts-ignore
 describe(`random.uniform()`, () =>
 {
 	const d = dfUniformFloat(r);
@@ -71,19 +46,18 @@ describe(`random.uniform()`, () =>
 		sum += v;
 	}
 
-	// @ts-ignore
-	it(`random.uniform() is in [0, 1)`, () =>
+	test(`random.uniform() is in [0, 1)`, () =>
 	{
-		expect(min).toBeGreaterThan(0);
-		expect(max).toBeLessThan(1);
+		assert.ok(min > 0, `min ${min} should be > 0`);
+		assert.ok(max < 1, `max ${max} should be < 1`);
 	});
 
-	it(`random.uniform() has mean 0.5 \u00B1 ${delta}`, () =>
+	test(`random.uniform() has mean 0.5 ± ${delta}`, () =>
 	{
 		const mean = sum / count;
 		const expected = 0.5;
 
-		expect(mean).toBeCloseToWithDelta(expected, delta);
+		assertCloseToWithDelta(mean, expected, delta);
 	});
 
 });
@@ -111,14 +85,13 @@ describe(`random.uniform(max)`, () =>
 		sum += v;
 	}
 
-	// @ts-ignore
-	it(`random.uniform(max) returns numbers in [0, max)`, () =>
+	test(`random.uniform(max) returns numbers in [0, max)`, () =>
 	{
-		expect(min).toBeGreaterThan(0);
-		expect(max).toBeLessThan(input_max);
+		assert.ok(min > 0, `min ${min} should be > 0`);
+		assert.ok(max < input_max, `max ${max} should be < ${input_max}`);
 	});
 
-	it(`random.uniform(max) has mean max / 2 \u00B1 ${delta}`, () =>
+	test(`random.uniform(max) has mean max / 2 ± ${delta}`, () =>
 	{
 		const mean = sum / count;
 		const expected = input_max / 2;
@@ -129,7 +102,7 @@ describe(`random.uniform(max)`, () =>
 			delta,
 		})
 
-		expect(mean).toBeCloseToWithDelta(expected, delta)
+		assertCloseToWithDelta(mean, expected, delta);
 	});
 
 });
@@ -158,14 +131,13 @@ describe(`random.uniform(min, max)`, () =>
 		sum += v;
 	}
 
-	// @ts-ignore
-	it(`random.uniform(min, max) returns numbers in [min, max]`, () =>
+	test(`random.uniform(min, max) returns numbers in [min, max]`, () =>
 	{
-		expect(min).toBeGreaterThan(input_min);
-		expect(max).toBeLessThan(input_max);
+		assert.ok(min > input_min, `min ${min} should be > ${input_min}`);
+		assert.ok(max < input_max, `max ${max} should be < ${input_max}`);
 	});
 
-	it(`random.uniform(min, max) has mean max / 2 \u00B1 ${delta}`, () =>
+	test(`random.uniform(min, max) has mean max / 2 ± ${delta}`, () =>
 	{
 		const mean = sum / count;
 		const expected = (input_min + input_max) / 2;
@@ -176,8 +148,7 @@ describe(`random.uniform(min, max)`, () =>
 			delta,
 		})
 
-		expect(mean).toBeCloseToWithDelta(expected, delta);
+		assertCloseToWithDelta(mean, expected, delta);
 	});
 
 });
-

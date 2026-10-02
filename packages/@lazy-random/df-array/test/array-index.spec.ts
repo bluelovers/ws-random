@@ -1,28 +1,30 @@
 //@noUnusedParameters:false
-/// <reference types="jest" />
 /// <reference types="node" />
-/// <reference types="expect" />
 
-import { basename, extname } from 'path';
-import { dfArrayFill, dfArrayIndex } from '../src/index';
-import { newRngMathRandom, newRngSeedRandom } from '@lazy-random/util-test';
-import { ITSTypeAndStringLiteral } from 'ts-type/lib/helper/string';
+/**
+ * Node.js 原生測試 / Node.js Native Test Runner (node:test)
+ *
+ * 由 jest 測試改寫為 `node:test` + `node:assert/strict`
+ * 並以 `t.assert.snapshot()` 保留原有的快照斷言
+ * 更新快照 / Update snapshots: `node --test --test-update-snapshots test/array-index.spec.ts`
+ */
+
+import assert from 'node:assert/strict';
+import { describe, test } from 'node:test';
+import { dfArrayIndex } from '../src/index';
+import { newRngMathRandom } from '@lazy-random/util-test';
+import type { ITSTypeAndStringLiteral } from 'ts-type/lib/helper/string';
 import { dfArrayIndexOne } from '../src/array-index-one';
-
-beforeAll(async () =>
-{
-
-});
 
 type IResults = Record<ITSTypeAndStringLiteral<number>, boolean>;
 
-describe(basename(__filename, extname(__filename)), () =>
+describe(`array-index`, () =>
 {
 	const testLimit = 1000;
 
 	const rnd = newRngMathRandom();
 
-	test.skip(`dummy`, () => {});
+	test(`dummy`, { skip: true }, () => {});
 
 	describe(`dfArrayIndex`, () =>
 	{
@@ -34,7 +36,7 @@ describe(basename(__filename, extname(__filename)), () =>
 
 			const fn = dfArrayIndex(rnd, arr, size);
 
-			let actual: number[];
+			let actual: number[] = [];
 
 			for (let i = 0; i < testLimit; i++)
 			{
@@ -46,33 +48,33 @@ describe(basename(__filename, extname(__filename)), () =>
 				}
 			}
 
-			expect(actual).toHaveLength(size)
+			assert.strictEqual(actual.length, size)
 		});
 
 		test(`end > start + 1`, () =>
 		{
 			let arr = [1, 2, 3, 4] as const;
 
-			expect(() => dfArrayIndex(rnd, arr, 3, 4)).toThrow();
-			expect(() => dfArrayIndex(rnd, arr, 3, 3)).not.toThrow();
+			assert.throws(() => dfArrayIndex(rnd, arr, 3, 4));
+			assert.doesNotThrow(() => dfArrayIndex(rnd, arr, 3, 3));
 
-			expect(() => dfArrayIndex(rnd, arr, 3, 2, 3)).toThrow();
-			expect(() => dfArrayIndex(rnd, arr, 3, 3, 4)).toThrow();
+			assert.throws(() => dfArrayIndex(rnd, arr, 3, 2, 3));
+			assert.throws(() => dfArrayIndex(rnd, arr, 3, 3, 4));
 
-			expect(() => dfArrayIndex(rnd, arr, 3, 3)).not.toThrow();
-			expect(() => dfArrayIndex(rnd, arr, 3, 3, 5)).not.toThrow();
+			assert.doesNotThrow(() => dfArrayIndex(rnd, arr, 3, 3));
+			assert.doesNotThrow(() => dfArrayIndex(rnd, arr, 3, 3, 5));
 
 		});
 
 	});
 
-	test(`dfArrayIndexOne`, () =>
+	test(`dfArrayIndexOne`, (t) =>
 	{
 		let min = 1;
 		let max = 5;
 		let arr = [1, 2, 3, 4] as const;
 		let results: IResults = {};
-		let actual: number;
+		let actual = 0;
 
 		const fn = dfArrayIndexOne(rnd, arr, min, max);
 
@@ -88,10 +90,10 @@ describe(basename(__filename, extname(__filename)), () =>
 			}
 		}
 
-		expect(actual).toBeGreaterThan(0);
-		expect(actual).toBeGreaterThanOrEqual(min);
-		expect(actual).toBeLessThan(max);
-		expect(results).toMatchSnapshot();
+		assert.ok(actual > 0, `actual ${actual} should be > 0`);
+		assert.ok(actual >= min, `actual ${actual} should be >= ${min}`);
+		assert.ok(actual < max, `actual ${actual} should be < ${max}`);
+		t.assert.snapshot(results);
 
 	});
 

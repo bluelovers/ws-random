@@ -1,3 +1,14 @@
+/**
+ * Node.js 原生測試 / Node.js Native Test Runner (node:test)
+ *
+ * 由 jest 測試改寫為 `node:test` + `node:assert/strict`
+ * 並以 `t.assert.snapshot()` 保留原有的快照斷言
+ * 快照檔 / Snapshot file: `test/array-fill.test.ts.snapshot`
+ * 更新快照 / Update snapshots: `node --test --test-update-snapshots test/array-fill.test.ts`
+ */
+
+import assert from 'node:assert/strict';
+import { describe, test } from 'node:test';
 import { newRngSeedRandom } from '@lazy-random/util-test';
 import { dfArrayFill } from '../src/index';
 
@@ -13,12 +24,12 @@ describe(`dfArrayFill`, () =>
 
 	tests.forEach(function (arr)
 	{
-		it(`${arr[0]}`, () =>
+		test(`${arr[0]}`, (t) =>
 		{
 			let ret = fn(arr[1]);
 
-			expect(ret).toHaveLength(10);
-			expect(ret).toMatchSnapshot()
+			assert.strictEqual(ret.length, 10);
+			t.assert.snapshot(ret)
 		});
 	});
 });

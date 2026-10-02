@@ -1,3 +1,12 @@
+/**
+ * Node.js 原生測試 / Node.js Native Test Runner (node:test)
+ *
+ * 由 jest 測試改寫為 `node:test` + `node:assert/strict`
+ * Rewritten from jest to `node:test` + `node:assert/strict`
+ */
+
+import assert from 'node:assert/strict';
+import { describe, test } from 'node:test';
 import { newRngMathRandom } from '@lazy-random/util-test';
 import { dfUniformByte, dfUniformBytes } from '../src/index';
 
@@ -5,66 +14,64 @@ const rnd = newRngMathRandom();
 
 describe(`byte`, () =>
 {
-	it(`random.byte(): number`, () =>
+	test(`random.byte(): number`, () =>
 	{
 		let ret = dfUniformByte(rnd)();
 
-		expect(ret.toString()).toMatch(/^\d+$/)
-		expect(ret).toBeGreaterThanOrEqual(0);
-		expect(ret).toBeLessThanOrEqual(255);
+		assert.match(ret.toString(), /^\d+$/)
+		assert.ok(ret >= 0, `${ret} should be >= 0`);
+		assert.ok(ret <= 255, `${ret} should be <= 255`);
 
 	});
 
-	it(`random.byte(toStr = true): string`, () =>
+	test(`random.byte(toStr = true): string`, () =>
 	{
 		let ret = dfUniformByte(rnd, true)()
 
-		//.is.a('string')
-		expect(ret).toHaveLength(2);
+		assert.strictEqual(ret.length, 2);
 	});
 });
 
 describe(`bytes`, () =>
 {
-	it(`random.bytes(): number[]`, () =>
+	test(`random.bytes(): number[]`, () =>
 	{
 		let ret = dfUniformBytes(rnd, 1)()
 
-		expect(ret[0]).toBeGreaterThanOrEqual(1);
+		assert.ok(ret[0] >= 1, `${ret[0]} should be >= 1`);
 
 		for (let i of ret)
 		{
-			expect(i.toString()).toMatch(/^\d+$/)
-			expect(i).toBeGreaterThanOrEqual(0);
-			expect(i).toBeLessThanOrEqual(255);
+			assert.match(i.toString(), /^\d+$/)
+			assert.ok(i >= 0, `${i} should be >= 0`);
+			assert.ok(i <= 255, `${i} should be <= 255`);
 		}
 
 	});
 
-	it(`random.bytes(size = 5): number[]`, () =>
+	test(`random.bytes(size = 5): number[]`, () =>
 	{
 		let ret = dfUniformBytes(rnd, 5)()
 
-		expect(ret).toHaveLength(5);
+		assert.strictEqual(ret.length, 5);
 
 		for (let i of ret)
 		{
-			expect(i.toString()).toMatch(/^\d+$/)
-			expect(i).toBeGreaterThanOrEqual(0);
-			expect(i).toBeLessThanOrEqual(255);
+			assert.match(i.toString(), /^\d+$/)
+			assert.ok(i >= 0, `${i} should be >= 0`);
+			assert.ok(i <= 255, `${i} should be <= 255`);
 		}
 	});
 
-	it(`random.bytes(size = 5, toStr = true): string[]`, () =>
+	test(`random.bytes(size = 5, toStr = true): string[]`, () =>
 	{
 		let ret = dfUniformBytes(rnd, 5, true)()
 
-		expect(ret).toHaveLength(5);
+		assert.strictEqual(ret.length, 5);
 
 		for (let i of ret)
 		{
-			expect(i).toHaveLength(2);
+			assert.strictEqual(i.length, 2);
 		}
 	});
 });
-

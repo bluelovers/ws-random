@@ -1,24 +1,28 @@
-/// <reference types="jest-extended" />
-import { checkTypesMatchers } from 'random-extra/test/jest/type';
+/**
+ * Node.js 原生測試 / Node.js Native Test Runner (node:test)
+ *
+ * 由 jest 測試改寫為 `node:test` + `node:assert/strict`
+ * `expect.extend(checkTypesMatchers)` / `toBeOneOf()` 以 `assert.ok(Array.includes())` 取代
+ * Rewritten from jest to `node:test` + `node:assert/strict`
+ */
+
+import assert from 'node:assert/strict';
+import { describe, test } from 'node:test';
 import { dfArrayUnique } from '../src/index';
 import { newRngMathRandom } from '@lazy-random/util-test';
 
-expect.extend(checkTypesMatchers);
-
-// @ts-ignore
 describe(`dfArrayUnique`, () =>
 {
 	const count = 10000;
 	const rnd = newRngMathRandom();
 
-	// @ts-ignore
-	it(`dfArrayUnique`, () =>
+	test(`dfArrayUnique`, () =>
 	{
 		let arr = [1, 2, 3, 4];
 
 		const d = dfArrayUnique(rnd, arr, 3, true);
 
-		let cache = {}
+		let cache: Record<number, number> = {}
 
 		for (let i = 0; i < count; ++i)
 		{
@@ -30,13 +34,12 @@ describe(`dfArrayUnique`, () =>
 		Object.values(cache)
 			.forEach(function (v)
 			{
-				// @ts-ignore
-				expect(v).toBeOneOf(arr)
+				assert.ok(arr.includes(v), `${v} should be one of [${arr}]`);
 			})
 		;
 	});
 
-	it(`return another when out of limit`, () =>
+	test(`return another when out of limit`, () =>
 	{
 		let arr = [1, 2, 3, 4];
 		let limit = 3;
@@ -48,8 +51,8 @@ describe(`dfArrayUnique`, () =>
 			return arr2
 		});
 
-		let cache = {}
-		let cache2 = {}
+		let cache: Record<number, number> = {}
+		let cache2: Record<number, number> = {}
 
 		for (let i = 0; i < 10000; ++i)
 		{
@@ -68,19 +71,15 @@ describe(`dfArrayUnique`, () =>
 		Object.values(cache)
 			.forEach(function (v)
 			{
-				// @ts-ignore
-				expect(v).toBeOneOf(arr)
-				// @ts-ignore
-				expect(v).not.toBeOneOf(arr2)
+				assert.ok(arr.includes(v), `${v} should be one of [${arr}]`);
+				assert.ok(!arr2.includes(v), `${v} should not be one of [${arr2}]`);
 			})
 		;
 		Object.values(cache2)
 			.forEach(function (v)
 			{
-				// @ts-ignore
-				expect(v).toBeOneOf(arr2)
-				// @ts-ignore
-				expect(v).not.toBeOneOf(arr)
+				assert.ok(arr2.includes(v), `${v} should be one of [${arr2}]`);
+				assert.ok(!arr.includes(v), `${v} should not be one of [${arr}]`);
 			})
 		;
 	});

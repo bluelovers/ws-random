@@ -1,33 +1,38 @@
 //@noUnusedParameters:false
-/// <reference types="jest" />
 /// <reference types="node" />
-/// <reference types="expect" />
 
-import { basename, extname } from 'path';
+/**
+ * Node.js 原生測試 / Node.js Native Test Runner (node:test)
+ *
+ * 由 jest 測試改寫為 `node:test` + `node:assert/strict`
+ * 並以 `t.assert.snapshot()` 保留原有的快照斷言
+ * Rewritten from jest to `node:test` + `node:assert/strict`,
+ * snapshots are kept via `t.assert.snapshot()`
+ *
+ * 更新快照 / Update snapshots: `node --test --test-update-snapshots test/test.spec.ts`
+ */
+
+import assert from 'node:assert/strict';
+import { describe, test } from 'node:test';
 import { newRngMathRandom } from '@lazy-random/util-test';
 import { int, randIndex, randIndexWithRange } from '../src/index';
-import { ITSTypeAndStringLiteral } from 'ts-type/lib/helper/string';
-
-beforeAll(async () =>
-{
-
-});
+import type { ITSTypeAndStringLiteral } from 'ts-type/lib/helper/string';
 
 type IResults = Record<ITSTypeAndStringLiteral<number>, boolean>;
 
-describe(basename(__filename, extname(__filename)), () =>
+describe('test.spec', () =>
 {
 	const testLimit = 1000;
 
 	const rnd = newRngMathRandom();
 
-	test.skip(`dummy`, () => {});
+	test('dummy', { skip: true }, () => {});
 
-	test(`randIndex`, () =>
+	test('randIndex', (t) =>
 	{
-		let size = 5;
-		let results: IResults = {};
-		let actual: number;
+		const size = 5;
+		const results: IResults = {};
+		let actual = 0;
 		for (let i = 0; i < testLimit; i++)
 		{
 			actual = randIndex(rnd, size);
@@ -40,18 +45,16 @@ describe(basename(__filename, extname(__filename)), () =>
 			}
 		}
 
-		expect(actual).toBeGreaterThan(0);
-		expect(actual).toBeLessThan(size);
-		expect(results).toMatchSnapshot();
-
+		assert.ok(actual >= 0 && actual < size, `randIndex(${size}) => ${actual} out of range`);
+		t.assert.snapshot(results);
 	});
 
-	test(`randIndexWithRange`, () =>
+	test('randIndexWithRange', (t) =>
 	{
-		let min = 1;
-		let max = 5;
-		let results: IResults = {};
-		let actual: number;
+		const min = 1;
+		const max = 5;
+		const results: IResults = {};
+		let actual = 0;
 		for (let i = 0; i < testLimit; i++)
 		{
 			actual = randIndexWithRange(rnd, min, max);
@@ -64,18 +67,16 @@ describe(basename(__filename, extname(__filename)), () =>
 			}
 		}
 
-		expect(actual).toBeGreaterThan(0);
-		expect(actual).toBeLessThan(max);
-		expect(results).toMatchSnapshot();
-
+		assert.ok(actual >= min && actual < max, `randIndexWithRange(${min}, ${max}) => ${actual} out of range`);
+		t.assert.snapshot(results);
 	});
 
-	test(`int`, () =>
+	test('int', (t) =>
 	{
-		let min = 1;
-		let max = 5;
-		let results: IResults = {};
-		let actual: number;
+		const min = 1;
+		const max = 5;
+		const results: IResults = {};
+		let actual = 0;
 		for (let i = 0; i < testLimit; i++)
 		{
 			actual = int(rnd, min, max);
@@ -88,10 +89,8 @@ describe(basename(__filename, extname(__filename)), () =>
 			}
 		}
 
-		expect(actual).toBeGreaterThan(0);
-		expect(actual).toBeLessThan(max);
-		expect(results).toMatchSnapshot();
-
+		assert.ok(actual >= min && actual <= max, `int(${min}, ${max}) => ${actual} out of range`);
+		t.assert.snapshot(results);
 	});
 
 })
