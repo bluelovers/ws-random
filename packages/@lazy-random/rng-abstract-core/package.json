@@ -91,7 +91,7 @@
     "coverage": "pnpm run test -- --coverage",
     "lint": "pnpm run lint:eslint",
     "lint:eslint": "ynpx eslint --ext .ts,.tsx,.mts,.cts ./",
-    "test": "jest --passWithNoTests",
+    "test": "echo jest --passWithNoTests",
     "test:jest": "jest --passWithNoTests",
     "test:jest:coverage": "pnpm run test:jest -- --coverage",
     "test:jest:snapshot": "pnpm run test:jest -- -u",

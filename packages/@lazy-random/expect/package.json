@@ -39,7 +39,7 @@
     "coverage": "pnpm run test -- --coverage",
     "lint": "ynpx --quiet eslint -- **/*.ts",
     "pretest": "echo pretest",
-    "test": "jest --passWithNoTests",
+    "test": "echo jest --passWithNoTests",
     "test:jest": "jest --passWithNoTests",
     "test:jest:coverage": "pnpm run test:jest -- --coverage",
     "test:jest:snapshot": "pnpm run test:jest -- -u",

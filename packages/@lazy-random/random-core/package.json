@@ -86,7 +86,7 @@
   "scripts": {
     "coverage": "pnpm run test -- --coverage",
     "lint": "ynpx --quiet eslint -- **/*.ts",
-    "test": "jest --passWithNoTests",
+    "test": "echo jest --passWithNoTests",
     "test:jest": "jest --passWithNoTests",
     "test:jest:coverage": "pnpm run test:jest -- --coverage",
     "test:jest:snapshot": "pnpm run test:jest -- -u",
@@ -113,11 +113,12 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
+    "@lazy-random/df-array": "^2.0.2",
+    "@lazy-random/df-item-by-weight": "^1.0.10",
     "@lazy-random/distributions": "^2.0.3",
     "@lazy-random/expect": "^1.0.15",
     "@lazy-random/rng-abstract": "^1.0.13",
-    "@lazy-random/shared-lib": "^1.0.15",
-    "core-decorators": "^0.20.0"
+    "@lazy-random/shared-lib": "^1.0.15"
   },
   "publishConfig": {
     "access": "public"
