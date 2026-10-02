@@ -1,8 +1,15 @@
 /**
  * Created by user on 2018/11/16/016.
+ *
+ * Node.js 原生測試 / Node.js Native Test Runner (node:test)
+ *
+ * 由 jest 測試改寫為 `node:test` + `node:assert/strict`
+ * `expectInDelta()` 原本為空呼叫，改為以 `assert.ok()` 實際斷言
  */
 
-import expectInDelta from 'num-in-delta';
+import assert from 'node:assert/strict';
+import { describe, test } from 'node:test';
+import inDelta from 'num-in-delta';
 import { dfItemByWeight } from '../src/index';
 import { newRngMathRandom, newRngSeedRandom } from '@lazy-random/util-test';
 
@@ -14,7 +21,7 @@ describe(`ItemByWeight`, () =>
 	 *
 	 * @see https://github.com/oprogramador/random-weighted-item/blob/master/src/tests/getRandomItem.js
 	 */
-	it('returns random weighted item by index', () =>
+	test('returns random weighted item by index', () =>
 	{
 		let rnd = newRngMathRandom()
 		const array = ['a', 'b', 'c', 'd']
@@ -33,38 +40,38 @@ describe(`ItemByWeight`, () =>
 		 */
 
 		rnd.next = () => 0.01;
-		expect(fn()[1]).toBe('a');
+		assert.strictEqual(fn()[1], 'a');
 
 		rnd.next = () => 0.1;
-		expect(fn()[1]).toBe('a');
+		assert.strictEqual(fn()[1], 'a');
 
 		rnd.next = () => 0.2;
-		expect(fn()[1]).toBe('b');
+		assert.strictEqual(fn()[1], 'b');
 
 		rnd.next = () => 0.3;
-		expect(fn()[1]).toBe('b');
+		assert.strictEqual(fn()[1], 'b');
 
 		rnd.next = () => 0.4;
-		expect(fn()[1]).toBe('c');
+		assert.strictEqual(fn()[1], 'c');
 
 		rnd.next = () => 0.5;
-		expect(fn()[1]).toBe('c');
+		assert.strictEqual(fn()[1], 'c');
 
 		rnd.next = () => 0.6;
-		expect(fn()[1]).toBe('c');
+		assert.strictEqual(fn()[1], 'c');
 
 		rnd.next = () => 0.7;
-		expect(fn()[1]).toBe('d');
+		assert.strictEqual(fn()[1], 'd');
 
 		rnd.next = () => 0.8;
-		expect(fn()[1]).toBe('d');
+		assert.strictEqual(fn()[1], 'd');
 
 		rnd.next = () => 0.9;
-		expect(fn()[1]).toBe('d');
+		assert.strictEqual(fn()[1], 'd');
 
 	})
 
-	it('returns random weighted item by value', () =>
+	test('returns random weighted item by value', () =>
 	{
 		let rnd = newRngMathRandom()
 		const array = [3, 7, 1, 4, 2]
@@ -88,38 +95,38 @@ describe(`ItemByWeight`, () =>
 		 */
 
 		rnd.next = () => 0.01;
-		expect(fn()[1]).toBe(1);
+		assert.strictEqual(fn()[1], 1);
 
 		rnd.next = () => 0.1;
-		expect(fn()[1]).toBe(2);
+		assert.strictEqual(fn()[1], 2);
 
 		rnd.next = () => 0.2;
-		expect(fn()[1]).toBe(3);
+		assert.strictEqual(fn()[1], 3);
 
 		rnd.next = () => 0.3;
-		expect(fn()[1]).toBe(3);
+		assert.strictEqual(fn()[1], 3);
 
 		rnd.next = () => 0.4;
-		expect(fn()[1]).toBe(4);
+		assert.strictEqual(fn()[1], 4);
 
 		rnd.next = () => 0.5;
-		expect(fn()[1]).toBe(4);
+		assert.strictEqual(fn()[1], 4);
 
 		rnd.next = () => 0.6;
-		expect(fn()[1]).toBe(7);
+		assert.strictEqual(fn()[1], 7);
 
 		rnd.next = () => 0.7;
-		expect(fn()[1]).toBe(7);
+		assert.strictEqual(fn()[1], 7);
 
 		rnd.next = () => 0.8;
-		expect(fn()[1]).toBe(7);
+		assert.strictEqual(fn()[1], 7);
 
 		rnd.next = () => 0.9;
-		expect(fn()[1]).toBe(7);
+		assert.strictEqual(fn()[1], 7);
 
 	})
 
-	it('returns random weighted item by prop.w', () =>
+	test('returns random weighted item by prop.w', () =>
 	{
 		let rnd = newRngMathRandom()
 		const obj = {
@@ -151,48 +158,48 @@ describe(`ItemByWeight`, () =>
 		 */
 
 		rnd.next = () => 0.01;
-		expect(fn()[0]).toBe('a');
-		expect(fn()[1]).toEqual(obj['a']);
+		assert.strictEqual(fn()[0], 'a');
+		assert.deepStrictEqual(fn()[1], obj['a']);
 
 		rnd.next = () => 0.1;
-		expect(fn()[0]).toBe('a');
-		expect(fn()[1]).toEqual(obj['a']);
+		assert.strictEqual(fn()[0], 'a');
+		assert.deepStrictEqual(fn()[1], obj['a']);
 
 		rnd.next = () => 0.2;
-		expect(fn()[0]).toBe('b');
-		expect(fn()[1]).toEqual(obj['b']);
+		assert.strictEqual(fn()[0], 'b');
+		assert.deepStrictEqual(fn()[1], obj['b']);
 
 		rnd.next = () => 0.3;
-		expect(fn()[0]).toBe('b');
-		expect(fn()[1]).toEqual(obj['b']);
+		assert.strictEqual(fn()[0], 'b');
+		assert.deepStrictEqual(fn()[1], obj['b']);
 
 		rnd.next = () => 0.4;
-		expect(fn()[0]).toBe('c');
-		expect(fn()[1]).toEqual(obj['c']);
+		assert.strictEqual(fn()[0], 'c');
+		assert.deepStrictEqual(fn()[1], obj['c']);
 
 		rnd.next = () => 0.5;
-		expect(fn()[0]).toBe('c');
-		expect(fn()[1]).toEqual(obj['c']);
+		assert.strictEqual(fn()[0], 'c');
+		assert.deepStrictEqual(fn()[1], obj['c']);
 
 		rnd.next = () => 0.6;
-		expect(fn()[0]).toBe('c');
-		expect(fn()[1]).toEqual(obj['c']);
+		assert.strictEqual(fn()[0], 'c');
+		assert.deepStrictEqual(fn()[1], obj['c']);
 
 		rnd.next = () => 0.7;
-		expect(fn()[0]).toBe('d');
-		expect(fn()[1]).toEqual(obj['d']);
+		assert.strictEqual(fn()[0], 'd');
+		assert.deepStrictEqual(fn()[1], obj['d']);
 
 		rnd.next = () => 0.8;
-		expect(fn()[0]).toBe('d');
-		expect(fn()[1]).toEqual(obj['d']);
+		assert.strictEqual(fn()[0], 'd');
+		assert.deepStrictEqual(fn()[1], obj['d']);
 
 		rnd.next = () => 0.9;
-		expect(fn()[0]).toBe('d');
-		expect(fn()[1]).toEqual(obj['d']);
+		assert.strictEqual(fn()[0], 'd');
+		assert.deepStrictEqual(fn()[1], obj['d']);
 
 	})
 
-	it('allow has same weight', () =>
+	test('allow has same weight', () =>
 	{
 		let rnd = newRngMathRandom()
 		const obj = {
@@ -228,15 +235,15 @@ describe(`ItemByWeight`, () =>
 
 		let ks = Object.keys(cache)
 
-		expect(ks.length).toBe(2)
-		expect(ks).toEqual(expect.arrayContaining(['a']))
-		expect(ks).toEqual(expect.arrayContaining(['b']))
+		assert.strictEqual(ks.length, 2)
+		assert.ok(ks.includes('a'), `ks should contain 'a': [${ks}]`)
+		assert.ok(ks.includes('b'), `ks should contain 'b': [${ks}]`)
 
 		//console.log(cache);
 
 	})
 
-	it('random weighted item in expect percentage +/- 0.05', () =>
+	test('random weighted item in expect percentage +/- 0.05', () =>
 	{
 		let rnd = newRngMathRandom()
 		const arr = [1, 3, 2, 4, 1, 1, 4, 3, 2]
@@ -282,15 +289,16 @@ describe(`ItemByWeight`, () =>
 		Object.values(cache2)
 			.forEach(function (data)
 			{
-				expect(data.key).toBe(data.data[0])
-				expect(arr[data.key]).toBe(data.data[1])
-				expectInDelta(data.percentage, data.data[2], 0.05)
+				assert.strictEqual(data.key, data.data[0])
+				assert.strictEqual(arr[data.key], data.data[1])
+				assert.ok(inDelta(data.percentage, data.data[2], 0.05),
+					`${data.key}: percentage ${data.percentage} not in delta of ${data.data[2]} ± 0.05`)
 			})
 		;
 
 	})
 
-	it('[seedrandom] random weighted item in expect percentage +/- 0.05', () =>
+	test('[seedrandom] random weighted item in expect percentage +/- 0.05', () =>
 	{
 		let rnd = newRngSeedRandom()
 		const arr = [1, 3, 2, 4, 1, 1, 4, 3, 2]
@@ -338,13 +346,13 @@ describe(`ItemByWeight`, () =>
 		Object.values(cache2)
 			.forEach(function (data)
 			{
-				expect(data.key).toBe(data.data[0])
-				expect(arr[data.key]).toBe(data.data[1])
-				expectInDelta(data.percentage, data.data[2], 0.05)
+				assert.strictEqual(data.key, data.data[0])
+				assert.strictEqual(arr[data.key], data.data[1])
+				assert.ok(inDelta(data.percentage, data.data[2], 0.05),
+					`${data.key}: percentage ${data.percentage} not in delta of ${data.data[2]} ± 0.05`)
 			})
 		;
 
 	})
 
 });
-

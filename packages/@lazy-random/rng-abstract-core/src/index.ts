@@ -56,10 +56,10 @@ export abstract class RNGCore implements IRNGLike
 	 * should return a float between 0 ~ 1
 	 */
 	// @ts-ignore
-	public abstract next(): number
-	{
-		throw new ReferenceError('RNG.next must be overridden');
-	}
+	abstract next(): number
+	// {
+	// 	throw new ReferenceError('RNG.next must be overridden');
+	// }
 
 	public seed(seed?, opts?, ...argv)
 	{

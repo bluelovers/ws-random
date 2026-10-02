@@ -1,5 +1,5 @@
 import { expect } from '@lazy-random/expect';
-import dfUniformFloat from './uniform';
+import { dfUniformFloat } from './uniform';
 import { IRNGLike } from '@lazy-random/rng-abstract';
 
 export function dfUniformInt(random: IRNGLike, min?: number, max?: number)

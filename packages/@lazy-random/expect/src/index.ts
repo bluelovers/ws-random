@@ -1,9 +1,9 @@
-import _chai from 'chai';
-import { install } from 'chai-asserttype-extra'
+import {
+	use,
+} from 'chai';
+import { ChaiPluginAssertType } from 'chai-asserttype-extra'
 
-export type { IChaiInstalled } from 'chai-asserttype-extra'
-
-const chai = install(_chai);
+const chai = use(ChaiPluginAssertType);
 
 export const expect = chai.expect;
 export const assert = chai.assert;
