@@ -6,7 +6,7 @@ import { toFixedNumber } from '@lazy-num/to-fixed-number';
 import { fakeLibRMathRng } from '@lazy-random/fake-lib-r-math-rng';
 import { get_prob, get_prob_float } from '@lazy-random/util-probabilities';
 import { num_array_sum, sum_1_to_n } from '@lazy-num/sum';
-import { float, randIndex } from '@lazy-random/util-distributions';
+import { float, randIndexByLength } from '@lazy-random/util-distributions';
 import { isUnset } from '@lazy-random/shared-lib';
 import { IRNGLike } from '@lazy-random/rng-abstract';
 import { dfUniformFloat } from '@lazy-random/df-uniform';
@@ -337,7 +337,7 @@ export function coreFnRandSumInt(argv: ISumNumParameterWuthCache)
 		}
 		else if (c_len)
 		{
-			let i = randIndex(random, c_len);
+			let i = randIndexByLength(random, c_len);
 
 			ret_b = cache[i];
 			bool_toplevel = true;

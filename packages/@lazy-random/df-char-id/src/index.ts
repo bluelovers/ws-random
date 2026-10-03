@@ -6,7 +6,7 @@ import UString from "uni-string";
 import { ENUM_ALPHABET } from '@lazy-random/shared-lib';
 import { expect } from '@lazy-random/expect';
 import { floatToString } from '@lazy-num/float-to-string';
-import { randIndex as _randIndex } from '@lazy-random/util-distributions';
+import { randIndexByLength as _randIndex } from '@lazy-random/util-distributions';
 import { IRNGLike } from '@lazy-random/rng-abstract';
 
 /**
@@ -74,9 +74,9 @@ export function dfCharID(random: IRNGLike, char?: ENUM_ALPHABET | string | Buffe
 
 	/*
 	 * 少於 2 個字元的字元表只能產生固定字串、毫無隨機性，
-	 * 直接拒絕；單一字元也會讓 randIndex 永遠抽中同一格。
+	 * 直接拒絕；單一字元也會讓 randIndexByLength 永遠抽中同一格。
 	 * An alphabet with fewer than 2 characters would emit a constant string
-	 * with no randomness at all, and a single entry would make randIndex
+	 * with no randomness at all, and a single entry would make randIndexByLength
 	 * always land on the same slot, so reject it eagerly.
 	 */
 	expect(ls).lengthOf.gt(1);
@@ -85,7 +85,7 @@ export function dfCharID(random: IRNGLike, char?: ENUM_ALPHABET | string | Buffe
 	 * 包一層閉包，讓取樣期只需關心索引、不用重複帶入 len
 	 * Wrap in a closure so sampling only needs an index, without re-passing `len`.
 	 */
-	const randIndex = () =>
+	const randIndexByLength = () =>
 	{
 		return _randIndex(random, len)
 	};
@@ -103,7 +103,7 @@ export function dfCharID(random: IRNGLike, char?: ENUM_ALPHABET | string | Buffe
 		 */
 		while (i--)
 		{
-			list.push(ls[randIndex()])
+			list.push(ls[randIndexByLength()])
 		}
 
 		/*

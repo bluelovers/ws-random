@@ -1,7 +1,7 @@
 import { ITSArrayLikeWriteable } from 'ts-type/lib/generic';
 import { TypedArray } from 'typedarray-dts';
 import { swapAlgorithm2 } from '@lazy-random/array-algorithm';
-import { randIndex as _randIndex } from '@lazy-random/util-distributions';
+import { randIndexByLength as _randIndex } from '@lazy-random/util-distributions';
 import { IRNGLike } from '@lazy-random/rng-abstract';
 import { ITSArrayListMaybeReadonly } from 'ts-type/lib/type/base';
 
@@ -24,7 +24,7 @@ export function dfArrayShuffle<T extends ITSArrayLikeWriteable<any> | TypedArray
 	 * 把隨機索引的取得包一層，讓演算法只需傳入長度即可
 	 * Wrap random index picking so the algorithm only has to pass a length.
 	 */
-	const randIndex = (len: number) =>
+	const randIndexByLength = (len: number) =>
 	{
 		return _randIndex(random, len)
 	};
@@ -64,7 +64,7 @@ export function dfArrayShuffle<T extends ITSArrayLikeWriteable<any> | TypedArray
 			 * 每次呼叫都重新複製，確保洗牌結果不互相污染
 			 * Copy on every call so shuffled results never contaminate each other.
 			 */
-			return swapAlgorithm2(cloneArrayLike(arr), true, randIndex)
+			return swapAlgorithm2(cloneArrayLike(arr), true, randIndexByLength)
 		}
 	}
 
@@ -74,7 +74,7 @@ export function dfArrayShuffle<T extends ITSArrayLikeWriteable<any> | TypedArray
 		 * 原地改寫：多次呼叫會在上一次洗牌後的狀態繼續打亂
 		 * In-place: repeated calls keep shuffling the result of the previous call.
 		 */
-		return swapAlgorithm2(arr, true, randIndex)
+		return swapAlgorithm2(arr, true, randIndexByLength)
 	}
 }
 

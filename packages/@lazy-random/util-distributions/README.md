@@ -6,7 +6,7 @@
 
 - `float()`：在 `[min, max)` 區間產生浮點數 (Float)。
 - `int()`：在 `[min, max]`（含端點，Inclusive）區間產生整數 (Integer)。
-- `randIndex()`：依長度產生 `0 ～ len - 1` 的隨機索引 (Random Index)。
+- `randIndexByLength()`：依長度產生 `0 ～ len - 1` 的隨機索引 (Random Index)。
 - `randIndexWithRange()`：在指定起訖範圍內產生隨機索引。
 - 所有函式 (Function) 接收實作 `IRNGLike` 介面 (Interface) 的亂數產生器 (RNG)，方便搭配任何自訂種子 (Seed) 的實作。
 
@@ -21,14 +21,14 @@ yt add @lazy-random/util-distributions
 ## 使用方式 (Usage)
 
 ```ts
-import { float, int, randIndex, randIndexWithRange } from '@lazy-random/util-distributions';
+import { float, int, randIndexByLength, randIndexWithRange } from '@lazy-random/util-distributions';
 import type { IRNGLike } from '@lazy-random/rng-abstract';
 
 declare const rng: IRNGLike;
 
 float(rng, 0, 1);            // 0～1 的浮點數 (Float)
 int(rng, 1, 6);              // 1～6 的整數 (Integer)
-randIndex(rng, 10);          // 0～9 的隨機索引 (Random Index)
+randIndexByLength(rng, 10);          // 0～9 的隨機索引 (Random Index)
 randIndexWithRange(rng, 5, 10); // 5～9 的隨機索引
 ```
 
@@ -39,7 +39,7 @@ import UtilDistributions from '@lazy-random/util-distributions';
 
 UtilDistributions.int(rng, 0, 100);
 UtilDistributions.float(rng, 0, 1);
-UtilDistributions.randIndex(rng, 5);
+UtilDistributions.randIndexByLength(rng, 5);
 ```
 
 ## API 文件 (API Documentation)
@@ -57,7 +57,7 @@ UtilDistributions.randIndex(rng, 5);
 
 回傳 `[min, max]`（含端點，Inclusive）區間內的整數 (Integer)。內部以 `randIndexWithRange(random, min, max + 1)` 實作，故 `max` 會被包含。
 
-### randIndex(random, len): number
+### randIndexByLength(random, len): number
 
 回傳 `0 ～ len - 1` 的隨機索引 (Random Index)，以 `Math.floor(random.next() * len)` 取得，適合用於陣列 (Array) 取值。
 
@@ -67,7 +67,7 @@ UtilDistributions.randIndex(rng, 5);
 
 ### 預設導出 (Default Export)
 
-`UtilDistributions` 物件彙整 `randIndex`、`float`、`int` 三個函式，可依屬性 (Property) 呼叫。
+`UtilDistributions` 物件彙整 `randIndexByLength`、`float`、`int` 三個函式，可依屬性 (Property) 呼叫。
 
 ## 開發 (Development)
 

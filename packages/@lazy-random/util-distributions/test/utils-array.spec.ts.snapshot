@@ -754,7 +754,7 @@ exports[`utils-array > 實際 array 範例 > min / max 為負數時從尾部往�
 }
 `;
 
-exports[`utils-array > 實際 array 範例 > randIndex() 取實際陣列索引，0 ～ length - 1 全部出現且無非預期值 1`] = `
+exports[`utils-array > 實際 array 範例 > randIndexByLength() 取實際陣列索引，0 ～ length - 1 全部出現且無非預期值 1`] = `
 {
   "expected.size === arr.length": true,
   "state": {
@@ -795,7 +795,7 @@ exports[`utils-array > 實際 array 範例 > 單元素陣列僅有一個合法�
     "min": 0,
     "max": 0
   },
-  "randIndex": 0
+  "randIndexByLength": 0
 }
 `;
 

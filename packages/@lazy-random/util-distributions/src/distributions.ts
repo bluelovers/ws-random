@@ -11,7 +11,7 @@ import { IRNGLike } from '@lazy-random/rng-abstract';
  * @param len 索引長度，通常為陣列 (Array) 長度 / The index length, usually an array length
  * @returns 隨機索引 / A random index
  */
-export function randIndex(random: IRNGLike, len: number)
+export function randIndexByLength(random: IRNGLike, len: number)
 {
 	return Math.floor(random.next() * len)
 }
@@ -20,8 +20,8 @@ export function randIndex(random: IRNGLike, len: number)
  * 在 `[start, end)` 區間內回傳取整後的隨機索引 (Random Index)。
  * Return a floored random index within `[start, end)`.
  *
- * 與 `randIndex()` 的差別在於支援任意起訖，方便做區間抽樣 (Range Sampling)。
- * Unlike `randIndex()`, this accepts arbitrary bounds for range sampling.
+ * 與 `randIndexByLength()` 的差別在於支援任意起訖，方便做區間抽樣 (Range Sampling)。
+ * Unlike `randIndexByLength()`, this accepts arbitrary bounds for range sampling.
  *
  * @param random 實作 `IRNGLike` 的亂數產生器 / An RNG implementing `IRNGLike`
  * @param start 起始值（含，Inclusive）/ Start value, inclusive

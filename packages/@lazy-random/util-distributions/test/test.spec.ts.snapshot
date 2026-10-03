@@ -8,9 +8,9 @@ exports[`test.spec > int 1`] = `
 }
 `;
 
-exports[`test.spec > randIndex 1`] = `
+exports[`test.spec > randIndexByLength 1`] = `
 {
-  "label": "randIndex",
+  "label": "randIndexByLength",
   "params": {
     "len": 5
   },

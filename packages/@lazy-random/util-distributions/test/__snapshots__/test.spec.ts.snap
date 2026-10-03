@@ -10,7 +10,7 @@ exports[`test.spec int 1`] = `
 }
 `;
 
-exports[`test.spec randIndex 1`] = `
+exports[`test.spec randIndexByLength 1`] = `
 {
   "0": true,
   "1": true,

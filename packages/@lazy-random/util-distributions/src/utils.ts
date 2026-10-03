@@ -127,8 +127,8 @@ export const SAFE_INTEGER_MAX = Number.MAX_SAFE_INTEGER;
 /**
  * `len` 參數允許的最小值（閉區間下界）/ Smallest value allowed for the `len` parameter (inclusive lower bound)
  *
- * `randIndex()` 的合法值區間為 `[0, len)`，因此 `len` 至少為 1。
- * The legal interval of `randIndex()` is `[0, len)`, so `len` must be at least 1.
+ * `randIndexByLength()` 的合法值區間為 `[0, len)`，因此 `len` 至少為 1。
+ * The legal interval of `randIndexByLength()` is `[0, len)`, so `len` must be at least 1.
  */
 export const MIN_LENGTH = 1;
 
@@ -304,8 +304,8 @@ export function _assertIntegerInRange(value: number, min: number, max: number, n
 }
 
 /**
- * 以閉區間 `[MIN_LENGTH, MAX_LENGTH]` 驗證 `randIndex()` 的 `len` 參數
- * Validate the `len` argument of `randIndex()` against the inclusive interval `[MIN_LENGTH, MAX_LENGTH]`
+ * 以閉區間 `[MIN_LENGTH, MAX_LENGTH]` 驗證 `randIndexByLength()` 的 `len` 參數
+ * Validate the `len` argument of `randIndexByLength()` against the inclusive interval `[MIN_LENGTH, MAX_LENGTH]`
  *
  * @param len 索引長度 / The index length
  * @param label 錯誤訊息用的標籤 / Label used in the error message
@@ -404,8 +404,8 @@ export function _calcExpectedValues(start: number, end: number, params?: Readonl
 }
 
 /**
- * 依 `randIndex(len)` 的長度參數計算合法值 `[0, len)`
- * Compute the legal values `[0, len)` from the length argument of `randIndex(len)`
+ * 依 `randIndexByLength(len)` 的長度參數計算合法值 `[0, len)`
+ * Compute the legal values `[0, len)` from the length argument of `randIndexByLength(len)`
  *
  * @param len 索引長度 / The index length
  * @returns 合法參數值、合法值區間與其數量 / The legal parameter values, legal interval and their count

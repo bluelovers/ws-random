@@ -26,7 +26,7 @@
 
 import { describe, test } from 'node:test';
 import { newRngMathRandom } from '@lazy-random/util-test';
-import { int, randIndex } from '../src/index';
+import { int, randIndexByLength } from '../src/index';
 import {
 	type IArrayLike,
 	_fnCoreArrayLength,
@@ -108,23 +108,23 @@ describe('utils-array', () =>
 	 */
 	describe('實際 array 範例', () =>
 	{
-		test('randIndex() 取實際陣列索引，0 ～ length - 1 全部出現且無非預期值', (t) =>
+		test('randIndexByLength() 取實際陣列索引，0 ～ length - 1 全部出現且無非預期值', (t) =>
 		{
 			const arr = ['a', 'b', 'c', 'd', 'e'];
 
 			const expected = _calcExpectedValuesByArray(arr);
-			const validator = _createValuesValidator(expected, 'randIndex(array)');
+			const validator = _createValuesValidator(expected, 'randIndexByLength(array)');
 
 			for (let i = 0; i < testLimit; i++)
 			{
 				/**
 				 * 索引必須真的取得到陣列元素 / the index must resolve to a real element
 				 */
-				const index = randIndex(rnd, arr.length);
+				const index = randIndexByLength(rnd, arr.length);
 
 				if (arr[index] === undefined)
 				{
-					throw new RangeError(`randIndex(${arr.length}) => ${index} out of range`);
+					throw new RangeError(`randIndexByLength(${arr.length}) => ${index} out of range`);
 				}
 
 				validator.check(index);
@@ -218,7 +218,7 @@ describe('utils-array', () =>
 			t.assert.snapshot({
 				'expected': expectedSummary(_calcExpectedValuesByArray(arr)),
 				'calcArrayIndexMinMax': _calcArrayIndexMinMax(arr),
-				'randIndex': randIndex(rnd, arr.length),
+				'randIndexByLength': randIndexByLength(rnd, arr.length),
 			});
 		});
 

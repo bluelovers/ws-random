@@ -15,7 +15,7 @@
 import assert from 'node:assert/strict';
 import { describe, test } from 'node:test';
 import { newRngMathRandom } from '@lazy-random/util-test';
-import { int, randIndex, randIndexWithRange } from '../src/index';
+import { int, randIndexByLength, randIndexWithRange } from '../src/index';
 import type { ITSTypeAndStringLiteral } from 'ts-type/lib/helper/string';
 import { _calcExpectedValuesByLength, _calcExpectedValuesByRange } from '../src/utils';
 import { collectValues } from './expected-values';
@@ -28,13 +28,13 @@ describe('test.spec', () =>
 
 	const rnd = newRngMathRandom();
 
-	test('randIndex', (t) =>
+	test('randIndexByLength', (t) =>
 	{
 		const size = 5;
 
 		const expected = _calcExpectedValuesByLength(size);
 
-		const snapshot = collectValues('randIndex', testLimit, expected, () => randIndex(rnd, size));
+		const snapshot = collectValues('randIndexByLength', testLimit, expected, () => randIndexByLength(rnd, size));
 
 		assert.strictEqual(expected.size, size);
 		t.assert.snapshot(snapshot);

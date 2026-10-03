@@ -1,5 +1,5 @@
 import { expect } from '@lazy-random/expect';
-import { randIndex as _randIndex } from '@lazy-random/util-distributions';
+import { randIndexByLength as _randIndex } from '@lazy-random/util-distributions';
 import { IRNGLike } from '@lazy-random/rng-abstract';
 import { ITSArrayListMaybeReadonly } from 'ts-type/lib/type/base';
 
@@ -58,7 +58,7 @@ export function dfArrayUnique<T extends unknown>(random: IRNGLike, arr: ITSArray
 	 * 把隨機索引的取得包一層，讓呼叫端只需考慮長度
 	 * Wrap random index picking so callers only deal with a length.
 	 */
-	const randIndex = (len: number) =>
+	const randIndexByLength = (len: number) =>
 	{
 		return _randIndex(random, len)
 	};
@@ -77,7 +77,7 @@ export function dfArrayUnique<T extends unknown>(random: IRNGLike, arr: ITSArray
 	 */
 	limit = Math.min(limit || clone.length, clone.length);
 
-	fnRandIndex = fnRandIndex || randIndex;
+	fnRandIndex = fnRandIndex || randIndexByLength;
 	loop = !!loop;
 
 	//ow(limit, ow.number.integer.gt(0));
