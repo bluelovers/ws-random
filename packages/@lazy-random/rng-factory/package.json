@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/rng-factory",
-  "version": "1.0.10",
+  "version": "1.1.0",
   "description": "亂數產生器工廠 (RNG Factory) RNGFactory()，依第一個參數建立對應的亂數產生器 (Random Number Generator)",
   "keywords": [
     "lazy-random",
@@ -74,13 +74,13 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/generators-crypto": "^1.0.11",
-    "@lazy-random/generators-function": "^1.0.11",
-    "@lazy-random/generators-math-random": "^1.0.11",
-    "@lazy-random/generators-math-random2": "^1.0.10",
-    "@lazy-random/generators-seedrandom": "^1.0.10",
-    "@lazy-random/generators-xor128": "^1.0.11",
-    "@lazy-random/rng-abstract": "^1.0.13",
+    "@lazy-random/generators-crypto": "^1.1.0",
+    "@lazy-random/generators-function": "^1.1.0",
+    "@lazy-random/generators-math-random": "^1.1.0",
+    "@lazy-random/generators-math-random2": "^1.1.0",
+    "@lazy-random/generators-seedrandom": "^1.1.0",
+    "@lazy-random/generators-xor128": "^1.1.0",
+    "@lazy-random/rng-abstract": "^1.1.0",
     "@types/seedrandom": "=2.4.28"
   },
   "publishConfig": {

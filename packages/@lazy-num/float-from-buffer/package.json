@@ -1,6 +1,6 @@
 {
   "name": "@lazy-num/float-from-buffer",
-  "version": "1.0.14",
+  "version": "1.1.0",
   "description": "從位元組緩衝區 (Buffer) 讀取隨機位元組，轉換為 [0, 1) 區間的雙精度浮點數 (Double-precision Float)",
   "keywords": [
     "buffer",
@@ -68,7 +68,7 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/shared-lib": "^1.0.15"
+    "@lazy-random/shared-lib": "^1.1.0"
   },
   "publishConfig": {
     "access": "public"

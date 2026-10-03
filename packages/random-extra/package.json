@@ -86,7 +86,7 @@
     "test:jest:snapshot": "pnpm run test:jest -- -u",
     "test:snapshot": "pnpm run test -- -u",
     "test:tsd": "ynpx tsd",
-    "posttest": "git commit -m \"build: update seed\" ./src/util/random-seed-str.data.* & echo posttest",
+    "posttest_": "git commit -m \"build: update seed\" ./src/util/random-seed-str.data.* & echo posttest",
     "build_": "pnpm run build:tsc",
     "build:index": "ts-node ./test/script/build-cache.ts",
     "build-minify": "ts-node ./test/script/minify",

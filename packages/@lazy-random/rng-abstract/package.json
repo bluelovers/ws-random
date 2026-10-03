@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/rng-abstract",
-  "version": "1.0.13",
+  "version": "1.1.0",
   "description": "亂數產生器的抽象基底類別 (Abstract RNG Base Class)，統一種子 (Seed) 的產生與轉換規則",
   "keywords": [
     "lazy-random",
@@ -69,8 +69,8 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/rng-abstract-core": "^1.0.4",
-    "@lazy-random/seed-token": "^1.0.13"
+    "@lazy-random/rng-abstract-core": "^1.1.0",
+    "@lazy-random/seed-token": "^1.1.0"
   },
   "publishConfig": {
     "access": "public"

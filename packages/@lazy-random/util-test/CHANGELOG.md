@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/bluelovers/ws-random/compare/@lazy-random/util-test@1.0.5...@lazy-random/util-test@1.1.0) (2026-10-02)
+
+
+
+### 📚　Documentation
+
+* **monorepo:** 為全系列套件新增詳細的 JSDoc 註解與技術說明 ([477e362](https://github.com/bluelovers/ws-random/commit/477e362ece38a6206e60f967171f6ea944c96066))
+* **monorepo:** 完善全系列套件文件、程式碼註解與技術說明 ([1c6c83b](https://github.com/bluelovers/ws-random/commit/1c6c83ba12424ca60a917bd1d03008f869e1c520))
+
+
+### 🛠　Build System
+
+* migrate workspace from yarn to pnpm ([7601043](https://github.com/bluelovers/ws-random/commit/76010433d41a92ff8b3138b3712283e35a94fcce))
+
+
+### ♻️　Chores
+
+* 不存在測試的模組 將 scripts 的 test 加上 echo 來忽略測試 ([4a0b213](https://github.com/bluelovers/ws-random/commit/4a0b21315f09a29b855248c8f9e890fcd9ed7d56))
+* **monorepo:** 更新各子套件 package.json 之描述與關鍵字 ([f058e47](https://github.com/bluelovers/ws-random/commit/f058e4766da801120e6aab08b0db04e2dd553909))
+
+
+### 🔖　Miscellaneous
+
+* . ([3148db0](https://github.com/bluelovers/ws-random/commit/3148db01cd5b14349bf84df9c05416daa87dafb5))
+
+
+
 ## [1.0.5](https://github.com/bluelovers/ws-random/compare/@lazy-random/util-test@1.0.3...@lazy-random/util-test@1.0.5) (2023-11-19)
 
 

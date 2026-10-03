@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/df-uniform",
-  "version": "1.0.11",
+  "version": "1.1.0",
   "description": "均勻分佈 (Uniform Distribution) 的亂數 (Random Number) 產生器集合，回傳可反覆呼叫的閉包 (Closure)",
   "keywords": [
     "closure",
@@ -70,13 +70,13 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-num/to-fixed-number": "^1.0.11",
-    "@lazy-random/expect": "^1.0.15",
-    "@lazy-random/shared-lib": "^1.0.15"
+    "@lazy-num/to-fixed-number": "^1.1.0",
+    "@lazy-random/expect": "^1.1.0",
+    "@lazy-random/shared-lib": "^1.1.0"
   },
   "devDependencies": {
-    "@lazy-random/rng-abstract": "^1.0.13",
-    "@lazy-random/util-test": "^1.0.5"
+    "@lazy-random/rng-abstract": "^1.1.0",
+    "@lazy-random/util-test": "^1.1.0"
   },
   "publishConfig": {
     "access": "public"

@@ -1,6 +1,6 @@
 {
   "name": "@lazy-num/sum",
-  "version": "1.0.10",
+  "version": "1.1.0",
   "description": "數列求和 (Array Sum) 與等差數列 (Arithmetic Progression) 總和的小工具",
   "keywords": [
     "array",
@@ -71,7 +71,7 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "num-is-zero": "^1.0.13"
+    "num-is-zero": "^1.1.0"
   },
   "publishConfig": {
     "access": "public"

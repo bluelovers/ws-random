@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/bluelovers/ws-random/compare/@lazy-random/df-uniform@1.0.11...@lazy-random/df-uniform@1.1.0) (2026-10-02)
+
+
+### BREAKING CHANGES
+
+* **test:** 將測試框架從 jest 改為 Node.js 原生測試
+
+
+
+### 📦　Code Refactoring
+
+* **core:** 優化模組匯入方式與程式碼結構 ([cdde61d](https://github.com/bluelovers/ws-random/commit/cdde61d183117c5f8627bf9777cb22257c240703))
+
+
+### 📚　Documentation
+
+* update docs ([ab89109](https://github.com/bluelovers/ws-random/commit/ab89109be02d6b2be226d39604550a85daf6ea90))
+* **monorepo:** 為全系列套件新增詳細的 JSDoc 註解與技術說明 ([477e362](https://github.com/bluelovers/ws-random/commit/477e362ece38a6206e60f967171f6ea944c96066))
+
+
+### 🚨　Tests
+
+* **core:** 優化型別定義與建置流程並強化 RNG 實例檢查 ([3c99a64](https://github.com/bluelovers/ws-random/commit/3c99a64d03f356bb5f199a57bf1f6b4d7364c0ae))
+* **test:** 將測試框架從 jest 改為 Node.js 原生測試 ([1531a60](https://github.com/bluelovers/ws-random/commit/1531a60bb9932fd9ed3480c792682efa924b5ce6))
+
+
+### 🛠　Build System
+
+* migrate workspace from yarn to pnpm ([7601043](https://github.com/bluelovers/ws-random/commit/76010433d41a92ff8b3138b3712283e35a94fcce))
+* **dist:** 更新所有套件的編譯產物與型別定義 ([b0b05b8](https://github.com/bluelovers/ws-random/commit/b0b05b8454dd0b485bf93cdf4b02e1be8532ac86))
+
+
+### ♻️　Chores
+
+* **monorepo:** 更新各子套件 package.json 之描述與關鍵字 ([f058e47](https://github.com/bluelovers/ws-random/commit/f058e4766da801120e6aab08b0db04e2dd553909))
+
+
+### 🔖　Miscellaneous
+
+* . ([3148db0](https://github.com/bluelovers/ws-random/commit/3148db01cd5b14349bf84df9c05416daa87dafb5))
+
+
+
 ## [1.0.11](https://github.com/bluelovers/ws-random/compare/@lazy-random/df-uniform@1.0.9...@lazy-random/df-uniform@1.0.11) (2023-11-19)
 
 

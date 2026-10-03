@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/generators-function",
-  "version": "1.0.11",
+  "version": "1.1.0",
   "description": "把任意回傳 0～1 亂數 (Random Number) 的函式包裝為 RNG 類別，讓自訂函式也能使用統一的亂數產生器 (Random Number Generator) API",
   "keywords": [
     "function",
@@ -67,9 +67,9 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/clone-class": "^1.0.11",
-    "@lazy-random/expect": "^1.0.15",
-    "@lazy-random/rng-abstract": "^1.0.13"
+    "@lazy-random/clone-class": "^1.1.0",
+    "@lazy-random/expect": "^1.1.0",
+    "@lazy-random/rng-abstract": "^1.1.0"
   },
   "publishConfig": {
     "access": "public"

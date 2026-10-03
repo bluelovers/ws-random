@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/util-test",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "用於測試與示範的亂數發生器 (Random Number Generator, RNG) 建立工具",
   "keywords": [
     "lazy-random",
@@ -83,9 +83,9 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/original-math-random": "^1.0.10",
-    "@lazy-random/rng-factory": "^1.0.10",
-    "@lazy-random/simple-wrap": "^1.0.10",
+    "@lazy-random/original-math-random": "^1.1.0",
+    "@lazy-random/rng-factory": "^1.1.0",
+    "@lazy-random/simple-wrap": "^1.1.0",
     "@types/seedrandom": "^3.0.8",
     "seedrandom": "^3.0.5"
   },

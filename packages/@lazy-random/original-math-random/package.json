@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/original-math-random",
-  "version": "1.0.10",
+  "version": "1.1.0",
   "description": "保存 JavaScript 原生 `Math.random` 快照 (Snapshot) 的小套件，其他套件覆寫後仍可取回原始的亂數 (Random Number) 行為",
   "keywords": [
     "random",

@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/shared-lib",
-  "version": "1.0.15",
+  "version": "1.1.0",
   "description": "@lazy-random 系列套件共用的基礎函式 (Shared Utility) 與常數 (Constant) 集合，包含亂數常數、位元組轉十六進制 (Hex) 工具、快取鍵 (Cache Key) 函式與共用型別 (Type)",
   "keywords": [
     "shared-lib",

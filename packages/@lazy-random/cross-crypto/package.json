@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/cross-crypto",
-  "version": "1.0.11",
+  "version": "1.1.0",
   "description": "在 Node.js 與瀏覽器環境之間以單一 API 取得加密安全亂數 (Cryptographically Secure Random) 的跨環境 (Cross-environment) 工具",
   "keywords": [
     "cross-crypto",

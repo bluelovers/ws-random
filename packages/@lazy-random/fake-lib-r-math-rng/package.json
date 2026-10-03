@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/fake-lib-r-math-rng",
-  "version": "1.0.10",
+  "version": "1.1.0",
   "description": "將任意回傳 0～1 亂數 (Random Number) 的函式包裝為 lib-r-math.js 的 IRNG 介面 (Interface)，方便把自訂的偽亂數發生器 (PRNG) 接入 R 統計函式",
   "keywords": [
     "fake-lib-r-math-rng",

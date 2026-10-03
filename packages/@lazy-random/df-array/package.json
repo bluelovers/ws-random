@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/df-array",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "針對陣列 (Array) 與類陣列 (Array-Like) 的亂數取樣函式 (Random Sampling Function) 集合，屬 @lazy-random 系列的分佈函式 (Distribution Function) 套件",
   "keywords": [
     "df-array",
@@ -72,17 +72,17 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/array-algorithm": "^1.0.14",
-    "@lazy-random/df-uniform": "^1.0.11",
-    "@lazy-random/expect": "^1.0.15",
-    "@lazy-random/rng-abstract": "^1.0.13",
-    "@lazy-random/rng-abstract-core": "^1.0.4",
-    "@lazy-random/shared-lib": "^1.0.15",
-    "@lazy-random/util-distributions": "^1.0.10",
+    "@lazy-random/array-algorithm": "^1.1.0",
+    "@lazy-random/df-uniform": "^1.1.0",
+    "@lazy-random/expect": "^1.1.0",
+    "@lazy-random/rng-abstract": "^1.1.0",
+    "@lazy-random/rng-abstract-core": "^1.1.0",
+    "@lazy-random/shared-lib": "^1.1.0",
+    "@lazy-random/util-distributions": "^1.1.0",
     "typedarray-dts": "^1.0.0"
   },
   "devDependencies": {
-    "@lazy-random/util-test": "^1.0.5"
+    "@lazy-random/util-test": "^1.1.0"
   },
   "publishConfig": {
     "access": "public"

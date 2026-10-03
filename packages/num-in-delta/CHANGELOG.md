@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/bluelovers/ws-random/compare/num-in-delta@1.0.10...num-in-delta@1.1.0) (2026-10-02)
+
+
+
+### 📚　Documentation
+
+* update docs ([ab89109](https://github.com/bluelovers/ws-random/commit/ab89109be02d6b2be226d39604550a85daf6ea90))
+* **monorepo:** 為全系列套件新增詳細的 JSDoc 註解與技術說明 ([477e362](https://github.com/bluelovers/ws-random/commit/477e362ece38a6206e60f967171f6ea944c96066))
+
+
+### 🛠　Build System
+
+* migrate workspace from yarn to pnpm ([7601043](https://github.com/bluelovers/ws-random/commit/76010433d41a92ff8b3138b3712283e35a94fcce))
+* **dist:** 更新各套件編譯產物與優化型別定義 ([a5ef5e0](https://github.com/bluelovers/ws-random/commit/a5ef5e0f7a6226bd6030b382a1213eb66ad8c0cd))
+
+
+### ♻️　Chores
+
+* **monorepo:** 更新各子套件 package.json 之描述與關鍵字 ([f058e47](https://github.com/bluelovers/ws-random/commit/f058e4766da801120e6aab08b0db04e2dd553909))
+
+
+### 🔖　Miscellaneous
+
+* . ([3148db0](https://github.com/bluelovers/ws-random/commit/3148db01cd5b14349bf84df9c05416daa87dafb5))
+
+
+
 ## [1.0.10](https://github.com/bluelovers/ws-random/compare/num-in-delta@1.0.8...num-in-delta@1.0.10) (2023-11-19)
 
 
