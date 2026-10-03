@@ -17,7 +17,8 @@ import { describe, test } from 'node:test';
 import { newRngMathRandom } from '@lazy-random/util-test';
 import { int, randIndex, randIndexWithRange } from '../src/index';
 import type { ITSTypeAndStringLiteral } from 'ts-type/lib/helper/string';
-import { calcExpectedValuesByLength, calcExpectedValuesByRange, collectValues } from './expected-values';
+import { calcExpectedValuesByLength, calcExpectedValuesByRange } from '../src/utils';
+import { collectValues } from './expected-values';
 
 type IResults = Record<ITSTypeAndStringLiteral<number>, boolean>;
 

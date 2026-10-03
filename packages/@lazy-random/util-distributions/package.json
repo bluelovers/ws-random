@@ -45,7 +45,7 @@
     "coverage": "pnpm run test -- --coverage",
     "lint": "ynpx --quiet eslint -- **/*.ts",
     "test": "pnpm run test:node",
-    "test:node": "tsx --test --test-update-snapshots test/test.spec.ts",
+    "test:node": "tsx --test --test-update-snapshots test/**/*.spec.ts",
     "test:jest": "jest --passWithNoTests",
     "test:jest:coverage": "pnpm run test:jest -- --coverage",
     "test:jest:snapshot": "pnpm run test:jest -- -u",
