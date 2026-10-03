@@ -10,19 +10,225 @@ exports[`test.spec > int 1`] = `
 
 exports[`test.spec > randIndex 1`] = `
 {
-  "0": true,
-  "1": true,
-  "2": true,
-  "3": true,
-  "4": true
+  "label": "randIndex",
+  "params": {
+    "len": 5
+  },
+  "range": {
+    "start": 0,
+    "end": 5
+  },
+  "expectedValues": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "expectedSize": 5,
+  "seenValues": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "seenSize": 5,
+  "missingValues": [],
+  "illegalValues": []
 }
 `;
 
-exports[`test.spec > randIndexWithRange 1`] = `
+exports[`test.spec > randIndexWithRange [0, 1] 1`] = `
 {
-  "1": true,
-  "2": true,
-  "3": true,
-  "4": true
+  "label": "randIndexWithRange",
+  "params": {
+    "start": 0,
+    "end": 1
+  },
+  "range": {
+    "start": 0,
+    "end": 1
+  },
+  "expectedValues": [
+    0
+  ],
+  "expectedSize": 1,
+  "seenValues": [
+    0
+  ],
+  "seenSize": 1,
+  "missingValues": [],
+  "illegalValues": []
+}
+`;
+
+exports[`test.spec > randIndexWithRange [0, 4] 1`] = `
+{
+  "label": "randIndexWithRange",
+  "params": {
+    "start": 0,
+    "end": 4
+  },
+  "range": {
+    "start": 0,
+    "end": 4
+  },
+  "expectedValues": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "expectedSize": 4,
+  "seenValues": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "seenSize": 4,
+  "missingValues": [],
+  "illegalValues": []
+}
+`;
+
+exports[`test.spec > randIndexWithRange [0, 5] 1`] = `
+{
+  "label": "randIndexWithRange",
+  "params": {
+    "start": 0,
+    "end": 5
+  },
+  "range": {
+    "start": 0,
+    "end": 5
+  },
+  "expectedValues": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "expectedSize": 5,
+  "seenValues": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "seenSize": 5,
+  "missingValues": [],
+  "illegalValues": []
+}
+`;
+
+exports[`test.spec > randIndexWithRange [1, 5] 1`] = `
+{
+  "label": "randIndexWithRange",
+  "params": {
+    "start": 1,
+    "end": 5
+  },
+  "range": {
+    "start": 1,
+    "end": 5
+  },
+  "expectedValues": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "expectedSize": 4,
+  "seenValues": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "seenSize": 4,
+  "missingValues": [],
+  "illegalValues": []
+}
+`;
+
+exports[`test.spec > randIndexWithRange [2, 5] 1`] = `
+{
+  "label": "randIndexWithRange",
+  "params": {
+    "start": 2,
+    "end": 5
+  },
+  "range": {
+    "start": 2,
+    "end": 5
+  },
+  "expectedValues": [
+    2,
+    3,
+    4
+  ],
+  "expectedSize": 3,
+  "seenValues": [
+    2,
+    3,
+    4
+  ],
+  "seenSize": 3,
+  "missingValues": [],
+  "illegalValues": []
+}
+`;
+
+exports[`test.spec > randIndexWithRange [3, 5] 1`] = `
+{
+  "label": "randIndexWithRange",
+  "params": {
+    "start": 3,
+    "end": 5
+  },
+  "range": {
+    "start": 3,
+    "end": 5
+  },
+  "expectedValues": [
+    3,
+    4
+  ],
+  "expectedSize": 2,
+  "seenValues": [
+    3,
+    4
+  ],
+  "seenSize": 2,
+  "missingValues": [],
+  "illegalValues": []
+}
+`;
+
+exports[`test.spec > randIndexWithRange [4, 5] 1`] = `
+{
+  "label": "randIndexWithRange",
+  "params": {
+    "start": 4,
+    "end": 5
+  },
+  "range": {
+    "start": 4,
+    "end": 5
+  },
+  "expectedValues": [
+    4
+  ],
+  "expectedSize": 1,
+  "seenValues": [
+    4
+  ],
+  "seenSize": 1,
+  "missingValues": [],
+  "illegalValues": []
 }
 `;

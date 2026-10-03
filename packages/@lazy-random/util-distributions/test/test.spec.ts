@@ -17,6 +17,7 @@ import { describe, test } from 'node:test';
 import { newRngMathRandom } from '@lazy-random/util-test';
 import { int, randIndex, randIndexWithRange } from '../src/index';
 import type { ITSTypeAndStringLiteral } from 'ts-type/lib/helper/string';
+import { calcExpectedValuesByLength, calcExpectedValuesByRange, collectValues } from './expected-values';
 
 type IResults = Record<ITSTypeAndStringLiteral<number>, boolean>;
 
@@ -26,49 +27,52 @@ describe('test.spec', () =>
 
 	const rnd = newRngMathRandom();
 
-	test('dummy', { skip: true }, () => {});
-
 	test('randIndex', (t) =>
 	{
 		const size = 5;
-		const results: IResults = {};
-		let actual = 0;
-		for (let i = 0; i < testLimit; i++)
-		{
-			actual = randIndex(rnd, size);
 
-			results[actual] ??= true;
+		const expected = calcExpectedValuesByLength(size);
 
-			if (actual < 0 || actual >= size)
-			{
-				break;
-			}
-		}
+		const snapshot = collectValues('randIndex', testLimit, expected, () => randIndex(rnd, size));
 
-		assert.ok(actual >= 0 && actual < size, `randIndex(${size}) => ${actual} out of range`);
-		t.assert.snapshot(results);
+		assert.strictEqual(expected.size, size);
+		t.assert.snapshot(snapshot);
+		t.assert.partialDeepStrictEqual(snapshot, {
+			expectedSize: size,
+			missingValues: [],
+			illegalValues: [],
+		});
 	});
 
-	test('randIndexWithRange', (t) =>
+	([
+
+		{ min: 0, max: 4 },
+		{ min: 0, max: 1 },
+
+		{ min: 0, max: 5 },
+		{ min: 1, max: 5 },
+		{ min: 2, max: 5 },
+		{ min: 3, max: 5 },
+		{ min: 4, max: 5 },
+
+	] as const).forEach(({ min, max }) =>
 	{
-		const min = 1;
-		const max = 5;
-		const results: IResults = {};
-		let actual = 0;
-		for (let i = 0; i < testLimit; i++)
+		test(`randIndexWithRange [${min}, ${max}]`, (t) =>
 		{
-			actual = randIndexWithRange(rnd, min, max);
+			const expected = calcExpectedValuesByRange(min, max);
 
-			results[actual] ??= true;
+			const snapshot = collectValues('randIndexWithRange', testLimit, expected, () => randIndexWithRange(rnd, min, max));
 
-			if (actual < min || actual >= max)
-			{
-				break;
-			}
-		}
+			const size = max - min;
 
-		assert.ok(actual >= min && actual < max, `randIndexWithRange(${min}, ${max}) => ${actual} out of range`);
-		t.assert.snapshot(results);
+			assert.strictEqual(expected.size, size);
+			t.assert.snapshot(snapshot);
+			t.assert.partialDeepStrictEqual(snapshot, {
+				expectedSize: size,
+				missingValues: [],
+				illegalValues: [],
+			});
+		});
 	});
 
 	test('int', (t) =>
