@@ -1,0 +1,999 @@
+exports[`utils-array > assert：只拋錯 > assertMinMaxOrder() 拒絕 min > max 1`] = `
+{
+  "1 <= 3": "return undefined",
+  "3 <= 3": "return undefined",
+  "3 > 1": "throw RangeError: [ctx] max must be greater than or equal to min: min=3, max=1"
+}
+`;
+
+exports[`utils-array > calcExpectedValuesByArrayMinMax > 含端點 [min, max] 轉成半開區間 [min, max + 1) 1`] = `
+{
+  "params": {
+    "length": 5,
+    "min": 1,
+    "max": 3
+  },
+  "range": {
+    "start": 1,
+    "end": 4
+  },
+  "size": 3,
+  "values": [
+    1,
+    2,
+    3
+  ]
+}
+`;
+
+exports[`utils-array > calcExpectedValuesByArrayMinMax > 單一值區間 min === max 1`] = `
+{
+  "params": {
+    "length": 3,
+    "min": 2,
+    "max": 2
+  },
+  "range": {
+    "start": 2,
+    "end": 3
+  },
+  "size": 1,
+  "values": [
+    2
+  ]
+}
+`;
+
+exports[`utils-array > calcExpectedValuesByArrayMinMax > 未輸入 min / max 時等同取整段陣列索引 1`] = `
+{
+  "params": {
+    "length": 5,
+    "min": 0,
+    "max": 4
+  },
+  "range": {
+    "start": 0,
+    "end": 5
+  },
+  "size": 5,
+  "values": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ]
+}
+`;
+
+exports[`utils-array > calcExpectedValuesByArrayMinMax > 空陣列拋出 RangeError 1`] = `
+{
+  "[]": "throw RangeError: [calcExpectedValuesByArrayMinMax] array must not be empty: length=0"
+}
+`;
+
+exports[`utils-array > calcExpectedValuesByArrayMinMax > 負數 min / max 從尾部往前算 1`] = `
+{
+  "params": {
+    "length": 5,
+    "min": 2,
+    "max": 4
+  },
+  "range": {
+    "start": 2,
+    "end": 5
+  },
+  "size": 3,
+  "values": [
+    2,
+    3,
+    4
+  ]
+}
+`;
+
+exports[`utils-array > calcExpectedValuesByArrayMinMax > 越界自動收窄後仍可取值 1`] = `
+{
+  "params": {
+    "length": 3,
+    "min": 0,
+    "max": 2
+  },
+  "range": {
+    "start": 0,
+    "end": 3
+  },
+  "size": 3,
+  "values": [
+    0,
+    1,
+    2
+  ]
+}
+`;
+
+exports[`utils-array > calcExpectedValuesByMinMax（無陣列基礎） > max 為 SAFE_INTEGER_MAX 時 max + 1 溢位，拋出 RangeError 1`] = `
+{
+  "[0, MAX_SAFE_INTEGER]": "throw RangeError: [calcExpectedValuesByMinMax] parameter out of range: end=9007199254740992, expected: [-9007199254740991, 9007199254740991]"
+}
+`;
+
+exports[`utils-array > calcExpectedValuesByMinMax（無陣列基礎） > min > max 拋出 RangeError 1`] = `
+{
+  "[5, 1]": "throw RangeError: [calcExpectedValuesByMinMax] max must be greater than or equal to min: min=5, max=1"
+}
+`;
+
+exports[`utils-array > calcExpectedValuesByMinMax（無陣列基礎） > 含端點語意：[min, max] 轉成半開區間 [min, max + 1) 1`] = `
+{
+  "[1, 5]": {
+    "params": {
+      "min": 1,
+      "max": 5
+    },
+    "range": {
+      "start": 1,
+      "end": 6
+    },
+    "size": 5,
+    "values": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "[-5, -1] 負數": {
+    "params": {
+      "min": -5,
+      "max": -1
+    },
+    "range": {
+      "start": -5,
+      "end": 0
+    },
+    "size": 5,
+    "values": [
+      -5,
+      -4,
+      -3,
+      -2,
+      -1
+    ]
+  },
+  "[-2, 2] 跨 0": {
+    "params": {
+      "min": -2,
+      "max": 2
+    },
+    "range": {
+      "start": -2,
+      "end": 3
+    },
+    "size": 5,
+    "values": [
+      -2,
+      -1,
+      0,
+      1,
+      2
+    ]
+  },
+  "[3, 3] 單一值": {
+    "params": {
+      "min": 3,
+      "max": 3
+    },
+    "range": {
+      "start": 3,
+      "end": 4
+    },
+    "size": 1,
+    "values": [
+      3
+    ]
+  }
+}
+`;
+
+exports[`utils-array > core：_fnCore* 不拋錯 > _fnCoreClamp() / _fnCoreOrderMinMax() 不拋錯 1`] = `
+{
+  "clamp(5, 0, 3)": "3",
+  "clamp(-1, 0, 3)": "0",
+  "clamp(1, 3, 0) 上下界反轉不拋錯": "0",
+  "order(3, 1)": {
+    "min": 1,
+    "max": 3
+  },
+  "order(1, 3)": {
+    "min": 1,
+    "max": 3
+  },
+  "order(2, 2)": {
+    "min": 2,
+    "max": 2
+  }
+}
+`;
+
+exports[`utils-array > core：_fnCore* 不拋錯 > _fnCoreNormalizeInclusiveIndex() 含端點邊界收進 [0, length - 1] 1`] = `
+{
+  "0": "0",
+  "4": "4",
+  "5": "4",
+  "99": "4",
+  "-1": "4",
+  "-99": "0",
+  "NaN": "NaN",
+  "Infinity": "4",
+  "length 0 不拋錯": "-1"
+}
+`;
+
+exports[`utils-array > core：_fnCore* 不拋錯 > _fnCoreNormalizeSliceIndex() 半開邊界收進 [0, length] 1`] = `
+{
+  "0": "0",
+  "3": "3",
+  "5": "5",
+  "99": "5",
+  "99 @ length 0": "0",
+  "-1": "4",
+  "-2": "3",
+  "-5": "0",
+  "-99": "0",
+  "1.9": "1",
+  "-1.5": "4",
+  "-0.5": "0",
+  "NaN": "NaN",
+  "Infinity": "5",
+  "-Infinity": "0"
+}
+`;
+
+exports[`utils-array > core：_fnCore* 不拋錯 > _fnCoreNormalizeSliceMinMax() 不檢查空陣列 1`] = `
+{
+  "缺省": {
+    "min": 0,
+    "max": 4
+  },
+  "null, null": {
+    "min": 0,
+    "max": 4
+  },
+  "[-2, -1)": {
+    "min": 3,
+    "max": 4
+  },
+  "[0, 99)": {
+    "min": 0,
+    "max": 4
+  },
+  "length 0 不拋錯": {
+    "min": -1,
+    "max": 0
+  }
+}
+`;
+
+exports[`utils-array > core：_fnCore* 不拋錯 > _fnCoreNormalizeSliceRange() 不檢查空區間 1`] = `
+{
+  "缺省": {
+    "start": 0,
+    "end": 5
+  },
+  "[-3, -1)": {
+    "start": 2,
+    "end": 4
+  },
+  "[0, 99)": {
+    "start": 0,
+    "end": 5
+  },
+  "[3, 3) 為空但不拋錯": {
+    "start": 3,
+    "end": 3
+  },
+  "NaN": {
+    "start": null,
+    "end": 5
+  }
+}
+`;
+
+exports[`utils-array > core：_fnCore* 不拋錯 > _fnCoreResolveTailIndex() 只解析記法、不收窄 1`] = `
+{
+  "0": "0",
+  "4": "4",
+  "-1": "4",
+  "-5": "0",
+  "-6": "-1",
+  "99 不收窄": "99",
+  "NaN": "NaN"
+}
+`;
+
+exports[`utils-array > min / max 大小值修正 > normalizeMinMax() min > max 時交換兩者 1`] = `
+{
+  "[3, 1]": "return {\\"min\\":1,\\"max\\":3}",
+  "[0, -5]": "return {\\"min\\":-5,\\"max\\":0}",
+  "[-1, -5]": "return {\\"min\\":-5,\\"max\\":-1}",
+  "[1, 3] 順序正確": "return {\\"min\\":1,\\"max\\":3}",
+  "[2, 2]": "return {\\"min\\":2,\\"max\\":2}",
+  "[-5, -1]": "return {\\"min\\":-5,\\"max\\":-1}"
+}
+`;
+
+exports[`utils-array > min / max 大小值修正 > normalizeMinMax() 不修正非整數，仍拋出 TypeError 1`] = `
+{
+  "[3.5, 1]": "throw TypeError: [normalizeMinMax] parameter must be an integer: min=3.5",
+  "[3, 1.5]": "throw TypeError: [normalizeMinMax] parameter must be an integer: max=1.5"
+}
+`;
+
+exports[`utils-array > min / max 大小值修正 > normalizeMinMax() 修正後仍滿足 min <= max 1`] = `
+{
+  "pair": {
+    "min": 2,
+    "max": 7
+  },
+  "min <= max": true
+}
+`;
+
+exports[`utils-array > min / max 大小值驗證（無陣列基礎） > assertMinMax() min > max 拋出 RangeError 1`] = `
+{
+  "[3, 1]": "throw RangeError: [assertMinMax] max must be greater than or equal to min: min=3, max=1",
+  "[0, -1]": "throw RangeError: [assertMinMax] max must be greater than or equal to min: min=0, max=-1",
+  "[-1, -2]": "throw RangeError: [assertMinMax] max must be greater than or equal to min: min=-1, max=-2"
+}
+`;
+
+exports[`utils-array > min / max 大小值驗證（無陣列基礎） > assertMinMax() 接受 min === max 與負數 1`] = `
+{
+  "[2, 2]": "return {\\"min\\":2,\\"max\\":2}",
+  "[0, 0]": "return {\\"min\\":0,\\"max\\":0}",
+  "[-5, -1]": "return {\\"min\\":-5,\\"max\\":-1}",
+  "[-5, 0]": "return {\\"min\\":-5,\\"max\\":0}",
+  "[-1, 5]": "return {\\"min\\":-1,\\"max\\":5}",
+  "[MIN_SAFE, MAX_SAFE]": "return {\\"min\\":-9007199254740991,\\"max\\":9007199254740991}"
+}
+`;
+
+exports[`utils-array > min / max 大小值驗證（無陣列基礎） > assertMinMax() 非整數與越界拋錯 1`] = `
+{
+  "[1.5, 3]": "throw TypeError: [assertMinMax] parameter must be an integer: min=1.5",
+  "[1, 3.5]": "throw TypeError: [assertMinMax] parameter must be an integer: max=3.5",
+  "[0, MAX+1]": "throw RangeError: [assertMinMax] parameter out of range: max=9007199254740992, expected: [-9007199254740991, 9007199254740991]",
+  "[MIN-1, 0]": "throw RangeError: [assertMinMax] parameter out of range: min=-9007199254740992, expected: [-9007199254740991, 9007199254740991]"
+}
+`;
+
+exports[`utils-array > min / max（以 array 為基礎） > assertArrayIndexMinMax() 不做交換：min > max 拋出 RangeError 1`] = `
+{
+  "[3, 1]": "throw RangeError: [assertArrayIndexMinMax] max must be greater than or equal to min: min=3, max=1"
+}
+`;
+
+exports[`utils-array > min / max（以 array 為基礎） > assertArrayIndexMinMax() 不做收窄：越界拋出 RangeError 1`] = `
+{
+  "[0, 9]": "throw RangeError: [assertArrayIndexMinMax] parameter out of range: max=9, expected: [0, 2]",
+  "min 9": "throw RangeError: [assertArrayIndexMinMax] parameter out of range: min=9, expected: [0, 2]",
+  "min -6": "throw RangeError: [assertArrayIndexMinMax] parameter out of range: min=-3, expected: [0, 2]"
+}
+`;
+
+exports[`utils-array > min / max（以 array 為基礎） > assertArrayIndexMinMax() 接受負數（從尾部往前算） 1`] = `
+{
+  "[-1, -1]": "return {\\"min\\":4,\\"max\\":4}",
+  "[-2, -1]": "return {\\"min\\":3,\\"max\\":4}",
+  "[-5, -1]": "return {\\"min\\":0,\\"max\\":4}"
+}
+`;
+
+exports[`utils-array > min / max（以 array 為基礎） > assertArrayIndexMinMax() 未輸入 min / max 時以整段陣列補值 1`] = `
+{
+  "缺省": "return {\\"min\\":0,\\"max\\":4}",
+  "null, null": "return {\\"min\\":0,\\"max\\":4}",
+  "min 1": "return {\\"min\\":1,\\"max\\":4}",
+  "max 2": "return {\\"min\\":0,\\"max\\":2}",
+  "[2, 2]": "return {\\"min\\":2,\\"max\\":2}"
+}
+`;
+
+exports[`utils-array > min / max（以 array 為基礎） > assertArrayIndexMinMax() 非整數拋出 TypeError 1`] = `
+{
+  "min 1.5": "throw TypeError: [assertArrayIndexMinMax] parameter must be an integer: min=1.5",
+  "max 1.5": "throw TypeError: [assertArrayIndexMinMax] parameter must be an integer: max=1.5"
+}
+`;
+
+exports[`utils-array > min / max（以 array 為基礎） > calcArrayIndexMinMax() 回傳 [0, length - 1] 1`] = `
+{
+  "[a,b,c]": "return {\\"min\\":0,\\"max\\":2}",
+  "[only]": "return {\\"min\\":0,\\"max\\":0}",
+  "[]": "throw RangeError: [calcArrayIndexMinMax] array must not be empty: length=0"
+}
+`;
+
+exports[`utils-array > min / max（以 array 為基礎） > normalizeArrayIndexMinMax() NaN / Infinity 拋出 TypeError 1`] = `
+{
+  "NaN": "throw TypeError: [normalizeArrayIndexMinMax] parameter must be a finite number: min=NaN",
+  "max Infinity": "throw TypeError: [normalizeArrayIndexMinMax] parameter must be a finite number: max=Infinity",
+  "min -Infinity": "throw TypeError: [normalizeArrayIndexMinMax] parameter must be a finite number: min=-Infinity"
+}
+`;
+
+exports[`utils-array > min / max（以 array 為基礎） > normalizeArrayIndexMinMax() min > max 時交換兩者 1`] = `
+{
+  "[4, 1]": "return {\\"min\\":1,\\"max\\":4}",
+  "[-1, -3]": "return {\\"min\\":2,\\"max\\":4}"
+}
+`;
+
+exports[`utils-array > min / max（以 array 為基礎） > normalizeArrayIndexMinMax() 未輸入時以整段陣列補值 1`] = `
+{
+  "缺省": "return {\\"min\\":0,\\"max\\":4}",
+  "null, null": "return {\\"min\\":0,\\"max\\":4}",
+  "max 2": "return {\\"min\\":0,\\"max\\":2}"
+}
+`;
+
+exports[`utils-array > min / max（以 array 為基礎） > normalizeArrayIndexMinMax() 空陣列拋出 RangeError 1`] = `
+{
+  "[]": "throw RangeError: [normalizeArrayIndexMinMax] array must not be empty: length=0"
+}
+`;
+
+exports[`utils-array > min / max（以 array 為基礎） > normalizeArrayIndexMinMax() 負數從尾部往前算 1`] = `
+{
+  "[-1, -1]": "return {\\"min\\":4,\\"max\\":4}",
+  "[-2, -1]": "return {\\"min\\":3,\\"max\\":4}",
+  "[-99]": "return {\\"min\\":0,\\"max\\":4}"
+}
+`;
+
+exports[`utils-array > min / max（以 array 為基礎） > normalizeArrayIndexMinMax() 越界自動收窄到 [0, length - 1] 1`] = `
+{
+  "[0, 99]": "return {\\"min\\":0,\\"max\\":2}",
+  "[99, 99]": "return {\\"min\\":2,\\"max\\":2}",
+  "[-99, 99]": "return {\\"min\\":0,\\"max\\":2}"
+}
+`;
+
+exports[`utils-array > normalizeArrayRange > NaN / Infinity 不可修正，拋出 TypeError 1`] = `
+{
+  "NaN": "throw TypeError: [normalizeArrayRange] parameter must be a finite number: start=NaN",
+  "end Infinity": "throw TypeError: [normalizeArrayRange] parameter must be a finite number: end=Infinity",
+  "start -Infinity": "throw TypeError: [normalizeArrayRange] parameter must be a finite number: start=-Infinity"
+}
+`;
+
+exports[`utils-array > normalizeArrayRange > 小數向零取整 1`] = `
+{
+  "[1.9, 4.8)": {
+    "start": 1,
+    "end": 4
+  },
+  "[0.5, 1.5)": {
+    "start": 0,
+    "end": 1
+  }
+}
+`;
+
+exports[`utils-array > normalizeArrayRange > 收窄後為空才拋出 RangeError 1`] = `
+{
+  "[2, 2)": "throw RangeError: [normalizeArrayRange] range must not be empty: start=2, end=2",
+  "[99]": "throw RangeError: [normalizeArrayRange] range must not be empty: start=3, end=3",
+  "[1, 0)": "throw RangeError: [normalizeArrayRange] range must not be empty: start=1, end=0",
+  "[0, -99)": "throw RangeError: [normalizeArrayRange] range must not be empty: start=0, end=0",
+  "arr5 [-3, 2)": "throw RangeError: [normalizeArrayRange] range must not be empty: start=2, end=2"
+}
+`;
+
+exports[`utils-array > normalizeArrayRange > 空陣列拋出 RangeError 1`] = `
+{
+  "[]": "throw RangeError: [normalizeArrayRange] array must not be empty: length=0"
+}
+`;
+
+exports[`utils-array > normalizeArrayRange > 缺省時回傳整段 [0, length) 1`] = `
+{
+  "缺省": {
+    "start": 0,
+    "end": 5
+  },
+  "null, null": {
+    "start": 0,
+    "end": 5
+  },
+  "start 1": {
+    "start": 1,
+    "end": 5
+  }
+}
+`;
+
+exports[`utils-array > normalizeArrayRange > 負數從尾部往前算，等同 slice() 的語意 1`] = `
+{
+  "[-1]": {
+    "start": 4,
+    "end": 5
+  },
+  "[0, -1)": {
+    "start": 0,
+    "end": 4
+  },
+  "[-3, -1)": {
+    "start": 2,
+    "end": 4
+  },
+  "[-99]": {
+    "start": 0,
+    "end": 5
+  }
+}
+`;
+
+exports[`utils-array > normalizeArrayRange > 超出範圍自動收窄，不直接報錯 1`] = `
+{
+  "[0, 99)": {
+    "start": 0,
+    "end": 3
+  },
+  "[-99, 99)": {
+    "start": 0,
+    "end": 3
+  }
+}
+`;
+
+exports[`utils-array > size 驗證 > assertSize() 必須是 >= 1 的整數 1`] = `
+{
+  "0": "throw RangeError: [assertSize] parameter out of range: size=0, expected: [1, 9007199254740991]",
+  "1": "return 1",
+  "3": "return 3",
+  "MAX_SAFE_INTEGER": "return 9007199254740991",
+  "-1": "throw RangeError: [assertSize] parameter out of range: size=-1, expected: [1, 9007199254740991]",
+  "2.5": "throw TypeError: [assertSize] parameter must be an integer: size=2.5"
+}
+`;
+
+exports[`utils-array > size 驗證 > assertSizeInRange() size 必須落在 [1, max] 1`] = `
+{
+  "[1, 5]": "return 1",
+  "[5, 5]": "return 5",
+  "[6, 5]": "throw RangeError: [assertSizeInRange] parameter out of range: size=6, expected: [1, 5]",
+  "[0, 5]": "throw RangeError: [assertSizeInRange] parameter out of range: size=0, expected: [1, 5]",
+  "[1, 0]": "throw RangeError: [assertSizeInRange] no size is legal: max=0, expected max >= 1",
+  "[3, 0]": "throw RangeError: [assertSizeInRange] no size is legal: max=0, expected max >= 1",
+  "[1, 2.5]": "throw TypeError: [assertSizeInRange] parameter must be an integer: max=2.5"
+}
+`;
+
+exports[`utils-array > slice 風格 normalizeSliceIndex > NaN / Infinity 不可修正，拋出 TypeError 1`] = `
+{
+  "NaN": "throw TypeError: [normalizeSliceIndex] parameter must be a finite number: index=NaN",
+  "Infinity": "throw TypeError: [normalizeSliceIndex] parameter must be a finite number: index=Infinity",
+  "-Infinity": "throw TypeError: [normalizeSliceIndex] parameter must be a finite number: index=-Infinity"
+}
+`;
+
+exports[`utils-array > slice 風格 normalizeSliceIndex > length 非法時拋出 RangeError / TypeError 1`] = `
+{
+  "length -1": "throw RangeError: [normalizeSliceIndex] parameter out of range: length=-1, expected: [0, 9007199254740991]",
+  "length 1.5": "throw TypeError: [normalizeSliceIndex] parameter must be an integer: length=1.5"
+}
+`;
+
+exports[`utils-array > slice 風格 normalizeSliceIndex > 小數向零取整，-0 統一轉回 +0 1`] = `
+{
+  "1.9": "1",
+  "4.8": "4",
+  "-1.5": "4",
+  "-0.5": "0",
+  "-0.5 是 +0": true
+}
+`;
+
+exports[`utils-array > slice 風格 normalizeSliceIndex > 正數落在 [0, length]，超出自動收窄 1`] = `
+{
+  "0": "0",
+  "3": "3",
+  "5": "5",
+  "99": "5",
+  "99 @ length 0": "0"
+}
+`;
+
+exports[`utils-array > slice 風格 normalizeSliceIndex > 負數從尾部往前算，-1 即最後一個位置 1`] = `
+{
+  "-1": "4",
+  "-2": "3",
+  "-5": "0",
+  "-99 停在 0": "0"
+}
+`;
+
+exports[`utils-array > 原子層：只吃 length，不依賴陣列 > normalizeInclusiveIndex() length 非法時拋錯 1`] = `
+{
+  "length 0": "throw RangeError: [normalizeInclusiveIndex] array must not be empty: length=0",
+  "length -1": "throw RangeError: [normalizeInclusiveIndex] parameter out of range: length=-1, expected: [0, 9007199254740991]",
+  "length 1.5": "throw TypeError: [normalizeInclusiveIndex] parameter must be an integer: length=1.5"
+}
+`;
+
+exports[`utils-array > 原子層：只吃 length，不依賴陣列 > normalizeInclusiveIndex() 把含端點邊界收進 [0, length - 1] 1`] = `
+{
+  "0": "0",
+  "4": "4",
+  "5": "4",
+  "99": "4",
+  "-1": "4",
+  "-2": "3",
+  "-5": "0",
+  "-99": "0"
+}
+`;
+
+exports[`utils-array > 原子層：只吃 length，不依賴陣列 > normalizeSliceMinMax() 只吃 length，補預設值但不碰陣列 1`] = `
+{
+  "缺省": "return {\\"min\\":0,\\"max\\":4}",
+  "null, null": "return {\\"min\\":0,\\"max\\":4}",
+  "[-2, -1)": "return {\\"min\\":3,\\"max\\":4}",
+  "[0, 99)": "return {\\"min\\":0,\\"max\\":4}"
+}
+`;
+
+exports[`utils-array > 原子層：只吃 length，不依賴陣列 > normalizeSliceRange() 只吃 length，語意與 array 版一致 1`] = `
+{
+  "缺省": "return {\\"start\\":0,\\"end\\":5}",
+  "[-3, -1)": "return {\\"start\\":2,\\"end\\":4}",
+  "[0, 99)": "return {\\"start\\":0,\\"end\\":5}",
+  "[3, 3)": "throw RangeError: [normalizeSliceRange] range must not be empty: start=3, end=3"
+}
+`;
+
+exports[`utils-array > 原子層：只吃 length，不依賴陣列 > 兩種政策目標不相容，同一組輸入各自成立 1`] = `
+{
+  "normalizeSliceRange(3, 3, 5)": "throw RangeError: [normalizeSliceRange] range must not be empty: start=3, end=3",
+  "normalizeSliceMinMax(3, 3, 5)": "return {\\"min\\":3,\\"max\\":3}"
+}
+`;
+
+exports[`utils-array > 原子層：只吃 length，不依賴陣列 > 原子層組合可取代 array 便利包裝 1`] = `
+{
+  "range 一致": true,
+  "minMax 一致": true,
+  "原子 range": {
+    "start": 0,
+    "end": 4
+  },
+  "原子 minMax": {
+    "min": 0,
+    "max": 4
+  }
+}
+`;
+
+exports[`utils-array > 大小值修正 clamp > clampSize() 大小值修正 1`] = `
+{
+  "clampSize(10, 5)": "return 5",
+  "clampSize(6, 5)": "return 5",
+  "clampSize(5, 5)": "return 5",
+  "clampSize(-1, 5)": "return 0",
+  "clampSize(-99, 5)": "return 0",
+  "clampSize(0, 5)": "return 0",
+  "clampSize(3, 0)": "return 0",
+  "clampSize(0, 0)": "return 0",
+  "clampSize(1.5, 5)": "throw TypeError: [clampSize] parameter must be an integer: size=1.5",
+  "clampSize(3, 2.5)": "throw TypeError: [clampSize] parameter must be an integer: max=2.5"
+}
+`;
+
+exports[`utils-array > 大小值修正 clamp > clampValue() 把值夾進 [min, max] 1`] = `
+{
+  "clamp(5, 0, 3)": "return 3",
+  "clamp(-1, 0, 3)": "return 0",
+  "clamp(2, 0, 3)": "return 2",
+  "clamp(0, 0, 3)": "return 0",
+  "clamp(3, 0, 3)": "return 3"
+}
+`;
+
+exports[`utils-array > 大小值修正 clamp > clampValue() 支援負數區間與浮點數 1`] = `
+{
+  "clamp(-9, -5, -1)": "return -5",
+  "clamp(0, -5, -1)": "return -1",
+  "clamp(-3, -5, -1)": "return -3",
+  "clamp(4.5, 0, 3)": "return 3",
+  "clamp(-0.5, 0, 3)": "return 0",
+  "clamp(1.25, 0, 3)": "return 1.25",
+  "clamp(1, 3, 0) 上下界反轉": "throw RangeError: [clampValue] max must be greater than or equal to min: min=3, max=0"
+}
+`;
+
+exports[`utils-array > 實際 array 範例 > min / max 未輸入時以整段陣列為基礎，int() 所有索引皆出現 1`] = `
+{
+  "domain": {
+    "min": 0,
+    "max": 4
+  },
+  "expected.size === arr.length": true,
+  "state": {
+    "size": 5,
+    "total": 1000,
+    "seen": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "missing": [],
+    "illegal": [],
+    "verifyAllSeen": "return undefined"
+  }
+}
+`;
+
+exports[`utils-array > 實際 array 範例 > min / max 為負數時從尾部往前算，只取最後幾個元素 1`] = `
+{
+  "domain": {
+    "min": 3,
+    "max": 4
+  },
+  "expected.size": 2,
+  "state": {
+    "size": 2,
+    "total": 1000,
+    "seen": [
+      3,
+      4
+    ],
+    "missing": [],
+    "illegal": [],
+    "verifyAllSeen": "return undefined"
+  }
+}
+`;
+
+exports[`utils-array > 實際 array 範例 > randIndex() 取實際陣列索引，0 ～ length - 1 全部出現且無非預期值 1`] = `
+{
+  "expected.size === arr.length": true,
+  "state": {
+    "size": 5,
+    "total": 1000,
+    "seen": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "missing": [],
+    "illegal": [],
+    "verifyAllSeen": "return undefined"
+  }
+}
+`;
+
+exports[`utils-array > 實際 array 範例 > 單元素陣列僅有一個合法索引 1`] = `
+{
+  "expected": {
+    "params": {
+      "length": 1,
+      "start": 0,
+      "end": 1
+    },
+    "range": {
+      "start": 0,
+      "end": 1
+    },
+    "size": 1,
+    "values": [
+      0
+    ]
+  },
+  "calcArrayIndexMinMax": {
+    "min": 0,
+    "max": 0
+  },
+  "randIndex": 0
+}
+`;
+
+exports[`utils-array > 實際 array 範例 > 子區間 [start, end) 只允許該段索引 1`] = `
+{
+  "params": {
+    "length": 6,
+    "start": 2,
+    "end": 5
+  },
+  "range": {
+    "start": 2,
+    "end": 5
+  },
+  "size": 3,
+  "values": [
+    2,
+    3,
+    4
+  ]
+}
+`;
+
+exports[`utils-array > 實際 array 範例 > 空陣列 [] 無法取索引，建立期立刻拋錯 1`] = `
+{
+  "isArrayEmpty": true,
+  "calcArrayIndexRange": "throw RangeError: [calcArrayIndexRange] array must not be empty: length=0",
+  "calcExpectedValuesByArray": "throw RangeError: [calcExpectedValuesByArray] array must not be empty: length=0",
+  "assertArrayNotEmpty": "throw RangeError: [assertArrayNotEmpty] array must not be empty: length=0",
+  "calcArrayIndexMinMax": "throw RangeError: [calcArrayIndexMinMax] array must not be empty: length=0",
+  "normalizeArrayIndexMinMax": "throw RangeError: [normalizeArrayIndexMinMax] array must not be empty: length=0",
+  "calcExpectedValuesByArrayMinMax": "throw RangeError: [calcExpectedValuesByArrayMinMax] array must not be empty: length=0"
+}
+`;
+
+exports[`utils-array > 由陣列推導合法索引 > calcArrayIndexRange() 回傳整段 [0, length) 1`] = `
+{
+  "[a,b,c]": "return {\\"start\\":0,\\"end\\":3}",
+  "[only]": "return {\\"start\\":0,\\"end\\":1}",
+  "[]": "throw RangeError: [calcArrayIndexRange] array must not be empty: length=0"
+}
+`;
+
+exports[`utils-array > 由陣列推導合法索引 > calcArraySliceSize() 回傳 slice 長度 1`] = `
+{
+  "缺省": "return 5",
+  "[-1]": "return 1",
+  "[0, -1)": "return 4",
+  "[-3, -1)": "return 2",
+  "[2, 99)": "return 3",
+  "[99]": "throw RangeError: [calcArraySliceSize] range must not be empty: start=5, end=5"
+}
+`;
+
+exports[`utils-array > 由陣列推導合法索引 > calcExpectedValuesByArray() 同步 slice 風格的負值與自動收窄 1`] = `
+{
+  "[-1]": {
+    "params": {
+      "length": 4,
+      "start": 3,
+      "end": 4
+    },
+    "range": {
+      "start": 3,
+      "end": 4
+    },
+    "size": 1,
+    "values": [
+      3
+    ]
+  },
+  "[1.5]": {
+    "params": {
+      "length": 4,
+      "start": 1,
+      "end": 4
+    },
+    "range": {
+      "start": 1,
+      "end": 4
+    },
+    "size": 3,
+    "values": [
+      1,
+      2,
+      3
+    ]
+  },
+  "[0, 99)": {
+    "params": {
+      "length": 4,
+      "start": 0,
+      "end": 4
+    },
+    "range": {
+      "start": 0,
+      "end": 4
+    },
+    "size": 4,
+    "values": [
+      0,
+      1,
+      2,
+      3
+    ]
+  }
+}
+`;
+
+exports[`utils-array > 由陣列推導合法索引 > calcExpectedValuesByArray() 收窄後為空則拋出 RangeError 1`] = `
+{
+  "[3, 3)": "throw RangeError: [calcExpectedValuesByArray] range must not be empty: start=3, end=3",
+  "[4, 2)": "throw RangeError: [calcExpectedValuesByArray] range must not be empty: start=4, end=2",
+  "[]": "throw RangeError: [calcExpectedValuesByArray] array must not be empty: length=0"
+}
+`;
+
+exports[`utils-array > 由陣列推導合法索引 > calcExpectedValuesByArray() 預設涵蓋整段索引 1`] = `
+{
+  "params": {
+    "length": 3,
+    "start": 0,
+    "end": 3
+  },
+  "range": {
+    "start": 0,
+    "end": 3
+  },
+  "size": 3,
+  "values": [
+    0,
+    1,
+    2
+  ]
+}
+`;
+
+exports[`utils-array > 陣列長度 > _fnCoreArrayLength() 只讀 length，不拋錯 1`] = `
+{
+  "[]": "0",
+  "[a,b,c]": "3",
+  "{ length: 7 }": "7",
+  "\\"hello\\"": "5",
+  "null": "NaN",
+  "undefined": "NaN",
+  "{ length: NaN }": "NaN"
+}
+`;
+
+exports[`utils-array > 陣列長度 > assertArrayNotEmpty() 回傳長度，空陣列拋出 RangeError 1`] = `
+{
+  "[a,b]": "return 2",
+  "[]": "throw RangeError: [assertArrayNotEmpty] array must not be empty: length=0",
+  "calcExpectedValuesByArray([])": "throw RangeError: [calcExpectedValuesByArray] array must not be empty: length=0"
+}
+`;
+
+exports[`utils-array > 陣列長度 > assertNotEmptyLength() 對 0 與負數拋出 RangeError 1`] = `
+{
+  "0": "throw RangeError: [assertNotEmptyLength] array must not be empty: length=0",
+  "1": "return 1",
+  "9": "return 9",
+  "-1": "throw RangeError: [assertNotEmptyLength] parameter out of range: length=-1, expected: [0, 9007199254740991]",
+  "1.5": "throw TypeError: [assertNotEmptyLength] parameter must be an integer: length=1.5"
+}
+`;
+
+exports[`utils-array > 陣列長度 > calcArrayLength() 回傳長度，0 視為合法 1`] = `
+{
+  "[]": 0,
+  "[a]": 1,
+  "[a,b,c]": 3,
+  "new Array(4)": 4,
+  "{ length: 7 }": 7,
+  "\\"hello\\"": 5
+}
+`;
+
+exports[`utils-array > 陣列長度 > calcArrayLength() 非類陣列與非法長度拋錯 1`] = `
+{
+  "null": "throw TypeError: [calcArrayLength] parameter must be an array-like object with a numeric length: length=undefined",
+  "undefined": "throw TypeError: [calcArrayLength] parameter must be an array-like object with a numeric length: length=undefined",
+  "{ length: NaN }": "throw TypeError: [calcArrayLength] parameter must be an array-like object with a numeric length: length=NaN",
+  "{ length: -1 }": "throw RangeError: [calcArrayLength] parameter out of range: length=-1, expected: [0, 9007199254740991]",
+  "{ length: 1.5 }": "throw TypeError: [calcArrayLength] parameter must be an integer: length=1.5"
+}
+`;
+
+exports[`utils-array > 陣列長度 > isArrayEmpty() 判斷 length === 0 1`] = `
+{
+  "[]": true,
+  "[1]": false,
+  "new Array(0)": true,
+  "{ length: 0 }": true
+}
+`;

@@ -4,21 +4,27 @@
 /**
  * Node.js 原生測試 / Node.js Native Test Runner (node:test)
  *
- * 針對 `src/utils.ts` 的核心驗證與計算函式的單元測試
- * Unit tests for the core validation and calculation functions in `src/utils.ts`
+ * 針對 `src/utils.ts` 的核心驗證與計算函式的單元測試，**以快照為主**
+ * Unit tests for the core validation and calculation functions in `src/utils.ts`,
+ * **snapshot-driven**
+ *
+ * 每個測試把「回傳值」與「拋出的錯誤」都轉成字串後一次快照，
+ * 這樣成功與失敗的行為都會被記錄在同一份快照裡。
+ * Each test turns both return values and thrown errors into strings and snapshots
+ * them together, so passing and failing behaviour are recorded in one place.
  *
  * 更新快照 / Update snapshots: `node --test --test-update-snapshots test/utils.spec.ts`
  */
 
 import assert from 'node:assert/strict';
 import { describe, test } from 'node:test';
+import { fixZero } from 'num-is-zero';
 import {
-	type IExpectedValues,
-	MAX_LENGTH,
-	MIN_LENGTH,
-	SAFE_INTEGER_MAX,
-	SAFE_INTEGER_MIN,
+	type IValuesValidator,
+	_fnCoreToInteger,
+	assertFiniteNumber,
 	assertInRange,
+	assertInteger,
 	assertIntegerInRange,
 	assertLengthParams,
 	assertRangeParams,
@@ -27,437 +33,349 @@ import {
 	calcExpectedValuesByRange,
 	calcRangeSize,
 	createValuesValidator,
+	isFiniteNumber,
 	isInRange,
+	isIntegerInRange,
 	rangeValues,
 } from '../src/utils';
+import { fmt, outcome, toArray } from './snapshot-helpers';
 
 /**
- * 收集生成器的全部產出 / Collect every value produced by a generator
- */
-function toArray(generator: Generator<number>): number[]
+ * 驗證器狀態的快照摘要 / Snapshot summary of a validator's state */
+function validatorState(validator: IValuesValidator)
 {
-	return [...generator];
+	return {
+		label: validator.label,
+		size: validator.size,
+		total: validator.total,
+		seen: toArray(validator.seenValuesGenerator()),
+		missing: toArray(validator.missingValuesGenerator()),
+		illegal: toArray(validator.illegalValuesGenerator()),
+		verifyAllSeen: outcome(() => validator.verifyAllSeen()),
+	};
 }
 
 describe('utils', () =>
 {
-	describe('isInRange', () =>
+	describe('_fnCore：標準化不拋錯', () =>
 	{
-		test('start 為含 (inclusive)、end 為不含 (exclusive)', () =>
+		test('fixZero()（num-is-zero）把 -0 轉回 +0', (t) =>
 		{
-			assert.equal(isInRange(0, 0, 5), true);
-			assert.equal(isInRange(4, 0, 5), true);
-			assert.equal(isInRange(5, 0, 5), false);
-			assert.equal(isInRange(-1, 0, 5), false);
-		});
-
-		test('支援負數與非零下界', () =>
-		{
-			assert.equal(isInRange(-2, -3, 3), true);
-			assert.equal(isInRange(-3, -3, 3), true);
-			assert.equal(isInRange(-4, -3, 3), false);
-			assert.equal(isInRange(4.9, 0, 5), true);
-		});
-
-		test('空區間內沒有任何合法值', () =>
-		{
-			assert.equal(isInRange(3, 3, 3), false);
-		});
-	});
-
-	describe('assertInRange', () =>
-	{
-		test('合法時回傳該值以便串接', () =>
-		{
-			assert.equal(assertInRange(3, 0, 5), 3);
-		});
-
-		test('不合法時拋出 RangeError，訊息含標籤、名稱與區間', () =>
-		{
-			assert.throws(() => assertInRange(5, 0, 5, 'len', 'myLabel'), (error) =>
-			{
-				assert.ok(error instanceof RangeError);
-				assert.match(error.message, /\[myLabel\]/);
-				assert.match(error.message, /len=5/);
-				assert.match(error.message, /\[0, 5\)/);
-				return true;
+			t.assert.snapshot({
+				'-0': fmt(fixZero(-0)),
+				'0': fmt(fixZero(0)),
+				'1': fmt(fixZero(1)),
+				'-1': fmt(fixZero(-1)),
+				'NaN': fmt(fixZero(NaN)),
+				'Infinity': fmt(fixZero(Infinity)),
+				'-0 是 +0': Object.is(fixZero(-0), 0),
 			});
 		});
 
-		test('使用預設標籤與參數名稱', () =>
+		test('_fnCoreToInteger()', (t) =>
 		{
-			assert.throws(() => assertInRange(-1, 0, 5), (error) =>
-			{
-				assert.ok(error instanceof RangeError);
-				assert.match(error.message, /\[assertInRange\]/);
-				assert.match(error.message, /value=-1/);
-				return true;
+			t.assert.snapshot({
+				'1.9': fmt(_fnCoreToInteger(1.9)),
+				'4.8': fmt(_fnCoreToInteger(4.8)),
+				'-0.5': fmt(_fnCoreToInteger(-0.5)),
+				'-1.5': fmt(_fnCoreToInteger(-1.5)),
+				'0': fmt(_fnCoreToInteger(0)),
+				'-0': fmt(_fnCoreToInteger(-0)),
+				'NaN': fmt(_fnCoreToInteger(NaN)),
+				'Infinity': fmt(_fnCoreToInteger(Infinity)),
+				'-Infinity': fmt(_fnCoreToInteger(-Infinity)),
+				'-0.5 是 +0': Object.is(_fnCoreToInteger(-0.5), 0),
 			});
 		});
 	});
 
-	describe('assertIntegerInRange', () =>
+	describe('is* 與 assert* 各自可單獨取用', () =>
 	{
-		test('閉區間 [min, max] 兩端皆可通過', () =>
+		test('isFiniteNumber() 不拋錯', (t) =>
 		{
-			assert.equal(assertIntegerInRange(0, 0, 10, 'n', 'ctx'), 0);
-			assert.equal(assertIntegerInRange(10, 0, 10, 'n', 'ctx'), 10);
-			assert.equal(assertIntegerInRange(5, 0, 10, 'n', 'ctx'), 5);
-		});
-
-		test('非整數拋出 TypeError', () =>
-		{
-			assert.throws(() => assertIntegerInRange(1.5, 0, 10, 'n', 'ctx'), (error) =>
-			{
-				assert.ok(error instanceof TypeError);
-				assert.match(error.message, /\[ctx\]/);
-				assert.match(error.message, /n=1.5/);
-				return true;
+			t.assert.snapshot({
+				'0': isFiniteNumber(0),
+				'1.5': isFiniteNumber(1.5),
+				'-9': isFiniteNumber(-9),
+				'NaN': isFiniteNumber(NaN),
+				'Infinity': isFiniteNumber(Infinity),
+				'-Infinity': isFiniteNumber(-Infinity),
+				'"1"': isFiniteNumber('1'),
+				'null': isFiniteNumber(null),
+				'undefined': isFiniteNumber(undefined),
 			});
 		});
 
-		test('超出閉區間拋出 RangeError', () =>
+		test('assertFiniteNumber() 只拋錯，不做標準化', (t) =>
 		{
-			assert.throws(() => assertIntegerInRange(-1, 0, 10, 'n', 'ctx'), RangeError);
-			assert.throws(() => assertIntegerInRange(11, 0, 10, 'n', 'ctx'), RangeError);
+			t.assert.snapshot({
+				'0': outcome(() => assertFiniteNumber(0)),
+				'1.5': outcome(() => assertFiniteNumber(1.5)),
+				'-9': outcome(() => assertFiniteNumber(-9)),
+				'NaN': outcome(() => assertFiniteNumber(NaN)),
+				'Infinity': outcome(() => assertFiniteNumber(Infinity)),
+				'-Infinity': outcome(() => assertFiniteNumber(-Infinity)),
+				'undefined': outcome(() => assertFiniteNumber(undefined)),
+				'自訂標籤': outcome(() => assertFiniteNumber(NaN, 'n', 'myLabel')),
+			});
 		});
 
-		test('常數邊界可通過', () =>
+		test('isIntegerInRange() 不拋錯', (t) =>
 		{
-			assert.equal(assertIntegerInRange(SAFE_INTEGER_MIN, SAFE_INTEGER_MIN, SAFE_INTEGER_MAX, 'n', 'ctx'), SAFE_INTEGER_MIN);
-			assert.equal(assertIntegerInRange(SAFE_INTEGER_MAX, SAFE_INTEGER_MIN, SAFE_INTEGER_MAX, 'n', 'ctx'), SAFE_INTEGER_MAX);
-		});
-	});
-
-	describe('assertLengthParams', () =>
-	{
-		test('MIN_LENGTH 與 MAX_LENGTH 皆合法', () =>
-		{
-			assert.equal(assertLengthParams(MIN_LENGTH), MIN_LENGTH);
-			assert.equal(assertLengthParams(MAX_LENGTH), MAX_LENGTH);
-			assert.equal(assertLengthParams(5), 5);
+			t.assert.snapshot({
+				'0 in [0, 10]': isIntegerInRange(0, 0, 10),
+				'10 in [0, 10]': isIntegerInRange(10, 0, 10),
+				'-1 in [0, 10]': isIntegerInRange(-1, 0, 10),
+				'11 in [0, 10]': isIntegerInRange(11, 0, 10),
+				'1.5 in [0, 10]': isIntegerInRange(1.5, 0, 10),
+				'NaN in [0, 10]': isIntegerInRange(NaN, 0, 10),
+				'3 in [5, 2]': isIntegerInRange(3, 5, 2),
+			});
 		});
 
-		test('len 為 0 或負數時拋出 RangeError', () =>
+		test('assertInteger() 只負責型別拋錯', (t) =>
 		{
-			assert.throws(() => assertLengthParams(0), RangeError);
-			assert.throws(() => assertLengthParams(-1), RangeError);
+			t.assert.snapshot({
+				'3': outcome(() => assertInteger(3)),
+				'1.5': outcome(() => assertInteger(1.5)),
+				'NaN': outcome(() => assertInteger(NaN)),
+				'Infinity': outcome(() => assertInteger(Infinity)),
+				'自訂標籤': outcome(() => assertInteger(1.5, 'n', 'myLabel')),
+			});
 		});
 
-		test('len 非整數時拋出 TypeError', () =>
+		test('assertIntegerInRange() = assertInteger + 範圍檢查', (t) =>
 		{
-			assert.throws(() => assertLengthParams(2.5), TypeError);
+			t.assert.snapshot({
+				'0 in [0, 10]': outcome(() => assertIntegerInRange(0, 0, 10, 'n', 'ctx')),
+				'10 in [0, 10]': outcome(() => assertIntegerInRange(10, 0, 10, 'n', 'ctx')),
+				'-1 in [0, 10]': outcome(() => assertIntegerInRange(-1, 0, 10, 'n', 'ctx')),
+				'11 in [0, 10]': outcome(() => assertIntegerInRange(11, 0, 10, 'n', 'ctx')),
+				'1.5 in [0, 10]': outcome(() => assertIntegerInRange(1.5, 0, 10, 'n', 'ctx')),
+				'NaN in [0, 10]': outcome(() => assertIntegerInRange(NaN, 0, 10, 'n', 'ctx')),
+				'SAFE_INTEGER_MIN': outcome(() => assertIntegerInRange(-Number.MAX_SAFE_INTEGER, -Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER, 'n', 'ctx')),
+				'SAFE_INTEGER_MAX': outcome(() => assertIntegerInRange(Number.MAX_SAFE_INTEGER, -Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER, 'n', 'ctx')),
+			});
 		});
 
-		test('自訂標籤會出現在錯誤訊息中', () =>
+		test('isInRange() 不拋錯', (t) =>
 		{
-			assert.throws(() => assertLengthParams(0, 'myLabel'), (error) =>
-			{
-				assert.ok(error instanceof RangeError);
-				assert.match(error.message, /\[myLabel\]/);
-				return true;
+			t.assert.snapshot({
+				'0 in [0, 5)': isInRange(0, 0, 5),
+				'4 in [0, 5)': isInRange(4, 0, 5),
+				'5 in [0, 5)': isInRange(5, 0, 5),
+				'-1 in [0, 5)': isInRange(-1, 0, 5),
+				'4.9 in [0, 5)': isInRange(4.9, 0, 5),
+				'-2 in [-3, 3)': isInRange(-2, -3, 3),
+				'-3 in [-3, 3)': isInRange(-3, -3, 3),
+				'3 in [3, 3)': isInRange(3, 3, 3),
+			});
+		});
+
+		test('assertInRange() 只拋錯，不做標準化', (t) =>
+		{
+			t.assert.snapshot({
+				'3 in [0, 5)': outcome(() => assertInRange(3, 0, 5)),
+				'5 in [0, 5)': outcome(() => assertInRange(5, 0, 5)),
+				'-1 in [0, 5)': outcome(() => assertInRange(-1, 0, 5)),
+				'預設標籤': outcome(() => assertInRange(-1, 0, 5)),
+				'自訂標籤': outcome(() => assertInRange(5, 0, 5, 'len', 'myLabel')),
 			});
 		});
 	});
 
-	describe('assertRangeParams', () =>
+	describe('assertLengthParams / assertRangeParams', () =>
 	{
-		test('回傳已驗證的區間', () =>
+		test('assertLengthParams()', (t) =>
 		{
-			assert.deepEqual(assertRangeParams(2, 5), { start: 2, end: 5 });
-			assert.deepEqual(assertRangeParams(-3, 3), { start: -3, end: 3 });
-		});
-
-		test('start === end 表示空區間，拋出 RangeError', () =>
-		{
-			assert.throws(() => assertRangeParams(5, 5), (error) =>
-			{
-				assert.ok(error instanceof RangeError);
-				assert.match(error.message, /range must not be empty/);
-				return true;
+			t.assert.snapshot({
+				'MIN_LENGTH': outcome(() => assertLengthParams(1)),
+				'5': outcome(() => assertLengthParams(5)),
+				'MAX_LENGTH': outcome(() => assertLengthParams(Number.MAX_SAFE_INTEGER)),
+				'0': outcome(() => assertLengthParams(0)),
+				'-1': outcome(() => assertLengthParams(-1)),
+				'2.5': outcome(() => assertLengthParams(2.5)),
+				'自訂標籤': outcome(() => assertLengthParams(0, 'myLabel')),
 			});
 		});
 
-		test('start > end 拋出 RangeError', () =>
+		test('assertRangeParams()', (t) =>
 		{
-			assert.throws(() => assertRangeParams(6, 5), RangeError);
+			t.assert.snapshot({
+				'[2, 5)': outcome(() => assertRangeParams(2, 5)),
+				'[-3, 3)': outcome(() => assertRangeParams(-3, 3)),
+				'[5, 5)': outcome(() => assertRangeParams(5, 5)),
+				'[6, 5)': outcome(() => assertRangeParams(6, 5)),
+				'[1.5, 5)': outcome(() => assertRangeParams(1.5, 5)),
+				'[1, 5.5)': outcome(() => assertRangeParams(1, 5.5)),
+				'[0, MAX+1]': outcome(() => assertRangeParams(0, Number.MAX_SAFE_INTEGER + 1)),
+				'自訂標籤': outcome(() => assertRangeParams(5, 5, 'myLabel')),
+			});
 		});
+	});
 
-		test('start / end 非整數拋出 TypeError', () =>
+	describe('calcRangeSize / rangeValues', () =>
+	{
+		test('calcRangeSize() 以 end - start 直接計算', (t) =>
 		{
-			assert.throws(() => assertRangeParams(1.5, 5), TypeError);
-			assert.throws(() => assertRangeParams(1, 5.5), TypeError);
-		});
-
-		test('超出安全整數範圍拋出 RangeError', () =>
-		{
-			assert.throws(() => assertRangeParams(0, SAFE_INTEGER_MAX + 1), (error) =>
-			{
-				assert.ok(error instanceof RangeError);
-				assert.match(error.message, /parameter out of range/);
-				return true;
+			t.assert.snapshot({
+				'[0, 5)': calcRangeSize(0, 5),
+				'[2, 5)': calcRangeSize(2, 5),
+				'[3, 3)': calcRangeSize(3, 3),
+				'[-3, 3)': calcRangeSize(-3, 3),
 			});
 		});
 
-		test('自訂標籤會出現在錯誤訊息中', () =>
+		test('rangeValues() 生成器產出', (t) =>
 		{
-			assert.throws(() => assertRangeParams(5, 5, 'myLabel'), /\[myLabel\]/);
+			t.assert.snapshot({
+				'[0, 4)': toArray(rangeValues(0, 4)),
+				'[1, 5)': toArray(rangeValues(1, 5)),
+				'[-2, 2)': toArray(rangeValues(-2, 2)),
+				'[3, 3)': toArray(rangeValues(3, 3)),
+				'是生成器': typeof rangeValues(0, 1)[Symbol.iterator] === 'function',
+				'非陣列': Array.isArray(rangeValues(0, 1)),
+				'數量與 calcRangeSize 一致': toArray(rangeValues(2, 9)).length === calcRangeSize(2, 9),
+			});
 		});
 	});
 
-	describe('calcRangeSize', () =>
+	describe('calcExpectedValues*', () =>
 	{
-		test('以 end - start 直接計算，不需列舉', () =>
+		test('calcExpectedValues()', (t) =>
 		{
-			assert.equal(calcRangeSize(0, 5), 5);
-			assert.equal(calcRangeSize(2, 5), 3);
-			assert.equal(calcRangeSize(3, 3), 0);
-		});
-	});
-
-	describe('rangeValues', () =>
-	{
-		test('回傳生成器，並依序產出半開區間內的整數', () =>
-		{
-			const generator = rangeValues(0, 4);
-
-			assert.equal(typeof generator.next, 'function');
-			assert.equal(generator[Symbol.toStringTag], 'Generator');
-			assert.equal(Array.isArray(generator), false);
-
-			assert.deepEqual(toArray(rangeValues(0, 4)), [0, 1, 2, 3]);
-			assert.deepEqual(toArray(rangeValues(1, 5)), [1, 2, 3, 4]);
-			assert.deepEqual(toArray(rangeValues(-2, 2)), [-2, -1, 0, 1]);
+			t.assert.snapshot({
+				'[1, 4) 帶 params': outcome(() => calcExpectedValues(1, 4, { foo: 2 })),
+				'[0, 2) 無 params': outcome(() => calcExpectedValues(0, 2)),
+				'[5, 5)': outcome(() => calcExpectedValues(5, 5)),
+				'[5, 5) 自訂標籤': outcome(() => calcExpectedValues(5, 5, undefined, 'myLabel')),
+			});
 		});
 
-		test('空區間不產出任何值', () =>
-		{
-			assert.deepEqual(toArray(rangeValues(3, 3)), []);
-		});
-
-		test('產出數量與 calcRangeSize 一致', () =>
-		{
-			assert.equal(toArray(rangeValues(2, 9)).length, calcRangeSize(2, 9));
-		});
-	});
-
-	describe('calcExpectedValues', () =>
-	{
-		test('記錄合法參數值、合法值區間與其數量', () =>
-		{
-			const expected = calcExpectedValues(1, 4, { foo: 2 });
-
-			assert.deepEqual(expected.params, { foo: 2 });
-			assert.deepEqual(expected.range, { start: 1, end: 4 });
-			assert.equal(expected.size, 3);
-			assert.deepEqual(toArray(expected.valuesGenerator()), [1, 2, 3]);
-		});
-
-		test('未提供 params 時為空物件', () =>
-		{
-			assert.deepEqual(calcExpectedValues(0, 2).params, {});
-		});
-
-		test('params 以副本儲存，外部事後變更不影響結果', () =>
+		test('calcExpectedValues() 的 params 以副本儲存', (t) =>
 		{
 			const params = { a: 1 };
 			const expected = calcExpectedValues(0, 2, params);
 
 			params.a = 9;
 
-			assert.deepEqual(expected.params, { a: 1 });
+			t.assert.snapshot({
+				'外部事後變更': expected.params,
+				'values 可重複列舉': [
+					toArray(expected.valuesGenerator()),
+					toArray(expected.valuesGenerator()),
+					toArray(expected.valuesGenerator()),
+				],
+			});
 		});
 
-		test('參數不合法時拋錯，不產生結果', () =>
+		test('calcExpectedValuesByLength()', (t) =>
 		{
-			assert.throws(() => calcExpectedValues(5, 5), RangeError);
-			assert.throws(() => calcExpectedValues(5, 5, undefined, 'myLabel'), /\[myLabel\]/);
+			t.assert.snapshot({
+				'len=5': outcome(() => calcExpectedValuesByLength(5)),
+				'len=3 的 values': toArray(calcExpectedValuesByLength(3).valuesGenerator()),
+				'len=0': outcome(() => calcExpectedValuesByLength(0)),
+				'len=-1': outcome(() => calcExpectedValuesByLength(-1)),
+				'len=1.5': outcome(() => calcExpectedValuesByLength(1.5)),
+			});
 		});
 
-		test('values() 是可重複列舉的生成器工廠', () =>
+		test('calcExpectedValuesByRange()', (t) =>
 		{
-			const expected = calcExpectedValues(0, 3);
-
-			const first = expected.valuesGenerator();
-			assert.deepEqual(toArray(first), [0, 1, 2]);
-
-			// 第一個生成器已耗盡，仍可重新取得完整清單
-			// The first generator is exhausted, yet a full list can still be obtained again
-			assert.deepEqual(toArray(first), []);
-			assert.deepEqual(toArray(expected.valuesGenerator()), [0, 1, 2]);
-		});
-	});
-
-	describe('calcExpectedValuesByLength', () =>
-	{
-		test('randIndex(len) 的合法值為半開區間 [0, len)', () =>
-		{
-			const expected = calcExpectedValuesByLength(5);
-
-			assert.deepEqual(expected.params, { len: 5 });
-			assert.deepEqual(expected.range, { start: 0, end: 5 });
-			assert.equal(expected.size, 5);
-			assert.deepEqual(toArray(expected.valuesGenerator()), [0, 1, 2, 3, 4]);
-		});
-
-		test('size 與列舉數量一致', () =>
-		{
-			const expected = calcExpectedValuesByLength(3);
-
-			assert.equal(expected.size, toArray(expected.valuesGenerator()).length);
-		});
-
-		test('len 不合法時拋錯', () =>
-		{
-			assert.throws(() => calcExpectedValuesByLength(0), RangeError);
-			assert.throws(() => calcExpectedValuesByLength(-1), RangeError);
-			assert.throws(() => calcExpectedValuesByLength(1.5), TypeError);
-			assert.throws(() => calcExpectedValuesByLength(0), /\[calcExpectedValuesByLength\]/);
-		});
-	});
-
-	describe('calcExpectedValuesByRange', () =>
-	{
-		test('randIndexWithRange(start, end) 的合法值為半開區間 [start, end)', () =>
-		{
-			const expected = calcExpectedValuesByRange(1, 5);
-
-			assert.deepEqual(expected.params, { start: 1, end: 5 });
-			assert.deepEqual(expected.range, { start: 1, end: 5 });
-			assert.equal(expected.size, 4);
-			assert.deepEqual(toArray(expected.valuesGenerator()), [1, 2, 3, 4]);
-		});
-
-		test('支援起訖為 0 的區間', () =>
-		{
-			const expected = calcExpectedValuesByRange(0, 4);
-
-			assert.equal(expected.size, 4);
-			assert.deepEqual(toArray(expected.valuesGenerator()), [0, 1, 2, 3]);
-		});
-
-		test('支援單一值的區間', () =>
-		{
-			const expected = calcExpectedValuesByRange(4, 5);
-
-			assert.equal(expected.size, 1);
-			assert.deepEqual(toArray(expected.valuesGenerator()), [4]);
-		});
-
-		test('空區間拋出 RangeError', () =>
-		{
-			assert.throws(() => calcExpectedValuesByRange(5, 5), RangeError);
-			assert.throws(() => calcExpectedValuesByRange(5, 5), /\[calcExpectedValuesByRange\]/);
+			t.assert.snapshot({
+				'[1, 5)': outcome(() => calcExpectedValuesByRange(1, 5)),
+				'[0, 4)': outcome(() => calcExpectedValuesByRange(0, 4)),
+				'[4, 5)': outcome(() => calcExpectedValuesByRange(4, 5)),
+				'[5, 5)': outcome(() => calcExpectedValuesByRange(5, 5)),
+			});
 		});
 	});
 
 	describe('createValuesValidator', () =>
 	{
-		test('初始 size 為 0、total 為 0', () =>
+		test('初始狀態', (t) =>
+		{
+			t.assert.snapshot(validatorState(createValuesValidator(calcExpectedValuesByRange(1, 5), 'demo')));
+		});
+
+		test('check() 累計 total 與去重後的 size', (t) =>
 		{
 			const validator = createValuesValidator(calcExpectedValuesByRange(1, 5), 'demo');
 
-			assert.equal(validator.label, 'demo');
-			assert.equal(validator.size, 0);
-			assert.equal(validator.total, 0);
-			assert.deepEqual(toArray(validator.seenValuesGenerator()), []);
-			assert.deepEqual(toArray(validator.missingValuesGenerator()), [1, 2, 3, 4]);
-			assert.deepEqual(toArray(validator.illegalValuesGenerator()), []);
+			const trace = [
+				outcome(() => validator.check(1)),
+				outcome(() => validator.check(1)),
+				`size=${validator.size}, total=${validator.total}`,
+				outcome(() => validator.check(2)),
+				`size=${validator.size}, total=${validator.total}`,
+			];
+
+			t.assert.snapshot({
+				trace,
+				state: validatorState(validator),
+			});
 		});
 
-		test('check() 回傳該值，並累計 total 與去重後的 size', () =>
-		{
-			const validator = createValuesValidator(calcExpectedValuesByRange(1, 5), 'demo');
-
-			assert.equal(validator.check(1), 1);
-			validator.check(1);
-			assert.equal(validator.total, 2);
-			assert.equal(validator.size, 1);
-
-			validator.check(2);
-			assert.equal(validator.total, 3);
-			assert.equal(validator.size, 2);
-		});
-
-		test('seenValues() 依合法值由小到大列舉，missingValues() 互補', () =>
+		test('seenValues 與 missingValues 互補', (t) =>
 		{
 			const validator = createValuesValidator(calcExpectedValuesByRange(1, 5), 'demo');
 
 			validator.check(3);
 			validator.check(1);
 
-			assert.deepEqual(toArray(validator.seenValuesGenerator()), [1, 3]);
-			assert.deepEqual(toArray(validator.missingValuesGenerator()), [2, 4]);
+			t.assert.snapshot(validatorState(validator));
 		});
 
-		test('全部出現過時 verifyAllSeen() 不拋錯', () =>
+		test('全部出現過時 verifyAllSeen() 不拋錯', (t) =>
 		{
 			const validator = createValuesValidator(calcExpectedValuesByRange(1, 5), 'demo');
 
 			[1, 2, 3, 4].forEach((value) => validator.check(value));
 
-			assert.doesNotThrow(() => validator.verifyAllSeen());
-			assert.deepEqual(toArray(validator.missingValuesGenerator()), []);
-			assert.equal(validator.size, 4);
+			t.assert.snapshot(validatorState(validator));
 		});
 
-		test('有遺漏時 verifyAllSeen() 拋出 RangeError 並列出遺漏值', () =>
+		test('出現非法值時先記錄再拋出', (t) =>
 		{
 			const validator = createValuesValidator(calcExpectedValuesByRange(1, 5), 'demo');
 
-			validator.check(1);
-			validator.check(4);
+			const trace = [
+				outcome(() => validator.check(1)),
+				outcome(() => validator.check(5)),
+			];
 
-			assert.throws(() => validator.verifyAllSeen(), (error) =>
-			{
-				assert.ok(error instanceof RangeError);
-				assert.match(error.message, /\[demo\]/);
-				assert.match(error.message, /2, 3/);
-				return true;
+			t.assert.snapshot({
+				trace,
+				state: validatorState(validator),
 			});
 		});
 
-		test('出現非法值時先記錄再拋出 RangeError', () =>
-		{
-			const validator = createValuesValidator(calcExpectedValuesByRange(1, 5), 'demo');
-
-			validator.check(1);
-
-			assert.throws(() => validator.check(5), (error) =>
-			{
-				assert.ok(error instanceof RangeError);
-				assert.match(error.message, /\[demo\]/);
-				assert.match(error.message, /\[1, 5\)/);
-				return true;
-			});
-
-			assert.deepEqual(toArray(validator.illegalValuesGenerator()), [5]);
-		});
-
-		test('非法值會中斷迴圈，無需跑完 testLimit', () =>
+		test('非法值會中斷迴圈，無需跑完 testLimit', (t) =>
 		{
 			const validator = createValuesValidator(calcExpectedValuesByRange(1, 5), 'demo');
 			const testLimit = 1000;
 			let iterations = 0;
 
-			assert.throws(() =>
+			outcome(() =>
 			{
 				for (let i = 0; i < testLimit; i++)
 				{
 					iterations++;
 					validator.check(99);
 				}
-			}, RangeError);
+			});
 
-			assert.equal(iterations, 1);
-			assert.equal(validator.total, 1);
+			t.assert.snapshot({
+				iterations,
+				state: validatorState(validator),
+			});
 		});
 
-		test('不同值數量超過合法值數量時拋出 RangeError', () =>
+		test('不同值數量超過合法值數量時拋出', (t) =>
 		{
 			// 以刻意縮小的 size 建立描述，用來驗證 size 上限的防禦性檢查
 			// Build a description with a deliberately smaller `size` to exercise the defensive size-cap check
-			const expected: IExpectedValues = {
+			const validator = createValuesValidator({
 				params: {},
 				range: { start: 0, end: 3 },
 				size: 1,
@@ -465,31 +383,27 @@ describe('utils', () =>
 				{
 					return rangeValues(0, 3);
 				},
-			};
+			}, 'guard');
 
-			const validator = createValuesValidator(expected, 'guard');
+			const trace = [
+				outcome(() => validator.check(0)),
+				outcome(() => validator.check(1)),
+			];
 
-			validator.check(0);
-
-			assert.throws(() => validator.check(1), (error) =>
-			{
-				assert.ok(error instanceof RangeError);
-				assert.match(error.message, /\[guard\]/);
-				assert.match(error.message, /2 > 1/);
-				return true;
-			});
+			t.assert.snapshot({ trace });
 		});
 
-		test('非法值不會進入 seen，因此正常流程下 size 不會超過 expected.size', () =>
+		test('正常流程下 size 不會超過 expected.size', (t) =>
 		{
 			const expected = calcExpectedValuesByRange(1, 5);
 			const validator = createValuesValidator(expected, 'demo');
 
 			[1, 2, 3, 4, 1, 2].forEach((value) => validator.check(value));
 
-			assert.equal(validator.size, expected.size);
-			assert.deepEqual(toArray(validator.missingValuesGenerator()), []);
-			assert.doesNotThrow(() => validator.verifyAllSeen());
+			t.assert.snapshot({
+				...validatorState(validator),
+				'expected.size': expected.size,
+			});
 		});
 	});
 });

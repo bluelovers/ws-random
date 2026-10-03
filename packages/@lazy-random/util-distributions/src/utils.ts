@@ -13,7 +13,16 @@
  *    只有在需要完整清單（快照、錯誤訊息）時才物化 (Materialize)
  *    Enumerate legal values lazily with a generator, and materialize them
  *    only when a full list is required (snapshots, error messages)
+ *
+ * 4. 標準化參數的 core 與拋錯的 assert 分開：
+ *    `_fnCore*` 只做標準化、永不拋錯（`NaN` 原樣流出），
+ *    `assert*` 只做拋錯，兩者各自可單獨取用、自由組合。
+ *    Parameter normalisation (`_fnCore*`, never throws, `NaN` flows through)
+ *    is separated from error throwing (`assert*`); each is usable on its own
+ *    and the two compose freely.
  */
+
+import { fixZero } from 'num-is-zero';
 
 /**
  * 半開區間 `[start, end)` / Half-open interval
@@ -128,6 +137,110 @@ export const MIN_LENGTH = 1;
  */
 export const MAX_LENGTH = Number.MAX_SAFE_INTEGER;
 
+/* ******************************************************************* *
+ * core：標準化參數，永不拋錯 / Core: normalise parameters, never throws
+ *
+ * 這一層只做計算，`NaN` / `±Infinity` 原樣流出，由上層的 `assert*` 決定要不要擋。
+ * 通用的 `-0` 修正直接引用 `num-is-zero` 的 `fixZero()`，不重複實作。
+ * This layer only computes; `NaN` / `±Infinity` flow through untouched and it is
+ * up to the `assert*` layer above to decide whether to reject them.
+ * The generic `-0` fix delegates to `fixZero()` from `num-is-zero` instead of
+ * being reimplemented here.
+ * ******************************************************************* */
+
+/**
+ * 向零取整（`ToIntegerOrInfinity()` 語意），不拋錯
+ * Truncate toward zero (the `ToIntegerOrInfinity()` semantics), never throws
+ *
+ * `Math.trunc()` 對小負數（如 `-0.5`）會產生 `-0`，交由 `fixZero()` 轉回 `+0`，
+ * 否則 `-0` 流入區間後會被 `deepStrictEqual` 判為與 `0` 不同。
+ * `Math.trunc()` yields `-0` for small negatives (e.g. `-0.5`), which `fixZero()`
+ * turns back into `+0`; otherwise a `-0` leaking into a range is treated as
+ * different from `0` by `deepStrictEqual`.
+ *
+ * `NaN` → `NaN`、`±Infinity` → `±Infinity` 原樣流出。
+ * `NaN` → `NaN` and `±Infinity` → `±Infinity` flow through untouched.
+ *
+ * @param value 待標準化的值 / The value to normalise
+ * @returns 取整後的值 / The truncated value
+ */
+export function _fnCoreToInteger(value: number): number
+{
+	return fixZero(Math.trunc(value));
+}
+
+/* ******************************************************************* *
+ * assert：只做拋錯，不負責標準化 / Assert: only throws, performs no normalisation
+ * ******************************************************************* */
+
+/**
+ * 判斷是否為有限數值，不拋錯
+ * Check whether a value is a finite number, never throws
+ *
+ * @param value 待檢查的值 / The value to check
+ * @returns 是否有限 / Whether the value is finite
+ */
+export function isFiniteNumber(value: unknown): boolean
+{
+	return typeof value === 'number' && Number.isFinite(value);
+}
+
+/**
+ * 驗證是否為有限數值，否則拋出 TypeError
+ * Validate that a value is a finite number, throws a TypeError otherwise
+ *
+ * slice 風格唯一的例外：`NaN` / `±Infinity` 不收窄，直接視為上游錯誤。
+ * The one exception to the slice style: `NaN` / `±Infinity` are not narrowed
+ * but treated as an upstream error.
+ *
+ * @param value 待檢查的參數 / The parameter to check
+ * @param name 參數名稱，用於錯誤訊息 / Parameter name used in the error message
+ * @param label 錯誤訊息用的標籤 / Label used in the error message
+ * @returns 回傳該參數以便串接 / Returns the parameter for chaining
+ */
+export function assertFiniteNumber(value: unknown, name = 'value', label = 'assertFiniteNumber'): number
+{
+	if (!isFiniteNumber(value))
+	{
+		throw new TypeError(`[${label}] parameter must be a finite number: ${name}=${String(value)}`);
+	}
+
+	return value as number;
+}
+
+/**
+ * 判斷是否為整數且落在閉區間 `[min, max]`，不拋錯
+ * Check whether a value is an integer inside the inclusive interval `[min, max]`, never throws
+ *
+ * @param value 待檢查的值 / The value to check
+ * @param min 下界（含）/ Lower bound, inclusive
+ * @param max 上界（含）/ Upper bound, inclusive
+ * @returns 是否合法 / Whether the value is legal
+ */
+export function isIntegerInRange(value: number, min: number, max: number): boolean
+{
+	return Number.isInteger(value) && value >= min && value <= max;
+}
+
+/**
+ * 驗證是否為整數，否則拋出 TypeError
+ * Validate that a value is an integer, throws a TypeError otherwise
+ *
+ * @param value 待驗證的參數 / The parameter to validate
+ * @param name 參數名稱，用於錯誤訊息 / Parameter name used in the error message
+ * @param label 錯誤訊息用的標籤 / Label used in the error message
+ * @returns 回傳該參數以便串接 / Returns the parameter for chaining
+ */
+export function assertInteger(value: number, name = 'value', label = 'assertInteger'): number
+{
+	if (!Number.isInteger(value))
+	{
+		throw new TypeError(`[${label}] parameter must be an integer: ${name}=${value}`);
+	}
+
+	return value;
+}
+
 /**
  * 判斷值是否落在半開區間 `[start, end)` 內
  * Check whether a value falls inside the half-open interval `[start, end)`
@@ -167,6 +280,10 @@ export function assertInRange(value: number, start: number, end: number, name = 
  * 以閉區間 `[min, max]` 驗證整數參數，不合法時拋出錯誤
  * Validate an integer parameter against the inclusive interval `[min, max]`, throws when illegal
  *
+ * 組合 `assertInteger()`（型別）+ 範圍檢查（大小），兩段各自可單獨取用。
+ * Composes `assertInteger()` (type) and a bound check (size); each half is
+ * usable on its own.
+ *
  * @param value 待驗證的參數 / The parameter to validate
  * @param min 下界（含，Inclusive）/ Lower bound, inclusive
  * @param max 上界（含，Inclusive）/ Upper bound, inclusive
@@ -176,12 +293,9 @@ export function assertInRange(value: number, start: number, end: number, name = 
  */
 export function assertIntegerInRange(value: number, min: number, max: number, name: string, label: string): number
 {
-	if (!Number.isInteger(value))
-	{
-		throw new TypeError(`[${label}] parameter must be an integer: ${name}=${value}`);
-	}
+	assertInteger(value, name, label);
 
-	if (value < min || value > max)
+	if (!isIntegerInRange(value, min, max))
 	{
 		throw new RangeError(`[${label}] parameter out of range: ${name}=${value}, expected: [${min}, ${max}]`);
 	}

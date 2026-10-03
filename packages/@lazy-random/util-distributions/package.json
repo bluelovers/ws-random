@@ -76,5 +76,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "num-is-zero": "^1.1.0"
   }
 }
