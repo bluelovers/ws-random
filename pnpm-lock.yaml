@@ -663,6 +663,10 @@ importers:
   packages/@lazy-random/simple-wrap: {}
 
   packages/@lazy-random/util-distributions:
+    dependencies:
+      num-is-zero:
+        specifier: ^1.1.0
+        version: link:../../num-is-zero
     devDependencies:
       '@lazy-random/rng-abstract':
         specifier: ^1.1.0
