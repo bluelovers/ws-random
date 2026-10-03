@@ -16,6 +16,7 @@ function int(n, t, a) {
 
 const n = {
   randIndex,
+  randIndexWithRange,
   float,
   int
 };

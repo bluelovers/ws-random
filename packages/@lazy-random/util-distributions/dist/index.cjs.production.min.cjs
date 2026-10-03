@@ -20,6 +20,7 @@ Object.defineProperty(exports, "__esModule", {
   value: !0
 }), exports.default = {
   randIndex,
+  randIndexWithRange,
   float,
   int
 }, exports.float = float, exports.int = int, exports.randIndex = randIndex, exports.randIndexWithRange = randIndexWithRange;

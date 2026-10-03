@@ -59,6 +59,7 @@ export declare function int(random: IRNGLike, min: number, max: number): number;
  */
 declare const UtilDistributions: {
 	randIndex: typeof randIndex;
+	randIndexWithRange: typeof randIndexWithRange;
 	float: typeof float;
 	int: typeof int;
 };

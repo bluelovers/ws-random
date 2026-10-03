@@ -64,6 +64,7 @@ function int(random, min, max) {
 
 const UtilDistributions = {
   randIndex,
+  randIndexWithRange,
   float,
   int
 };
