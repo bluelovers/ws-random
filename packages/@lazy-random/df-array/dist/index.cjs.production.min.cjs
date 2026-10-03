@@ -22,12 +22,12 @@ function dfArrayIndexOne(e, r, n = 0, l) {
 }
 
 function dfArrayShuffle(e, n, l) {
-  const randIndex = r => t.randIndex(e, r);
+  const randIndexByLength = r => t.randIndexByLength(e, r);
   if (!l) {
     let e;
-    return e = Buffer.isBuffer(n) ? e => Buffer.from(e) : e => e.slice(), () => r.swapAlgorithm2(e(n), !0, randIndex);
+    return e = Buffer.isBuffer(n) ? e => Buffer.from(e) : e => e.slice(), () => r.swapAlgorithm2(e(n), !0, randIndexByLength);
   }
-  return () => r.swapAlgorithm2(n, !0, randIndex);
+  return () => r.swapAlgorithm2(n, !0, randIndexByLength);
 }
 
 dfArrayShuffle.memoizable = !1, exports.dfArrayFill = function dfArrayFill(t, r, i, a) {
@@ -60,8 +60,8 @@ dfArrayShuffle.memoizable = !1, exports.dfArrayFill = function dfArrayFill(t, r,
 }, exports.dfArrayIndexOne = dfArrayIndexOne, exports.dfArrayShuffle = dfArrayShuffle, 
 exports.dfArrayUnique = function dfArrayUnique(r, n, l, i, a, f) {
   let d = n.slice();
-  l = Math.min(l || d.length, d.length), a = a || (e => t.randIndex(r, e)), i = !!i, 
-  e.expect(l, "limit").integer.gt(0), e.expect(a, "fnRandIndex").function();
+  l = Math.min(l || d.length, d.length), a = a || (e => t.randIndexByLength(r, e)), 
+  i = !!i, e.expect(l, "limit").integer.gt(0), e.expect(a, "fnRandIndex").function();
   let o, u = l;
   const s = function _fnClone(e) {
     d = e.slice(), u = l, o = d.length;

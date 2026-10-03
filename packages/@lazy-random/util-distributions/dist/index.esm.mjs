@@ -1,6 +1,6 @@
 import { fixZero as e } from "num-is-zero";
 
-function randIndex(e, n) {
+function randIndexByLength(e, n) {
   return Math.floor(e.next() * n);
 }
 
@@ -333,11 +333,11 @@ function _calcExpectedValuesByMinMax(e, n, r = "_calcExpectedValuesByMinMax") {
 }
 
 const i = {
-  randIndex,
+  randIndexByLength,
   randIndexWithRange,
   float,
   int
 };
 
-export { t as MAX_LENGTH, a as MIN_LENGTH, r as SAFE_INTEGER_MAX, n as SAFE_INTEGER_MIN, _assertArrayIndexMinMax, _assertArrayNotEmpty, _assertFiniteNumber, _assertInRange, _assertInteger, _assertIntegerInRange, _assertLengthParams, _assertMinMax, _assertMinMaxOrder, _assertNotEmptyLength, _assertRangeParams, _assertSize, _assertSizeInRange, _calcArrayIndexMinMax, _calcArrayIndexRange, _calcArrayLength, _calcArraySliceSize, _calcExpectedValues, _calcExpectedValuesByArray, _calcExpectedValuesByArrayMinMax, _calcExpectedValuesByLength, _calcExpectedValuesByMinMax, _calcExpectedValuesByRange, _calcRangeSize, _clampSize, _clampValue, _createValuesValidator, _fnCoreArrayLength, _fnCoreClamp, _fnCoreNormalizeInclusiveIndex, _fnCoreNormalizeSliceIndex, _fnCoreNormalizeSliceMinMax, _fnCoreNormalizeSliceRange, _fnCoreOrderMinMax, _fnCoreResolveTailIndex, _fnCoreToInteger, _isArrayEmpty, _isFiniteNumber, _isInRange, _isIntegerInRange, _normalizeArrayIndexMinMax, _normalizeArrayRange, _normalizeInclusiveIndex, _normalizeMinMax, _normalizeSliceIndex, _normalizeSliceMinMax, _normalizeSliceRange, _rangeValues, i as default, float, int, randIndex, randIndexWithRange };
+export { t as MAX_LENGTH, a as MIN_LENGTH, r as SAFE_INTEGER_MAX, n as SAFE_INTEGER_MIN, _assertArrayIndexMinMax, _assertArrayNotEmpty, _assertFiniteNumber, _assertInRange, _assertInteger, _assertIntegerInRange, _assertLengthParams, _assertMinMax, _assertMinMaxOrder, _assertNotEmptyLength, _assertRangeParams, _assertSize, _assertSizeInRange, _calcArrayIndexMinMax, _calcArrayIndexRange, _calcArrayLength, _calcArraySliceSize, _calcExpectedValues, _calcExpectedValuesByArray, _calcExpectedValuesByArrayMinMax, _calcExpectedValuesByLength, _calcExpectedValuesByMinMax, _calcExpectedValuesByRange, _calcRangeSize, _clampSize, _clampValue, _createValuesValidator, _fnCoreArrayLength, _fnCoreClamp, _fnCoreNormalizeInclusiveIndex, _fnCoreNormalizeSliceIndex, _fnCoreNormalizeSliceMinMax, _fnCoreNormalizeSliceRange, _fnCoreOrderMinMax, _fnCoreResolveTailIndex, _fnCoreToInteger, _isArrayEmpty, _isFiniteNumber, _isInRange, _isIntegerInRange, _normalizeArrayIndexMinMax, _normalizeArrayRange, _normalizeInclusiveIndex, _normalizeMinMax, _normalizeSliceIndex, _normalizeSliceMinMax, _normalizeSliceRange, _rangeValues, i as default, float, int, randIndexByLength, randIndexWithRange };
 //# sourceMappingURL=index.esm.mjs.map

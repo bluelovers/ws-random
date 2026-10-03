@@ -50,7 +50,7 @@ function coreFnRandSumInt(r) {
   return r = void 0, () => {
     let e, t, i = rmultinomCreateFn(F), r = _.length;
     if (i.length) e = i[0].value, t = i[0].bool, e = e.map(n.fixZero), t && r < 10 && _.push(e); else if (r) {
-      let n = s.randIndex(m, r);
+      let n = s.randIndexByLength(m, r);
       e = _[n], t = !0;
     }
     if (!t || !e) throw new Error("can't generator value by current input argv, or try set limit for high number");

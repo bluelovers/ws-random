@@ -1,6 +1,6 @@
 import { expect as r } from "@lazy-random/expect";
 
-import { int as t, randIndex as e } from "@lazy-random/util-distributions";
+import { int as t, randIndexByLength as e } from "@lazy-random/util-distributions";
 
 import { swapAlgorithm2 as n } from "@lazy-random/array-algorithm";
 
@@ -41,12 +41,12 @@ function dfArrayIndex(t, e, n = 1, l = 0, a) {
 }
 
 function dfArrayShuffle(r, t, l) {
-  const randIndex$1 = t => e(r, t);
+  const randIndexByLength$1 = t => e(r, t);
   if (!l) {
     let r;
-    return r = Buffer.isBuffer(t) ? r => Buffer.from(r) : r => r.slice(), () => n(r(t), !0, randIndex$1);
+    return r = Buffer.isBuffer(t) ? r => Buffer.from(r) : r => r.slice(), () => n(r(t), !0, randIndexByLength$1);
   }
-  return () => n(t, !0, randIndex$1);
+  return () => n(t, !0, randIndexByLength$1);
 }
 
 function dfArrayUnique(t, n, l, a, i, f) {

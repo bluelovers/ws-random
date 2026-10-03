@@ -131,8 +131,8 @@ class RandomCore {
   dfArrayIndex(e, r = 1, n = 0, i) {
     return this._memoizeFake("dfArrayIndex", t.dfArrayIndex, e, r, n, i);
   }
-  arrayIndexOne(e, r = 1, t = 0, n) {
-    return this.dfArrayIndexOne(e, t, n)();
+  arrayIndexOne(e, r = 0, t) {
+    return this.dfArrayIndexOne(e, r, t)();
   }
   dfArrayIndexOne(e, r = 0, n) {
     return this._memoizeFake("dfArrayIndexOne", t.dfArrayIndexOne, e, r, n);

@@ -39,14 +39,14 @@ function dfCharID(random, char, size) {
   const ls = UString.create(char).split('');
   const len = ls.length;
   expect.expect(ls).lengthOf.gt(1);
-  const randIndex = () => {
-    return utilDistributions.randIndex(random, len);
+  const randIndexByLength = () => {
+    return utilDistributions.randIndexByLength(random, len);
   };
   return () => {
     let i = size;
     let list = [];
     while (i--) {
-      list.push(ls[randIndex()]);
+      list.push(ls[randIndexByLength()]);
     }
     return list.join('');
   };

@@ -116,7 +116,7 @@ function coreFnRandSumInt(argv) {
         cache.push(ret_b);
       }
     } else if (c_len) {
-      let i = utilDistributions.randIndex(random, c_len);
+      let i = utilDistributions.randIndexByLength(random, c_len);
       ret_b = cache[i];
       bool_toplevel = true;
     }

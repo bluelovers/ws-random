@@ -14,7 +14,7 @@ import { get_prob as m, get_prob_float as a } from "@lazy-random/util-probabilit
 
 import { sum_1_to_n as u, num_array_sum as l } from "@lazy-num/sum";
 
-import { randIndex as f, float as s } from "@lazy-random/util-distributions";
+import { randIndexByLength as f, float as s } from "@lazy-random/util-distributions";
 
 import { isUnset as d } from "@lazy-random/shared-lib";
 

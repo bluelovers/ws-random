@@ -11,13 +11,13 @@ import { IRNGLike } from '@lazy-random/rng-abstract';
  * @param len 索引長度，通常為陣列 (Array) 長度 / The index length, usually an array length
  * @returns 隨機索引 / A random index
  */
-export declare function randIndex(random: IRNGLike, len: number): number;
+export declare function randIndexByLength(random: IRNGLike, len: number): number;
 /**
  * 在 `[start, end)` 區間內回傳取整後的隨機索引 (Random Index)。
  * Return a floored random index within `[start, end)`.
  *
- * 與 `randIndex()` 的差別在於支援任意起訖，方便做區間抽樣 (Range Sampling)。
- * Unlike `randIndex()`, this accepts arbitrary bounds for range sampling.
+ * 與 `randIndexByLength()` 的差別在於支援任意起訖，方便做區間抽樣 (Range Sampling)。
+ * Unlike `randIndexByLength()`, this accepts arbitrary bounds for range sampling.
  *
  * @param random 實作 `IRNGLike` 的亂數產生器 / An RNG implementing `IRNGLike`
  * @param start 起始值（含，Inclusive）/ Start value, inclusive
@@ -169,8 +169,8 @@ export declare const SAFE_INTEGER_MAX: number;
 /**
  * `len` 參數允許的最小值（閉區間下界）/ Smallest value allowed for the `len` parameter (inclusive lower bound)
  *
- * `randIndex()` 的合法值區間為 `[0, len)`，因此 `len` 至少為 1。
- * The legal interval of `randIndex()` is `[0, len)`, so `len` must be at least 1.
+ * `randIndexByLength()` 的合法值區間為 `[0, len)`，因此 `len` 至少為 1。
+ * The legal interval of `randIndexByLength()` is `[0, len)`, so `len` must be at least 1.
  */
 export declare const MIN_LENGTH = 1;
 /**
@@ -275,8 +275,8 @@ export declare function _assertInRange(value: number, start: number, end: number
  */
 export declare function _assertIntegerInRange(value: number, min: number, max: number, name: string, label: string): number;
 /**
- * 以閉區間 `[MIN_LENGTH, MAX_LENGTH]` 驗證 `randIndex()` 的 `len` 參數
- * Validate the `len` argument of `randIndex()` against the inclusive interval `[MIN_LENGTH, MAX_LENGTH]`
+ * 以閉區間 `[MIN_LENGTH, MAX_LENGTH]` 驗證 `randIndexByLength()` 的 `len` 參數
+ * Validate the `len` argument of `randIndexByLength()` against the inclusive interval `[MIN_LENGTH, MAX_LENGTH]`
  *
  * @param len 索引長度 / The index length
  * @param label 錯誤訊息用的標籤 / Label used in the error message
@@ -323,8 +323,8 @@ export declare function _rangeValues(start: number, end: number): Generator<numb
  */
 export declare function _calcExpectedValues(start: number, end: number, params?: Readonly<Record<string, number>>, label?: string): IExpectedValues;
 /**
- * 依 `randIndex(len)` 的長度參數計算合法值 `[0, len)`
- * Compute the legal values `[0, len)` from the length argument of `randIndex(len)`
+ * 依 `randIndexByLength(len)` 的長度參數計算合法值 `[0, len)`
+ * Compute the legal values `[0, len)` from the length argument of `randIndexByLength(len)`
  *
  * @param len 索引長度 / The index length
  * @returns 合法參數值、合法值區間與其數量 / The legal parameter values, legal interval and their count
@@ -893,13 +893,13 @@ export declare function _assertSizeInRange(size: number, max: number, label?: st
  */
 export declare function _calcExpectedValuesByMinMax(min: number, max: number, label?: string): IExpectedValues;
 /**
- * 彙整 `randIndex`、`float`、`int` 的預設導出 (Default Export) 集合，
+ * 彙整 `randIndexByLength`、`float`、`int` 的預設導出 (Default Export) 集合，
  * 便於以屬性 (Property) 方式一次取得常用分布工具。
- * Default export bundling `randIndex`, `float`, and `int` for property-style access
+ * Default export bundling `randIndexByLength`, `float`, and `int` for property-style access
  * to the common distribution utilities.
  */
 declare const UtilDistributions: {
-	randIndex: typeof randIndex;
+	randIndexByLength: typeof randIndexByLength;
 	randIndexWithRange: typeof randIndexWithRange;
 	float: typeof float;
 	int: typeof int;

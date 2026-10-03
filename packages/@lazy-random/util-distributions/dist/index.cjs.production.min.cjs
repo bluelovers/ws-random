@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var e = require("num-is-zero");
 
-function randIndex(e, n) {
+function randIndexByLength(e, n) {
   return Math.floor(e.next() * n);
 }
 
@@ -195,7 +195,7 @@ function _assertMinMax(e, a, t = "_assertMinMax") {
 }
 
 const t = {
-  randIndex,
+  randIndexByLength,
   randIndexWithRange,
   float,
   int
@@ -317,5 +317,5 @@ exports._normalizeArrayIndexMinMax = function _normalizeArrayIndexMinMax(e, n, r
   return _assertSliceIndexParams(e, n, r, a), _fnCoreNormalizeSliceIndex(e, n);
 }, exports._normalizeSliceMinMax = _normalizeSliceMinMax, exports._normalizeSliceRange = _normalizeSliceRange, 
 exports._rangeValues = _rangeValues, exports.default = t, exports.float = float, 
-exports.int = int, exports.randIndex = randIndex, exports.randIndexWithRange = randIndexWithRange;
+exports.int = int, exports.randIndexByLength = randIndexByLength, exports.randIndexWithRange = randIndexWithRange;
 //# sourceMappingURL=index.cjs.production.min.cjs.map

@@ -128,8 +128,8 @@ function dfArrayIndex(random, arr, size = 1, start = 0, end) {
  * @returns 取樣函式 (Sampler)，每次呼叫回傳洗牌後的陣列
  */
 function dfArrayShuffle(random, arr, overwrite) {
-  const randIndex = len => {
-    return utilDistributions.randIndex(random, len);
+  const randIndexByLength = len => {
+    return utilDistributions.randIndexByLength(random, len);
   };
   if (!overwrite) {
     let cloneArrayLike;
@@ -146,11 +146,11 @@ function dfArrayShuffle(random, arr, overwrite) {
       };
     }
     return () => {
-      return arrayAlgorithm.swapAlgorithm2(cloneArrayLike(arr), true, randIndex);
+      return arrayAlgorithm.swapAlgorithm2(cloneArrayLike(arr), true, randIndexByLength);
     };
   }
   return () => {
-    return arrayAlgorithm.swapAlgorithm2(arr, true, randIndex);
+    return arrayAlgorithm.swapAlgorithm2(arr, true, randIndexByLength);
   };
 }
 dfArrayShuffle.memoizable = false;
@@ -185,12 +185,12 @@ dfArrayShuffle.memoizable = false;
  * @returns 取樣函式 (Sampler)，每次呼叫回傳一個元素
  */
 function dfArrayUnique(random, arr, limit, loop, fnRandIndex, fnOutOfLimit) {
-  const randIndex = len => {
-    return utilDistributions.randIndex(random, len);
+  const randIndexByLength = len => {
+    return utilDistributions.randIndexByLength(random, len);
   };
   let clone = arr.slice();
   limit = Math.min(limit || clone.length, clone.length);
-  fnRandIndex = fnRandIndex || randIndex;
+  fnRandIndex = fnRandIndex || randIndexByLength;
   loop = !!loop;
   expect.expect(limit, `limit`).integer.gt(0);
   expect.expect(fnRandIndex, `fnRandIndex`).function();

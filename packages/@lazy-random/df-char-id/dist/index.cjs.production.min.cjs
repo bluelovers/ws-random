@@ -11,10 +11,10 @@ function dfCharID(o, u, a) {
   t.expect(a = a || 8).integer.gt(0), u || (u = r.ENUM_ALPHABET.DEFAULT);
   const l = e.create(u).split(""), s = l.length;
   t.expect(l).lengthOf.gt(1);
-  const randIndex = () => i.randIndex(o, s);
+  const randIndexByLength = () => i.randIndexByLength(o, s);
   return () => {
     let e = a, r = [];
-    for (;e--; ) r.push(l[randIndex()]);
+    for (;e--; ) r.push(l[randIndexByLength()]);
     return r.join("");
   };
 }

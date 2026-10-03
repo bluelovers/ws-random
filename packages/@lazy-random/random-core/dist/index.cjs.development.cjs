@@ -374,18 +374,14 @@ class RandomCore {
     return this._memoizeFake('dfArrayIndex', Distributions.dfArrayIndex, arr, size, start, end);
   }
   /**
-   * TODO: `size` 參數未被使用（呼叫 `dfArrayIndexOne()` 時未轉交），疑似 bug；依規範僅記錄、不修改邏輯
-   * TODO: the `size` parameter is unused (not forwarded to `dfArrayIndexOne()`); suspected bug, recorded only, logic untouched
-   *
    * 取得單一隨機索引 (Index)，立即回傳結果
    * Get a single random index and return it immediately
    *
    * @param arr - 目標陣列 / target array
-   * @param size - 目前未生效（見上方 TODO）/ currently ineffective (see TODO above)
    * @param start - 起始位置（含）/ start position (inclusive)
    * @param end - 結束位置 / end position
    */
-  arrayIndexOne(arr, size = 1, start = 0, end) {
+  arrayIndexOne(arr, start = 0, end) {
     return this.dfArrayIndexOne(arr, start, end)();
   }
   /**
