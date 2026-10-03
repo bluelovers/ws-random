@@ -107,8 +107,14 @@ export function collectValues(label: string, testLimit: number, expected: IExpec
 
 	return {
 		label,
-		// testLimit,
-		// total: validator.total,
+		/**
+		 * `testLimit` / `total` 刻意不寫入快照：兩者恆為同一值，
+		 * 而 `--test-update-snapshots` 每次執行都會改寫快照檔，多記只會造成無謂差異。
+		 *
+		 * `testLimit` / `total` are deliberately left out of the snapshot: both are
+		 * always the same value, and `--test-update-snapshots` rewrites the snapshot
+		 * file on every run, so recording them only creates pointless diffs.
+		 */
 		params: { ...expected.params },
 		range: { ...expected.range },
 		expectedValues: [...expected.valuesGenerator()],

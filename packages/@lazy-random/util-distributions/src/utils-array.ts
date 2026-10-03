@@ -185,11 +185,64 @@ export function _fnCoreArrayLength(arr: IArrayLike): number
 }
 
 /**
+ * 夾取 core：把值夾進 `[min, max]`，不檢查上下界順序
+ * Clamp core: clamp a value into `[min, max]` without checking the bound order
+ *
+ * `min > max` 時回傳 `max`（例如 `length === 0` 時的含端點區間 `[0, -1]`），
+ * 這也是 core「永不拋錯」的一部分。
+ * When `min > max` it returns `max` (e.g. the inclusive interval `[0, -1]` when
+ * `length === 0`), which is part of what keeps core non-throwing.
+ *
+ * @param value 待夾取的值 / The value to clamp
+ * @param min 下界（含）/ Lower bound, inclusive
+ * @param max 上界（含）/ Upper bound, inclusive
+ * @returns 夾取後的值 / The clamped value
+ */
+export function _fnCoreClamp(value: number, min: number, max: number): number
+{
+	return Math.min(Math.max(value, min), max);
+}
+
+/**
+ * 解析記法 core：把邊界向零取整並解析負值的尾部記法，不收窄、不拋錯
+ * Notation-resolution core: truncate a bound and resolve negative tail notation; no narrowing, never throws
+ *
+ * 這是 `_fnCoreNormalizeSliceIndex()` 與 `_fnCoreNormalizeInclusiveIndex()`
+ * 共用的核心邏輯，兩者的差別只在最後的取值（夾取上界）。
+ * This is the logic shared by `_fnCoreNormalizeSliceIndex()` and
+ * `_fnCoreNormalizeInclusiveIndex()`; the two differ only in the final retrieval
+ * (which upper bound they clamp to).
+ *
+ * 負值代表從尾部往前算：`-1` → `length - 1`。此處刻意**不夾進 `[0, length]`**，
+ * `-6` 會原樣得到 `-1`，要不要收窄由上層決定。
+ * Negatives count from the tail: `-1` → `length - 1`. It deliberately **does not
+ * clamp into `[0, length]`**: `-6` yields `-1` as-is, and the caller decides
+ * whether to narrow.
+ *
+ * @param index 原始邊界 / The raw bound
+ * @param length 陣列長度 / The array length
+ * @returns 解析後、未收窄的索引 / The resolved, unclamped index
+ */
+export function _fnCoreResolveTailIndex(index: number, length: number): number
+{
+	const truncated = _fnCoreToInteger(index);
+
+	/**
+	 * 負值代表從尾部往前算：`length + (-1)` 即最後一個位置
+	 * Negatives count from the tail: `length + (-1)` is the last position.
+	 */
+	return truncated < 0 ? length + truncated : truncated;
+}
+
+/**
  * slice 風格 core：把單一半開邊界正規化成 `[0, length]` 內的實際位置
  * Slice style core: normalise a single half-open bound into an actual position inside `[0, length]`
  *
+ * = `_fnCoreResolveTailIndex()`（共用核心邏輯）+ `_fnCoreClamp()`（取值：夾進 `[0, length]`）。
  * 不拋錯：`NaN` → `NaN`、`±Infinity` → 收窄到端點。
- * Never throws: `NaN` → `NaN`, `±Infinity` → narrowed to an endpoint.
+ * = `_fnCoreResolveTailIndex()` (the shared core) plus `_fnCoreClamp()` (the
+ * retrieval, narrowing into `[0, length]`). Never throws: `NaN` → `NaN`,
+ * `±Infinity` → narrowed to an endpoint.
  *
  * 規則 / rules:
  *
@@ -205,27 +258,22 @@ export function _fnCoreArrayLength(arr: IArrayLike): number
  */
 export function _fnCoreNormalizeSliceIndex(index: number, length: number): number
 {
-	const truncated = _fnCoreToInteger(index);
-
-	// 負值代表從尾部往前算，且不得低於 0
-	// Negatives count from the tail and must not fall below 0.
-	if (truncated < 0)
-	{
-		return Math.max(length + truncated, 0);
-	}
-
-	// 超過長度自動收窄為 length；NaN 比較皆為 false，原樣流到這裡再被 Math.min 收成 NaN
-	// Anything past the length auto-narrows to the length; every NaN comparison is
-	// false, so NaN falls through and is kept as NaN by Math.min.
-	return Math.min(truncated, length);
+	return _fnCoreClamp(_fnCoreResolveTailIndex(index, length), 0, length);
 }
 
 /**
  * slice 風格 core：把單一含端點邊界正規化成 `[0, length - 1]` 內的實際索引
  * Slice style core: normalise a single inclusive bound into an actual index inside `[0, length - 1]`
  *
- * 不拋錯，規則同 `_fnCoreNormalizeSliceIndex()`，只有上界不同。
- * Never throws; same rules as `_fnCoreNormalizeSliceIndex()` except for the upper bound.
+ * 與 `_fnCoreNormalizeSliceIndex()` 共用同一段核心邏輯，只差最後的取值：
+ * 上界從 `length` 換成 `length - 1`。
+ * Shares the same core logic as `_fnCoreNormalizeSliceIndex()`; only the final
+ * retrieval differs: the upper bound becomes `length - 1` instead of `length`.
+ *
+ * `length === 0` 時含端點區間為空（`[0, -1]`），有限輸入一律收成上界 `-1`；
+ * `NaN` 仍原樣流出。
+ * When `length === 0` the inclusive interval is empty (`[0, -1]`), so every
+ * finite input narrows to the upper bound `-1`; `NaN` still flows through.
  *
  * @param index 原始邊界 / The raw bound
  * @param length 陣列長度 / The array length
@@ -233,18 +281,7 @@ export function _fnCoreNormalizeSliceIndex(index: number, length: number): numbe
  */
 export function _fnCoreNormalizeInclusiveIndex(index: number, length: number): number
 {
-	const truncated = _fnCoreToInteger(index);
-
-	// 負值代表從尾部往前算：-1 → 最後一個索引
-	// Negatives count from the tail: -1 → the last index.
-	if (truncated < 0)
-	{
-		return Math.max(length + truncated, 0);
-	}
-
-	// 超過最後一個索引自動收窄為 length - 1
-	// Anything past the last index auto-narrows to length - 1.
-	return Math.min(truncated, length - 1);
+	return _fnCoreClamp(_fnCoreResolveTailIndex(index, length), 0, length - 1);
 }
 
 /**
@@ -258,11 +295,13 @@ export function _fnCoreNormalizeInclusiveIndex(index: number, length: number): n
  */
 export function _fnCoreNormalizeSliceRange(start: number | null | undefined, end: number | null | undefined, length: number): IRange
 {
-	// undefined / null 視為「未傳入」，比 slice() 更寬鬆：
-	// slice(0, null) 會把 null 轉成 0 而得到空陣列，這裡則視為缺省。
-	// undefined / null are treated as "not passed", which is friendlier than
-	// slice(): slice(0, null) converts null to 0 and yields an empty array,
-	// whereas here it is treated as omitted.
+	/**
+	 * undefined / null 視為「未傳入」，比 slice() 更寬鬆：
+	 * slice(0, null) 會把 null 轉成 0 而得到空陣列，這裡則視為缺省。
+	 * undefined / null are treated as "not passed", which is friendlier than
+	 * slice(): slice(0, null) converts null to 0 and yields an empty array,
+	 * whereas here it is treated as omitted.
+	 */
 	return {
 		start: _fnCoreNormalizeSliceIndex(start ?? 0, length),
 		end: _fnCoreNormalizeSliceIndex(end ?? length, length),
@@ -283,6 +322,13 @@ export function _fnCoreNormalizeSliceMinMax(min: number | null | undefined, max:
 	let normalizedMin = _fnCoreNormalizeInclusiveIndex(min ?? 0, length);
 	let normalizedMax = _fnCoreNormalizeInclusiveIndex(max ?? (length - 1), length);
 
+	/**
+	 * `min > max` 交換而非拋錯：這是「修正」而非「驗證」，
+	 * 反轉的上下界仍是合法的值域，只是寫反了。
+	 *
+	 * `min > max` swaps instead of throwing: this is *correction*, not
+	 * *validation* — reversed bounds are still a legal domain, just written backwards.
+	 */
 	if (normalizedMin > normalizedMax)
 	{
 		[normalizedMin, normalizedMax] = [normalizedMax, normalizedMin];
@@ -292,40 +338,6 @@ export function _fnCoreNormalizeSliceMinMax(min: number | null | undefined, max:
 		min: normalizedMin,
 		max: normalizedMax,
 	};
-}
-
-/**
- * 解析記法 core：只把負值換算成從頭數的索引，不收窄、不拋錯
- * Notation-resolution core: convert a negative into a head-based index only; no narrowing, never throws
- *
- * 與 `_fnCoreNormalizeInclusiveIndex()` 的差別在於**不收窄**：
- * `-6` 會得到 `-1`，留給上層決定要不要擋。
- * Differs from `_fnCoreNormalizeInclusiveIndex()` in that it does **not** narrow:
- * `-6` yields `-1`, leaving the rejection decision to the layer above.
- *
- * @param index 原始邊界 / The raw bound
- * @param length 陣列長度 / The array length
- * @returns 解析後的索引 / The resolved index
- */
-export function _fnCoreResolveTailIndex(index: number, length: number): number
-{
-	const truncated = _fnCoreToInteger(index);
-
-	return truncated < 0 ? length + truncated : truncated;
-}
-
-/**
- * 夾取 core：把值夾進 `[min, max]`，不檢查上下界順序
- * Clamp core: clamp a value into `[min, max]` without checking the bound order
- *
- * @param value 待夾取的值 / The value to clamp
- * @param min 下界（含）/ Lower bound, inclusive
- * @param max 上界（含）/ Upper bound, inclusive
- * @returns 夾取後的值 / The clamped value
- */
-export function _fnCoreClamp(value: number, min: number, max: number): number
-{
-	return Math.min(Math.max(value, min), max);
 }
 
 /**
@@ -547,9 +559,11 @@ export function normalizeSliceRange(start: number | null | undefined, end: numbe
 
 	const range = _fnCoreNormalizeSliceRange(start, end, length);
 
-	// 超出範圍只會收窄；收窄後為空才代表真的沒有東西可取
-	// Out-of-range bounds only narrow; emptiness *after* narrowing means
-	// there is genuinely nothing to take.
+	/**
+	 * 超出範圍只會收窄；收窄後為空才代表真的沒有東西可取
+	 * Out-of-range bounds only narrow; emptiness *after* narrowing means
+	 * there is genuinely nothing to take.
+	 */
 	if (range.start >= range.end)
 	{
 		throw new RangeError(`[${label}] range must not be empty: start=${range.start}, end=${range.end}`);
@@ -577,8 +591,10 @@ export function normalizeSliceRange(start: number | null | undefined, end: numbe
  */
 export function normalizeSliceMinMax(min: number | null | undefined, max: number | null | undefined, length: number, label = 'normalizeSliceMinMax'): IMinMax
 {
-	// 政策層仍須擋 NaN / ±Infinity：只有 `_fnCore*` 才允許不拋錯
-	// The policy layer still rejects NaN / ±Infinity: only `_fnCore*` may skip throwing
+	/**
+	 * 政策層仍須擋 NaN / ±Infinity：只有 `_fnCore*` 才允許不拋錯
+	 * The policy layer still rejects NaN / ±Infinity: only `_fnCore*` may skip throwing
+	 */
 	_assertInclusiveIndexParams(min ?? 0, length, 'min', label);
 	_assertInclusiveIndexParams(max ?? (length - 1), length, 'max', label);
 
@@ -723,8 +739,10 @@ export function assertArrayIndexMinMax(arr: IArrayLike, min?: number | null, max
 	const domain = calcArrayIndexMinMax(arr, label);
 	const length = domain.max + 1;
 
-	// 先驗證型別（assert），再解析記法（core，不收窄）
-	// Validate the type first (assert), then resolve the notation (core, no narrowing)
+	/**
+	 * 先驗證型別（assert），再解析記法（core，不收窄）
+	 * Validate the type first (assert), then resolve the notation (core, no narrowing)
+	 */
 	const resolve = (value: number, name: string) =>
 	{
 		assertFiniteNumber(value, name, label);

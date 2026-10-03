@@ -117,7 +117,9 @@ describe('utils-array', () =>
 
 			for (let i = 0; i < testLimit; i++)
 			{
-				// 索引必須真的取得到陣列元素 / the index must resolve to a real element
+				/**
+				 * 索引必須真的取得到陣列元素 / the index must resolve to a real element
+				 */
 				const index = randIndex(rnd, arr.length);
 
 				if (arr[index] === undefined)
@@ -146,7 +148,9 @@ describe('utils-array', () =>
 			{
 				const value = int(rnd, domain.min, domain.max);
 
-				// 取出的索引必須真的存在於陣列中 / the drawn index must exist in the array
+				/**
+				 * 取出的索引必須真的存在於陣列中 / the drawn index must exist in the array
+				 */
 				if (arr[value] === undefined)
 				{
 					throw new RangeError(`int(${domain.min}, ${domain.max}) => ${value} out of range`);
@@ -174,7 +178,9 @@ describe('utils-array', () =>
 			{
 				const value = int(rnd, domain.min, domain.max);
 
-				// 只能取到最後兩個元素 / only the last two elements may be drawn
+				/**
+				 * 只能取到最後兩個元素 / only the last two elements may be drawn
+				 */
 				if (![40, 50].includes(arr[value]))
 				{
 					throw new RangeError(`int(${domain.min}, ${domain.max}) => ${value} escaped the tail`);
@@ -366,8 +372,10 @@ describe('utils-array', () =>
 				'4': fmt(_fnCoreResolveTailIndex(4, 5)),
 				'-1': fmt(_fnCoreResolveTailIndex(-1, 5)),
 				'-5': fmt(_fnCoreResolveTailIndex(-5, 5)),
-				// 收窄才會得到 -1，這裡只解析 → -1，留給上層決定要不要擋
-				// Only narrowing would give -1 after clamping; this resolves to -1 and lets the layer above decide
+				/**
+				 * 收窄才會得到 -1，這裡只解析 → -1，留給上層決定要不要擋
+				 * Only narrowing would give -1 after clamping; this resolves to -1 and lets the layer above decide
+				 */
 				'-6': fmt(_fnCoreResolveTailIndex(-6, 5)),
 				'99 不收窄': fmt(_fnCoreResolveTailIndex(99, 5)),
 				'NaN': fmt(_fnCoreResolveTailIndex(NaN, 5)),
@@ -433,8 +441,10 @@ describe('utils-array', () =>
 			t.assert.snapshot({
 				'1.9': fmt(normalizeSliceIndex(1.9, 5)),
 				'4.8': fmt(normalizeSliceIndex(4.8, 5)),
-				// ToIntegerOrInfinity() 向零取整：-1.5 → -1 → 4
-				// ToIntegerOrInfinity() truncates toward zero: -1.5 → -1 → 4
+				/**
+				 * ToIntegerOrInfinity() 向零取整：-1.5 → -1 → 4
+				 * ToIntegerOrInfinity() truncates toward zero: -1.5 → -1 → 4
+				 */
 				'-1.5': fmt(normalizeSliceIndex(-1.5, 5)),
 				'-0.5': fmt(normalizeSliceIndex(-0.5, 5)),
 				'-0.5 是 +0': Object.is(normalizeSliceIndex(-0.5, 5), 0),
@@ -473,8 +483,10 @@ describe('utils-array', () =>
 			t.assert.snapshot({
 				'0': fmt(normalizeInclusiveIndex(0, 5)),
 				'4': fmt(normalizeInclusiveIndex(4, 5)),
-				// 含端點的上界是 length - 1，不是 length
-				// The inclusive upper bound is length - 1, not length
+				/**
+				 * 含端點的上界是 length - 1，不是 length
+				 * The inclusive upper bound is length - 1, not length
+				 */
 				'5': fmt(normalizeInclusiveIndex(5, 5)),
 				'99': fmt(normalizeInclusiveIndex(99, 5)),
 				'-1': fmt(normalizeInclusiveIndex(-1, 5)),
@@ -499,8 +511,10 @@ describe('utils-array', () =>
 				'缺省': outcome(() => normalizeSliceRange(undefined, undefined, 5)),
 				'[-3, -1)': outcome(() => normalizeSliceRange(-3, -1, 5)),
 				'[0, 99)': outcome(() => normalizeSliceRange(0, 99, 5)),
-				// 半開區間政策：收窄後為空 → 拋錯
-				// Half-open policy: empty after narrowing → throws
+				/**
+				 * 半開區間政策：收窄後為空 → 拋錯
+				 * Half-open policy: empty after narrowing → throws
+				 */
 				'[3, 3)': outcome(() => normalizeSliceRange(3, 3, 5)),
 			});
 		});
@@ -518,9 +532,13 @@ describe('utils-array', () =>
 		test('兩種政策目標不相容，同一組輸入各自成立', (t) =>
 		{
 			t.assert.snapshot({
-				// 半開區間：`[3, 3)` 為空 → 拋錯 / Half-open: `[3, 3)` is empty → throws
+				/**
+				 * 半開區間：`[3, 3)` 為空 → 拋錯 / Half-open: `[3, 3)` is empty → throws
+				 */
 				'normalizeSliceRange(3, 3, 5)': outcome(() => normalizeSliceRange(3, 3, 5)),
-				// 含端點：`[3, 3]` 是合法單一值 → 成立 / Inclusive: `[3, 3]` is legal → succeeds
+				/**
+				 * 含端點：`[3, 3]` 是合法單一值 → 成立 / Inclusive: `[3, 3]` is legal → succeeds
+				 */
 				'normalizeSliceMinMax(3, 3, 5)': outcome(() => normalizeSliceMinMax(3, 3, 5)),
 			});
 		});
@@ -529,8 +547,10 @@ describe('utils-array', () =>
 		{
 			const arr = ['a', 'b', 'c', 'd', 'e'];
 
-			// 不經 array 包裝，直接以 length 組合
-			// Compose straight from the length without the array wrapper
+			/**
+			 * 不經 array 包裝，直接以 length 組合
+			 * Compose straight from the length without the array wrapper
+			 */
 			t.assert.snapshot({
 				'range 一致': JSON.stringify(normalizeSliceRange(0, -1, arr.length)) === JSON.stringify(normalizeArrayRange(arr, 0, -1)),
 				'minMax 一致': JSON.stringify(normalizeSliceMinMax(null, null, arr.length)) === JSON.stringify(normalizeArrayIndexMinMax(arr, null, null)),
@@ -558,13 +578,21 @@ describe('utils-array', () =>
 			const arr = ['a', 'b', 'c', 'd', 'e'];
 
 			t.assert.snapshot({
-				// 同 arr.slice(-1) / same as arr.slice(-1)
+				/**
+				 * 同 arr.slice(-1) / same as arr.slice(-1)
+				 */
 				'[-1]': normalizeArrayRange(arr, -1),
-				// 同 arr.slice(0, -1) / same as arr.slice(0, -1)
+				/**
+				 * 同 arr.slice(0, -1) / same as arr.slice(0, -1)
+				 */
 				'[0, -1)': normalizeArrayRange(arr, 0, -1),
-				// 同 arr.slice(-3, -1) / same as arr.slice(-3, -1)
+				/**
+				 * 同 arr.slice(-3, -1) / same as arr.slice(-3, -1)
+				 */
 				'[-3, -1)': normalizeArrayRange(arr, -3, -1),
-				// 同 arr.slice(-99) — 停在 0 / same as arr.slice(-99), stops at 0
+				/**
+				 * 同 arr.slice(-99) — 停在 0 / same as arr.slice(-99), stops at 0
+				 */
 				'[-99]': normalizeArrayRange(arr, -99),
 			});
 		});
@@ -596,14 +624,20 @@ describe('utils-array', () =>
 
 			t.assert.snapshot({
 				'[2, 2)': outcome(() => normalizeArrayRange(arr, 2, 2)),
-				// start 99 收窄為 3、end 缺省亦為 3 → 空
-				// start 99 narrows to 3 and the defaulted end is also 3 → empty
+				/**
+				 * start 99 收窄為 3、end 缺省亦為 3 → 空
+				 * start 99 narrows to 3 and the defaulted end is also 3 → empty
+				 */
 				'[99]': outcome(() => normalizeArrayRange(arr, 99)),
 				'[1, 0)': outcome(() => normalizeArrayRange(arr, 1, 0)),
-				// 同 arr.slice(0, -99) 為空 / same as arr.slice(0, -99), which is empty
+				/**
+				 * 同 arr.slice(0, -99) 為空 / same as arr.slice(0, -99), which is empty
+				 */
 				'[0, -99)': outcome(() => normalizeArrayRange(arr, 0, -99)),
-				// 5 元素陣列的 arr.slice(-3, 2) → [2, 2) 為空
-				// arr.slice(-3, 2) on a 5-element array → [2, 2), which is empty
+				/**
+				 * 5 元素陣列的 arr.slice(-3, 2) → [2, 2) 為空
+				 * arr.slice(-3, 2) on a 5-element array → [2, 2), which is empty
+				 */
 				'arr5 [-3, 2)': outcome(() => normalizeArrayRange(arr5, -3, 2)),
 			});
 		});
@@ -634,8 +668,10 @@ describe('utils-array', () =>
 			t.assert.snapshot({
 				'[a,b,c]': outcome(() => calcArrayIndexRange(['a', 'b', 'c'])),
 				'[only]': outcome(() => calcArrayIndexRange(['only'])),
-				// 空陣列沒有任何合法索引，拋出 RangeError
-				// An empty array has no legal index, so a RangeError is thrown
+				/**
+				 * 空陣列沒有任何合法索引，拋出 RangeError
+				 * An empty array has no legal index, so a RangeError is thrown
+				 */
 				'[]': outcome(() => calcArrayIndexRange([])),
 			});
 		});
@@ -652,11 +688,17 @@ describe('utils-array', () =>
 			const arr = ['a', 'b', 'c', 'd'];
 
 			t.assert.snapshot({
-				// -1 → 最後一個索引 / -1 → the last index
+				/**
+				 * -1 → 最後一個索引 / -1 → the last index
+				 */
 				'[-1]': expectedSummary(calcExpectedValuesByArray(arr, -1)),
-				// 小數向零取整 / truncate toward zero
+				/**
+				 * 小數向零取整 / truncate toward zero
+				 */
 				'[1.5]': expectedSummary(calcExpectedValuesByArray(arr, 1.5)),
-				// end 超出長度自動收窄 / an out-of-range end auto-narrows
+				/**
+				 * end 超出長度自動收窄 / an out-of-range end auto-narrows
+				 */
 				'[0, 99)': expectedSummary(calcExpectedValuesByArray(arr, 0, 99)),
 			});
 		});
@@ -668,7 +710,9 @@ describe('utils-array', () =>
 			t.assert.snapshot({
 				'[3, 3)': outcome(() => calcExpectedValuesByArray(arr, 3, 3)),
 				'[4, 2)': outcome(() => calcExpectedValuesByArray(arr, 4, 2)),
-				// 空陣列拋錯 / an empty array throws
+				/**
+				 * 空陣列拋錯 / an empty array throws
+				 */
 				'[]': outcome(() => calcExpectedValuesByArray([], 0, 1)),
 			});
 		});
@@ -730,7 +774,9 @@ describe('utils-array', () =>
 			t.assert.snapshot({
 				'[0, 9]': outcome(() => assertArrayIndexMinMax(arr, 0, 9)),
 				'min 9': outcome(() => assertArrayIndexMinMax(arr, 9)),
-				// -6 超出尾部 / -6 runs past the tail
+				/**
+				 * -6 超出尾部 / -6 runs past the tail
+				 */
 				'min -6': outcome(() => assertArrayIndexMinMax(arr, -6)),
 			});
 		});
@@ -772,7 +818,9 @@ describe('utils-array', () =>
 			t.assert.snapshot({
 				'[-1, -1]': outcome(() => normalizeArrayIndexMinMax(arr, -1, -1)),
 				'[-2, -1]': outcome(() => normalizeArrayIndexMinMax(arr, -2, -1)),
-				// 超過尾部長度停在 0 / beyond the tail it stops at 0
+				/**
+				 * 超過尾部長度停在 0 / beyond the tail it stops at 0
+				 */
 				'[-99]': outcome(() => normalizeArrayIndexMinMax(arr, -99)),
 			});
 		});
@@ -958,15 +1006,21 @@ describe('utils-array', () =>
 		test('clampSize() 大小值修正', (t) =>
 		{
 			t.assert.snapshot({
-				// 需求超過可用上限時縮小規模 / an oversized request shrinks to fit
+				/**
+				 * 需求超過可用上限時縮小規模 / an oversized request shrinks to fit
+				 */
 				'clampSize(10, 5)': outcome(() => clampSize(10, 5)),
 				'clampSize(6, 5)': outcome(() => clampSize(6, 5)),
 				'clampSize(5, 5)': outcome(() => clampSize(5, 5)),
-				// 負數需求歸零 / a negative request becomes 0
+				/**
+				 * 負數需求歸零 / a negative request becomes 0
+				 */
 				'clampSize(-1, 5)': outcome(() => clampSize(-1, 5)),
 				'clampSize(-99, 5)': outcome(() => clampSize(-99, 5)),
 				'clampSize(0, 5)': outcome(() => clampSize(0, 5)),
-				// 可用上限為 0（空陣列）時一律歸零 / ceiling 0 (empty array) always clamps to 0
+				/**
+				 * 可用上限為 0（空陣列）時一律歸零 / ceiling 0 (empty array) always clamps to 0
+				 */
 				'clampSize(3, 0)': outcome(() => clampSize(3, 0)),
 				'clampSize(0, 0)': outcome(() => clampSize(0, 0)),
 				'clampSize(1.5, 5)': outcome(() => clampSize(1.5, 5)),
@@ -996,8 +1050,10 @@ describe('utils-array', () =>
 				'[5, 5]': outcome(() => assertSizeInRange(5, 5)),
 				'[6, 5]': outcome(() => assertSizeInRange(6, 5)),
 				'[0, 5]': outcome(() => assertSizeInRange(0, 5)),
-				// 可用上限不足（空陣列）時拋出明確的 RangeError
-				// ceiling too low (empty array) throws a clearer RangeError
+				/**
+				 * 可用上限不足（空陣列）時拋出明確的 RangeError
+				 * ceiling too low (empty array) throws a clearer RangeError
+				 */
 				'[1, 0]': outcome(() => assertSizeInRange(1, 0)),
 				'[3, 0]': outcome(() => assertSizeInRange(3, 0)),
 				'[1, 2.5]': outcome(() => assertSizeInRange(1, 2.5)),

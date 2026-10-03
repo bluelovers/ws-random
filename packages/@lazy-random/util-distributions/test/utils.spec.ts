@@ -373,8 +373,10 @@ describe('utils', () =>
 
 		test('不同值數量超過合法值數量時拋出', (t) =>
 		{
-			// 以刻意縮小的 size 建立描述，用來驗證 size 上限的防禦性檢查
-			// Build a description with a deliberately smaller `size` to exercise the defensive size-cap check
+			/**
+			 * 以刻意縮小的 size 建立描述，用來驗證 size 上限的防禦性檢查
+			 * Build a description with a deliberately smaller `size` to exercise the defensive size-cap check
+			 */
 			const validator = createValuesValidator({
 				params: {},
 				range: { start: 0, end: 3 },
