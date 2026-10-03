@@ -1,4 +1,4 @@
-import { float, int, randIndex } from './distributions';
+import { float, int, randIndex, randIndexWithRange } from './distributions';
 
 export * from './distributions';
 
@@ -10,6 +10,7 @@ export * from './distributions';
  */
 const UtilDistributions = {
 	randIndex,
+	randIndexWithRange,
 	float,
 	int,
 };
