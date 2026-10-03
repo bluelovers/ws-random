@@ -17,7 +17,7 @@ import { describe, test } from 'node:test';
 import { newRngMathRandom } from '@lazy-random/util-test';
 import { int, randIndex, randIndexWithRange } from '../src/index';
 import type { ITSTypeAndStringLiteral } from 'ts-type/lib/helper/string';
-import { calcExpectedValuesByLength, calcExpectedValuesByRange } from '../src/utils';
+import { _calcExpectedValuesByLength, _calcExpectedValuesByRange } from '../src/utils';
 import { collectValues } from './expected-values';
 
 type IResults = Record<ITSTypeAndStringLiteral<number>, boolean>;
@@ -32,7 +32,7 @@ describe('test.spec', () =>
 	{
 		const size = 5;
 
-		const expected = calcExpectedValuesByLength(size);
+		const expected = _calcExpectedValuesByLength(size);
 
 		const snapshot = collectValues('randIndex', testLimit, expected, () => randIndex(rnd, size));
 
@@ -60,7 +60,7 @@ describe('test.spec', () =>
 	{
 		test(`randIndexWithRange [${min}, ${max}]`, (t) =>
 		{
-			const expected = calcExpectedValuesByRange(min, max);
+			const expected = _calcExpectedValuesByRange(min, max);
 
 			const snapshot = collectValues('randIndexWithRange', testLimit, expected, () => randIndexWithRange(rnd, min, max));
 

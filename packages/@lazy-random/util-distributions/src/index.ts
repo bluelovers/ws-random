@@ -2,6 +2,7 @@ import { float, int, randIndex, randIndexWithRange } from './distributions';
 
 export * from './distributions';
 export * from './utils';
+export * from './utils-array';
 
 /**
  * 彙整 `randIndex`、`float`、`int` 的預設導出 (Default Export) 集合，

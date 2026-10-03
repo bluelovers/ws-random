@@ -180,7 +180,7 @@ export function _fnCoreToInteger(value: number): number
  * @param value 待檢查的值 / The value to check
  * @returns 是否有限 / Whether the value is finite
  */
-export function isFiniteNumber(value: unknown): boolean
+export function _isFiniteNumber(value: unknown): boolean
 {
 	return typeof value === 'number' && Number.isFinite(value);
 }
@@ -198,9 +198,9 @@ export function isFiniteNumber(value: unknown): boolean
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  * @returns 回傳該參數以便串接 / Returns the parameter for chaining
  */
-export function assertFiniteNumber(value: unknown, name = 'value', label = 'assertFiniteNumber'): number
+export function _assertFiniteNumber(value: unknown, name = 'value', label = '_assertFiniteNumber'): number
 {
-	if (!isFiniteNumber(value))
+	if (!_isFiniteNumber(value))
 	{
 		throw new TypeError(`[${label}] parameter must be a finite number: ${name}=${String(value)}`);
 	}
@@ -217,7 +217,7 @@ export function assertFiniteNumber(value: unknown, name = 'value', label = 'asse
  * @param max 上界（含）/ Upper bound, inclusive
  * @returns 是否合法 / Whether the value is legal
  */
-export function isIntegerInRange(value: number, min: number, max: number): boolean
+export function _isIntegerInRange(value: number, min: number, max: number): boolean
 {
 	return Number.isInteger(value) && value >= min && value <= max;
 }
@@ -231,7 +231,7 @@ export function isIntegerInRange(value: number, min: number, max: number): boole
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  * @returns 回傳該參數以便串接 / Returns the parameter for chaining
  */
-export function assertInteger(value: number, name = 'value', label = 'assertInteger'): number
+export function _assertInteger(value: number, name = 'value', label = '_assertInteger'): number
 {
 	if (!Number.isInteger(value))
 	{
@@ -250,7 +250,7 @@ export function assertInteger(value: number, name = 'value', label = 'assertInte
  * @param end 結束值（不含，Exclusive）/ End value, exclusive
  * @returns 是否合法 / Whether the value is legal
  */
-export function isInRange(value: number, start: number, end: number): boolean
+export function _isInRange(value: number, start: number, end: number): boolean
 {
 	return value >= start && value < end;
 }
@@ -266,9 +266,9 @@ export function isInRange(value: number, start: number, end: number): boolean
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  * @returns 回傳該值以便串接 / Returns the value for chaining
  */
-export function assertInRange(value: number, start: number, end: number, name = 'value', label = 'assertInRange'): number
+export function _assertInRange(value: number, start: number, end: number, name = 'value', label = '_assertInRange'): number
 {
-	if (!isInRange(value, start, end))
+	if (!_isInRange(value, start, end))
 	{
 		throw new RangeError(`[${label}] illegal value: ${name}=${value}, expected range: [${start}, ${end})`);
 	}
@@ -291,11 +291,11 @@ export function assertInRange(value: number, start: number, end: number, name = 
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  * @returns 回傳該參數以便串接 / Returns the parameter for chaining
  */
-export function assertIntegerInRange(value: number, min: number, max: number, name: string, label: string): number
+export function _assertIntegerInRange(value: number, min: number, max: number, name: string, label: string): number
 {
-	assertInteger(value, name, label);
+	_assertInteger(value, name, label);
 
-	if (!isIntegerInRange(value, min, max))
+	if (!_isIntegerInRange(value, min, max))
 	{
 		throw new RangeError(`[${label}] parameter out of range: ${name}=${value}, expected: [${min}, ${max}]`);
 	}
@@ -311,9 +311,9 @@ export function assertIntegerInRange(value: number, min: number, max: number, na
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  * @returns 回傳該參數以便串接 / Returns the parameter for chaining
  */
-export function assertLengthParams(len: number, label = 'assertLengthParams'): number
+export function _assertLengthParams(len: number, label = '_assertLengthParams'): number
 {
-	return assertIntegerInRange(len, MIN_LENGTH, MAX_LENGTH, 'len', label);
+	return _assertIntegerInRange(len, MIN_LENGTH, MAX_LENGTH, 'len', label);
 }
 
 /**
@@ -325,10 +325,10 @@ export function assertLengthParams(len: number, label = 'assertLengthParams'): n
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  * @returns 驗證過的區間 / The validated range
  */
-export function assertRangeParams(start: number, end: number, label = 'assertRangeParams'): IRange
+export function _assertRangeParams(start: number, end: number, label = '_assertRangeParams'): IRange
 {
-	assertIntegerInRange(start, SAFE_INTEGER_MIN, SAFE_INTEGER_MAX, 'start', label);
-	assertIntegerInRange(end, SAFE_INTEGER_MIN, SAFE_INTEGER_MAX, 'end', label);
+	_assertIntegerInRange(start, SAFE_INTEGER_MIN, SAFE_INTEGER_MAX, 'start', label);
+	_assertIntegerInRange(end, SAFE_INTEGER_MIN, SAFE_INTEGER_MAX, 'end', label);
 
 	if (start >= end)
 	{
@@ -346,7 +346,7 @@ export function assertRangeParams(start: number, end: number, label = 'assertRan
  * @param end 結束值（不含，Exclusive）/ End value, exclusive
  * @returns 合法值的數量 / The count of legal values
  */
-export function calcRangeSize(start: number, end: number): number
+export function _calcRangeSize(start: number, end: number): number
 {
 	return end - start;
 }
@@ -359,7 +359,7 @@ export function calcRangeSize(start: number, end: number): number
  * @param end 結束值（不含，Exclusive）/ End value, exclusive
  * @returns 整數生成器 / A generator of integers
  */
-export function* rangeValues(start: number, end: number): Generator<number>
+export function* _rangeValues(start: number, end: number): Generator<number>
 {
 	for (let i = start; i < end; i++)
 	{
@@ -375,15 +375,15 @@ export function* rangeValues(start: number, end: number): Generator<number>
  * @param params 合法參數值 / The legal parameter values
  * @returns 合法參數值、合法值區間與其數量 / The legal parameter values, legal interval and their count
  */
-function createExpectedValues(range: IRange, params: Readonly<Record<string, number>>): IExpectedValues
+function _createExpectedValues(range: IRange, params: Readonly<Record<string, number>>): IExpectedValues
 {
 	return {
 		params: { ...params },
 		range,
-		size: calcRangeSize(range.start, range.end),
+		size: _calcRangeSize(range.start, range.end),
 		valuesGenerator()
 		{
-			return rangeValues(range.start, range.end);
+			return _rangeValues(range.start, range.end);
 		},
 	};
 }
@@ -398,9 +398,9 @@ function createExpectedValues(range: IRange, params: Readonly<Record<string, num
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  * @returns 合法參數值、合法值區間與其數量 / The legal parameter values, legal interval and their count
  */
-export function calcExpectedValues(start: number, end: number, params?: Readonly<Record<string, number>>, label = 'calcExpectedValues'): IExpectedValues
+export function _calcExpectedValues(start: number, end: number, params?: Readonly<Record<string, number>>, label = '_calcExpectedValues'): IExpectedValues
 {
-	return createExpectedValues(assertRangeParams(start, end, label), { ...params });
+	return _createExpectedValues(_assertRangeParams(start, end, label), { ...params });
 }
 
 /**
@@ -410,11 +410,11 @@ export function calcExpectedValues(start: number, end: number, params?: Readonly
  * @param len 索引長度 / The index length
  * @returns 合法參數值、合法值區間與其數量 / The legal parameter values, legal interval and their count
  */
-export function calcExpectedValuesByLength(len: number): IExpectedValues
+export function _calcExpectedValuesByLength(len: number): IExpectedValues
 {
-	assertLengthParams(len, 'calcExpectedValuesByLength');
+	_assertLengthParams(len, '_calcExpectedValuesByLength');
 
-	return createExpectedValues({ start: 0, end: len }, { len });
+	return _createExpectedValues({ start: 0, end: len }, { len });
 }
 
 /**
@@ -425,9 +425,9 @@ export function calcExpectedValuesByLength(len: number): IExpectedValues
  * @param end 結束值（不含，Exclusive）/ End value, exclusive
  * @returns 合法參數值、合法值區間與其數量 / The legal parameter values, legal interval and their count
  */
-export function calcExpectedValuesByRange(start: number, end: number): IExpectedValues
+export function _calcExpectedValuesByRange(start: number, end: number): IExpectedValues
 {
-	return createExpectedValues(assertRangeParams(start, end, 'calcExpectedValuesByRange'), { start, end });
+	return _createExpectedValues(_assertRangeParams(start, end, '_calcExpectedValuesByRange'), { start, end });
 }
 
 /**
@@ -442,7 +442,7 @@ export function calcExpectedValuesByRange(start: number, end: number): IExpected
  * @param label 錯誤訊息用的標籤 / Label used in error messages
  * @returns 驗證器 / The validator
  */
-export function createValuesValidator(expected: IExpectedValues, label: string): IValuesValidator
+export function _createValuesValidator(expected: IExpectedValues, label: string): IValuesValidator
 {
 	const { start, end } = expected.range;
 	const seen = new Map<number, number>();
@@ -454,7 +454,7 @@ export function createValuesValidator(expected: IExpectedValues, label: string):
 	{
 		total++;
 
-		if (!isInRange(value, start, end))
+		if (!_isInRange(value, start, end))
 		{
 			illegal.push(value);
 

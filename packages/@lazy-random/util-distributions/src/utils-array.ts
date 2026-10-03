@@ -20,6 +20,18 @@
  * - `_fnCoreResolveTailIndex(...)` / `_fnCoreClamp(...)` / `_fnCoreOrderMinMax(...)`
  * - `_fnCoreArrayLength(arr)` — 讀 `length`，非數值回 `NaN`
  *
+ * **分層是為了大量執行的效率**：上層 `assert*` 驗過一次之後，
+ * 下層 core 就不再重複驗證同一份輸入，熱路徑上少一輪判斷。
+ * **The layering exists for throughput**: once the `assert*` layer has validated
+ * an input, the core below does not validate it again, saving a round of checks
+ * on every hot-path call.
+ *
+ * 前置條件（例如含端點的 `length >= 1`、`min <= max`）一律由上層把關；
+ * 只要上層驗證正確，底層就不會收到非法輸入。
+ * Preconditions (such as `length >= 1` for inclusive bounds, or `min <= max`)
+ * are guarded by the layer above; if that layer validates correctly, the layer
+ * below never sees an illegal input.
+ *
  * ## 1b. assert：只做拋錯，不做標準化 / Assert: only throws, no normalisation
  *
  * 給「要擋住非法輸入」的呼叫端用，可單獨取用或疊在 core 之上：
@@ -117,13 +129,13 @@ import {
 	SAFE_INTEGER_MAX,
 	SAFE_INTEGER_MIN,
 	_fnCoreToInteger,
-	assertFiniteNumber,
-	assertInteger,
-	assertIntegerInRange,
-	assertRangeParams,
-	calcExpectedValues,
-	calcRangeSize,
-	isFiniteNumber,
+	_assertFiniteNumber as _assertFiniteNumber,
+	_assertInteger as _assertInteger,
+	_assertIntegerInRange as _assertIntegerInRange,
+	_assertRangeParams as _assertRangeParams,
+	_calcExpectedValues as _calcExpectedValues,
+	_calcRangeSize as _calcRangeSize,
+	_isFiniteNumber,
 } from './utils';
 
 /**
@@ -165,7 +177,7 @@ export interface IMinMax
  * @param arr 目標陣列 / The target array
  * @returns 是否為空 / Whether the array is empty
  */
-export function isArrayEmpty(arr: IArrayLike): boolean
+export function _isArrayEmpty(arr: IArrayLike): boolean
 {
 	return arr.length === 0;
 }
@@ -185,13 +197,16 @@ export function _fnCoreArrayLength(arr: IArrayLike): number
 }
 
 /**
- * 夾取 core：把值夾進 `[min, max]`，不檢查上下界順序
- * Clamp core: clamp a value into `[min, max]` without checking the bound order
+ * 夾取 core：把值夾進 `[min, max]`，不拋錯
+ * Clamp core: clamp a value into `[min, max]`, never throws
  *
- * `min > max` 時回傳 `max`（例如 `length === 0` 時的含端點區間 `[0, -1]`），
- * 這也是 core「永不拋錯」的一部分。
- * When `min > max` it returns `max` (e.g. the inclusive interval `[0, -1]` when
- * `length === 0`), which is part of what keeps core non-throwing.
+ * 前置條件 `min <= max` 由上層把關，core 不重複驗證：
+ * `clampValue()` 先過 `assertMinMaxOrder()`、`clampSize()` 先過
+ * `assertIntegerInRange(max, 0, …)`，含端點正規化則先過 `assertNotEmptyLength()`。
+ * The `min <= max` precondition is guarded upstream and not re-checked here:
+ * `clampValue()` goes through `assertMinMaxOrder()` first, `clampSize()` through
+ * `assertIntegerInRange(max, 0, …)`, and inclusive normalisation through
+ * `assertNotEmptyLength()`.
  *
  * @param value 待夾取的值 / The value to clamp
  * @param min 下界（含）/ Lower bound, inclusive
@@ -270,10 +285,11 @@ export function _fnCoreNormalizeSliceIndex(index: number, length: number): numbe
  * Shares the same core logic as `_fnCoreNormalizeSliceIndex()`; only the final
  * retrieval differs: the upper bound becomes `length - 1` instead of `length`.
  *
- * `length === 0` 時含端點區間為空（`[0, -1]`），有限輸入一律收成上界 `-1`；
- * `NaN` 仍原樣流出。
- * When `length === 0` the inclusive interval is empty (`[0, -1]`), so every
- * finite input narrows to the upper bound `-1`; `NaN` still flows through.
+ * 前置條件 `length >= 1` 由上層把關（`_assertInclusiveIndexParams()` →
+ * `assertNotEmptyLength()`），core 不重複驗證 — 少這一輪判斷正是為了大量執行的效率。
+ * The `length >= 1` precondition is guarded upstream
+ * (`_assertInclusiveIndexParams()` → `assertNotEmptyLength()`), so core does not
+ * re-check it — skipping that test is exactly what buys the throughput.
  *
  * @param index 原始邊界 / The raw bound
  * @param length 陣列長度 / The array length
@@ -376,8 +392,8 @@ export function _fnCoreOrderMinMax(min: number, max: number): IMinMax
  */
 function _assertSliceIndexParams(index: number, length: number, name: string, label: string): void
 {
-	assertIntegerInRange(length, 0, SAFE_INTEGER_MAX, 'length', label);
-	assertFiniteNumber(index, name, label);
+	_assertIntegerInRange(length, 0, SAFE_INTEGER_MAX, 'length', label);
+	_assertFiniteNumber(index, name, label);
 }
 
 /**
@@ -395,8 +411,8 @@ function _assertSliceIndexParams(index: number, length: number, name: string, la
  */
 function _assertInclusiveIndexParams(index: number, length: number, name: string, label: string): void
 {
-	assertNotEmptyLength(length, 'length', label);
-	assertFiniteNumber(index, name, label);
+	_assertNotEmptyLength(length, 'length', label);
+	_assertFiniteNumber(index, name, label);
 }
 
 /**
@@ -412,7 +428,7 @@ function _assertInclusiveIndexParams(index: number, length: number, name: string
  * @param max 上界（含）/ Upper bound, inclusive
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  */
-export function assertMinMaxOrder(min: number, max: number, label: string): void
+export function _assertMinMaxOrder(min: number, max: number, label: string): void
 {
 	if (min > max)
 	{
@@ -440,16 +456,16 @@ export function assertMinMaxOrder(min: number, max: number, label: string): void
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  * @returns 陣列長度 / The array length
  */
-export function calcArrayLength(arr: IArrayLike, label = 'calcArrayLength'): number
+export function _calcArrayLength(arr: IArrayLike, label = '_calcArrayLength'): number
 {
 	const length = _fnCoreArrayLength(arr);
 
-	if (!isFiniteNumber(length))
+	if (!_isFiniteNumber(length))
 	{
 		throw new TypeError(`[${label}] parameter must be an array-like object with a numeric length: length=${String(arr?.length)}`);
 	}
 
-	return assertIntegerInRange(length, 0, SAFE_INTEGER_MAX, 'length', label);
+	return _assertIntegerInRange(length, 0, SAFE_INTEGER_MAX, 'length', label);
 }
 
 /**
@@ -461,9 +477,9 @@ export function calcArrayLength(arr: IArrayLike, label = 'calcArrayLength'): num
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  * @returns 回傳該長度以便串接 / Returns the length for chaining
  */
-export function assertNotEmptyLength(length: number, name = 'length', label = 'assertNotEmptyLength'): number
+export function _assertNotEmptyLength(length: number, name = 'length', label = '_assertNotEmptyLength'): number
 {
-	assertIntegerInRange(length, 0, SAFE_INTEGER_MAX, name, label);
+	_assertIntegerInRange(length, 0, SAFE_INTEGER_MAX, name, label);
 
 	if (length === 0)
 	{
@@ -498,7 +514,7 @@ export function assertNotEmptyLength(length: number, name = 'length', label = 'a
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  * @returns 正規化後的位置 / The normalised position
  */
-export function normalizeSliceIndex(index: number, length: number, name = 'index', label = 'normalizeSliceIndex'): number
+export function _normalizeSliceIndex(index: number, length: number, name = 'index', label = '_normalizeSliceIndex'): number
 {
 	_assertSliceIndexParams(index, length, name, label);
 
@@ -524,7 +540,7 @@ export function normalizeSliceIndex(index: number, length: number, name = 'index
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  * @returns 正規化後的索引 / The normalised index
  */
-export function normalizeInclusiveIndex(index: number, length: number, name = 'index', label = 'normalizeInclusiveIndex'): number
+export function _normalizeInclusiveIndex(index: number, length: number, name = 'index', label = '_normalizeInclusiveIndex'): number
 {
 	_assertInclusiveIndexParams(index, length, name, label);
 
@@ -552,7 +568,7 @@ export function normalizeInclusiveIndex(index: number, length: number, name = 'i
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  * @returns 正規化後的區間 / The normalised range
  */
-export function normalizeSliceRange(start: number | null | undefined, end: number | null | undefined, length: number, label = 'normalizeSliceRange'): IRange
+export function _normalizeSliceRange(start: number | null | undefined, end: number | null | undefined, length: number, label = '_normalizeSliceRange'): IRange
 {
 	_assertSliceIndexParams(start ?? 0, length, 'start', label);
 	_assertSliceIndexParams(end ?? length, length, 'end', label);
@@ -589,7 +605,7 @@ export function normalizeSliceRange(start: number | null | undefined, end: numbe
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  * @returns 正規化後的含端點區間 / The normalised inclusive range
  */
-export function normalizeSliceMinMax(min: number | null | undefined, max: number | null | undefined, length: number, label = 'normalizeSliceMinMax'): IMinMax
+export function _normalizeSliceMinMax(min: number | null | undefined, max: number | null | undefined, length: number, label = '_normalizeSliceMinMax'): IMinMax
 {
 	/**
 	 * 政策層仍須擋 NaN / ±Infinity：只有 `_fnCore*` 才允許不拋錯
@@ -621,9 +637,9 @@ export function normalizeSliceMinMax(min: number | null | undefined, max: number
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  * @returns 陣列長度 / The array length
  */
-export function assertArrayNotEmpty(arr: IArrayLike, label = 'assertArrayNotEmpty'): number
+export function _assertArrayNotEmpty(arr: IArrayLike, label = '_assertArrayNotEmpty'): number
 {
-	return assertNotEmptyLength(calcArrayLength(arr, label), 'length', label);
+	return _assertNotEmptyLength(_calcArrayLength(arr, label), 'length', label);
 }
 
 /**
@@ -647,9 +663,9 @@ export function assertArrayNotEmpty(arr: IArrayLike, label = 'assertArrayNotEmpt
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  * @returns 正規化後的區間 / The normalised range
  */
-export function normalizeArrayRange(arr: IArrayLike, start?: number | null, end?: number | null, label = 'normalizeArrayRange'): IRange
+export function _normalizeArrayRange(arr: IArrayLike, start?: number | null, end?: number | null, label = '_normalizeArrayRange'): IRange
 {
-	return normalizeSliceRange(start, end, assertArrayNotEmpty(arr, label), label);
+	return _normalizeSliceRange(start, end, _assertArrayNotEmpty(arr, label), label);
 }
 
 /**
@@ -663,9 +679,9 @@ export function normalizeArrayRange(arr: IArrayLike, start?: number | null, end?
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  * @returns 合法索引區間 / The legal index range
  */
-export function calcArrayIndexRange(arr: IArrayLike, label = 'calcArrayIndexRange'): IRange
+export function _calcArrayIndexRange(arr: IArrayLike, label = '_calcArrayIndexRange'): IRange
 {
-	return assertRangeParams(0, assertArrayNotEmpty(arr, label), label);
+	return _assertRangeParams(0, _assertArrayNotEmpty(arr, label), label);
 }
 
 /**
@@ -682,11 +698,11 @@ export function calcArrayIndexRange(arr: IArrayLike, label = 'calcArrayIndexRang
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  * @returns 切片元素數 / The number of sliced elements
  */
-export function calcArraySliceSize(arr: IArrayLike, start?: number | null, end?: number | null, label = 'calcArraySliceSize'): number
+export function _calcArraySliceSize(arr: IArrayLike, start?: number | null, end?: number | null, label = '_calcArraySliceSize'): number
 {
-	const range = normalizeSliceRange(start, end, assertArrayNotEmpty(arr, label), label);
+	const range = _normalizeSliceRange(start, end, _assertArrayNotEmpty(arr, label), label);
 
-	return calcRangeSize(range.start, range.end);
+	return _calcRangeSize(range.start, range.end);
 }
 
 /**
@@ -701,9 +717,9 @@ export function calcArraySliceSize(arr: IArrayLike, start?: number | null, end?:
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  * @returns 含端點的索引值域 / The inclusive index domain
  */
-export function calcArrayIndexMinMax(arr: IArrayLike, label = 'calcArrayIndexMinMax'): IMinMax
+export function _calcArrayIndexMinMax(arr: IArrayLike, label = '_calcArrayIndexMinMax'): IMinMax
 {
-	const length = assertArrayNotEmpty(arr, label);
+	const length = _assertArrayNotEmpty(arr, label);
 
 	return { min: 0, max: length - 1 };
 }
@@ -734,9 +750,9 @@ export function calcArrayIndexMinMax(arr: IArrayLike, label = 'calcArrayIndexMin
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  * @returns 已驗證的含端點索引值域 / The validated inclusive index domain
  */
-export function assertArrayIndexMinMax(arr: IArrayLike, min?: number | null, max?: number | null, label = 'assertArrayIndexMinMax'): IMinMax
+export function _assertArrayIndexMinMax(arr: IArrayLike, min?: number | null, max?: number | null, label = '_assertArrayIndexMinMax'): IMinMax
 {
-	const domain = calcArrayIndexMinMax(arr, label);
+	const domain = _calcArrayIndexMinMax(arr, label);
 	const length = domain.max + 1;
 
 	/**
@@ -745,16 +761,16 @@ export function assertArrayIndexMinMax(arr: IArrayLike, min?: number | null, max
 	 */
 	const resolve = (value: number, name: string) =>
 	{
-		assertFiniteNumber(value, name, label);
-		assertInteger(value, name, label);
+		_assertFiniteNumber(value, name, label);
+		_assertInteger(value, name, label);
 
 		return _fnCoreResolveTailIndex(value, length);
 	};
 
-	const normalizedMin = assertIntegerInRange(resolve(min ?? domain.min, 'min'), domain.min, domain.max, 'min', label);
-	const normalizedMax = assertIntegerInRange(resolve(max ?? domain.max, 'max'), domain.min, domain.max, 'max', label);
+	const normalizedMin = _assertIntegerInRange(resolve(min ?? domain.min, 'min'), domain.min, domain.max, 'min', label);
+	const normalizedMax = _assertIntegerInRange(resolve(max ?? domain.max, 'max'), domain.min, domain.max, 'max', label);
 
-	assertMinMaxOrder(normalizedMin, normalizedMax, label);
+	_assertMinMaxOrder(normalizedMin, normalizedMax, label);
 
 	return { min: normalizedMin, max: normalizedMax };
 }
@@ -775,9 +791,9 @@ export function assertArrayIndexMinMax(arr: IArrayLike, min?: number | null, max
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  * @returns 修正後的含端點索引值域 / The corrected inclusive index domain
  */
-export function normalizeArrayIndexMinMax(arr: IArrayLike, min?: number | null, max?: number | null, label = 'normalizeArrayIndexMinMax'): IMinMax
+export function _normalizeArrayIndexMinMax(arr: IArrayLike, min?: number | null, max?: number | null, label = '_normalizeArrayIndexMinMax'): IMinMax
 {
-	return normalizeSliceMinMax(min, max, assertArrayNotEmpty(arr, label), label);
+	return _normalizeSliceMinMax(min, max, _assertArrayNotEmpty(arr, label), label);
 }
 
 /* ******************************************************************* *
@@ -806,12 +822,12 @@ export function normalizeArrayIndexMinMax(arr: IArrayLike, min?: number | null, 
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  * @returns 合法參數值、合法值區間與其數量 / The legal parameter values, legal interval and their count
  */
-export function calcExpectedValuesByArray(arr: IArrayLike, start?: number | null, end?: number | null, label = 'calcExpectedValuesByArray'): IExpectedValues
+export function _calcExpectedValuesByArray(arr: IArrayLike, start?: number | null, end?: number | null, label = '_calcExpectedValuesByArray'): IExpectedValues
 {
-	const length = assertArrayNotEmpty(arr, label);
-	const range = normalizeSliceRange(start, end, length, label);
+	const length = _assertArrayNotEmpty(arr, label);
+	const range = _normalizeSliceRange(start, end, length, label);
 
-	return calcExpectedValues(range.start, range.end, {
+	return _calcExpectedValues(range.start, range.end, {
 		length,
 		start: range.start,
 		end: range.end,
@@ -841,12 +857,12 @@ export function calcExpectedValuesByArray(arr: IArrayLike, start?: number | null
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  * @returns 合法參數值、合法值區間與其數量 / The legal parameter values, legal interval and their count
  */
-export function calcExpectedValuesByArrayMinMax(arr: IArrayLike, min?: number | null, max?: number | null, label = 'calcExpectedValuesByArrayMinMax'): IExpectedValues
+export function _calcExpectedValuesByArrayMinMax(arr: IArrayLike, min?: number | null, max?: number | null, label = '_calcExpectedValuesByArrayMinMax'): IExpectedValues
 {
-	const length = assertArrayNotEmpty(arr, label);
-	const range = normalizeSliceMinMax(min, max, length, label);
+	const length = _assertArrayNotEmpty(arr, label);
+	const range = _normalizeSliceMinMax(min, max, length, label);
 
-	return calcExpectedValues(range.min, range.max + 1, {
+	return _calcExpectedValues(range.min, range.max + 1, {
 		length,
 		min: range.min,
 		max: range.max,
@@ -874,11 +890,11 @@ export function calcExpectedValuesByArrayMinMax(arr: IArrayLike, min?: number | 
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  * @returns 已驗證的閉區間 / The validated interval
  */
-export function assertMinMax(min: number, max: number, label = 'assertMinMax'): IMinMax
+export function _assertMinMax(min: number, max: number, label = '_assertMinMax'): IMinMax
 {
-	assertIntegerInRange(min, SAFE_INTEGER_MIN, SAFE_INTEGER_MAX, 'min', label);
-	assertIntegerInRange(max, SAFE_INTEGER_MIN, SAFE_INTEGER_MAX, 'max', label);
-	assertMinMaxOrder(min, max, label);
+	_assertIntegerInRange(min, SAFE_INTEGER_MIN, SAFE_INTEGER_MAX, 'min', label);
+	_assertIntegerInRange(max, SAFE_INTEGER_MIN, SAFE_INTEGER_MAX, 'max', label);
+	_assertMinMaxOrder(min, max, label);
 
 	return { min, max };
 }
@@ -897,10 +913,10 @@ export function assertMinMax(min: number, max: number, label = 'assertMinMax'): 
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  * @returns 修正後的閉區間 / The corrected interval
  */
-export function normalizeMinMax(min: number, max: number, label = 'normalizeMinMax'): IMinMax
+export function _normalizeMinMax(min: number, max: number, label = '_normalizeMinMax'): IMinMax
 {
-	assertIntegerInRange(min, SAFE_INTEGER_MIN, SAFE_INTEGER_MAX, 'min', label);
-	assertIntegerInRange(max, SAFE_INTEGER_MIN, SAFE_INTEGER_MAX, 'max', label);
+	_assertIntegerInRange(min, SAFE_INTEGER_MIN, SAFE_INTEGER_MAX, 'min', label);
+	_assertIntegerInRange(max, SAFE_INTEGER_MIN, SAFE_INTEGER_MAX, 'max', label);
 
 	return _fnCoreOrderMinMax(min, max);
 }
@@ -921,9 +937,9 @@ export function normalizeMinMax(min: number, max: number, label = 'normalizeMinM
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  * @returns 夾取後的值 / The clamped value
  */
-export function clampValue(value: number, min: number, max: number, label = 'clampValue'): number
+export function _clampValue(value: number, min: number, max: number, label = '_clampValue'): number
 {
-	assertMinMaxOrder(min, max, label);
+	_assertMinMaxOrder(min, max, label);
 
 	return _fnCoreClamp(value, min, max);
 }
@@ -945,10 +961,10 @@ export function clampValue(value: number, min: number, max: number, label = 'cla
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  * @returns 修正後的 size / The corrected size
  */
-export function clampSize(size: number, max: number, label = 'clampSize'): number
+export function _clampSize(size: number, max: number, label = '_clampSize'): number
 {
-	assertIntegerInRange(size, SAFE_INTEGER_MIN, SAFE_INTEGER_MAX, 'size', label);
-	assertIntegerInRange(max, 0, SAFE_INTEGER_MAX, 'max', label);
+	_assertIntegerInRange(size, SAFE_INTEGER_MIN, SAFE_INTEGER_MAX, 'size', label);
+	_assertIntegerInRange(max, 0, SAFE_INTEGER_MAX, 'max', label);
 
 	return _fnCoreClamp(size, 0, max);
 }
@@ -961,9 +977,9 @@ export function clampSize(size: number, max: number, label = 'clampSize'): numbe
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  * @returns 回傳該 size 以便串接 / Returns the size for chaining
  */
-export function assertSize(size: number, label = 'assertSize'): number
+export function _assertSize(size: number, label = '_assertSize'): number
 {
-	return assertIntegerInRange(size, MIN_LENGTH, MAX_LENGTH, 'size', label);
+	return _assertIntegerInRange(size, MIN_LENGTH, MAX_LENGTH, 'size', label);
 }
 
 /**
@@ -981,16 +997,16 @@ export function assertSize(size: number, label = 'assertSize'): number
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  * @returns 回傳該 size 以便串接 / Returns the size for chaining
  */
-export function assertSizeInRange(size: number, max: number, label = 'assertSizeInRange'): number
+export function _assertSizeInRange(size: number, max: number, label = '_assertSizeInRange'): number
 {
-	assertIntegerInRange(max, 0, SAFE_INTEGER_MAX, 'max', label);
+	_assertIntegerInRange(max, 0, SAFE_INTEGER_MAX, 'max', label);
 
 	if (max < MIN_LENGTH)
 	{
 		throw new RangeError(`[${label}] no size is legal: max=${max}, expected max >= ${MIN_LENGTH}`);
 	}
 
-	return assertIntegerInRange(size, MIN_LENGTH, max, 'size', label);
+	return _assertIntegerInRange(size, MIN_LENGTH, max, 'size', label);
 }
 
 /**
@@ -1012,11 +1028,11 @@ export function assertSizeInRange(size: number, max: number, label = 'assertSize
  * @param label 錯誤訊息用的標籤 / Label used in the error message
  * @returns 合法參數值、合法值區間與其數量 / The legal parameter values, legal interval and their count
  */
-export function calcExpectedValuesByMinMax(min: number, max: number, label = 'calcExpectedValuesByMinMax'): IExpectedValues
+export function _calcExpectedValuesByMinMax(min: number, max: number, label = '_calcExpectedValuesByMinMax'): IExpectedValues
 {
-	const range = assertMinMax(min, max, label);
+	const range = _assertMinMax(min, max, label);
 
-	return calcExpectedValues(range.min, range.max + 1, {
+	return _calcExpectedValues(range.min, range.max + 1, {
 		min: range.min,
 		max: range.max,
 	}, label);

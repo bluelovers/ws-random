@@ -27,12 +27,12 @@ exports[`utils > _fnCore：標準化不拋錯 > fixZero()（num-is-zero）把 -0
 
 exports[`utils > assertLengthParams / assertRangeParams > assertLengthParams() 1`] = `
 {
-  "0": "throw RangeError: [assertLengthParams] parameter out of range: len=0, expected: [1, 9007199254740991]",
+  "0": "throw RangeError: [_assertLengthParams] parameter out of range: len=0, expected: [1, 9007199254740991]",
   "5": "return 5",
   "MIN_LENGTH": "return 1",
   "MAX_LENGTH": "return 9007199254740991",
-  "-1": "throw RangeError: [assertLengthParams] parameter out of range: len=-1, expected: [1, 9007199254740991]",
-  "2.5": "throw TypeError: [assertLengthParams] parameter must be an integer: len=2.5",
+  "-1": "throw RangeError: [_assertLengthParams] parameter out of range: len=-1, expected: [1, 9007199254740991]",
+  "2.5": "throw TypeError: [_assertLengthParams] parameter must be an integer: len=2.5",
   "自訂標籤": "throw RangeError: [myLabel] parameter out of range: len=0, expected: [1, 9007199254740991]"
 }
 `;
@@ -41,11 +41,11 @@ exports[`utils > assertLengthParams / assertRangeParams > assertRangeParams() 1`
 {
   "[2, 5)": "return {\\"start\\":2,\\"end\\":5}",
   "[-3, 3)": "return {\\"start\\":-3,\\"end\\":3}",
-  "[5, 5)": "throw RangeError: [assertRangeParams] range must not be empty: start=5, end=5",
-  "[6, 5)": "throw RangeError: [assertRangeParams] range must not be empty: start=6, end=5",
-  "[1.5, 5)": "throw TypeError: [assertRangeParams] parameter must be an integer: start=1.5",
-  "[1, 5.5)": "throw TypeError: [assertRangeParams] parameter must be an integer: end=5.5",
-  "[0, MAX+1]": "throw RangeError: [assertRangeParams] parameter out of range: end=9007199254740992, expected: [-9007199254740991, 9007199254740991]",
+  "[5, 5)": "throw RangeError: [_assertRangeParams] range must not be empty: start=5, end=5",
+  "[6, 5)": "throw RangeError: [_assertRangeParams] range must not be empty: start=6, end=5",
+  "[1.5, 5)": "throw TypeError: [_assertRangeParams] parameter must be an integer: start=1.5",
+  "[1, 5.5)": "throw TypeError: [_assertRangeParams] parameter must be an integer: end=5.5",
+  "[0, MAX+1]": "throw RangeError: [_assertRangeParams] parameter out of range: end=9007199254740992, expected: [-9007199254740991, 9007199254740991]",
   "自訂標籤": "throw RangeError: [myLabel] range must not be empty: start=5, end=5"
 }
 `;
@@ -54,7 +54,7 @@ exports[`utils > calcExpectedValues* > calcExpectedValues() 1`] = `
 {
   "[1, 4) 帶 params": "return {\\"params\\":{\\"foo\\":2},\\"range\\":{\\"start\\":1,\\"end\\":4},\\"size\\":3}",
   "[0, 2) 無 params": "return {\\"params\\":{},\\"range\\":{\\"start\\":0,\\"end\\":2},\\"size\\":2}",
-  "[5, 5)": "throw RangeError: [calcExpectedValues] range must not be empty: start=5, end=5",
+  "[5, 5)": "throw RangeError: [_calcExpectedValues] range must not be empty: start=5, end=5",
   "[5, 5) 自訂標籤": "throw RangeError: [myLabel] range must not be empty: start=5, end=5"
 }
 `;
@@ -89,9 +89,9 @@ exports[`utils > calcExpectedValues* > calcExpectedValuesByLength() 1`] = `
     1,
     2
   ],
-  "len=0": "throw RangeError: [calcExpectedValuesByLength] parameter out of range: len=0, expected: [1, 9007199254740991]",
-  "len=-1": "throw RangeError: [calcExpectedValuesByLength] parameter out of range: len=-1, expected: [1, 9007199254740991]",
-  "len=1.5": "throw TypeError: [calcExpectedValuesByLength] parameter must be an integer: len=1.5"
+  "len=0": "throw RangeError: [_calcExpectedValuesByLength] parameter out of range: len=0, expected: [1, 9007199254740991]",
+  "len=-1": "throw RangeError: [_calcExpectedValuesByLength] parameter out of range: len=-1, expected: [1, 9007199254740991]",
+  "len=1.5": "throw TypeError: [_calcExpectedValuesByLength] parameter must be an integer: len=1.5"
 }
 `;
 
@@ -100,7 +100,7 @@ exports[`utils > calcExpectedValues* > calcExpectedValuesByRange() 1`] = `
   "[1, 5)": "return {\\"params\\":{\\"start\\":1,\\"end\\":5},\\"range\\":{\\"start\\":1,\\"end\\":5},\\"size\\":4}",
   "[0, 4)": "return {\\"params\\":{\\"start\\":0,\\"end\\":4},\\"range\\":{\\"start\\":0,\\"end\\":4},\\"size\\":4}",
   "[4, 5)": "return {\\"params\\":{\\"start\\":4,\\"end\\":5},\\"range\\":{\\"start\\":4,\\"end\\":5},\\"size\\":1}",
-  "[5, 5)": "throw RangeError: [calcExpectedValuesByRange] range must not be empty: start=5, end=5"
+  "[5, 5)": "throw RangeError: [_calcExpectedValuesByRange] range must not be empty: start=5, end=5"
 }
 `;
 
@@ -299,10 +299,10 @@ exports[`utils > is* 與 assert* 各自可單獨取用 > assertFiniteNumber() �
   "0": "return 0",
   "1.5": "return 1.5",
   "-9": "return -9",
-  "NaN": "throw TypeError: [assertFiniteNumber] parameter must be a finite number: value=NaN",
-  "Infinity": "throw TypeError: [assertFiniteNumber] parameter must be a finite number: value=Infinity",
-  "-Infinity": "throw TypeError: [assertFiniteNumber] parameter must be a finite number: value=-Infinity",
-  "undefined": "throw TypeError: [assertFiniteNumber] parameter must be a finite number: value=undefined",
+  "NaN": "throw TypeError: [_assertFiniteNumber] parameter must be a finite number: value=NaN",
+  "Infinity": "throw TypeError: [_assertFiniteNumber] parameter must be a finite number: value=Infinity",
+  "-Infinity": "throw TypeError: [_assertFiniteNumber] parameter must be a finite number: value=-Infinity",
+  "undefined": "throw TypeError: [_assertFiniteNumber] parameter must be a finite number: value=undefined",
   "自訂標籤": "throw TypeError: [myLabel] parameter must be a finite number: n=NaN"
 }
 `;
@@ -310,9 +310,9 @@ exports[`utils > is* 與 assert* 各自可單獨取用 > assertFiniteNumber() �
 exports[`utils > is* 與 assert* 各自可單獨取用 > assertInRange() 只拋錯，不做標準化 1`] = `
 {
   "3 in [0, 5)": "return 3",
-  "5 in [0, 5)": "throw RangeError: [assertInRange] illegal value: value=5, expected range: [0, 5)",
-  "-1 in [0, 5)": "throw RangeError: [assertInRange] illegal value: value=-1, expected range: [0, 5)",
-  "預設標籤": "throw RangeError: [assertInRange] illegal value: value=-1, expected range: [0, 5)",
+  "5 in [0, 5)": "throw RangeError: [_assertInRange] illegal value: value=5, expected range: [0, 5)",
+  "-1 in [0, 5)": "throw RangeError: [_assertInRange] illegal value: value=-1, expected range: [0, 5)",
+  "預設標籤": "throw RangeError: [_assertInRange] illegal value: value=-1, expected range: [0, 5)",
   "自訂標籤": "throw RangeError: [myLabel] illegal value: len=5, expected range: [0, 5)"
 }
 `;
@@ -320,9 +320,9 @@ exports[`utils > is* 與 assert* 各自可單獨取用 > assertInRange() 只拋�
 exports[`utils > is* 與 assert* 各自可單獨取用 > assertInteger() 只負責型別拋錯 1`] = `
 {
   "3": "return 3",
-  "1.5": "throw TypeError: [assertInteger] parameter must be an integer: value=1.5",
-  "NaN": "throw TypeError: [assertInteger] parameter must be an integer: value=NaN",
-  "Infinity": "throw TypeError: [assertInteger] parameter must be an integer: value=Infinity",
+  "1.5": "throw TypeError: [_assertInteger] parameter must be an integer: value=1.5",
+  "NaN": "throw TypeError: [_assertInteger] parameter must be an integer: value=NaN",
+  "Infinity": "throw TypeError: [_assertInteger] parameter must be an integer: value=Infinity",
   "自訂標籤": "throw TypeError: [myLabel] parameter must be an integer: n=1.5"
 }
 `;

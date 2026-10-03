@@ -68,7 +68,7 @@ exports[`utils-array > calcExpectedValuesByArrayMinMax > 未輸入 min / max 時
 
 exports[`utils-array > calcExpectedValuesByArrayMinMax > 空陣列拋出 RangeError 1`] = `
 {
-  "[]": "throw RangeError: [calcExpectedValuesByArrayMinMax] array must not be empty: length=0"
+  "[]": "throw RangeError: [_calcExpectedValuesByArrayMinMax] array must not be empty: length=0"
 }
 `;
 
@@ -114,13 +114,13 @@ exports[`utils-array > calcExpectedValuesByArrayMinMax > 越界自動收窄後�
 
 exports[`utils-array > calcExpectedValuesByMinMax（無陣列基礎） > max 為 SAFE_INTEGER_MAX 時 max + 1 溢位，拋出 RangeError 1`] = `
 {
-  "[0, MAX_SAFE_INTEGER]": "throw RangeError: [calcExpectedValuesByMinMax] parameter out of range: end=9007199254740992, expected: [-9007199254740991, 9007199254740991]"
+  "[0, MAX_SAFE_INTEGER]": "throw RangeError: [_calcExpectedValuesByMinMax] parameter out of range: end=9007199254740992, expected: [-9007199254740991, 9007199254740991]"
 }
 `;
 
 exports[`utils-array > calcExpectedValuesByMinMax（無陣列基礎） > min > max 拋出 RangeError 1`] = `
 {
-  "[5, 1]": "throw RangeError: [calcExpectedValuesByMinMax] max must be greater than or equal to min: min=5, max=1"
+  "[5, 1]": "throw RangeError: [_calcExpectedValuesByMinMax] max must be greater than or equal to min: min=5, max=1"
 }
 `;
 
@@ -226,8 +226,7 @@ exports[`utils-array > core：_fnCore* 不拋錯 > _fnCoreNormalizeInclusiveInde
   "-1": "4",
   "-99": "0",
   "NaN": "NaN",
-  "Infinity": "4",
-  "length 0 不拋錯": "-1"
+  "Infinity": "4"
 }
 `;
 
@@ -268,10 +267,6 @@ exports[`utils-array > core：_fnCore* 不拋錯 > _fnCoreNormalizeSliceMinMax()
   "[0, 99)": {
     "min": 0,
     "max": 4
-  },
-  "length 0 不拋錯": {
-    "min": -1,
-    "max": -1
   }
 }
 `;
@@ -326,8 +321,8 @@ exports[`utils-array > min / max 大小值修正 > normalizeMinMax() min > max �
 
 exports[`utils-array > min / max 大小值修正 > normalizeMinMax() 不修正非整數，仍拋出 TypeError 1`] = `
 {
-  "[3.5, 1]": "throw TypeError: [normalizeMinMax] parameter must be an integer: min=3.5",
-  "[3, 1.5]": "throw TypeError: [normalizeMinMax] parameter must be an integer: max=1.5"
+  "[3.5, 1]": "throw TypeError: [_normalizeMinMax] parameter must be an integer: min=3.5",
+  "[3, 1.5]": "throw TypeError: [_normalizeMinMax] parameter must be an integer: max=1.5"
 }
 `;
 
@@ -343,9 +338,9 @@ exports[`utils-array > min / max 大小值修正 > normalizeMinMax() 修正後�
 
 exports[`utils-array > min / max 大小值驗證（無陣列基礎） > assertMinMax() min > max 拋出 RangeError 1`] = `
 {
-  "[3, 1]": "throw RangeError: [assertMinMax] max must be greater than or equal to min: min=3, max=1",
-  "[0, -1]": "throw RangeError: [assertMinMax] max must be greater than or equal to min: min=0, max=-1",
-  "[-1, -2]": "throw RangeError: [assertMinMax] max must be greater than or equal to min: min=-1, max=-2"
+  "[3, 1]": "throw RangeError: [_assertMinMax] max must be greater than or equal to min: min=3, max=1",
+  "[0, -1]": "throw RangeError: [_assertMinMax] max must be greater than or equal to min: min=0, max=-1",
+  "[-1, -2]": "throw RangeError: [_assertMinMax] max must be greater than or equal to min: min=-1, max=-2"
 }
 `;
 
@@ -362,24 +357,24 @@ exports[`utils-array > min / max 大小值驗證（無陣列基礎） > assertMi
 
 exports[`utils-array > min / max 大小值驗證（無陣列基礎） > assertMinMax() 非整數與越界拋錯 1`] = `
 {
-  "[1.5, 3]": "throw TypeError: [assertMinMax] parameter must be an integer: min=1.5",
-  "[1, 3.5]": "throw TypeError: [assertMinMax] parameter must be an integer: max=3.5",
-  "[0, MAX+1]": "throw RangeError: [assertMinMax] parameter out of range: max=9007199254740992, expected: [-9007199254740991, 9007199254740991]",
-  "[MIN-1, 0]": "throw RangeError: [assertMinMax] parameter out of range: min=-9007199254740992, expected: [-9007199254740991, 9007199254740991]"
+  "[1.5, 3]": "throw TypeError: [_assertMinMax] parameter must be an integer: min=1.5",
+  "[1, 3.5]": "throw TypeError: [_assertMinMax] parameter must be an integer: max=3.5",
+  "[0, MAX+1]": "throw RangeError: [_assertMinMax] parameter out of range: max=9007199254740992, expected: [-9007199254740991, 9007199254740991]",
+  "[MIN-1, 0]": "throw RangeError: [_assertMinMax] parameter out of range: min=-9007199254740992, expected: [-9007199254740991, 9007199254740991]"
 }
 `;
 
 exports[`utils-array > min / max（以 array 為基礎） > assertArrayIndexMinMax() 不做交換：min > max 拋出 RangeError 1`] = `
 {
-  "[3, 1]": "throw RangeError: [assertArrayIndexMinMax] max must be greater than or equal to min: min=3, max=1"
+  "[3, 1]": "throw RangeError: [_assertArrayIndexMinMax] max must be greater than or equal to min: min=3, max=1"
 }
 `;
 
 exports[`utils-array > min / max（以 array 為基礎） > assertArrayIndexMinMax() 不做收窄：越界拋出 RangeError 1`] = `
 {
-  "[0, 9]": "throw RangeError: [assertArrayIndexMinMax] parameter out of range: max=9, expected: [0, 2]",
-  "min 9": "throw RangeError: [assertArrayIndexMinMax] parameter out of range: min=9, expected: [0, 2]",
-  "min -6": "throw RangeError: [assertArrayIndexMinMax] parameter out of range: min=-3, expected: [0, 2]"
+  "[0, 9]": "throw RangeError: [_assertArrayIndexMinMax] parameter out of range: max=9, expected: [0, 2]",
+  "min 9": "throw RangeError: [_assertArrayIndexMinMax] parameter out of range: min=9, expected: [0, 2]",
+  "min -6": "throw RangeError: [_assertArrayIndexMinMax] parameter out of range: min=-3, expected: [0, 2]"
 }
 `;
 
@@ -403,8 +398,8 @@ exports[`utils-array > min / max（以 array 為基礎） > assertArrayIndexMinM
 
 exports[`utils-array > min / max（以 array 為基礎） > assertArrayIndexMinMax() 非整數拋出 TypeError 1`] = `
 {
-  "min 1.5": "throw TypeError: [assertArrayIndexMinMax] parameter must be an integer: min=1.5",
-  "max 1.5": "throw TypeError: [assertArrayIndexMinMax] parameter must be an integer: max=1.5"
+  "min 1.5": "throw TypeError: [_assertArrayIndexMinMax] parameter must be an integer: min=1.5",
+  "max 1.5": "throw TypeError: [_assertArrayIndexMinMax] parameter must be an integer: max=1.5"
 }
 `;
 
@@ -412,15 +407,15 @@ exports[`utils-array > min / max（以 array 為基礎） > calcArrayIndexMinMax
 {
   "[a,b,c]": "return {\\"min\\":0,\\"max\\":2}",
   "[only]": "return {\\"min\\":0,\\"max\\":0}",
-  "[]": "throw RangeError: [calcArrayIndexMinMax] array must not be empty: length=0"
+  "[]": "throw RangeError: [_calcArrayIndexMinMax] array must not be empty: length=0"
 }
 `;
 
 exports[`utils-array > min / max（以 array 為基礎） > normalizeArrayIndexMinMax() NaN / Infinity 拋出 TypeError 1`] = `
 {
-  "NaN": "throw TypeError: [normalizeArrayIndexMinMax] parameter must be a finite number: min=NaN",
-  "max Infinity": "throw TypeError: [normalizeArrayIndexMinMax] parameter must be a finite number: max=Infinity",
-  "min -Infinity": "throw TypeError: [normalizeArrayIndexMinMax] parameter must be a finite number: min=-Infinity"
+  "NaN": "throw TypeError: [_normalizeArrayIndexMinMax] parameter must be a finite number: min=NaN",
+  "max Infinity": "throw TypeError: [_normalizeArrayIndexMinMax] parameter must be a finite number: max=Infinity",
+  "min -Infinity": "throw TypeError: [_normalizeArrayIndexMinMax] parameter must be a finite number: min=-Infinity"
 }
 `;
 
@@ -441,7 +436,7 @@ exports[`utils-array > min / max（以 array 為基礎） > normalizeArrayIndexM
 
 exports[`utils-array > min / max（以 array 為基礎） > normalizeArrayIndexMinMax() 空陣列拋出 RangeError 1`] = `
 {
-  "[]": "throw RangeError: [normalizeArrayIndexMinMax] array must not be empty: length=0"
+  "[]": "throw RangeError: [_normalizeArrayIndexMinMax] array must not be empty: length=0"
 }
 `;
 
@@ -463,9 +458,9 @@ exports[`utils-array > min / max（以 array 為基礎） > normalizeArrayIndexM
 
 exports[`utils-array > normalizeArrayRange > NaN / Infinity 不可修正，拋出 TypeError 1`] = `
 {
-  "NaN": "throw TypeError: [normalizeArrayRange] parameter must be a finite number: start=NaN",
-  "end Infinity": "throw TypeError: [normalizeArrayRange] parameter must be a finite number: end=Infinity",
-  "start -Infinity": "throw TypeError: [normalizeArrayRange] parameter must be a finite number: start=-Infinity"
+  "NaN": "throw TypeError: [_normalizeArrayRange] parameter must be a finite number: start=NaN",
+  "end Infinity": "throw TypeError: [_normalizeArrayRange] parameter must be a finite number: end=Infinity",
+  "start -Infinity": "throw TypeError: [_normalizeArrayRange] parameter must be a finite number: start=-Infinity"
 }
 `;
 
@@ -484,17 +479,17 @@ exports[`utils-array > normalizeArrayRange > 小數向零取整 1`] = `
 
 exports[`utils-array > normalizeArrayRange > 收窄後為空才拋出 RangeError 1`] = `
 {
-  "[2, 2)": "throw RangeError: [normalizeArrayRange] range must not be empty: start=2, end=2",
-  "[99]": "throw RangeError: [normalizeArrayRange] range must not be empty: start=3, end=3",
-  "[1, 0)": "throw RangeError: [normalizeArrayRange] range must not be empty: start=1, end=0",
-  "[0, -99)": "throw RangeError: [normalizeArrayRange] range must not be empty: start=0, end=0",
-  "arr5 [-3, 2)": "throw RangeError: [normalizeArrayRange] range must not be empty: start=2, end=2"
+  "[2, 2)": "throw RangeError: [_normalizeArrayRange] range must not be empty: start=2, end=2",
+  "[99]": "throw RangeError: [_normalizeArrayRange] range must not be empty: start=3, end=3",
+  "[1, 0)": "throw RangeError: [_normalizeArrayRange] range must not be empty: start=1, end=0",
+  "[0, -99)": "throw RangeError: [_normalizeArrayRange] range must not be empty: start=0, end=0",
+  "arr5 [-3, 2)": "throw RangeError: [_normalizeArrayRange] range must not be empty: start=2, end=2"
 }
 `;
 
 exports[`utils-array > normalizeArrayRange > 空陣列拋出 RangeError 1`] = `
 {
-  "[]": "throw RangeError: [normalizeArrayRange] array must not be empty: length=0"
+  "[]": "throw RangeError: [_normalizeArrayRange] array must not be empty: length=0"
 }
 `;
 
@@ -551,12 +546,12 @@ exports[`utils-array > normalizeArrayRange > 超出範圍自動收窄，不直�
 
 exports[`utils-array > size 驗證 > assertSize() 必須是 >= 1 的整數 1`] = `
 {
-  "0": "throw RangeError: [assertSize] parameter out of range: size=0, expected: [1, 9007199254740991]",
+  "0": "throw RangeError: [_assertSize] parameter out of range: size=0, expected: [1, 9007199254740991]",
   "1": "return 1",
   "3": "return 3",
   "MAX_SAFE_INTEGER": "return 9007199254740991",
-  "-1": "throw RangeError: [assertSize] parameter out of range: size=-1, expected: [1, 9007199254740991]",
-  "2.5": "throw TypeError: [assertSize] parameter must be an integer: size=2.5"
+  "-1": "throw RangeError: [_assertSize] parameter out of range: size=-1, expected: [1, 9007199254740991]",
+  "2.5": "throw TypeError: [_assertSize] parameter must be an integer: size=2.5"
 }
 `;
 
@@ -564,26 +559,26 @@ exports[`utils-array > size 驗證 > assertSizeInRange() size 必須落在 [1, m
 {
   "[1, 5]": "return 1",
   "[5, 5]": "return 5",
-  "[6, 5]": "throw RangeError: [assertSizeInRange] parameter out of range: size=6, expected: [1, 5]",
-  "[0, 5]": "throw RangeError: [assertSizeInRange] parameter out of range: size=0, expected: [1, 5]",
-  "[1, 0]": "throw RangeError: [assertSizeInRange] no size is legal: max=0, expected max >= 1",
-  "[3, 0]": "throw RangeError: [assertSizeInRange] no size is legal: max=0, expected max >= 1",
-  "[1, 2.5]": "throw TypeError: [assertSizeInRange] parameter must be an integer: max=2.5"
+  "[6, 5]": "throw RangeError: [_assertSizeInRange] parameter out of range: size=6, expected: [1, 5]",
+  "[0, 5]": "throw RangeError: [_assertSizeInRange] parameter out of range: size=0, expected: [1, 5]",
+  "[1, 0]": "throw RangeError: [_assertSizeInRange] no size is legal: max=0, expected max >= 1",
+  "[3, 0]": "throw RangeError: [_assertSizeInRange] no size is legal: max=0, expected max >= 1",
+  "[1, 2.5]": "throw TypeError: [_assertSizeInRange] parameter must be an integer: max=2.5"
 }
 `;
 
 exports[`utils-array > slice 風格 normalizeSliceIndex > NaN / Infinity 不可修正，拋出 TypeError 1`] = `
 {
-  "NaN": "throw TypeError: [normalizeSliceIndex] parameter must be a finite number: index=NaN",
-  "Infinity": "throw TypeError: [normalizeSliceIndex] parameter must be a finite number: index=Infinity",
-  "-Infinity": "throw TypeError: [normalizeSliceIndex] parameter must be a finite number: index=-Infinity"
+  "NaN": "throw TypeError: [_normalizeSliceIndex] parameter must be a finite number: index=NaN",
+  "Infinity": "throw TypeError: [_normalizeSliceIndex] parameter must be a finite number: index=Infinity",
+  "-Infinity": "throw TypeError: [_normalizeSliceIndex] parameter must be a finite number: index=-Infinity"
 }
 `;
 
 exports[`utils-array > slice 風格 normalizeSliceIndex > length 非法時拋出 RangeError / TypeError 1`] = `
 {
-  "length -1": "throw RangeError: [normalizeSliceIndex] parameter out of range: length=-1, expected: [0, 9007199254740991]",
-  "length 1.5": "throw TypeError: [normalizeSliceIndex] parameter must be an integer: length=1.5"
+  "length -1": "throw RangeError: [_normalizeSliceIndex] parameter out of range: length=-1, expected: [0, 9007199254740991]",
+  "length 1.5": "throw TypeError: [_normalizeSliceIndex] parameter must be an integer: length=1.5"
 }
 `;
 
@@ -618,9 +613,9 @@ exports[`utils-array > slice 風格 normalizeSliceIndex > 負數從尾部往前�
 
 exports[`utils-array > 原子層：只吃 length，不依賴陣列 > normalizeInclusiveIndex() length 非法時拋錯 1`] = `
 {
-  "length 0": "throw RangeError: [normalizeInclusiveIndex] array must not be empty: length=0",
-  "length -1": "throw RangeError: [normalizeInclusiveIndex] parameter out of range: length=-1, expected: [0, 9007199254740991]",
-  "length 1.5": "throw TypeError: [normalizeInclusiveIndex] parameter must be an integer: length=1.5"
+  "length 0": "throw RangeError: [_normalizeInclusiveIndex] array must not be empty: length=0",
+  "length -1": "throw RangeError: [_normalizeInclusiveIndex] parameter out of range: length=-1, expected: [0, 9007199254740991]",
+  "length 1.5": "throw TypeError: [_normalizeInclusiveIndex] parameter must be an integer: length=1.5"
 }
 `;
 
@@ -651,13 +646,13 @@ exports[`utils-array > 原子層：只吃 length，不依賴陣列 > normalizeSl
   "缺省": "return {\\"start\\":0,\\"end\\":5}",
   "[-3, -1)": "return {\\"start\\":2,\\"end\\":4}",
   "[0, 99)": "return {\\"start\\":0,\\"end\\":5}",
-  "[3, 3)": "throw RangeError: [normalizeSliceRange] range must not be empty: start=3, end=3"
+  "[3, 3)": "throw RangeError: [_normalizeSliceRange] range must not be empty: start=3, end=3"
 }
 `;
 
 exports[`utils-array > 原子層：只吃 length，不依賴陣列 > 兩種政策目標不相容，同一組輸入各自成立 1`] = `
 {
-  "normalizeSliceRange(3, 3, 5)": "throw RangeError: [normalizeSliceRange] range must not be empty: start=3, end=3",
+  "normalizeSliceRange(3, 3, 5)": "throw RangeError: [_normalizeSliceRange] range must not be empty: start=3, end=3",
   "normalizeSliceMinMax(3, 3, 5)": "return {\\"min\\":3,\\"max\\":3}"
 }
 `;
@@ -687,8 +682,8 @@ exports[`utils-array > 大小值修正 clamp > clampSize() 大小值修正 1`] =
   "clampSize(0, 5)": "return 0",
   "clampSize(3, 0)": "return 0",
   "clampSize(0, 0)": "return 0",
-  "clampSize(1.5, 5)": "throw TypeError: [clampSize] parameter must be an integer: size=1.5",
-  "clampSize(3, 2.5)": "throw TypeError: [clampSize] parameter must be an integer: max=2.5"
+  "clampSize(1.5, 5)": "throw TypeError: [_clampSize] parameter must be an integer: size=1.5",
+  "clampSize(3, 2.5)": "throw TypeError: [_clampSize] parameter must be an integer: max=2.5"
 }
 `;
 
@@ -710,7 +705,7 @@ exports[`utils-array > 大小值修正 clamp > clampValue() 支援負數區間�
   "clamp(4.5, 0, 3)": "return 3",
   "clamp(-0.5, 0, 3)": "return 0",
   "clamp(1.25, 0, 3)": "return 1.25",
-  "clamp(1, 3, 0) 上下界反轉": "throw RangeError: [clampValue] max must be greater than or equal to min: min=3, max=0"
+  "clamp(1, 3, 0) 上下界反轉": "throw RangeError: [_clampValue] max must be greater than or equal to min: min=3, max=0"
 }
 `;
 
@@ -827,12 +822,12 @@ exports[`utils-array > 實際 array 範例 > 子區間 [start, end) 只允許該
 exports[`utils-array > 實際 array 範例 > 空陣列 [] 無法取索引，建立期立刻拋錯 1`] = `
 {
   "isArrayEmpty": true,
-  "calcArrayIndexRange": "throw RangeError: [calcArrayIndexRange] array must not be empty: length=0",
-  "calcExpectedValuesByArray": "throw RangeError: [calcExpectedValuesByArray] array must not be empty: length=0",
-  "assertArrayNotEmpty": "throw RangeError: [assertArrayNotEmpty] array must not be empty: length=0",
-  "calcArrayIndexMinMax": "throw RangeError: [calcArrayIndexMinMax] array must not be empty: length=0",
-  "normalizeArrayIndexMinMax": "throw RangeError: [normalizeArrayIndexMinMax] array must not be empty: length=0",
-  "calcExpectedValuesByArrayMinMax": "throw RangeError: [calcExpectedValuesByArrayMinMax] array must not be empty: length=0"
+  "calcArrayIndexRange": "throw RangeError: [_calcArrayIndexRange] array must not be empty: length=0",
+  "calcExpectedValuesByArray": "throw RangeError: [_calcExpectedValuesByArray] array must not be empty: length=0",
+  "assertArrayNotEmpty": "throw RangeError: [_assertArrayNotEmpty] array must not be empty: length=0",
+  "calcArrayIndexMinMax": "throw RangeError: [_calcArrayIndexMinMax] array must not be empty: length=0",
+  "normalizeArrayIndexMinMax": "throw RangeError: [_normalizeArrayIndexMinMax] array must not be empty: length=0",
+  "calcExpectedValuesByArrayMinMax": "throw RangeError: [_calcExpectedValuesByArrayMinMax] array must not be empty: length=0"
 }
 `;
 
@@ -840,7 +835,7 @@ exports[`utils-array > 由陣列推導合法索引 > calcArrayIndexRange() 回�
 {
   "[a,b,c]": "return {\\"start\\":0,\\"end\\":3}",
   "[only]": "return {\\"start\\":0,\\"end\\":1}",
-  "[]": "throw RangeError: [calcArrayIndexRange] array must not be empty: length=0"
+  "[]": "throw RangeError: [_calcArrayIndexRange] array must not be empty: length=0"
 }
 `;
 
@@ -851,7 +846,7 @@ exports[`utils-array > 由陣列推導合法索引 > calcArraySliceSize() 回傳
   "[0, -1)": "return 4",
   "[-3, -1)": "return 2",
   "[2, 99)": "return 3",
-  "[99]": "throw RangeError: [calcArraySliceSize] range must not be empty: start=5, end=5"
+  "[99]": "throw RangeError: [_calcArraySliceSize] range must not be empty: start=5, end=5"
 }
 `;
 
@@ -912,9 +907,9 @@ exports[`utils-array > 由陣列推導合法索引 > calcExpectedValuesByArray()
 
 exports[`utils-array > 由陣列推導合法索引 > calcExpectedValuesByArray() 收窄後為空則拋出 RangeError 1`] = `
 {
-  "[3, 3)": "throw RangeError: [calcExpectedValuesByArray] range must not be empty: start=3, end=3",
-  "[4, 2)": "throw RangeError: [calcExpectedValuesByArray] range must not be empty: start=4, end=2",
-  "[]": "throw RangeError: [calcExpectedValuesByArray] array must not be empty: length=0"
+  "[3, 3)": "throw RangeError: [_calcExpectedValuesByArray] range must not be empty: start=3, end=3",
+  "[4, 2)": "throw RangeError: [_calcExpectedValuesByArray] range must not be empty: start=4, end=2",
+  "[]": "throw RangeError: [_calcExpectedValuesByArray] array must not be empty: length=0"
 }
 `;
 
@@ -953,18 +948,18 @@ exports[`utils-array > 陣列長度 > _fnCoreArrayLength() 只讀 length，不�
 exports[`utils-array > 陣列長度 > assertArrayNotEmpty() 回傳長度，空陣列拋出 RangeError 1`] = `
 {
   "[a,b]": "return 2",
-  "[]": "throw RangeError: [assertArrayNotEmpty] array must not be empty: length=0",
-  "calcExpectedValuesByArray([])": "throw RangeError: [calcExpectedValuesByArray] array must not be empty: length=0"
+  "[]": "throw RangeError: [_assertArrayNotEmpty] array must not be empty: length=0",
+  "calcExpectedValuesByArray([])": "throw RangeError: [_calcExpectedValuesByArray] array must not be empty: length=0"
 }
 `;
 
 exports[`utils-array > 陣列長度 > assertNotEmptyLength() 對 0 與負數拋出 RangeError 1`] = `
 {
-  "0": "throw RangeError: [assertNotEmptyLength] array must not be empty: length=0",
+  "0": "throw RangeError: [_assertNotEmptyLength] array must not be empty: length=0",
   "1": "return 1",
   "9": "return 9",
-  "-1": "throw RangeError: [assertNotEmptyLength] parameter out of range: length=-1, expected: [0, 9007199254740991]",
-  "1.5": "throw TypeError: [assertNotEmptyLength] parameter must be an integer: length=1.5"
+  "-1": "throw RangeError: [_assertNotEmptyLength] parameter out of range: length=-1, expected: [0, 9007199254740991]",
+  "1.5": "throw TypeError: [_assertNotEmptyLength] parameter must be an integer: length=1.5"
 }
 `;
 
@@ -981,11 +976,11 @@ exports[`utils-array > 陣列長度 > calcArrayLength() 回傳長度，0 視為�
 
 exports[`utils-array > 陣列長度 > calcArrayLength() 非類陣列與非法長度拋錯 1`] = `
 {
-  "null": "throw TypeError: [calcArrayLength] parameter must be an array-like object with a numeric length: length=undefined",
-  "undefined": "throw TypeError: [calcArrayLength] parameter must be an array-like object with a numeric length: length=undefined",
-  "{ length: NaN }": "throw TypeError: [calcArrayLength] parameter must be an array-like object with a numeric length: length=NaN",
-  "{ length: -1 }": "throw RangeError: [calcArrayLength] parameter out of range: length=-1, expected: [0, 9007199254740991]",
-  "{ length: 1.5 }": "throw TypeError: [calcArrayLength] parameter must be an integer: length=1.5"
+  "null": "throw TypeError: [_calcArrayLength] parameter must be an array-like object with a numeric length: length=undefined",
+  "undefined": "throw TypeError: [_calcArrayLength] parameter must be an array-like object with a numeric length: length=undefined",
+  "{ length: NaN }": "throw TypeError: [_calcArrayLength] parameter must be an array-like object with a numeric length: length=NaN",
+  "{ length: -1 }": "throw RangeError: [_calcArrayLength] parameter out of range: length=-1, expected: [0, 9007199254740991]",
+  "{ length: 1.5 }": "throw TypeError: [_calcArrayLength] parameter must be an integer: length=1.5"
 }
 `;
 

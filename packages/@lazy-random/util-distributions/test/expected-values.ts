@@ -24,7 +24,7 @@
 import {
 	type IExpectedValues,
 	type IRange,
-	createValuesValidator,
+	_createValuesValidator,
 } from '../src/utils';
 
 /**
@@ -96,7 +96,7 @@ export interface IValuesSnapshot
  */
 export function collectValues(label: string, testLimit: number, expected: IExpectedValues, next: () => number): IValuesSnapshot
 {
-	const validator = createValuesValidator(expected, label);
+	const validator = _createValuesValidator(expected, label);
 
 	for (let i = 0; i < testLimit; i++)
 	{
