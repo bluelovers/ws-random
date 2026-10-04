@@ -1,7 +1,7 @@
 import { RNGCrypto } from '@lazy-random/generators-crypto';
 import { RNGMathRandom2 } from '@lazy-random/generators-math-random2';
 import { RNGSeedRandom } from '@lazy-random/generators-seedrandom';
-import { RNG } from '@lazy-random/rng-abstract'
+import { RNG, _isInstanceOfRNG } from '@lazy-random/rng-abstract'
 
 import { RNGXOR128 } from '@lazy-random/generators-xor128'
 import { RNGFunction, IRNGFunctionSeed } from '@lazy-random/generators-function'
@@ -103,8 +103,13 @@ export function RNGFactory(...args)
 			/**
 			 * 已經是 RNG 實例就直接回傳，讓呼叫端可以混用「既存實例」與「字串鍵」兩種寫法。
 			 * Passes through an existing RNG instance so callers can mix instances and string keys.
+			 *
+			 * 以 `_isInstanceOfRNG()` 取代原生 `instanceof RNG`：兩者共用品牌鍵 (Brand Key) 驗證，
+			 * 可避免 ESM / CJS 重複載入時，同一個別被當成不同個體而誤判成「不是 RNG」。
+			 * `_isInstanceOfRNG()` replaces native `instanceof RNG`; both share the brand-key check, so the
+			 * same object loaded through a duplicate ESM/CJS copy is not misjudged as "not an RNG".
 			 */
-			if (arg0 instanceof RNG)
+			if (_isInstanceOfRNG(arg0))
 			{
 				return arg0
 			}

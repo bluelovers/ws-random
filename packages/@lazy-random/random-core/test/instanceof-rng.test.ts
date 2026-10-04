@@ -11,7 +11,7 @@
 
 import assert from 'node:assert/strict';
 import { describe, test } from 'node:test';
-import { RNG } from '@lazy-random/rng-abstract';
+import { RNG, _isInstanceofAssertionOrRNGError } from '@lazy-random/rng-abstract';
 import { RandomCore } from '../src/index';
 
 /**
@@ -32,14 +32,19 @@ class TestRNG extends RNG
 }
 
 /**
- * `expect(rng).instanceof(RNG)` 失敗時所拋出的 chai AssertionError
- * The chai AssertionError thrown when `expect(rng).instanceof(RNG)` fails
+ * `expect(rng).instanceof(RNG)` 失敗時所拋出的 chai AssertionError，
+ * 或 `_assertInstanceOfRNG()` 拋出的 `RNGInstanceOfError`
+ * （後者交由 `_isInstanceofAssertionOrRNGError()` 判定）
+ * The chai AssertionError thrown when `expect(rng).instanceof(RNG)` fails, or the
+ * `RNGInstanceOfError` thrown by `_assertInstanceOfRNG()` (decided by
+ * `_isInstanceofAssertionOrRNGError()`)
  */
 function isInstanceofAssertionError(err: unknown): boolean
 {
-	return err instanceof Error
+	return (err instanceof Error
 		&& err.name === 'AssertionError'
-		&& /instance/i.test(err.message)
+		&& /instance/i.test(err.message))
+		|| _isInstanceofAssertionOrRNGError(err)
 }
 
 /**

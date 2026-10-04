@@ -1,6 +1,6 @@
 import * as libRMath from 'lib-r-math.js';
 import { Random, random } from 'random-extra/src/random';
-import { RNG, IRNGLike } from '@lazy-random/rng-abstract';
+import { RNG, IRNGLike, _isInstanceOfRNG } from '@lazy-random/rng-abstract';
 import isExtendsOf from 'is-extends-of';
 import { IRNG } from 'lib-r-math.js';
 
@@ -79,7 +79,15 @@ export class LibRMathRngWithRandom extends IRNG
 		 */
 		if (rng)
 		{
-			if (rng instanceof RNG || typeof <IRNGLike>rng.next === 'function')
+			/**
+			 * 以 `_isInstanceOfRNG()` 取代原生 `instanceof RNG`：兩者共用 `@lazy-random/rng-abstract`
+			 * 的品牌鍵 (Brand Key) 驗證，ESM / CJS 重複載入時同一個別仍會被承認，
+			 * 不會因為建構子不同個體而誤判成「不是 RNG」、白白多走一次 `random.newUse()`。
+			 * `_isInstanceOfRNG()` replaces native `instanceof RNG`; both share the brand-key check from
+			 * `@lazy-random/rng-abstract`, so a duplicate ESM/CJS copy still counts as an RNG
+			 * and does not fall through to `random.newUse()`.
+			 */
+			if (_isInstanceOfRNG(rng) || typeof (rng as IRNGLike).next === 'function')
 			{
 				//
 			}

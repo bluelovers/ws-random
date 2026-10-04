@@ -1,7 +1,7 @@
 /// <reference types="node" />
 import { expect } from '@lazy-random/expect';
 import { RNGSeedRandom } from '@lazy-random/generators-seedrandom';
-import { RNG } from '@lazy-random/rng-abstract'
+import { RNG, _assertInstanceOfRNG } from '@lazy-random/rng-abstract'
 import { RNGFactory, IRNGFactoryType } from '@lazy-random/rng-factory'
 import { autobind } from 'core-decorators';
 import { getClass } from '@lazy-random/clone-class';
@@ -32,8 +32,16 @@ export class Random<R extends RNG = RNG> extends RandomCore<R>
 		if (rng)
 		{
 			//ow(rng, ow.object.instanceOf(RNG))
-			// @ts-ignore
-			expect(rng).instanceof(RNG)
+			/**
+			 * 改用 `@lazy-random/rng-abstract` 自帶的 `_assertInstanceOfRNG()` 驗證，
+			 * 以品牌鍵 (Brand Key) 補足原生 `instanceof` 比對，
+			 * 避免 ESM / CJS 重複載入時同一個別被當成不同個體而誤判失敗；
+			 * 顯式傳入 `<R>` 讓收窄 (Narrowing) 結果與 `_init()` 的 `R` 一致。
+			 * Uses the package's own `_assertInstanceOfRNG()`: the brand check backs up the native
+			 * constructor comparison so a duplicate ESM/CJS copy of the same RNG is not misjudged;
+			 * the explicit `<R>` keeps the narrowed type aligned with the `R` used by `_init()`.
+			 */
+			_assertInstanceOfRNG<R>(rng)
 		}
 
 		/**
