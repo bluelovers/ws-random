@@ -1,0 +1,24 @@
+exports[`dfArrayUnique > dfArrayUnique 1`] = `
+{
+  "出現的值": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "全部來自 arr": true
+}
+`;
+
+exports[`dfArrayUnique > return another when out of limit 1`] = `
+{
+  "前 limit 次": {
+    "值數量": 3,
+    "全部來自 arr": true
+  },
+  "之後": {
+    "值數量": 3,
+    "全部來自 arr2": true
+  }
+}
+`;

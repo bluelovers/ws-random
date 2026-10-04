@@ -1,0 +1,119 @@
+exports[`array-index 大量取樣 > dfArrayIndex size 超過可用數量時縮小，不回傳越界索引 1`] = `
+{
+  "出現的索引": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "實際 size": 5
+}
+`;
+
+exports[`array-index 大量取樣 > dfArrayIndex size=3：每次回傳 3 個不重複且在範圍內的索引 1`] = `
+{
+  "出現的索引": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "涵蓋全部索引": true
+}
+`;
+
+exports[`array-index 大量取樣 > dfArrayIndex 全參數掃描：任何組合都不得回傳越界索引 1`] = `
+{
+  "combos": 720,
+  "ok": 264,
+  "sampled": 26400,
+  "threw": 456,
+  "maxIds": 5
+}
+`;
+
+exports[`array-index 大量取樣 > dfArrayIndex 子區間 [1, 4)：只抽 1 ～ 3 1`] = `
+{
+  "出現的索引": [
+    1,
+    2,
+    3
+  ],
+  "排除 0 與 4": true
+}
+`;
+
+exports[`array-index 大量取樣 > dfArrayIndexOne 全參數掃描：任何組合都不得回傳越界索引 1`] = `
+{
+  "combos": 120,
+  "ok": 66,
+  "sampled": 6600,
+  "threw": 54
+}
+`;
+
+exports[`array-index 大量取樣 > dfArrayIndexOne 單一候選的常數快取路徑 1`] = `
+{
+  "固定索引": 4
+}
+`;
+
+exports[`array-index 大量取樣 > dfArrayIndexOne 超出 length 的 end 會收窄，不放大到陣列外 1`] = `
+{
+  "出現的索引": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "涵蓋全部索引": true
+}
+`;
+
+exports[`array-index 大量取樣 > dfArrayIndexOne 預設區間 [0, length)：3000 次全落在陣列內 1`] = `
+{
+  "出現的索引": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "涵蓋全部索引": true
+}
+`;
+
+exports[`array-index 大量取樣 > 回傳值型別把關（對齊 lazy-check）：非 undefined、非 null、非 function 1`] = `
+{
+  "dfArrayIndexOne": "number",
+  "dfArrayIndex": "object"
+}
+`;
+
+exports[`array-index 大量取樣 > 回歸：dfArrayIndexOne(target, 1, 5) 只抽 [1, 4) 內的索引 1`] = `
+{
+  "出現的索引": [
+    1,
+    2,
+    3
+  ],
+  "排除越界的 4": true
+}
+`;
+
+exports[`array-index 大量取樣 > 回歸：預設 end 時不得抽中 arr.length 1`] = `
+{
+  "arr.length": 5,
+  "出現的索引": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "抽中 arr.length": false
+}
+`;

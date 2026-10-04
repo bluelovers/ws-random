@@ -1,8 +1,79 @@
+exports[`array-index > dfArrayIndex > always return same size 1`] = `
+{
+  "每次回傳的數量": 2,
+  "最後一次的長度": 2,
+  "不重複": true
+}
+`;
+
+exports[`array-index > dfArrayIndex > end > start + 1 1`] = `
+{
+  "size=3 start=4（end 缺省）": "throw",
+  "size=3 start=3（end 缺省）": "ok",
+  "size=3 start=2 end=3": "throw",
+  "size=3 start=3 end=4": "throw",
+  "size=3 start=3 end=5": "ok"
+}
+`;
+
+exports[`array-index > dfArrayIndex > 整段索引無非法值、無缺失 1`] = `
+{
+  "label": "dfArrayIndex",
+  "testLimit": 1000,
+  "total": 2000,
+  "params": {
+    "start": 0,
+    "end": 4
+  },
+  "range": {
+    "start": 0,
+    "end": 4
+  },
+  "expectedValues": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "expectedSize": 4,
+  "seenValues": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "seenSize": 4,
+  "missingValues": [],
+  "illegalValues": []
+}
+`;
+
 exports[`array-index > dfArrayIndexOne 1`] = `
 {
-  "1": true,
-  "2": true,
-  "3": true,
-  "4": true
+  "label": "dfArrayIndexOne",
+  "testLimit": 1000,
+  "total": 1000,
+  "params": {
+    "start": 1,
+    "end": 4
+  },
+  "range": {
+    "start": 1,
+    "end": 4
+  },
+  "expectedValues": [
+    1,
+    2,
+    3
+  ],
+  "expectedSize": 3,
+  "seenValues": [
+    1,
+    2,
+    3
+  ],
+  "seenSize": 3,
+  "missingValues": [],
+  "illegalValues": []
 }
 `;

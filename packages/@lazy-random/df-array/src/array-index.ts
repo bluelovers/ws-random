@@ -1,7 +1,7 @@
 import { expect } from '@lazy-random/expect';
 import { IRNGLike } from '@lazy-random/rng-abstract';
 import { _handleStartEnd } from './util/options';
-import { dfArrayIndexOne } from './array-index-one';
+import { _createIndexSampler } from './array-index-one';
 import { ITSArrayListMaybeReadonly } from 'ts-type/lib/type/base';
 
 /**
@@ -32,29 +32,44 @@ export function dfArrayIndex<T extends ITSArrayListMaybeReadonly<unknown>>(rando
 	expect(arr.length, `arr.length`).integer.gt(0);
 
 	/*
-	 * 單一索引的取樣器先建立、start/end 稍後才由 _handleStartEnd 修正，
-	 * 因為該取樣器內部會自行做一次相同的區間正規化。
-	 * The single-index sampler is created before _handleStartEnd normalises
-	 * start/end below, because it performs the same normalisation itself.
+	 * 只做一次區間正規化與驗證，取樣器與「實際可取數量」都從同一份 range 派生。
+	 * 過去這裡會連做兩次：一次藏在 dfArrayIndexOne() 內、一次在這裡 disableCheck
+	 * 重算，兩者只是「剛好」相同；一旦日後只改其中一邊，取樣器的區間與
+	 * size_runtime 就會各自為政 —— 輕則迴圈抽不滿、重則回傳越界索引，
+	 * 沿著 dfArrayItem 的 arr[idx] 變成 undefined。
+	 *
+	 * Normalise and validate the range exactly once; both the sampler and the
+	 * runnable count derive from that one range. It used to be normalised
+	 * twice — once hidden inside dfArrayIndexOne() and once here with
+	 * disableCheck — where the two merely *happened* to agree. Change either
+	 * side later and the sampler's range and size_runtime drift apart: at best
+	 * the loop never fills, at worst it returns an out-of-range index that
+	 * turns into undefined via dfArrayItem's arr[idx].
 	 */
-	const fn = dfArrayIndexOne(random, arr, start, end);
-
-	let len: number;
-
-	({
-		start,
-		end,
-		len,
-	} = _handleStartEnd(arr, start, end, true));
+	const range = _handleStartEnd(arr, start, end);
 
 	/*
-	 * 實際可取數量取 start/end 區間長度、陣列長度與 size 的最小值，
-	 * 且不為負：需求超過可用範圍時縮小規模，而不是讓迴圈多跑無意義的嘗試。
-	 * The runnable size is the minimum of the [start, end) span, the array
-	 * length and size, never negative: shrink an oversized request instead of
-	 * letting the loop burn pointless attempts.
+	 * 取樣器建立在已驗證的區間上，內部不再重複做區間驗證 —
+	 * 這正是「上層把關、底層不重複驗證」的分層。
+	 * The sampler is built on the already-validated range and re-checks nothing —
+	 * the layering where the upper layer guards and the lower layer does not
+	 * re-validate.
 	 */
-	let size_runtime = Math.max(Math.min((end - start), len, size), 0);
+	const fn = _createIndexSampler(random, range.start, range.end);
+
+	/*
+	 * 實際可取數量取 start/end 區間長度、陣列長度與 size 的最小值：
+	 * 需求超過可用範圍時縮小規模，而不是讓迴圈多跑無意義的嘗試。
+	 * 三個來源在這裡都已驗證（區間非空、length > 0、size > 0），
+	 * 故下限必為 1，不需再夾一次。
+	 *
+	 * The runnable size is the minimum of the [start, end) span, the array
+	 * length and size: shrink an oversized request instead of letting the loop
+	 * burn pointless attempts. All three inputs are already validated here
+	 * (non-empty range, length > 0, size > 0), so the lower bound is necessarily
+	 * 1 and no extra clamping is needed.
+	 */
+	let size_runtime = Math.min((range.end - range.start), range.len, size);
 
 	expect(size_runtime, `size_runtime(${size_runtime})`).lte(size).gt(0)
 
