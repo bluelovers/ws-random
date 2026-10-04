@@ -7,7 +7,6 @@ var Distributions = require('@lazy-random/distributions');
 var rngAbstract = require('@lazy-random/rng-abstract');
 
 /// <reference types="node" />
-
 /**
  * 取代 `core-decorators` 的 `@autobind` 裝飾器
  *
