@@ -78,18 +78,17 @@
     "test": "test"
   },
   "scripts": {
-    "coverage": "pnpm run test -- --coverage",
+    "coverage": "pnpm run test --coverage",
     "pretest_": "pnpm run build",
-    "test": "dotenv -v NODE_OPTIONS=--experimental-vm-modules -- jest --maxConcurrency=1 --maxWorkers=1",
-    "test:jest": "jest --passWithNoTests",
-    "test:jest:coverage": "pnpm run test:jest -- --coverage",
-    "test:jest:snapshot": "pnpm run test:jest -- -u",
-    "test:snapshot": "pnpm run test -- -u",
+    "test": "pnpm run test:jest",
+    "test:jest": "dotenv -v NODE_OPTIONS=--experimental-vm-modules -- jest --maxConcurrency=1 --maxWorkers=1",
+    "test:jest:coverage": "pnpm run test:jest --coverage",
+    "test:jest:snapshot": "pnpm run test:jest -u",
+    "test:snapshot": "pnpm run test -u",
     "test:tsd": "ynpx tsd",
     "posttest_": "git commit -m \"build: update seed\" ./src/util/random-seed-str.data.* & echo posttest",
     "build_": "pnpm run build:tsc",
-    "build:index": "ts-node ./test/script/build-cache.ts",
-    "build-minify": "ts-node ./test/script/minify",
+    "build:index": "tsx ./test/script/build-cache.ts",
     "build:tsc": "tsc",
     "postbuild_": "ynpx build-ts-file -- ../@lazy-random/seed-data/src/random-seed-str.data.ts && git add ./src/util/random-seed-str.data.ts ./src/util/random-seed-str.data.js",
     "preversion": "pnpm run test",
@@ -103,7 +102,7 @@
     "postpublish": "echo postpublish",
     "postpublishOnly": "echo postpublishOnly",
     "postpublishOnly:add": "pnpm -w run postpublishOnly:add random-extra",
-    "benchmark": "ts-node ./test/benchmark/simple.perf.ts && ts-node ./test/benchmark/base.perf.ts && ts-node ./test/benchmark/random-id.perf.ts",
+    "benchmark": "tsx ./test/benchmark/simple.perf.ts && tsx ./test/benchmark/base.perf.ts && tsx ./test/benchmark/random-id.perf.ts",
     "ncu": "yarn-tool ncu -u",
     "sort-package-json": "yarn-tool sort",
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
@@ -128,5 +127,5 @@
     "@lazy-random/seed-token": "^2.0.0",
     "@lazy-random/simple-wrap": "^2.0.0"
   },
-  "gitHead": "e61d528c84bd3340a59f288f65d20bfb2906c905"
+  "gitHead": "9d8e7456192d483519e8eff7bc45a72152bcf3c0"
 }
