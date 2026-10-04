@@ -42,6 +42,31 @@ function _handleStartEnd(arr, start = 0, end, disableCheck) {
 }
 
 /**
+ * 由「已驗證的」半開區間 `[start, end)` 建立單一索引取樣器，不做任何區間驗證
+ * Build a single-index sampler from an already-validated half-open `[start, end)`, performing no range checks
+ *
+ * 這是底層 core：前置條件 `0 <= start < end <= length` 由 `_handleStartEnd()`
+ * 把關，本函式不再重複驗證。`dfArrayIndex()` 也直接吃這個 core，
+ * 讓「取樣器的區間」與「可用數量」出自同一份正規化的結果。
+ * This is the lower core: the `0 <= start < end <= length` precondition is
+ * guarded by `_handleStartEnd()` and is not re-checked here. `dfArrayIndex()`
+ * consumes the same core, so the sampler's range and its runnable count come
+ * from one normalisation instead of two.
+ *
+ * @param random 亂數來源 (Random Number Generator)，需提供 next()
+ * @param start 起始索引（含），已驗證 / inclusive start index, already validated
+ * @param end 結束索引（不含），已驗證 / exclusive end index, already validated
+ * @returns 取樣函式 (Sampler)，每次呼叫回傳一個索引 / a sampler returning one index per call
+ */
+function _createIndexSampler(random, start, end) {
+  if (start === end - 1) {
+    return () => start;
+  }
+  return () => {
+    return utilDistributions.randIndexWithRange(random, start, end);
+  };
+}
+/**
  * 回傳陣列的單一索引值 (Index Number)
  * return index number form array
  *
@@ -61,12 +86,7 @@ function dfArrayIndexOne(random, arr, start = 0, end) {
     start,
     end
   } = _handleStartEnd(arr, start, end));
-  if (start === end - 1) {
-    return () => start;
-  }
-  return () => {
-    return utilDistributions.int(random, start, end);
-  };
+  return _createIndexSampler(random, start, end);
 }
 
 /**
@@ -88,14 +108,9 @@ function dfArrayIndexOne(random, arr, start = 0, end) {
 function dfArrayIndex(random, arr, size = 1, start = 0, end) {
   expect.expect(size, `size`).integer.gt(0);
   expect.expect(arr.length, `arr.length`).integer.gt(0);
-  const fn = dfArrayIndexOne(random, arr, start, end);
-  let len;
-  ({
-    start,
-    end,
-    len
-  } = _handleStartEnd(arr, start, end, true));
-  let size_runtime = Math.max(Math.min(end - start, len, size), 0);
+  const range = _handleStartEnd(arr, start, end);
+  const fn = _createIndexSampler(random, range.start, range.end);
+  let size_runtime = Math.min(range.end - range.start, range.len, size);
   expect.expect(size_runtime, `size_runtime(${size_runtime})`).lte(size).gt(0);
   size = size_runtime;
   return () => {

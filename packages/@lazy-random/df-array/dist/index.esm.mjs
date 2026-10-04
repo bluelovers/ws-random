@@ -1,6 +1,6 @@
-import { expect as r } from "@lazy-random/expect";
+import { expect as e } from "@lazy-random/expect";
 
-import { int as t, randIndexByLength as e } from "@lazy-random/util-distributions";
+import { randIndexWithRange as r, randIndexByLength as t } from "@lazy-random/util-distributions";
 
 import { swapAlgorithm2 as n } from "@lazy-random/array-algorithm";
 
@@ -8,79 +8,81 @@ import { dfUniformByte as l, dfUniformFloat as a, dfUniformInt as i } from "@laz
 
 import { isUnset as f } from "@lazy-random/shared-lib";
 
-function _handleStartEnd(t, e = 0, n, l) {
-  const a = t.length, i = !l;
-  return e = Math.max(Math.floor(e), 0), null != n && (n = Math.floor(n), i && r(n).integer.gt(e + 1, `END(${n}) should greater than START(${e}+1)`).gt(0)), 
-  n = Math.min(Math.max(0, null != n ? n : a), a), i && r(n, `END(${n})`).integer.gte(0).lte(a), 
-  i && r(e, `START(${e})`).integer.gte(0).lt(n), {
-    start: e,
+function _handleStartEnd(r, t = 0, n, l) {
+  const a = r.length, i = !l;
+  return t = Math.max(Math.floor(t), 0), null != n && (n = Math.floor(n), i && e(n).integer.gt(t + 1, `END(${n}) should greater than START(${t}+1)`).gt(0)), 
+  n = Math.min(Math.max(0, null != n ? n : a), a), i && e(n, `END(${n})`).integer.gte(0).lte(a), 
+  i && e(t, `START(${t})`).integer.gte(0).lt(n), {
+    start: t,
     end: n,
     len: a
   };
 }
 
-function dfArrayIndexOne(r, e, n = 0, l) {
-  return ({start: n, end: l} = _handleStartEnd(e, n, l)), n === l - 1 ? () => n : () => t(r, n, l);
+function _createIndexSampler(e, t, n) {
+  return t === n - 1 ? () => t : () => r(e, t, n);
 }
 
-function dfArrayIndex(t, e, n = 1, l = 0, a) {
-  r(n, "size").integer.gt(0), r(e.length, "arr.length").integer.gt(0);
-  const i = dfArrayIndexOne(t, e, l, a);
-  let f;
-  ({start: l, end: a, len: f} = _handleStartEnd(e, l, a, !0));
-  let o = Math.max(Math.min(a - l, f, n), 0);
-  return r(o, `size_runtime(${o})`).lte(n).gt(0), n = o, () => {
+function dfArrayIndexOne(e, r, t = 0, n) {
+  return ({start: t, end: n} = _handleStartEnd(r, t, n)), _createIndexSampler(e, t, n);
+}
+
+function dfArrayIndex(r, t, n = 1, l = 0, a) {
+  e(n, "size").integer.gt(0), e(t.length, "arr.length").integer.gt(0);
+  const i = _handleStartEnd(t, l, a), f = _createIndexSampler(r, i.start, i.end);
+  let o = Math.min(i.end - i.start, i.len, n);
+  return e(o, `size_runtime(${o})`).lte(n).gt(0), n = o, () => {
     o = n;
-    let r, t = [];
+    let e, r = [];
     do {
-      let e = i();
-      r === e || t.includes(e) || (t.push(r = e), --o);
+      let t = f();
+      e === t || r.includes(t) || (r.push(e = t), --o);
     } while (o > 0);
-    return t;
+    return r;
   };
 }
 
-function dfArrayShuffle(r, t, l) {
-  const randIndexByLength$1 = t => e(r, t);
+function dfArrayShuffle(e, r, l) {
+  const randIndexByLength$1 = r => t(e, r);
   if (!l) {
-    let r;
-    return r = Buffer.isBuffer(t) ? r => Buffer.from(r) : r => r.slice(), () => n(r(t), !0, randIndexByLength$1);
+    let e;
+    return e = Buffer.isBuffer(r) ? e => Buffer.from(e) : e => e.slice(), () => n(e(r), !0, randIndexByLength$1);
   }
-  return () => n(t, !0, randIndexByLength$1);
+  return () => n(r, !0, randIndexByLength$1);
 }
 
-function dfArrayUnique(t, n, l, a, i, f) {
+function dfArrayUnique(r, n, l, a, i, f) {
   let o = n.slice();
-  l = Math.min(l || o.length, o.length), i = i || (r => e(t, r)), a = !!a, r(l, "limit").integer.gt(0), 
-  r(i, "fnRandIndex").function();
+  l = Math.min(l || o.length, o.length), i = i || (e => t(r, e)), a = !!a, e(l, "limit").integer.gt(0), 
+  e(i, "fnRandIndex").function();
   let d, u = l;
-  const h = function _fnClone(r) {
-    o = r.slice(), u = l, d = o.length;
+  const m = function _fnClone(e) {
+    o = e.slice(), u = l, d = o.length;
   };
   return () => {
     if (d = o.length, 0 === d || 0 === u--) {
-      let r = a;
+      let e = a;
       if (f) {
-        let t = f(n, l, a, i);
-        Array.isArray(t) && t.length > 0 ? (h(t), r = null) : 1 == t ? r = !0 : void 0 !== t && (r = !1);
+        let r = f(n, l, a, i);
+        Array.isArray(r) && r.length > 0 ? (m(r), e = null) : 1 == r ? e = !0 : void 0 !== r && (e = !1);
       }
-      if (r) h(n); else if (null !== r) throw new RangeError(`can't call arrayUnique > ${l} times`);
+      if (e) m(n); else if (null !== e) throw new RangeError(`can't call arrayUnique > ${l} times`);
     }
-    const r = i(d);
-    return o.splice(r, 1)[0];
+    const e = i(d);
+    return o.splice(e, 1)[0];
   };
 }
 
-function dfArrayFill(t, e, n, o) {
+function dfArrayFill(r, t, n, o) {
   let d;
   {
-    let r = f(e), u = f(n);
-    d = u && r ? l(t) : o ? a(t, e, n) : i(t, e, n), e = void 0, n = void 0;
+    let e = f(t), u = f(n);
+    d = u && e ? l(r) : o ? a(r, t, n) : i(r, t, n), t = void 0, n = void 0;
   }
-  return r(d).function(), r => {
-    let t = r.length;
-    for (;t--; ) r[t] = d();
-    return r;
+  return e(d).function(), e => {
+    let r = e.length;
+    for (;r--; ) e[r] = d();
+    return e;
   };
 }
 
