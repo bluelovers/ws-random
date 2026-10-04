@@ -71,7 +71,7 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "random-extra": "^6.0.0",
+    "random-extra": "^6.0.1",
     "seedrandom": "*"
   },
   "publishConfig": {

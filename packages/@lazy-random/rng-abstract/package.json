@@ -41,10 +41,10 @@
   "scripts": {
     "coverage": "pnpm run test --coverage",
     "test": "pnpm run test:node",
-    "test:node": "tsx --test --test-update-snapshots test/**/*.spec.ts test/**/*.test.ts",
     "test:jest": "jest --passWithNoTests",
     "test:jest:coverage": "pnpm run test:jest --coverage",
     "test:jest:snapshot": "pnpm run test:jest -u",
+    "test:node": "tsx --test --test-update-snapshots test/**/*.spec.ts test/**/*.test.ts",
     "test:snapshot": "pnpm run test -u",
     "test:tsd": "ynpx tsd",
     "test:tsdx": "ynpx @bluelovers/tsdx test --passWithNoTests",
