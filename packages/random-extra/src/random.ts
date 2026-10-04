@@ -1,5 +1,4 @@
 /// <reference types="node" />
-import { expect } from '@lazy-random/expect';
 import { RNGSeedRandom } from '@lazy-random/generators-seedrandom';
 import { RNG, _assertInstanceOfRNG } from '@lazy-random/rng-abstract'
 import { RNGFactory, IRNGFactoryType } from '@lazy-random/rng-factory'

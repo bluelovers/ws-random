@@ -74,7 +74,8 @@
   "dependencies": {
     "@lazy-random/rng-abstract": "^2.0.0",
     "is-extends-of": "^2.0.2",
-    "lib-r-math.js": "<2 >=1.0.94"
+    "lib-r-math.js": "<2 >=1.0.94",
+    "random-extra": "^6.0.1"
   },
   "publishConfig": {
     "access": "public"

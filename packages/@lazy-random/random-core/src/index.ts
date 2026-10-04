@@ -1,5 +1,4 @@
 /// <reference types="node" />
-import { expect } from '@lazy-random/expect';
 import { ENUM_ALPHABET, IArrayInput02, hashArgv } from '@lazy-random/shared-lib';
 import Distributions from '@lazy-random/distributions';
 import { RNG, IRNGLike, _assertInstanceOfRNG } from '@lazy-random/rng-abstract';

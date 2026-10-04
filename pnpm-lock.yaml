@@ -80,15 +80,9 @@ importers:
       nanoid:
         specifier: <4 >=3.3.4
         version: 3.3.19
-      num-in-delta:
-        specifier: ^2.0.0
-        version: link:packages/num-in-delta
       random:
         specifier: <4 >=3.0.6
         version: 3.0.6
-      random-extra:
-        specifier: ^6.0.1
-        version: link:packages/random-extra
       seedrandom:
         specifier: ^3.0.5
         version: 3.0.5
@@ -217,6 +211,9 @@ importers:
       '@lazy-random/util-test':
         specifier: ^2.0.0
         version: link:../util-test
+      num-in-delta:
+        specifier: ^2.0.0
+        version: link:../../num-in-delta
 
   packages/@lazy-random/df-array:
     dependencies:
@@ -286,6 +283,9 @@ importers:
       '@lazy-random/util-test':
         specifier: ^2.0.0
         version: link:../util-test
+      num-in-delta:
+        specifier: ^2.0.0
+        version: link:../../num-in-delta
 
   packages/@lazy-random/df-poisson:
     dependencies:
@@ -536,6 +536,9 @@ importers:
       lib-r-math.js:
         specifier: <2 >=1.0.94
         version: 1.0.94(supports-color@8.1.1)
+      random-extra:
+        specifier: ^6.0.1
+        version: link:../../random-extra
 
   packages/@lazy-random/original-math-random: {}
 
