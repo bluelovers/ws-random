@@ -4,9 +4,9 @@ import { IRNG as e } from "lib-r-math.js";
 
 import { random as t, Random as i } from "random-extra/src/random";
 
-import { RNG as s } from "@lazy-random/rng-abstract";
+import { _isInstanceOfRNG as s, RNG as r } from "@lazy-random/rng-abstract";
 
-import r from "is-extends-of";
+import a from "is-extends-of";
 
 class LibRMathRngWithRandom extends e {
   constructor(n, e) {
@@ -23,7 +23,7 @@ class LibRMathRngWithRandom extends e {
     null === (e = (t = this.__random).seed) || void 0 === e || e.call(t, this.__seed = n);
   }
   use(n, e) {
-    n && (n instanceof s || "function" == typeof n.next || ("seedrandom" === n ? n = t.newUse("seedrandom", e, {
+    n && (s(n) || "function" == typeof n.next || ("seedrandom" === n ? n = t.newUse("seedrandom", e, {
       entropy: !1
     }) : n instanceof i || (n = t.newUse(n)))), this.__random = n || this.__random || t, 
     void 0 !== e && (this.seed = e);
@@ -39,10 +39,10 @@ function _isLibRMathRNGLike(n) {
 }
 
 function _isExtendsOfLibRMathRNGLike(n) {
-  return !(!n || !r(n, e));
+  return !(!n || !a(n, e));
 }
 
-class RandomRngWithLibRMath extends s {
+class RandomRngWithLibRMath extends r {
   _seedable=!0;
   constructor(n, e, ...t) {
     super(), this._init(n, e, ...t);

@@ -78,8 +78,8 @@ export declare class RandomCore<R extends RNG = RNG> {
      * 切換底層亂數產生器 (RNG)
      * Switch the underlying RNG
      *
-     * 任何輸入都會先經 `expect()` 驗證，非 `RNG` 實例會拋出驗證錯誤
-     * Every input is validated by `expect()` first; a non-`RNG` value throws a validation error
+     * 任何輸入都會先經 `_assertInstanceOfRNG()` 驗證，非 `RNG` 實例會拋出 `RNGInstanceOfError`
+     * Every input is validated by `_assertInstanceOfRNG()` first; a non-`RNG` value throws an `RNGInstanceOfError`
      *
      * @param rng - 新的 `RNG` 實例 / the new `RNG` instance
      * @param args - 目前未使用，保留給子類別覆寫 / currently unused, reserved for subclass overrides

@@ -65,7 +65,15 @@ class LibRMathRngWithRandom extends libRMath.IRNG {
    */
   use(rng, _seed) {
     if (rng) {
-      if (rng instanceof rngAbstract.RNG || typeof rng.next === 'function') ; else if (rng === 'seedrandom') {
+      /**
+       * 以 `_isInstanceOfRNG()` 取代原生 `instanceof RNG`：兩者共用 `@lazy-random/rng-abstract`
+       * 的品牌鍵 (Brand Key) 驗證，ESM / CJS 重複載入時同一個別仍會被承認，
+       * 不會因為建構子不同個體而誤判成「不是 RNG」、白白多走一次 `random.newUse()`。
+       * `_isInstanceOfRNG()` replaces native `instanceof RNG`; both share the brand-key check from
+       * `@lazy-random/rng-abstract`, so a duplicate ESM/CJS copy still counts as an RNG
+       * and does not fall through to `random.newUse()`.
+       */
+      if (rngAbstract._isInstanceOfRNG(rng) || typeof rng.next === 'function') ; else if (rng === 'seedrandom') {
         rng = random.random.newUse('seedrandom', _seed, {
           entropy: false
         });

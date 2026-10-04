@@ -3,8 +3,6 @@ var Random_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.random = exports.Random = void 0;
 const tslib_1 = require("tslib");
-/// <reference types="node" />
-const expect_1 = require("@lazy-random/expect");
 const rng_abstract_1 = require("@lazy-random/rng-abstract");
 const rng_factory_1 = require("@lazy-random/rng-factory");
 const core_decorators_1 = require("core-decorators");
@@ -31,8 +29,16 @@ let Random = Random_1 = class Random extends random_core_1.RandomCore {
          */
         if (rng) {
             //ow(rng, ow.object.instanceOf(RNG))
-            // @ts-ignore
-            (0, expect_1.expect)(rng).instanceof(rng_abstract_1.RNG);
+            /**
+             * 改用 `@lazy-random/rng-abstract` 自帶的 `_assertInstanceOfRNG()` 驗證，
+             * 以品牌鍵 (Brand Key) 補足原生 `instanceof` 比對，
+             * 避免 ESM / CJS 重複載入時同一個別被當成不同個體而誤判失敗；
+             * 顯式傳入 `<R>` 讓收窄 (Narrowing) 結果與 `_init()` 的 `R` 一致。
+             * Uses the package's own `_assertInstanceOfRNG()`: the brand check backs up the native
+             * constructor comparison so a duplicate ESM/CJS copy of the same RNG is not misjudged;
+             * the explicit `<R>` keeps the narrowed type aligned with the `R` used by `_init()`.
+             */
+            (0, rng_abstract_1._assertInstanceOfRNG)(rng);
         }
         /**
          * 以不可列舉 (Non-enumerable)、不可設定 (Non-configurable) 的唯讀屬性

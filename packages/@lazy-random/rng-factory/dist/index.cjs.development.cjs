@@ -42,7 +42,7 @@ function RNGFactory(...args) {
   const [arg0 = 'default', ...rest] = args;
   switch (typeof arg0) {
     case 'object':
-      if (arg0 instanceof rngAbstract.RNG) {
+      if (rngAbstract._isInstanceOfRNG(arg0)) {
         return arg0;
       }
       break;

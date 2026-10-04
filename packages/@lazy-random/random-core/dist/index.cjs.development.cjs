@@ -2,12 +2,12 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var expect = require('@lazy-random/expect');
 var sharedLib = require('@lazy-random/shared-lib');
 var Distributions = require('@lazy-random/distributions');
 var rngAbstract = require('@lazy-random/rng-abstract');
 
 /// <reference types="node" />
+
 /**
  * 取代 `core-decorators` 的 `@autobind` 裝飾器
  *
@@ -82,17 +82,17 @@ class RandomCore {
   }
   _init(rng, ...argv) {
     if (rng) {
-      // @ts-ignore
-      expect.expect(rng).instanceof(rngAbstract.RNG);
+      /**
+       * 改用 `@lazy-random/rng-abstract` 自帶的 `_assertInstanceOfRNG()` 驗證，
+       * 以品牌鍵 (Brand Key) 補足原生 `instanceof` 比對，避免 ESM / CJS 重複載入時
+       * 同一個別被當成不同個體而誤判失敗；
+       * 顯式傳入 `<R>` 讓收窄 (Narrowing) 結果與 `_init()` 的 `R` 一致。
+       * Uses the package's own `_assertInstanceOfRNG()`: the brand check backs up the native
+       * constructor comparison so a duplicate ESM/CJS copy is not misjudged; the explicit
+       * `<R>` keeps the narrowed type aligned with the `R` used by `_init()`.
+       */
+      rngAbstract._assertInstanceOfRNG(rng);
     }
-    /**
-     * TODO: 未傳入 `rng` 時 `_init()` 仍會呼叫 `use(undefined)`，而 `use()` 對任何輸入都執行
-     * `expect(rng).instanceof(RNG)` 驗證；需確認 `@lazy-random/expect` 對 `undefined` 的行為，
-     * 因為這可能與類別文件所述「預設以 Math.random 為底層」相衝突
-     * TODO: `_init()` still calls `use(undefined)` when `rng` is omitted, while `use()` asserts
-     * `expect(rng).instanceof(RNG)` for any input; verify how `@lazy-random/expect` treats `undefined`,
-     * since it may contradict the class doc claiming Math.random as the default
-     */
     this.use(rng);
   }
   /**
@@ -148,16 +148,28 @@ class RandomCore {
    * 切換底層亂數產生器 (RNG)
    * Switch the underlying RNG
    *
-   * 任何輸入都會先經 `expect()` 驗證，非 `RNG` 實例會拋出驗證錯誤
-   * Every input is validated by `expect()` first; a non-`RNG` value throws a validation error
+   * 任何輸入都會先經 `_assertInstanceOfRNG()` 驗證，非 `RNG` 實例會拋出 `RNGInstanceOfError`
+   * Every input is validated by `_assertInstanceOfRNG()` first; a non-`RNG` value throws an `RNGInstanceOfError`
    *
    * @param rng - 新的 `RNG` 實例 / the new `RNG` instance
    * @param args - 目前未使用，保留給子類別覆寫 / currently unused, reserved for subclass overrides
    * @returns 回傳自身以便鏈式呼叫 (Chain) / returns `this` for chaining
    */
   use(rng, ...args) {
-    // @ts-ignore
-    expect.expect(rng).instanceof(rngAbstract.RNG);
+    /**
+     * 改用 `@lazy-random/rng-abstract` 自帶的 `_assertInstanceOfRNG()` 驗證：
+     * 品牌鍵 (Brand Key) 檢查不比對建構子個體，
+     * 因此從 ESM / CJS 重複載入的另一份套件取得的 RNG 也不會被誤判為「不是實例」。
+     * Uses the package's own `_assertInstanceOfRNG()`: the brand-key check does not compare
+     * constructor identities, so an RNG obtained from a duplicated ESM/CJS copy of this
+     * package is not rejected as "not an instance".
+     *
+     * 必須維持在 `this._rng` 賦值之前，失敗時才不會改動既有的底層 RNG，
+     * 顯式傳入 `<R>` 則讓收窄後的型別仍可賦值給 `_rng: R`。
+     * It must stay before the `this._rng` assignment so a failure leaves the current RNG untouched,
+     * and the explicit `<R>` keeps the narrowed type assignable to `_rng: R`.
+     */
+    rngAbstract._assertInstanceOfRNG(rng);
     this._rng = rng;
     return this;
   }

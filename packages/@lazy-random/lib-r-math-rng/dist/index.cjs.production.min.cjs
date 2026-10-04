@@ -21,7 +21,7 @@ function _interopNamespaceDefault(e) {
   }), t.default = e, t;
 }
 
-var r = /*#__PURE__*/ _interopNamespaceDefault(e);
+var s = /*#__PURE__*/ _interopNamespaceDefault(e);
 
 function _isLibRMathRNGLike(e) {
   return !(!e || "function" != typeof e.unif_rand && "function" != typeof e.internal_unif_rand);
@@ -37,8 +37,8 @@ class RandomRngWithLibRMath extends n.RNG {
     super(), this._init(e, t, ...n);
   }
   _init(t, n, ...i) {
-    this._rng = t instanceof e.IRNG ? t : n instanceof e.IRNG ? n : _isExtendsOfLibRMathRNGLike(t) ? new t(this._seedNum(n)) : _isExtendsOfLibRMathRNGLike(n) ? new n(this._seedNum(t)) : _isLibRMathRNGLike(t) ? t : _isLibRMathRNGLike(n) ? n : n && r[n] ? new (0, 
-    r[n])(this._seedNum(t)) : new r.rng.MersenneTwister(this._seedNum(t)), this._fn = (this._rng.internal_unif_rand || this._rng.unif_rand).bind(this._rng);
+    this._rng = t instanceof e.IRNG ? t : n instanceof e.IRNG ? n : _isExtendsOfLibRMathRNGLike(t) ? new t(this._seedNum(n)) : _isExtendsOfLibRMathRNGLike(n) ? new n(this._seedNum(t)) : _isLibRMathRNGLike(t) ? t : _isLibRMathRNGLike(n) ? n : n && s[n] ? new (0, 
+    s[n])(this._seedNum(t)) : new s.rng.MersenneTwister(this._seedNum(t)), this._fn = (this._rng.internal_unif_rand || this._rng.unif_rand).bind(this._rng);
   }
   get name() {
     return "libRMath" + (this._rng.name ? `<${this._rng.name}>` : "");
@@ -69,7 +69,7 @@ exports.LibRMathRngWithRandom = class LibRMathRngWithRandom extends e.IRNG {
     null === (t = (n = this.__random).seed) || void 0 === t || t.call(n, this.__seed = e);
   }
   use(e, i) {
-    e && (e instanceof n.RNG || "function" == typeof e.next || ("seedrandom" === e ? e = t.random.newUse("seedrandom", i, {
+    e && (n._isInstanceOfRNG(e) || "function" == typeof e.next || ("seedrandom" === e ? e = t.random.newUse("seedrandom", i, {
       entropy: !1
     }) : e instanceof t.Random || (e = t.random.newUse(e)))), this.__random = e || this.__random || t.random, 
     void 0 !== i && (this.seed = i);
