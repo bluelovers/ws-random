@@ -57,5 +57,12 @@ export declare class Random<R extends RNG = RNG> extends RandomCore<R> {
     readonly Random: typeof Random;
     static Random: typeof Random;
 }
+/**
+ * 套件層級共用的預設實例 (Default Instance)，
+ * 讓使用者不必自行 new 就能直接呼叫 random.float() 等方法。
+ *
+ * Package-level default instance so callers can use random.float() etc.
+ * without constructing a Random themselves.
+ */
 export declare const random: Random<RNG>;
 export default random;

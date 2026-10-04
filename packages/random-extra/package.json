@@ -79,7 +79,7 @@
   },
   "scripts": {
     "coverage": "pnpm run test --coverage",
-    "pretest_": "pnpm run build",
+    "pretest": "pnpm run build",
     "test": "pnpm run test:jest",
     "test:jest": "dotenv -v NODE_OPTIONS=--experimental-vm-modules -- jest --maxConcurrency=1 --maxWorkers=1",
     "test:jest:coverage": "pnpm run test:jest --coverage",
@@ -87,7 +87,7 @@
     "test:snapshot": "pnpm run test -u",
     "test:tsd": "ynpx tsd",
     "posttest_": "git commit -m \"build: update seed\" ./src/util/random-seed-str.data.* & echo posttest",
-    "build_": "pnpm run build:tsc",
+    "build": "pnpm run build:tsc",
     "build:index": "tsx ./test/script/build-cache.ts",
     "build:tsc": "tsc",
     "postbuild_": "ynpx build-ts-file -- ../@lazy-random/seed-data/src/random-seed-str.data.ts && git add ./src/util/random-seed-str.data.ts ./src/util/random-seed-str.data.js",
