@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/bluelovers/ws-random/compare/random-sum-float@1.0.29...random-sum-float@2.0.0) (2026-10-04)
+
+
+
+### 📚　Documentation
+
+* **monorepo:** 為全系列套件新增詳細的 JSDoc 註解與技術說明 ([477e362](https://github.com/bluelovers/ws-random/commit/477e362ece38a6206e60f967171f6ea944c96066))
+* **random-extra:** 優化套件結構並強化程式碼註解與文件說明 ([2d150ac](https://github.com/bluelovers/ws-random/commit/2d150aced77de8424ba2d297ca52a5762ba23b81))
+
+
+### 🚨　Tests
+
+* **core:** 優化型別定義與建置流程並強化 RNG 實例檢查 ([3c99a64](https://github.com/bluelovers/ws-random/commit/3c99a64d03f356bb5f199a57bf1f6b4d7364c0ae))
+
+
+### 🛠　Build System
+
+* migrate workspace from yarn to pnpm ([7601043](https://github.com/bluelovers/ws-random/commit/76010433d41a92ff8b3138b3712283e35a94fcce))
+
+
+### ♻️　Chores
+
+* **monorepo:** 更新各子套件 package.json 之描述與關鍵字 ([f058e47](https://github.com/bluelovers/ws-random/commit/f058e4766da801120e6aab08b0db04e2dd553909))
+
+
+### 🔖　Miscellaneous
+
+* . ([3148db0](https://github.com/bluelovers/ws-random/commit/3148db01cd5b14349bf84df9c05416daa87dafb5))
+
+
+
 ## [1.0.29](https://github.com/bluelovers/ws-random/compare/random-sum-float@1.0.28...random-sum-float@1.0.29) (2023-11-20)
 
 **Note:** Version bump only for package random-sum-float

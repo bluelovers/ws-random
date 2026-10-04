@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/expect",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "預先載入 chai-asserttype-extra 外掛 (Plugin) 的 Chai 斷言 (Assertion) 封裝套件，讓專案不必在每個測試檔重複呼叫 chai.use()",
   "keywords": [
     "assert",

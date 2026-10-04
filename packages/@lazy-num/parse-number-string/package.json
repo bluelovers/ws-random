@@ -1,6 +1,6 @@
 {
   "name": "@lazy-num/parse-number-string",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "將數字字串 (Number String) 解析為 number 的小工具，提供整數／小數字串的型別守衛 (Type Guard) 與解析函式",
   "keywords": [
     "alea",

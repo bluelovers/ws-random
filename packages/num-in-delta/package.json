@@ -1,6 +1,6 @@
 {
   "name": "num-in-delta",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "check actual number is expected number ± delta",
   "keywords": [
     "num-in-delta",

@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/array-algorithm",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "陣列隨機演算法 (Random Algorithm) 工具集：洗牌 (Shuffle) 與數值區間重分布 (Rebase) 等功能",
   "keywords": [
     "algorithm",
@@ -71,8 +71,8 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/array-rand-index": "^1.1.0",
-    "@lazy-random/shared-lib": "^1.1.0"
+    "@lazy-random/array-rand-index": "^2.0.0",
+    "@lazy-random/shared-lib": "^2.0.0"
   },
   "publishConfig": {
     "access": "public"

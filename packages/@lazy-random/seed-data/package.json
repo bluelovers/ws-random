@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/seed-data",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "匯出亂數種子 (Random Seed) 相關的來源資料 (Source Data)，供其他套件產生種子或記錄除錯資訊時引用",
   "keywords": [
     "lazy-random",

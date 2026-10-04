@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/bytes-to-uuid",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "將位元組陣列 (Byte Array) 格式化為 UUID (Universally Unique Identifier) 字串的小工具",
   "keywords": [
     "byte-array",
@@ -69,7 +69,7 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/shared-lib": "^1.1.0"
+    "@lazy-random/shared-lib": "^2.0.0"
   },
   "publishConfig": {
     "access": "public"

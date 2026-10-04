@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/lib-r-math-rng",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "橋接 lib-r-math.js 與 @lazy-random／random-extra 的亂數產生器 (Random Number Generator, RNG) 包裝套件，讓兩套亂數系統可互相替換、混用",
   "keywords": [
     "random",
@@ -73,7 +73,7 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/rng-abstract": "^1.1.0",
+    "@lazy-random/rng-abstract": "^2.0.0",
     "is-extends-of": "^2.0.2",
     "lib-r-math.js": "<2 >=1.0.94"
   },

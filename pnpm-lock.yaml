@@ -22,7 +22,7 @@ importers:
         version: 2.0.3(@types/bluebird@3.5.42)(@types/node@26.6.3)(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(ts-toolbelt@9.6.0)
       '@lazy-random/preset-seedrandom':
         specifier: ^1.0.11
-        version: link:packages/@lazy-random/preset-seedrandom
+        version: 1.0.11(seedrandom@3.0.5)(supports-color@8.1.1)(ts-toolbelt@9.6.0)
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
@@ -82,13 +82,13 @@ importers:
         version: 3.3.19
       num-in-delta:
         specifier: ^1.0.10
-        version: link:packages/num-in-delta
+        version: 1.0.10
       random:
         specifier: <4 >=3.0.6
         version: 3.0.6
       random-extra:
         specifier: ^5.0.2
-        version: link:packages/random-extra
+        version: 5.0.2(seedrandom@3.0.5)(supports-color@8.1.1)(ts-toolbelt@9.6.0)
       seedrandom:
         specifier: ^3.0.5
         version: 3.0.5
@@ -154,13 +154,13 @@ importers:
   packages/@lazy-num/float-algorithm:
     devDependencies:
       '@lazy-random/seed-algorithm':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../../@lazy-random/seed-algorithm
 
   packages/@lazy-num/float-from-buffer:
     dependencies:
       '@lazy-random/shared-lib':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../../@lazy-random/shared-lib
 
   packages/@lazy-num/float-to-string: {}
@@ -172,7 +172,7 @@ importers:
   packages/@lazy-num/sum:
     dependencies:
       num-is-zero:
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../../num-is-zero
 
   packages/@lazy-num/to-fixed-number: {}
@@ -180,22 +180,22 @@ importers:
   packages/@lazy-random/array-algorithm:
     dependencies:
       '@lazy-random/array-rand-index':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../array-rand-index
       '@lazy-random/shared-lib':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../shared-lib
 
   packages/@lazy-random/array-rand-index:
     dependencies:
       '@lazy-random/original-math-random':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../original-math-random
 
   packages/@lazy-random/bytes-to-uuid:
     dependencies:
       '@lazy-random/shared-lib':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../shared-lib
 
   packages/@lazy-random/clone-class: {}
@@ -205,123 +205,123 @@ importers:
   packages/@lazy-random/df-algorithm:
     dependencies:
       '@lazy-random/expect':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../expect
       num-is-zero:
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../../num-is-zero
     devDependencies:
       '@lazy-random/rng-abstract':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../rng-abstract
       '@lazy-random/util-test':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../util-test
 
   packages/@lazy-random/df-array:
     dependencies:
       '@lazy-random/array-algorithm':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../array-algorithm
       '@lazy-random/df-uniform':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../df-uniform
       '@lazy-random/expect':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../expect
       '@lazy-random/rng-abstract':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../rng-abstract
       '@lazy-random/rng-abstract-core':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../rng-abstract-core
       '@lazy-random/shared-lib':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../shared-lib
       '@lazy-random/util-distributions':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../util-distributions
       typedarray-dts:
         specifier: ^1.0.0
         version: 1.0.0
     devDependencies:
       '@lazy-random/util-test':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../util-test
 
   packages/@lazy-random/df-char-id:
     dependencies:
       '@lazy-num/float-to-string':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../../@lazy-num/float-to-string
       '@lazy-random/expect':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../expect
       '@lazy-random/shared-lib':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../shared-lib
       '@lazy-random/util-distributions':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../util-distributions
       uni-string:
         specifier: ^2.0.10
         version: 2.0.10
     devDependencies:
       '@lazy-random/rng-abstract':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../rng-abstract
 
   packages/@lazy-random/df-item-by-weight:
     dependencies:
       '@lazy-random/df-array':
-        specifier: ^2.1.0
+        specifier: ^3.0.0
         version: link:../df-array
       '@lazy-random/expect':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../expect
     devDependencies:
       '@lazy-random/rng-abstract':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../rng-abstract
       '@lazy-random/util-test':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../util-test
 
   packages/@lazy-random/df-poisson:
     dependencies:
       '@lazy-random/expect':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../expect
     devDependencies:
       '@lazy-random/rng-abstract':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../rng-abstract
       '@lazy-random/util-test':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../util-test
 
   packages/@lazy-random/df-sum:
     dependencies:
       '@lazy-num/sum':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../../@lazy-num/sum
       '@lazy-random/df-uniform':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../df-uniform
       '@lazy-random/expect':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../expect
       '@lazy-random/fake-lib-r-math-rng':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../fake-lib-r-math-rng
       '@lazy-random/rng-abstract':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../rng-abstract
       '@lazy-random/util-distributions':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../util-distributions
       '@lazy-random/util-probabilities':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../util-probabilities
       array-hyper-unique:
         specifier: ^2.1.8
@@ -331,78 +331,78 @@ importers:
         version: 1.0.94(supports-color@8.1.1)
     devDependencies:
       '@lazy-num/to-fixed-number':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../../@lazy-num/to-fixed-number
       '@lazy-random/shared-lib':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../shared-lib
       '@lazy-random/util-test':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../util-test
       num-is-zero:
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../../num-is-zero
 
   packages/@lazy-random/df-uniform:
     dependencies:
       '@lazy-num/to-fixed-number':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../../@lazy-num/to-fixed-number
       '@lazy-random/expect':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../expect
       '@lazy-random/shared-lib':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../shared-lib
     devDependencies:
       '@lazy-random/rng-abstract':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../rng-abstract
       '@lazy-random/util-test':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../util-test
 
   packages/@lazy-random/df-uuid:
     dependencies:
       '@lazy-random/bytes-to-uuid':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../bytes-to-uuid
       '@lazy-random/df-uniform':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../df-uniform
       '@lazy-random/shared-lib':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../shared-lib
     devDependencies:
       '@lazy-random/rng-abstract':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../rng-abstract
 
   packages/@lazy-random/distributions:
     dependencies:
       '@lazy-random/df-algorithm':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../df-algorithm
       '@lazy-random/df-array':
-        specifier: ^2.1.0
+        specifier: ^3.0.0
         version: link:../df-array
       '@lazy-random/df-char-id':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../df-char-id
       '@lazy-random/df-item-by-weight':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../df-item-by-weight
       '@lazy-random/df-poisson':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../df-poisson
       '@lazy-random/df-sum':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../df-sum
       '@lazy-random/df-uniform':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../df-uniform
       '@lazy-random/df-uuid':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../df-uuid
 
   packages/@lazy-random/expect:
@@ -423,67 +423,67 @@ importers:
   packages/@lazy-random/generators-crypto:
     dependencies:
       '@lazy-num/float-from-buffer':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../../@lazy-num/float-from-buffer
       '@lazy-random/array-rand-index':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../array-rand-index
       '@lazy-random/cross-crypto':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../cross-crypto
       '@lazy-random/expect':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../expect
       '@lazy-random/rng-abstract':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../rng-abstract
       '@lazy-random/shared-lib':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../shared-lib
 
   packages/@lazy-random/generators-function:
     dependencies:
       '@lazy-random/clone-class':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../clone-class
       '@lazy-random/expect':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../expect
       '@lazy-random/rng-abstract':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../rng-abstract
 
   packages/@lazy-random/generators-math-random:
     dependencies:
       '@lazy-random/clone-class':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../clone-class
       '@lazy-random/original-math-random':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../original-math-random
       '@lazy-random/rng-abstract-core':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../rng-abstract-core
 
   packages/@lazy-random/generators-math-random2:
     dependencies:
       '@lazy-random/generators-function':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../generators-function
       '@lazy-random/original-math-random':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../original-math-random
 
   packages/@lazy-random/generators-seedrandom:
     dependencies:
       '@lazy-random/clone-class':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../clone-class
       '@lazy-random/generators-function':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../generators-function
       '@lazy-random/shared-lib':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../shared-lib
       '@types/seedrandom':
         specifier: ^3.0.8
@@ -495,25 +495,25 @@ importers:
   packages/@lazy-random/generators-sfc32:
     dependencies:
       '@lazy-num/float-algorithm':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../../@lazy-num/float-algorithm
       '@lazy-random/rng-abstract-core':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../rng-abstract-core
       '@lazy-random/seed-algorithm':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../seed-algorithm
 
   packages/@lazy-random/generators-xor128:
     dependencies:
       '@lazy-random/clone-class':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../clone-class
       '@lazy-random/rng-abstract':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../rng-abstract
       '@lazy-random/seed-token':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../seed-token
 
   packages/@lazy-random/generators-xorshift128:
@@ -522,13 +522,13 @@ importers:
         specifier: ^1.2.1
         version: 1.2.1
       '@lazy-random/rng-abstract':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../rng-abstract
 
   packages/@lazy-random/lib-r-math-rng:
     dependencies:
       '@lazy-random/rng-abstract':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../rng-abstract
       is-extends-of:
         specifier: ^2.0.2
@@ -542,7 +542,7 @@ importers:
   packages/@lazy-random/preset-seedrandom:
     dependencies:
       random-extra:
-        specifier: ^5.0.2
+        specifier: ^6.0.0
         version: link:../../random-extra
       seedrandom:
         specifier: '*'
@@ -551,31 +551,31 @@ importers:
   packages/@lazy-random/random-core:
     dependencies:
       '@lazy-random/df-array':
-        specifier: ^2.1.0
+        specifier: ^3.0.0
         version: link:../df-array
       '@lazy-random/df-item-by-weight':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../df-item-by-weight
       '@lazy-random/distributions':
-        specifier: ^2.1.0
+        specifier: ^3.0.0
         version: link:../distributions
       '@lazy-random/expect':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../expect
       '@lazy-random/rng-abstract':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../rng-abstract
       '@lazy-random/shared-lib':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../shared-lib
 
   packages/@lazy-random/rng-abstract:
     dependencies:
       '@lazy-random/rng-abstract-core':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../rng-abstract-core
       '@lazy-random/seed-token':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../seed-token
 
   packages/@lazy-random/rng-abstract-core: {}
@@ -583,25 +583,25 @@ importers:
   packages/@lazy-random/rng-factory:
     dependencies:
       '@lazy-random/generators-crypto':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../generators-crypto
       '@lazy-random/generators-function':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../generators-function
       '@lazy-random/generators-math-random':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../generators-math-random
       '@lazy-random/generators-math-random2':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../generators-math-random2
       '@lazy-random/generators-seedrandom':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../generators-seedrandom
       '@lazy-random/generators-xor128':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../generators-xor128
       '@lazy-random/rng-abstract':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../rng-abstract
       '@types/seedrandom':
         specifier: '=2.4.28'
@@ -610,7 +610,7 @@ importers:
   packages/@lazy-random/seed-algorithm:
     dependencies:
       '@lazy-random/original-math-random':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../original-math-random
       ts-type:
         specifier: ^3.0.18
@@ -621,10 +621,10 @@ importers:
   packages/@lazy-random/seed-date:
     dependencies:
       '@lazy-num/float-to-string':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../../@lazy-num/float-to-string
       '@lazy-random/original-math-random':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../original-math-random
 
   packages/@lazy-random/seed-token:
@@ -633,16 +633,16 @@ importers:
         specifier: ^1.0.14
         version: 1.0.14
       '@lazy-num/float-to-string':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../../@lazy-num/float-to-string
       '@lazy-random/original-math-random':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../original-math-random
       '@lazy-random/seed-data':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../seed-data
       '@lazy-random/shared-lib':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../shared-lib
       hash-sum:
         specifier: ^2.0.0
@@ -665,14 +665,14 @@ importers:
   packages/@lazy-random/util-distributions:
     dependencies:
       num-is-zero:
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../../num-is-zero
     devDependencies:
       '@lazy-random/rng-abstract':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../rng-abstract
       '@lazy-random/util-test':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../util-test
 
   packages/@lazy-random/util-probabilities: {}
@@ -680,13 +680,13 @@ importers:
   packages/@lazy-random/util-test:
     dependencies:
       '@lazy-random/original-math-random':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../original-math-random
       '@lazy-random/rng-factory':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../rng-factory
       '@lazy-random/simple-wrap':
-        specifier: ^1.1.0
+        specifier: ^2.0.0
         version: link:../simple-wrap
       '@types/seedrandom':
         specifier: ^3.0.8
@@ -708,31 +708,31 @@ importers:
   packages/random-extra:
     dependencies:
       '@lazy-random/clone-class':
-        specifier: ^1.0.11
+        specifier: ^2.0.0
         version: link:../@lazy-random/clone-class
       '@lazy-random/cross-crypto':
-        specifier: ^1.0.11
+        specifier: ^2.0.0
         version: link:../@lazy-random/cross-crypto
       '@lazy-random/expect':
-        specifier: ^1.0.15
+        specifier: ^2.0.0
         version: link:../@lazy-random/expect
       '@lazy-random/generators-seedrandom':
-        specifier: ^1.0.10
+        specifier: ^2.0.0
         version: link:../@lazy-random/generators-seedrandom
       '@lazy-random/random-core':
-        specifier: ^2.0.3
+        specifier: ^3.0.0
         version: link:../@lazy-random/random-core
       '@lazy-random/rng-abstract':
-        specifier: ^1.0.13
+        specifier: ^2.0.0
         version: link:../@lazy-random/rng-abstract
       '@lazy-random/rng-factory':
-        specifier: ^1.0.10
+        specifier: ^2.0.0
         version: link:../@lazy-random/rng-factory
       core-decorators:
         specifier: ^0.20.0
         version: 0.20.0
       num-is-zero:
-        specifier: ^1.0.13
+        specifier: ^2.0.0
         version: link:../num-is-zero
       tslib:
         specifier: ^2.8.1
@@ -742,25 +742,25 @@ importers:
         specifier: ^1.0.14
         version: 1.0.14
       '@lazy-num/sum':
-        specifier: ^1.0.10
+        specifier: ^2.0.0
         version: link:../@lazy-num/sum
       '@lazy-random/array-algorithm':
-        specifier: ^1.0.14
+        specifier: ^2.0.0
         version: link:../@lazy-random/array-algorithm
       '@lazy-random/original-math-random':
-        specifier: ^1.0.10
+        specifier: ^2.0.0
         version: link:../@lazy-random/original-math-random
       '@lazy-random/seed-token':
-        specifier: ^1.0.13
+        specifier: ^2.0.0
         version: link:../@lazy-random/seed-token
       '@lazy-random/simple-wrap':
-        specifier: ^1.0.10
+        specifier: ^2.0.0
         version: link:../@lazy-random/simple-wrap
 
   packages/random-sum-float:
     dependencies:
       random-extra:
-        specifier: ^5.0.2
+        specifier: ^6.0.0
         version: link:../random-extra
 
 packages:
@@ -1171,6 +1171,119 @@ packages:
 
   '@lazy-node/types-path@1.0.3':
     resolution: {integrity: sha512-5Bnl5s5jh7o14i0oa7gj+Y0fDLIlri3+KVZmv4gk0OFGuOrOEmWBBCI9ky3Syip5g/yPHZdfa+WO5BVJMUpMdw==}
+
+  '@lazy-num/float-from-buffer@1.0.14':
+    resolution: {integrity: sha512-g4zh6JJfsb+hS/sWMyXwOEsTnn8MOYWYfdw07lk4pyBzXq+Ami4oIQ+Szd7+enm/TZIzsxWW1+R/opKcLG4fhA==}
+
+  '@lazy-num/float-to-string@1.0.11':
+    resolution: {integrity: sha512-+T8u9TBlTdgp0YpjWH0FXGYplJ4S/eZ4XOMYC0SsBds43x/k7K4Ph1VsRAJbTRw3sIArcOTCsyQOvl/XzIYXcg==}
+
+  '@lazy-num/sum@1.0.10':
+    resolution: {integrity: sha512-6Q2lYlDwo2QE11FYM/kXxEC+GzSgeR2cfcvwan76JYOlJacf2eE9K1C+51PAS16d9D66LoE4nB+AS9iSanaN0w==}
+
+  '@lazy-num/to-fixed-number@1.0.11':
+    resolution: {integrity: sha512-Tvs3aM/PSDayhn0m8rhXVMGOIVrG2kR5Rllqymf8Nh7SMdzThqGjNU5RlnIrZVQVpYgf/W3VT+F6GCY7tg2tTA==}
+
+  '@lazy-random/array-algorithm@1.0.14':
+    resolution: {integrity: sha512-cqetBN3FqodvG09abXyIR7MF591tGEGx5AWLbqEcUDb8kn2zYcaP1RutB4h6gBEtMMVXna3U2qojIJbHFnYsIA==}
+
+  '@lazy-random/array-rand-index@1.0.16':
+    resolution: {integrity: sha512-+80FgIOKMwtDeGD7kKZf2y46I6CbY7TTKy58u34kE2BeSDvwH99cCD188tWInZkokGfu9fwzDj06IRcKTkWDAQ==}
+
+  '@lazy-random/bytes-to-uuid@1.0.14':
+    resolution: {integrity: sha512-akcpCH7px+PG5rzNa7ZQgx629oVdrTKv0/ashyObENbYHnkA6y1abJl7LOrnlKsoVEaPWRSM26hB4f4belKN1A==}
+
+  '@lazy-random/clone-class@1.0.11':
+    resolution: {integrity: sha512-lTBUYYbBlUclXGM3Z9+WOSHai3HswbNwbP01jvKeSnu2tPTqrioKRfdnpOcRUHN9SsZmaKhhO9wcgMIEbgFzPg==}
+
+  '@lazy-random/cross-crypto@1.0.11':
+    resolution: {integrity: sha512-oa4NekUR3qomgCeXR9VwkkJVZomRp+G12df4FRrSFqXsRmiCa2Vi52U5W14Z2U91IK5yQ6dq0HC9sDKNQCXZhQ==}
+
+  '@lazy-random/df-algorithm@1.0.13':
+    resolution: {integrity: sha512-czdlSqewLqW72luiKi0drQ+hEAzd+llQBR1b0dDVehurG3eSh43/E0q/yKwO0cfr5sq47Q69qbwD7/Z5oB5NEg==}
+
+  '@lazy-random/df-array@2.0.2':
+    resolution: {integrity: sha512-wej5ehmn2ICA7j2fQBDP+Zn48MI0Xo0GsVkG1dVVNCzNl1Bk29bCvM72s8PKttuG47K9Qf38oXuQuGI72liPaA==}
+
+  '@lazy-random/df-char-id@1.0.15':
+    resolution: {integrity: sha512-vZ8lrf9bWG3ru5k+JwomzhcsEUhoO1JT2MxXgGEyUNyIaKYsdjCdNWEBTh1J35yBCLay9/2vSjdka1qZ0Lpnsw==}
+
+  '@lazy-random/df-item-by-weight@1.0.10':
+    resolution: {integrity: sha512-ERcLUGkELO8Srkm3QbLjjB2t4OR5A+lnXgiX/lu2JTLm8PXXFH0Kfj+KF4VDIuPKSIb4TYu2tTWGmlTR2XiEIg==}
+
+  '@lazy-random/df-poisson@1.0.13':
+    resolution: {integrity: sha512-7mjIEf9MZ9y4fCWSLz7i1NrBpIpQeV8OQLAB+doboDPbsyYSb/m1qPIL12Tkp1+p7fWamOI0+XAh5ToB2DjT+A==}
+
+  '@lazy-random/df-sum@1.0.13':
+    resolution: {integrity: sha512-lNyDjmKf8ZlIIR6K2ePE1MycQGw9YKY1kmnQVXibBDLeikcXu76WO/4cDeslVfT9Ctk9NPb4P3Q+NafMb48OeA==}
+
+  '@lazy-random/df-uniform@1.0.11':
+    resolution: {integrity: sha512-5KZOtl8KimeIOuh1/PUGdz8Kb/V0pNQdb3latGO1ty5ipkWhp7KqkfeFW09Yuqv8uDhO3jBdKCzsXzEVo+GCog==}
+
+  '@lazy-random/df-uuid@1.0.10':
+    resolution: {integrity: sha512-KmtoJeIUOswNOi/1PoqgdgxPzC6/NkOgHBAjF1tRa3aq8y6YeidrNZOGAU2neJRRs9VQded0YUi14HHwI7yCHA==}
+
+  '@lazy-random/distributions@2.0.3':
+    resolution: {integrity: sha512-FCDVZol6IS2TvaFg2aF3CYoMjQYKU5K1E71HEkSuBbzJY8TFXA3y0R+KRZQ503T359sSMcyiv0Tq7RBjZqgp0g==}
+
+  '@lazy-random/expect@1.0.15':
+    resolution: {integrity: sha512-Mhnd929VnVl0lq/DffRpqk0zBEACZ7BOfZhtZX61TktFDuUojpKwxS380r1wEyty1gye9makMxqTldazPsOo0A==}
+
+  '@lazy-random/fake-lib-r-math-rng@1.0.10':
+    resolution: {integrity: sha512-5Y5BhIpTfpP/UdevUKrGtHI2/4Y1uHMCB7n82YimUkzfNNpqUlQ0xoYXXn0np2EyvuBSKh1N24CduKH14zOwCA==}
+
+  '@lazy-random/generators-crypto@1.0.11':
+    resolution: {integrity: sha512-OTAwLhT19dfLUO/bFP2TQX1074kwDdRxoRIqu1qkaAWZnolmtOvb38leyY9VSNgkeOcRDFORgWUafFDDzr0baw==}
+
+  '@lazy-random/generators-function@1.0.11':
+    resolution: {integrity: sha512-VqXqEIlQdOKNUkDWb5UQHaFdStNn27Pdaep9FIo3QdnJpGQHqDXn3IJ21piD4Z99la1nvxeRJCilGwkZRya7gw==}
+
+  '@lazy-random/generators-math-random2@1.0.10':
+    resolution: {integrity: sha512-siI/gSnQ1/0NsEffxpZn19Z7lai9Q8dNyuglLxkL5CK/CWmR1Hp524CCYjpcNtyskBz5klTSFQh6cQUeGPDXxA==}
+
+  '@lazy-random/generators-math-random@1.0.11':
+    resolution: {integrity: sha512-RUu/BNLjiD+Z5fYzLFILawATds1ILpKAwCfzcO6EJFKIwcGikW/6g+LvfjMvRYAXZ5HsDf8nP4iPtferCvtC9A==}
+
+  '@lazy-random/generators-seedrandom@1.0.10':
+    resolution: {integrity: sha512-eTD4+EaeqBi9PT3lmsL9DYPIh+zX9BvMGt2Xup1DNCdYkBh1L3/6IQYMsNixruPKMu45CwD4WGrrJxyaKv6jqQ==}
+
+  '@lazy-random/generators-xor128@1.0.11':
+    resolution: {integrity: sha512-Lo6Y3oKaI2lcY6kwAfwH4M6oGlaJrGMbMFYbj7qR8qsdEyvHbGkUqdhXJrCEjuV7TDlfxzwpJJNxUeL30DAm8w==}
+
+  '@lazy-random/original-math-random@1.0.10':
+    resolution: {integrity: sha512-uw1XzVwKYA1+5Vwc0+CRW6MxKXPVWJOuzhe81sZdQyoDlQ2lfH0XTsF8S+Vutwsfht/eEDreNSMSKZ80Y6l6Ww==}
+
+  '@lazy-random/preset-seedrandom@1.0.11':
+    resolution: {integrity: sha512-Gn7znldJWXwLNY3heAZNW9RMUZPLv3HdOzkrKnsv35rFt7MWOtgBK+68dYDv28bEiNTVuRX/GfS6//sCg6jXJg==}
+    peerDependencies:
+      seedrandom: '*'
+
+  '@lazy-random/random-core@2.0.3':
+    resolution: {integrity: sha512-T3humUSYX7T9z0ExkdlTINj9KGxb7tsDEfQCbjnb52wnITYF2kGXpUn+FHTz3X+G1IbwrozylOhWfmYSOvZENw==}
+
+  '@lazy-random/rng-abstract-core@1.0.4':
+    resolution: {integrity: sha512-T+zdBvcgz7ZAEj/ROfAWqthvy/ttd+nL+c4ckmSWpUVVwB1wQTAANHEJJJFgRi5vGAS5uGI8lXXU0m4E/ndwGw==}
+
+  '@lazy-random/rng-abstract@1.0.13':
+    resolution: {integrity: sha512-735dfZ36rhHSK9FWgGP7P/38MHb4BsABbXxrGrl3wc/0hcztbbvbXiO2thY8e7qK4isoT8jNm92YbQAL+G++Xw==}
+
+  '@lazy-random/rng-factory@1.0.10':
+    resolution: {integrity: sha512-zmumwb3ZkNGXeN55zPXuCupeBX8++0XgtNVe4MTiCGRlfpxnNoSTzWo0lh2hbMx8xiPkn0hrcZjHk1aoj5ZdYg==}
+
+  '@lazy-random/seed-data@1.0.10':
+    resolution: {integrity: sha512-4x+Rdu7VTgpLoZ5oTEHhA0FDhqTTnIVN7rFRh6+0XwmqIchIc4izAAhadyDGXLPoffOhXc15WGH/ImNbR9Fvyg==}
+
+  '@lazy-random/seed-token@1.0.13':
+    resolution: {integrity: sha512-rH5qR3WWhTurPfiZ05RtxM+55zFPAc2NpvRj5lDcjYIDcm++/uHnuuY4mAoJL70knoHh6wLH4SSspBEWsE1JnQ==}
+
+  '@lazy-random/shared-lib@1.0.15':
+    resolution: {integrity: sha512-eF2oR1Wste6kSJGknLWPDUujdDc7y2SI3GhWjclIzDnJxwDrKNVsg92IeXVBh7+4Me9uH3Latg+jnhDGFhIMsg==}
+
+  '@lazy-random/util-distributions@1.0.10':
+    resolution: {integrity: sha512-nvhCVGvWAkGrf8WMafvzr/7uyPC8n0HXjSLG7sTsSplKdiLShtRj+ZNWtzB/ay3ce8rd9dJGFFZKBD69+So6Sg==}
+
+  '@lazy-random/util-probabilities@1.0.10':
+    resolution: {integrity: sha512-ZyU2UWfnzCEBpTowtE9EdWzCYmInvrTyd4O8DPE8Hmcfixjapp1IejCK2MrHo31D0wCiuQIYODYaN3sJx1axOg==}
 
   '@lazy-spawn/stringify@2.0.3':
     resolution: {integrity: sha512-THukd73bJlnTCILTkTtfJKlewyIvKjY7w2Tf4pwt9qmksgBJXaNi6CJW6sWf41x5y+q7K8UfH5+sEnP+Haz0dw==}
@@ -1588,6 +1701,9 @@ packages:
     resolution: {integrity: sha512-1OvF9IbWwaeiM9VhzYXVQacMibxpXOMYVNIvMtKRyX9SImBXpKcFr8XvFDeEslCyuH/t6KRt7HEO94AlP8Iatw==}
     engines: {node: '>=12'}
 
+  assertion-error@1.1.0:
+    resolution: {integrity: sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw==}
+
   assertion-error@2.0.1:
     resolution: {integrity: sha512-Izi8RQcffqCeNVgFigKli1ssklIbpHnCYc6AknXGYoB6grJqyeby7jv12JUQgmTAnIDnbck1uxksT4dzN3PWBA==}
     engines: {node: '>=12'}
@@ -1685,6 +1801,10 @@ packages:
   chai-asserttype-extra@2.0.15:
     resolution: {integrity: sha512-9/cA4XsBGW65bmCy89yH1ZLac50Q57P7uEDa3whqXG0JSitTYKm5Iedkgx70Ly6PY/xEK7e88lBVx01OM/9G7A==}
 
+  chai@4.5.0:
+    resolution: {integrity: sha512-RITGBfijLkBddZvnn8jdqoTypxvqbOLYQkGGxXzeFjVHvudaPw0HNFD9x928/eUwYWd2dPCugVqspGALTZZQKw==}
+    engines: {node: '>=4'}
+
   chai@6.3.0:
     resolution: {integrity: sha512-XWAtwJ6OHO+tj0EKCs0Y2UamnyOxseZWltU4x2U2wh8g4AigdjwvtUjvLP2tqkA/avxHEtzxNaqGq/YGNwckKg==}
     engines: {node: '>=18'}
@@ -1700,6 +1820,9 @@ packages:
   char-regex@1.0.2:
     resolution: {integrity: sha512-kWWXztvZ5SBQV+eRgKFeh8q5sLuZY2+8WUIzlxWVTg+oGwY14qylx1KbKzHd8P6ZYkAg0xyIDU9JMHhyJMZ1jw==}
     engines: {node: '>=10'}
+
+  check-error@1.0.3:
+    resolution: {integrity: sha512-iKEoDYaRmd1mxM90a2OEfWhjsjPpYPuQ+lMYsoxB126+t8fw7ySEO48nmDg5COTjxDI65/Y2OWpeEHk3ZOe8zg==}
 
   check-types@11.2.3:
     resolution: {integrity: sha512-+67P1GkJRaxQD6PKK0Et9DhwQB+vGg3PM5+aavopCpZT1lj9jeqfvpgTLAWErNj8qApkkmXlu/Ug74kmhagkXg==}
@@ -1807,6 +1930,10 @@ packages:
 
   deep-eql@4.0.0:
     resolution: {integrity: sha512-GxJC5MOg2KyQlv6WiUF/VAnMj4MWnYiXo4oLgeptOELVoknyErb4Z8+5F/IM/K4g9/80YzzatxmWcyRwUseH0A==}
+    engines: {node: '>=6'}
+
+  deep-eql@4.1.4:
+    resolution: {integrity: sha512-SUwdGfqdKOwxCPeVYjwSyRpJ7Z+fhpwIAtmCUdZIWZ/YP5R9WAsyuSgpLVDi9bjWoN2LXHNss/dk3urXtdQxGg==}
     engines: {node: '>=6'}
 
   deepmerge-plus@4.0.1:
@@ -1974,6 +2101,9 @@ packages:
   get-east-asian-width@1.7.0:
     resolution: {integrity: sha512-XjH1AECxf0giL2V1aU8vKyRR2ppRUb5c0EvT7zuJTokQ74bNo52zOtghqdWIqrhUD79fo3x0WfKZdOqxF6LG1Q==}
     engines: {node: '>=18'}
+
+  get-func-name@2.0.2:
+    resolution: {integrity: sha512-8vXOvuE167CtIc3OyItco7N/dpRtBbYOsPsXCz7X/PMnlGjYjSGuZJgM1Y7mmew7BKf9BqvLX2tnOVy1BBUsxQ==}
 
   get-package-type@0.1.0:
     resolution: {integrity: sha512-pjzuKtY64GYfWizNAJ0fr9VqttZkNiK2iS430LtIHzjBEr6bX8Am2zm4sW4Ro5wjWW5cAlRL1qAMTcXbjNAO2Q==}
@@ -2317,6 +2447,9 @@ packages:
   lodash@4.18.1:
     resolution: {integrity: sha512-dMInicTPVE8d1e5otfwmmjlxkZoUpiVLwyeTdUsi/Caj/gfzzblBcCE5sRHV/AsjuCmxWrte2TNGSYuCeCq+0Q==}
 
+  loupe@2.3.7:
+    resolution: {integrity: sha512-zSMINGVYkdpYSOBmLi0D1Uo7JU9nVdQKrHxC8eYlV+9YKK9WePqAlL7lSlorG/U2Fw1w0hTBmaa/jrQ3UbPHtA==}
+
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
 
@@ -2420,6 +2553,9 @@ packages:
   num-is-roman@1.1.15:
     resolution: {integrity: sha512-TCatVEJI/GARLF+M/1fxfxWGAa0Zp+/q8ofJOoeTfY6tjjccFbCfJ59bJGxMI2djzn/qu4RxGlJECGCTnVd0YA==}
 
+  num-is-zero@1.0.13:
+    resolution: {integrity: sha512-qQ1rNSSEyI7ywVEMmnUHQoYiMBip2i16iVo6R9UPNdL++ySOlkQBKQX+9OgLWBwp/oqdS++i0Qva6fjAr9XT2g==}
+
   onetime@5.1.2:
     resolution: {integrity: sha512-kbpaSSGJTWdAY5KPVeMOKXSrPtr8C8C7wodJbcsd51jRnmD+GZu8Y0VoU6Dm5Z4vWr0Ig/1NKuWRKf7j5aaYSg==}
     engines: {node: '>=6'}
@@ -2483,6 +2619,9 @@ packages:
     resolution: {integrity: sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==}
     engines: {node: '>=8'}
 
+  pathval@1.1.1:
+    resolution: {integrity: sha512-Dp6zGqpTdETdR63lehJYPeIOqpiNBNtc7BpWSLrOje7UaIsE5aY92r/AunQA7rsXvet3lrJ3JnZX29UPTKXyKQ==}
+
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
@@ -2529,6 +2668,11 @@ packages:
 
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
+
+  random-extra@5.0.2:
+    resolution: {integrity: sha512-htiYEKnm/VQ/4IXOfW4BjHM5sCi/4pVGNNJPMu65tzM6SulHBXXSDhA1rX16t18CqWIFjdovOZKEC19IrEH7RQ==}
+    peerDependencies:
+      seedrandom: '*'
 
   random@3.0.6:
     resolution: {integrity: sha512-B53pp/8eFBxULg6sfQgjjmy3vZ2CWVt0Nk4OgkSpvmAf3VXfcEUgGASbNWbXiTiExWe8hCIf5HlddNHzrte9jg==}
@@ -3556,6 +3700,251 @@ snapshots:
     transitivePeerDependencies:
       - ts-toolbelt
 
+  '@lazy-num/float-from-buffer@1.0.14(ts-toolbelt@9.6.0)':
+    dependencies:
+      '@lazy-random/shared-lib': 1.0.15(ts-toolbelt@9.6.0)
+    transitivePeerDependencies:
+      - ts-toolbelt
+
+  '@lazy-num/float-to-string@1.0.11': {}
+
+  '@lazy-num/sum@1.0.10':
+    dependencies:
+      num-is-zero: 1.0.13
+
+  '@lazy-num/to-fixed-number@1.0.11': {}
+
+  '@lazy-random/array-algorithm@1.0.14(ts-toolbelt@9.6.0)':
+    dependencies:
+      '@lazy-random/array-rand-index': 1.0.16
+      '@lazy-random/shared-lib': 1.0.15(ts-toolbelt@9.6.0)
+    transitivePeerDependencies:
+      - ts-toolbelt
+
+  '@lazy-random/array-rand-index@1.0.16':
+    dependencies:
+      '@lazy-random/original-math-random': 1.0.10
+
+  '@lazy-random/bytes-to-uuid@1.0.14(ts-toolbelt@9.6.0)':
+    dependencies:
+      '@lazy-random/shared-lib': 1.0.15(ts-toolbelt@9.6.0)
+    transitivePeerDependencies:
+      - ts-toolbelt
+
+  '@lazy-random/clone-class@1.0.11': {}
+
+  '@lazy-random/cross-crypto@1.0.11': {}
+
+  '@lazy-random/df-algorithm@1.0.13(ts-toolbelt@9.6.0)':
+    dependencies:
+      '@lazy-random/expect': 1.0.15(ts-toolbelt@9.6.0)
+      num-is-zero: 1.0.13
+    transitivePeerDependencies:
+      - ts-toolbelt
+
+  '@lazy-random/df-array@2.0.2(ts-toolbelt@9.6.0)':
+    dependencies:
+      '@lazy-random/array-algorithm': 1.0.14(ts-toolbelt@9.6.0)
+      '@lazy-random/df-uniform': 1.0.11(ts-toolbelt@9.6.0)
+      '@lazy-random/expect': 1.0.15(ts-toolbelt@9.6.0)
+      '@lazy-random/shared-lib': 1.0.15(ts-toolbelt@9.6.0)
+      '@lazy-random/util-distributions': 1.0.10
+    transitivePeerDependencies:
+      - ts-toolbelt
+
+  '@lazy-random/df-char-id@1.0.15(ts-toolbelt@9.6.0)':
+    dependencies:
+      '@lazy-num/float-to-string': 1.0.11
+      '@lazy-random/expect': 1.0.15(ts-toolbelt@9.6.0)
+      '@lazy-random/shared-lib': 1.0.15(ts-toolbelt@9.6.0)
+      '@lazy-random/util-distributions': 1.0.10
+      uni-string: 2.0.10
+    transitivePeerDependencies:
+      - ts-toolbelt
+
+  '@lazy-random/df-item-by-weight@1.0.10(ts-toolbelt@9.6.0)':
+    dependencies:
+      '@lazy-random/df-array': 2.0.2(ts-toolbelt@9.6.0)
+      '@lazy-random/expect': 1.0.15(ts-toolbelt@9.6.0)
+    transitivePeerDependencies:
+      - ts-toolbelt
+
+  '@lazy-random/df-poisson@1.0.13(ts-toolbelt@9.6.0)':
+    dependencies:
+      '@lazy-random/expect': 1.0.15(ts-toolbelt@9.6.0)
+    transitivePeerDependencies:
+      - ts-toolbelt
+
+  '@lazy-random/df-sum@1.0.13(supports-color@8.1.1)(ts-toolbelt@9.6.0)':
+    dependencies:
+      '@lazy-num/sum': 1.0.10
+      '@lazy-random/df-uniform': 1.0.11(ts-toolbelt@9.6.0)
+      '@lazy-random/fake-lib-r-math-rng': 1.0.10
+      '@lazy-random/util-distributions': 1.0.10
+      '@lazy-random/util-probabilities': 1.0.10
+      array-hyper-unique: 2.1.8
+      lib-r-math.js: 1.0.94(supports-color@8.1.1)
+    transitivePeerDependencies:
+      - supports-color
+      - ts-toolbelt
+
+  '@lazy-random/df-uniform@1.0.11(ts-toolbelt@9.6.0)':
+    dependencies:
+      '@lazy-num/to-fixed-number': 1.0.11
+      '@lazy-random/expect': 1.0.15(ts-toolbelt@9.6.0)
+      '@lazy-random/shared-lib': 1.0.15(ts-toolbelt@9.6.0)
+    transitivePeerDependencies:
+      - ts-toolbelt
+
+  '@lazy-random/df-uuid@1.0.10(ts-toolbelt@9.6.0)':
+    dependencies:
+      '@lazy-random/bytes-to-uuid': 1.0.14(ts-toolbelt@9.6.0)
+      '@lazy-random/df-uniform': 1.0.11(ts-toolbelt@9.6.0)
+      '@lazy-random/shared-lib': 1.0.15(ts-toolbelt@9.6.0)
+    transitivePeerDependencies:
+      - ts-toolbelt
+
+  '@lazy-random/distributions@2.0.3(supports-color@8.1.1)(ts-toolbelt@9.6.0)':
+    dependencies:
+      '@lazy-random/df-algorithm': 1.0.13(ts-toolbelt@9.6.0)
+      '@lazy-random/df-array': 2.0.2(ts-toolbelt@9.6.0)
+      '@lazy-random/df-char-id': 1.0.15(ts-toolbelt@9.6.0)
+      '@lazy-random/df-item-by-weight': 1.0.10(ts-toolbelt@9.6.0)
+      '@lazy-random/df-poisson': 1.0.13(ts-toolbelt@9.6.0)
+      '@lazy-random/df-sum': 1.0.13(supports-color@8.1.1)(ts-toolbelt@9.6.0)
+      '@lazy-random/df-uniform': 1.0.11(ts-toolbelt@9.6.0)
+      '@lazy-random/df-uuid': 1.0.10(ts-toolbelt@9.6.0)
+    transitivePeerDependencies:
+      - supports-color
+      - ts-toolbelt
+
+  '@lazy-random/expect@1.0.15(ts-toolbelt@9.6.0)':
+    dependencies:
+      chai: 4.5.0
+      chai-asserttype-extra: 2.0.15(ts-toolbelt@9.6.0)
+    transitivePeerDependencies:
+      - ts-toolbelt
+
+  '@lazy-random/fake-lib-r-math-rng@1.0.10': {}
+
+  '@lazy-random/generators-crypto@1.0.11(ts-toolbelt@9.6.0)':
+    dependencies:
+      '@lazy-num/float-from-buffer': 1.0.14(ts-toolbelt@9.6.0)
+      '@lazy-random/array-rand-index': 1.0.16
+      '@lazy-random/cross-crypto': 1.0.11
+      '@lazy-random/expect': 1.0.15(ts-toolbelt@9.6.0)
+      '@lazy-random/rng-abstract': 1.0.13(ts-toolbelt@9.6.0)
+      '@lazy-random/shared-lib': 1.0.15(ts-toolbelt@9.6.0)
+    transitivePeerDependencies:
+      - ts-toolbelt
+
+  '@lazy-random/generators-function@1.0.11(ts-toolbelt@9.6.0)':
+    dependencies:
+      '@lazy-random/clone-class': 1.0.11
+      '@lazy-random/expect': 1.0.15(ts-toolbelt@9.6.0)
+      '@lazy-random/rng-abstract': 1.0.13(ts-toolbelt@9.6.0)
+    transitivePeerDependencies:
+      - ts-toolbelt
+
+  '@lazy-random/generators-math-random2@1.0.10(ts-toolbelt@9.6.0)':
+    dependencies:
+      '@lazy-random/generators-function': 1.0.11(ts-toolbelt@9.6.0)
+      '@lazy-random/original-math-random': 1.0.10
+    transitivePeerDependencies:
+      - ts-toolbelt
+
+  '@lazy-random/generators-math-random@1.0.11':
+    dependencies:
+      '@lazy-random/clone-class': 1.0.11
+      '@lazy-random/original-math-random': 1.0.10
+      '@lazy-random/rng-abstract-core': 1.0.4
+
+  '@lazy-random/generators-seedrandom@1.0.10(ts-toolbelt@9.6.0)':
+    dependencies:
+      '@lazy-random/clone-class': 1.0.11
+      '@lazy-random/generators-function': 1.0.11(ts-toolbelt@9.6.0)
+      '@lazy-random/shared-lib': 1.0.15(ts-toolbelt@9.6.0)
+      seedrandom: 3.0.5
+    transitivePeerDependencies:
+      - ts-toolbelt
+
+  '@lazy-random/generators-xor128@1.0.11(ts-toolbelt@9.6.0)':
+    dependencies:
+      '@lazy-random/clone-class': 1.0.11
+      '@lazy-random/rng-abstract': 1.0.13(ts-toolbelt@9.6.0)
+      '@lazy-random/seed-token': 1.0.13(ts-toolbelt@9.6.0)
+    transitivePeerDependencies:
+      - ts-toolbelt
+
+  '@lazy-random/original-math-random@1.0.10': {}
+
+  '@lazy-random/preset-seedrandom@1.0.11(seedrandom@3.0.5)(supports-color@8.1.1)(ts-toolbelt@9.6.0)':
+    dependencies:
+      random-extra: 5.0.2(seedrandom@3.0.5)(supports-color@8.1.1)(ts-toolbelt@9.6.0)
+      seedrandom: 3.0.5
+    transitivePeerDependencies:
+      - supports-color
+      - ts-toolbelt
+
+  '@lazy-random/random-core@2.0.3(supports-color@8.1.1)(ts-toolbelt@9.6.0)':
+    dependencies:
+      '@lazy-random/distributions': 2.0.3(supports-color@8.1.1)(ts-toolbelt@9.6.0)
+      '@lazy-random/expect': 1.0.15(ts-toolbelt@9.6.0)
+      '@lazy-random/rng-abstract': 1.0.13(ts-toolbelt@9.6.0)
+      '@lazy-random/shared-lib': 1.0.15(ts-toolbelt@9.6.0)
+      core-decorators: 0.20.0
+      tslib: 2.8.1
+    transitivePeerDependencies:
+      - supports-color
+      - ts-toolbelt
+
+  '@lazy-random/rng-abstract-core@1.0.4': {}
+
+  '@lazy-random/rng-abstract@1.0.13(ts-toolbelt@9.6.0)':
+    dependencies:
+      '@lazy-random/rng-abstract-core': 1.0.4
+      '@lazy-random/seed-token': 1.0.13(ts-toolbelt@9.6.0)
+    transitivePeerDependencies:
+      - ts-toolbelt
+
+  '@lazy-random/rng-factory@1.0.10(ts-toolbelt@9.6.0)':
+    dependencies:
+      '@lazy-random/generators-crypto': 1.0.11(ts-toolbelt@9.6.0)
+      '@lazy-random/generators-function': 1.0.11(ts-toolbelt@9.6.0)
+      '@lazy-random/generators-math-random': 1.0.11
+      '@lazy-random/generators-math-random2': 1.0.10(ts-toolbelt@9.6.0)
+      '@lazy-random/generators-seedrandom': 1.0.10(ts-toolbelt@9.6.0)
+      '@lazy-random/generators-xor128': 1.0.11(ts-toolbelt@9.6.0)
+      '@lazy-random/rng-abstract': 1.0.13(ts-toolbelt@9.6.0)
+      '@types/seedrandom': 2.4.28
+    transitivePeerDependencies:
+      - ts-toolbelt
+
+  '@lazy-random/seed-data@1.0.10': {}
+
+  '@lazy-random/seed-token@1.0.13(ts-toolbelt@9.6.0)':
+    dependencies:
+      '@lazy-assert/check-basic': 1.0.14
+      '@lazy-num/float-to-string': 1.0.11
+      '@lazy-random/original-math-random': 1.0.10
+      '@lazy-random/seed-data': 1.0.10
+      '@lazy-random/shared-lib': 1.0.15(ts-toolbelt@9.6.0)
+      hash-sum: 2.0.0
+      nanoid: 3.3.19
+    transitivePeerDependencies:
+      - ts-toolbelt
+
+  '@lazy-random/shared-lib@1.0.15(ts-toolbelt@9.6.0)':
+    dependencies:
+      ts-type: 3.0.18(ts-toolbelt@9.6.0)
+      typedarray-dts: 1.0.0
+    transitivePeerDependencies:
+      - ts-toolbelt
+
+  '@lazy-random/util-distributions@1.0.10': {}
+
+  '@lazy-random/util-probabilities@1.0.10': {}
+
   '@lazy-spawn/stringify@2.0.3(ts-toolbelt@9.6.0)':
     dependencies:
       '@lazy-spawn/strip-ansi': 2.0.3
@@ -3961,6 +4350,8 @@ snapshots:
 
   array-union@3.0.1: {}
 
+  assertion-error@1.1.0: {}
+
   assertion-error@2.0.1: {}
 
   babel-jest@30.5.2(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1):
@@ -4079,6 +4470,16 @@ snapshots:
     transitivePeerDependencies:
       - ts-toolbelt
 
+  chai@4.5.0:
+    dependencies:
+      assertion-error: 1.1.0
+      check-error: 1.0.3
+      deep-eql: 4.1.4
+      get-func-name: 2.0.2
+      loupe: 2.3.7
+      pathval: 1.1.1
+      type-detect: 4.1.0
+
   chai@6.3.0: {}
 
   chalk@2.4.2:
@@ -4093,6 +4494,10 @@ snapshots:
       supports-color: 7.2.0
 
   char-regex@1.0.2: {}
+
+  check-error@1.0.3:
+    dependencies:
+      get-func-name: 2.0.2
 
   check-types@11.2.3: {}
 
@@ -4216,6 +4621,10 @@ snapshots:
   dedent@1.7.2: {}
 
   deep-eql@4.0.0:
+    dependencies:
+      type-detect: 4.1.0
+
+  deep-eql@4.1.4:
     dependencies:
       type-detect: 4.1.0
 
@@ -4384,6 +4793,8 @@ snapshots:
   get-caller-file@2.0.5: {}
 
   get-east-asian-width@1.7.0: {}
+
+  get-func-name@2.0.2: {}
 
   get-package-type@0.1.0: {}
 
@@ -4923,6 +5334,10 @@ snapshots:
 
   lodash@4.18.1: {}
 
+  loupe@2.3.7:
+    dependencies:
+      get-func-name: 2.0.2
+
   lru-cache@10.4.3: {}
 
   lru-cache@11.5.3: {}
@@ -5000,6 +5415,8 @@ snapshots:
 
   num-is-roman@1.1.15: {}
 
+  num-is-zero@1.0.13: {}
+
   onetime@5.1.2:
     dependencies:
       mimic-fn: 2.1.0
@@ -5070,6 +5487,8 @@ snapshots:
 
   path-type@4.0.0: {}
 
+  pathval@1.1.1: {}
+
   picocolors@1.1.1: {}
 
   picomatch@2.3.2: {}
@@ -5102,6 +5521,16 @@ snapshots:
   q@1.5.1: {}
 
   queue-microtask@1.2.3: {}
+
+  random-extra@5.0.2(seedrandom@3.0.5)(supports-color@8.1.1)(ts-toolbelt@9.6.0):
+    dependencies:
+      '@lazy-random/clone-class': 1.0.11
+      '@lazy-random/random-core': 2.0.3(supports-color@8.1.1)(ts-toolbelt@9.6.0)
+      '@lazy-random/rng-factory': 1.0.10(ts-toolbelt@9.6.0)
+      seedrandom: 3.0.5
+    transitivePeerDependencies:
+      - supports-color
+      - ts-toolbelt
 
   random@3.0.6:
     dependencies:

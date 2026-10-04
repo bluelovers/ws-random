@@ -1,6 +1,6 @@
 {
   "name": "@lazy-num/max-safe-number",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "判斷數值在指定位數 (Digits) 精度下是否安全，並以二分搜尋 (Binary Search) 找出最大安全數值",
   "keywords": [
     "alea",

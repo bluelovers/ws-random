@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0](https://github.com/bluelovers/ws-random/compare/random-extra@5.0.2...random-extra@6.0.0) (2026-10-04)
+
+
+
+### 📦　Code Refactoring
+
+* **build:** 優化型別定義與建置腳本流程 ([7b7dc4b](https://github.com/bluelovers/ws-random/commit/7b7dc4b9699e7b54ff6e651d845936c8dbb948db))
+
+
+### 📚　Documentation
+
+* **random-extra:** 優化套件結構並強化程式碼註解與文件說明 ([2d150ac](https://github.com/bluelovers/ws-random/commit/2d150aced77de8424ba2d297ca52a5762ba23b81))
+
+
+### 🚨　Tests
+
+* **core:** 優化型別定義與建置流程並強化 RNG 實例檢查 ([3c99a64](https://github.com/bluelovers/ws-random/commit/3c99a64d03f356bb5f199a57bf1f6b4d7364c0ae))
+* **random-extra:** 更新分佈測試中的斷言語法 ([223cf40](https://github.com/bluelovers/ws-random/commit/223cf40acbec77c0f6d906627a319e6882d62006))
+* **test-suite:** 更新測試腳本與環境變數配置 ([64da1a0](https://github.com/bluelovers/ws-random/commit/64da1a021a6c04e368fc67f4ced8288b9754460a))
+
+
+### 🛠　Build System
+
+* migrate workspace from yarn to pnpm ([7601043](https://github.com/bluelovers/ws-random/commit/76010433d41a92ff8b3138b3712283e35a94fcce))
+* **deps:** 調整套件依賴關係與 peerDependencies 配置 ([1ce4441](https://github.com/bluelovers/ws-random/commit/1ce4441ce78c93d88a148024b7a67e061706be89))
+* **dist:** 更新各套件編譯產物與優化型別定義 ([a5ef5e0](https://github.com/bluelovers/ws-random/commit/a5ef5e0f7a6226bd6030b382a1213eb66ad8c0cd))
+* **monorepo:** 更新全系列套件版本並遷移至 pnpm 工作區 ([9c31210](https://github.com/bluelovers/ws-random/commit/9c31210801dbd93ede78f9dd74627027f8ef3e42))
+* **random-extra:** 優化測試環境的 TypeScript 配置 ([c3d2997](https://github.com/bluelovers/ws-random/commit/c3d2997e90db6a18fc272a536039eed65440a4db))
+
+
+### ♻️　Chores
+
+* **deps:** 更新並同步 @lazy-random/preset-seedrandom 版本 ([8f3b8ef](https://github.com/bluelovers/ws-random/commit/8f3b8efa0e5463a24e6214a95a0d2faa2bc51bec))
+* **monorepo:** 更新各子套件 package.json 之描述與關鍵字 ([f058e47](https://github.com/bluelovers/ws-random/commit/f058e4766da801120e6aab08b0db04e2dd553909))
+
+
+### 🔖　Miscellaneous
+
+* . ([3148db0](https://github.com/bluelovers/ws-random/commit/3148db01cd5b14349bf84df9c05416daa87dafb5))
+
+
+
 ## [5.0.2](https://github.com/bluelovers/ws-random/compare/random-extra@5.0.1...random-extra@5.0.2) (2023-11-20)
 
 **Note:** Version bump only for package random-extra

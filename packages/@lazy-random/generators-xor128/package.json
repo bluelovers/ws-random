@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/generators-xor128",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "以 xorshift128 擬隨機演算法 (PRNG Algorithm) 為核心的可設定種子 (Seedable) 亂數產生器 (Random Number Generator)",
   "keywords": [
     "lazy-random",
@@ -69,9 +69,9 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/clone-class": "^1.1.0",
-    "@lazy-random/rng-abstract": "^1.1.0",
-    "@lazy-random/seed-token": "^1.1.0"
+    "@lazy-random/clone-class": "^2.0.0",
+    "@lazy-random/rng-abstract": "^2.0.0",
+    "@lazy-random/seed-token": "^2.0.0"
   },
   "publishConfig": {
     "access": "public"

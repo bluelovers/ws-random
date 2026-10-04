@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/bluelovers/ws-random/compare/@lazy-random/df-array@2.0.2...@lazy-random/df-array@3.0.0) (2026-10-04)
+
+
+### BREAKING CHANGES
+
+* **test:** 將測試框架從 jest 改為 Node.js 原生測試
+
+
+
+### 🐛　Bug Fixes
+
+* **@lazy-random/df-array:** 修復索引取樣越界問題並優化區間驗證邏輯 ([ae81aaa](https://github.com/bluelovers/ws-random/commit/ae81aaa334bbd4c7004ae40adb38dcccbcc74bbc))
+
+
+### 📦　Code Refactoring
+
+* **@lazy-random/util-distributions:** 將 `randIndex` 重命名為 `randIndexByLength` ([350fc7e](https://github.com/bluelovers/ws-random/commit/350fc7e1dd6a2f31944bab90fe2815d7a38e053c))
+
+
+### 📚　Documentation
+
+* update docs ([ab89109](https://github.com/bluelovers/ws-random/commit/ab89109be02d6b2be226d39604550a85daf6ea90))
+* **monorepo:** 為全系列套件新增詳細的 JSDoc 註解與技術說明 ([477e362](https://github.com/bluelovers/ws-random/commit/477e362ece38a6206e60f967171f6ea944c96066))
+
+
+### 🚨　Tests
+
+* **core:** 優化型別定義與建置流程並強化 RNG 實例檢查 ([3c99a64](https://github.com/bluelovers/ws-random/commit/3c99a64d03f356bb5f199a57bf1f6b4d7364c0ae))
+* **test:** 將測試框架從 jest 改為 Node.js 原生測試 ([1531a60](https://github.com/bluelovers/ws-random/commit/1531a60bb9932fd9ed3480c792682efa924b5ce6))
+
+
+### 🛠　Build System
+
+* migrate workspace from yarn to pnpm ([7601043](https://github.com/bluelovers/ws-random/commit/76010433d41a92ff8b3138b3712283e35a94fcce))
+* **@lazy-random/df-array:** 更新編譯產物以反映索引取樣器重構 ([c0ef5c5](https://github.com/bluelovers/ws-random/commit/c0ef5c52e6ad72bd32e527de6dff4bf9bc810bfd))
+* **dist:** 更新所有套件的編譯產物與型別定義 ([b0b05b8](https://github.com/bluelovers/ws-random/commit/b0b05b8454dd0b485bf93cdf4b02e1be8532ac86))
+* **monorepo:** 更新全系列套件版本並遷移至 pnpm 工作區 ([9c31210](https://github.com/bluelovers/ws-random/commit/9c31210801dbd93ede78f9dd74627027f8ef3e42))
+
+
+### ♻️　Chores
+
+* **monorepo:** 更新各子套件 package.json 之描述與關鍵字 ([f058e47](https://github.com/bluelovers/ws-random/commit/f058e4766da801120e6aab08b0db04e2dd553909))
+
+
+### 🔖　Miscellaneous
+
+* . ([170022b](https://github.com/bluelovers/ws-random/commit/170022b213ffad0aba001c9931dbb0ceed8584d4))
+* . ([3148db0](https://github.com/bluelovers/ws-random/commit/3148db01cd5b14349bf84df9c05416daa87dafb5))
+
+
+
 # [2.1.0](https://github.com/bluelovers/ws-random/compare/@lazy-random/df-array@2.0.2...@lazy-random/df-array@2.1.0) (2026-10-02)
 
 

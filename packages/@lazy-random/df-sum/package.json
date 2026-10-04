@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/df-sum",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "產生「總和固定 (Fixed Sum)」的亂數 (Random Number) 數列的分佈 (Distribution) 套件，回傳可反覆呼叫的閉包 (Closure)",
   "keywords": [
     "array",
@@ -71,21 +71,21 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-num/sum": "^1.1.0",
-    "@lazy-random/df-uniform": "^1.1.0",
-    "@lazy-random/expect": "^1.1.0",
-    "@lazy-random/fake-lib-r-math-rng": "^1.1.0",
-    "@lazy-random/rng-abstract": "^1.1.0",
-    "@lazy-random/util-distributions": "^1.1.0",
-    "@lazy-random/util-probabilities": "^1.1.0",
+    "@lazy-num/sum": "^2.0.0",
+    "@lazy-random/df-uniform": "^2.0.0",
+    "@lazy-random/expect": "^2.0.0",
+    "@lazy-random/fake-lib-r-math-rng": "^2.0.0",
+    "@lazy-random/rng-abstract": "^2.0.0",
+    "@lazy-random/util-distributions": "^2.0.0",
+    "@lazy-random/util-probabilities": "^2.0.0",
     "array-hyper-unique": "^2.1.8",
     "lib-r-math.js": "<2 >=1.0.94"
   },
   "devDependencies": {
-    "@lazy-num/to-fixed-number": "^1.1.0",
-    "@lazy-random/shared-lib": "^1.1.0",
-    "@lazy-random/util-test": "^1.1.0",
-    "num-is-zero": "^1.1.0"
+    "@lazy-num/to-fixed-number": "^2.0.0",
+    "@lazy-random/shared-lib": "^2.0.0",
+    "@lazy-random/util-test": "^2.0.0",
+    "num-is-zero": "^2.0.0"
   },
   "publishConfig": {
     "access": "public"

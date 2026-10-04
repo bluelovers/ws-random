@@ -1,6 +1,6 @@
 {
   "name": "num-is-zero",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "判斷數值是否為零 (Zero)，並將負零 (-0) 正規化 (Normalize) 為 0 的工具函式",
   "keywords": [
     "num-is-zero",
