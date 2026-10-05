@@ -1,6 +1,6 @@
 {
   "name": "@lazy-num/to-fixed-number",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "number using fixed-point notation",
   "keywords": [
     "decimal",

@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/generators-math-random2",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "以瀏覽器／Node.js 原生 Math.random 為亂數來源 (Random Number) 的亂數產生器 (Random Number Generator)",
   "keywords": [
     "lazy-random",
@@ -67,8 +67,8 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/generators-function": "^2.0.0",
-    "@lazy-random/original-math-random": "^2.0.0"
+    "@lazy-random/generators-function": "^2.0.1",
+    "@lazy-random/original-math-random": "^2.0.1"
   },
   "publishConfig": {
     "access": "public"

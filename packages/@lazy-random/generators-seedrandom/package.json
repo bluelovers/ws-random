@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/generators-seedrandom",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "基於 seedrandom 的可設定種子 (Seedable) 亂數產生器 (Random Number Generator)",
   "keywords": [
     "lazy-random",
@@ -74,9 +74,9 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/clone-class": "^2.0.0",
-    "@lazy-random/generators-function": "^2.0.0",
-    "@lazy-random/shared-lib": "^2.0.0",
+    "@lazy-random/clone-class": "^2.0.1",
+    "@lazy-random/generators-function": "^2.0.1",
+    "@lazy-random/shared-lib": "^2.0.1",
     "@types/seedrandom": "^3.0.8",
     "seedrandom": "^3.0.5"
   },

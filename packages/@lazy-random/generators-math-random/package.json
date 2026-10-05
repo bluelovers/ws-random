@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/generators-math-random",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "以 JavaScript 內建的 Math.random() 作為亂數來源 (Entropy Source) 的亂數產生器 (Random Number Generator)",
   "keywords": [
     "lazy-random",
@@ -67,9 +67,9 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/clone-class": "^2.0.0",
-    "@lazy-random/original-math-random": "^2.0.0",
-    "@lazy-random/rng-abstract-core": "^2.0.0"
+    "@lazy-random/clone-class": "^2.0.1",
+    "@lazy-random/original-math-random": "^2.0.1",
+    "@lazy-random/rng-abstract-core": "^2.0.1"
   },
   "publishConfig": {
     "access": "public"

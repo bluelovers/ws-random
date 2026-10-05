@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/bluelovers/ws-random/compare/@lazy-random/rng-abstract@2.0.0...@lazy-random/rng-abstract@2.0.1) (2026-10-05)
+
+
+### BREAKING CHANGES
+
+* **rng-abstract:** 實作品牌鍵驗證機制以解決 ESM/CJS 重複載入問題
+
+
+
+### 🐛　Bug Fixes
+
+* **deps:** 升級 random-extra 至 6.0.1 並修正測試指令 ([275508e](https://github.com/bluelovers/ws-random/commit/275508eeaeb3898ba0a8f0fd231c1f2e3ab3e25d))
+
+
+### 📦　Code Refactoring
+
+* **rng-abstract:** 實作品牌鍵驗證機制以解決 ESM/CJS 重複載入問題 ([a34f735](https://github.com/bluelovers/ws-random/commit/a34f735bc660cb89604e8c69a7d69c007101d8e7))
+* **rng-abstract:** 實作品牌鍵驗證機制以解決 ESM/CJS 重複載入問題 ([755fbab](https://github.com/bluelovers/ws-random/commit/755fbab70ce9c42da10c0fb906ec1c170519d8dd))
+
+
+### 🛠　Build System
+
+* **monorepo:** 優化各套件的 DTS 編譯腳本流程 ([4fbdb78](https://github.com/bluelovers/ws-random/commit/4fbdb78e8c0ba2079cd96e4f91a123ebac7b17dc))
+
+
+### ♻️　Chores
+
+* **monorepo:** 更新所有套件的 package.json 與清理開發工具 ([037f509](https://github.com/bluelovers/ws-random/commit/037f5095d3148cb0ae40c06cc31722a4dcb0cced))
+
+
+
 # [2.0.0](https://github.com/bluelovers/ws-random/compare/@lazy-random/rng-abstract@1.0.13...@lazy-random/rng-abstract@2.0.0) (2026-10-04)
 
 

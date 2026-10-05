@@ -1,6 +1,6 @@
 {
   "name": "@lazy-num/float-algorithm",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "多種偽亂數產生器 (PRNG) 演算法的小型實作集合，回傳可取得 [0, 1) 浮點數的抽樣函式 (Thunk)",
   "keywords": [
     "alea",
@@ -128,7 +128,7 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "devDependencies": {
-    "@lazy-random/seed-algorithm": "^2.0.0"
+    "@lazy-random/seed-algorithm": "^2.0.1"
   },
   "publishConfig": {
     "access": "public"

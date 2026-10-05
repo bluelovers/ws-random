@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/seed-token",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "產生與正規化亂數種子權杖 (Seed Token) 的小工具集，提供任意輸入轉數值種子 (Numeric Seed) 與高熵 (Entropy) 隨機種子字串的方法",
   "keywords": [
     "seed",
@@ -70,10 +70,10 @@
   },
   "dependencies": {
     "@lazy-assert/check-basic": "^1.0.14",
-    "@lazy-num/float-to-string": "^2.0.0",
-    "@lazy-random/original-math-random": "^2.0.0",
-    "@lazy-random/seed-data": "^2.0.0",
-    "@lazy-random/shared-lib": "^2.0.0",
+    "@lazy-num/float-to-string": "^2.0.1",
+    "@lazy-random/original-math-random": "^2.0.1",
+    "@lazy-random/seed-data": "^2.0.1",
+    "@lazy-random/shared-lib": "^2.0.1",
     "hash-sum": "^2.0.0",
     "nanoid": "<4 >=3.3.4"
   },

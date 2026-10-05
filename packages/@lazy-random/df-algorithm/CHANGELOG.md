@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/bluelovers/ws-random/compare/@lazy-random/df-algorithm@2.0.0...@lazy-random/df-algorithm@2.0.1) (2026-10-05)
+
+
+
+### ♻️　Chores
+
+* **deps:** 調整依賴關係並移除未使用的套件 ([df91257](https://github.com/bluelovers/ws-random/commit/df9125793528c22bacdcbe048c340f58b5717915))
+* **monorepo:** 更新所有套件的 package.json 與清理開發工具 ([037f509](https://github.com/bluelovers/ws-random/commit/037f5095d3148cb0ae40c06cc31722a4dcb0cced))
+
+
+
 # [2.0.0](https://github.com/bluelovers/ws-random/compare/@lazy-random/df-algorithm@1.0.13...@lazy-random/df-algorithm@2.0.0) (2026-10-04)
 
 

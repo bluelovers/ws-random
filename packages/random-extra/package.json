@@ -1,6 +1,6 @@
 {
   "name": "random-extra",
-  "version": "6.0.1",
+  "version": "6.0.2",
   "description": "Seedable random number generator supporting many common distributions.",
   "keywords": [
     "alea",
@@ -108,25 +108,25 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/clone-class": "^2.0.0",
-    "@lazy-random/cross-crypto": "^2.0.0",
-    "@lazy-random/expect": "^2.0.0",
-    "@lazy-random/generators-seedrandom": "^2.0.0",
-    "@lazy-random/random-core": "^3.0.0",
-    "@lazy-random/rng-abstract": "^2.0.0",
-    "@lazy-random/rng-factory": "^2.0.0",
+    "@lazy-random/clone-class": "^2.0.1",
+    "@lazy-random/cross-crypto": "^2.0.1",
+    "@lazy-random/expect": "^2.0.1",
+    "@lazy-random/generators-seedrandom": "^2.0.1",
+    "@lazy-random/random-core": "^3.0.1",
+    "@lazy-random/rng-abstract": "^2.0.1",
+    "@lazy-random/rng-factory": "^2.0.1",
     "core-decorators": "^0.20.0",
-    "num-in-delta": "^2.0.0",
-    "num-is-zero": "^2.0.0",
+    "num-in-delta": "^2.0.1",
+    "num-is-zero": "^2.0.1",
     "tslib": "^2.8.1"
   },
   "devDependencies": {
     "@lazy-assert/check-basic": "^1.0.14",
-    "@lazy-num/sum": "^2.0.0",
-    "@lazy-random/array-algorithm": "^2.0.0",
-    "@lazy-random/original-math-random": "^2.0.0",
-    "@lazy-random/seed-token": "^2.0.0",
-    "@lazy-random/simple-wrap": "^2.0.0"
+    "@lazy-num/sum": "^2.0.1",
+    "@lazy-random/array-algorithm": "^2.0.1",
+    "@lazy-random/original-math-random": "^2.0.1",
+    "@lazy-random/seed-token": "^2.0.1",
+    "@lazy-random/simple-wrap": "^2.0.1"
   },
   "gitHead": "9d8e7456192d483519e8eff7bc45a72152bcf3c0"
 }

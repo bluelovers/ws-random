@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/random-core",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "亂數核心類別 (Random Core)，整合機率分佈 (Distribution)、陣列取樣、加權取樣與 UUID 等 API",
   "keywords": [
     "random-core",
@@ -76,12 +76,12 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/df-array": "^3.0.0",
-    "@lazy-random/df-item-by-weight": "^2.0.0",
-    "@lazy-random/distributions": "^3.0.0",
-    "@lazy-random/expect": "^2.0.0",
-    "@lazy-random/rng-abstract": "^2.0.0",
-    "@lazy-random/shared-lib": "^2.0.0"
+    "@lazy-random/df-array": "^3.0.1",
+    "@lazy-random/df-item-by-weight": "^2.0.1",
+    "@lazy-random/distributions": "^3.0.1",
+    "@lazy-random/expect": "^2.0.1",
+    "@lazy-random/rng-abstract": "^2.0.1",
+    "@lazy-random/shared-lib": "^2.0.1"
   },
   "publishConfig": {
     "access": "public"

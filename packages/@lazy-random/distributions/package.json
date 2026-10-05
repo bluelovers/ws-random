@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/distributions",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "彙整 @lazy-random 系列各種亂數分佈 (Distribution) 的聚合套件 (Aggregate Package)，一次安裝即可取得常見的機率分佈與亂數工具 API",
   "keywords": [
     "aggregate",
@@ -74,14 +74,14 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/df-algorithm": "^2.0.0",
-    "@lazy-random/df-array": "^3.0.0",
-    "@lazy-random/df-char-id": "^2.0.0",
-    "@lazy-random/df-item-by-weight": "^2.0.0",
-    "@lazy-random/df-poisson": "^2.0.0",
-    "@lazy-random/df-sum": "^2.0.0",
-    "@lazy-random/df-uniform": "^2.0.0",
-    "@lazy-random/df-uuid": "^2.0.0"
+    "@lazy-random/df-algorithm": "^2.0.1",
+    "@lazy-random/df-array": "^3.0.1",
+    "@lazy-random/df-char-id": "^2.0.1",
+    "@lazy-random/df-item-by-weight": "^2.0.1",
+    "@lazy-random/df-poisson": "^2.0.1",
+    "@lazy-random/df-sum": "^2.0.1",
+    "@lazy-random/df-uniform": "^2.0.1",
+    "@lazy-random/df-uuid": "^2.0.1"
   },
   "publishConfig": {
     "access": "public"

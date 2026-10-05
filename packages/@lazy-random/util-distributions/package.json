@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/util-distributions",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "搭配亂數產生器 (RNG) 使用的分布 (Distribution) 與取值工具函式 (Utility Function)，提供區間亂數 (Random Number)、整數取值與隨機索引 (Random Index) 等常用方法",
   "keywords": [
     "util-distributions",
@@ -70,11 +70,11 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "num-is-zero": "^2.0.0"
+    "num-is-zero": "^2.0.1"
   },
   "devDependencies": {
-    "@lazy-random/rng-abstract": "^2.0.0",
-    "@lazy-random/util-test": "^2.0.0"
+    "@lazy-random/rng-abstract": "^2.0.1",
+    "@lazy-random/util-test": "^2.0.1"
   },
   "publishConfig": {
     "access": "public"

@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/df-item-by-weight",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "依權重 (Weight) 隨機挑選項目的取樣函式 (Random Sampling Function)，支援加權單選與不重複多選",
   "keywords": [
     "array",
@@ -72,13 +72,13 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/df-array": "^3.0.0",
-    "@lazy-random/expect": "^2.0.0"
+    "@lazy-random/df-array": "^3.0.1",
+    "@lazy-random/expect": "^2.0.1"
   },
   "devDependencies": {
-    "@lazy-random/rng-abstract": "^2.0.0",
-    "@lazy-random/util-test": "^2.0.0",
-    "num-in-delta": "^2.0.0"
+    "@lazy-random/rng-abstract": "^2.0.1",
+    "@lazy-random/util-test": "^2.0.1",
+    "num-in-delta": "^2.0.1"
   },
   "publishConfig": {
     "access": "public"

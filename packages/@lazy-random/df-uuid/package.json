@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/df-uuid",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "以亂數 (Random Number) 產生 UUID v4 的分佈 (Distribution) 套件，回傳可反覆呼叫的閉包 (Closure)",
   "keywords": [
     "closure",
@@ -69,12 +69,12 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/bytes-to-uuid": "^2.0.0",
-    "@lazy-random/df-uniform": "^2.0.0",
-    "@lazy-random/shared-lib": "^2.0.0"
+    "@lazy-random/bytes-to-uuid": "^2.0.1",
+    "@lazy-random/df-uniform": "^2.0.1",
+    "@lazy-random/shared-lib": "^2.0.1"
   },
   "devDependencies": {
-    "@lazy-random/rng-abstract": "^2.0.0"
+    "@lazy-random/rng-abstract": "^2.0.1"
   },
   "publishConfig": {
     "access": "public"

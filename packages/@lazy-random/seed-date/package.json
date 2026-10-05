@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/seed-date",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "以日期時間 (Date) 與亂數小數結合，產生亂數產生器 (Random Number Generator) 可直接使用的數值型與字串型種子 (Seed)",
   "keywords": [
     "seed",
@@ -81,8 +81,8 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-num/float-to-string": "^2.0.0",
-    "@lazy-random/original-math-random": "^2.0.0"
+    "@lazy-num/float-to-string": "^2.0.1",
+    "@lazy-random/original-math-random": "^2.0.1"
   },
   "publishConfig": {
     "access": "public"

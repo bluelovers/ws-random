@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/bluelovers/ws-random/compare/@lazy-random/array-algorithm@2.0.0...@lazy-random/array-algorithm@2.0.1) (2026-10-05)
+
+
+
+### 📚　Documentation
+
+* 為各模組新增說明文件與 JSDoc 註解 ([423ee6e](https://github.com/bluelovers/ws-random/commit/423ee6e7a4c984a7057f9149d58f02c2edec264f))
+
+
+### ♻️　Chores
+
+* **monorepo:** 更新所有套件的 package.json 與清理開發工具 ([037f509](https://github.com/bluelovers/ws-random/commit/037f5095d3148cb0ae40c06cc31722a4dcb0cced))
+
+
+
 # [2.0.0](https://github.com/bluelovers/ws-random/compare/@lazy-random/array-algorithm@1.0.14...@lazy-random/array-algorithm@2.0.0) (2026-10-04)
 
 

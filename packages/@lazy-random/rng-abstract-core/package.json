@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/rng-abstract-core",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "亂數產生器 (Random Number Generator, RNG) 的抽象核心 (Abstract Core) 與型別 (Type) 定義套件，零依賴 (Zero Dependency)",
   "keywords": [
     "lazy-random",

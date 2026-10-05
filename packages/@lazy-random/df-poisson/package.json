@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/df-poisson",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "泊松分佈 (Poisson Distribution) 的亂數 (Random Number) 產生器，回傳可持續呼叫的閉包 (Closure)",
   "keywords": [
     "closure",
@@ -71,11 +71,11 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-random/expect": "^2.0.0"
+    "@lazy-random/expect": "^2.0.1"
   },
   "devDependencies": {
-    "@lazy-random/rng-abstract": "^2.0.0",
-    "@lazy-random/util-test": "^2.0.0"
+    "@lazy-random/rng-abstract": "^2.0.1",
+    "@lazy-random/util-test": "^2.0.1"
   },
   "publishConfig": {
     "access": "public"

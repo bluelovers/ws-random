@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.2](https://github.com/bluelovers/ws-random/compare/random-extra@6.0.0...random-extra@6.0.2) (2026-10-05)
+
+
+### BREAKING CHANGES
+
+* **rng-abstract:** 實作品牌鍵驗證機制以解決 ESM/CJS 重複載入問題
+
+
+
+### 🐛　Bug Fixes
+
+* **deps:** 升級 random-extra 至 6.0.1 並修正測試指令 ([275508e](https://github.com/bluelovers/ws-random/commit/275508eeaeb3898ba0a8f0fd231c1f2e3ab3e25d))
+
+
+### 📦　Code Refactoring
+
+* **rng-abstract:** 實作品牌鍵驗證機制以解決 ESM/CJS 重複載入問題 ([a34f735](https://github.com/bluelovers/ws-random/commit/a34f735bc660cb89604e8c69a7d69c007101d8e7))
+* **rng-abstract:** 實作品牌鍵驗證機制以解決 ESM/CJS 重複載入問題 ([755fbab](https://github.com/bluelovers/ws-random/commit/755fbab70ce9c42da10c0fb906ec1c170519d8dd))
+
+
+### 📚　Documentation
+
+* 為各模組新增說明文件與 JSDoc 註解 ([423ee6e](https://github.com/bluelovers/ws-random/commit/423ee6e7a4c984a7057f9149d58f02c2edec264f))
+* **random-extra:** 更新 README 中的建置狀態與套件引用資訊 ([bbc5892](https://github.com/bluelovers/ws-random/commit/bbc58924e777ce98ea46ef366f5f6848d7bab26f))
+* **random-extra:** 增加原始碼與入口點的說明文件與註解 ([88fec2e](https://github.com/bluelovers/ws-random/commit/88fec2e7a81b0465a0b50589b10dfe712ca7e58d))
+
+
+### ♻️　Chores
+
+* **deps:** 調整依賴關係並移除未使用的套件 ([df91257](https://github.com/bluelovers/ws-random/commit/df9125793528c22bacdcbe048c340f58b5717915))
+* **monorepo:** 更新所有套件的 package.json 與清理開發工具 ([037f509](https://github.com/bluelovers/ws-random/commit/037f5095d3148cb0ae40c06cc31722a4dcb0cced))
+
+
+
 # [6.0.0](https://github.com/bluelovers/ws-random/compare/random-extra@5.0.2...random-extra@6.0.0) (2026-10-04)
 
 

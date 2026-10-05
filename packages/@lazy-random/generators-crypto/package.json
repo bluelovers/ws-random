@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/generators-crypto",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "以加密安全亂數來源 (Cryptographically Secure RNG) 實作的亂數產生器 (Random Number Generator)，適合需要較高不可預測性 (Entropy) 的场合",
   "keywords": [
     "crypto",
@@ -67,12 +67,12 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-num/float-from-buffer": "^2.0.0",
-    "@lazy-random/array-rand-index": "^2.0.0",
-    "@lazy-random/cross-crypto": "^2.0.0",
-    "@lazy-random/expect": "^2.0.0",
-    "@lazy-random/rng-abstract": "^2.0.0",
-    "@lazy-random/shared-lib": "^2.0.0"
+    "@lazy-num/float-from-buffer": "^2.0.1",
+    "@lazy-random/array-rand-index": "^2.0.1",
+    "@lazy-random/cross-crypto": "^2.0.1",
+    "@lazy-random/expect": "^2.0.1",
+    "@lazy-random/rng-abstract": "^2.0.1",
+    "@lazy-random/shared-lib": "^2.0.1"
   },
   "publishConfig": {
     "access": "public"

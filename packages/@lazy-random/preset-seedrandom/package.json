@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/preset-seedrandom",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "以 seedrandom 作為亂數產生器 (Random Number Generator, RNG) 的 random-extra 預設實例 (Preset)，載入即可直接使用",
   "keywords": [
     "random",
@@ -71,7 +71,7 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "random-extra": "^6.0.1",
+    "random-extra": "^6.0.2",
     "seedrandom": "*"
   },
   "publishConfig": {

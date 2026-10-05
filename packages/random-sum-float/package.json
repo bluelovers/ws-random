@@ -1,6 +1,6 @@
 {
   "name": "random-sum-float",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "create random float number array by size, sum, min, max",
   "keywords": [
     "random-sum-float",
@@ -76,7 +76,7 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "random-extra": "^6.0.1"
+    "random-extra": "^6.0.2"
   },
   "gitHead": "9d8e7456192d483519e8eff7bc45a72152bcf3c0"
 }

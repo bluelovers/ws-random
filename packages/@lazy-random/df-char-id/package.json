@@ -1,6 +1,6 @@
 {
   "name": "@lazy-random/df-char-id",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "以自訂字元表 (Alphabet) 產生隨機字串 ID 的取樣函式 (Random Sampling Function)，屬 @lazy-random 系列的分佈函式 (Distribution Function) 套件",
   "keywords": [
     "df-char-id",
@@ -71,14 +71,14 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-num/float-to-string": "^2.0.0",
-    "@lazy-random/expect": "^2.0.0",
-    "@lazy-random/shared-lib": "^2.0.0",
-    "@lazy-random/util-distributions": "^2.0.0",
+    "@lazy-num/float-to-string": "^2.0.1",
+    "@lazy-random/expect": "^2.0.1",
+    "@lazy-random/shared-lib": "^2.0.1",
+    "@lazy-random/util-distributions": "^2.0.1",
     "uni-string": "^2.0.10"
   },
   "devDependencies": {
-    "@lazy-random/rng-abstract": "^2.0.0"
+    "@lazy-random/rng-abstract": "^2.0.1"
   },
   "publishConfig": {
     "access": "public"

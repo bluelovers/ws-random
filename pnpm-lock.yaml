@@ -148,13 +148,13 @@ importers:
   packages/@lazy-num/float-algorithm:
     devDependencies:
       '@lazy-random/seed-algorithm':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../@lazy-random/seed-algorithm
 
   packages/@lazy-num/float-from-buffer:
     dependencies:
       '@lazy-random/shared-lib':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../@lazy-random/shared-lib
 
   packages/@lazy-num/float-to-string: {}
@@ -166,7 +166,7 @@ importers:
   packages/@lazy-num/sum:
     dependencies:
       num-is-zero:
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../num-is-zero
 
   packages/@lazy-num/to-fixed-number: {}
@@ -174,22 +174,22 @@ importers:
   packages/@lazy-random/array-algorithm:
     dependencies:
       '@lazy-random/array-rand-index':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../array-rand-index
       '@lazy-random/shared-lib':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../shared-lib
 
   packages/@lazy-random/array-rand-index:
     dependencies:
       '@lazy-random/original-math-random':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../original-math-random
 
   packages/@lazy-random/bytes-to-uuid:
     dependencies:
       '@lazy-random/shared-lib':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../shared-lib
 
   packages/@lazy-random/clone-class: {}
@@ -199,129 +199,129 @@ importers:
   packages/@lazy-random/df-algorithm:
     dependencies:
       '@lazy-random/expect':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../expect
       num-is-zero:
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../num-is-zero
     devDependencies:
       '@lazy-random/rng-abstract':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../rng-abstract
       '@lazy-random/util-test':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../util-test
       num-in-delta:
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../num-in-delta
 
   packages/@lazy-random/df-array:
     dependencies:
       '@lazy-random/array-algorithm':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../array-algorithm
       '@lazy-random/df-uniform':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../df-uniform
       '@lazy-random/expect':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../expect
       '@lazy-random/rng-abstract':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../rng-abstract
       '@lazy-random/rng-abstract-core':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../rng-abstract-core
       '@lazy-random/shared-lib':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../shared-lib
       '@lazy-random/util-distributions':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../util-distributions
       typedarray-dts:
         specifier: ^1.0.0
         version: 1.0.0
     devDependencies:
       '@lazy-random/util-test':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../util-test
 
   packages/@lazy-random/df-char-id:
     dependencies:
       '@lazy-num/float-to-string':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../@lazy-num/float-to-string
       '@lazy-random/expect':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../expect
       '@lazy-random/shared-lib':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../shared-lib
       '@lazy-random/util-distributions':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../util-distributions
       uni-string:
         specifier: ^2.0.10
         version: 2.0.10
     devDependencies:
       '@lazy-random/rng-abstract':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../rng-abstract
 
   packages/@lazy-random/df-item-by-weight:
     dependencies:
       '@lazy-random/df-array':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../df-array
       '@lazy-random/expect':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../expect
     devDependencies:
       '@lazy-random/rng-abstract':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../rng-abstract
       '@lazy-random/util-test':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../util-test
       num-in-delta:
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../num-in-delta
 
   packages/@lazy-random/df-poisson:
     dependencies:
       '@lazy-random/expect':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../expect
     devDependencies:
       '@lazy-random/rng-abstract':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../rng-abstract
       '@lazy-random/util-test':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../util-test
 
   packages/@lazy-random/df-sum:
     dependencies:
       '@lazy-num/sum':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../@lazy-num/sum
       '@lazy-random/df-uniform':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../df-uniform
       '@lazy-random/expect':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../expect
       '@lazy-random/fake-lib-r-math-rng':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../fake-lib-r-math-rng
       '@lazy-random/rng-abstract':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../rng-abstract
       '@lazy-random/util-distributions':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../util-distributions
       '@lazy-random/util-probabilities':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../util-probabilities
       array-hyper-unique:
         specifier: ^2.1.8
@@ -331,78 +331,78 @@ importers:
         version: 1.0.94(supports-color@8.1.1)
     devDependencies:
       '@lazy-num/to-fixed-number':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../@lazy-num/to-fixed-number
       '@lazy-random/shared-lib':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../shared-lib
       '@lazy-random/util-test':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../util-test
       num-is-zero:
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../num-is-zero
 
   packages/@lazy-random/df-uniform:
     dependencies:
       '@lazy-num/to-fixed-number':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../@lazy-num/to-fixed-number
       '@lazy-random/expect':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../expect
       '@lazy-random/shared-lib':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../shared-lib
     devDependencies:
       '@lazy-random/rng-abstract':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../rng-abstract
       '@lazy-random/util-test':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../util-test
 
   packages/@lazy-random/df-uuid:
     dependencies:
       '@lazy-random/bytes-to-uuid':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../bytes-to-uuid
       '@lazy-random/df-uniform':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../df-uniform
       '@lazy-random/shared-lib':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../shared-lib
     devDependencies:
       '@lazy-random/rng-abstract':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../rng-abstract
 
   packages/@lazy-random/distributions:
     dependencies:
       '@lazy-random/df-algorithm':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../df-algorithm
       '@lazy-random/df-array':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../df-array
       '@lazy-random/df-char-id':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../df-char-id
       '@lazy-random/df-item-by-weight':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../df-item-by-weight
       '@lazy-random/df-poisson':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../df-poisson
       '@lazy-random/df-sum':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../df-sum
       '@lazy-random/df-uniform':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../df-uniform
       '@lazy-random/df-uuid':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../df-uuid
 
   packages/@lazy-random/expect:
@@ -423,67 +423,67 @@ importers:
   packages/@lazy-random/generators-crypto:
     dependencies:
       '@lazy-num/float-from-buffer':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../@lazy-num/float-from-buffer
       '@lazy-random/array-rand-index':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../array-rand-index
       '@lazy-random/cross-crypto':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../cross-crypto
       '@lazy-random/expect':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../expect
       '@lazy-random/rng-abstract':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../rng-abstract
       '@lazy-random/shared-lib':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../shared-lib
 
   packages/@lazy-random/generators-function:
     dependencies:
       '@lazy-random/clone-class':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../clone-class
       '@lazy-random/expect':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../expect
       '@lazy-random/rng-abstract':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../rng-abstract
 
   packages/@lazy-random/generators-math-random:
     dependencies:
       '@lazy-random/clone-class':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../clone-class
       '@lazy-random/original-math-random':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../original-math-random
       '@lazy-random/rng-abstract-core':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../rng-abstract-core
 
   packages/@lazy-random/generators-math-random2:
     dependencies:
       '@lazy-random/generators-function':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../generators-function
       '@lazy-random/original-math-random':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../original-math-random
 
   packages/@lazy-random/generators-seedrandom:
     dependencies:
       '@lazy-random/clone-class':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../clone-class
       '@lazy-random/generators-function':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../generators-function
       '@lazy-random/shared-lib':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../shared-lib
       '@types/seedrandom':
         specifier: ^3.0.8
@@ -495,25 +495,25 @@ importers:
   packages/@lazy-random/generators-sfc32:
     dependencies:
       '@lazy-num/float-algorithm':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../@lazy-num/float-algorithm
       '@lazy-random/rng-abstract-core':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../rng-abstract-core
       '@lazy-random/seed-algorithm':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../seed-algorithm
 
   packages/@lazy-random/generators-xor128:
     dependencies:
       '@lazy-random/clone-class':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../clone-class
       '@lazy-random/rng-abstract':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../rng-abstract
       '@lazy-random/seed-token':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../seed-token
 
   packages/@lazy-random/generators-xorshift128:
@@ -522,13 +522,13 @@ importers:
         specifier: ^1.2.1
         version: 1.2.1
       '@lazy-random/rng-abstract':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../rng-abstract
 
   packages/@lazy-random/lib-r-math-rng:
     dependencies:
       '@lazy-random/rng-abstract':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../rng-abstract
       is-extends-of:
         specifier: ^2.0.2
@@ -537,7 +537,7 @@ importers:
         specifier: <2 >=1.0.94
         version: 1.0.94(supports-color@8.1.1)
       random-extra:
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../random-extra
 
   packages/@lazy-random/original-math-random: {}
@@ -545,7 +545,7 @@ importers:
   packages/@lazy-random/preset-seedrandom:
     dependencies:
       random-extra:
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../random-extra
       seedrandom:
         specifier: '*'
@@ -554,31 +554,31 @@ importers:
   packages/@lazy-random/random-core:
     dependencies:
       '@lazy-random/df-array':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../df-array
       '@lazy-random/df-item-by-weight':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../df-item-by-weight
       '@lazy-random/distributions':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../distributions
       '@lazy-random/expect':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../expect
       '@lazy-random/rng-abstract':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../rng-abstract
       '@lazy-random/shared-lib':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../shared-lib
 
   packages/@lazy-random/rng-abstract:
     dependencies:
       '@lazy-random/rng-abstract-core':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../rng-abstract-core
       '@lazy-random/seed-token':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../seed-token
 
   packages/@lazy-random/rng-abstract-core: {}
@@ -586,25 +586,25 @@ importers:
   packages/@lazy-random/rng-factory:
     dependencies:
       '@lazy-random/generators-crypto':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../generators-crypto
       '@lazy-random/generators-function':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../generators-function
       '@lazy-random/generators-math-random':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../generators-math-random
       '@lazy-random/generators-math-random2':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../generators-math-random2
       '@lazy-random/generators-seedrandom':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../generators-seedrandom
       '@lazy-random/generators-xor128':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../generators-xor128
       '@lazy-random/rng-abstract':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../rng-abstract
       '@types/seedrandom':
         specifier: '=2.4.28'
@@ -613,7 +613,7 @@ importers:
   packages/@lazy-random/seed-algorithm:
     dependencies:
       '@lazy-random/original-math-random':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../original-math-random
       ts-type:
         specifier: ^3.0.18
@@ -624,10 +624,10 @@ importers:
   packages/@lazy-random/seed-date:
     dependencies:
       '@lazy-num/float-to-string':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../@lazy-num/float-to-string
       '@lazy-random/original-math-random':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../original-math-random
 
   packages/@lazy-random/seed-token:
@@ -636,16 +636,16 @@ importers:
         specifier: ^1.0.14
         version: 1.0.14
       '@lazy-num/float-to-string':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../@lazy-num/float-to-string
       '@lazy-random/original-math-random':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../original-math-random
       '@lazy-random/seed-data':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../seed-data
       '@lazy-random/shared-lib':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../shared-lib
       hash-sum:
         specifier: ^2.0.0
@@ -668,14 +668,14 @@ importers:
   packages/@lazy-random/util-distributions:
     dependencies:
       num-is-zero:
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../num-is-zero
     devDependencies:
       '@lazy-random/rng-abstract':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../rng-abstract
       '@lazy-random/util-test':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../util-test
 
   packages/@lazy-random/util-probabilities: {}
@@ -683,13 +683,13 @@ importers:
   packages/@lazy-random/util-test:
     dependencies:
       '@lazy-random/original-math-random':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../original-math-random
       '@lazy-random/rng-factory':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../rng-factory
       '@lazy-random/simple-wrap':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../simple-wrap
       '@types/seedrandom':
         specifier: ^3.0.8
@@ -711,34 +711,34 @@ importers:
   packages/random-extra:
     dependencies:
       '@lazy-random/clone-class':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../@lazy-random/clone-class
       '@lazy-random/cross-crypto':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../@lazy-random/cross-crypto
       '@lazy-random/expect':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../@lazy-random/expect
       '@lazy-random/generators-seedrandom':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../@lazy-random/generators-seedrandom
       '@lazy-random/random-core':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../@lazy-random/random-core
       '@lazy-random/rng-abstract':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../@lazy-random/rng-abstract
       '@lazy-random/rng-factory':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../@lazy-random/rng-factory
       core-decorators:
         specifier: ^0.20.0
         version: 0.20.0
       num-in-delta:
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../num-in-delta
       num-is-zero:
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../num-is-zero
       tslib:
         specifier: ^2.8.1
@@ -748,25 +748,25 @@ importers:
         specifier: ^1.0.14
         version: 1.0.14
       '@lazy-num/sum':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../@lazy-num/sum
       '@lazy-random/array-algorithm':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../@lazy-random/array-algorithm
       '@lazy-random/original-math-random':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../@lazy-random/original-math-random
       '@lazy-random/seed-token':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../@lazy-random/seed-token
       '@lazy-random/simple-wrap':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../@lazy-random/simple-wrap
 
   packages/random-sum-float:
     dependencies:
       random-extra:
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../random-extra
 
 packages:
