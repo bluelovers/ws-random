@@ -116,6 +116,7 @@
     "@lazy-random/rng-abstract": "^2.0.0",
     "@lazy-random/rng-factory": "^2.0.0",
     "core-decorators": "^0.20.0",
+    "num-in-delta": "^2.0.0",
     "num-is-zero": "^2.0.0",
     "tslib": "^2.8.1"
   },
