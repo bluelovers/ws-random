@@ -5,7 +5,7 @@
 支援種子 (Seed) 的亂數產生器，提供多種常見分佈 (Distribution) 的抽樣函式。
 
 [![NPM](https://img.shields.io/npm/v/random-extra.svg)](https://www.npmjs.com/package/random-extra)
-[![Build Status](https://travis-ci.org/bluelovers/random.svg?branch=master)](https://travis-ci.org/bluelovers/random)
+[![Build Status](https://github.com/bluelovers/ws-random/actions/workflows/build-pnpm.yml/badge.svg)](https://github.com/bluelovers/ws-random/actions/workflows/build-pnpm.yml)
 
 > this module fork from [transitive-bullshit/random](https://github.com/transitive-bullshit/random), with typescript support and some other change (include breaking change)
 
@@ -60,12 +60,12 @@ import random = require('random-extra');
 use [seedrandom](https://github.com/davidbau/seedrandom) for make seed-able
 
 ```ts
-import seedrandom from 'random-extra/preset/seedrandom';
-import { seedrandom } from 'random-extra/preset/seedrandom';
+import seedrandom from '@lazy-random/preset-seedrandom';
 ```
 
-> **注意 (Note)**：目前 `random-extra@5.0.2` 的套件目錄內並沒有 `preset/` 子路徑，
-> 若上述 import 無法解析，請改用下段「other way make seedrandom」的 `random.newUse('seedrandom', ...)` 寫法。
+> **注意 (Note)**：`preset-seedrandom` 已拆分為獨立套件 [@lazy-random/preset-seedrandom](../@lazy-random/preset-seedrandom)，
+> 舊的 `random-extra/preset/seedrandom` 子路徑已不存在。
+> 若不需要預設實例，也可改用下段「other way make seedrandom」的 `random.newUse('seedrandom', ...)` 寫法。
 
 > when use seedrandom, srand will able use
 
@@ -181,7 +181,7 @@ rng.unpatch()
 
 -   [Random](#random)
 
-### [Random](https://github.com/bluelovers/random/blob/8337b5ed606e6bb9f67152f8903f898e3b0b5d35/src/random.js#L25-L556)
+### [Random](https://github.com/bluelovers/ws-random/blob/master/packages/random-extra/src/random.ts)
 
 Seedable random number generator supporting many common distributions.
 
