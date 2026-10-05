@@ -734,6 +734,9 @@ importers:
       core-decorators:
         specifier: ^0.20.0
         version: 0.20.0
+      num-in-delta:
+        specifier: ^2.0.0
+        version: link:../num-in-delta
       num-is-zero:
         specifier: ^2.0.0
         version: link:../num-is-zero
